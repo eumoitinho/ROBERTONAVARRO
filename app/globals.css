@@ -1,0 +1,342 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 47.9 95.8% 53.1%;
+    --primary-foreground: 26 83.3% 14.1%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 47.9 95.8% 53.1%;
+    --primary-foreground: 26 83.3% 14.1%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Estilos de tipografia melhorados */
+  h1 {
+    @apply font-bold text-2xl md:text-3xl lg:text-4xl tracking-tight;
+  }
+
+  h2 {
+    @apply font-semibold text-xl md:text-2xl lg:text-3xl tracking-normal;
+  }
+
+  h3 {
+    @apply font-medium text-lg md:text-xl tracking-wide;
+  }
+
+  p {
+    @apply text-sm md:text-base leading-relaxed;
+  }
+
+  .text-highlight {
+    @apply text-yellow-400 font-semibold;
+  }
+
+  .text-subtitle {
+    @apply text-gray-300 font-normal;
+  }
+
+  .text-body {
+    @apply text-gray-200 font-light leading-relaxed;
+  }
+
+  .text-caption {
+    @apply text-gray-400 text-xs font-light;
+  }
+
+  .text-overline {
+    @apply text-xs uppercase tracking-widest font-medium text-gray-400;
+  }
+}
+
+/* Gradientes */
+.bg-gradient-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9));
+}
+
+.bg-gradient-overlay-right {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+}
+
+.bg-gradient-overlay-left {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+}
+
+/* Animações suaves */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animação de bounce mais lenta para o botão do WhatsApp */
+.animate-bounce-slow {
+  animation: bounceSlow 3s infinite;
+}
+
+@keyframes bounceSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Estilos para cards com efeito de hover */
+.card-hover {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.card-hover:hover {
+  @apply transform -translate-y-1 shadow-lg border-yellow-400;
+}
+
+/* Efeito de hover para links */
+.link-hover {
+  @apply relative inline-block;
+}
+
+.link-hover::after {
+  content: "";
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300;
+}
+
+.link-hover:hover::after {
+  @apply w-full;
+}
+
+/* Efeito de hover para botões */
+.btn-hover {
+  @apply relative overflow-hidden transition-all duration-300 ease-in-out;
+}
+
+.btn-hover:hover {
+  @apply bg-yellow-500;
+}
+
+.btn-hover::before {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-full bg-white opacity-0 transition-opacity duration-300;
+}
+
+.btn-hover:hover::before {
+  @apply opacity-10;
+}
+
+/* Espaçamento melhorado para conteúdo */
+.content-spacing {
+  @apply py-8 md:py-12 lg:py-16;
+}
+
+.section-spacing {
+  @apply py-12 md:py-16 lg:py-20;
+}
+
+/* Ajustes para melhor distribuição de conteúdo */
+.container-custom {
+  @apply container mx-auto px-4 md:px-6 max-w-7xl;
+}
+
+/* Estilos para o botão do WhatsApp */
+.whatsapp-button {
+  @apply fixed bottom-6 right-6 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg transition-all duration-300;
+}
+
+.whatsapp-button:hover {
+  @apply bg-green-600 transform scale-110;
+}
+
+/* Estilos para imagens */
+.image-cover {
+  @apply object-cover w-full h-full;
+}
+
+.image-contain {
+  @apply object-contain w-full h-full;
+}
+
+/* Estilos para seções */
+.section-dark {
+  @apply bg-zinc-900;
+}
+
+.section-darker {
+  @apply bg-zinc-950;
+}
+
+.section-light {
+  @apply bg-zinc-800;
+}
+
+/* Efeito de hover para elementos interativos */
+.hover-glow {
+  @apply transition-all duration-300;
+}
+
+.hover-glow:hover {
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+/* Animação para elementos de destaque */
+.pulse-highlight {
+  animation: pulseHighlight 2s infinite;
+}
+
+@keyframes pulseHighlight {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Efeito de parallax */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
