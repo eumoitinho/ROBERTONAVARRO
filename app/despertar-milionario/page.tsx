@@ -17,6 +17,27 @@ export default function DespertarMilionarioPage() {
 
   useEffect(() => {
     setIsVisible(true)
+
+    // Add keyframe animation for hover effects
+    const style = document.createElement("style")
+    style.innerHTML = `
+      .cta-hover {
+        transition: all 0.3s ease;
+      }
+      .cta-hover:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+      }
+      
+      .cta-hover-subtle {
+        transition: all 0.3s ease;
+      }
+      .cta-hover-subtle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
+      }
+    `
+    document.head.appendChild(style)
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -48,13 +69,13 @@ export default function DespertarMilionarioPage() {
           <div className="flex items-center gap-4">
             <Button
               asChild
-              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
             >
               <Link href="#cadastro">Entrar</Link>
             </Button>
             <Button
               asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
             >
               <Link href="#cadastro">Inscreva-se</Link>
             </Button>
@@ -108,14 +129,14 @@ export default function DespertarMilionarioPage() {
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#cadastro">QUERO MUDAR MINHA SITUAÇÃO FINANCEIRA</Link>
                 </Button>
 
                 <Button
                   asChild
-                  className="bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
+                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#como-funciona">
                     Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
@@ -255,7 +276,7 @@ export default function DespertarMilionarioPage() {
 
               <Button
                 asChild
-                className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
                 <Link href="#cadastro">
                   QUERO COMEÇAR AGORA <ArrowRight className="ml-2 h-4 w-4" />
@@ -317,7 +338,7 @@ export default function DespertarMilionarioPage() {
 
               <Button
                 asChild
-                className="mt-10 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
                 <Link href="#cadastro">
                   QUERO ESSES BENEFÍCIOS <ArrowRight className="ml-2 h-4 w-4" />
@@ -386,7 +407,7 @@ export default function DespertarMilionarioPage() {
             </p>
             <Button
               asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
             >
               <Link href="#cadastro">QUERO MUDAR MINHA SITUAÇÃO FINANCEIRA</Link>
             </Button>
@@ -538,7 +559,7 @@ export default function DespertarMilionarioPage() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
+                    className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
                   >
                     FAZER MEU CADASTRO
                   </Button>
@@ -595,7 +616,6 @@ export default function DespertarMilionarioPage() {
               "/images/logo-1.png",
               "/images/logo-o-fluminense.webp",
               "/images/commercio.png",
-              
             ].map((logo, index) => (
               <div
                 key={index}

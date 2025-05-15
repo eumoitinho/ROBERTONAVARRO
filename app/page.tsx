@@ -15,6 +15,27 @@ export default function HomePage() {
 
   useEffect(() => {
     setIsVisible(true)
+
+    // Add keyframe animation for hover effects
+    const style = document.createElement("style")
+    style.innerHTML = `
+      .cta-hover {
+        transition: all 0.3s ease;
+      }
+      .cta-hover:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+      }
+      
+      .cta-hover-subtle {
+        transition: all 0.3s ease;
+      }
+      .cta-hover-subtle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
+      }
+    `
+    document.head.appendChild(style)
   }, [])
 
   return (
@@ -40,13 +61,13 @@ export default function HomePage() {
           <div className="flex items-center gap-4">
             <Button
               asChild
-              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
             >
               <Link href="#contato">Contato</Link>
             </Button>
             <Button
               asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
             >
               <Link href="#formacoes">Formações</Link>
             </Button>
@@ -67,23 +88,22 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
         <div className="absolute inset-0 z-0">
-                  <Image
-                    src="/images/bgsite.jpg"
-                    alt="Roberto Navarro"
-                    fill
-                    className="object-cover mt-24"
-                    style={{ objectPosition: "center" }}
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/70 via-60% to-transparent"></div>
-                </div>
+          <Image
+            src="/images/bgsite.jpg"
+            alt="Roberto Navarro"
+            fill
+            className="object-cover mt-24"
+            style={{ objectPosition: "center" }}
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/70 via-60% to-transparent"></div>
+        </div>
         {/* Animated background elements */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
         <div
           className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
           style={{ animationDelay: "1s" }}
         ></div>
-       
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -110,14 +130,14 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#formacoes">CONHEÇA NOSSAS FORMAÇÕES</Link>
                 </Button>
 
                 <Button
                   asChild
-                  className="bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
+                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#sobre">
                     Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
@@ -257,7 +277,7 @@ export default function HomePage() {
 
               <Button
                 asChild
-                className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
                 <Link href="#formacoes">
                   CONHEÇA NOSSAS FORMAÇÕES <ArrowRight className="ml-2 h-4 w-4" />
@@ -304,7 +324,7 @@ export default function HomePage() {
                 </p>
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
                 >
                   <Link href="/coaching">Saiba mais</Link>
                 </Button>
@@ -330,7 +350,7 @@ export default function HomePage() {
                 </p>
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
                 >
                   <Link href="/despertar-milionario">Saiba mais</Link>
                 </Button>
@@ -356,9 +376,61 @@ export default function HomePage() {
                 </p>
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
                 >
                   <Link href="/mentoria">Saiba mais</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Educador Financeiro */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <div className="p-6">
+                <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
+                  <Image
+                    src="/placeholder.svg?key=b4r7p"
+                    alt="Educador Financeiro"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-yellow-400">Educador Financeiro</h3>
+                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
+                  Transforme seu conhecimento em liberdade financeira em apenas 90 dias e torne-se um educador
+                  financeiro de sucesso.
+                </p>
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                >
+                  <Link href="/educador-financeiro">Saiba mais</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Crenças da Riqueza */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <div className="p-6">
+                <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
+                  <Image
+                    src="/placeholder.svg?key=jl08t"
+                    alt="Crenças da Riqueza"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-yellow-400">Crenças da Riqueza</h3>
+                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
+                  Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira
+                  e realização pessoal.
+                </p>
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                >
+                  <Link href="/crencas-da-riqueza">Saiba mais</Link>
                 </Button>
               </div>
             </div>
@@ -383,7 +455,7 @@ export default function HomePage() {
                 </p>
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
                 >
                   <Link href="/segredos-da-mente-milionaria">Saiba mais</Link>
                 </Button>
@@ -537,7 +609,7 @@ export default function HomePage() {
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   ></textarea>
                 </div>
-                <Button className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3">
+                <Button className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3">
                   Enviar Mensagem
                 </Button>
               </form>
@@ -569,15 +641,20 @@ export default function HomePage() {
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Programas</h4>
               <ul className="space-y-2">
-                {["Despertar Milionário", "Coaching Financeiro", "Mentoria LCF", "Segredos da Mente Milionária"].map(
-                  (program) => (
-                    <li key={program}>
-                      <Link href="#" className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
-                        {program}
-                      </Link>
-                    </li>
-                  ),
-                )}
+                {[
+                  "Despertar Milionário",
+                  "Coaching Financeiro",
+                  "Mentoria LCF",
+                  "Segredos da Mente Milionária",
+                  "Educador Financeiro",
+                  "Crenças da Riqueza",
+                ].map((program) => (
+                  <li key={program}>
+                    <Link href="#" className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                      {program}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 

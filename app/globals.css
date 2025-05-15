@@ -225,11 +225,12 @@
 
 /* Estilos para cards com efeito de hover */
 .card-hover {
-  @apply transition-all duration-300 ease-in-out;
+  transition: all 0.3s ease;
 }
 
 .card-hover:hover {
-  @apply transform -translate-y-1 shadow-lg border-yellow-400;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.15);
 }
 
 /* Efeito de hover para links */
@@ -248,20 +249,56 @@
 
 /* Efeito de hover para botões */
 .btn-hover {
-  @apply relative overflow-hidden transition-all duration-300 ease-in-out;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-hover:hover {
-  @apply bg-yellow-500;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
 }
 
-.btn-hover::before {
+.btn-hover::after {
   content: "";
-  @apply absolute top-0 left-0 w-full h-full bg-white opacity-0 transition-opacity duration-300;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
 }
 
-.btn-hover:hover::before {
-  @apply opacity-10;
+.btn-hover:hover::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.btn-hover-subtle {
+  transition: all 0.3s ease;
+}
+
+.btn-hover-subtle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
 }
 
 /* Espaçamento melhorado para conteúdo */

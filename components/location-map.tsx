@@ -17,7 +17,7 @@ export default function LocationMap() {
       iframe.allowFullscreen = true
       iframe.loading = "lazy"
       iframe.referrerPolicy = "no-referrer-when-downgrade"
-  
+
       // Clear previous content and append the iframe
       if (mapRef.current) {
         mapRef.current.innerHTML = ""

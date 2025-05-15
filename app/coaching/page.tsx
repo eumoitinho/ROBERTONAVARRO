@@ -15,6 +15,27 @@ export default function CoachingFinanceiro() {
 
   useEffect(() => {
     setIsVisible(true)
+
+    // Add keyframe animation for hover effects
+    const style = document.createElement("style")
+    style.innerHTML = `
+      .cta-hover {
+        transition: all 0.3s ease;
+      }
+      .cta-hover:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+      }
+      
+      .cta-hover-subtle {
+        transition: all 0.3s ease;
+      }
+      .cta-hover-subtle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
+      }
+    `
+    document.head.appendChild(style)
   }, [])
 
   return (
@@ -40,13 +61,13 @@ export default function CoachingFinanceiro() {
           <div className="flex items-center gap-4">
             <Button
               asChild
-              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
             >
               <Link href="#contato">Contato</Link>
             </Button>
             <Button
               asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
             >
               <Link href="#beneficios">Benefícios</Link>
             </Button>
@@ -109,14 +130,14 @@ export default function CoachingFinanceiro() {
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#beneficios">CONHEÇA OS BENEFÍCIOS</Link>
                 </Button>
 
                 <Button
                   asChild
-                  className="bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
+                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#sobre">
                     Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
@@ -193,7 +214,8 @@ export default function CoachingFinanceiro() {
               Transformando <span className="text-yellow-400">vidas financeiras</span> desde 2015
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
-              O Coaching Financeiro é um programa completo para quem deseja mudar sua mentalidade, organizar as finanças e conquistar liberdade com segurança e inteligência.
+              O Coaching Financeiro é um programa completo para quem deseja mudar sua mentalidade, organizar as finanças
+              e conquistar liberdade com segurança e inteligência.
             </p>
           </div>
 
@@ -220,19 +242,21 @@ export default function CoachingFinanceiro() {
               <div className="space-y-6">
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Roberto Navarro é referência nacional em inteligência financeira e criador do Coaching Financeiro no Brasil. Sua missão é transformar a vida financeira de milhões de brasileiros.
+                    Roberto Navarro é referência nacional em inteligência financeira e criador do Coaching Financeiro no
+                    Brasil. Sua missão é transformar a vida financeira de milhões de brasileiros.
                   </p>
                 </div>
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Com uma metodologia exclusiva, Roberto já ajudou milhares de pessoas a destravarem suas finanças e atingirem novos patamares de prosperidade.
+                    Com uma metodologia exclusiva, Roberto já ajudou milhares de pessoas a destravarem suas finanças e
+                    atingirem novos patamares de prosperidade.
                   </p>
                 </div>
               </div>
 
               <Button
                 asChild
-                className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
                 <Link href="#beneficios">
                   CONHEÇA OS BENEFÍCIOS <ArrowRight className="ml-2 h-4 w-4" />
@@ -443,7 +467,7 @@ export default function CoachingFinanceiro() {
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   ></textarea>
                 </div>
-                <Button className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3">
+                <Button className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3">
                   Enviar Mensagem
                 </Button>
               </form>

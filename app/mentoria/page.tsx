@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ChevronDown, Users, Star, Zap, Brain, CheckCircle, Play } from "lucide-react"
+import { ArrowRight, ChevronDown, Users, Star, Zap, Brain, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
@@ -15,6 +15,27 @@ export default function MentoriaPage() {
   const [isVisible, setIsVisible] = useState(false)
   useEffect(() => {
     setIsVisible(true)
+
+    // Add keyframe animation for hover effects
+    const style = document.createElement("style")
+    style.innerHTML = `
+      .cta-hover {
+        transition: all 0.3s ease;
+      }
+      .cta-hover:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+      }
+      
+      .cta-hover-subtle {
+        transition: all 0.3s ease;
+      }
+      .cta-hover-subtle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
+      }
+    `
+    document.head.appendChild(style)
   }, [])
 
   return (
@@ -24,15 +45,27 @@ export default function MentoriaPage() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Logo className="h-10 w-auto" />
           <nav className="hidden md:flex space-x-8">
-            <Link href="#sobre" className="text-sm hover:text-yellow-400 transition-colors">Sobre</Link>
-            <Link href="#beneficios" className="text-sm hover:text-yellow-400 transition-colors">Benefícios</Link>
-            <Link href="#contato" className="text-sm hover:text-yellow-400 transition-colors">Contato</Link>
+            <Link href="#sobre" className="text-sm hover:text-yellow-400 transition-colors">
+              Sobre
+            </Link>
+            <Link href="#beneficios" className="text-sm hover:text-yellow-400 transition-colors">
+              Benefícios
+            </Link>
+            <Link href="#contato" className="text-sm hover:text-yellow-400 transition-colors">
+              Contato
+            </Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Button asChild className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6">
+            <Button
+              asChild
+              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
+            >
               <Link href="#contato">Contato</Link>
             </Button>
-            <Button asChild className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6">
+            <Button
+              asChild
+              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
+            >
               <Link href="#beneficios">Benefícios</Link>
             </Button>
             <MobileMenu
@@ -52,25 +85,34 @@ export default function MentoriaPage() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+            <div
+              className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+            >
               <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
                 <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
                 <span className="text-sm font-medium">Mentoria Exclusiva</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Mentoria LCF
+                  LCF MENTORING:
                 </span>{" "}
-                para escalar seus resultados
+                VOCÊ NO CONTROLE DA SUA VIDA
               </h1>
               <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-                Participe da mentoria que já transformou a vida e os negócios de centenas de empreendedores. Estratégias práticas, acompanhamento próximo e networking de alto nível.
+                Uma imersão profunda e transformadora em finanças pessoais, coaching de vida e estratégias práticas para
+                você conquistar a sua liberdade financeira.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button asChild className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                >
                   <Link href="#beneficios">QUERO PARTICIPAR</Link>
                 </Button>
-                <Button asChild className="bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base">
+                <Button
+                  asChild
+                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
+                >
                   <Link href="#sobre">
                     Saiba mais <ChevronDown className="h-4 w-4 ml-1" />
                   </Link>
@@ -79,7 +121,10 @@ export default function MentoriaPage() {
               <div className="flex items-center gap-6">
                 <div className="flex -space-x-2">
                   {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-yellow-200 to-amber-500 flex items-center justify-center text-black font-bold text-xs">
+                    <div
+                      key={i}
+                      className="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-yellow-200 to-amber-500 flex items-center justify-center text-black font-bold text-xs"
+                    >
                       {i}
                     </div>
                   ))}
@@ -96,7 +141,9 @@ export default function MentoriaPage() {
                 </div>
               </div>
             </div>
-            <div className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+            <div
+              className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
               <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
@@ -136,6 +183,43 @@ export default function MentoriaPage() {
         </div>
       </section>
 
+      {/* O que está travando Section */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">DESAFIOS</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              O QUE ESTÁ <span className="text-yellow-400">TRAVANDO</span> SUA LIBERDADE FINANCEIRA?
+            </h2>
+          </div>
+          <div className="max-w-3xl mx-auto bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-8 hover:border-yellow-400 transition-all duration-300">
+            <p className="text-zinc-300 mb-4">
+              Você já se sentiu travado financeiramente, mesmo fazendo o seu melhor? A verdade é que o sistema não nos
+              ensina a lidar com o dinheiro de forma inteligente. Vivemos presos a uma rotina que cobra muito e ensina
+              pouco sobre como prosperar de verdade.
+            </p>
+            <p className="text-zinc-300 mb-4">
+              É normal sentir frustração ou insegurança ao falar de finanças — não por falta de esforço, mas por falta
+              de direção.
+            </p>
+            <p className="text-zinc-300 mb-6">
+              Está na hora de mudar isso. Descubra um novo caminho para sua liberdade financeira com o LCF Mentoring.
+            </p>
+            <div className="text-center">
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+              >
+                <Link href="#cadastro">QUERO PARTICIPAR AGORA!</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sobre Section */}
       <section id="sobre" className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -145,11 +229,8 @@ export default function MentoriaPage() {
               <span className="text-sm font-medium">SOBRE A MENTORIA</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transforme <span className="text-yellow-400">seus resultados</span> com acompanhamento de verdade
+              O QUE É O <span className="text-yellow-400">LCF MENTORING?</span>
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              A Mentoria LCF é para quem busca crescimento acelerado, networking e estratégias práticas para escalar negócios e vida pessoal.
-            </p>
           </div>
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative">
@@ -166,24 +247,38 @@ export default function MentoriaPage() {
               </div>
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                Conheça <span className="text-yellow-400">Roberto Navarro</span>
-              </h2>
               <div className="space-y-6">
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Roberto Navarro é referência nacional em mentoria para empreendedores e profissionais que buscam alta performance e resultados reais.
+                    Um programa único no Brasil que une Life Coaching e Mentor Coaching Financeiro.
                   </p>
                 </div>
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Com uma metodologia exclusiva, Roberto já ajudou centenas de pessoas a destravarem seus negócios e atingirem novos patamares de sucesso.
+                    Com base em centenas de histórias de sucesso, o programa entrega não apenas conhecimento técnico,
+                    mas uma verdadeira mudança de mentalidade, hábitos e comportamentos.
+                  </p>
+                </div>
+                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-zinc-300">
+                    Imagine acordar todos os dias com clareza, segurança e autonomia financeira. Você terá um plano, um
+                    propósito e as ferramentas para atingir seus objetivos. Além de aprender a gerenciar seu dinheiro,
+                    você também desenvolverá habilidades que transformarão todas as áreas da sua vida.
+                  </p>
+                </div>
+                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-zinc-300">
+                    Descubra como alinhar suas finanças aos seus maiores sonhos e viver com mais liberdade, propósito e
+                    leveza.
                   </p>
                 </div>
               </div>
-              <Button asChild className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base">
-                <Link href="#beneficios">
-                  QUERO SER MENTORADO <ArrowRight className="ml-2 h-4 w-4" />
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+              >
+                <Link href="#cadastro">
+                  QUERO PARTICIPAR AGORA! <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -200,33 +295,77 @@ export default function MentoriaPage() {
               <span className="text-sm font-medium">BENEFÍCIOS</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              O que você ganha na <span className="text-yellow-400">Mentoria LCF</span>
+              O QUE VOCÊ VAI CONQUISTAR COM O <span className="text-yellow-400">LCF MENTORING?</span>
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Networking, acompanhamento, estratégias práticas e acesso direto ao Roberto Navarro.
-            </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {[
               {
-                title: "Networking de Alto Nível",
-                description: "Conecte-se com outros empreendedores e profissionais que buscam crescimento acelerado.",
+                title: "Liberdade e estabilidade financeira",
+                description: "Aprenda a organizar suas finanças com segurança e inteligência.",
               },
               {
-                title: "Acompanhamento Próximo",
-                description: "Tenha acesso direto ao mentor e tire dúvidas em tempo real.",
+                title: "Desenvolvimento pessoal e profissional",
+                description: "Adquira habilidades poderosas que impulsionarão todas as áreas da sua vida.",
               },
               {
-                title: "Estratégias Práticas",
-                description: "Receba planos de ação personalizados para o seu negócio ou carreira.",
+                title: "Acompanhamento contínuo",
+                description:
+                  "Mesmo após a imersão, você continua recebendo suporte para aplicar o que aprendeu e gerar resultados consistentes.",
               },
               {
-                title: "Transformação Real",
-                description: "Destrave seu potencial e alcance resultados extraordinários.",
+                title: "Mudança de mentalidade",
+                description: "Transforme a forma como você enxerga o dinheiro, suas escolhas e seu potencial.",
               },
             ].map((item, index) => (
-              <div key={index} className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+              <div
+                key={index}
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1"
+              >
                 <h3 className="text-xl font-bold mb-4 text-yellow-400">{item.title}</h3>
+                <p className="text-zinc-300">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Já Passaram Section */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">DEPOIMENTOS</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              JÁ PASSARAM PELO <span className="text-yellow-400">LCF MENTORING</span>
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                name: "Alfredo Soares",
+                description: "Autoridade em vendas e autor best-seller",
+              },
+              {
+                name: "Tiago Brunet",
+                description: "Referência em treinamento de líderes e espiritualidade",
+              },
+              {
+                name: "Flávio Prado",
+                description: "Jornalista esportivo que já cobriu 10 Copas do Mundo e eventos em mais de 60 países",
+              },
+              {
+                name: "Pyong Lee",
+                description: "Hipnólogo e youtuber com mais de 8 milhões de inscritos.",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1"
+              >
+                <h3 className="text-xl font-bold mb-4 text-yellow-400">{item.name}</h3>
                 <p className="text-zinc-300">{item.description}</p>
               </div>
             ))}
@@ -403,7 +542,7 @@ export default function MentoriaPage() {
                     </p>
                     <div className="pt-4">
                       <GlowEffect>
-                        <Button className="bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-semibold py-3 btn-hover">
+                        <Button className="cta-hover bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-semibold py-3 btn-hover">
                           GARANTA SUA VAGA!
                         </Button>
                       </GlowEffect>
@@ -445,15 +584,15 @@ export default function MentoriaPage() {
                     </p>
                     <div className="pt-4">
                       <GlowEffect>
-                        <Button className="bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-semibold py-3 btn-hover">
+                        <Button className="cta-hover bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-semibold py-3 btn-hover">
                           GARANTA SUA VAGA!
                         </Button>
                       </GlowEffect>
                     </div>
                   </div>
                 </div>
-              </div>
-            </GlowEffect>
+              </GlowEffect>
+            </div>
 
             <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8 mt-8">
               <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
@@ -477,12 +616,53 @@ export default function MentoriaPage() {
         </div>
       </section>
 
-  
+      <TestimonialsSection />
 
-         <TestimonialsSection />
-    
+      {/* Video Testimonials Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">DEPOIMENTOS EM VÍDEO</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              TRANSFORMAÇÕES QUE <span className="text-yellow-400">FALAM POR SI</span>
+            </h2>
+            <p className="text-zinc-300 max-w-3xl mx-auto">
+              Veja como o LCF Mentoring transformou a vida de centenas de pessoas que, assim como você, buscavam
+              liberdade financeira e desenvolvimento pessoal.
+            </p>
+          </div>
 
-     
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+                <iframe
+                  id="testimonial-video"
+                  src="https://www.youtube.com/embed/k3GPTo26Fn4?enablejsapi=1&rel=0&modestbranding=1"
+                  title="Depoimentos LCF Mentoring"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                ></iframe>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+              >
+                <Link href="#cadastro">
+                  QUERO TRANSFORMAR MINHA VIDA TAMBÉM <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Guarantee Section */}
       <section className="py-16">
@@ -566,7 +746,7 @@ export default function MentoriaPage() {
                 />
               </div>
               <div className="pt-2">
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-semibold py-3 btn-hover">
+                <Button className="cta-hover bg-yellow-400 hover:bg-yellow-500 text-black text-sm font-semibold py-3 btn-hover">
                   QUERO GARANTIR MINHA VAGA
                 </Button>
               </div>
@@ -672,7 +852,9 @@ export default function MentoriaPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">CONQUISTE A VIDA QUE <span className="text-yellow-400"> VOCÊ MERECE! </span></span>
+              <span className="text-sm font-medium">
+                CONQUISTE A VIDA QUE <span className="text-yellow-400"> VOCÊ MERECE! </span>
+              </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Entre em <span className="text-yellow-400">contato</span> conosco
@@ -740,7 +922,7 @@ export default function MentoriaPage() {
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   ></textarea>
                 </div>
-                <Button className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3">
+                <Button className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3">
                   Enviar Mensagem
                 </Button>
               </form>
@@ -824,6 +1006,46 @@ export default function MentoriaPage() {
       </footer>
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />
+      {/* YouTube API Script for autoplay */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+          // Load YouTube API
+          var tag = document.createElement('script');
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          
+          // Initialize player when API is ready
+          var player;
+          function onYouTubeIframeAPIReady() {
+            player = new YT.Player('testimonial-video', {
+              events: {
+                'onReady': onPlayerReady
+              }
+            });
+          }
+          
+          // Set up Intersection Observer to play video when in view
+          function onPlayerReady(event) {
+            const videoSection = document.getElementById('testimonial-video');
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting && player && player.playVideo) {
+                  player.playVideo();
+                } else if (player && player.pauseVideo) {
+                  player.pauseVideo();
+                }
+              });
+            }, { threshold: 0.5 });
+            
+            if (videoSection) {
+              observer.observe(videoSection);
+            }
+          }
+        `,
+        }}
+      />
     </div>
   )
 }

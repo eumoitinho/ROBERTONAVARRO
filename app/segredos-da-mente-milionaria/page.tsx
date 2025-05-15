@@ -15,7 +15,8 @@ import {
   TrendingUp,
   Brain,
   Target,
-  Lightbulb,
+  Wallet,
+  GraduationCap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -23,13 +24,33 @@ import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import GlowEffect from "@/components/glow-effect"
 import CountdownTimer from "@/components/countdown-timer"
-import LocationMap from "@/components/location-map"
 
 export default function SegredosDaMenteMilionaria() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
+
+    // Add keyframe animation for hover effects
+    const style = document.createElement("style")
+    style.innerHTML = `
+      .cta-hover {
+        transition: all 0.3s ease;
+      }
+      .cta-hover:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+      }
+      
+      .cta-hover-subtle {
+        transition: all 0.3s ease;
+      }
+      .cta-hover-subtle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
+      }
+    `
+    document.head.appendChild(style)
   }, [])
 
   return (
@@ -102,27 +123,33 @@ export default function SegredosDaMenteMilionaria() {
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Segredos da Mente Milionária:
-                </span>{" "}
-                Desperte seu potencial para a riqueza
+                  SEGREDOS DA MENTE MILIONÁRIA
+                </span>
               </h1>
 
+              <p className="text-lg text-zinc-300 mb-4 max-w-xl">
+                A liberdade financeira começa com uma mudança de mentalidade.
+              </p>
+
               <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-                Uma imersão completa para transformar sua mentalidade e descobrir como pensar e agir como os verdadeiros
-                milionários, criando uma vida de abundância e prosperidade!
+                Aprenda a despertar seu potencial milionário em 7 horas de imersão.
+              </p>
+
+              <p className="text-md text-zinc-400 mb-8 max-w-xl">
+                Com Roberto e Raíssa Navarro | 📍 Alameda Araguaia, Alphaville - SP
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#cadastro">QUERO DESPERTAR MINHA MENTE MILIONÁRIA</Link>
                 </Button>
 
                 <Button
                   asChild
-                  className="bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
+                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#o-que-aprender">
                     Saiba mais <ChevronDown className="h-4 w-4 ml-1" />
@@ -170,32 +197,34 @@ export default function SegredosDaMenteMilionaria() {
               </div>
             </div>
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
-            {[
-              { icon: <Users className="h-6 w-6 text-yellow-400" />, value: "130.000+", label: "Alunos" },
-              { icon: <Star className="h-6 w-6 text-yellow-400" />, value: "4.9/5", label: "Avaliação" },
-              { icon: <Zap className="h-6 w-6 text-yellow-400" />, value: "7 horas", label: "Imersão" },
-              { icon: <Brain className="h-6 w-6 text-yellow-400" />, value: "Transformação", label: "Mental" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-                style={{ transitionDelay: `${500 + index * 100}ms` }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="bg-zinc-800 rounded-full p-3">{stat.icon}</div>
-                  <div>
-                    <p className="text-xl font-bold">{stat.value}</p>
-                    <p className="text-sm text-zinc-400">{stat.label}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
+
+      {/* Stats */}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+          {[
+            { icon: <Users className="h-6 w-6 text-yellow-400" />, value: "130.000+", label: "Alunos" },
+            { icon: <Star className="h-6 w-6 text-yellow-400" />, value: "4.9/5", label: "Avaliação" },
+            { icon: <Zap className="h-6 w-6 text-yellow-400" />, value: "7 horas", label: "Imersão" },
+            { icon: <Brain className="h-6 w-6 text-yellow-400" />, value: "Transformação", label: "Mental" },
+          ].map((stat, index) => (
+            <div
+              key={index}
+              className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+              style={{ transitionDelay: `${500 + index * 100}ms` }}
+            >
+              <div className="flex items-center gap-4">
+                <div className="bg-zinc-800 rounded-full p-3">{stat.icon}</div>
+                <div>
+                  <p className="text-xl font-bold">{stat.value}</p>
+                  <p className="text-sm text-zinc-400">{stat.label}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Event Details */}
       <section className="py-10 bg-zinc-900/50 backdrop-blur-md border-y border-zinc-800/50">
@@ -243,7 +272,7 @@ export default function SegredosDaMenteMilionaria() {
             <CountdownTimer endDate={new Date("2025-05-09T23:59:59")} />
             <div className="mt-8 text-center">
               <GlowEffect>
-                <Button className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black text-base font-bold py-4 px-8 rounded-full">
+                <Button className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black text-base font-bold py-4 px-8 rounded-full">
                   GARANTIR MINHA VAGA AGORA
                 </Button>
               </GlowEffect>
@@ -258,16 +287,8 @@ export default function SegredosDaMenteMilionaria() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">POR QUE OS RICOS FICAM MAIS RICOS?</span>
+              <span className="text-sm font-medium">PARE DE SOBREVIVER E APRENDA A PROSPERAR</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Descubra o <span className="text-yellow-400">segredo da mentalidade</span> que transforma vidas
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Você já parou para pensar por que algumas pessoas parecem acumular riqueza e sucesso, enquanto outras se
-              sentem estagnadas? A resposta é simples: é tudo uma questão de conhecimento e uma mudança radical de
-              mentalidade.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -286,43 +307,38 @@ export default function SegredosDaMenteMilionaria() {
             </div>
 
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                Transforme sua <span className="text-yellow-400">mentalidade</span> e alcance a prosperidade
-              </h2>
-
               <div className="space-y-6">
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Empresários que prosperam, mesmo após enfrentar falências, sabem que a verdadeira prosperidade vem
-                    de estratégias e de uma visão de abundância. Eles não apenas se adaptam, mas transformam cada
-                    desafio em uma oportunidade de crescimento!
+                    Você já parou para pensar por que algumas pessoas enriquecem, enquanto outras vivem sempre no
+                    limite? A diferença não está no salário, na sorte ou nas oportunidades — está na mente.
                   </p>
                 </div>
 
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Eu aprendi essa lição na minha própria jornada e já tive o privilégio de ensinar essa mentalidade a
-                    alguns dos maiores empresários do Brasil. Eles perceberam que, ao se libertarem de crenças
-                    limitantes e adotarem uma mentalidade voltada para o sucesso, conseguem enxergar oportunidades onde
-                    muitos veem apenas obstáculos.
+                    Milhares de pessoas sonham em ser ricas, mas a maioria nem sequer sabe o que ser rico significa.
+                    Mais do que ter segurança financeira, ser rico é ter liberdade para viver do seu jeito.
                   </p>
                 </div>
 
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Agora, eu pergunto a você: está pronto para dar um salto em direção à riqueza? Se sim, venho te
-                    convidar a dar esse passo e explorar as estratégias que podem ajudá-lo a criar a vida dos seus
-                    sonhos.
+                    Se você quer começar a prosperar, você precisa estar pronto(a) para romper com crenças limitantes e
+                    promover uma mudança profunda e definitiva na forma como lida com seu dinheiro, carreira e sonhos.
+                  </p>
+                  <p className="text-zinc-300 mt-4 font-bold">
+                    Você precisa construir uma nova mentalidade - a mentalidade da riqueza.
                   </p>
                 </div>
               </div>
 
               <Button
                 asChild
-                className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
                 <Link href="#cadastro">
-                  QUERO COMEÇAR AGORA <ArrowRight className="ml-2 h-4 w-4" />
+                  QUERO PARTICIPAR AGORA! <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -336,91 +352,82 @@ export default function SegredosDaMenteMilionaria() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">O QUE VOCÊ VAI APRENDER</span>
+              <span className="text-sm font-medium">O QUE VOCÊ VAI DESCOBRIR NESTE EVENTO TRANSFORMADOR</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Conteúdo exclusivo para <span className="text-yellow-400">transformar sua realidade</span>
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Descubra as estratégias que os milionários usam para criar e manter sua riqueza
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="space-y-8">
-                {[
-                  {
-                    icon: <CheckCircle className="h-6 w-6 text-yellow-400" />,
-                    title: "Assuma o Compromisso com a Riqueza",
-                    description:
-                      "É hora de se comprometer com sua jornada rumo à prosperidade. Você tem o poder de criar a vida que deseja!",
-                  },
-                  {
-                    icon: <Target className="h-6 w-6 text-yellow-400" />,
-                    title: "Pense Grande",
-                    description: "Expanda sua visão e descubra como grandes ideias podem levar a grandes resultados.",
-                  },
-                  {
-                    icon: <Lightbulb className="h-6 w-6 text-yellow-400" />,
-                    title: "Identifique e Veja Oportunidades",
-                    description:
-                      "Aprenda a reconhecer oportunidades que estão ao seu redor e como aproveitá-las para seu benefício.",
-                  },
-                  {
-                    icon: <Users className="h-6 w-6 text-yellow-400" />,
-                    title: "Admire os Bem-Sucedidos",
-                    description:
-                      "Inspire-se em indivíduos ricos e bem-sucedidos, absorvendo as lições que eles oferecem e aplicando-as em sua própria vida.",
-                  },
-                  {
-                    icon: <TrendingUp className="h-6 w-6 text-yellow-400" />,
-                    title: "Gere Renda Residual",
-                    description:
-                      "Descubra como criar fontes de renda que trabalham para você, mesmo quando você não está.",
-                  },
-                  {
-                    icon: <Zap className="h-6 w-6 text-yellow-400" />,
-                    title: "Aumente seu Patrimônio e Receita",
-                    description:
-                      "Aprenda estratégias eficazes para aumentar seu patrimônio e aumentar sua receita de forma contínua.",
-                  },
-                ].map((item, index) => (
-                  <div key={index} className="flex gap-6 hover:-translate-y-1 transition-transform duration-300">
-                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center text-black">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-yellow-400">{item.title}</h3>
-                      <p className="text-zinc-300">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center text-black mb-4">
+                <Wallet className="h-6 w-6" />
               </div>
-
-              <Button
-                asChild
-                className="mt-10 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
-              >
-                <Link href="#cadastro">
-                  QUERO APRENDER ESSES SEGREDOS <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">Segurança financeira</h3>
+              <p className="text-zinc-300">
+                Descubra como criar uma base sólida, com reserva de emergência e planejamento para o futuro.
+              </p>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="https://media.istockphoto.com/id/1210052781/pt/foto/businessman-in-private-jet.jpg?s=612x612&w=0&k=20&c=Ostz1h5xAxnI80EDmRpOHgyz05GbiYaM4dazB48h1Uw="
-                  alt="Homem de sucesso"
-                  width={500}
-                  height={400}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center text-black mb-4">
+                <Target className="h-6 w-6" />
               </div>
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">Propósito de vida</h3>
+              <p className="text-zinc-300">
+                Tenha clareza sobre seu propósito de vida e carreira e abra portas para novas oportunidades.
+              </p>
             </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center text-black mb-4">
+                <Zap className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">Liberdade financeira</h3>
+              <p className="text-zinc-300">
+                Aprenda a diferença entre sobreviver e viver com liberdade — sem depender de salário ou trabalho ativo.
+              </p>
+            </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center text-black mb-4">
+                <TrendingUp className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">Múltiplas fontes de renda</h3>
+              <p className="text-zinc-300">
+                Entenda como combinar renda principal, extra e passiva para construir sua riqueza de forma estratégica.
+              </p>
+            </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center text-black mb-4">
+                <Brain className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">Mentalidade milionária</h3>
+              <p className="text-zinc-300">
+                Supere crenças limitantes sobre dinheiro e adote os hábitos, atitudes e estratégias dos que alcançaram a
+                verdadeira riqueza.
+              </p>
+            </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-2xl flex items-center justify-center text-black mb-4">
+                <GraduationCap className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">Educação financeira</h3>
+              <p className="text-zinc-300">
+                Por que aprender com quem já chegou lá pode acelerar (e muito!) sua jornada.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              asChild
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+            >
+              <Link href="#cadastro">
+                QUERO APRENDER ESSES SEGREDOS <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -495,7 +502,7 @@ export default function SegredosDaMenteMilionaria() {
 
               <Button
                 asChild
-                className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
                 <Link href="#cadastro">
                   QUERO ENCONTRAR MEU PROPÓSITO <ArrowRight className="ml-2 h-4 w-4" />
@@ -515,59 +522,59 @@ export default function SegredosDaMenteMilionaria() {
               <span className="text-sm font-medium">REFLEXÕES IMPORTANTES</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Perguntas que <span className="text-yellow-400">transformam sua mentalidade</span>
+              Perguntas que <span className="text-yellow-400">os milionários fazem</span> e que você precisa começar a
+              fazer
             </h2>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-8 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-              <p className="text-xl text-zinc-300 mb-6">
-                Cara, deixa eu te contar um segredo que transforma tudo: quem tem uma mente milionária entende que o
-                propósito é a chave pra toda a abundância!
-              </p>
-              <p className="text-xl text-zinc-300 mb-6">
-                Não dá pra construir uma vida próspera se você não souber pra onde está indo. O propósito é o que te faz
-                acordar todo dia com aquela vontade surreal de agir, de fazer acontecer.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-8 mt-10">
-                <div className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
-                  <h3 className="text-xl font-bold mb-4 text-yellow-400">O que realmente me faz feliz?</h3>
-                  <p className="text-zinc-300">
-                    A mente milionária se alimenta da paixão. Quando você descobre o que te energiza, tudo muda.
-                  </p>
-                </div>
-
-                <div className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
-                  <h3 className="text-xl font-bold mb-4 text-yellow-400">Como posso fazer a diferença no mundo?</h3>
-                  <p className="text-zinc-300">
-                    A verdadeira prosperidade surge do desejo de ajudar os outros a resolverem seus desafios e
-                    realizarem seus sonhos.
-                  </p>
-                </div>
+            <div className="grid md:grid-cols-2 gap-8 mt-10">
+              <div className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                <h3 className="text-xl font-bold mb-4 text-yellow-400">O que realmente me faz feliz?</h3>
+                <p className="text-zinc-300">
+                  A mente milionária é guiada por propósito. Quando você se conecta com o que te move de verdade, as
+                  decisões ficam mais claras e os caminhos, mais acessíveis.
+                </p>
               </div>
 
-              <div className="mt-10">
-                <h3 className="text-xl font-bold mb-4 text-yellow-400">Crie suas próprias oportunidades:</h3>
+              <div className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                <h3 className="text-xl font-bold mb-4 text-yellow-400">
+                  Estou esperando por oportunidades ou criando as minhas?
+                </h3>
                 <p className="text-zinc-300">
-                  Encontrar seu propósito é apenas o início. A mente milionária se movimenta, experimenta, falha e
-                  ajusta o curso. Cada passo te aproxima do seu verdadeiro chamado e da abundância.
+                  Quem prospera não depende da sorte. A riqueza é resultado de ação constante, ajustes estratégicos e
+                  coragem para errar, aprender e seguir em frente.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mt-8">
+              <div className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                <h3 className="text-xl font-bold mb-4 text-yellow-400">Como posso impactar o mundo ao meu redor?</h3>
+                <p className="text-zinc-300">
+                  Milionários não acumulam só dinheiro, eles resolvem problemas reais. Quanto maior o impacto gerado,
+                  maior o valor que você recebe.
+                </p>
+              </div>
+
+              <div className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                <h3 className="text-xl font-bold mb-4 text-yellow-400">
+                  Você está pronto para romper com os limites da sua mente?
+                </h3>
+                <p className="text-zinc-300">
+                  A transformação começa quando você abandona o "não posso", "não sei", "não é pra mim" — e assume o
+                  controle da sua narrativa.
                 </p>
               </div>
             </div>
 
             <div className="text-center mt-12">
-              <h3 className="text-2xl font-bold mb-6 text-yellow-400">O SUCESSO COMEÇA DENTRO DE VOCÊ:</h3>
-              <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
-                Construa uma mentalidade livre de crenças limitantes. Quanto mais você acredita e age de maneira
-                consistente, mais o universo responde com prosperidade e sucesso.
-              </p>
               <Button
                 asChild
-                className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
                 <Link href="#cadastro">
-                  GARANTA SEU LUGAR AGORA! <ArrowRight className="ml-2 h-4 w-4" />
+                  QUERO TRANSFORMAR MINHA MENTALIDADE <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -575,66 +582,40 @@ export default function SegredosDaMenteMilionaria() {
         </div>
       </section>
 
-      {/* Em Apenas Uma Imersão Section */}
+      {/* Notable Participants Section */}
       <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">TRANSFORMAÇÃO COMPLETA</span>
+              <span className="text-sm font-medium">JÁ PASSARAM POR NOSSOS TREINAMENTOS</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Em apenas uma <span className="text-yellow-400">imersão</span>, você vai:
-            </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                icon: <Target className="h-10 w-10 text-yellow-400" />,
-                title: "Identificar seu propósito",
-                description:
-                  "Identificará seu propósito de vida e carreira com clareza, abrindo portas para novas oportunidades.",
-              },
-              {
-                icon: <TrendingUp className="h-10 w-10 text-yellow-400" />,
-                title: "Técnicas para criar riqueza",
-                description:
-                  "Adotará técnicas eficazes para criar e manter a riqueza, garantindo que sua receita aumente continuamente.",
-              },
-              {
-                icon: <Brain className="h-10 w-10 text-yellow-400" />,
-                title: "Mentalidade de sucesso",
-                description:
-                  "Compreenderá os padrões de pensamento das pessoas que prosperam, equipando-se com o conhecimento necessário para trilhar o mesmo caminho.",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-b from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm border border-zinc-700/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <div className="bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-center text-yellow-400">{item.title}</h3>
-                <p className="text-zinc-300 text-center">{item.description}</p>
-              </div>
-            ))}
-          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-amber-600 mx-auto mb-4"></div>
+              <h3 className="text-lg font-bold mb-1">Alfredo Soares</h3>
+              <p className="text-sm text-zinc-400">Autoridade em vendas e autor best-seller</p>
+            </div>
 
-          <div className="text-center mt-12">
-            <p className="text-lg text-zinc-300 max-w-3xl mx-auto mb-8">
-              Ao final desta imersão, você estará preparado(a) para dar os primeiros passos em direção à sua vida
-              abundante, ativando sua mente milionária.
-            </p>
-            <Button
-              asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
-            >
-              <Link href="#cadastro">
-                GARANTA SEU LUGAR AGORA! <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-amber-600 mx-auto mb-4"></div>
+              <h3 className="text-lg font-bold mb-1">Tiago Brunet</h3>
+              <p className="text-sm text-zinc-400">Referência em treinamento de líderes e espiritualidade</p>
+            </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-amber-600 mx-auto mb-4"></div>
+              <h3 className="text-lg font-bold mb-1">Flávio Prado</h3>
+              <p className="text-sm text-zinc-400">Jornalista esportivo que já cobriu 10 Copas do Mundo</p>
+            </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-amber-600 mx-auto mb-4"></div>
+              <h3 className="text-lg font-bold mb-1">Pyong Lee</h3>
+              <p className="text-sm text-zinc-400">Hipnólogo e youtuber com mais de 8 milhões de inscritos</p>
+            </div>
           </div>
         </div>
       </section>
@@ -645,138 +626,109 @@ export default function SegredosDaMenteMilionaria() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">AS QUATRO INTELIGÊNCIAS</span>
+              <span className="text-sm font-medium">A CIÊNCIA DA RIQUEZA</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Os Segredos da <span className="text-yellow-400">Mente Milionária</span>
+              4 inteligências que moldam a <span className="text-yellow-400">mente milionária</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                title: "INTELIGÊNCIA EMOCIONAL",
-                description:
-                  "Aprenda a gerenciar suas emoções e a agir com confiança, essencial para tomar decisões que levarão à prosperidade.",
-              },
-              {
-                title: "INTELIGÊNCIA FINANCEIRA",
-                description: "Domine as regras do jogo do dinheiro e construa sua segurança financeira.",
-              },
-              {
-                title: "INTELIGÊNCIA ESPIRITUAL",
-                description:
-                  "Alinhe sua mente e seu espírito com seu verdadeiro propósito, fazendo da prosperidade uma consequência natural da sua dedicação.",
-              },
-              {
-                title: "INTELIGÊNCIA EMPREENDEDORA",
-                description:
-                  "Desenvolva uma mentalidade empreendedora, enxergando oportunidades onde outros veem desafios.",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-b from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm border border-zinc-700/30 rounded-2xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <h3 className="text-lg font-bold mb-4 text-yellow-400">{item.title}</h3>
-                <p className="text-zinc-300 text-sm">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mentors Section */}
-      <section id="mentores" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">CONHEÇA SEUS MENTORES</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Quem vai te guiar nessa <span className="text-yellow-400">jornada transformadora</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {/* Roberto Navarro */}
-            <div className="bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="flex flex-col items-center">
-                <div className="relative w-48 h-48 rounded-full overflow-hidden mb-6 border-2 border-yellow-400">
-                  <Image src="/images/roberto.webp" alt="Roberto Navarro" fill className="object-cover" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-yellow-400">ROBERTO NAVARRO</h3>
-                <div className="text-zinc-300 space-y-4">
-                  <p>
-                    Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente,
-                    trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que
-                    enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
-                  </p>
-                  <p>
-                    A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua
-                    prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa
-                    adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
-                  </p>
-                  <p>
-                    Com seu conhecimento adquirido, Roberto Navarro já ajudou mais de 130.000 pessoas a enriquecerem em
-                    todo o Brasil e no mundo. Sua metodologia exclusiva combina estratégias financeiras, inteligência
-                    emocional e princípios bíblicos, proporcionando resultados transformadores para seus alunos.
-                  </p>
-                </div>
-              </div>
+            <div className="bg-gradient-to-b from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm border border-zinc-700/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
+              <h3 className="text-xl font-bold mb-4 text-yellow-400">Inteligência empresarial</h3>
+              <p className="text-zinc-300">
+                Veja o mundo como um campo de oportunidades. Desenvolva visão estratégica e atitude empreendedora, mesmo
+                que você ainda não tenha um negócio.
+              </p>
             </div>
 
-            {/* Raissa Navarro */}
-            <div className="bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="flex flex-col items-center">
-                <div className="relative w-48 h-48 rounded-full overflow-hidden mb-6 border-2 border-yellow-400">
-                  <Image src="/images/testimonial-group.webp" alt="Raissa Navarro" fill className="object-cover" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-yellow-400">RAISSA NAVARRO</h3>
-                <div className="text-zinc-300 space-y-4">
-                  <p>
-                    Há quase 10 anos, Raissa Navarro, é uma estudiosa de PNL e comportamento humano, sendo escolhida até
-                    para compor a equipe de apoio do Tony Robbins!
-                  </p>
-                  <p>
-                    Raissa Navarro faz parte da The Society of NLP e é uma das poucas autorizadas a ensinar PNL de
-                    verdade no Brasil, está todos os anos ao lado do Dr. Richard Bandler atualizando seus conhecimentos
-                    para repassar a PNL verdadeira aos seus alunos.
-                  </p>
-                  <p>
-                    Sempre bem humorada, Raissa Navarro tem transformado a vida de seus alunos e clientes ao redor do
-                    mundo, fazendo com que eles se tornem mais livres física e mentalmente para tomar suas próprias
-                    decisões e se tornar quem sempre quiseram ser.
-                  </p>
-                </div>
-              </div>
+            <div className="bg-gradient-to-b from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm border border-zinc-700/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
+              <h3 className="text-xl font-bold mb-4 text-yellow-400">Inteligência financeira</h3>
+              <p className="text-zinc-300">
+                Aprenda a controlar o fluxo do seu dinheiro. Identifique entradas, elimine desperdícios e faça seu
+                capital crescer de forma inteligente.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-b from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm border border-zinc-700/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
+              <h3 className="text-xl font-bold mb-4 text-yellow-400">Inteligência emocional</h3>
+              <p className="text-zinc-300">
+                Milionários não tomam decisões baseadas no medo. Aprenda a controlar emoções, lidar com a pressão e
+                manter o foco em momentos críticos.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-b from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm border border-zinc-700/30 rounded-2xl p-8 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
+              <h3 className="text-xl font-bold mb-4 text-yellow-400">Inteligência espiritual</h3>
+              <p className="text-zinc-300">
+                Conecte prosperidade com propósito. Alinhe o que você faz com quem você é e deixe que o universo
+                conspire a favor do seu crescimento.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Location Map Section */}
+      {/* Transformations Video Section */}
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">LOCALIZAÇÃO DO EVENTO</span>
+              <span className="text-sm font-medium">TRANSFORMAÇÕES QUE FALAM POR SI</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Como chegar ao <span className="text-yellow-400">local do evento</span>
+              Veja o impacto na vida de <span className="text-yellow-400">nossos alunos</span>
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">Sede do ICF - Alameda Araguaia 751, Alphaville – SP</p>
           </div>
 
-          <div className="max-w-5xl mx-auto">
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <LocationMap />
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="relative aspect-video">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/4aYDKJQBnRw"
+                  title="Depoimento de aluno"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="relative aspect-video">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/yTELcwYTsnU"
+                  title="Depoimento de aluno"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+              <div className="relative aspect-video">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/W6rBTJKeJ4w"
+                  title="Depoimento de aluno"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              asChild
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+            >
+              <Link href="#cadastro">
+                QUERO TRANSFORMAR MINHA VIDA TAMBÉM <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -787,11 +739,8 @@ export default function SegredosDaMenteMilionaria() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">GARANTA SUA VAGA</span>
+              <span className="text-sm font-medium">GARANTA SEU INGRESSO AGORA MESMO!</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Escolha sua <span className="text-yellow-400">experiência</span>
-            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -810,9 +759,9 @@ export default function SegredosDaMenteMilionaria() {
                 <p className="text-3xl font-bold text-yellow-400 mb-8">GRATUITO</p>
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
+                  className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
                 >
-                  <Link href="#cadastro">GARANTA SEU LUGAR AGORA!</Link>
+                  <Link href="#cadastro">EU QUERO!</Link>
                 </Button>
               </div>
             </div>
@@ -821,11 +770,11 @@ export default function SegredosDaMenteMilionaria() {
             <div className="bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
               <div className="flex flex-col items-center">
-                <h3 className="text-2xl font-bold mb-4 text-yellow-400">EXPERIÊNCIA VIP COM NAVARRO</h3>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-400">EXPERIÊNCIA VIP</h3>
                 <ul className="space-y-4 mb-8 text-center">
                   <li className="flex items-center justify-center gap-2">
                     <CheckCircle className="h-5 w-5 text-yellow-400" />
-                    <span>Exclusivo: perguntas e respostas com Roberto Navarro</span>
+                    <span>Sessão de perguntas e respostas com Roberto Navarro</span>
                   </li>
                   <li className="flex items-center justify-center gap-2">
                     <CheckCircle className="h-5 w-5 text-yellow-400" />
@@ -843,9 +792,9 @@ export default function SegredosDaMenteMilionaria() {
                 <p className="text-3xl font-bold text-yellow-400 mb-8">R$49,90</p>
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
+                  className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
                 >
-                  <Link href="#cadastro">GARANTA SEU LUGAR AGORA!</Link>
+                  <Link href="#cadastro">EU QUERO!</Link>
                 </Button>
               </div>
             </div>
@@ -900,7 +849,7 @@ export default function SegredosDaMenteMilionaria() {
                 </p>
                 <Button
                   asChild
-                  className="mt-6 w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
+                  className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
                 >
                   <Link href="#cadastro">GARANTA SEU LUGAR AGORA!</Link>
                 </Button>
