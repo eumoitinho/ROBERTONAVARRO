@@ -155,13 +155,14 @@ export default function EscaladorDeNegocios() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="#inscricao" className="flex items-center">
-                    GARANTA SUA VAGA!
-                  </Link>
-                </Button>
+  asChild
+  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+>
+  <Link href="#inscricao" className="flex items-center">
+    GARANTA SUA VAGA!
+    <ArrowRight className="ml-2 h-4 w-4" />
+  </Link>
+</Button>
                 <Button
                   asChild
                   className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
