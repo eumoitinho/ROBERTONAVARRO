@@ -37,10 +37,8 @@ export default async function ConfirmacaoPage({
         {registration ? (
           <TicketCard
             ticketCode={registration.ticket_code}
-            eventId={registration.event_id}
             eventName={registration.event_name}
-            attendeeName={registration.name}
-          />
+            name={registration.name} email={""}          />
         ) : (
           <div className="bg-white p-6 rounded-lg shadow-md text-center">
             <p className="text-red-500 font-medium">Não foi possível encontrar as informações do seu ticket.</p>

@@ -538,9 +538,7 @@ export default function SegredosDaMenteMilionaria() {
                     sucesso e aprenda com suas trajetórias. Eles são a prova de que o sonho é possível!
                   </p>
                 </div>
-               são a prova de que o sonho é possível!
-                  </p>
-                </div>
+              </div>
 
               <Button
                 asChild
@@ -552,7 +550,7 @@ export default function SegredosDaMenteMilionaria() {
           </div>
         </div>
       </section>
-  ;<section className="py-20 relative">
+  <section className="py-20 relative">
     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
     <div className="container mx-auto px-4 relative z-10">
       <div className="text-center mb-16">
@@ -1048,7 +1046,7 @@ export default function SegredosDaMenteMilionaria() {
       </div>
     </div>
   </footer>
-  ;<WhatsAppButton />
+  <WhatsAppButton />
   </div>
   )
 }
