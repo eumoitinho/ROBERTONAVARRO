@@ -269,7 +269,7 @@ export default function SegredosDaMenteMilionaria() {
         <div className="container mx-auto px-4">
           <div className="bg-gradient-to-r from-zinc-900 to-zinc-800 p-8 rounded-xl border border-zinc-700">
             <h2 className="text-center text-2xl font-bold mb-6">INSCRIÇÕES ENCERRAM EM:</h2>
-            <CountdownTimer endDate={new Date("2025-05-09T23:59:59")} />
+            <CountdownTimer endDate={new Date("2025-05-09T23:59:59")} targetDate={new Date("2025-05-09T23:59:59")} />
             <div className="mt-8 text-center">
               <GlowEffect>
                 <Button className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black text-base font-bold py-4 px-8 rounded-full">

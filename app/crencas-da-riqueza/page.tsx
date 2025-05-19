@@ -50,7 +50,9 @@ export default function CrencasDaRiquezaPage() {
     const tag = document.createElement("script")
     tag.src = "https://www.youtube.com/iframe_api"
     const firstScriptTag = document.getElementsByTagName("script")[0]
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+    if (firstScriptTag && firstScriptTag.parentNode) {
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+    }
 
     // Set up intersection observer for video autoplay
     const options = {
@@ -186,7 +188,7 @@ export default function CrencasDaRiquezaPage() {
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
                 <div className="mb-6">
                   <h3 className="text-xl font-bold mb-4 text-center text-yellow-400">Próxima turma em:</h3>
-                  <CountdownTimer targetDate="2025-05-20T09:00:00" />
+                  <CountdownTimer targetDate={new Date("2025-05-20T09:00:00")} />
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">

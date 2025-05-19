@@ -305,159 +305,245 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Coaching Financeiro */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-6">
-                <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src="/images/money-image.webp"
-                    alt="Coaching Financeiro"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">Coaching Financeiro</h3>
-                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
-                  Um programa completo para transformar sua mentalidade financeira e conquistar a liberdade que você
-                  sempre sonhou.
-                </p>
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
-                >
-                  <Link href="/coaching">Saiba mais</Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Despertar Milionário */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-6">
-                <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src="/images/mindset.webp"
-                    alt="Despertar Milionário"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">Despertar Milionário</h3>
-                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
-                  Desperte o milionário que existe dentro de você e aprenda as estratégias dos mais bem-sucedidos para
-                  multiplicar seus resultados.
-                </p>
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
-                >
-                  <Link href="/despertar-milionario">Saiba mais</Link>
-                </Button>
-              </div>
-            </div>
-
             {/* Mentoria LCF */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-6">
-                <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src="/images/man-laptop.webp"
-                    alt="Mentoria LCF"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">Mentoria LCF</h3>
-                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
-                  Um programa exclusivo de mentoria para empreendedores que desejam escalar seus negócios e alcançar
-                  resultados extraordinários.
-                </p>
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
-                >
-                  <Link href="/mentoria">Saiba mais</Link>
-                </Button>
-              </div>
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria LCF</h3>
+              <p className="text-zinc-300 mb-6">
+                Um programa exclusivo de mentoria para empreendedores que desejam escalar seus negócios e alcançar
+                resultados extraordinários.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/mentoria">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
 
             {/* Educador Financeiro */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-6">
-                <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src="/placeholder.svg?key=b4r7p"
-                    alt="Educador Financeiro"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">Educador Financeiro</h3>
-                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
-                  Transforme seu conhecimento em liberdade financeira em apenas 90 dias e torne-se um educador
-                  financeiro de sucesso.
-                </p>
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
-                >
-                  <Link href="/educador-financeiro">Saiba mais</Link>
-                </Button>
-              </div>
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Educador Financeiro</h3>
+              <p className="text-zinc-300 mb-6">
+                Transforme seu conhecimento em liberdade financeira em apenas 90 dias e torne-se um educador financeiro
+                de sucesso.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/educador-financeiro">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
 
             {/* Crenças da Riqueza */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-6">
-                <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src="/placeholder.svg?key=jl08t"
-                    alt="Crenças da Riqueza"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">Crenças da Riqueza</h3>
-                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
-                  Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira
-                  e realização pessoal.
-                </p>
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
-                >
-                  <Link href="/crencas-da-riqueza">Saiba mais</Link>
-                </Button>
-              </div>
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Crenças da Riqueza</h3>
+              <p className="text-zinc-300 mb-6">
+                Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e
+                realização pessoal.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/crencas-da-riqueza">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
 
             {/* Segredos da Mente Milionária */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-6">
-                <div className="relative h-48 mb-6 overflow-hidden rounded-xl flex items-center justify-center bg-zinc-800">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Segredos da Mente Milionária</h3>
+              <p className="text-zinc-300 mb-6">
+                Descubra os segredos mentais que transformam pessoas comuns em milionários e aprenda a pensar como os
+                ricos pensam.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/segredos-da-mente-milionaria">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Empreendedor Inteligente */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Empreendedor Inteligente</h3>
+              <p className="text-zinc-300 mb-6">
+                Aprenda estratégias avançadas para empreender com inteligência e construir negócios lucrativos e
+                sustentáveis.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/empreendedor-inteligente">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Escalador de Negócios */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Escalador de Negócios</h3>
+              <p className="text-zinc-300 mb-6">
+                Descubra como escalar seu negócio de forma exponencial e alcançar novos patamares de faturamento e
+                lucratividade.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/escalador-de-negocios">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* LCF Mentoring Pro */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">LCF Mentoring Pro</h3>
+              <p className="text-zinc-300 mb-6">
+                Programa avançado de mentoria para profissionais que desejam se tornar referência em coaching
+                financeiro.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/lcf-mentoring-pro">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Mentoria de Investimentos */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria de Investimentos</h3>
+              <p className="text-zinc-300 mb-6">
+                Aprenda a investir com estratégia e segurança para construir um patrimônio sólido e garantir sua
+                independência financeira.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/mentoria-de-investimentos">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Mentoria Individual */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria Individual</h3>
+              <p className="text-zinc-300 mb-6">
+                Atendimento personalizado para acelerar sua jornada rumo à liberdade financeira com estratégias sob
+                medida para seus objetivos.
+              </p>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+              >
+                <Link href="/mentoria-individual">
+                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Livros em Destaque */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-zinc-900 to-zinc-950 z-0"></div>
+
+        {/* Elementos decorativos */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+        <div
+          className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <div className="relative h-[400px] w-full">
                   <Image
-                    src="/images/roberto.webp"
-                    alt="Segredos da Mente Milionária"
-                    width={500}
-                    height={500}
-                    className="object-fill group-hover:scale-105 transition-transform duration-500"
+                    src="/placeholder-0vud2.png"
+                    alt="Livros de Roberto Navarro"
+                    fill
+                    className="object-cover rounded-xl hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">Segredos da Mente Milionária</h3>
-                <p className="text-zinc-300 mb-6 h-24 overflow-hidden">
-                  Descubra os segredos mentais que transformam pessoas comuns em milionários e aprenda a pensar como os
-                  ricos pensam.
-                </p>
+              </div>
+            </div>
+
+            <div>
+              <div className="inline-flex items-center gap-2 bg-yellow-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full py-2 px-4 mb-6">
+                <span className="flex h-2 w-2 rounded-full bg-yellow-400 animate-pulse"></span>
+                <span className="text-sm font-medium text-yellow-300">DESTAQUE ESPECIAL</span>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
+                  Livros que transformam
+                </span>{" "}
+                sua mentalidade financeira
+              </h2>
+
+              <div className="space-y-6 mb-8">
+                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-zinc-300">
+                    Descubra os best-sellers de Roberto Navarro que já ajudaram milhares de pessoas a transformar sua
+                    relação com o dinheiro e alcançar a liberdade financeira.
+                  </p>
+                </div>
+
+                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-zinc-300">
+                    Conhecimento prático e transformador em cada página. Aprenda os princípios e estratégias que fizeram
+                    Roberto Navarro se tornar um multimilionário em menos de 7 anos.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
-                  <Link href="/segredos-da-mente-milionaria">Saiba mais</Link>
+                  <Link href="/livros">
+                    CONHECER OS LIVROS <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
+                >
+                  <Link href="#formacoes">
+                    VER FORMAÇÕES <ChevronRight className="h-4 w-4 ml-1" />
+                  </Link>
                 </Button>
               </div>
             </div>

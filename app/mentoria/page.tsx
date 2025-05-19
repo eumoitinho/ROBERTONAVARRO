@@ -591,26 +591,26 @@ export default function MentoriaPage() {
                     </div>
                   </div>
                 </div>
-              </GlowEffect>
-            </div>
+              </div>
+            </GlowEffect>
+          </div>
 
-            <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8 mt-8">
-              <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-2">130k+</h3>
-                <p className="text-sm text-gray-300">Alunos</p>
-              </div>
-              <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-2">7 anos</h3>
-                <p className="text-sm text-gray-300">Experiência</p>
-              </div>
-              <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-2">10M</h3>
-                <p className="text-sm text-gray-300">Meta de impacto</p>
-              </div>
-              <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-2">4.9/5</h3>
-                <p className="text-sm text-gray-300">Avaliação</p>
-              </div>
+          <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8 mt-8">
+            <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-2">130k+</h3>
+              <p className="text-sm text-gray-300">Alunos</p>
+            </div>
+            <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-2">7 anos</h3>
+              <p className="text-sm text-gray-300">Experiência</p>
+            </div>
+            <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-2">10M</h3>
+              <p className="text-sm text-gray-300">Meta de impacto</p>
+            </div>
+            <div className="bg-black p-6 rounded-xl border border-zinc-700 text-center">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-2">4.9/5</h3>
+              <p className="text-sm text-gray-300">Avaliação</p>
             </div>
           </div>
         </div>

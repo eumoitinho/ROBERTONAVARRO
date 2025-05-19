@@ -7,7 +7,10 @@ interface CountdownTimerProps {
   endDate?: Date
   days?: number
   className?: string
+  targetDate: Date
 }
+
+
 
 export default function CountdownTimer({ endDate, days = 3, className = "" }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState({
