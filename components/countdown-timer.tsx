@@ -10,8 +10,6 @@ interface CountdownTimerProps {
   targetDate: Date
 }
 
-
-
 export default function CountdownTimer({ endDate, days = 3, className = "" }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,

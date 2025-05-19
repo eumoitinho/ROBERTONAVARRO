@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
 import Image from "next/image"
@@ -42,9 +44,7 @@ const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({
             </button>
           </div>
           <h3 className="font-bold mb-1">Precisa de ajuda?</h3>
-          <p className="text-sm mb-3">
-            {statusMessage}
-          </p>
+          <p className="text-sm mb-3">{statusMessage}</p>
           <a
             href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(chatMessage)}`}
             target="_blank"

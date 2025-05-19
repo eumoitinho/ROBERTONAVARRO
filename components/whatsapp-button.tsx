@@ -1,14 +1,15 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
 
 interface WhatsappButtonProps {
-  message?: string;
-  className?: string;
-  children?: React.ReactNode;
+  message?: string
+  className?: string
+  children?: React.ReactNode
 }
-
 
 export default function WhatsappButton({ message, className, children }: WhatsappButtonProps) {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,7 +27,7 @@ export default function WhatsappButton({ message, className, children }: Whatsap
 
   if (!isVisible) return null
 
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message || "")}`;
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message || "")}`
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
@@ -41,14 +42,9 @@ export default function WhatsappButton({ message, className, children }: Whatsap
           <p className="text-xs mb-3">
             Olá! Estou aqui para tirar suas dúvidas sobre nossas mentorias. Como posso te ajudar hoje?
           </p>
-          <a
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-    >
-      {children || "Fale conosco no WhatsApp"}
-    </a>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={className}>
+            {children || "Fale conosco no WhatsApp"}
+          </a>
         </div>
       )}
 

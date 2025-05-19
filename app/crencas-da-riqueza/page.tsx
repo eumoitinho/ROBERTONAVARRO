@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -8,11 +10,15 @@ import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import Logo from "@/components/logo"
 import CountdownTimer from "@/components/countdown-timer"
+import { useRouter } from "next/navigation"
 
 export default function CrencasDaRiquezaPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeVideoIndex, setActiveVideoIndex] = useState(0)
   const videoIds = ["4aYDKJQBnRw", "yTELcwYTsnU", "W6rBTJKeJ4w"]
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     setIsVisible(true)
@@ -87,6 +93,41 @@ export default function CrencasDaRiquezaPage() {
     }
   }, [])
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError(null)
+
+    const formData = new FormData(e.currentTarget)
+
+    try {
+      const response = await fetch("/api/registrations", {
+        method: "POST",
+        body: JSON.stringify({
+          eventId: 1, // ID do evento "Crenças da Riqueza"
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || "Erro ao processar inscrição")
+      }
+
+      const data = await response.json()
+      router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Ocorreu um erro ao processar sua inscrição")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
@@ -95,12 +136,6 @@ export default function CrencasDaRiquezaPage() {
           <Link href="/">
             <Logo className="h-10 w-auto" />
           </Link>
-          <Button
-            asChild
-            className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6 cta-hover"
-          >
-            <a href="#inscricao">GARANTA SUA VAGA</a>
-          </Button>
         </div>
       </header>
 
@@ -158,7 +193,7 @@ export default function CrencasDaRiquezaPage() {
                   asChild
                   className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base cta-hover"
                 >
-                  <a href="#inscricao">GARANTA SUA VAGA!</a>
+                  <a href="#form">GARANTA SUA VAGA!</a>
                 </Button>
               </div>
 
@@ -220,7 +255,7 @@ export default function CrencasDaRiquezaPage() {
                   asChild
                   className="w-full mt-6 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 cta-hover"
                 >
-                  <a href="#inscricao">QUERO PARTICIPAR!</a>
+                  <a href="#form">QUERO PARTICIPAR!</a>
                 </Button>
               </div>
             </div>
@@ -336,7 +371,7 @@ export default function CrencasDaRiquezaPage() {
                 asChild
                 className="mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base cta-hover"
               >
-                <a href="#inscricao">
+                <a href="#form">
                   QUERO PARTICIPAR AGORA! <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
@@ -605,7 +640,7 @@ export default function CrencasDaRiquezaPage() {
                     asChild
                     className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base cta-hover"
                   >
-                    <a href="#inscricao">
+                    <a href="#form">
                       QUERO TRANSFORMAR MINHA VIDA TAMBÉM <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
@@ -676,7 +711,7 @@ export default function CrencasDaRiquezaPage() {
                   asChild
                   className="mt-8 w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 cta-hover"
                 >
-                  <a href="#inscricao">GARANTA SUA VAGA!</a>
+                  <a href="#form">GARANTA SUA VAGA!</a>
                 </Button>
               </div>
             </div>
@@ -717,7 +752,7 @@ export default function CrencasDaRiquezaPage() {
                   asChild
                   className="mt-8 w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 cta-hover"
                 >
-                  <a href="#inscricao">GARANTA SUA VAGA!</a>
+                  <a href="#form">GARANTA SUA VAGA!</a>
                 </Button>
               </div>
             </div>
@@ -844,7 +879,17 @@ export default function CrencasDaRiquezaPage() {
                 Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
               </p>
 
-              <form className="space-y-6">
+              {error && (
+                <div
+                  className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6"
+                  role="alert"
+                >
+                  <strong className="font-bold">Erro:</strong>
+                  <span className="block sm:inline">{error}</span>
+                </div>
+              )}
+
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -853,8 +898,10 @@ export default function CrencasDaRiquezaPage() {
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                       placeholder="Seu nome completo"
+                      required
                     />
                   </div>
                   <div>
@@ -864,8 +911,10 @@ export default function CrencasDaRiquezaPage() {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                       placeholder="seu@email.com"
+                      required
                     />
                   </div>
                 </div>
@@ -878,8 +927,10 @@ export default function CrencasDaRiquezaPage() {
                     <input
                       type="tel"
                       id="phone"
+                      name="phone"
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                       placeholder="(00) 00000-0000"
+                      required
                     />
                   </div>
                   <div>
@@ -888,16 +939,22 @@ export default function CrencasDaRiquezaPage() {
                     </label>
                     <select
                       id="ticket"
+                      name="ticket"
                       className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      disabled
                     >
                       <option value="free">Experiência Surreal (Gratuito)</option>
-                      <option value="vip">Experiência VIP (R$ 49,90)</option>
+                      <option value="vip">Experiência VIP (R$ 49,90) - Indisponível</option>
                     </select>
                   </div>
                 </div>
 
-                <Button className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg cta-hover">
-                  GARANTIR MINHA VAGA AGORA
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg cta-hover"
+                >
+                  {isSubmitting ? "Enviando..." : "GARANTIR MINHA VAGA AGORA"}
                 </Button>
 
                 <p className="text-xs text-zinc-400 text-center">

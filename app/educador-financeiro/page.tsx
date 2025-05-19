@@ -1,8 +1,11 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   ArrowRight,
   ChevronRight,
@@ -27,6 +30,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     setIsVisible(true)
@@ -52,6 +58,41 @@ export default function EducadorFinanceiroPage() {
     `
     document.head.appendChild(style)
   }, [])
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError(null)
+
+    const formData = new FormData(e.currentTarget)
+
+    try {
+      const response = await fetch("/api/registrations", {
+        method: "POST",
+        body: JSON.stringify({
+          eventId: 2, // ID do evento "Educador Financeiro"
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || "Erro ao processar inscrição")
+      }
+
+      const data = await response.json()
+      router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Ocorreu um erro ao processar sua inscrição")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -147,10 +188,10 @@ export default function EducadorFinanceiroPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button
-                  asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                  onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
                 >
-                  <Link href="#inscricao">QUERO SER UM EDUCADOR FINANCEIRO!</Link>
+                  QUERO SER UM EDUCADOR FINANCEIRO!
                 </Button>
 
                 <Button
@@ -205,10 +246,10 @@ export default function EducadorFinanceiroPage() {
                   <h3 className="text-lg font-bold mb-2 text-yellow-400">Próxima turma em:</h3>
                   <CountdownTimer targetDate={new Date(Date.now() + 15 * 24 * 60 * 60 * 1000)} />
                   <Button
-                    asChild
                     className="cta-hover w-full mt-4 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl"
+                    onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
                   >
-                    <Link href="#inscricao">GARANTIR MINHA VAGA</Link>
+                    GARANTIR MINHA VAGA
                   </Button>
                 </div>
               </div>
@@ -275,12 +316,10 @@ export default function EducadorFinanceiroPage() {
               </div>
 
               <Button
-                asChild
                 className="cta-hover mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <Link href="#inscricao">
-                  QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -465,7 +504,7 @@ export default function EducadorFinanceiroPage() {
                 <div className="p-6">
                   <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
                     <Image
-                      src={`/placeholder.svg?key=5flil&key=5yilk&height=300&width=400&query=financial education course ${course.title}`}
+                      src={`/financial-education-course.png?key=5flil&key=5yilk&height=300&width=400&query=financial education course ${course.title}`}
                       alt={course.title}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-500"
@@ -531,12 +570,10 @@ export default function EducadorFinanceiroPage() {
               </div>
 
               <Button
-                asChild
                 className="cta-hover mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
               >
-                <Link href="#inscricao">
-                  QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -673,7 +710,16 @@ export default function EducadorFinanceiroPage() {
 
           <div className="max-w-3xl mx-auto bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <form className="space-y-6">
+            {error && (
+              <div
+                className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                role="alert"
+              >
+                <strong className="font-bold">Erro:</strong>
+                <span className="block sm:inline">{error}</span>
+              </div>
+            )}
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -682,8 +728,10 @@ export default function EducadorFinanceiroPage() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                     placeholder="Seu nome completo"
+                    required
                   />
                 </div>
                 <div>
@@ -693,8 +741,10 @@ export default function EducadorFinanceiroPage() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                     placeholder="seu@email.com"
+                    required
                   />
                 </div>
               </div>
@@ -706,8 +756,10 @@ export default function EducadorFinanceiroPage() {
                   <input
                     type="tel"
                     id="phone"
+                    name="phone"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                     placeholder="(00) 00000-0000"
+                    required
                   />
                 </div>
                 <div>
@@ -717,6 +769,7 @@ export default function EducadorFinanceiroPage() {
                   <input
                     type="text"
                     id="city"
+                    name="city"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                     placeholder="Sua cidade/estado"
                   />
@@ -729,12 +782,17 @@ export default function EducadorFinanceiroPage() {
                 <textarea
                   id="message"
                   rows={4}
+                  name="message"
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   placeholder="Conte-nos um pouco sobre sua motivação..."
                 ></textarea>
               </div>
-              <Button className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg">
-                QUERO SER UM EDUCADOR FINANCEIRO!
+              <Button
+                className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Enviando..." : "QUERO SER UM EDUCADOR FINANCEIRO!"}
               </Button>
               <p className="text-xs text-zinc-400 text-center">
                 Ao enviar este formulário, você concorda com nossa política de privacidade e termos de uso.
