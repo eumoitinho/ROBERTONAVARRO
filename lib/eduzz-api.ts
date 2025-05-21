@@ -5,34 +5,56 @@ const EDUZZ_API_BASE = "https://api.eduzz.com"
 
 // Helper function to make authenticated requests to Eduzz API
 async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
-  const token = await getEduzzToken()
+  try {
+    const token = await getEduzzToken()
 
-  if (!token) {
-    throw new Error("No authentication token available")
+    if (!token) {
+      throw new Error("No authentication token available")
+    }
+
+    const headers: HeadersInit = {
+      Authorization: `Bearer ${token.access_token}`,
+      "Content-Type": "application/json",
+    }
+
+    const options: RequestInit = {
+      method,
+      headers,
+    }
+
+    if (body && (method === "POST" || method === "PUT" || method === "PATCH")) {
+      options.body = JSON.stringify(body)
+    }
+
+    const response = await fetch(`${EDUZZ_API_BASE}${endpoint}`, options)
+
+    // Check if response is ok before trying to parse JSON
+    if (!response.ok) {
+      // Try to get error details from response
+      let errorDetails = "Unknown error"
+      try {
+        const errorJson = await response.json()
+        errorDetails = JSON.stringify(errorJson)
+      } catch (e) {
+        // If JSON parsing fails, use text content or status
+        errorDetails = (await response.text()) || `Status: ${response.status}`
+      }
+
+      throw new Error(`Eduzz API error: ${errorDetails}`)
+    }
+
+    // Check if response is empty
+    const text = await response.text()
+    if (!text) {
+      throw new Error("Empty response from Eduzz API")
+    }
+
+    // Parse JSON only if we have content
+    return JSON.parse(text)
+  } catch (error) {
+    console.error("Error in Eduzz API request:", error)
+    throw error
   }
-
-  const headers: HeadersInit = {
-    Authorization: `Bearer ${token.access_token}`,
-    "Content-Type": "application/json",
-  }
-
-  const options: RequestInit = {
-    method,
-    headers,
-  }
-
-  if (body && (method === "POST" || method === "PUT" || method === "PATCH")) {
-    options.body = JSON.stringify(body)
-  }
-
-  const response = await fetch(`${EDUZZ_API_BASE}${endpoint}`, options)
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: "Unknown error" }))
-    throw new Error(`Eduzz API error: ${JSON.stringify(error)}`)
-  }
-
-  return response.json()
 }
 
 // Get all products (events)

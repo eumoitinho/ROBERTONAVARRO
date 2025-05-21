@@ -37,40 +37,55 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Create invoice in Eduzz
-    const invoice = await createEduzzInvoice({
-      customer: {
-        name: customer.name,
-        email: customer.email,
-        phone: customer.phone,
-        document: customer.document,
-      },
-      items: [
-        {
-          product_id: eduzzProductId,
-          quantity: 1,
+    try {
+      // Create invoice in Eduzz
+      const invoice = await createEduzzInvoice({
+        customer: {
+          name: customer.name,
+          email: customer.email,
+          phone: customer.phone,
+          document: customer.document,
         },
-      ],
-      payment_method: paymentMethod,
-      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao`,
-    })
+        items: [
+          {
+            product_id: eduzzProductId,
+            quantity: 1,
+          },
+        ],
+        payment_method: paymentMethod,
+        return_url: `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao`,
+      })
 
-    // Store pending registration
-    await sql`
-      INSERT INTO pending_registrations (
-        event_id, name, email, phone, eduzz_invoice_id
-      ) VALUES (
-        ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${invoice.id}
+      // Store pending registration
+      await sql`
+        INSERT INTO pending_registrations (
+          event_id, name, email, phone, eduzz_invoice_id
+        ) VALUES (
+          ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${invoice.id}
+        )
+      `
+
+      return NextResponse.json({
+        success: true,
+        invoiceId: invoice.id,
+        paymentUrl: invoice.payment_url,
+      })
+    } catch (eduzzError) {
+      console.error("Erro na API da Eduzz:", eduzzError)
+
+      // Return a proper JSON response with error details
+      return NextResponse.json(
+        {
+          error: "Erro ao processar pagamento com a Eduzz",
+          details: eduzzError instanceof Error ? eduzzError.message : "Erro desconhecido",
+        },
+        { status: 500 },
       )
-    `
-
-    return NextResponse.json({
-      success: true,
-      invoiceId: invoice.id,
-      paymentUrl: invoice.payment_url,
-    })
+    }
   } catch (error) {
     console.error("Erro ao processar compra de ingresso:", error)
+
+    // Ensure we always return a valid JSON response
     return NextResponse.json(
       {
         error: "Erro ao processar compra de ingresso",

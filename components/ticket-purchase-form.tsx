@@ -15,10 +15,10 @@ import { Loader2, CreditCard, Landmark, QrCode, Check } from "lucide-react"
 
 // Interface para os tipos de ingressos
 interface TicketType {
-  id: number;
-  name: string;
-  price: number;
-  benefits: string[];
+  id: number
+  name: string
+  price: number
+  benefits: string[]
 }
 
 // Definindo os tipos de ingressos
@@ -26,16 +26,21 @@ const ticketTypes: TicketType[] = [
   {
     id: 2745132,
     name: "Ingresso Especial",
-    price: 9.90,
-    benefits: ["Experiência completa", "Material digital", "Certificado de participação"]
+    price: 9.9,
+    benefits: ["Experiência completa", "Material digital", "Certificado de participação"],
   },
   {
     id: 2745133,
     name: "Ingresso VIP",
-    price: 49.90,
-    benefits: ["Perguntas e respostas com Roberto Navarro", "Assentos mais próximos ao palco", "Experiência premium", "Compre 1, leve 2"]
-  }
-];
+    price: 49.9,
+    benefits: [
+      "Perguntas e respostas com Roberto Navarro",
+      "Assentos mais próximos ao palco",
+      "Experiência premium",
+      "Compre 1, leve 2",
+    ],
+  },
+]
 
 // Esquema do formulário atualizado
 const formSchema = z.object({
@@ -45,19 +50,19 @@ const formSchema = z.object({
   document: z.string().optional(),
   paymentMethod: z.enum(["credit_card", "boleto", "pix"]),
   ticketType: z.enum(["2745132", "2745133"]), // IDs como strings
-});
+})
 
 interface TicketPurchaseFormProps {
-  eventId: number;
-  eventName: string;
+  eventId: number
+  eventName: string
 }
 
 export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormProps) {
-  const router = useRouter();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
-  const [selectedTicket, setSelectedTicket] = useState<TicketType>(ticketTypes[0]);
+  const router = useRouter()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [paymentUrl, setPaymentUrl] = useState<string | null>(null)
+  const [selectedTicket, setSelectedTicket] = useState<TicketType>(ticketTypes[0])
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -69,11 +74,11 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
       paymentMethod: "credit_card",
       ticketType: "2745132", // Padrão: Ingresso Especial
     },
-  });
+  })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
-    setError(null);
+    setIsSubmitting(true)
+    setError(null)
 
     try {
       const response = await fetch("/api/tickets/purchase", {
@@ -83,7 +88,7 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
         },
         body: JSON.stringify({
           eventId,
-          productId: parseInt(values.ticketType), // Envia o productId correto
+          productId: Number.parseInt(values.ticketType), // Envia o productId correto
           customer: {
             name: values.name,
             email: values.email,
@@ -92,24 +97,46 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
           },
           paymentMethod: values.paymentMethod,
         }),
-      });
+      })
 
-      const data = await response.json();
-
+      // Check if response is ok before trying to parse JSON
       if (!response.ok) {
-        throw new Error(data.error || "Erro ao processar compra");
+        const errorText = await response.text()
+        let errorMessage = "Erro ao processar compra"
+
+        try {
+          // Try to parse error as JSON
+          if (errorText) {
+            const errorData = JSON.parse(errorText)
+            errorMessage = errorData.error || errorData.message || errorMessage
+          }
+        } catch (e) {
+          // If parsing fails, use the raw text or status code
+          errorMessage = errorText || `Erro: ${response.status}`
+        }
+
+        throw new Error(errorMessage)
       }
+
+      // Check if response is empty
+      const responseText = await response.text()
+      if (!responseText) {
+        throw new Error("Resposta vazia do servidor")
+      }
+
+      // Parse JSON only if we have content
+      const data = JSON.parse(responseText)
 
       if (data.paymentUrl) {
-        setPaymentUrl(data.paymentUrl);
+        setPaymentUrl(data.paymentUrl)
       } else if (data.ticketCode) {
-        router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`);
+        router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`)
       }
     } catch (err) {
-      console.error("Erro ao processar compra:", err);
-      setError(err instanceof Error ? err.message : "Erro ao processar sua compra");
+      console.error("Erro ao processar compra:", err)
+      setError(err instanceof Error ? err.message : "Erro ao processar sua compra")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
   }
 
@@ -131,7 +158,10 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
           </Alert>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <Button onClick={() => (window.location.href = paymentUrl)} className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
+          <Button
+            onClick={() => (window.location.href = paymentUrl)}
+            className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+          >
             Ir para Pagamento
           </Button>
           <Button variant="outline" onClick={() => setPaymentUrl(null)} className="w-full">
@@ -139,7 +169,7 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
           </Button>
         </CardFooter>
       </Card>
-    );
+    )
   }
 
   return (
@@ -169,9 +199,9 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
                     <FormControl>
                       <RadioGroup
                         onValueChange={(value) => {
-                          field.onChange(value);
-                          const selected = ticketTypes.find(t => t.id.toString() === value);
-                          if (selected) setSelectedTicket(selected);
+                          field.onChange(value)
+                          const selected = ticketTypes.find((t) => t.id.toString() === value)
+                          if (selected) setSelectedTicket(selected)
                         }}
                         defaultValue={field.value}
                         className="grid grid-cols-1 md:grid-cols-2 gap-4"
@@ -252,7 +282,9 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
                   name="document"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>CPF <span className="text-xs text-zinc-400">(opcional)</span></FormLabel>
+                      <FormLabel>
+                        CPF <span className="text-xs text-zinc-400">(opcional)</span>
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="000.000.000-00" {...field} />
                       </FormControl>
@@ -340,5 +372,5 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }
