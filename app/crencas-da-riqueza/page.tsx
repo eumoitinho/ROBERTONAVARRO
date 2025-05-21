@@ -11,6 +11,8 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import Logo from "@/components/logo"
 import CountdownTimer from "@/components/countdown-timer"
 import { useRouter } from "next/navigation"
+import HeroPages from "@/components/hero-pages"
+import TestimonialsSection from "@/components/testimonials-section"
 
 export default function CrencasDaRiquezaPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -139,130 +141,18 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/placeholder.svg?key=kg4rn"
-            alt="Crenças da Riqueza"
-            fill
-            className="object-cover"
-            style={{ objectPosition: "center" }}
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/70 via-60% to-transparent"></div>
-        </div>
-        {/* Animated background elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
-        <div
-          className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div
-              className={`transition-all duration-1000 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-              }`}
-            >
-              <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-                <span className="text-sm font-medium">Transformação mental</span>
-              </div>
-
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  CRENÇAS DA RIQUEZA
-                </span>
-              </h1>
-
-              <p className="text-xl text-zinc-300 mb-8 max-w-xl">
-                A riqueza começa na mente e se materializa nas decisões
-              </p>
-
-              <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-                Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e
-                realização pessoal.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button
-                  asChild
-                  className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base cta-hover"
-                >
-                  <a href="#form">GARANTA SUA VAGA!</a>
-                </Button>
-              </div>
-
-              <div className="space-y-4 mt-8">
-                <div className="flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-yellow-400" />
-                  <span className="text-zinc-300">20 de maio</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-yellow-400" />
-                  <span className="text-zinc-300">Alameda Araguaia, Alphaville - SP</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Users className="h-5 w-5 text-yellow-400" />
-                  <span className="text-zinc-300">Com Roberto e Raíssa Navarro</span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className={`relative transition-all duration-1000 delay-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold mb-4 text-center text-yellow-400">Próxima turma em:</h3>
-                  <CountdownTimer targetDate={new Date("2025-05-20T09:00:00")} />
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Imersão intensiva de 10 horas</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Material exclusivo</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Certificado de participação</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Networking com empreendedores</p>
-                  </div>
-                </div>
-                <Button
-                  asChild
-                  className="w-full mt-6 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 cta-hover"
-                >
-                  <a href="#form">QUERO PARTICIPAR!</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+     {/* Hero Section */}
+      <HeroPages
+        title="CRENÇAS DA RIQUEZA"
+        subtitle="Transformação mental"
+        secondtitle="A riqueza começa na mente e se materializa nas decisões"
+        description={`Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e realização pessoal.`}
+        image="/images/HERO_CRENCAS.png"
+        ctaText="GARANTA SUA VAGA!"
+        ctaHref="#form"
+        secondaryCtaText="Saiba mais"
+        secondaryCtaHref="#o-que-aprender"
+      />
       {/* Challenges Section */}
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -510,146 +400,7 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </section>
 
-      {/* Testimonials Video Section */}
-      <section id="video-section" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">DEPOIMENTOS</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              TRANSFORMAÇÕES QUE <span className="text-yellow-400">FALAM POR SI</span>
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Veja o impacto real na vida de quem já participou dos nossos treinamentos
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/10">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-6">
-                {/* Custom Video Player with Mockup */}
-                <div className="relative aspect-video w-full mb-6 overflow-hidden rounded-xl">
-                  {/* Video Frame Mockup */}
-                  <div className="absolute inset-0 z-10 pointer-events-none">
-                    <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black to-transparent"></div>
-                    <div className="absolute top-0 bottom-0 left-0 w-12 bg-gradient-to-r from-black to-transparent"></div>
-                    <div className="absolute top-0 bottom-0 right-0 w-12 bg-gradient-to-l from-black to-transparent"></div>
-                    <div className="absolute inset-0 border-[3px] border-yellow-500/20 rounded-xl"></div>
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/30"></div>
-                    </div>
-                  </div>
-
-                  {/* YouTube Iframe */}
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={`https://www.youtube.com/embed/${videoIds[activeVideoIndex]}?rel=0&showinfo=0&controls=0&modestbranding=1`}
-                    title="Depoimento"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
-
-                  {/* Navigation Arrows */}
-                  <button
-                    onClick={() => setActiveVideoIndex((prev) => (prev === 0 ? videoIds.length - 1 : prev - 1))}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-yellow-500 text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
-                    aria-label="Vídeo anterior"
-                  >
-                    <ArrowRight className="w-5 h-5 transform rotate-180" />
-                  </button>
-
-                  <button
-                    onClick={() => setActiveVideoIndex((prev) => (prev === videoIds.length - 1 ? 0 : prev + 1))}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-yellow-500 text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
-                    aria-label="Próximo vídeo"
-                  >
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                    <div className="w-16 h-16 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-yellow-500/50 flex items-center justify-center">
-                        <div className="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="text-black"
-                          >
-                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Student Information */}
-                <div className="mb-6 text-center">
-                  {activeVideoIndex === 0 && (
-                    <div className="animate-fadeIn">
-                      <h4 className="text-xl font-bold text-yellow-400">Carlos Mendes</h4>
-                      <p className="text-zinc-300">CEO da Mendes Investimentos</p>
-                    </div>
-                  )}
-                  {activeVideoIndex === 1 && (
-                    <div className="animate-fadeIn">
-                      <h4 className="text-xl font-bold text-yellow-400">Mariana Silva</h4>
-                      <p className="text-zinc-300">Fundadora da MS Consultoria</p>
-                    </div>
-                  )}
-                  {activeVideoIndex === 2 && (
-                    <div className="animate-fadeIn">
-                      <h4 className="text-xl font-bold text-yellow-400">Ricardo Oliveira</h4>
-                      <p className="text-zinc-300">Diretor da Oliveira Tech Solutions</p>
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex justify-center gap-4 mt-6">
-                  {videoIds.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveVideoIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        activeVideoIndex === index ? "bg-yellow-400 scale-125" : "bg-zinc-700 hover:bg-zinc-500"
-                      }`}
-                      aria-label={`Ver depoimento ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <div className="mt-8 text-center">
-                  <Button
-                    asChild
-                    className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base cta-hover"
-                  >
-                    <a href="#form">
-                      QUERO TRANSFORMAR MINHA VIDA TAMBÉM <ArrowRight className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* Mentors Section */}
       <section className="py-20 relative">

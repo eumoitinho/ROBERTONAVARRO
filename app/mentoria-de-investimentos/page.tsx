@@ -19,6 +19,8 @@ import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
+import HeroPages from "@/components/hero-pages"
+import TestimonialsSection from "@/components/testimonials-section"
 
 export default function MentoriaDeInvestimentos() {
   const [isVisible, setIsVisible] = useState(false)
@@ -92,115 +94,17 @@ export default function MentoriaDeInvestimentos() {
       </header>
       {/* 
      // Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
-        <div
-          className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div
-              className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            >
-              <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-                <span className="text-sm font-medium">Mentoria de Investimentos</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Multiplique seu patrimônio
-                </span>{" "}
-                com estratégia e segurança
-              </h1>
-              <p className="text-lg text-zinc-300 mb-4 max-w-xl">
-                Um programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a
-                liberdade financeira.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="#inscricao">QUERO ME INSCREVER</Link>
-                </Button>
-                <Button
-                  asChild
-                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="#beneficios">
-                    Saiba mais <ChevronDown className="h-4 w-4 ml-1" />
-                  </Link>
-                </Button>
-              </div>
-              <div className="flex items-center gap-6">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-yellow-200 to-amber-500 flex items-center justify-center text-black font-bold text-xs"
-                    >
-                      {i}
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <div className="flex items-center gap-1 mb-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-zinc-400">
-                    <span className="text-white font-medium">350+</span> investidores transformados
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div
-              className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="/images/investment-mentoring.webp"
-                  alt="Mentoria de Investimentos"
-                  width={500}
-                  height={400}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      // Stats
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
-          {[
-            { icon: <Users className="h-6 w-6 text-yellow-400" />, value: "350+", label: "Investidores Mentorados" },
-            { icon: <Star className="h-6 w-6 text-yellow-400" />, value: "4.9/5", label: "Avaliação Média" },
-            { icon: <Zap className="h-6 w-6 text-yellow-400" />, value: "127%", label: "Retorno Anual Médio" },
-            { icon: <Brain className="h-6 w-6 text-yellow-400" />, value: "6 meses", label: "Duração" },
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-              style={{ transitionDelay: `${500 + index * 100}ms` }}
-            >
-              <div className="flex items-center gap-4">
-                <div className="bg-zinc-800 rounded-full p-3">{stat.icon}</div>
-                <div>
-                  <p className="text-xl font-bold">{stat.value}</p>
-                  <p className="text-sm text-zinc-400">{stat.label}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <HeroPages
+        title="Mentoria de Investimentos"
+        subtitle="Multiplique seu patrimônio com estratégia e segurança"
+        description="Um programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade financeira."
+        image="/images/HERO_MENTORIAINVESTIMENTOS.png"
+        ctaText="QUERO ME INSCREVER"
+        ctaHref="#inscricao"
+        secondaryCtaText="Saiba mais"
+        secondaryCtaHref="#beneficios"
+        secondtitle="Transforme sua vida financeira com a mentoria de investimentos"
+        />
       {/* // Benefícios Section */}
       <section id="beneficios" className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -357,6 +261,8 @@ export default function MentoriaDeInvestimentos() {
           </div>
         </div>
       </section>
+
+      <TestimonialsSection />
       {/* // Inscrição Section     */}
       <section id="inscricao" className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/10 via-zinc-900 to-zinc-950 z-0"></div>

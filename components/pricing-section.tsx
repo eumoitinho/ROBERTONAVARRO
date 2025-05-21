@@ -8,16 +8,16 @@ export default function PricingSection() {
   const [isMonthly, setIsMonthly] = useState(true)
 
   return (
-    <section className="py-20 bg-zinc-900">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-6 animate-on-scroll fade-in tracking-tight">
+    <section className="py-12 xs-py-10 sm:py-16 md:py-20 bg-zinc-900">
+      <div className="container mx-auto px-3 xs-px-3 sm:px-4">
+        <h2 className="text-3xl xs-text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-4 xs-mb-4 sm:mb-6 animate-on-scroll fade-in tracking-tight">
           INVISTA EM{" "}
           <span className="text-highlight relative">
             <span className="absolute -bottom-2 left-0 w-full h-1 bg-yellow-400 animate-pulse"></span>
             SEU FUTURO
           </span>
         </h2>
-        <p className="text-xl text-center mb-12 max-w-3xl mx-auto animate-on-scroll fade-in delay-200 font-light">
+        <p className="text-lg xs-text-base sm:text-xl text-center mb-8 xs-mb-8 sm:mb-12 max-w-3xl mx-auto animate-on-scroll fade-in delay-200 font-light">
           Escolha o plano que <em className="font-medium">melhor se adapta</em> às suas necessidades e comece sua
           jornada rumo à <strong className="text-yellow-400">liberdade financeira</strong> hoje mesmo.
         </p>

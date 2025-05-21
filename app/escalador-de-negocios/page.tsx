@@ -12,6 +12,8 @@ import Logo from "@/components/logo"
 import MobileMenu from "@/components/mobile-menu"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { useRouter } from "next/navigation"
+import HeroPages from "@/components/hero-pages"
+import TestimonialsSection from "@/components/testimonials-section"
 
 export default function EscaladorDeNegocios() {
   const [isVisible, setIsVisible] = useState(false)
@@ -121,76 +123,18 @@ export default function EscaladorDeNegocios() {
           </div>
         </div>
       </header>
-
-      {/* Hero Section - agora com imagem ao lado no desktop */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div
-            className={`grid md:grid-cols-2 gap-12 items-center transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-          >
-            <div>
-              <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-                <span className="text-sm font-medium">Evento Presencial Exclusivo</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  ESCALADOR DE NEGÓCIOS
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl mb-4 font-light">Empreendedores de sucesso não crescem por acaso</p>
-              <p className="text-lg text-zinc-300 mb-8 max-w-3xl">
-                Saia da estagnação e aplique, de forma imediata, estratégias reais para escalar vendas, lucros e
-                liberdade.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <div className="flex items-center gap-2 text-zinc-300">
-                  <Calendar className="text-yellow-400" />
-                  <span>27 de maio</span>
-                </div>
-                <div className="flex items-center gap-2 text-zinc-300">
-                  <MapPin className="text-yellow-400" />
-                  <span>Alameda Araguaia, Alphaville - SP</span>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-  <Button
-    asChild
-    className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
-  >
-    <Link href="#inscricao" className="flex items-center">
-      <span className="flex items-center">
-        GARANTA SUA VAGA!
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </span>
-    </Link>
-  </Button>
-  <Button
-    asChild
-    className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-  >
-    <Link href="#o-que-aprender">
-      <span className="flex items-center">
-        Saiba mais
-        <ChevronDown className="h-4 w-4 ml-1" />
-      </span>
-    </Link>
-  </Button>
-</div>
-            </div>
-            <div className="hidden md:block">
-              <Image
-                src="/escalador-evento.jpg"
-                alt="Auditório do evento Escalador de Negócios"
-                width={500}
-                height={500}
-                className="rounded-3xl shadow-2xl object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
+{/* Hero Section */}
+      <HeroPages
+        title="ESCALADOR DE NEGÓCIOS"
+        subtitle="Evento Presencial Exclusivo"
+        secondtitle="Empreendedores de sucesso não crescem por acaso"
+        description={`Saia da estagnação e aplique, de forma imediata, estratégias reais para escalar vendas, lucros e liberdade.`}
+        image="/IMAGES/HERO_ESCALADOR.png"
+        ctaText="GARANTA SUA VAGA!"
+        ctaHref="#inscricao"
+        secondaryCtaText="Saiba mais"
+        secondaryCtaHref="#o-que-aprender"
+      />
       {/* Challenges Section - cards em linha no desktop */}
       <section className="py-20 relative bg-zinc-900/40">
         <div className="container mx-auto px-4 relative z-10">
@@ -387,40 +331,7 @@ export default function EscaladorDeNegocios() {
         </div>
       </section>
 
-      {/* Video Testimonials Section - grid 1 coluna mobile, 2 desktop */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">DEPOIMENTOS EM VÍDEO</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              TRANSFORMAÇÕES QUE <span className="text-yellow-400">FALAM POR SI</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              { src: "https://www.youtube.com/embed/4aYDKIQBnRw", title: "Depoimento 1" },
-              { src: "https://www.youtube.com/embed/vTELcwYTsnl", title: "Depoimento 2" },
-              { src: "https://www.youtube.com/embed/W6rBTIKel4w", title: "Depoimento 3" },
-            ].map((video, index) => (
-              <div key={index} className="aspect-video rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={video.src}
-                  title={video.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full object-cover"
-                ></iframe>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    <TestimonialsSection/>
       {/* Mentor Section - imagem à esquerda, texto à direita */}
       <section id="mentor" className="py-20 relative bg-zinc-900/40">
         <div className="container mx-auto px-4 relative z-10">

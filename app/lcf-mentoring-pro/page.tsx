@@ -24,6 +24,8 @@ import {
   DollarSign,
   ChevronRight,
 } from "lucide-react"
+import HeroPages from "@/components/hero-pages"
+import TestimonialsSection from "@/components/testimonials-section"
 
 export default function LCFMentoringPro() {
   const [isVisible, setIsVisible] = useState(false)
@@ -137,90 +139,38 @@ export default function LCFMentoringPro() {
         </div>
       </header>
 
-      {/* // Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div
-            className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-          >
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-              <span className="text-sm font-medium">Mentoria Exclusiva para Transformação</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                LCF MENTORING PRO
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-4 font-light">Você já tem o dinheiro. Agora, só falta o controle!</p>
-            <p className="text-lg text-zinc-300 mb-8 max-w-3xl">
-              O LCF Mentoring PRO reúne os treinamentos mais transformadores do educador financeiro Roberto Navarro em
-              um único programa - criado para te colocar no seleto grupo de pessoas que vivem com consciência, riqueza e
-              propósito.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-              >
-                <Link href="#inscricao">CONQUISTE SUA VAGA!</Link>
-              </Button>
-              <Button
-                asChild
-                className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-              >
-                <Link href="#o-que-aprender">
-                  Saiba mais <ChevronDown className="h-4 w-4 ml-1" />
-                </Link>
-              </Button>
-            </div>
-            <div className="flex items-center gap-6">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-yellow-200 to-amber-500 flex items-center justify-center text-black font-bold text-xs"
-                  >
-                    {i}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="flex items-center gap-1 mb-1">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-sm text-zinc-400">
-                  <span className="text-white font-medium">130,000+</span> vidas transformadas
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <HeroPages
+        title="LCF MENTORING PRO"
+        secondtitle="Você já tem o dinheiro. Agora, só falta o controle!"
+        subtitle="Mentoria Exclusiva para Transformação"
+        description={`O LCF Mentoring PRO reúne os treinamentos mais transformadores do educador financeiro Roberto Navarro em um único programa criado para te colocar no seleto grupo de pessoas que vivem com consciência, riqueza e propósito.`}
+        image="/images/HERO_LCF.png"
+        ctaText="CONQUISTE SUA VAGA!"
+        ctaHref="#inscricao"
+        secondaryCtaText="Saiba mais"
+        secondaryCtaHref="#o-que-aprender"
+      />
       {/* // Stats Section */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-20">
           {[
-            { icon: <Users className="h-6 w-6 text-yellow-400" />, value: "130,000+", label: "Vidas Transformadas" },
-            { icon: <Star className="h-6 w-6 text-yellow-400" />, value: "10M", label: "Brasileiros (Meta)" },
-            { icon: <Clock className="h-6 w-6 text-yellow-400" />, value: "6 meses", label: "Garantia" },
+        { icon: <Users className="h-6 w-6 text-yellow-400" />, value: "130,000+", label: "Vidas Transformadas" },
+        { icon: <Star className="h-6 w-6 text-yellow-400" />, value: "10M", label: "Brasileiros (Meta)" },
+        { icon: <Clock className="h-6 w-6 text-yellow-400" />, value: "6 meses", label: "Garantia" },
           ].map((stat, index) => (
-            <div
-              key={index}
-              className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-              style={{ transitionDelay: `${500 + index * 100}ms` }}
-            >
-              <div className="flex items-center gap-4">
-                <div className="bg-zinc-800 rounded-full p-3">{stat.icon}</div>
-                <div>
-                  <p className="text-xl font-bold">{stat.value}</p>
-                  <p className="text-sm text-zinc-400">{stat.label}</p>
-                </div>
-              </div>
+        <div
+          key={index}
+          className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          style={{ transitionDelay: `${500 + index * 100}ms` }}
+        >
+          <div className="flex items-center gap-4">
+            <div className="bg-zinc-800 rounded-full p-3">{stat.icon}</div>
+            <div>
+          <p className="text-xl font-bold">{stat.value}</p>
+          <p className="text-sm text-zinc-400">{stat.label}</p>
             </div>
+          </div>
+        </div>
           ))}
         </div>
       </div>
@@ -415,50 +365,7 @@ export default function LCFMentoringPro() {
         </div>
       </section>
 
-      {/* // Testimonials Section */}
-      <section id="depoimentos" className="py-20 relative">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">TRANSFORMAÇÕES</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              TRANSFORMAÇÕES QUE <span className="text-yellow-400">FALAM POR SI</span>
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { src: "https://www.youtube.com/embed/4aYDKIQBnRw", title: "Depoimento 1" },
-              { src: "https://www.youtube.com/embed/vTELcwYTsnl", title: "Depoimento 2" },
-              { src: "https://www.youtube.com/embed/W6rBTIKel4w", title: "Depoimento 3" },
-            ].map((video, index) => (
-              <div key={index} className="aspect-video rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={video.src}
-                  title={video.title}
-                  style={{ border: 0 }}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full object-cover"
-                ></iframe>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Button
-              asChild
-              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
-            >
-              <Link href="#inscricao">
-                CONQUISTE SUA VAGA! <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
+     <TestimonialsSection />
       {/* // FAQ Section */}
       <section className="py-20 bg-zinc-950/90 border-t border-zinc-800/50">
         <div className="container mx-auto px-4">

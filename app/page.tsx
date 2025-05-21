@@ -3,15 +3,26 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ChevronRight, Star, Users, Zap, Shield } from "lucide-react"
+import { ArrowRight, ChevronRight, ChevronDown, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import LocationMap from "@/components/location-map"
+import TestimonialsSection from "@/components/testimonials-section"
+import  Footer  from "@/components/footer"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
+
+  const toggleSubmenu = (menu: string) => {
+    if (openSubmenu === menu) {
+      setOpenSubmenu(null)
+    } else {
+      setOpenSubmenu(menu)
+    }
+  }
 
   useEffect(() => {
     setIsVisible(true)
@@ -42,48 +53,111 @@ export default function HomePage() {
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Logo className="h-10 w-auto" />
+        <div className="container mx-auto px-2 xs-px-2 sm:px-4 py-3 xs-py-2 sm:py-4 flex justify-between items-center">
+          <Logo className="h-8 xs:h-7 sm:h-10 w-auto" />
           <nav className="hidden md:flex space-x-8">
-            <Link href="#sobre" className="text-sm hover:text-yellow-400 transition-colors">
-              Sobre
+            <Link href="#quem-somos" className="text-sm hover:text-yellow-400 transition-colors">
+              Quem Somos
             </Link>
-            <Link href="#formacoes" className="text-sm hover:text-yellow-400 transition-colors">
-              Formações
+            <div className="relative group">
+              <button
+                onClick={() => toggleSubmenu("solucoes")}
+                className="text-sm hover:text-yellow-400 transition-colors flex items-center gap-1"
+              >
+                Soluções{" "}
+                {openSubmenu === "solucoes" ? (
+                  <ChevronDown className="h-3 w-3" />
+                ) : (
+                  <ChevronRight className="h-3 w-3" />
+                )}
+              </button>
+              {openSubmenu === "solucoes" && (
+                <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-zinc-900 ring-1 ring-black ring-opacity-5 z-50">
+                  <div className="py-1">
+                    <Link
+                      href="#formacoes"
+                      className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                    >
+                      Formações
+                    </Link>
+                    <Link
+                      href="#eventos"
+                      className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                    >
+                      Eventos
+                    </Link>
+                    <Link
+                      href="#livros"
+                      className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                    >
+                      Livros
+                    </Link>
+                    <Link
+                      href="#treinamentos"
+                      className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                    >
+                      Treinamentos
+                    </Link>
+                    <Link
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                    >
+                      Lives
+                    </Link>
+                    <Link
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                    >
+                      Palestras
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+            <Link href="#testemunhos" className="text-sm hover:text-yellow-400 transition-colors">
+              Testemunhos
             </Link>
-            <Link href="#depoimentos" className="text-sm hover:text-yellow-400 transition-colors">
-              Depoimentos
-            </Link>
-            <Link href="#contato" className="text-sm hover:text-yellow-400 transition-colors">
-              Contato
+            <Link href="#trabalhe-conosco" className="text-sm hover:text-yellow-400 transition-colors">
+              Trabalhe Conosco
             </Link>
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 xs-gap-2 sm:gap-4">
             <Button
               asChild
-              className="cta-hover-subtle bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-xs xs-text-xs sm:text-sm rounded-full px-3 xs-px-2 sm:px-6"
             >
               <Link href="#contato">Contato</Link>
             </Button>
             <Button
               asChild
-              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-xs xs-text-xs sm:text-sm rounded-full px-3 xs-px-2 sm:px-6"
             >
               <Link href="#formacoes">Formações</Link>
             </Button>
             <MobileMenu
               links={[
-                { href: "#sobre", label: "Sobre" },
-                { href: "#formacoes", label: "Formações" },
-                { href: "#depoimentos", label: "Depoimentos" },
-                { href: "#contato", label: "Contato" },
+                { href: "#quem-somos", label: "Quem Somos" },
+                {
+                  href: "#",
+                  label: "Soluções",
+                  submenu: [
+                    { href: "#formacoes", label: "Formações" },
+                    { href: "#eventos", label: "Eventos" },
+                    { href: "#livros", label: "Livros" },
+                    { href: "#treinamentos", label: "Treinamentos" },
+                    { href: "#", label: "Lives" },
+                    { href: "#", label: "Palestras" },
+                  ],
+                },
+                { href: "#testemunhos", label: "Testemunhos" },
+                { href: "#trabalhe-conosco", label: "Trabalhe Conosco" },
               ]}
             />
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section - Block 1 */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
@@ -106,25 +180,25 @@ export default function HomePage() {
         ></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-6 xs-gap-4 sm:gap-8 lg:gap-12 items-center">
             <div
               className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
             >
               <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
                 <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-                <span className="text-sm font-medium">Transformando vidas financeiras</span>
+                <span className="text-sm font-medium">INSTITUTO COACHING FINANCEIRO</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Coaching Financeiro
+                  Transforme sua mentalidade
                 </span>{" "}
-                para uma vida de abundância
+                e conquiste uma nova realidade financeira
               </h1>
 
               <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-                Descubra como transformar sua mentalidade e conquistar a liberdade financeira com metodologias
-                exclusivas e comprovadas.
+                Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua
+                mentalidade e conquistar uma nova realidade financeira.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -133,15 +207,6 @@ export default function HomePage() {
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
                   <Link href="#formacoes">CONHEÇA NOSSAS FORMAÇÕES</Link>
-                </Button>
-
-                <Button
-                  asChild
-                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="#sobre">
-                    Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
-                  </Link>
                 </Button>
               </div>
 
@@ -163,73 +228,31 @@ export default function HomePage() {
                     ))}
                   </div>
                   <p className="text-sm text-zinc-400">
-                    <span className="text-white font-medium">130.000+</span> vidas transformadas
+                    <span className="text-white font-medium">300.000+</span> vidas transformadas
                   </p>
                 </div>
               </div>
             </div>
 
-            <div
-              className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              {/* <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="/images/roberto-palestra.jpeg"
-                  alt="Roberto Navarro em palestra"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
-              </div> */}
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
-            {[
-              { icon: <Users className="h-6 w-6 text-yellow-400" />, value: "130.000+", label: "Alunos" },
-              { icon: <Star className="h-6 w-6 text-yellow-400" />, value: "4.9/5", label: "Avaliação" },
-              { icon: <Zap className="h-6 w-6 text-yellow-400" />, value: "10+", label: "Anos de experiência" },
-              { icon: <Shield className="h-6 w-6 text-yellow-400" />, value: "100%", label: "Satisfação" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-                style={{ transitionDelay: `${500 + index * 100}ms` }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="bg-zinc-800 rounded-full p-3">{stat.icon}</div>
-                  <div>
-                    <p className="text-xl font-bold">{stat.value}</p>
-                    <p className="text-sm text-zinc-400">{stat.label}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+           
           </div>
         </div>
       </section>
 
-      {/* Sobre Section */}
-      <section id="sobre" className="py-20 relative">
+      {/* Quem Somos Section - Block 2 */}
+      <section id="quem-somos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">SOBRE NÓS</span>
+              <span className="text-sm font-medium">QUEM SOMOS</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transformando <span className="text-yellow-400">vidas financeiras</span> desde 2015
+              Mais de <span className="text-yellow-400">30 anos</span> impactando vidas com inteligência e propósito
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Somos uma empresa especializada em coaching financeiro, com metodologias exclusivas e comprovadas para
-              ajudar pessoas a conquistarem a liberdade financeira.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-6 xs-gap-4 sm:gap-8 lg:gap-12 items-center">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
               <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
@@ -245,10 +268,6 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                Conheça <span className="text-yellow-400">Roberto Navarro</span>
-              </h2>
-
               <div className="space-y-6">
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
@@ -268,28 +287,30 @@ export default function HomePage() {
 
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Hoje, Roberto Navarro é reconhecido como o criador do COACH FINANCEIRO no Brasil e especialista em
+                    Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em
                     inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10
                     milhões de brasileiros e contribuir para a construção de um país rico e próspero.
                   </p>
                 </div>
-              </div>
 
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
-              >
-                <Link href="#formacoes">
-                  CONHEÇA NOSSAS FORMAÇÕES <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+                <div className="flex justify-between mt-8">
+                  <div className="text-center">
+                    <p className="text-3xl font-bold text-yellow-400">+300 mil</p>
+                    <p className="text-sm text-zinc-400">alunos</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-3xl font-bold text-yellow-400">+1280</p>
+                    <p className="text-sm text-zinc-400">técnicas exclusivas de coaching</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Formações Section */}
-      <section id="formacoes" className="py-20 relative">
+      {/* Formações Section - Block 3 */}
+      <section id="formacoes" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
@@ -297,181 +318,230 @@ export default function HomePage() {
               <span className="text-sm font-medium">NOSSAS FORMAÇÕES</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Programas exclusivos para <span className="text-yellow-400">transformar sua vida financeira</span>
+              Formações que vão <span className="text-yellow-400">transformar sua mentalidade</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
-              Conheça nossos programas de formação e escolha o que melhor se adapta às suas necessidades e objetivos.
+              Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender
+              diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua
+              liberdade financeira.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Mentoria LCF */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+         <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xs-gap-4 sm:gap-8">
+            {/* LCF Mentoring */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria LCF</h3>
-              <p className="text-zinc-300 mb-6">
-                Um programa exclusivo de mentoria para empreendedores que desejam escalar seus negócios e alcançar
-                resultados extraordinários.
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">LCF Mentoring</h3>
+              <p className="text-zinc-300 mb-6 flex-1">
+                Imersão intensa em finanças, coaching de vida e estratégias práticas para você assumir o controle da sua
+                vida financeira.
               </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/mentoria">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            {/* Educador Financeiro */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Educador Financeiro</h3>
-              <p className="text-zinc-300 mb-6">
-                Transforme seu conhecimento em liberdade financeira em apenas 90 dias e torne-se um educador financeiro
-                de sucesso.
-              </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/educador-financeiro">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            {/* Crenças da Riqueza */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Crenças da Riqueza</h3>
-              <p className="text-zinc-300 mb-6">
-                Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e
-                realização pessoal.
-              </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/crencas-da-riqueza">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            {/* Segredos da Mente Milionária */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Segredos da Mente Milionária</h3>
-              <p className="text-zinc-300 mb-6">
-                Descubra os segredos mentais que transformam pessoas comuns em milionários e aprenda a pensar como os
-                ricos pensam.
-              </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/segredos-da-mente-milionaria">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/mentoria">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             {/* Empreendedor Inteligente */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">Empreendedor Inteligente</h3>
-              <p className="text-zinc-300 mb-6">
-                Aprenda estratégias avançadas para empreender com inteligência e construir negócios lucrativos e
-                sustentáveis.
+              <p className="text-zinc-300 mb-6 flex-1">
+                Formação exclusiva para empresários que querem escalar resultados, atrair investidores e gerir seus
+                negócios com segurança.
               </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/empreendedor-inteligente">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/empreendedor-inteligente">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
-            {/* Escalador de Negócios */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+            {/* Educador Financeiro */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Escalador de Negócios</h3>
-              <p className="text-zinc-300 mb-6">
-                Descubra como escalar seu negócio de forma exponencial e alcançar novos patamares de faturamento e
-                lucratividade.
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Educador Financeiro</h3>
+              <p className="text-zinc-300 mb-6 flex-1">
+                Transforme sua experiência em uma carreira lucrativa em apenas 90 dias e torne-se referência no ensino
+                de finanças.
               </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/escalador-de-negocios">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/educador-financeiro">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             {/* LCF Mentoring Pro */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">LCF Mentoring Pro</h3>
-              <p className="text-zinc-300 mb-6">
-                Programa avançado de mentoria para profissionais que desejam se tornar referência em coaching
-                financeiro.
+              <p className="text-zinc-300 mb-6 flex-1">
+                Transforme sua mentalidade e descubra seu propósito de vida com o programa mais completo de evolução
+                pessoal e profissional do Brasil.
               </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/lcf-mentoring-pro">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/lcf-mentoring-pro">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             {/* Mentoria de Investimentos */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria de Investimentos</h3>
-              <p className="text-zinc-300 mb-6">
-                Aprenda a investir com estratégia e segurança para construir um patrimônio sólido e garantir sua
-                independência financeira.
+              <p className="text-zinc-300 mb-6 flex-1">
+                Programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade
+                financeira.
               </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/mentoria-de-investimentos">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/mentoria-de-investimentos">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             {/* Mentoria Individual */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria Individual</h3>
-              <p className="text-zinc-300 mb-6">
-                Atendimento personalizado para acelerar sua jornada rumo à liberdade financeira com estratégias sob
-                medida para seus objetivos.
+              <p className="text-zinc-300 mb-6 flex-1">
+                Destrave seu potencial e alcance sua liberdade financeira com um acompanhamento 100% personalizado.
               </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-              >
-                <Link href="/mentoria-individual">
-                  Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/mentoria-individual">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Eventos Section - Block 4 */}
+      <section id="eventos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">EVENTOS PRESENCIAIS</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Eventos presenciais que geram <span className="text-yellow-400">mudanças reais</span>
+            </h2>
+            <p className="text-zinc-300 max-w-3xl mx-auto">
+              Nossos eventos são imersões poderosas criadas para desbloquear crenças, despertar seu potencial e colocar
+              você no caminho da liberdade e abundância.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xs-gap-4 sm:gap-8">
+            {/* Crenças da Riqueza */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Crenças da Riqueza</h3>
+              <p className="text-zinc-300 mb-6 flex-1">Supere bloqueios mentais e eleve seu padrão financeiro e pessoal.</p>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/crencas-da-riqueza">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Segredos da Mente Milionária */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Segredos da Mente Milionária</h3>
+              <p className="text-zinc-300 mb-6 flex-1">Reprograme sua mentalidade e ative seu potencial milionário.</p>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/segredos-da-mente-milionaria">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Escalador de Negócios */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Escalador de Negócios</h3>
+              <p className="text-zinc-300 mb-6 flex-1">
+                Aplique estratégias para escalar vendas, lucros e conquistar liberdade empresarial.
+              </p>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/escalador-de-negocios">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Energia do Dinheiro */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Energia do Dinheiro</h3>
+              <p className="text-zinc-300 mb-6 flex-1">Descubra como alinhar sua energia com a frequência da prosperidade.</p>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                  <Link href="/energia-do-dinheiro">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Livros em Destaque */}
-      <section className="py-20 relative overflow-hidden">
+      {/* Livros Section - Block 5 */}
+      <section id="livros" className="py-12 xs-py-12 sm:py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-zinc-900 to-zinc-950 z-0"></div>
 
         {/* Elementos decorativos */}
@@ -482,14 +552,14 @@ export default function HomePage() {
         ></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-6 xs-gap-4 sm:gap-8 lg:gap-12 items-center">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
               <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
                 <div className="relative h-[400px] w-full">
                   <Image
-                    src="/placeholder-0vud2.png"
+                    src="/images/LIVRO_MOCKUP.png"
                     alt="Livros de Roberto Navarro"
                     fill
                     className="object-cover rounded-xl hover:scale-105 transition-transform duration-500"
@@ -501,128 +571,175 @@ export default function HomePage() {
             <div>
               <div className="inline-flex items-center gap-2 bg-yellow-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full py-2 px-4 mb-6">
                 <span className="flex h-2 w-2 rounded-full bg-yellow-400 animate-pulse"></span>
-                <span className="text-sm font-medium text-yellow-300">DESTAQUE ESPECIAL</span>
+                <span className="text-sm font-medium text-yellow-300">LIVROS</span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Livros que transformam
+                  Livros para quem quer
                 </span>{" "}
-                sua mentalidade financeira
+                prosperar de verdade
               </h2>
 
               <div className="space-y-6 mb-8">
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Descubra os best-sellers de Roberto Navarro que já ajudaram milhares de pessoas a transformar sua
-                    relação com o dinheiro e alcançar a liberdade financeira.
+                    Conheça os best-sellers de Roberto Navarro, que já impactaram milhares de leitores com estratégias
+                    práticas e transformadoras.
                   </p>
                 </div>
 
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
                   <p className="text-zinc-300">
-                    Conhecimento prático e transformador em cada página. Aprenda os princípios e estratégias que fizeram
-                    Roberto Navarro se tornar um multimilionário em menos de 7 anos.
+                    Cada página traz ensinamentos que moldaram a jornada de um multimilionário — agora disponíveis para
+                    você.
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="/livros">
-                    CONHECER OS LIVROS <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-
-                <Button
-                  asChild
-                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="#formacoes">
-                    VER FORMAÇÕES <ChevronRight className="h-4 w-4 ml-1" />
-                  </Link>
-                </Button>
-              </div>
+              <Button
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+              >
+                <Link href="/livros">
+                  COMPRE SEU LIVRO AGORA! <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Depoimentos Section */}
-      <section id="depoimentos" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+      {/* Treinamentos Section - Block 6 */}
+      <section id="treinamentos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">DEPOIMENTOS</span>
+              <span className="text-sm font-medium">TREINAMENTOS DIGITAIS</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              O que nossos <span className="text-yellow-400">alunos dizem</span>
+              Aprenda no seu tempo com nossos <span className="text-yellow-400">treinamentos digitais</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
-              Conheça as histórias de transformação de pessoas que passaram pelos nossos programas.
+              Conheça nossos cursos gravados e descubra como eliminar dívidas, organizar sua vida financeira e construir
+              seu primeiro milhão com estratégia e propósito.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "João Silva",
-                role: "Empresário",
-                image: "/images/man-smiling.webp",
-                testimonial:
-                  "O coaching financeiro do Roberto Navarro transformou completamente minha vida. Em apenas 6 meses, consegui triplicar meu faturamento e conquistar a liberdade financeira que sempre sonhei.",
-              },
-              {
-                name: "Maria Oliveira",
-                role: "Empreendedora",
-                image: "/images/woman-working.webp",
-                testimonial:
-                  "Participar do Despertar Milionário foi um divisor de águas na minha vida. Aprendi estratégias práticas que me ajudaram a sair das dívidas e começar a construir um patrimônio sólido.",
-              },
-              {
-                name: "Pedro Santos",
-                role: "Investidor",
-                image: "/images/working-man.webp",
-                testimonial:
-                  "A Mentoria LCF me proporcionou insights valiosos sobre como escalar meu negócio. Com as estratégias aprendidas, consegui aumentar meu faturamento em 400% em apenas um ano.",
-              },
-            ].map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">{testimonial.name}</h3>
-                    <p className="text-sm text-zinc-400">{testimonial.role}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 mb-4">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-zinc-300">{testimonial.testimonial}</p>
-              </div>
-            ))}
+          <div className="flex justify-center">
+            <Button
+              asChild
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-lg"
+            >
+              <Link href="#">
+                ADQUIRA SEU TREINAMENTO! <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Contato Section */}
-      <section id="contato" className="py-20 relative">
+      <TestimonialsSection/>
+
+      {/* Trabalhe Conosco Section */}
+      <section id="trabalhe-conosco" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">TRABALHE CONOSCO</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Faça parte do nosso <span className="text-yellow-400">time</span>
+            </h2>
+            <p className="text-zinc-300 max-w-3xl mx-auto">
+              Estamos sempre em busca de talentos que compartilham nossa missão de transformar vidas financeiras. Envie
+              seu currículo e faça parte dessa jornada.
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+            <form className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Nome
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                  Telefone
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label htmlFor="position" className="block text-sm font-medium mb-2">
+                  Área de Interesse
+                </label>
+                <select
+                  id="position"
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                >
+                  <option value="">Selecione uma área</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="vendas">Vendas</option>
+                  <option value="atendimento">Atendimento ao Cliente</option>
+                  <option value="coaching">Coaching</option>
+                  <option value="administrativo">Administrativo</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="resume" className="block text-sm font-medium mb-2">
+                  Currículo (PDF)
+                </label>
+                <input
+                  type="file"
+                  id="resume"
+                  accept=".pdf"
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Mensagem
+                </label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                  placeholder="Conte-nos um pouco sobre você e suas experiências..."
+                ></textarea>
+              </div>
+              <Button className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 w-full">
+                Enviar Currículo
+              </Button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Contato Section - Block 8 */}
+      <section id="contato" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
@@ -638,59 +755,63 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xs-gap-6 sm:gap-12 max-w-5xl mx-auto">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 xs-p-4 sm:p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <h3 className="text-2xl font-bold mb-6 text-yellow-400">Informações de Contato</h3>
-              <div className="space-y-4">
-                <p className="text-zinc-300">
+              <h3 className="text-xl xs-text-lg sm:text-2xl font-bold mb-4 xs-mb-4 sm:mb-6 text-yellow-400">
+                Informações de Contato
+              </h3>
+              <div className="space-y-3 xs-gap-3 sm:space-y-4">
+                <p className="text-sm xs-text-sm sm:text-base text-zinc-300">
                   <strong>Email:</strong> contato@robertonavarrooficial.com.br
                 </p>
-                <p className="text-zinc-300">
-                  <strong>Telefone:</strong> (11) 99999-9999
+                <p className="text-sm xs-text-sm sm:text-base text-zinc-300">
+                  <strong>Telefone:</strong> (12) 99765-9057
                 </p>
-                <p className="text-zinc-300">
+                <p className="text-sm xs-text-sm sm:text-base text-zinc-300">
                   <strong>Endereço:</strong> Alameda Araguaia 751, Alphaville – SP
                 </p>
               </div>
-              <div className="mt-8">
-                <h4 className="font-bold mb-4">Localização</h4>
+              <div className="mt-6 xs-mt-6 sm:mt-8">
+                <h4 className="font-bold mb-3 xs-mb-3 sm:mb-4 text-base xs-text-base sm:text-lg">Localização</h4>
                 <div className="rounded-xl overflow-hidden">
                   <LocationMap />
                 </div>
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 xs-p-4 sm:p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <h3 className="text-2xl font-bold mb-6 text-yellow-400">Envie uma Mensagem</h3>
-              <form className="space-y-4">
+              <h3 className="text-xl xs-text-lg sm:text-2xl font-bold mb-4 xs-mb-4 sm:mb-6 text-yellow-400">
+                Envie uma Mensagem
+              </h3>
+              <form className="space-y-4 xs-gap-3 sm:space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label htmlFor="contact-name" className="block text-sm font-medium mb-2">
                     Nome
                   </label>
                   <input
                     type="text"
-                    id="name"
+                    id="contact-name"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label htmlFor="contact-email" className="block text-sm font-medium mb-2">
                     Email
                   </label>
                   <input
                     type="email"
-                    id="email"
+                    id="contact-email"
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <label htmlFor="contact-message" className="block text-sm font-medium mb-2">
                     Mensagem
                   </label>
                   <textarea
-                    id="message"
+                    id="contact-message"
                     rows={5}
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   ></textarea>
@@ -704,84 +825,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-zinc-950 py-10 border-t border-zinc-800/50">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-10">
-            <div>
-              <Logo className="h-10 w-auto mb-4" />
-              <p className="text-sm text-zinc-400 mb-4">Transformando vidas financeiras em todo o Brasil desde 2015.</p>
-              <div className="flex space-x-4">
-                {["facebook", "instagram", "youtube", "linkedin"].map((social) => (
-                  <Link
-                    key={social}
-                    href="#"
-                    className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-                  >
-                    <span className="sr-only">{social}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Programas</h4>
-              <ul className="space-y-2">
-                {[
-                  "Despertar Milionário",
-                  "Coaching Financeiro",
-                  "Mentoria LCF",
-                  "Segredos da Mente Milionária",
-                  "Educador Financeiro",
-                  "Crenças da Riqueza",
-                ].map((program) => (
-                  <li key={program}>
-                    <Link href="#" className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
-                      {program}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Links Úteis</h4>
-              <ul className="space-y-2">
-                {["Sobre", "Depoimentos", "FAQ", "Blog", "Contato"].map((link) => (
-                  <li key={link}>
-                    <Link href="#" className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
-                      {link}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Contato</h4>
-              <p className="text-sm text-zinc-400 mb-2">contato@robertonavarrooficial.com.br</p>
-              <p className="text-sm text-zinc-400">São Paulo, SP - Brasil</p>
-            </div>
-          </div>
-
-          <div className="pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-zinc-500 mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} Roberto Navarro Oficial. Todos os direitos reservados.
-            </p>
-            <div className="flex space-x-6">
-              <Link href="#" className="text-xs text-zinc-500 hover:text-yellow-400 transition-colors">
-                Termos de Uso
-              </Link>
-              <Link href="#" className="text-xs text-zinc-500 hover:text-yellow-400 transition-colors">
-                Política de Privacidade
-              </Link>
-              <Link href="#" className="text-xs text-zinc-500 hover:text-yellow-400 transition-colors">
-                Cookies
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+          <Footer />  
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />

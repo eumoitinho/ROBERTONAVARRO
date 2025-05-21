@@ -1,89 +1,61 @@
 "use client"
 
+import type React from "react"
 import { useState, useEffect } from "react"
-import { Clock } from "lucide-react"
 
 interface CountdownTimerProps {
-  endDate?: Date
-  days?: number
-  className?: string
   targetDate: Date
 }
 
-export default function CountdownTimer({ endDate, days = 3, className = "" }: CountdownTimerProps) {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  })
-
-  const [isVisible, setIsVisible] = useState(true)
+const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
+  const [days, setDays] = useState(0)
+  const [hours, setHours] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
-    // Se não for fornecida uma data final, calcule uma com base nos dias fornecidos
-    const targetDate = endDate || new Date(Date.now() + days * 24 * 60 * 60 * 1000)
-
     const calculateTimeLeft = () => {
       const difference = targetDate.getTime() - new Date().getTime()
 
-      if (difference <= 0) {
-        setIsVisible(false)
-        return
+      if (difference > 0) {
+        setDays(Math.floor(difference / (1000 * 60 * 60 * 24)))
+        setHours(Math.floor((difference / (1000 * 60 * 60)) % 24))
+        setMinutes(Math.floor((difference / 1000 / 60) % 60))
+        setSeconds(Math.floor((difference / 1000) % 60))
+      } else {
+        setDays(0)
+        setHours(0)
+        setMinutes(0)
+        setSeconds(0)
       }
-
-      setTimeLeft({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      })
     }
 
-    // Calcular imediatamente
     calculateTimeLeft()
+    const intervalId = setInterval(calculateTimeLeft, 1000)
 
-    // Atualizar a cada segundo
-    const timer = setInterval(calculateTimeLeft, 1000)
-
-    // Limpar o intervalo quando o componente for desmontado
-    return () => clearInterval(timer)
-  }, [endDate, days])
-
-  if (!isVisible) return null
+    return () => clearInterval(intervalId)
+  }, [targetDate])
 
   return (
-    <div className={`bg-black/80 border border-red-500 rounded-lg p-4 ${className}`}>
-      <div className="flex items-center justify-center gap-2 mb-2">
-        <Clock className="h-5 w-5 text-red-500" />
-        <h3 className="text-lg font-bold text-white">
-          <span className="text-red-500">ATENÇÃO:</span> ESTA OFERTA EXPIRA EM
-        </h3>
+    <div className="grid grid-cols-4 gap-2 xs-gap-1 sm:gap-2">
+      <div className="bg-zinc-800/80 rounded-lg p-2 xs-p-1 sm:p-2 text-center">
+        <div className="text-2xl xs-text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400">{days}</div>
+        <div className="text-xs xs-text-xs sm:text-xs text-zinc-400">Dias</div>
       </div>
-      <div className="flex justify-center gap-4 text-center">
-        <div className="flex flex-col">
-          <span className="text-3xl font-extrabold text-white">{timeLeft.days}</span>
-          <span className="text-xs uppercase text-gray-400">Dias</span>
-        </div>
-        <div className="text-2xl font-bold text-white">:</div>
-        <div className="flex flex-col">
-          <span className="text-3xl font-extrabold text-white">{timeLeft.hours.toString().padStart(2, "0")}</span>
-          <span className="text-xs uppercase text-gray-400">Horas</span>
-        </div>
-        <div className="text-2xl font-bold text-white">:</div>
-        <div className="flex flex-col">
-          <span className="text-3xl font-extrabold text-white">{timeLeft.minutes.toString().padStart(2, "0")}</span>
-          <span className="text-xs uppercase text-gray-400">Min</span>
-        </div>
-        <div className="text-2xl font-bold text-white">:</div>
-        <div className="flex flex-col">
-          <span className="text-3xl font-extrabold text-white">{timeLeft.seconds.toString().padStart(2, "0")}</span>
-          <span className="text-xs uppercase text-gray-400">Seg</span>
-        </div>
+      <div className="bg-zinc-800/80 rounded-lg p-2 xs-p-1 sm:p-2 text-center">
+        <div className="text-2xl xs-text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400">{hours}</div>
+        <div className="text-xs xs-text-xs sm:text-xs text-zinc-400">Horas</div>
       </div>
-      <p className="text-center text-sm text-red-400 mt-2 font-medium">
-        Você está <span className="font-extrabold">PERDENDO DINHEIRO</span> a cada segundo que passa!
-      </p>
+      <div className="bg-zinc-800/80 rounded-lg p-2 xs-p-1 sm:p-2 text-center">
+        <div className="text-2xl xs-text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400">{minutes}</div>
+        <div className="text-xs xs-text-xs sm:text-xs text-zinc-400">Min</div>
+      </div>
+      <div className="bg-zinc-800/80 rounded-lg p-2 xs-p-1 sm:p-2 text-center">
+        <div className="text-2xl xs-text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400">{seconds}</div>
+        <div className="text-xs xs-text-xs sm:text-xs text-zinc-400">Seg</div>
+      </div>
     </div>
   )
 }
+
+export default CountdownTimer

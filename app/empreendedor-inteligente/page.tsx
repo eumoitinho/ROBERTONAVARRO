@@ -22,6 +22,8 @@ import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
+import HeroPages from "@/components/hero-pages"
+import TestimonialsSection from "@/components/testimonials-section"
 
 export default function EmpreendedorInteligentePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -135,46 +137,18 @@ export default function EmpreendedorInteligentePage() {
         </div>
       </header>
 
-      {/* // Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div
-            className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-          >
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-              <span className="text-sm font-medium">Formação exclusiva para empresários</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                EMPREENDEDOR INTELIGENTE
-              </span>
-            </h1>
-            <p className="text-xl text-zinc-300 mb-4 max-w-xl">Empreender com lucro, leveza e liberdade é possível</p>
-            <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-              Formação exclusiva para empresários que querem escalar resultados, atrair investidores, otimizar a gestão
-              e parar de apagar incêndios na própria empresa.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-              >
-                <Link href="#inscricao">GARANTA SUA VAGA!</Link>
-              </Button>
-              <Button
-                asChild
-                className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-              >
-                <Link href="#sobre">
-                  Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
-                </Link>
-              </Button>
-            </div>
-            {/* Retain existing testimonial stats */}
-          </div>
-        </div>
-      </section>
+      {/* Hero Section */}
+      <HeroPages
+        title="EMPREENDEDOR INTELIGENTE"
+        subtitle="Formação exclusiva para empresários"
+        secondtitle="Empreender com lucro, leveza e liberdade é possível"
+        description={`Formação exclusiva para empresários que querem escalar resultados, atrair investidores, otimizar a gestão\ne parar de apagar incêndios na própria empresa.`}
+        image="/images/HERO_EMPREENDEDOR.png"
+        ctaText="GARANTA SUA VAGA!"
+        ctaHref="#inscricao"
+        secondaryCtaText="Saiba mais"
+        secondaryCtaHref="#sobre"
+      />
 
       {/* //Challenges Section */}
       <section id="sobre" className="py-20 relative">
@@ -359,63 +333,10 @@ export default function EmpreendedorInteligentePage() {
           </div>
         </div>
       </section>
+
+      <TestimonialsSection/>
       {/* 
-// Testimonials Section */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">DEPOIMENTOS</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              JÁ PASSARAM POR NOSSOS <span className="text-yellow-400">TREINAMENTOS</span>
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Conheça algumas das personalidades que já participaram dos treinamentos de Roberto Navarro.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                name: "Alfredo Soares",
-                role: "Autoridade em vendas e autor best-seller",
-                image: "/placeholder.svg?key=q2euh",
-              },
-              {
-                name: "Tiago Brunet",
-                role: "Referência em treinamento de líderes e espiritualidade",
-                image: "/placeholder.svg?key=hc68w",
-              },
-              {
-                name: "Flávio Prado",
-                role: "Jornalista esportivo que já cobriu 10 Copas do Mundo e eventos em mais de 60 países",
-                image: "/placeholder.svg?key=c0njc",
-              },
-              {
-                name: "Pyong Lee",
-                role: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
-                image: "/placeholder.svg?key=z958p",
-              },
-            ].map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <div className="relative w-24 h-24 rounded-full overflow-hidden mx-auto mb-6">
-                  <Image
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-center text-yellow-400">{testimonial.name}</h3>
-                <p className="text-zinc-300 text-center">{testimonial.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
       {/* 
 // Registration Section */}
       <section id="inscricao" className="py-20 relative">

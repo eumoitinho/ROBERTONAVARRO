@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        xs: "340px",
+      },
       fontFamily: {
         sans: ["var(--font-montserrat)"],
         montserrat: ["var(--font-montserrat)"],
