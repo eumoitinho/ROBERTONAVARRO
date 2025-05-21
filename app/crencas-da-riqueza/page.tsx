@@ -1,15 +1,12 @@
 "use client"
 
-import type React from "react"
-
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Check, Calendar, MapPin, Users } from "lucide-react"
+import { ArrowRight, Calendar, MapPin, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import  WhatsAppButton  from "@/components/whatsapp-button"
+import WhatsAppButton from "@/components/whatsapp-button"
 import Logo from "@/components/logo"
-import CountdownTimer from "@/components/countdown-timer"
 import { useRouter } from "next/navigation"
 import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection } from "@/components/testimonials-section"
@@ -19,8 +16,6 @@ export default function CrencasDaRiquezaPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeVideoIndex, setActiveVideoIndex] = useState(0)
   const videoIds = ["4aYDKJQBnRw", "yTELcwYTsnU", "W6rBTJKeJ4w"]
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -96,41 +91,6 @@ export default function CrencasDaRiquezaPage() {
     }
   }, [])
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError(null)
-
-    const formData = new FormData(e.currentTarget)
-
-    try {
-      const response = await fetch("/api/registrations", {
-        method: "POST",
-        body: JSON.stringify({
-          eventId: 1, // ID do evento "Crenças da Riqueza"
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || "Erro ao processar inscrição")
-      }
-
-      const data = await response.json()
-      router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Ocorreu um erro ao processar sua inscrição")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
@@ -142,7 +102,7 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </header>
 
-     {/* Hero Section */}
+      {/* Hero Section */}
       <HeroPages
         title="CRENÇAS DA RIQUEZA"
         subtitle="Transformação mental"
@@ -215,7 +175,7 @@ export default function CrencasDaRiquezaPage() {
               <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
                 <Image
-                  src="/placeholder.svg?key=tzrg3"
+                  src="/financial-mindset-workshop.png"
                   alt="Crenças da Riqueza"
                   width={800}
                   height={600}
@@ -272,7 +232,7 @@ export default function CrencasDaRiquezaPage() {
       </section>
 
       {/* What You'll Learn Section */}
-      <section className="py-20 relative">
+      <section id="o-que-aprender" className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
@@ -293,25 +253,25 @@ export default function CrencasDaRiquezaPage() {
                 title: "Inteligência emocional",
                 description:
                   "Domine suas emoções e fortaleça sua confiança para tomar decisões claras e corajosas, mesmo diante de pressões e incertezas.",
-                icon: "/placeholder.svg?key=17995",
+                icon: "/emotional-intelligence-icon.png",
               },
               {
                 title: "Inteligência financeira",
                 description:
                   "Reescreva sua história com o dinheiro. Supere crenças negativas, aprenda as regras da prosperidade e construa sua segurança financeira com consistência.",
-                icon: "/placeholder.svg?key=ny4t9",
+                icon: "/financial-intelligence-icon.png",
               },
               {
                 title: "Inteligência espiritual",
                 description:
                   "Alinhe sua mente e espírito com seu propósito de vida e descubra como viver com mais sentido, leveza e prosperidade.",
-                icon: "/placeholder.svg?key=rkj9n",
+                icon: "/placeholder.svg?height=60&width=60&query=spiritual intelligence icon",
               },
               {
                 title: "Inteligência empresarial",
                 description:
                   "Adote o mindset dos empreendedores de sucesso. Saiba como identificar oportunidades, tomar decisões estratégicas e pensar grande, com ousadia e visão de futuro.",
-                icon: "/placeholder.svg?key=6v8te",
+                icon: "/placeholder.svg?height=60&width=60&query=business intelligence icon",
               },
             ].map((item, index) => (
               <div
@@ -365,17 +325,17 @@ export default function CrencasDaRiquezaPage() {
               {
                 name: "Tiago Brunet",
                 role: "Referência em treinamento de líderes e espiritualidade",
-                image: "/placeholder.svg?key=scmaf",
+                image: "/placeholder.svg?height=300&width=300&query=professional man headshot",
               },
               {
                 name: "Flávio Prado",
                 role: "Jornalista esportivo que já cobriu 10 Copas do Mundo",
-                image: "/placeholder.svg?key=pjqud",
+                image: "/placeholder.svg?height=300&width=300&query=sports journalist headshot",
               },
               {
                 name: "Pyong Lee",
                 role: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
-                image: "/placeholder.svg?key=jeozg",
+                image: "/placeholder.svg?height=300&width=300&query=asian influencer headshot",
               },
             ].map((person, index) => (
               <div
@@ -512,13 +472,65 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </section>
 
+      {/* Ticket Purchase Section */}
+      <section id="form" className="py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">INSCRIÇÃO</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              GARANTA SEU <span className="text-yellow-400">INGRESSO AGORA MESMO!</span>
+            </h2>
+            <p className="text-zinc-300 max-w-3xl mx-auto">
+              Escolha a opção que melhor se adapta às suas necessidades e transforme sua relação com o dinheiro
+            </p>
+          </div>
 
+          {/* Enhanced Ticket Purchase Form */}
+          <div className="max-w-5xl mx-auto">
+            <TicketPurchaseForm eventId={1} eventName="Crenças da Riqueza" />
+          </div>
+        </div>
+      </section>
 
-    <TicketPurchaseForm
-      eventId={27451331}
-      eventName="Crenças da Riqueza"
-     
-    />
+      {/* Event Details Section */}
+      <section className="py-16 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 md:p-12">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-yellow-500/20 rounded-full p-4 mb-4">
+                  <Calendar className="h-8 w-8 text-yellow-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-white">Data e Horário</h3>
+                <p className="text-zinc-300">27 de Junho de 2025</p>
+                <p className="text-zinc-300">Das 9h às 19h</p>
+              </div>
+
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-yellow-500/20 rounded-full p-4 mb-4">
+                  <MapPin className="h-8 w-8 text-yellow-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-white">Local</h3>
+                <p className="text-zinc-300">Centro de Convenções</p>
+                <p className="text-zinc-300">São Paulo, SP</p>
+              </div>
+
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-yellow-500/20 rounded-full p-4 mb-4">
+                  <Users className="h-8 w-8 text-yellow-400" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-white">Vagas Limitadas</h3>
+                <p className="text-zinc-300">Apenas 300 vagas</p>
+                <p className="text-zinc-300">Garanta a sua!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="bg-zinc-950 py-10 border-t border-zinc-800/50">
@@ -535,7 +547,7 @@ export default function CrencasDaRiquezaPage() {
       </footer>
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton/>
+      <WhatsAppButton />
     </div>
   )
 }
