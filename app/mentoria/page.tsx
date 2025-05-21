@@ -9,7 +9,7 @@ import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import LocationMap from "@/components/location-map"
 import GlowEffect from "@/components/glow-effect"
-import TestimonialsSection from "@/components/testimonials-section"
+import { TestimonialsSection }  from "@/components/testimonials-section"
 import HeroPages from "@/components/hero-pages"
 
 export default function MentoriaPage() {

@@ -20,7 +20,7 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import HeroPages from "@/components/hero-pages"
-import TestimonialsSection from "@/components/testimonials-section"
+import { TestimonialsSection }  from "@/components/testimonials-section"
 
 export default function MentoriaIndividual() {
   const [isVisible, setIsVisible] = useState(false)

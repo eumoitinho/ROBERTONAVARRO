@@ -28,7 +28,7 @@ import Logo from "@/components/logo"
 import CountdownTimer from "@/components/countdown-timer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import HeroPages from "@/components/hero-pages"
-import TestimonialsSection from "@/components/testimonials-section"
+import { TestimonialsSection }  from "@/components/testimonials-section"
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)

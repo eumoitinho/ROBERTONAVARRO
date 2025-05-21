@@ -7,12 +7,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Check, Calendar, MapPin, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import WhatsAppButton from "@/components/whatsapp-button"
+import  WhatsAppButton  from "@/components/whatsapp-button"
 import Logo from "@/components/logo"
 import CountdownTimer from "@/components/countdown-timer"
 import { useRouter } from "next/navigation"
 import HeroPages from "@/components/hero-pages"
-import TestimonialsSection from "@/components/testimonials-section"
+import { TestimonialsSection } from "@/components/testimonials-section"
+import { TicketPurchaseForm } from "@/components/ticket-purchase-form"
 
 export default function CrencasDaRiquezaPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -511,212 +512,13 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="inscricao" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">INSCRIÇÃO</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              GARANTA SEU <span className="text-yellow-400">INGRESSO AGORA MESMO!</span>
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">Escolha a opção que melhor se adapta às suas necessidades</p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Free Ticket */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-2 text-center text-yellow-400">EXPERIÊNCIA SURREAL</h3>
-                <p className="text-zinc-400 text-center mb-6">Ingresso geral</p>
 
-                <div className="text-center mb-6">
-                  <span className="text-4xl font-bold">GRATUITO</span>
-                </div>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Experiência completa</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Material digital</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Certificado de participação</p>
-                  </div>
-                </div>
-
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 cta-hover"
-                >
-                  <a href="#form">EU QUERO!</a>
-                </Button>
-              </div>
-            </div>
-
-            {/* VIP Ticket */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-yellow-500/50 rounded-3xl overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/20 relative">
-              <div className="absolute top-6 right-6 bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">
-                RECOMENDADO
-              </div>
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-2 text-center text-yellow-400">EXPERIÊNCIA VIP</h3>
-                <p className="text-zinc-400 text-center mb-6">Experiência premium</p>
-
-                <div className="text-center mb-6">
-                  <span className="text-4xl font-bold">R$ 49,90</span>
-                </div>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Perguntas e respostas com Roberto Navarro</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Assentos mais próximos ao palco</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Experiência premium</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-yellow-500/20 rounded-full p-1">
-                      <Check className="h-4 w-4 text-yellow-400" />
-                    </div>
-                    <p className="text-zinc-300">Compre 1, leve 2</p>
-                  </div>
-                </div>
-
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 cta-hover"
-                >
-                  <a href="#form">EU QUERO!</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Registration Form */}
-          <div
-            id="form"
-            className="max-w-3xl mx-auto mt-20 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden"
-          >
-            <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <div className="p-8">
-              <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">PREENCHA SEUS DADOS</h3>
-              <p className="text-zinc-300 text-center mb-8">
-                Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
-              </p>
-
-              {error && (
-                <div
-                  className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6"
-                  role="alert"
-                >
-                  <strong className="font-bold">Erro:</strong>
-                  <span className="block sm:inline">{error}</span>
-                </div>
-              )}
-
-              <form className="space-y-6" onSubmit={handleSubmit}>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      Nome completo
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                      placeholder="Seu nome completo"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                      placeholder="seu@email.com"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                      Telefone
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                      placeholder="(00) 00000-0000"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="ticket" className="block text-sm font-medium mb-2">
-                      Tipo de ingresso
-                    </label>
-                    <select
-                      id="ticket"
-                      name="ticket"
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                      disabled
-                    >
-                      <option value="free">Experiência Surreal (Gratuito)</option>
-                      <option value="vip">Experiência VIP (R$ 49,90) - Indisponível</option>
-                    </select>
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg cta-hover"
-                >
-                  {isSubmitting ? "Enviando..." : "GARANTIR MINHA VAGA AGORA"}
-                </Button>
-
-                <p className="text-xs text-zinc-400 text-center">
-                  Ao clicar em "Garantir minha vaga agora", você concorda com nossos termos de uso e política de
-                  privacidade.
-                </p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+    <TicketPurchaseForm
+      eventId={27451331}
+      eventName="Crenças da Riqueza"
+     
+    />
 
       {/* Footer */}
       <footer className="bg-zinc-950 py-10 border-t border-zinc-800/50">
@@ -733,7 +535,7 @@ export default function CrencasDaRiquezaPage() {
       </footer>
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton/>
     </div>
   )
 }

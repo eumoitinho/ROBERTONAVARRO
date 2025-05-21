@@ -21,7 +21,7 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import HeroPages from "@/components/hero-pages"
-import TestimonialsSection from "@/components/testimonials-section"
+import { TestimonialsSection }  from "@/components/testimonials-section"
 
 export default function SegredosDaMenteMilionaria() {
   const [isVisible, setIsVisible] = useState(false)
@@ -296,75 +296,8 @@ export default function SegredosDaMenteMilionaria() {
         </div>
       </section>
       <TestimonialsSection />
-      {/* Inscrição Section */}
-      <section id="inscricao" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 text-center">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-yellow-400">
-              Garanta sua vaga na Imersão Segredos da Mente Milionária
-            </h2>
-            <p className="text-lg mb-4 text-zinc-300">Evento gratuito - Vagas limitadas</p>
-            <p className="text-md mb-8 text-zinc-300">
-              Preencha o formulário abaixo para participar.
-            </p>
-            {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">Erro:</strong>
-                <span className="block sm:inline">{error}</span>
-              </div>
-            )}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-zinc-300">
-                  Nome Completo
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="mt-1 block w-full rounded-md border-zinc-700 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 bg-zinc-800 text-white"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-zinc-300">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-1 block w-full rounded-md border-zinc-700 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 bg-zinc-800 text-white"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-zinc-300">
-                  Telefone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  className="mt-1 block w-full rounded-md border-zinc-700 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 bg-zinc-800 text-white"
-                  required
-                />
-              </div>
-              <div>
-                <Button
-                  disabled={isSubmitting}
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 text-base"
-                >
-                  {isSubmitting ? "Enviando..." : "Inscreva-se Agora!"}
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
+      
+      
 
       {/* Footer */}
       <footer className="bg-zinc-950 py-10 border-t border-zinc-800/50">

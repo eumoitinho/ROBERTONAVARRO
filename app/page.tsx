@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronRight, ChevronDown, Star } from "lucide-react"
@@ -9,12 +9,19 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import LocationMap from "@/components/location-map"
-import TestimonialsSection from "@/components/testimonials-section"
-import  Footer  from "@/components/footer"
+import { TestimonialsSection }  from "@/components/testimonials-section"
+import Footer from "@/components/footer"
+import { useClickOutside } from "@/hooks/use-click-outside"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
+
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useClickOutside(dropdownRef, () => {
+    if (openSubmenu) setOpenSubmenu(null)
+  })
 
   const toggleSubmenu = (menu: string) => {
     if (openSubmenu === menu) {
@@ -59,7 +66,7 @@ export default function HomePage() {
             <Link href="#quem-somos" className="text-sm hover:text-yellow-400 transition-colors">
               Quem Somos
             </Link>
-            <div className="relative group">
+            <div className="relative group" ref={dropdownRef}>
               <button
                 onClick={() => toggleSubmenu("solucoes")}
                 className="text-sm hover:text-yellow-400 transition-colors flex items-center gap-1"
@@ -77,36 +84,42 @@ export default function HomePage() {
                     <Link
                       href="#formacoes"
                       className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                      onClick={() => setOpenSubmenu(null)}
                     >
                       Formações
                     </Link>
                     <Link
                       href="#eventos"
                       className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                      onClick={() => setOpenSubmenu(null)}
                     >
                       Eventos
                     </Link>
                     <Link
                       href="#livros"
                       className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                      onClick={() => setOpenSubmenu(null)}
                     >
                       Livros
                     </Link>
                     <Link
                       href="#treinamentos"
                       className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                      onClick={() => setOpenSubmenu(null)}
                     >
                       Treinamentos
                     </Link>
                     <Link
-                      href="#"
+                      href="/lives"
                       className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                      onClick={() => setOpenSubmenu(null)}
                     >
                       Lives
                     </Link>
                     <Link
                       href="#"
                       className="block px-4 py-2 text-sm text-gray-200 hover:bg-zinc-800 hover:text-yellow-400"
+                      onClick={() => setOpenSubmenu(null)}
                     >
                       Palestras
                     </Link>
@@ -145,7 +158,7 @@ export default function HomePage() {
                     { href: "#eventos", label: "Eventos" },
                     { href: "#livros", label: "Livros" },
                     { href: "#treinamentos", label: "Treinamentos" },
-                    { href: "#", label: "Lives" },
+                    { href: "/lives", label: "Lives" },
                     { href: "#", label: "Palestras" },
                   ],
                 },
@@ -233,8 +246,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
-           
           </div>
         </div>
       </section>
@@ -327,7 +338,7 @@ export default function HomePage() {
             </p>
           </div>
 
-         <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xs-gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xs-gap-4 sm:gap-8">
             {/* LCF Mentoring */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
@@ -471,7 +482,9 @@ export default function HomePage() {
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">Crenças da Riqueza</h3>
-              <p className="text-zinc-300 mb-6 flex-1">Supere bloqueios mentais e eleve seu padrão financeiro e pessoal.</p>
+              <p className="text-zinc-300 mb-6 flex-1">
+                Supere bloqueios mentais e eleve seu padrão financeiro e pessoal.
+              </p>
               <div className="mt-auto">
                 <Button
                   asChild
@@ -524,7 +537,9 @@ export default function HomePage() {
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">Energia do Dinheiro</h3>
-              <p className="text-zinc-300 mb-6 flex-1">Descubra como alinhar sua energia com a frequência da prosperidade.</p>
+              <p className="text-zinc-300 mb-6 flex-1">
+                Descubra como alinhar sua energia com a frequência da prosperidade.
+              </p>
               <div className="mt-auto">
                 <Button
                   asChild
@@ -640,7 +655,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TestimonialsSection/>
+      <TestimonialsSection />
 
       {/* Trabalhe Conosco Section */}
       <section id="trabalhe-conosco" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
@@ -825,7 +840,7 @@ export default function HomePage() {
         </div>
       </section>
 
-          <Footer />  
+      <Footer />
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />

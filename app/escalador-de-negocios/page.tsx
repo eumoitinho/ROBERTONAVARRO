@@ -13,7 +13,7 @@ import MobileMenu from "@/components/mobile-menu"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { useRouter } from "next/navigation"
 import HeroPages from "@/components/hero-pages"
-import TestimonialsSection from "@/components/testimonials-section"
+import { TestimonialsSection }  from "@/components/testimonials-section"
 
 export default function EscaladorDeNegocios() {
   const [isVisible, setIsVisible] = useState(false)

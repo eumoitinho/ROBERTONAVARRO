@@ -25,7 +25,7 @@ import {
   ChevronRight,
 } from "lucide-react"
 import HeroPages from "@/components/hero-pages"
-import TestimonialsSection from "@/components/testimonials-section"
+import { TestimonialsSection }  from "@/components/testimonials-section"
 
 export default function LCFMentoringPro() {
   const [isVisible, setIsVisible] = useState(false)
