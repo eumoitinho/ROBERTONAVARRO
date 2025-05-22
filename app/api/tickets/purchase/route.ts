@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       description: `Ingresso para evento`, // Descrição do produto
       quantity: 1, // Quantidade fixa para ingressos
       price: {
-        value: 9.9, // Ajuste conforme o preço do ingresso; pode ser dinâmico
+         // Ajuste conforme o preço do ingresso; pode ser dinâmico
         currency: "BRL"
       }
     }

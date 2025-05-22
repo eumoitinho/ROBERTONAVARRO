@@ -2,31 +2,32 @@ import { getEduzzToken } from "./eduzz-auth"
 import { sql } from "./db"
 
 const EDUZZ_API_BASE = "https://api.eduzz.com"
+const EDUZZ_API_BASE_V2 = "https://api2.eduzz.com"
 
-// Generic function to make authenticated requests to Eduzz API
+// Generic function to make authenticated requests to Eduzz API v1
 export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
   try {
     const token = process.env.EDUZZ_API_TOKEN
 
     const url = `${EDUZZ_API_BASE}${endpoint}`
-   const headers: Record<string, string> = {
-  "Content-Type": "application/json",
-  "Authorization": `Bearer ${token}`, // Use Bearer token format
-};
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    }
 
     const options: RequestInit = {
       method,
       headers,
-      cache: "no-store", // Ensure we don't use cached responses
+      cache: "no-store",
     }
 
     if (body && ["POST", "PUT", "PATCH"].includes(method)) {
       options.body = JSON.stringify(body)
     }
 
-    console.log(`[Eduzz API] ${method} ${url}`, body ? { body } : "")
+    console.log(`[Eduzz API v1] ${method} ${url}`, body ? { body } : "")
     if (token) {
-      console.log(`[Eduzz API] Using token: ${token.substring(0, 10)}...`)
+      console.log(`[Eduzz API v1] Using token: ${token.substring(0, 10)}...`)
     } else {
       throw new Error("Eduzz API token is not defined")
     }
@@ -40,36 +41,87 @@ export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: a
       } catch (e) {
         errorDetails = response.statusText
       }
-      throw new Error(`Eduzz API error: ${errorDetails} (Status: ${response.status})`)
+      throw new Error(`Eduzz API v1 error: ${errorDetails} (Status: ${response.status})`)
     }
 
     const text = await response.text()
     if (!text) {
-      throw new Error("Empty response from Eduzz API")
+      throw new Error("Empty response from Eduzz API v1")
     }
 
     return JSON.parse(text)
   } catch (error) {
-    console.error("Error in Eduzz API request:", error)
+    console.error("Error in Eduzz API v1 request:", error)
     throw error
   }
 }
 
-// Get list of products (events)
+// Generic function to make authenticated requests to Eduzz API v2
+export async function eduzzRequestV2<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
+  try {
+    const token = process.env.EDUZZ_API_TOKEN
+
+    const url = `${EDUZZ_API_BASE_V2}${endpoint}`
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    }
+
+    const options: RequestInit = {
+      method,
+      headers,
+      cache: "no-store",
+    }
+
+    if (body && ["POST", "PUT", "PATCH"].includes(method)) {
+      options.body = JSON.stringify(body)
+    }
+
+    console.log(`[Eduzz API v2] ${method} ${url}`, body ? { body } : "")
+    if (token) {
+      console.log(`[Eduzz API v2] Using token: ${token.substring(0, 10)}...`)
+    } else {
+      throw new Error("Eduzz API token is not defined")
+    }
+
+    const response = await fetch(url, options)
+
+    if (!response.ok) {
+      let errorDetails = ""
+      try {
+        errorDetails = await response.text()
+      } catch (e) {
+        errorDetails = response.statusText
+      }
+      throw new Error(`Eduzz API v2 error: ${errorDetails} (Status: ${response.status})`)
+    }
+
+    const text = await response.text()
+    if (!text) {
+      throw new Error("Empty response from Eduzz API v2")
+    }
+
+    return JSON.parse(text)
+  } catch (error) {
+    console.error("Error in Eduzz API v2 request:", error)
+    throw error
+  }
+}
+
+// Get list of products (events) - now using API v2
 export async function getEduzzProducts(): Promise<any[]> {
-  const response = await eduzzRequest<any>("/content/content_list")
+  const response = await eduzzRequestV2<any>("/content/content_list")
   return response.data || []
 }
 
-// Get product details
+// Get product details (still using v1)
 export async function getEduzzProduct(productId: number): Promise<any> {
   const response = await eduzzRequest<any>(`/content/content/${productId}`)
   return response.data?.[0] || null
 }
 
-// Create a sale/invoice
+// Create a sale/invoice (still using v1)
 export async function createEduzzInvoice(invoiceData: any): Promise<any> {
-  // Make sure we're using the correct endpoint for creating invoices
   return eduzzRequest<any>("/sun/v1/cart", "POST", invoiceData)
 }
 
@@ -102,7 +154,7 @@ export async function getEduzzProductIdForEvent(eventId: number): Promise<number
       return null
     }
 
-    // Get products from Eduzz
+    // Get products from Eduzz (v2)
     const products = await getEduzzProducts()
 
     // Find product with matching name
