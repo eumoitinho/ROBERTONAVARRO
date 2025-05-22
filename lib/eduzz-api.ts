@@ -17,6 +17,7 @@ export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: a
     const options: RequestInit = {
       method,
       headers,
+      cache: "no-store", // Ensure we don't use cached responses
     }
 
     if (body && ["POST", "PUT", "PATCH"].includes(method)) {
@@ -24,6 +25,7 @@ export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: a
     }
 
     console.log(`[Eduzz API] ${method} ${url}`, body ? { body } : "")
+    console.log(`[Eduzz API] Using token: ${token.substring(0, 10)}...`)
 
     const response = await fetch(url, options)
 
@@ -34,7 +36,7 @@ export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: a
       } catch (e) {
         errorDetails = response.statusText
       }
-      throw new Error(`Eduzz API error: ${errorDetails}`)
+      throw new Error(`Eduzz API error: ${errorDetails} (Status: ${response.status})`)
     }
 
     const text = await response.text()
@@ -63,6 +65,7 @@ export async function getEduzzProduct(productId: number): Promise<any> {
 
 // Create a sale/invoice
 export async function createEduzzInvoice(invoiceData: any): Promise<any> {
+  // Make sure we're using the correct endpoint for creating invoices
   return eduzzRequest<any>("/sale", "POST", invoiceData)
 }
 
@@ -76,7 +79,7 @@ export async function getEduzzProductIdForEvent(eventId: number): Promise<number
       WHERE event_id = ${eventId}
     `
 
-    if ((mappingResult.rowCount ?? 0) > 0) {
+    if (mappingResult && mappingResult.rows.length > 0) {
       return mappingResult.rows[0].eduzz_product_id
     }
 
@@ -85,11 +88,15 @@ export async function getEduzzProductIdForEvent(eventId: number): Promise<number
       SELECT name FROM events WHERE id = ${eventId}
     `
 
-    if (eventResult.rowCount === 0) {
+    if (!eventResult || eventResult.rows.length === 0) {
       return null
     }
 
-    const eventName = eventResult.rows[0].name
+    const eventName = eventResult.rows[0]?.name
+
+    if (!eventName) {
+      return null
+    }
 
     // Get products from Eduzz
     const products = await getEduzzProducts()
@@ -97,8 +104,8 @@ export async function getEduzzProductIdForEvent(eventId: number): Promise<number
     // Find product with matching name
     const matchingProduct = products.find(
       (p) =>
-        p.content_title.toLowerCase().includes(eventName.toLowerCase()) ||
-        eventName.toLowerCase().includes(p.content_title.toLowerCase()),
+        p.content_title?.toLowerCase().includes(eventName.toLowerCase()) ||
+        eventName.toLowerCase().includes(p.content_title?.toLowerCase() || ""),
     )
 
     if (matchingProduct) {

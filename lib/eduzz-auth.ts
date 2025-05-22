@@ -1,6 +1,6 @@
 const EDUZZ_API_BASE = "https://api2.eduzz.com"
-const EDUZZ_AUTH_URL = "https://accounts.eduzz.com/oauth/authorize" // This is a hypothetical URL, replace with the actual one
-const EDUZZ_TOKEN_URL = "https://accounts.eduzz.com/oauth/token" // This is a hypothetical URL, replace with the actual one
+const EDUZZ_AUTH_URL = "https://accounts.eduzz.com/oauth/authorize" // Replace with actual URL if different
+const EDUZZ_TOKEN_URL = "https://accounts.eduzz.com/oauth/token" // Replace with actual URL if different
 
 // Cache for token to avoid unnecessary requests
 let cachedToken: { token: string; expiry: number } | null = null
@@ -14,8 +14,11 @@ export async function getEduzzToken(): Promise<string> {
 
   // Check if cached token is still valid (with 1-minute margin)
   if (cachedToken && cachedToken.expiry > now + 60) {
+    console.log("[Eduzz Auth] Using cached token")
     return cachedToken.token
   }
+
+  console.log("[Eduzz Auth] Generating new token")
 
   const email = process.env.EDUZZ_EMAIL
   const publicKey = process.env.EDUZZ_PUBLIC_KEY
@@ -33,20 +36,27 @@ export async function getEduzzToken(): Promise<string> {
   })
 
   try {
+    console.log(`[Eduzz Auth] Requesting token from ${url}`)
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: body.toString(),
+      cache: "no-store", // Ensure we don't use cached responses
     })
+
+    console.log(`[Eduzz Auth] Token response status: ${response.status}`)
 
     if (!response.ok) {
       const errorText = await response.text()
-      throw new Error(`Failed to generate token: ${errorText || response.statusText}`)
+      throw new Error(`Failed to generate token: ${errorText || response.statusText} (Status: ${response.status})`)
     }
 
     const data = await response.json()
+    console.log(`[Eduzz Auth] Token response:`, data)
+
     if (!data.success || !data.data?.token) {
       throw new Error(`Invalid API response: ${JSON.stringify(data)}`)
     }
@@ -54,12 +64,19 @@ export async function getEduzzToken(): Promise<string> {
     const token = data.data.token
 
     // Decode token to get expiration time
-    const payload = JSON.parse(atob(token.split(".")[1]))
-    cachedToken = { token, expiry: payload.exp }
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]))
+      cachedToken = { token, expiry: payload.exp }
+      console.log(`[Eduzz Auth] Token generated, expires at: ${new Date(payload.exp * 1000).toISOString()}`)
+    } catch (e) {
+      console.warn("[Eduzz Auth] Could not decode token payload, using default expiry")
+      // If we can't decode the token, use a default expiry of 15 minutes
+      cachedToken = { token, expiry: now + 15 * 60 }
+    }
 
     return token
   } catch (error) {
-    console.error("Error getting Eduzz token:", error)
+    console.error("[Eduzz Auth] Error getting token:", error)
     throw error
   }
 }
@@ -73,18 +90,18 @@ export async function hasValidEduzzToken(): Promise<boolean> {
     await getEduzzToken()
     return true
   } catch (error) {
+    console.error("[Eduzz Auth] Token validation failed:", error)
     return false
   }
 }
 
 /**
  * Generate the authorization URL for Eduzz OAuth
- * Note: This is only needed if you're implementing an OAuth flow
  */
 export function getEduzzAuthUrl(state: string): string {
   const clientId = process.env.EDUZZ_CLIENT_ID
   const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/eduzz/callback`
-  
+
   if (!clientId) {
     throw new Error("Eduzz client ID not configured")
   }
@@ -102,13 +119,12 @@ export function getEduzzAuthUrl(state: string): string {
 
 /**
  * Exchange authorization code for access token
- * Note: This is only needed if you're implementing an OAuth flow
  */
 export async function exchangeCodeForToken(code: string): Promise<any> {
   const clientId = process.env.EDUZZ_CLIENT_ID
   const clientSecret = process.env.EDUZZ_CLIENT_SECRET
   const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/eduzz/callback`
-  
+
   if (!clientId || !clientSecret) {
     throw new Error("Eduzz OAuth credentials not configured")
   }

@@ -44,13 +44,6 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      // Get event price from database or use default
-      const eventResult = await sql`
-        SELECT name FROM events WHERE id = ${eventId}
-      `
-
-      const eventName = eventResult.rows?.[0]?.name || "Evento"
-
       // Create invoice in Eduzz
       const invoiceData = {
         content_id: eduzzProductId,
