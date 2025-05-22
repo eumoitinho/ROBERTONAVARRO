@@ -115,6 +115,7 @@ const params = new URLSearchParams({
 });
 
 
+
   return `${EDUZZ_AUTH_URL}?${params.toString()}`
 }
 
