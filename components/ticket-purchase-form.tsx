@@ -202,7 +202,7 @@ const [iframeKey, setIframeKey] = useState(0);
 
 if (paymentUrl) {
   return (
-    <Card className="w-full max-w-2xl mx-auto mt-8 shadow-lg border-0">
+    <Card className="w-full max-w-md mx-auto mt-8 shadow-lg border-0">
       <CardHeader>
         <CardTitle className="text-yellow-500">Finalizar Pagamento</CardTitle>
         <CardDescription>Conclua sua compra abaixo.</CardDescription>
@@ -210,7 +210,6 @@ if (paymentUrl) {
       <CardContent className="space-y-4">
         <div className="relative overflow-hidden rounded-lg border border-gray-200">
           <iframe
-            key={iframeKey} // Chave única para forçar recarga
             src={paymentUrl}
             title="Finalizar Pagamento"
             width="100%"
@@ -222,14 +221,7 @@ if (paymentUrl) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button 
-          variant="outline" 
-          onClick={() => {
-            setPaymentUrl(null);
-            setIframeKey(prev => prev + 1); // Incrementa a chave ao voltar
-          }} 
-          className="w-full"
-        >
+        <Button variant="outline" onClick={() => setPaymentUrl(null)} className="w-full">
           Voltar
         </Button>
       </CardFooter>
