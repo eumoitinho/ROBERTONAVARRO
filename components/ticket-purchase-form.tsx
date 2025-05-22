@@ -198,8 +198,8 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
       </Card>
     )
   }
-
-  if (paymentUrl) {
+if (paymentUrl) {
+  const uniqueUrl = `${paymentUrl}&timestamp=${Date.now()}`; // Adiciona um timestamp único
   return (
     <Card className="w-full max-w-md mx-auto mt-8 shadow-lg border-0">
       <CardHeader>
@@ -209,7 +209,7 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
       <CardContent className="space-y-4">
         <div className="relative overflow-hidden rounded-lg border border-gray-200">
           <iframe
-            src={paymentUrl}
+            src={uniqueUrl}
             title="Finalizar Pagamento"
             width="100%"
             height="500px"
@@ -227,6 +227,7 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
     </Card>
   );
 }
+
 
 
   return (
