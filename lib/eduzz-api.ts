@@ -3,13 +3,11 @@ import type { EduzzProduct, EduzzInvoice, CreateInvoiceRequest } from "./eduzz-t
 
 const EDUZZ_API_BASE = "https://api.eduzz.com"
 
-// Helper function to make authenticated requests to Eduzz API
 async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
   try {
     const token = await getEduzzToken()
-
     if (!token) {
-      throw new Error("No authentication token available")
+      throw new Error("Nenhum token de autenticação disponível")
     }
 
     const headers: HeadersInit = {
@@ -17,42 +15,33 @@ async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Pr
       "Content-Type": "application/json",
     }
 
-    const options: RequestInit = {
-      method,
-      headers,
-    }
-
-    if (body && (method === "POST" || method === "PUT" || method === "PATCH")) {
+    const options: RequestInit = { method, headers };
+    if (body && ["POST", "PUT", "PATCH"].includes(method)) {
       options.body = JSON.stringify(body)
     }
 
     const response = await fetch(`${EDUZZ_API_BASE}${endpoint}`, options)
 
-    // Check if response is ok before trying to parse JSON
     if (!response.ok) {
-      // Try to get error details from response
-      let errorDetails = "Unknown error"
-      try {
-        const errorJson = await response.json()
-        errorDetails = JSON.stringify(errorJson)
-      } catch (e) {
-        // If JSON parsing fails, use text content or status
-        errorDetails = (await response.text()) || `Status: ${response.status}`
-      }
-
-      throw new Error(`Eduzz API error: ${errorDetails}`)
+      const errorText = await response.text()
+      throw new Error(`Erro na API da Eduzz: ${response.status} - ${errorText || "Sem detalhes"}`)
     }
 
-    // Check if response is empty
-    const text = await response.text()
+    const contentType = response.headers.get("Content-Type") || "";
+    const text = await response.text();
+
     if (!text) {
-      throw new Error("Empty response from Eduzz API")
+      console.warn(`Resposta vazia da API para ${endpoint}`);
+      return {} as T; // Retorne um objeto vazio ou ajuste conforme necessário
     }
 
-    // Parse JSON only if we have content
-    return JSON.parse(text)
+    if (contentType.includes("application/json")) {
+      return JSON.parse(text) as T;
+    } else {
+      throw new Error(`Resposta não é JSON: ${text}`);
+    }
   } catch (error) {
-    console.error("Error in Eduzz API request:", error)
+    console.error(`Erro na requisição à API da Eduzz (${endpoint}):`, error)
     throw error
   }
 }

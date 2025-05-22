@@ -89,28 +89,27 @@ export async function refreshToken(refresh_token: string): Promise<EduzzToken> {
   return token
 }
 
-// Get the current token from cookies
 export async function getEduzzToken(): Promise<EduzzToken | null> {
   const cookieStore = await cookies()
   const tokenCookie = cookieStore.get("eduzz_token")
 
   if (!tokenCookie) {
+    console.error("Nenhum token encontrado nos cookies")
     return null
   }
 
   try {
     const token = JSON.parse(tokenCookie.value) as EduzzToken
-
-    // Check if token is expired
     const now = Math.floor(Date.now() / 1000)
+
     if (token.created_at + token.expires_in <= now) {
-      // Token is expired, try to refresh
+      console.log("Token expirado, tentando renovar...")
       return await refreshToken(token.refresh_token)
     }
 
     return token
   } catch (error) {
-    console.error("Error parsing token:", error)
+    console.error("Erro ao parsear ou renovar token:", error)
     return null
   }
 }
