@@ -6,7 +6,7 @@ const EDUZZ_API_BASE = "https://api.eduzz.com"
 // Generic function to make authenticated requests to Eduzz API
 export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
   try {
-    const token = await getEduzzToken()
+    const token = process.env.EDUZZ_API_TOKEN
 
     const url = `${EDUZZ_API_BASE}${endpoint}`
    const headers: Record<string, string> = {
@@ -25,7 +25,11 @@ export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: a
     }
 
     console.log(`[Eduzz API] ${method} ${url}`, body ? { body } : "")
-    console.log(`[Eduzz API] Using token: ${token.substring(0, 10)}...`)
+    if (token) {
+      console.log(`[Eduzz API] Using token: ${token.substring(0, 10)}...`)
+    } else {
+      throw new Error("Eduzz API token is not defined")
+    }
 
     const response = await fetch(url, options)
 
