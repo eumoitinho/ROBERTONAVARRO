@@ -9,10 +9,10 @@ export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: a
     const token = await getEduzzToken()
 
     const url = `${EDUZZ_API_BASE}${endpoint}`
-    const headers: Record<string, string> = {
-      "Content-Type": "application/json",
-      token: token, // As specified in the documentation
-    }
+   const headers: Record<string, string> = {
+  "Content-Type": "application/json",
+  "Authorization": `Bearer ${token}`, // Use Bearer token format
+};
 
     const options: RequestInit = {
       method,
