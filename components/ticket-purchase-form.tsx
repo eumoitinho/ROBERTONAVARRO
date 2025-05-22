@@ -73,7 +73,7 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
       phone: "",
       document: "",
       paymentMethod: "credit_card",
-      ticketType: "2745132", // Padrão: Ingresso Especial
+      ticketType: undefined, // Padrão: Ingresso Especial
     },
   })
 
