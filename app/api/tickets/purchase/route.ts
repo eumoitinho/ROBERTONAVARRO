@@ -43,29 +43,35 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    try {
+   try {
+      // Defina o valor do ingresso conforme o productId
+      let ticketValue = 9.9
+      if (eduzzProductId == 2745133) {
+        ticketValue = 49.9
+      }
+
       // Create invoice in Eduzz
       const invoiceData = {
-  orderId: `order-${Date.now()}`, // Um ID único para o pedido
-  postbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/eduzz`, // URL para receber notificações
-  returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao`,
-  items: [
-    {
-      productId: eduzzProductId.toString(), // ID do produto na Eduzz
-      description: `Ingresso para evento`, // Descrição do produto
-      quantity: 1, // Quantidade fixa para ingressos
-      price: {
-         // Ajuste conforme o preço do ingresso; pode ser dinâmico
-        currency: "BRL"
-      }
-    }
-  ],
-  customer: {
-    name: customer.name,
-    email: customer.email,
-    cellphone: customer.phone || "",
-  }
-};
+        orderId: `order-${Date.now()}`, // Um ID único para o pedido
+        postbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/eduzz`, // URL para receber notificações
+        returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao`,
+        items: [
+          {
+            productId: eduzzProductId.toString(), // ID do produto na Eduzz
+            description: `Ingresso para evento`, // Descrição do produto
+            quantity: 1, // Quantidade fixa para ingressos
+            price: {
+              value: ticketValue, // Valor dinâmico conforme o ingresso
+              currency: "BRL"
+            }
+          }
+        ],
+        customer: {
+          name: customer.name,
+          email: customer.email,
+          cellphone: customer.phone || "",
+        }
+      };
 
 
       console.log("[API] Creating Eduzz invoice:", invoiceData)
