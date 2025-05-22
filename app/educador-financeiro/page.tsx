@@ -29,6 +29,8 @@ import CountdownTimer from "@/components/countdown-timer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection }  from "@/components/testimonials-section"
+import Footer from "@/components/footer"
+import { NewsletterSignup } from "@/components/newsletter-signup"
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -807,17 +809,9 @@ export default function EducadorFinanceiroPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-zinc-950 py-10 border-t border-zinc-800/50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <Logo className="h-10 w-auto mb-4 md:mb-0" />
-            <p className="text-sm text-zinc-500">
-              &copy; {new Date().getFullYear()} Roberto Navarro Oficial. Todos os direitos reservados.
-            </p>
-          </div>
-        </div>
-      </footer>
+   
+
+     <Footer />
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />
