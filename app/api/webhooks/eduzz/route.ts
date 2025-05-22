@@ -1,99 +1,139 @@
 import { type NextRequest, NextResponse } from "next/server"
-import type { EduzzWebhookEvent } from "@/lib/eduzz-types"
 import { sql } from "@/lib/db"
-
-// Webhook secret for verification
-const WEBHOOK_SECRET = process.env.EDUZZ_WEBHOOK_SECRET
 
 export async function POST(request: NextRequest) {
   try {
-    // Verify webhook signature if provided
-    const signature = request.headers.get("x-eduzz-signature")
-    if (WEBHOOK_SECRET && signature) {
-      // Implement signature verification logic here
-      // This is a simplified example
+    // Get the webhook secret from the request header
+    const webhookSecret = request.headers.get("eduzz-webhook-secret")
+
+    // Verify the webhook secret
+    if (webhookSecret !== process.env.EDUZZ_WEBHOOK_SECRET) {
+      console.error("[Webhook] Invalid webhook secret")
+      return NextResponse.json({ error: "Invalid webhook secret" }, { status: 401 })
     }
 
-    const body = (await request.json()) as EduzzWebhookEvent
+    const body = await request.json()
+    console.log("[Webhook] Received Eduzz webhook:", body)
 
-    // Process different webhook events
-    switch (body.event) {
+    // Extract data from the webhook
+    const { event, data } = body
+
+    if (!event || !data) {
+      return NextResponse.json({ error: "Invalid webhook data" }, { status: 400 })
+    }
+
+    // Handle different webhook events
+    switch (event) {
       case "invoice.paid":
-        await handleInvoicePaid(body)
+        await handlePaidInvoice(data)
         break
       case "invoice.canceled":
-        await handleInvoiceCanceled(body)
+        await handleCanceledInvoice(data)
         break
-      // Add more event handlers as needed
+      case "invoice.refunded":
+        await handleRefundedInvoice(data)
+        break
+      default:
+        console.log(`[Webhook] Unhandled event type: ${event}`)
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Error processing Eduzz webhook:", error)
-    return NextResponse.json({ error: "Failed to process webhook" }, { status: 500 })
+    console.error("[Webhook] Error processing Eduzz webhook:", error)
+    return NextResponse.json(
+      {
+        error: "Error processing webhook",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    )
   }
 }
 
-// Handle paid invoice event
-async function handleInvoicePaid(event: EduzzWebhookEvent) {
-  const invoiceId = event.resource_id
+// Handle paid invoice
+async function handlePaidInvoice(data: any) {
+  const { invoice_id } = data
 
-  // Get invoice details from event data or fetch from API
-  const invoice = event.data
-
-  // Process each item in the invoice
-  for (const item of invoice.items) {
-    // Map Eduzz product to our event
-    // This is a simplified example - implement your mapping logic
-    const eventId = await mapProductToEvent(item.product_id)
-
-    if (eventId) {
-      // Create registration for this event
-      await sql`
-        INSERT INTO registrations (
-          event_id, name, email, phone, ticket_code, eduzz_invoice_id
-        ) VALUES (
-          ${eventId}, 
-          ${invoice.customer.name}, 
-          ${invoice.customer.email}, 
-          ${invoice.customer.phone || ""}, 
-          ${generateTicketCode()},
-          ${invoiceId}
-        )
-      `
-    }
+  if (!invoice_id) {
+    throw new Error("Missing invoice_id in webhook data")
   }
+
+  // Get the pending registration
+  const pendingResult = await sql`
+    SELECT * FROM pending_registrations WHERE eduzz_invoice_id = ${invoice_id}
+  `
+  const pendingRows = pendingResult.rows
+
+  if (pendingRows.length === 0) {
+    console.log(`[Webhook] No pending registration found for invoice ${invoice_id}`)
+    return
+  }
+
+  const registration = pendingRows[0]
+
+  // Generate ticket code
+  const ticketCode = Math.random().toString(36).substring(2, 15).toUpperCase()
+
+  // Create confirmed registration
+  await sql`
+    INSERT INTO registrations (
+      event_id, name, email, phone, ticket_code, eduzz_invoice_id, status
+    ) VALUES (
+      ${registration.event_id}, 
+      ${registration.name}, 
+      ${registration.email}, 
+      ${registration.phone || ""}, 
+      ${ticketCode},
+      ${invoice_id},
+      'confirmed'
+    )
+  `
+
+  // Delete the pending registration
+  await sql`
+    DELETE FROM pending_registrations WHERE id = ${registration.id}
+  `
+
+  console.log(`[Webhook] Registration confirmed for invoice ${invoice_id}, ticket code: ${ticketCode}`)
 }
 
-// Handle canceled invoice event
-async function handleInvoiceCanceled(event: EduzzWebhookEvent) {
-  const invoiceId = event.resource_id
+// Handle canceled invoice
+async function handleCanceledInvoice(data: any) {
+  const { invoice_id } = data
 
-  // Mark registrations as canceled
+  if (!invoice_id) {
+    throw new Error("Missing invoice_id in webhook data")
+  }
+
+  // Delete the pending registration
+  await sql`
+    DELETE FROM pending_registrations WHERE eduzz_invoice_id = ${invoice_id}
+  `
+
+  // Update any existing registration to canceled
   await sql`
     UPDATE registrations 
     SET status = 'canceled' 
-    WHERE eduzz_invoice_id = ${invoiceId}
+    WHERE eduzz_invoice_id = ${invoice_id}
   `
+
+  console.log(`[Webhook] Registration canceled for invoice ${invoice_id}`)
 }
 
-// Helper function to map Eduzz product to our event
-async function mapProductToEvent(productId: number): Promise<number | null> {
-  // This would typically come from a database mapping
-  // For now, we'll use a simple query
-  const result = await sql`
-    SELECT event_id FROM event_product_mapping
-    WHERE eduzz_product_id = ${productId}
-  `
+// Handle refunded invoice
+async function handleRefundedInvoice(data: any) {
+  const { invoice_id } = data
 
-  // Use rows and rowCount from the query result
-  if ((result.rowCount ?? 0) > 0) {
-    return (result.rows[0] as { event_id: number }).event_id
+  if (!invoice_id) {
+    throw new Error("Missing invoice_id in webhook data")
   }
-  return null
-}
 
-// Generate a unique ticket code
-function generateTicketCode(): string {
-  return Math.random().toString(36).substring(2, 15).toUpperCase()
+  // Update the registration status
+  await sql`
+    UPDATE registrations 
+    SET status = 'refunded' 
+    WHERE eduzz_invoice_id = ${invoice_id}
+  `
+
+  console.log(`[Webhook] Registration refunded for invoice ${invoice_id}`)
 }

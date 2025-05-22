@@ -1,84 +1,118 @@
 import { getEduzzToken } from "./eduzz-auth"
-import type { EduzzProduct, EduzzInvoice, CreateInvoiceRequest } from "./eduzz-types"
+import { sql } from "./db"
 
-const EDUZZ_API_BASE = "https://api.eduzz.com"
+const EDUZZ_API_BASE = "https://api2.eduzz.com"
 
-async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
+// Generic function to make authenticated requests to Eduzz API
+export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
   try {
     const token = await getEduzzToken()
-    if (!token) {
-      throw new Error("Nenhum token de autenticação disponível")
-    }
 
-    const headers: HeadersInit = {
-      Authorization: `Bearer ${token.access_token}`,
+    const url = `${EDUZZ_API_BASE}${endpoint}`
+    const headers: Record<string, string> = {
       "Content-Type": "application/json",
+      token: token, // As specified in the documentation
     }
 
-    const options: RequestInit = { method, headers };
+    const options: RequestInit = {
+      method,
+      headers,
+    }
+
     if (body && ["POST", "PUT", "PATCH"].includes(method)) {
       options.body = JSON.stringify(body)
     }
 
-    const response = await fetch(`${EDUZZ_API_BASE}${endpoint}`, options)
+    console.log(`[Eduzz API] ${method} ${url}`, body ? { body } : "")
+
+    const response = await fetch(url, options)
 
     if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`Erro na API da Eduzz: ${response.status} - ${errorText || "Sem detalhes"}`)
+      let errorDetails = ""
+      try {
+        errorDetails = await response.text()
+      } catch (e) {
+        errorDetails = response.statusText
+      }
+      throw new Error(`Eduzz API error: ${errorDetails}`)
     }
 
-    const contentType = response.headers.get("Content-Type") || "";
-    const text = await response.text();
-
+    const text = await response.text()
     if (!text) {
-      console.warn(`Resposta vazia da API para ${endpoint}`);
-      return {} as T; // Retorne um objeto vazio ou ajuste conforme necessário
+      throw new Error("Empty response from Eduzz API")
     }
 
-    if (contentType.includes("application/json")) {
-      return JSON.parse(text) as T;
-    } else {
-      throw new Error(`Resposta não é JSON: ${text}`);
-    }
+    return JSON.parse(text)
   } catch (error) {
-    console.error(`Erro na requisição à API da Eduzz (${endpoint}):`, error)
+    console.error("Error in Eduzz API request:", error)
     throw error
   }
 }
 
-// Get all products (events)
-export async function getEduzzProducts(): Promise<EduzzProduct[]> {
-  return eduzzRequest<EduzzProduct[]>("/myeduzz/v1/products")
+// Get list of products (events)
+export async function getEduzzProducts(): Promise<any[]> {
+  const response = await eduzzRequest<any>("/content/content_list")
+  return response.data || []
 }
 
-// Get a specific product by ID
-export async function getEduzzProduct(productId: number): Promise<EduzzProduct> {
-  return eduzzRequest<EduzzProduct>(`/myeduzz/v1/products/${productId}`)
+// Get product details
+export async function getEduzzProduct(productId: number): Promise<any> {
+  const response = await eduzzRequest<any>(`/content/content/${productId}`)
+  return response.data?.[0] || null
 }
 
-// Create an invoice for ticket purchase
-export async function createEduzzInvoice(invoiceData: CreateInvoiceRequest): Promise<EduzzInvoice> {
-  return eduzzRequest<EduzzInvoice>("/myeduzz/v1/invoices", "POST", invoiceData)
-}
-
-// Get invoice details
-export async function getEduzzInvoice(invoiceId: number): Promise<EduzzInvoice> {
-  return eduzzRequest<EduzzInvoice>(`/myeduzz/v1/invoices/${invoiceId}`)
+// Create a sale/invoice
+export async function createEduzzInvoice(invoiceData: any): Promise<any> {
+  return eduzzRequest<any>("/sale", "POST", invoiceData)
 }
 
 // Map our event to Eduzz product ID
 export async function getEduzzProductIdForEvent(eventId: number): Promise<number | null> {
   try {
-    // This would typically come from a database mapping
-    // For now, we'll use a simple mapping function
+    // First, check our mapping table
+    const mappingResult = await sql`
+      SELECT eduzz_product_id 
+      FROM event_product_mapping 
+      WHERE event_id = ${eventId}
+    `
+
+    if ((mappingResult.rowCount ?? 0) > 0) {
+      return mappingResult.rows[0].eduzz_product_id
+    }
+
+    // If no mapping found, try to find by name
+    const eventResult = await sql`
+      SELECT name FROM events WHERE id = ${eventId}
+    `
+
+    if (eventResult.rowCount === 0) {
+      return null
+    }
+
+    const eventName = eventResult.rows[0].name
+
+    // Get products from Eduzz
     const products = await getEduzzProducts()
 
-    // Find product that matches our event (by name or some other identifier)
-    // This is a simplified example - you'd need to implement proper mapping logic
-    const event = await fetch(`/api/events/${eventId}`).then((res) => res.json())
+    // Find product with matching name
+    const matchingProduct = products.find(
+      (p) =>
+        p.content_title.toLowerCase().includes(eventName.toLowerCase()) ||
+        eventName.toLowerCase().includes(p.content_title.toLowerCase()),
+    )
 
-    const matchingProduct = products.find((p) => p.name.includes(event.name))
-    return matchingProduct?.id || null
+    if (matchingProduct) {
+      // Store the mapping for future use
+      await sql`
+        INSERT INTO event_product_mapping (event_id, eduzz_product_id)
+        VALUES (${eventId}, ${matchingProduct.content_id})
+        ON CONFLICT (event_id, eduzz_product_id) DO NOTHING
+      `
+
+      return matchingProduct.content_id
+    }
+
+    return null
   } catch (error) {
     console.error("Error mapping event to Eduzz product:", error)
     return null

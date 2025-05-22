@@ -1,65 +1,146 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { sql } from "@/lib/db"
 import { createEduzzInvoice, getEduzzProductIdForEvent } from "@/lib/eduzz-api"
-import { CreateInvoiceRequest } from "@/lib/eduzz-types"
-
-// Make sure we export both GET and POST methods
-export async function GET() {
-  return NextResponse.json({ error: "Method not allowed. Use POST instead." }, { status: 405 })
-}
+import { sql } from "@/lib/db"
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { eventId, productId, customer, paymentMethod } = body
 
+    console.log("[API] Processing ticket purchase:", {
+      eventId,
+      productId,
+      customer,
+      paymentMethod,
+    })
+
     if (!eventId || !customer || !customer.name || !customer.email) {
       return NextResponse.json({ error: "Dados incompletos para a compra" }, { status: 400 })
     }
 
-    // Mapeie o evento para o productId, se necessário
-    const eduzzProductId = productId || (await getEduzzProductIdForEvent(eventId));
+    // Get the Eduzz product ID for this event
+    const eduzzProductId = productId || (await getEduzzProductIdForEvent(eventId))
+
     if (!eduzzProductId) {
-      return NextResponse.json({ error: "Produto não encontrado na Eduzz" }, { status: 404 })
+      console.log(`[API] No Eduzz product found for event ${eventId}, creating direct registration`)
+
+      // Generate ticket code
+      const ticketCode = Math.random().toString(36).substring(2, 15).toUpperCase()
+
+      // Create registration directly
+      await sql`
+        INSERT INTO registrations (
+          event_id, name, email, phone, ticket_code
+        ) VALUES (
+          ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${ticketCode}
+        )
+      `
+
+      return NextResponse.json({
+        success: true,
+        ticketCode,
+        message: "Inscrição realizada com sucesso",
+      })
     }
 
-    // Crie a fatura na Eduzz
-    const invoiceData: CreateInvoiceRequest = {
-      items: [
-        {
-          product_id: eduzzProductId,
-          quantity: 1,
-        },
-      ],
-      customer: {
-        name: customer.name,
-        email: customer.email,
-      },
-      payment_method: paymentMethod || "credit_card", // Ajuste conforme necessário
-    };
+    try {
+      // Get event price from database or use default
+      const eventResult = await sql`
+        SELECT name FROM events WHERE id = ${eventId}
+      `
 
-    const invoice = await createEduzzInvoice(invoiceData);
+      const eventName = eventResult.rows?.[0]?.name || "Evento"
 
-    // Salve a inscrição no banco, se necessário
-    const ticketCode = Math.random().toString(36).substring(2, 15).toUpperCase();
-    await sql`
-      INSERT INTO registrations (
-        event_id, name, email, phone, ticket_code, eduzz_invoice_id
-      ) VALUES (
-        ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${ticketCode}, ${invoice.id}
-      )
-    `;
+      // Create invoice in Eduzz
+      const invoiceData = {
+        content_id: eduzzProductId,
+        client_name: customer.name,
+        client_email: customer.email,
+        client_cel: customer.phone || "",
+        sale_payment_method: mapPaymentMethod(paymentMethod),
+        return_url: `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao`,
+      }
 
-    return NextResponse.json({
-      success: true,
-      ticketCode,
-      paymentUrl: invoice.payment_url, // Retorne o link de pagamento, se disponível
-    });
+      console.log("[API] Creating Eduzz invoice:", invoiceData)
+
+      const invoice = await createEduzzInvoice(invoiceData)
+
+      console.log("[API] Eduzz invoice created:", invoice)
+
+      // Store pending registration
+      await sql`
+        INSERT INTO pending_registrations (
+          event_id, name, email, phone, eduzz_invoice_id
+        ) VALUES (
+          ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${invoice.sale_id}
+        )
+      `
+
+      return NextResponse.json({
+        success: true,
+        invoiceId: invoice.sale_id,
+        paymentUrl:
+          invoice.sale_url || `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao?invoice=${invoice.sale_id}`,
+      })
+    } catch (eduzzError) {
+      console.error("Error with Eduzz API:", eduzzError)
+
+      // Fallback to direct registration if Eduzz fails
+      const ticketCode = Math.random().toString(36).substring(2, 15).toUpperCase()
+
+      await sql`
+        INSERT INTO registrations (
+          event_id, name, email, phone, ticket_code
+        ) VALUES (
+          ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${ticketCode}
+        )
+      `
+
+      return NextResponse.json({
+        success: true,
+        ticketCode,
+        message: "Inscrição realizada com sucesso (processamento direto)",
+      })
+    }
   } catch (error) {
-    console.error("Erro ao processar compra:", error);
+    console.error("Error processing ticket purchase:", error)
     return NextResponse.json(
-      { error: "Erro ao processar compra", details: error instanceof Error ? error.message : "Erro desconhecido" },
-      { status: 500 }
-    );
+      {
+        error: "Erro ao processar compra de ingresso",
+        details: error instanceof Error ? error.message : "Erro desconhecido",
+      },
+      { status: 500 },
+    )
   }
+}
+
+// Map our payment methods to Eduzz payment methods
+function mapPaymentMethod(method: string): string {
+  switch (method) {
+    case "credit_card":
+      return "Cartão de Crédito"
+    case "boleto":
+      return "Boleto Bancário"
+    case "pix":
+      return "PIX"
+    default:
+      return "Boleto Bancário"
+  }
+}
+
+// Handle other HTTP methods
+export async function GET() {
+  return NextResponse.json({ error: "Method not allowed. Use POST instead." }, { status: 405 })
+}
+
+export async function PUT() {
+  return NextResponse.json({ error: "Method not allowed. Use POST instead." }, { status: 405 })
+}
+
+export async function DELETE() {
+  return NextResponse.json({ error: "Method not allowed. Use POST instead." }, { status: 405 })
+}
+
+export async function PATCH() {
+  return NextResponse.json({ error: "Method not allowed. Use POST instead." }, { status: 405 })
 }
