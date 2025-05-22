@@ -106,13 +106,14 @@ export function getEduzzAuthUrl(state: string): string {
     throw new Error("Eduzz client ID not configured")
   }
 
-  const params = new URLSearchParams({
-    client_id: clientId,
-    redirect_uri: redirectUri,
-    response_type: "code",
-    scope: "myeduzz.products.read myeduzz.invoices.write",
-    state,
-  })
+const params = new URLSearchParams({
+  client_id: clientId,
+  redirect_uri: redirectUri,
+  response_type: "code",
+  scope: "myeduzz.products.read myeduzz.invoices.write sun_cart_write",
+  state,
+});
+
 
   return `${EDUZZ_AUTH_URL}?${params.toString()}`
 }

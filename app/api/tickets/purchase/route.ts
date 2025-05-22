@@ -46,13 +46,27 @@ export async function POST(request: NextRequest) {
     try {
       // Create invoice in Eduzz
       const invoiceData = {
-        content_id: eduzzProductId,
-        client_name: customer.name,
-        client_email: customer.email,
-        client_cel: customer.phone || "",
-        sale_payment_method: mapPaymentMethod(paymentMethod),
-        return_url: `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao`,
+  orderId: `order-${Date.now()}`, // Um ID único para o pedido
+  postbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/eduzz`, // URL para receber notificações
+  returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao`,
+  items: [
+    {
+      productId: eduzzProductId.toString(), // ID do produto na Eduzz
+      description: `Ingresso para evento`, // Descrição do produto
+      quantity: 1, // Quantidade fixa para ingressos
+      price: {
+        value: 9.9, // Ajuste conforme o preço do ingresso; pode ser dinâmico
+        currency: "BRL"
       }
+    }
+  ],
+  customer: {
+    name: customer.name,
+    email: customer.email,
+    cellphone: customer.phone || "",
+  }
+};
+
 
       console.log("[API] Creating Eduzz invoice:", invoiceData)
 

@@ -1,7 +1,7 @@
 import { getEduzzToken } from "./eduzz-auth"
 import { sql } from "./db"
 
-const EDUZZ_API_BASE = "https://api2.eduzz.com"
+const EDUZZ_API_BASE = "https://api.eduzz.com"
 
 // Generic function to make authenticated requests to Eduzz API
 export async function eduzzRequest<T>(endpoint: string, method = "GET", body?: any): Promise<T> {
@@ -66,7 +66,7 @@ export async function getEduzzProduct(productId: number): Promise<any> {
 // Create a sale/invoice
 export async function createEduzzInvoice(invoiceData: any): Promise<any> {
   // Make sure we're using the correct endpoint for creating invoices
-  return eduzzRequest<any>("/sale", "POST", invoiceData)
+  return eduzzRequest<any>("/sun/v1/cart", "POST", invoiceData)
 }
 
 // Map our event to Eduzz product ID
