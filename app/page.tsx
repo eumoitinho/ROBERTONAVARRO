@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ChevronRight, ChevronDown, Star } from "lucide-react"
+import { ArrowRight, ChevronRight, ChevronDown, Star, Users, BookOpen, Video } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
@@ -250,75 +250,149 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quem Somos Section - Block 2 */}
-      <section id="quem-somos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">QUEM SOMOS</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Mais de <span className="text-yellow-400">30 anos</span> impactando vidas com inteligência e propósito
-            </h2>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-6 xs-gap-4 sm:gap-8 lg:gap-12 items-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="/images/hero-image.webp"
-                  alt="Roberto Navarro"
-                  width={500}
-                  height={440}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
+                    <section id="quem-somos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4 animate-fade-in">
+        <span className="text-sm font-medium">QUEM SOMOS</span>
+      </div>
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+        Mais de <span className="text-yellow-400">30 anos</span> impactando vidas com inteligência e propósito
+      </h2>
+    </div>
 
-            <div>
-              <div className="space-y-6">
-                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
-                  <p className="text-zinc-300">
-                    Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente,
-                    trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que
-                    enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
-                  </p>
-                </div>
+    <div className="grid md:grid-cols-2 gap-10 xs-gap-6 sm:gap-12 lg:gap-20 items-center">
+      <div className="relative animate-fade-in">
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
+        <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-0 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+          <Image
+            src="/images/hero-image.webp"
+            alt="Roberto Navarro"
+            width={500}
+            height={440}
+            className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+      </div>
 
-                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
-                  <p className="text-zinc-300">
-                    A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua
-                    prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa
-                    adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
-                  </p>
-                </div>
+      <div className="flex flex-col gap-8 animate-slide-up">
+        <div className="flex items-start gap-4">
+          <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+          <p className="text-zinc-300 text-base font-semibold leading-relaxed">
+            Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
+          </p>
+        </div>
+        <div className="flex items-start gap-4">
+          <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+          <p className="text-zinc-300 text-base font-semibold leading-relaxed">
+            A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
+          </p>
+        </div>
+        <div className="flex items-start gap-4">
+          <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+          <p className="text-zinc-300 text-base font-semibold leading-relaxed">
+            Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10 milhões de brasileiros e contribuir para a construção de um país rico e próspero.
+          </p>
+        </div>
 
-                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
-                  <p className="text-zinc-300">
-                    Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em
-                    inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10
-                    milhões de brasileiros e contribuir para a construção de um país rico e próspero.
-                  </p>
-                </div>
-
-                <div className="flex justify-between mt-8">
-                  <div className="text-center">
-                    <p className="text-3xl font-bold text-yellow-400">+300 mil</p>
-                    <p className="text-sm text-zinc-400">alunos</p>
+        {/* Seção de Estatísticas */}
+        <div className="w-full flex flex-col justify-end mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6 mb-4">
+            {[
+              { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
+              { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas exclusivas de coaching" },
+              { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros publicados" },
+              { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos inspiradores" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                }`}
+                style={{ transitionDelay: `${500 + index * 100}ms` }}
+              >
+                <div className="flex items-center gap-2 md:gap-4">
+                  <div className="bg-zinc-800 rounded-full p-2 md:p-3">{stat.icon}</div>
+                  <div>
+                    <p className="text-sm md:text-xl font-bold">{stat.value}</p>
+                    <p className="text-xs md:text-sm text-zinc-400">{stat.label}</p>
                   </div>
-                  <div className="text-center">
-                    <p className="text-3xl font-bold text-yellow-400">+1280</p>
-                    <p className="text-sm text-zinc-400">técnicas exclusivas de coaching</p>
-                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+
+    
+  </div>
+
+  {/* Estilos para o carrossel e vídeos */}
+  <style>{`
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+    }
+    .carousel-item {
+      min-width: 100%;
+      transition: transform 0.5s ease;
+    }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+    .carousel {
+      animation: slide 9s infinite;
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* Proporção 16:9 */
+      height: 0;
+      overflow: hidden;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  `}</style>
+</section>
+
+{/* CSS Animations */}
+<style jsx global>{`
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in {
+    animation: fade-in 1s ease both;
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  .animate-slide-up {
+    animation: slide-up 1s 0.2s cubic-bezier(.4,0,.2,1) both;
+  }
+  @keyframes bounce-in {
+    0% { opacity: 0; transform: scale(0.8);}
+    60% { opacity: 1; transform: scale(1.1);}
+    100% { opacity: 1; transform: scale(1);}
+  }
+  .animate-bounce-in {
+    animation: bounce-in 1s cubic-bezier(.4,0,.2,1) both;
+  }
+`}</style>
+
 
       {/* Formações Section - Block 3 */}
       <section id="formacoes" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">

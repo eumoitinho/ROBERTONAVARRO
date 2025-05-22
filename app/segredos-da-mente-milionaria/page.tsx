@@ -299,7 +299,17 @@ export default function SegredosDaMenteMilionaria() {
       </section>
       <TestimonialsSection />
 
-         <NewsletterSignup title="Desperte sua mente milionária e transforme sua vida financeira!" variant="hero" description="Inscreva-se para receber dicas exclusivas e conteúdos que vão impulsionar sua jornada rumo ao sucesso financeiro." />
+         {/* Newsletter Section */}
+      <section className="py-16 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <NewsletterSignup
+            variant="hero"
+            title="Fique por dentro dos próximos eventos"
+            description="Cadastre-se para receber em primeira mão informações sobre novos eventos e conteúdos exclusivos."
+          />
+        </div>
+      </section>
 
       <Footer />
       <WhatsAppButton />

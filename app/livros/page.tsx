@@ -132,22 +132,7 @@ export default function LivrosPage() {
                 </Button>
               </div>
             </div>
-            <div
-              className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <div className="relative w-full h-[400px] aspect-[4/5]">
-                  <Image
-                    src="/images/segredos-da-mente-milionaria.webp"
-                    alt="Segredos da Mente Milionária"
-                    fill
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -219,146 +204,184 @@ export default function LivrosPage() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="todos" className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "Segredos da Mente Milionária",
-                    description:
-                      "Aprenda os princípios que diferenciam a mentalidade dos ricos e como aplicá-los para transformar sua relação com o dinheiro.",
-                    image: "/images/segredos-da-mente-milionaria.webp",
-                    badge: "Bestseller",
-                    href: "/segredos-da-mente-milionaria",
-                  },
-                  {
-                    title: "Crenças da Riqueza",
-                    description:
-                      "Descubra como identificar e superar crenças limitantes que bloqueiam sua prosperidade financeira e pessoal.",
-                    image: "/images/crencas-da-riqueza.webp",
-                    badge: "Novo",
-                    href: "/crencas-da-riqueza",
-                  },
-                  {
-                    title: "O Investidor Inteligente",
-                    description:
-                      "Um guia prático para investir com sabedoria, construir patrimônio e alcançar liberdade financeira.",
-                    image: "/images/investidor-inteligente.webp",
-                    href: "/investidor-inteligente",
-                  },
-                ].map((book, index) => (
-                  <Card
-                    key={index}
-                    className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-                  >
-                    <div className="relative aspect-[3/4] w-full">
-                      <Image src={book.image} alt={book.title} fill className="object-cover" />
-                      {book.badge && (
-                        <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-semibold text-sm rounded-full py-1 px-3">
-                          {book.badge}
-                        </div>
-                      )}
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-yellow-400">{book.title}</h3>
-                      <p className="text-zinc-300 mb-4 line-clamp-3">{book.description}</p>
-                      <div className="flex items-center justify-between">
-                        <Button
-                          asChild
-                          className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-xl"
-                        >
-                          <Link href={book.href}>
-                            Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent value="financas" className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Card className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10">
-                  <div className="relative aspect-[3/4] w-full">
-                    <Image
-                      src="/images/investidor-inteligente.webp"
-                      alt="O Investidor Inteligente"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2 text-yellow-400">O Investidor Inteligente</h3>
-                    <p className="text-zinc-300 mb-4 line-clamp-3">
-                      Um guia prático para investir com sabedoria, construir patrimônio e alcançar liberdade financeira.
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <Button
-                        asChild
-                        className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-xl"
-                      >
-                        <Link href="/investidor-inteligente">
-                          Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-            <TabsContent value="mentalidade" className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "Segredos da Mente Milionária",
-                    description:
-                      "Aprenda os princípios que diferenciam a mentalidade dos ricos e como aplicá-los para transformar sua relação com o dinheiro.",
-                    image: "/images/segredos-da-mente-milionaria.webp",
-                    badge: "Bestseller",
-                    href: "/segredos-da-mente-milionaria",
-                  },
-                  {
-                    title: "Crenças da Riqueza",
-                    description:
-                      "Descubra como identificar e superar crenças limitantes que bloqueiam sua prosperidade financeira e pessoal.",
-                    image: "/images/crencas-da-riqueza.webp",
-                    badge: "Novo",
-                    href: "/crencas-da-riqueza",
-                  },
-                ].map((book, index) => (
-                  <Card
-                    key={index}
-                    className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-                  >
-                    <div className="relative aspect-[3/4] w-full">
-                      <Image src={book.image} alt={book.title} fill className="object-cover" />
-                      {book.badge && (
-                        <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-semibold text-sm rounded-full py-1 px-3">
-                          {book.badge}
-                        </div>
-                      )}
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-yellow-400">{book.title}</h3>
-                      <p className="text-zinc-300 mb-4 line-clamp-3">{book.description}</p>
-                      <div className="flex items-center justify-between">
-                        <Button
-                          asChild
-                          className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-xl"
-                        >
-                          <Link href={book.href}>
-                            Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {[
+      {
+        title: "A Sabedoria do Dinheiro",
+        description:
+          "Transforme sua mentalidade e atraia a prosperidade para sua vida. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito, gastando com consciência, gerando renda passiva e mantendo a abundância no centro da sua jornada.",
+        image: "/images/a-sabedoria-do-dinheiro.webp",
+        badge: "Mais vendido",
+        href: "/a-sabedoria-do-dinheiro",
+      },
+      {
+        title: "Quebrando Mitos com o Dinheiro",
+        description:
+          "Liberte-se das crenças que limitam sua prosperidade. Identifique mitos que sabotam sua vida financeira e aprenda a substituí-los por atitudes conscientes e focadas em resultados.",
+        image: "/images/quebrando-mitos-com-o-dinheiro.webp",
+        badge: "Transformador",
+        href: "/quebrando-mitos-com-o-dinheiro",
+      },
+      {
+        title: "A Arte de Enriquecer",
+        description:
+          "Riqueza é um caminho, não um privilégio. Descubra a metodologia prática para dobrar sua renda, administrar ganhos e aproveitar como os verdadeiros ricos fazem.",
+        image: "/images/a-arte-de-enriquecer.webp",
+        badge: "Prático",
+        href: "/a-arte-de-enriquecer",
+      },
+      {
+        title: "Coaching Financeiro",
+        description:
+          "Controle emocional, clareza financeira e ação: a tríade para o sucesso. Estratégias, histórias reais e exercícios práticos para transformar sua relação com o dinheiro.",
+        image: "/images/coaching-financeiro.webp",
+        badge: "Equilíbrio",
+        href: "/coaching-financeiro",
+      },
+    ].map((book, index) => (
+      <Card
+        key={index}
+        className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+      >
+        <div className="relative aspect-[3/4] w-full">
+          <Image src={book.image} alt={book.title} fill className="object-cover" />
+          {book.badge && (
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-semibold text-sm rounded-full py-1 px-3">
+              {book.badge}
+            </div>
+          )}
+        </div>
+        <CardContent className="p-6">
+          <h3 className="text-xl font-bold mb-2 text-yellow-400">{book.title}</h3>
+          <p className="text-zinc-300 mb-4 line-clamp-3">{book.description}</p>
+          <div className="flex items-center justify-between">
+            <Button
+              asChild
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-xl"
+            >
+              <Link href={book.href}>
+                Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</TabsContent>
+<TabsContent value="financas" className="space-y-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {[
+      {
+        title: "A Sabedoria do Dinheiro",
+        description:
+          "Transforme sua mentalidade e atraia a prosperidade para sua vida. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito.",
+        image: "/images/a-sabedoria-do-dinheiro.webp",
+        badge: "Mais vendido",
+        href: "/a-sabedoria-do-dinheiro",
+      },
+      {
+        title: "A Arte de Enriquecer",
+        description:
+          "Riqueza é um caminho, não um privilégio. Descubra a metodologia prática para dobrar sua renda, administrar ganhos e aproveitar como os verdadeiros ricos fazem.",
+        image: "/images/a-arte-de-enriquecer.webp",
+        badge: "Prático",
+        href: "/a-arte-de-enriquecer",
+      },
+      {
+        title: "Coaching Financeiro",
+        description:
+          "Controle emocional, clareza financeira e ação: a tríade para o sucesso. Estratégias, histórias reais e exercícios práticos para transformar sua relação com o dinheiro.",
+        image: "/images/coaching-financeiro.webp",
+        badge: "Equilíbrio",
+        href: "/coaching-financeiro",
+      },
+    ].map((book, index) => (
+      <Card
+        key={index}
+        className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+      >
+        <div className="relative aspect-[3/4] w-full">
+          <Image src={book.image} alt={book.title} fill className="object-cover" />
+          {book.badge && (
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-semibold text-sm rounded-full py-1 px-3">
+              {book.badge}
+            </div>
+          )}
+        </div>
+        <CardContent className="p-6">
+          <h3 className="text-xl font-bold mb-2 text-yellow-400">{book.title}</h3>
+          <p className="text-zinc-300 mb-4 line-clamp-3">{book.description}</p>
+          <div className="flex items-center justify-between">
+            <Button
+              asChild
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-xl"
+            >
+              <Link href={book.href}>
+                Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</TabsContent>
+<TabsContent value="mentalidade" className="space-y-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {[
+      {
+        title: "Quebrando Mitos com o Dinheiro",
+        description:
+          "Liberte-se das crenças que limitam sua prosperidade. Identifique mitos que sabotam sua vida financeira e aprenda a substituí-los por atitudes conscientes e focadas em resultados.",
+        image: "/images/quebrando-mitos-com-o-dinheiro.webp",
+        badge: "Transformador",
+        href: "/quebrando-mitos-com-o-dinheiro",
+      },
+      {
+        title: "A Sabedoria do Dinheiro",
+        description:
+          "Transforme sua mentalidade e atraia a prosperidade para sua vida. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito.",
+        image: "/images/a-sabedoria-do-dinheiro.webp",
+        badge: "Mais vendido",
+        href: "/a-sabedoria-do-dinheiro",
+      },
+    ].map((book, index) => (
+      <Card
+        key={index}
+        className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+      >
+        <div className="relative aspect-[3/4] w-full">
+          <Image src={book.image} alt={book.title} fill className="object-cover" />
+          {book.badge && (
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-semibold text-sm rounded-full py-1 px-3">
+              {book.badge}
+            </div>
+          )}
+        </div>
+        <CardContent className="p-6">
+          <h3 className="text-xl font-bold mb-2 text-yellow-400">{book.title}</h3>
+          <p className="text-zinc-300 mb-4 line-clamp-3">{book.description}</p>
+          <div className="flex items-center justify-between">
+            <Button
+              asChild
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-xl"
+            >
+              <Link href={book.href}>
+                Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</TabsContent>
           </Tabs>
         </div>
       </section>
 
+          
       {/* // Featured Book */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-zinc-900 to-zinc-950 z-0"></div>
@@ -377,8 +400,8 @@ export default function LivrosPage() {
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
                 <div className="relative w-full h-[450px] transform transition-all duration-500 hover:scale-105">
                   <Image
-                    src="/images/segredos-da-mente-milionaria.webp"
-                    alt="Segredos da Mente Milionária"
+                    src="/images/a-sabedoria-do-dinheiro.webp"
+                    alt="A Sabedoria do Dinheiro"
                     fill
                     className="object-cover rounded-lg"
                   />
@@ -394,19 +417,18 @@ export default function LivrosPage() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Segredos da Mente Milionária
+                  A Sabedoria do Dinheiro
                 </span>
               </h2>
-              <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-                Um divisor de águas para quem busca riqueza com propósito. Este livro revela como a mentalidade dos
-                ricos funciona e como você pode aplicá-la na sua vida.
+              <p className="text-lg text-zinc-300 mb-4 max-w-xl">
+                Transforme sua mentalidade e atraia a prosperidade para sua vida. Neste livro, Roberto Navarro revela os 5 passos essenciais para usar a ciência da riqueza a seu favor. Aprenda a gastar com propósito, gerar renda passiva, proteger o que conquistou e ampliar suas oportunidades. Mais do que técnicas, esse é um guia para alinhar sua visão financeira com o seu propósito de vida — mantendo a espiritualidade e a abundância no centro da sua jornada.
               </p>
-              <ul className="space-y-2 mb-8">
+              <ul className="space-y-2 mb-6">
                 {[
-                  "Identifique crenças limitantes sobre dinheiro",
-                  "Adote os 17 arquivos de riqueza",
-                  "Desenvolva uma mentalidade de prosperidade",
-                  "Crie hábitos financeiros sustentáveis",
+                  "Ideal para quem deseja sair das dívidas e criar uma vida com mais controle, propósito e abundância.",
+                  "Editora: Gente Editora",
+                  "Ano de lançamento: 2020",
+                  "Dimensões: 16x23 cm | Páginas: 224 | Idioma: Português",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center text-zinc-300">
                     <div className="mr-2 h-3 w-3 rounded-full bg-yellow-400"></div>
@@ -419,13 +441,19 @@ export default function LivrosPage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
-                  <Link href="/segredos-da-mente-milionaria">COMPRAR AGORA</Link>
+                  <a
+                    href="https://www.amazon.com.br/Sabedoria-Dinheiro-conquistar-espiritualidade-consciência/dp/8545203942/ref=sr_1_1?crid=1L5OOI4XUUILC&keywords=roberto+navarro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    COMPRAR NA AMAZON
+                  </a>
                 </Button>
                 <Button
                   asChild
                   className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
                 >
-                  <Link href="/segredos-da-mente-milionaria">
+                  <Link href="/a-sabedoria-do-dinheiro">
                     Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
                   </Link>
                 </Button>
@@ -434,70 +462,68 @@ export default function LivrosPage() {
           </div>
         </div>
       </section>
-
+     
       {/* // Testimonials */}
-      <section id="depoimentos" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">DEPOIMENTOS</span>
+<section id="depoimentos" className="py-20 relative">
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+        <span className="text-sm font-medium">DEPOIMENTOS</span>
+      </div>
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        O que Nossos <span className="text-yellow-400">Leitores Dizem</span>
+      </h2>
+      <p className="text-zinc-300 max-w-3xl mx-auto">
+        Veja o que os leitores estão dizendo sobre *A Sabedoria do Dinheiro* de Roberto Navarro.
+      </p>
+    </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        {
+          name: "Fernanda Costa",
+          role: "Leitora",
+          image: "/images/fernanda-costa.webp",
+          quote: "Esse livro me abriu os olhos pra uma relação mais saudável com dinheiro. Roberto Navarro é genial!",
+        },
+        {
+          name: "Lucas Almeida",
+          role: "Leitor",
+          image: "/images/lucas-almeida.webp",
+          quote: "Uma leitura que mistura prosperidade e espiritualidade de um jeito único. Mudou minha visão completamente!",
+        },
+        {
+          name: "Patrícia Mendes",
+          role: "Leitora",
+          image: "/images/patricia-mendes.webp",
+          quote: "Nunca pensei que um livro sobre finanças pudesse ser tão inspirador. Recomendo pra todo mundo!",
+        },
+        {
+          name: "Rafael Santos",
+          role: "Leitor",
+          image: "/images/rafael-santos.webp",
+          quote: "É mais que um livro sobre dinheiro, é um guia pra vida. Leitura obrigatória pra quem quer crescer!",
+        },
+      ].map((testimonial, index) => (
+        <Card
+          key={index}
+          className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+        >
+          <div className="flex items-center gap-4 mb-6">
+            
+            <div>
+              <h3 className="font-bold">{testimonial.name}</h3>
+              <p className="text-sm text-zinc-400">{testimonial.role}</p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              O que Nossos <span className="text-yellow-400">Leitores Dizem</span>
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Conheça as personalidades que já foram impactadas pelas obras de Roberto Navarro.
-            </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                name: "Alfredo Soares",
-                role: "Autoridade em vendas e autor best-seller",
-                image: "/images/alfredo-soares.webp",
-              },
-              {
-                name: "Tiago Brunet",
-                role: "Referência em treinamento de líderes e espiritualidade",
-                image: "/images/tiago-brunet.webp",
-              },
-              {
-                name: "Flávio Prado",
-                role: "Jornalista esportivo que já cobriu 10 Copas do Mundo",
-                image: "/images/flavio-prado.webp",
-              },
-              {
-                name: "Pyong Lee",
-                role: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
-                image: "/images/pyong-lee.webp",
-              },
-            ].map((testimonial, index) => (
-              <Card
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                    <Image
-                      src={testimonial.image || "/placeholder-0vud2.png"}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">{testimonial.name}</h3>
-                    <p className="text-sm text-zinc-400">{testimonial.role}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+          <p className="text-zinc-300 text-sm">{testimonial.quote}</p>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* // E-book Offer */}
+      {/* // E-book Offer
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -556,7 +582,7 @@ export default function LivrosPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* // FAQ Section */}
       <section className="py-20 relative">

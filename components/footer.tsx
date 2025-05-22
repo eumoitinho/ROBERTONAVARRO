@@ -1,5 +1,23 @@
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTiktok } from "react-icons/fa"
 import Link from "next/link"
 import Logo from "./logo"
+import { JSX } from "react"
+
+const socialIcons: Record<string, JSX.Element> = {
+  facebook: <FaFacebookF className="w-4 h-4 md:w-5 md:h-5" />,
+  instagram: <FaInstagram className="w-4 h-4 md:w-5 md:h-5" />,
+  youtube: <FaYoutube className="w-4 h-4 md:w-5 md:h-5" />,
+  linkedin: <FaLinkedinIn className="w-4 h-4 md:w-5 md:h-5" />,
+  tiktok: <FaTiktok className="w-4 h-4 md:w-5 md:h-5" />,
+}
+
+const socialLinks: Record<string, string> = {
+  facebook: "https://facebook.com/robertonavarrooficial",
+  instagram: "https://instagram.com/robertonavarrooficial",
+  youtube: "https://youtube.com/robertonavarrooficial",
+  linkedin: "https://linkedin.com/in/robertonavarrooficial",
+  tiktok: "https://tiktok.com/@robertonavarrooficial",
+}
 
 export default function Footer() {
   return (
@@ -12,12 +30,16 @@ export default function Footer() {
               Transformando vidas financeiras em todo o Brasil desde 2015.
             </p>
             <div className="flex space-x-3 md:space-x-4">
-              {["facebook", "instagram", "youtube", "linkedin"].map((social) => (
+              {["facebook", "instagram", "youtube", "linkedin", "tiktok"].map((social) => (
                 <Link
                   key={social}
-                  href="#"
+                  href={socialLinks[social]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 transition-colors"
+                  aria-label={social}
                 >
+                  {socialIcons[social]}
                   <span className="sr-only">{social}</span>
                 </Link>
               ))}

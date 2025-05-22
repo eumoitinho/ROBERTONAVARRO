@@ -10,21 +10,21 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: "João Silva",
-    role: "Desenvolvedor Front-end",
-    text: "O curso me proporcionou as ferramentas necessárias para alavancar minha carreira. A didática é excelente e os professores são muito atenciosos.",
+    name: "Ana Souza",
+    role: "Empresária",
+    text: "Eu estava completamente endividada, sem esperança de sair do vermelho. O método do Roberto me ajudou a organizar minhas finanças, quitar dívidas e voltar a sonhar. Hoje tenho controle e paz financeira!",
     image: "/images/testimonial-1.jpg",
   },
   {
-    name: "Maria Oliveira",
-    role: "Designer UX/UI",
-    text: "As aulas práticas e os projetos me deram a confiança para entrar no mercado de trabalho. Recomendo a todos que querem aprender de verdade.",
+    name: "José Lima",
+    role: "Professor",
+    text: "Sempre achei impossível sair das dívidas do cartão. Com as orientações do Roberto, consegui renegociar tudo, criar uma reserva e até investir. Minha vida mudou completamente.",
     image: "/images/testimonial-2.jpg",
   },
   {
-    name: "Carlos Pereira",
-    role: "Analista de Dados",
-    text: "A mentoria individual foi fundamental para o meu desenvolvimento. Consegui um emprego na área logo após a conclusão do curso.",
+    name: "Patrícia Gomes",
+    role: "Autônoma",
+    text: "O Roberto me mostrou que é possível recomeçar. Saí do sufoco das dívidas, aprendi a gastar com consciência e hoje ajudo minha família a ter uma vida mais tranquila.",
     image: "/images/testimonial-3.jpg",
   },
 ]
@@ -53,14 +53,7 @@ export function TestimonialsSection() {
               className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-4 md:p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden">
-                  <Image
-                    src={testimonial.image || "/placeholder.svg?height=100&width=100&query=person"}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                
                 <div>
                   <h3 className="font-bold text-base md:text-lg">{testimonial.name}</h3>
                   <p className="text-xs md:text-sm text-zinc-400">{testimonial.role}</p>
