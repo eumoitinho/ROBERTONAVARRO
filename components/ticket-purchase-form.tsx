@@ -200,36 +200,34 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
   }
 
   if (paymentUrl) {
-    return (
-      <Card className="w-full max-w-md mx-auto mt-8 shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-yellow-500">Finalizar Pagamento</CardTitle>
-          <CardDescription>
-            Você será redirecionado para a página de pagamento da Eduzz para concluir sua compra.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <Alert>
-            <AlertTitle>Importante</AlertTitle>
-            <AlertDescription>
-              Após concluir o pagamento, você receberá seu ingresso por email e também poderá acessá-lo neste site.
-            </AlertDescription>
-          </Alert>
-        </CardContent>
-        <CardFooter className="flex flex-col space-y-4">
-          <Button
-            onClick={() => (window.location.href = paymentUrl)}
-            className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
-          >
-            Ir para Pagamento
-          </Button>
-          <Button variant="outline" onClick={() => setPaymentUrl(null)} className="w-full">
-            Voltar
-          </Button>
-        </CardFooter>
-      </Card>
-    )
-  }
+  return (
+    <Card className="w-full max-w-md mx-auto mt-8 shadow-lg border-0">
+      <CardHeader>
+        <CardTitle className="text-yellow-500">Finalizar Pagamento</CardTitle>
+        <CardDescription>Conclua sua compra abaixo.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="relative overflow-hidden rounded-lg border border-gray-200">
+          <iframe
+            src={paymentUrl}
+            title="Finalizar Pagamento"
+            width="100%"
+            height="500px"
+            frameBorder="0"
+            allow="payment"
+            className="bg-white"
+          />
+        </div>
+      </CardContent>
+      <CardFooter>
+        <Button variant="outline" onClick={() => setPaymentUrl(null)} className="w-full">
+          Voltar
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
 
   return (
     <div className="flex justify-center items-center min-h-[70vh]">

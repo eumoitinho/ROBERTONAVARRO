@@ -79,15 +79,15 @@ export async function POST(request: NextRequest) {
         INSERT INTO pending_registrations (
           event_id, name, email, phone, eduzz_invoice_id
         ) VALUES (
-          ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${invoice.sale_id}
+          ${eventId}, ${customer.name}, ${customer.email}, ${customer.phone || ""}, ${invoice.id}
         )
       `
 
       return NextResponse.json({
         success: true,
-        invoiceId: invoice.sale_id,
+        invoiceId: invoice.id,
         paymentUrl:
-          invoice.sale_url || `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao?invoice=${invoice.sale_id}`,
+          invoice.paymentUrl || `${process.env.NEXT_PUBLIC_APP_URL}/inscricao/confirmacao?invoice=${invoice.id}`,
       })
     } catch (eduzzError) {
       console.error("Error with Eduzz API:", eduzzError)
