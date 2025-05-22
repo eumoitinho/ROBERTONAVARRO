@@ -81,6 +81,8 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
     setError(null)
 
     try {
+      console.log("Submitting form with values:", values)
+
       const response = await fetch("/api/tickets/purchase", {
         method: "POST",
         headers: {
@@ -99,9 +101,13 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
         }),
       })
 
+      console.log("Response status:", response.status)
+
       // Check if response is ok before trying to parse JSON
       if (!response.ok) {
         const errorText = await response.text()
+        console.log("Error response text:", errorText)
+
         let errorMessage = "Erro ao processar compra"
 
         try {
@@ -120,17 +126,24 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
 
       // Check if response is empty
       const responseText = await response.text()
+      console.log("Response text:", responseText)
+
       if (!responseText) {
         throw new Error("Resposta vazia do servidor")
       }
 
       // Parse JSON only if we have content
       const data = JSON.parse(responseText)
+      console.log("Parsed response data:", data)
 
       if (data.paymentUrl) {
         setPaymentUrl(data.paymentUrl)
       } else if (data.ticketCode) {
         router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`)
+      } else {
+        // If we have success but no specific action
+        alert("Inscrição realizada com sucesso!")
+        router.push(`/inscricao/confirmacao`)
       }
     } catch (err) {
       console.error("Erro ao processar compra:", err)
