@@ -149,6 +149,87 @@ const navigationItems = [
         </div>
       </div>
     </section>
+       {/* // Featured Book */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+        <div
+          className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div
+              className={`relative transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <div className="relative w-full h-[450px] transform transition-all duration-500 hover:scale-105">
+                  <Image
+                    src="/images/LIVRO_MOCKUP.png"
+                    alt="A Sabedoria do Dinheiro"
+                    fill
+                    className="object-cover rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className={`transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+            >
+              <div className="inline-flex items-center gap-2 bg-yellow-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full py-2 px-4 mb-6">
+                <span className="flex h-2 w-2 rounded-full bg-yellow-400 animate-pulse"></span>
+                <span className="text-sm font-medium text-yellow-300">DESTAQUE DO MÊS</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
+                  A SABEDORIA DO DINHEIRO
+                </span>
+              </h2>
+              <p className="text-lg text-zinc-300 mb-4 max-w-xl">
+                Transforme sua mentalidade e atraia a prosperidade para sua vida. Neste livro, Roberto Navarro revela os 5 passos essenciais para usar a ciência da riqueza a seu favor. Aprenda a gastar com propósito, gerar renda passiva, proteger o que conquistou e ampliar suas oportunidades. Mais do que técnicas, esse é um guia para alinhar sua visão financeira com o seu propósito de vida — mantendo a espiritualidade e a abundância no centro da sua jornada.
+              </p>
+              <ul className="space-y-2 mb-6">
+                {[
+                  "Ideal para quem deseja sair das dívidas e criar uma vida com mais controle, propósito e abundância.",
+                  "Editora: Gente Editora",
+                  "Ano de lançamento: 2020",
+                  "Dimensões: 16x23 cm | Páginas: 224 | Idioma: Português",
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center text-zinc-300">
+                    <div className="mr-2 h-3 w-3 rounded-full bg-yellow-400"></div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                >
+                  <a
+                    href="https://www.amazon.com.br/Sabedoria-Dinheiro-conquistar-espiritualidade-consciência/dp/8545203942/ref=sr_1_1?crid=1L5OOI4XUUILC&keywords=roberto+navarro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    COMPRAR NA AMAZON
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
+                >
+                  <Link href="/a-sabedoria-do-dinheiro">
+                    Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     
 
       {/* // Books Catalog */}
       <section id="catalogo" className="py-20 relative">
@@ -194,33 +275,33 @@ const navigationItems = [
         title: "A Sabedoria do Dinheiro",
         description:
           "Transforme sua mentalidade e atraia a prosperidade para sua vida. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito, gastando com consciência, gerando renda passiva e mantendo a abundância no centro da sua jornada.",
-        image: "/images/a-sabedoria-do-dinheiro.webp",
+        image: "/images/SABEDORIA.jpg",
         badge: "Mais vendido",
-        href: "/a-sabedoria-do-dinheiro",
+        href: "https://www.amazon.com.br/Sabedoria-Dinheiro-conquistar-espiritualidade-consci%C3%AAncia/dp/8545203942/ref=sr_1_1?sr=8-1",
       },
       {
         title: "Quebrando Mitos com o Dinheiro",
         description:
           "Liberte-se das crenças que limitam sua prosperidade. Identifique mitos que sabotam sua vida financeira e aprenda a substituí-los por atitudes conscientes e focadas em resultados.",
-        image: "/images/quebrando-mitos-com-o-dinheiro.webp",
+        image: "/images/MITOS.jpg",
         badge: "Transformador",
-        href: "/quebrando-mitos-com-o-dinheiro",
+        href: "https://www.amazon.com.br/Quebrando-Mitos-Dinheiro-Roberto-Navarro/dp/8566788079",
       },
       {
         title: "A Arte de Enriquecer",
         description:
           "Riqueza é um caminho, não um privilégio. Descubra a metodologia prática para dobrar sua renda, administrar ganhos e aproveitar como os verdadeiros ricos fazem.",
-        image: "/images/a-arte-de-enriquecer.webp",
+        image: "/images/ENRIQUECER.jpg",
         badge: "Prático",
-        href: "/a-arte-de-enriquecer",
+        href: "https://www.amazon.com.br/Arte-Enriquecer-Roberto-Navarro-ebook/dp/B087R28SX1",
       },
       {
         title: "Coaching Financeiro",
         description:
           "Controle emocional, clareza financeira e ação: a tríade para o sucesso. Estratégias, histórias reais e exercícios práticos para transformar sua relação com o dinheiro.",
-        image: "/images/coaching-financeiro.webp",
+        image: "/images/ARTE.jpg",
         badge: "Equilíbrio",
-        href: "/coaching-financeiro",
+        href: "https://www.amazon.com.br/Coaching-Financeiro-Enriquecer-Roberto-Navarro/dp/856678801X",
       },
     ].map((book, index) => (
       <Card
@@ -313,22 +394,38 @@ const navigationItems = [
 </TabsContent>
 <TabsContent value="mentalidade" className="space-y-4">
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {[
+   {[
+      {
+        title: "A Sabedoria do Dinheiro",
+        description:
+          "Transforme sua mentalidade e atraia a prosperidade para sua vida. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito, gastando com consciência, gerando renda passiva e mantendo a abundância no centro da sua jornada.",
+        image: "/images/SABEDORIA.jpg",
+        badge: "Mais vendido",
+        href: "https://www.amazon.com.br/Sabedoria-Dinheiro-conquistar-espiritualidade-consci%C3%AAncia/dp/8545203942/ref=sr_1_1?sr=8-1",
+      },
       {
         title: "Quebrando Mitos com o Dinheiro",
         description:
           "Liberte-se das crenças que limitam sua prosperidade. Identifique mitos que sabotam sua vida financeira e aprenda a substituí-los por atitudes conscientes e focadas em resultados.",
-        image: "/images/quebrando-mitos-com-o-dinheiro.webp",
+        image: "/images/MITOS.jpg",
         badge: "Transformador",
-        href: "/quebrando-mitos-com-o-dinheiro",
+        href: "https://www.amazon.com.br/Quebrando-Mitos-Dinheiro-Roberto-Navarro/dp/8566788079",
       },
       {
-        title: "A Sabedoria do Dinheiro",
+        title: "A Arte de Enriquecer",
         description:
-          "Transforme sua mentalidade e atraia a prosperidade para sua vida. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito.",
-        image: "/images/a-sabedoria-do-dinheiro.webp",
-        badge: "Mais vendido",
-        href: "/a-sabedoria-do-dinheiro",
+          "Riqueza é um caminho, não um privilégio. Descubra a metodologia prática para dobrar sua renda, administrar ganhos e aproveitar como os verdadeiros ricos fazem.",
+        image: "/images/ENRIQUECER.jpg",
+        badge: "Prático",
+        href: "https://www.amazon.com.br/Arte-Enriquecer-Roberto-Navarro-ebook/dp/B087R28SX1",
+      },
+      {
+        title: "Coaching Financeiro",
+        description:
+          "Controle emocional, clareza financeira e ação: a tríade para o sucesso. Estratégias, histórias reais e exercícios práticos para transformar sua relação com o dinheiro.",
+        image: "/images/ARTE.jpg",
+        badge: "Equilíbrio",
+        href: "https://www.amazon.com.br/Coaching-Financeiro-Enriquecer-Roberto-Navarro/dp/856678801X",
       },
     ].map((book, index) => (
       <Card
@@ -366,87 +463,7 @@ const navigationItems = [
       </section>
 
           
-      {/* // Featured Book */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
-        <div
-          className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div
-              className={`relative transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <div className="relative w-full h-[450px] transform transition-all duration-500 hover:scale-105">
-                  <Image
-                    src="/images/a-sabedoria-do-dinheiro.webp"
-                    alt="A Sabedoria do Dinheiro"
-                    fill
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              className={`transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            >
-              <div className="inline-flex items-center gap-2 bg-yellow-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full py-2 px-4 mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-yellow-400 animate-pulse"></span>
-                <span className="text-sm font-medium text-yellow-300">DESTAQUE DO MÊS</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  A SABEDORIA DO DINHEIRO
-                </span>
-              </h2>
-              <p className="text-lg text-zinc-300 mb-4 max-w-xl">
-                Transforme sua mentalidade e atraia a prosperidade para sua vida. Neste livro, Roberto Navarro revela os 5 passos essenciais para usar a ciência da riqueza a seu favor. Aprenda a gastar com propósito, gerar renda passiva, proteger o que conquistou e ampliar suas oportunidades. Mais do que técnicas, esse é um guia para alinhar sua visão financeira com o seu propósito de vida — mantendo a espiritualidade e a abundância no centro da sua jornada.
-              </p>
-              <ul className="space-y-2 mb-6">
-                {[
-                  "Ideal para quem deseja sair das dívidas e criar uma vida com mais controle, propósito e abundância.",
-                  "Editora: Gente Editora",
-                  "Ano de lançamento: 2020",
-                  "Dimensões: 16x23 cm | Páginas: 224 | Idioma: Português",
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center text-zinc-300">
-                    <div className="mr-2 h-3 w-3 rounded-full bg-yellow-400"></div>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-                >
-                  <a
-                    href="https://www.amazon.com.br/Sabedoria-Dinheiro-conquistar-espiritualidade-consciência/dp/8545203942/ref=sr_1_1?crid=1L5OOI4XUUILC&keywords=roberto+navarro"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    COMPRAR NA AMAZON
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="/a-sabedoria-do-dinheiro">
-                    Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-     
+   
       {/* // Testimonials */}
 <section id="depoimentos" className="py-20 relative">
   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
