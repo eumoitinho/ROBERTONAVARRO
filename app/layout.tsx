@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Script from "next/script"
+import { Analytics } from "@vercel/analytics/next"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
     })(window,document,'//tag.ltrck.com.br/lt11505.js?wp=1');`,
   }}
 ></script>
+<Analytics />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
