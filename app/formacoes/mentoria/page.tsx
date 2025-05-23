@@ -12,6 +12,7 @@ import GlowEffect from "@/components/glow-effect"
 import { TestimonialsSection }  from "@/components/testimonials-section"
 import HeroPages from "@/components/hero-pages"
 import Footer from "@/components/footer"
+import { SiteHeader } from "@/components/header"
 
 export default function MentoriaPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -39,48 +40,20 @@ export default function MentoriaPage() {
     `
     document.head.appendChild(style)
   }, [])
-
+const navigationItems = [
+  { title: "Início", href: "/" },
+  { title: "Benefícios", href: "#beneficios" },
+  { title: "Como Funciona", href: "#sobre" },
+  { title: "Depoimentos", href: "#depoimentos" },
+  { title: "Inscrição", href: "#form", isButton: true },
+];
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Logo className="h-10 w-auto" />
-          <nav className="hidden md:flex space-x-8">
-            <Link href="#sobre" className="text-sm hover:text-yellow-400 transition-colors">
-              Sobre
-            </Link>
-            <Link href="#beneficios" className="text-sm hover:text-yellow-400 transition-colors">
-              Benefícios
-            </Link>
-            <Link href="#contato" className="text-sm hover:text-yellow-400 transition-colors">
-              Contato
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button
-              asChild
-              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
-            >
-              <Link href="#contato">Contato</Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
-            >
-              <Link href="#beneficios">Benefícios</Link>
-            </Button>
-            <MobileMenu
-              links={[
-                { href: "#sobre", label: "Sobre" },
-                { href: "#beneficios", label: "Benefícios" },
-                { href: "#contato", label: "Contato" },
-              ]}
-            />
-          </div>
-        </div>
-      </header>
-
+      <SiteHeader
+        navigationItems={navigationItems}
+  showInicio={true}
+/>
       <HeroPages
         title="LCF MENTORING"
         subtitle="Mentoria Exclusiva"
@@ -614,7 +587,7 @@ export default function MentoriaPage() {
       </section>
 
       {/* Registration Section */}
-      <section id="cadastro" className="py-16 bg-zinc-900">
+      <section id="form" className="py-16 bg-zinc-900">
         <div className="container-custom">
           <h2 className="text-center mb-10 animate-on-scroll fade-in">
             CONQUISTE A VIDA QUE <span className="text-highlight">VOCÊ MERECE!</span>

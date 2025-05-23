@@ -13,8 +13,9 @@ import MobileMenu from "@/components/mobile-menu"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { useRouter } from "next/navigation"
 import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection }  from "@/components/testimonials-section"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import Footer from "@/components/footer"
+import { SiteHeader } from "@/components/header"
 
 export default function EscaladorDeNegocios() {
   const [isVisible, setIsVisible] = useState(false)
@@ -79,52 +80,21 @@ export default function EscaladorDeNegocios() {
     }
   }
 
+  const navigationItems = [
+    { title: "Início", href: "/" },
+    { title: "O Que Aprender", href: "#o-que-aprender" },
+    { title: "Mentor", href: "#mentor" },
+    { title: "Depoimentos", href: "#depoimentos" },
+    { title: "Inscrição", href: "#inscricao", isButton: true },
+  ]
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Logo className="h-10 w-auto" />
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="text-sm hover:text-yellow-400 transition-colors">
-              Início
-            </Link>
-            <Link href="#o-que-aprender" className="text-sm hover:text-yellow-400 transition-colors">
-              O Que Aprender
-            </Link>
-            <Link href="#mentor" className="text-sm hover:text-yellow-400 transition-colors">
-              Mentor
-            </Link>
-            <Link href="#depoimentos" className="text-sm hover:text-yellow-400 transition-colors">
-              Depoimentos
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button
-              asChild
-              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
-            >
-              <Link href="#inscricao">Entrar</Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
-            >
-              <Link href="#inscricao">Inscreva-se</Link>
-            </Button>
-            <MobileMenu
-              links={[
-                { href: "/", label: "Início" },
-                { href: "#o-que-aprender", label: "O Que Aprender" },
-                { href: "#mentor", label: "Mentor" },
-                { href: "#depoimentos", label: "Depoimentos" },
-                { href: "#inscricao", label: "Inscrição" },
-              ]}
-            />
-          </div>
-        </div>
-      </header>
-{/* Hero Section */}
+      <SiteHeader
+        navigationItems={navigationItems}
+        showInicio={true}
+      />
+      {/* Hero Section */}
       <HeroPages
         title="ESCALADOR DE NEGÓCIOS"
         subtitle="Evento Presencial Exclusivo"
@@ -232,14 +202,14 @@ export default function EscaladorDeNegocios() {
           </div>
           <div className="text-center mt-12">
             <Button
-  asChild
-  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
->
-  <Link href="#inscricao" className="flex items-center">
-    GARANTA SUA VAGA!
-    <ArrowRight className="ml-2 h-4 w-4" />
-  </Link>
-</Button>
+              asChild
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+            >
+              <Link href="#inscricao" className="flex items-center">
+                GARANTA SUA VAGA!
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -332,7 +302,7 @@ export default function EscaladorDeNegocios() {
         </div>
       </section>
 
-    <TestimonialsSection/>
+      <TestimonialsSection />
       {/* Mentor Section - imagem à esquerda, texto à direita */}
       <section id="mentor" className="py-20 relative bg-zinc-900/40">
         <div className="container mx-auto px-4 relative z-10">
@@ -379,14 +349,14 @@ export default function EscaladorDeNegocios() {
                 </p>
               </div>
               <Button
-  asChild
-  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
->
-  <Link href="#inscricao" className="flex items-center">
-    GARANTA SUA VAGA!
-    <ArrowRight className="ml-2 h-4 w-4" />
-  </Link>
-</Button>
+                asChild
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+              >
+                <Link href="#inscricao" className="flex items-center">
+                  GARANTA SUA VAGA!
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -541,20 +511,20 @@ export default function EscaladorDeNegocios() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-  asChild
-  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
->
-  <Link href="#inscricao" className="flex items-center">
-    GARANTA SUA VAGA!
-    <ArrowRight className="ml-2 h-4 w-4" />
-  </Link>
-</Button>
+              asChild
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+            >
+              <Link href="#inscricao" className="flex items-center">
+                GARANTA SUA VAGA!
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
             <WhatsAppButton />
           </div>
         </div>
       </section>
 
-<Footer />
+      <Footer />
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />

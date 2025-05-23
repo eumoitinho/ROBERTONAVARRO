@@ -9,9 +9,10 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import LocationMap from "@/components/location-map"
-import { TestimonialsSection }  from "@/components/testimonials-section"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { useClickOutside } from "@/hooks/use-click-outside"
+import { SiteHeader } from "@/components/header"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -59,7 +60,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
+      {/* <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
         <div className="container mx-auto px-2 xs-px-2 sm:px-4 py-3 xs-py-2 sm:py-4 flex justify-between items-center">
           <Logo className="h-8 xs:h-7 sm:h-10 w-auto" />
           <nav className="hidden md:flex space-x-8">
@@ -168,8 +169,8 @@ export default function HomePage() {
             />
           </div>
         </div>
-      </header>
-
+      </header> */}
+<SiteHeader/>
       {/* Hero Section - Block 1 */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
@@ -251,88 +252,87 @@ export default function HomePage() {
       </section>
 
 
-                    <section id="quem-somos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
-  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-  <div className="container mx-auto px-4 relative z-10">
-    <div className="text-center mb-16">
-      <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4 animate-fade-in">
-        <span className="text-sm font-medium">QUEM SOMOS</span>
-      </div>
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
-        Mais de <span className="text-yellow-400">30 anos</span> impactando vidas com inteligência e propósito
-      </h2>
-    </div>
+      <section id="quem-somos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4 animate-fade-in">
+              <span className="text-sm font-medium">QUEM SOMOS</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+              Mais de <span className="text-yellow-400">30 anos</span> impactando vidas com inteligência e propósito
+            </h2>
+          </div>
 
-    <div className="grid md:grid-cols-2 gap-10 xs-gap-6 sm:gap-12 lg:gap-20 items-center">
-      <div className="relative animate-fade-in">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-        <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-0 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-          <Image
-            src="/images/hero-image.webp"
-            alt="Roberto Navarro"
-            width={500}
-            height={440}
-            className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-          />
-        </div>
-      </div>
+          <div className="grid md:grid-cols-2 gap-10 xs-gap-6 sm:gap-12 lg:gap-20 items-center">
+            <div className="relative animate-fade-in">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-0 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <Image
+                  src="/images/hero-image.webp"
+                  alt="Roberto Navarro"
+                  width={500}
+                  height={440}
+                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
 
-      <div className="flex flex-col gap-8 animate-slide-up">
-        <div className="flex items-start gap-4">
-          <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-          <p className="text-zinc-300 text-base font-semibold leading-relaxed">
-            Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
-          </p>
-        </div>
-        <div className="flex items-start gap-4">
-          <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-          <p className="text-zinc-300 text-base font-semibold leading-relaxed">
-            A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
-          </p>
-        </div>
-        <div className="flex items-start gap-4">
-          <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-          <p className="text-zinc-300 text-base font-semibold leading-relaxed">
-            Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10 milhões de brasileiros e contribuir para a construção de um país rico e próspero.
-          </p>
-        </div>
+            <div className="flex flex-col gap-8 animate-slide-up">
+              <div className="flex items-start gap-4">
+                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                <p className="text-zinc-300 text-base font-semibold leading-relaxed">
+                  Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
+                </p>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                <p className="text-zinc-300 text-base font-semibold leading-relaxed">
+                  A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
+                </p>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                <p className="text-zinc-300 text-base font-semibold leading-relaxed">
+                  Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10 milhões de brasileiros e contribuir para a construção de um país rico e próspero.
+                </p>
+              </div>
 
-        {/* Seção de Estatísticas */}
-        <div className="w-full flex flex-col justify-end mt-10">
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6 mb-4">
-            {[
-              { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
-              { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas exclusivas de coaching" },
-              { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros publicados" },
-              { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos inspiradores" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                }`}
-                style={{ transitionDelay: `${500 + index * 100}ms` }}
-              >
-                <div className="flex items-center gap-2 md:gap-4">
-                  <div className="bg-zinc-800 rounded-full p-2 md:p-3">{stat.icon}</div>
-                  <div>
-                    <p className="text-sm md:text-xl font-bold">{stat.value}</p>
-                    <p className="text-xs md:text-sm text-zinc-400">{stat.label}</p>
-                  </div>
+              {/* Seção de Estatísticas */}
+              <div className="w-full flex flex-col justify-end mt-10">
+                <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6 mb-4">
+                  {[
+                    { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
+                    { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas exclusivas de coaching" },
+                    { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros publicados" },
+                    { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos inspiradores" },
+                  ].map((stat, index) => (
+                    <div
+                      key={index}
+                      className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                        }`}
+                      style={{ transitionDelay: `${500 + index * 100}ms` }}
+                    >
+                      <div className="flex items-center gap-2 md:gap-4">
+                        <div className="bg-zinc-800 rounded-full p-2 md:p-3">{stat.icon}</div>
+                        <div>
+                          <p className="text-sm md:text-xl font-bold">{stat.value}</p>
+                          <p className="text-xs md:text-sm text-zinc-400">{stat.label}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            </div>
           </div>
+
+
         </div>
-      </div>
-    </div>
 
-    
-  </div>
-
-  {/* Estilos para o carrossel e vídeos */}
-  <style>{`
+        {/* Estilos para o carrossel e vídeos */}
+        <style>{`
     .carousel {
       display: flex;
       overflow: hidden;
@@ -365,10 +365,10 @@ export default function HomePage() {
       height: 100%;
     }
   `}</style>
-</section>
+      </section>
 
-{/* CSS Animations */}
-<style jsx global>{`
+      {/* CSS Animations */}
+      <style jsx global>{`
   @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -426,7 +426,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/mentoria">
+                  <Link href="/formacoes/mentoria">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -446,7 +446,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/empreendedor-inteligente">
+                  <Link href="/formacoes/empreendedor-inteligente">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -466,7 +466,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/educador-financeiro">
+            <Link href="/formacoes/educador-financeiro">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -486,7 +486,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/lcf-mentoring-pro">
+                 <Link href="/formacoes/lcf-mentoring-pro">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -506,7 +506,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/mentoria-de-investimentos">
+                <Link href="/formacoes/mentoria-de-investimentos">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -525,7 +525,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/mentoria-individual">
+                 <Link href="/formacoes/mentoria-individual">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -564,7 +564,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/crencas-da-riqueza">
+                  <Link href="/eventos/crencas-da-riqueza">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -581,7 +581,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/segredos-da-mente-milionaria">
+                  <Link href="/eventos/segredos-da-mente-milionaria">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -600,7 +600,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/escalador-de-negocios">
+                  <Link href="/eventos/escalador-de-negocios">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -619,7 +619,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                  <Link href="/energia-do-dinheiro">
+                  <Link href="/eventos/energia-do-dinheiro">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -731,101 +731,7 @@ export default function HomePage() {
 
       <TestimonialsSection />
 
-      {/* Trabalhe Conosco Section */}
-      <section id="trabalhe-conosco" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">TRABALHE CONOSCO</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Faça parte do nosso <span className="text-yellow-400">time</span>
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Estamos sempre em busca de talentos que compartilham nossa missão de transformar vidas financeiras. Envie
-              seu currículo e faça parte dessa jornada.
-            </p>
-          </div>
-
-          <div className="max-w-2xl mx-auto bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <form className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                  Telefone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label htmlFor="position" className="block text-sm font-medium mb-2">
-                  Área de Interesse
-                </label>
-                <select
-                  id="position"
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                >
-                  <option value="">Selecione uma área</option>
-                  <option value="marketing">Marketing</option>
-                  <option value="vendas">Vendas</option>
-                  <option value="atendimento">Atendimento ao Cliente</option>
-                  <option value="coaching">Coaching</option>
-                  <option value="administrativo">Administrativo</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="resume" className="block text-sm font-medium mb-2">
-                  Currículo (PDF)
-                </label>
-                <input
-                  type="file"
-                  id="resume"
-                  accept=".pdf"
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Mensagem
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                  placeholder="Conte-nos um pouco sobre você e suas experiências..."
-                ></textarea>
-              </div>
-              <Button className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 w-full">
-                Enviar Currículo
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Contato Section - Block 8 */}
       <section id="contato" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">

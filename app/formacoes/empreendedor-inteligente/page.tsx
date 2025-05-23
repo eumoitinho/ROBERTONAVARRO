@@ -25,6 +25,7 @@ import Logo from "@/components/logo"
 import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
+import { SiteHeader } from "@/components/header"
 
 export default function EmpreendedorInteligentePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -92,51 +93,21 @@ export default function EmpreendedorInteligentePage() {
       setIsSubmitting(false)
     }
   }
+const navigationItems = [
+  { title: "Início", href: "/" },
+  { title: "Sobre o Curso", href: "#sobre-curso" },
+  { title: "Benefícios", href: "#beneficios" },
+  { title: "Depoimentos", href: "#depoimentos" },
+  { title: "Inscrição", href: "#inscricao", isButton: true },
+];
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Logo className="h-10 w-auto" />
-          <nav className="hidden md:flex space-x-8">
-            <Link href="#sobre" className="text-sm hover:text-yellow-400 transition-colors">
-              Sobre
-            </Link>
-            <Link href="#o-que-aprender" className="text-sm hover:text-yellow-400 transition-colors">
-              O Que Aprender
-            </Link>
-            <Link href="#mentor" className="text-sm hover:text-yellow-400 transition-colors">
-              Mentor
-            </Link>
-            <Link href="#inscricao" className="text-sm hover:text-yellow-400 transition-colors">
-              Inscrição
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button
-              asChild
-              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
-            >
-              <Link href="#contato">Contato</Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
-            >
-              <Link href="#inscricao">Inscreva-se</Link>
-            </Button>
-            <MobileMenu
-              links={[
-                { href: "#sobre", label: "Sobre" },
-                { href: "#o-que-aprender", label: "O Que Aprender" },
-                { href: "#mentor", label: "Mentor" },
-                { href: "#inscricao", label: "Inscrição" },
-              ]}
-            />
-          </div>
-        </div>
-      </header>
+      <SiteHeader
+        navigationItems={navigationItems}
+        showInicio={true}
+      />
 
       {/* Hero Section */}
       <HeroPages

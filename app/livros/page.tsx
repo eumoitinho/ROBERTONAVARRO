@@ -11,6 +11,7 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import Footer from "@/components/footer"
+import { SiteHeader } from "@/components/header"
 
 export default function LivrosPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -38,52 +39,19 @@ export default function LivrosPage() {
     `
     document.head.appendChild(style)
   }, [])
-
+const navigationItems = [
+  { title: "Sobre", href: "#sobre" },
+  { title: "Formações", href: "#formacoes" },
+  { title: "Depoimentos", href: "#depoimentos" },
+  { title: "Contato", href: "#contato" },
+];
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Logo className="h-10 w-auto" />
-          <nav className="hidden md:flex space-x-8">
-            <Link href="#sobre" className="text-sm hover:text-yellow-400 transition-colors">
-              Sobre
-            </Link>
-            <Link href="#formacoes" className="text-sm hover:text-yellow-400 transition-colors">
-              Formações
-            </Link>
-            <Link href="#depoimentos" className="text-sm hover:text-yellow-400 transition-colors">
-              Depoimentos
-            </Link>
-            <Link href="#contato" className="text-sm hover:text-yellow-400 transition-colors">
-              Contato
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button
-              asChild
-              className="cta-hover-subtle bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
-            >
-              <Link href="#contato">Contato</Link>
-            </Button>
-            <Button
-              asChild
-              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
-            >
-              <Link href="#formacoes">Formações</Link>
-            </Button>
-            <MobileMenu
-              links={[
-                { href: "#sobre", label: "Sobre" },
-                { href: "#formacoes", label: "Formações" },
-                { href: "#depoimentos", label: "Depoimentos" },
-                { href: "#contato", label: "Contato" },
-              ]}
-            />
-          </div>
-        </div>
-      </header>
-
+     <SiteHeader
+  navigationItems={navigationItems}
+  showInicio={true}
+/>
       {/* // Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>

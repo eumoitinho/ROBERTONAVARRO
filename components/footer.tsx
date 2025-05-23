@@ -1,7 +1,10 @@
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTiktok } from "react-icons/fa"
 import Link from "next/link"
 import Logo from "./logo"
-import { JSX } from "react"
+import { JSX, Key } from "react"
+import { NewsletterSignup } from "./newsletter-signup"
+import { Mail, Phone, MapPin } from "lucide-react"
+import { UrlObject } from "url"
 
 const socialIcons: Record<string, JSX.Element> = {
   facebook: <FaFacebookF className="w-4 h-4 md:w-5 md:h-5" />,
@@ -19,78 +22,172 @@ const socialLinks: Record<string, string> = {
   tiktok: "https://tiktok.com/@robertonavarrooficial",
 }
 
+
+
+const footerLinks = {
+  formacoes: [
+    { title: "Educador Financeiro", href: "/formacoes/educador-financeiro" },
+    { title: "Empreendedor Inteligente", href: "/formacoes/empreendedor-inteligente" },
+    { title: "LCF Mentoring Pro", href: "/formacoes/lcf-mentoring-pro" },
+    { title: "Mentoria Individual", href: "/formacoes/mentoria-individual" },
+    { title: "Mentoria de Investimentos", href: "/formacoes/mentoria-de-investimentos" },
+  ],
+  conteudo: [
+    { title: "Lives", href: "/lives" },
+    { title: "Livros", href: "/livros" },
+  ],
+  eventos: [
+    { title: "Energia do Dinheiro", href: "/eventos/energia-do-dinheiro" },
+    { title: "Escalador de Negócios", href: "/eventos/escalador-de-negocios" },
+    { title: "Crenças da Riqueza", href: "/eventos/crencas-da-riqueza" },
+    { title: "Segredos da Mente Milionária", href: "/eventos/segredos-da-mente-milionaria" },
+  ],
+  institucional: [
+    { title: "Sobre Roberto Navarro", href: "./#sobre" },
+    { title: "Contato", href: "/contato" },
+    { title: "Política de Privacidade", href: "/politica-privacidade" },
+    { title: "Termos de Uso", href: "/termos-uso" },
+    { title: "Cookies", href: "/cookies" },
+    { title: "Trabalhe Conosco", href: "/trabalhe-conosco" },
+    { title: "FAQ", href: "/faq" },
+  ],
+  mentorias: [
+    { title: "Mentoria Individual", href: "/formacoes/mentoria-individual" },
+    { title: "Mentoria de Investimentos", href: "/formacoes/mentoria-de-investimentos" },
+  ],
+}
+
+
+
 export default function Footer() {
   return (
-    <footer className="bg-zinc-950 py-8 md:py-10 border-t border-zinc-800/50">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-10">
-          <div className="col-span-2 md:col-span-1">
-            <Logo className="h-8 md:h-10 w-auto mb-4" />
-            <p className="text-xs md:text-sm text-zinc-400 mb-4">
-              Transformando vidas financeiras em todo o Brasil desde 2015.
-            </p>
-            <div className="flex space-x-3 md:space-x-4">
-              {["facebook", "instagram", "youtube", "linkedin", "tiktok"].map((social) => (
-                <Link
-                  key={social}
-                  href={socialLinks[social]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-                  aria-label={social}
-                >
-                  {socialIcons[social]}
-                  <span className="sr-only">{social}</span>
-                </Link>
-              ))}
+    <footer className="bg-zinc-950 border-t border-zinc-800/50">
+      
+
+      {/* Main Footer Content */}
+      <div className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {/* Brand Section */}
+            <div className="lg:col-span-2">
+              <Link href="/" className="inline-block mb-6">
+                <Logo className="h-12 w-auto" />
+              </Link>
+              <p className="text-zinc-400 mb-6 max-w-md">
+                Transformando vidas financeiras em todo o Brasil desde 2015. Mais de 130 mil pessoas já passaram por
+                nossas formações e mentorias.
+              </p>
+
+              {/* Contact Info */}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-zinc-400">
+                  <Mail className="h-4 w-4 text-yellow-400" />
+                  <span className="text-sm">contato@robertonavarrooficial.com.br</span>
+                </div>
+                <div className="flex items-center gap-3 text-zinc-400">
+                  <Phone className="h-4 w-4 text-yellow-400" />
+                  <span className="text-sm">(11) 99999-9999</span>
+                </div>
+                <div className="flex items-center gap-3 text-zinc-400">
+                  <MapPin className="h-4 w-4 text-yellow-400" />
+                  <span className="text-sm">São Paulo, SP - Brasil</span>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex space-x-4">
+                {Object.entries(socialLinks).map(([key, href]) => (
+                  <Link
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 transition-colors group"
+                    aria-label={key}
+                  >
+                    {socialIcons[key]}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-          <div>
-            <h4 className="text-xs md:text-sm font-semibold uppercase tracking-wider mb-3 md:mb-4">Programas</h4>
-            <ul className="space-y-1 md:space-y-2">
-              {["Despertar Milionário", "Coaching Financeiro", "Mentoria LCF", "Segredos da Mente Milionária"].map(
-                (program) => (
-                  <li key={program}>
-                    <Link href="#" className="text-xs md:text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
-                      {program}
+
+            {/* Formações */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-yellow-400">Formações</h4>
+              <ul className="space-y-2">
+                {footerLinks.formacoes.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                      {link.title}
                     </Link>
                   </li>
-                ),
-              )}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-xs md:text-sm font-semibold uppercase tracking-wider mb-3 md:mb-4">Links Úteis</h4>
-            <ul className="space-y-1 md:space-y-2">
-              {["Sobre", "Depoimentos", "FAQ", "Blog", "Contato"].map((link) => (
-                <li key={link}>
-                  <Link href="#" className="text-xs md:text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-xs md:text-sm font-semibold uppercase tracking-wider mb-3 md:mb-4">Contato</h4>
-            <p className="text-xs md:text-sm text-zinc-400 mb-2">contato@robertonavarrooficial.com.br</p>
-            <p className="text-xs md:text-sm text-zinc-400">São Paulo, SP - Brasil</p>
+                ))}
+              </ul>
+            </div>
+
+            {/* Mentorias */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-yellow-400">Mentorias</h4>
+              <ul className="space-y-2">
+                {footerLinks.mentorias.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 mt-6 text-yellow-400">Conteúdo</h4>
+              <ul className="space-y-2">
+                {footerLinks.conteudo.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Institucional */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-yellow-400">Institucional</h4>
+              <ul className="space-y-2">
+                {footerLinks.institucional.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="pt-6 md:pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs md:text-sm text-zinc-500 mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Roberto Navarro Oficial. Todos os direitos reservados.
-          </p>
-          <div className="flex space-x-4 md:space-x-6">
-            <Link href="#" className="text-xs text-zinc-500 hover:text-yellow-400 transition-colors">
-              Termos de Uso
-            </Link>
-            <Link href="#" className="text-xs text-zinc-500 hover:text-yellow-400 transition-colors">
-              Política de Privacidade
-            </Link>
-            <Link href="#" className="text-xs text-zinc-500 hover:text-yellow-400 transition-colors">
-              Cookies
-            </Link>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="py-6 border-t border-zinc-800/50">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-zinc-500 text-center md:text-left">
+              &copy; {new Date().getFullYear()} Roberto Navarro Oficial. Todos os direitos reservados.
+            </p>
+            <div className="flex flex-wrap justify-center md:justify-end gap-6">
+              <Link
+                href="/politica-privacidade"
+                className="text-sm text-zinc-500 hover:text-yellow-400 transition-colors"
+              >
+                Política de Privacidade
+              </Link>
+              <Link href="/termos-uso" className="text-sm text-zinc-500 hover:text-yellow-400 transition-colors">
+                Termos de Uso
+              </Link>
+              <Link href="/cookies" className="text-sm text-zinc-500 hover:text-yellow-400 transition-colors">
+                Cookies
+              </Link>
+            </div>
           </div>
         </div>
       </div>

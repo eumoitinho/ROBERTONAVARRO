@@ -32,14 +32,14 @@ const testimonials: Testimonial[] = [
 export function TestimonialsSection() {
   return (
     <section id="testemunhos" className="py-12 md:py-20 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <div className="absolute inset-0  z-0"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8 md:mb-16">
           <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
             <span className="text-sm font-medium">DEPOIMENTOS</span>
           </div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-            O que nossos <span className="text-yellow-400">alunos dizem</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            O QUE NOSSOS <span className="text-yellow-400">ALUNOS DIZEM</span>
           </h2>
           <p className="text-zinc-300 max-w-3xl mx-auto text-sm md:text-base">
             Conheça as histórias de transformação de pessoas que já passaram pelos nossos programas.

@@ -35,7 +35,7 @@ export default async function InscricaoPage({
       </p>
 
       <Suspense fallback={<div className="text-center">Carregando formulário...</div>}>
-        <RegistrationForm eventId={event} eventName={""} />
+        <RegistrationForm eventId={event.id} eventName={event.name} />
       </Suspense>
     </div>
   )

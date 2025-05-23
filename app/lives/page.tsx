@@ -9,6 +9,7 @@ import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import HeroPages from "@/components/hero-pages"
+import { SiteHeader } from "@/components/header"
 
 export default function LivesPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -129,56 +130,19 @@ export default function LivesPage() {
       views: "20.1k",
     },
   ]
-
+const navigationItems = [
+  { title: "Início", href: "/" },
+  { title: "Formações", href: "/#formacoes" },
+  { title: "Eventos", href: "/#eventos" },
+  { title: "Lives", href: "/lives" },
+];
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/">
-            <Logo className="h-10 w-auto" />
-          </Link>
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="text-sm hover:text-yellow-400 transition-colors">
-              Início
-            </Link>
-            <Link href="/#formacoes" className="text-sm hover:text-yellow-400 transition-colors">
-              Formações
-            </Link>
-            <Link href="/#eventos" className="text-sm hover:text-yellow-400 transition-colors">
-              Eventos
-            </Link>
-            <Link href="/lives" className="text-sm text-yellow-400 transition-colors">
-              Lives
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button
-              asChild
-              className="bg-transparent hover:bg-zinc-800 border border-zinc-700 text-white font-medium text-sm rounded-full px-6"
-            >
-              <Link href="/#contato">Contato</Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold text-sm rounded-full px-6"
-            >
-              <a href="https://www.instagram.com/robertonavarrooficial/" target="_blank" rel="noopener noreferrer">
-                Seguir no Instagram
-              </a>
-            </Button>
-            <MobileMenu
-              links={[
-                { href: "/", label: "Início" },
-                { href: "/#formacoes", label: "Formações" },
-                { href: "/#eventos", label: "Eventos" },
-                { href: "/lives", label: "Lives" },
-                { href: "/#contato", label: "Contato" },
-              ]}
-            />
-          </div>
-        </div>
-      </header>
+      <SiteHeader
+        navigationItems={navigationItems}
+  showInicio={true}
+/>
 
       {/* Hero Section */}
       <HeroPages
