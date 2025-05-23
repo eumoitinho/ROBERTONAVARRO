@@ -380,7 +380,7 @@ export default function CrencasDaRiquezaPage() {
                      
                       <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-yellow-400/80 shadow-lg shadow-yellow-400/20">
                         <NextImage
-                          src="/images/ROBERTO_4.JPG"
+                          src="/images/ROBERTO_4.jpg"
                           alt="Roberto Navarro"
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110"

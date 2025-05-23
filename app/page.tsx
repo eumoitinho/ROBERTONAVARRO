@@ -15,6 +15,7 @@ import { useClickOutside } from "@/hooks/use-click-outside"
 import { SiteHeader } from "@/components/header"
 import QuemSomosSection from "@/components/mentor"
 import { SectionBadge } from "@/components/section-badge"
+import TransformationVideos from "@/components/transformation-videos"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -694,6 +695,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <TransformationVideos/>
 
       {/* Treinamentos Section - Block 6 */}
       <section id="treinamentos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
