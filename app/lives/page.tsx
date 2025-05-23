@@ -150,7 +150,7 @@ const navigationItems = [
         subtitle="Conteúdo gratuito"
         secondtitle="Conhecimento transformador todos os dias"
         description="Acompanhe as lives diárias de Roberto Navarro no Instagram e transforme sua mentalidade e suas finanças com conteúdo prático e de alta qualidade."
-        image="/images/HERO_LIVES.png"
+        image="/images/roberto-palestra.jpeg"
         ctaText="SEGUIR NO INSTAGRAM"
         ctaHref="https://www.instagram.com/robertonavarrooficial/"
         secondaryCtaText="Ver programação"
@@ -165,8 +165,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">PROGRAMAÇÃO SEMANAL</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Acompanhe nossas <span className="text-yellow-400">lives diárias</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              ACOMPANHE NOSSAS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">LIVES DIÁRIAS</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Todos os dias às 19h, Roberto Navarro traz conteúdo exclusivo e gratuito no Instagram para transformar sua
@@ -215,8 +215,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">ASSISTA AO VIVO</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Acompanhe nossa <span className="text-yellow-400">live atual</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              ACOMPANHE-NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">AGORA</span>
             </h2>
           </div>
 
@@ -257,7 +257,7 @@ const navigationItems = [
               <span className="text-sm font-medium">CONTEÚDO RECENTE</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Lives <span className="text-yellow-400">anteriores</span>
+              LIVES <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">ANTERIORES</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Não conseguiu assistir ao vivo? Confira as gravações das lives anteriores e não perca nenhum conteúdo.
@@ -271,12 +271,7 @@ const navigationItems = [
                 className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="relative h-48 md:h-56">
-                  <Image
-                    src={live.thumbnail || "/placeholder.svg?height=300&width=400&query=instagram live thumbnail"}
-                    alt={live.title}
-                    fill
-                    className="object-cover"
-                  />
+                 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                     <div>
                       <p className="text-xs text-zinc-400 mb-1">
@@ -319,7 +314,7 @@ const navigationItems = [
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 text-center">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-yellow-400">Não perca nenhuma live!</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">NÃO PERCA NENHUMA LIVE!</h2>
             <p className="text-lg mb-6 text-zinc-300">
               Ative as notificações no Instagram e seja avisado sempre que uma nova live começar.
             </p>

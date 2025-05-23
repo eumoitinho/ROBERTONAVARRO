@@ -12,6 +12,7 @@ import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
+import HeroPages from "@/components/hero-pages"
 
 export default function LivrosPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -52,63 +53,77 @@ const navigationItems = [
   navigationItems={navigationItems}
   showInicio={true}
 />
-      {/* // Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/bgsite.jpg"
-            alt="Livros de Roberto Navarro"
-            fill
-            className="object-cover mt-24"
-            style={{ objectPosition: "center" }}
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/70 via-60% to-transparent"></div>
-        </div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+     {/* Hero Section */}
+      <section className="relative h-[900px] pt-32 pb-20 overflow-hidden flex flex-col justify-between">
+      {/* Backgrounds */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/HERO_EDUCADOR.png"
+          alt="LIVROS QUE TRANSFORMAM"
+          fill
+          className="object-cover w-full h-full"
+          style={{
+            objectPosition: "center",
+          }}
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/80 via-60% to-transparent md:to-transparent"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10 flex flex-col h-full">
+        {/* Badge */}
         <div
-          className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div
-              className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          className={`inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6 self-start mt-2 transition-all duration-1000`}
+          style={{ transitionDelay: "200ms" }}
+        >
+          <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
+          <span className="text-xs md:text-sm font-medium">Livros de Roberto Navarro</span>
+        </div>
+
+        {/* Central content */}
+        <div className="flex-1 flex flex-col justify-center items-start">
+          <div className={`transition-all duration-1000`}>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 md:mb-2 leading-tight">
+              LIVROS{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                QUE TRANSFORMAM
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl font-semibold mb-4 text-zinc-300">
+              SUA VIDA FINANCEIRA E ESPIRITUAL
+            </p>
+            <p className="text-base md:text-xl text-zinc-300 mb-6 max-w-xl whitespace-pre-line">
+              Descubra as obras de Roberto Navarro que já impactaram mais de 50 mil pessoas, trazendo prosperidade,
+              equilíbrio e propósito.
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div
+            className={`flex flex-col sm:flex-row gap-3 md:gap-4 mb-0 md:mb-0 transition-all duration-1000`}
+            style={{ transitionDelay: "400ms" }}
+          >
+            <Button
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
+              asChild
             >
-              <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-                <span className="text-sm font-medium">Livros de Roberto Navarro</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Livros que Transformam
-                </span>{" "}
-                sua Vida Financeira e Espiritual
-              </h1>
-              <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-                Descubra as obras de Roberto Navarro que já impactaram mais de 50 mil pessoas, trazendo prosperidade,
-                equilíbrio e propósito.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="#catalogo">VER CATÁLOGO COMPLETO</Link>
-                </Button>
-              </div>
-            </div>
-            
+              <Link href="#catalogo">VER CATÁLOGO COMPLETO</Link>
+            </Button>
+            <Button
+              asChild
+              className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
+            >
+              <Link href="#sobre">
+                Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
+              </Link>
+            </Button>
           </div>
         </div>
-      </section>
-
-      {/* // Stats Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
+       
+        <div className="container px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { icon: <Star className="h-6 w-6 text-yellow-400" />, value: "+50 mil", label: "Vidas Impactadas" },
@@ -132,7 +147,8 @@ const navigationItems = [
             ))}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* // Books Catalog */}
       <section id="catalogo" className="py-20 relative">
@@ -142,8 +158,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">CATÁLOGO DE LIVROS</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Conheça as Obras que <span className="text-yellow-400">Transformam Vidas</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              CONHEÇA AS OBRAS QUE  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">TRANSFORMAM VIDAS</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               As obras de Roberto Navarro combinam inteligência financeira, emocional e espiritual para guiá-lo rumo à
@@ -383,9 +399,9 @@ const navigationItems = [
                 <span className="flex h-2 w-2 rounded-full bg-yellow-400 animate-pulse"></span>
                 <span className="text-sm font-medium text-yellow-300">DESTAQUE DO MÊS</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  A Sabedoria do Dinheiro
+                  A SABEDORIA DO DINHEIRO
                 </span>
               </h2>
               <p className="text-lg text-zinc-300 mb-4 max-w-xl">
@@ -439,8 +455,8 @@ const navigationItems = [
       <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
         <span className="text-sm font-medium">DEPOIMENTOS</span>
       </div>
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">
-        O que Nossos <span className="text-yellow-400">Leitores Dizem</span>
+      <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        O QUE NOSSOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">LEITORES DIZEM</span>
       </h2>
       <p className="text-zinc-300 max-w-3xl mx-auto">
         Veja o que os leitores estão dizendo sobre *A Sabedoria do Dinheiro* de Roberto Navarro.
@@ -560,8 +576,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">PERGUNTAS FREQUENTES</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Tire Suas <span className="text-yellow-400">Dúvidas</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              TIRE SUAS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">DÚVIDAS</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Tudo o que você precisa saber sobre os livros de Roberto Navarro.
@@ -603,33 +619,7 @@ const navigationItems = [
         </div>
       </section>
 
-      {/* // CTA Section */}
-      <section className="py-20 relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-900/20 via-zinc-900 to-zinc-950">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Comece Sua Jornada com <span className="text-yellow-400">Conhecimento</span>
-            </h2>
-            <p className="text-lg text-zinc-300 max-w-3xl">
-              Escolha sua próxima leitura e dê o primeiro passo para uma vida de prosperidade e propósito.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-              >
-                <Link href="#catalogo">VER CATÁLOGO COMPLETO</Link>
-              </Button>
-              <WhatsAppButton
-                message="Olá, quero saber mais sobre os livros de Roberto Navarro."
-                className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-              >
-                Falar com Consultor <ChevronRight className="h-4 w-4 ml-1" />
-              </WhatsAppButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
      <Footer />
 

@@ -21,6 +21,7 @@ type HeroPagesProps = {
   countdownTargetDate?: Date
 }
 
+
 export default function HeroPages({
   title,
   subtitle,
@@ -34,12 +35,34 @@ export default function HeroPages({
   showCountdown = false,
   countdownTargetDate,
 }: HeroPagesProps) {
-  const [isVisible, setIsVisible] = useState(false)
+  const [currentImage, setCurrentImage] = useState(image);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsVisible(true), 100)
-    return () => clearTimeout(timeout)
-  }, [])
+    setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    const updateImageForScreenSize = () => {
+      if (window.innerWidth <= 768) {
+        // Adiciona o sufixo _MOBILE à imagem
+        const mobileImage = image.replace(/(\.[\w\d_-]+)$/i, "_MOBILE$1");
+        setCurrentImage(mobileImage);
+      } else {
+        setCurrentImage(image);
+      }
+    };
+
+    // Atualiza a imagem ao carregar a página
+    updateImageForScreenSize();
+
+    // Adiciona um listener para mudanças no tamanho da tela
+    window.addEventListener("resize", updateImageForScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", updateImageForScreenSize);
+    };
+  }, [image]);
 
   return (
     <section className="relative h-[900px] pt-32 pb-20 overflow-hidden flex flex-col justify-between">
@@ -48,7 +71,7 @@ export default function HeroPages({
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
       <div className="absolute inset-0 z-0">
         <Image
-          src={image || "/placeholder.svg"}
+          src={currentImage || "/placeholder.svg"}
           alt={title}
           fill
           className="object-cover w-full h-full"

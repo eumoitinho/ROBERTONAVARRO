@@ -1,19 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import {
-  ArrowRight,
-  CheckCircle,
-  Star,
-  Users,
-  Zap,
-  Brain,
-  Target,
-  Wallet,
-  GraduationCap,
-} from "lucide-react"
+import { ArrowRight, CheckCircle, Star, Users, Zap, Brain, Target, Wallet, GraduationCap, Play, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
@@ -22,14 +12,32 @@ import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import NotableParticipants from "@/components/notable-persons"
+import TransformationVideos from "@/components/transformation-videos"
+import { NewsletterSignup } from "@/components/newsletter-signup"
+import MentorSection from "@/components/mentor"
+import { SectionBadge } from "@/components/section-badge"
 
 export default function EnergiaDodinheiroPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null)
+  const videoModalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setIsVisible(true)
+    
+    // Adicionar estilos para efeitos de hover
     const style = document.createElement("style")
     style.innerHTML = `
       .cta-hover {
@@ -46,9 +54,60 @@ export default function EnergiaDodinheiroPage() {
         transform: translateY(-2px);
         box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
       }
+      
+      /* Padrão de ruído para o background */
+      .noise-bg {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        background-blend-mode: overlay;
+        background-size: 200px;
+        opacity: 0.015;
+      }
     `
     document.head.appendChild(style)
+    
+    // Adicionar event listener para a tecla ESC para fechar o vídeo
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveVideoId(null)
+      }
+    }
+    
+    document.addEventListener('keydown', handleEscKey)
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscKey)
+    }
   }, [])
+  
+  // Controlar o scroll quando o modal de vídeo está aberto
+  useEffect(() => {
+    if (activeVideoId) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [activeVideoId])
+  
+  // Fechar o vídeo quando clicar fora dele
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (videoModalRef.current && !videoModalRef.current.contains(event.target as Node)) {
+        setActiveVideoId(null)
+      }
+    }
+    
+    if (activeVideoId) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [activeVideoId])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -90,17 +149,60 @@ export default function EnergiaDodinheiroPage() {
     { title: "Benefícios", href: "#beneficios" },
     { title: "Como Funciona", href: "#como-funciona" },
     { title: "Depoimentos", href: "#depoimentos" },
-{ title: "Inscreva-se", href: "#inscricao", isButton: true }
+    { title: "Inscreva-se", href: "#inscricao", isButton: true }
+  ]
+  
+  const transformationVideos = [
+    {
+      id: "4aYDKJQBnRw",
+      title: "Como superei minhas dívidas em 6 meses",
+      person: "Carlos Silva",
+      description: "Carlos compartilha como saiu de um ciclo de dívidas para uma vida financeira equilibrada.",
+      thumbnail: "/images/video-thumb-1.png"
+    },
+    {
+      id: "yTELcwYTsnU",
+      title: "Minha jornada para a liberdade financeira",
+      person: "Ana Oliveira",
+      description: "Ana conta como transformou sua mentalidade sobre dinheiro e alcançou a independência.",
+      thumbnail: "/images/video-thumb-2.png"
+    },
+    {
+      id: "W6rBTJKeJ4w",
+      title: "Do zero ao primeiro milhão",
+      person: "Roberto Mendes",
+      description: "Roberto revela as estratégias que o levaram a conquistar seu primeiro milhão.",
+      thumbnail: "/images/video-thumb-3.png"
+    },
+    {
+      id: "dQw4w9WgXcQ",
+      title: "Como multipliquei meu patrimônio",
+      person: "Juliana Costa",
+      description: "Juliana explica como conseguiu multiplicar seu patrimônio em apenas 2 anos.",
+      thumbnail: "/images/video-thumb-4.png"
+    },
+    {
+      id: "xvFZjo5PgG0",
+      title: "Transformando conhecimento em renda",
+      person: "Marcos Pereira",
+      description: "Marcos mostra como transformou seu conhecimento em múltiplas fontes de renda.",
+      thumbnail: "/images/video-thumb-5.png"
+    }
   ]
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-     <SiteHeader
-       navigationItems={navigationItems}
-       showInicio={true}
-     />
-
-
+     <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800 text-white relative overflow-x-hidden">
+      {/* Padrão de ruído para o background */}
+      <div className="fixed inset-0 noise-bg pointer-events-none"></div>
+      
+      {/* Elementos decorativos */}
+      <div className="fixed top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse pointer-events-none"></div>
+      <div className="fixed bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: "1s" }}></div>
+      
+      <SiteHeader
+        navigationItems={navigationItems}
+        showInicio={true}
+      />
 
       {/* Hero Section */}
       <HeroPages
@@ -120,12 +222,10 @@ export default function EnergiaDodinheiroPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">QUAIS BLOQUEIOS TE AFASTAM DA RIQUEZA</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Descubra os sabotadores invisíveis que drenam sua <span className="text-yellow-400">energia financeira</span>
-            </h2>
+            <SectionBadge text="QUAIS BLOQUEIOS TE AFASTAM DA RIQUEZA" />
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">
+  Descubra os sabotadores invisíveis que drenam sua <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">energia financeira</span>
+</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
@@ -152,10 +252,10 @@ export default function EnergiaDodinheiroPage() {
             ].map((benefit, index) => (
               <div
                 key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-8 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2"
+                className="bg-zinc-900/50 backdrop-blur-lg border border-zinc-800/50 rounded-3xl p-8 hover:border-yellow-400 transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
               >
                 <div className="mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">{benefit.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">{benefit.title}</h3>
                 <p className="text-zinc-300">{benefit.description}</p>
               </div>
             ))}
@@ -163,250 +263,136 @@ export default function EnergiaDodinheiroPage() {
         </div>
       </section>
 
-      {/* Como Funciona Section */}
-      <section id="como-funciona" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="/images/energia-do-dinheiro.webp"
-                  alt="Como funciona o evento"
-                  width={500}
-                  height={440}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                Mais do que uma mentoria, um <span className="text-yellow-400">despertar de consciência</span>
-              </h2>
-              <p className="text-zinc-300 mb-6">
-                Durante 2 dias transformadores, você vai acessar um novo nível de consciência sobre dinheiro, abundância, valor próprio e energia. Este evento não entrega apenas conhecimento, mas vivências profundas que desbloqueiam crenças, dissolvem padrões limitantes e ativam a força interna da prosperidade.
-              </p>
-              <ul className="space-y-4 text-zinc-300">
-                {[
-                  "Qual o efeito do dinheiro em sua vida.",
-                  "Como o seu estado emocional impacta diretamente sua conta bancária.",
-                  "Quem está influenciando sua visão sobre dinheiro — e como retomar o controle.",
-                  "O papel da ambiência e da atmosfera na construção da riqueza.",
-                  "Como identificar e eliminar sabotadores financeiros.",
-                  "A conexão poderosa (e oculta) entre energia sexual e prosperidade.",
-                  "O protocolo da riqueza nos negócios e na vida pessoal.",
-                  "A verdade sobre o “dinheirinho” e por que ele pode te manter preso na escassez.",
-                  "Como criar a motivação certa para que o dinheiro venha até você.",
-                ].map((item, index) => (
+    <section id="como-funciona" className="py-12 xs:py-12 sm:py-16 md:py-20 relative">
+      {/* Backgrounds */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/HERO_EMPREENDEDOR.png"
+          alt="Roberto Navarro"
+          fill
+          className="hidden sm:block object-cover w-full h-full"
+          style={{
+            objectPosition: "center right", // Posição padrão para telas maiores
+          }}
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+        />
+        <Image
+          src="/images/HERO_EDUCADOR_MOBILE.png"
+          alt="Roberto Navarro"
+          fill
+          className="block sm:hidden object-cover w-full h-full"
+          style={{
+            objectPosition: "center right", // Posição padrão para telas menores
+          }}
+          priority
+          sizes="100vw"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r"
+          style={{
+            background: "linear-gradient(to right, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.6) 60%, transparent)",
+          }}
+        ></div>
+      </div>
+      <SectionBadge text="DESPERTAR DE CONSCIÊNCIA" />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Texto */}
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 uppercase">
+              Mais do que uma mentoria, um <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">despertar de consciência</span>
+            </h2>
+            <p className="text-zinc-300 mb-6 font-medium">
+              Durante 2 dias transformadores, você vai acessar um novo nível de consciência sobre dinheiro, abundância, valor próprio e energia. Este evento não entrega apenas conhecimento, mas vivências profundas que desbloqueiam crenças, dissolvem padrões limitantes e ativam a força interna da prosperidade.
+            </p>
+            <div className="block sm:hidden md:block bg-zinc-900/50 rounded-lg p-4 mt-6">
+            <ul className="space-y-4 text-zinc-300">
+              {[
+                "Qual o efeito do dinheiro em sua vida.",
+                "Como o seu estado emocional impacta diretamente sua conta bancária.",
+                "Quem está influenciando sua visão sobre dinheiro — e como retomar o controle.",
+                "O papel da ambiência e da atmosfera na construção da riqueza.",
+                "Como identificar e eliminar sabotadores financeiros.",
+                "A conexão poderosa (e oculta) entre energia sexual e prosperidade.",
+                "O protocolo da riqueza nos negócios e na vida pessoal.",
+                "A verdade sobre o 'dinheirinho' e por que ele pode te manter preso na escassez.",
+                "Como criar a motivação certa para que o dinheiro venha até você.",
+              ].map((item, index) => (
+                
                   <li key={index} className="flex items-start">
-                    <span className="text-yellow-400 mr-2">✓</span>
+                    <span className="text-yellow-400 mr-2 text-xl">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base mt-8"
-              >
-                <Link href="#inscricao">
-                  GARANTA SUA VAGA! <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+</div>
+            <Button
+              asChild
+              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base mt-8"
+            >
+              <Link href="#inscricao">
+                GARANTA SUA VAGA! <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
-      </section>
-
-      {/* Depoimentos Section */}
-      <section id="depoimentos" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">TRANSFORMAÇÕES QUE FALAM POR SI</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Quem já transformou sua vida com a <span className="text-yellow-400">Imersão</span>
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                name: "Alfredo Soares",
-                role: "Autoridade em vendas e autor best-seller",
-                image: "/images/alfredo-soares.webp",
-              },
-              {
-                name: "Tiago Brunet",
-                role: "Referência em treinamento de líderes e espiritualidade",
-                image: "/images/tiago-brunet.webp",
-              },
-              {
-                name: "Flávio Prado",
-                role: "Jornalista esportivo que já cobriu 10 Copas do Mundo",
-                image: "/images/flavio-prado.webp",
-              },
-              {
-                name: "Pyong Lee",
-                role: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
-                image: "/images/pyong-lee.webp",
-              },
-            ].map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-8 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4">
-                  <Image src={testimonial.image} alt={testimonial.name} fill className="object-cover" />
-                </div>
-                <p className="font-bold text-yellow-400">{testimonial.name}</p>
-                <p className="text-sm text-zinc-400">{testimonial.role}</p>
+      </div>
+    </section>
+      <TransformationVideos />
+      {/* Modal de vídeo */}
+      {activeVideoId && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9998] flex items-center justify-center p-4">
+          <div ref={videoModalRef} className="relative w-full max-w-4xl z-[9999]">
+            <div className="bg-zinc-900 rounded-2xl overflow-hidden">
+              <div className="relative pb-[56.25%] h-0">
+                <iframe
+                  src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                ></iframe>
               </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <h3 className="text-xl font-bold mb-4 text-yellow-400">Transformações que Falam por Si</h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                "https://www.youtube.com/shorts/4aYDKJQBnRw",
-                "https://www.youtube.com/shorts/yTELcwYTsnU",
-                "https://www.youtube.com/shorts/W6rBTJKeJ4w",
-              ].map((url, index) => (
-                <a
-                  key={index}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-yellow-400 hover:underline"
+              <div className="p-4 flex justify-between items-center">
+                <p className="text-zinc-400 text-sm">
+                  Assista a história completa de transformação
+                </p>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => setActiveVideoId(null)}
+                  className="bg-zinc-800 hover:bg-zinc-700 border-zinc-700"
                 >
-                  Vídeo {index + 1}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-<TestimonialsSection/>
-      {/* Mentor Section */}
-      <section id="mentor" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="/images/roberto-navarro.webp"
-                  alt="Roberto Navarro"
-                  width={500}
-                  height={440}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                Conheça seu mentor: <span className="text-yellow-400">Roberto Navarro</span>
-              </h2>
-              <p className="text-zinc-300 mb-4">
-                De lavador de vidros aos 13 anos a referência nacional em inteligência financeira.
-              </p>
-              <p className="text-zinc-300 mb-4">
-                Roberto Navarro construiu uma trajetória de superação e transformação. Ele nasceu em um ambiente de escassez, onde o dinheiro era sempre um obstáculo — até que decidiu mudar sua realidade e a da sua família.
-              </p>
-              <p className="text-zinc-300 mb-4">
-                Criador do conceito de Coach Financeiro no Brasil, Roberto já impactou mais de 130 mil pessoas com sua metodologia, que une estratégias financeiras práticas, inteligência emocional e princípios bíblicos. Para ele, a liberdade financeira é consequência de um alinhamento entre mente, propósito e ação.
-              </p>
-              <p className="text-zinc-300 mb-6">
-                Reconhecido como o criador do coaching financeiro no Brasil, Roberto é especialista em inteligência financeira, espiritual e emocional e possui vasta experiência no mundo dos negócios. Hoje, sua missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida próspera, com autonomia e visão de futuro.
-              </p>
-              <Button
-                asChild
-                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
-              >
-                <Link href="#inscricao">
-                  GARANTA SUA VAGA! <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Inscrição Section */}
-      <section id="inscricao" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 text-center">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-yellow-400">
-              Você está a um passo de mudar sua relação com o dinheiro
-            </h2>
-            <p className="text-lg mb-4 text-zinc-300">Evento presencial - Vagas limitadas</p>
-            <p className="text-md mb-8 text-zinc-300">
-              Inscreva-se e comece agora sua jornada rumo à abundância.
-            </p>
-            {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">Erro:</strong>
-                <span className="block sm:inline">{error}</span>
-              </div>
-            )}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-zinc-300">
-                  Nome Completo
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="mt-1 block w-full rounded-md border-zinc-700 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 bg-zinc-800 text-white"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-zinc-300">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-1 block w-full rounded-md border-zinc-700 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 bg-zinc-800 text-white"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-zinc-300">
-                  Telefone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  className="mt-1 block w-full rounded-md border-zinc-700 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 bg-zinc-800 text-white"
-                  required
-                />
-              </div>
-              <div>
-                <Button
-                  disabled={isSubmitting}
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
-                >
-                  {isSubmitting ? "Enviando..." : "ESTOU PRONTO PARA PROSPERAR!"}
+                  Fechar Vídeo
                 </Button>
               </div>
-            </form>
+            </div>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="absolute -top-12 right-0 text-white hover:bg-white/20"
+              onClick={() => setActiveVideoId(null)}
+              aria-label="Fechar vídeo"
+            >
+              <X className="h-6 w-6" />
+              <span className="sr-only">Fechar vídeo</span>
+            </Button>
           </div>
         </div>
-      </section>
-<Footer />
+      )}
+
+      <NotableParticipants />
+
+      <TestimonialsSection/>
+      
+     {/* Mentor Section */}
+<MentorSection />
+
+      <NewsletterSignup title="SAIBA QUANDO HAVERÁ A ENERGIA DO DINHEIRO" description="Inscreva-se para receber dicas e conteúdos exclusivos sobre finanças pessoais e investimentos." />
+
+      <Footer />
       <WhatsAppButton />
     </div>
   )

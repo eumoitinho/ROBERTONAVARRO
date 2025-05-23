@@ -13,6 +13,8 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { useClickOutside } from "@/hooks/use-click-outside"
 import { SiteHeader } from "@/components/header"
+import QuemSomosSection from "@/components/mentor"
+import { SectionBadge } from "@/components/section-badge"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -203,11 +205,11 @@ export default function HomePage() {
                 <span className="text-sm font-medium">INSTITUTO COACHING FINANCEIRO</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Transforme sua mentalidade
+                  TRANSFORME SUA MENTALIDADE
                 </span>{" "}
-                e conquiste uma nova realidade financeira
+                E CONQUISTE UMA NOVA REALIDADE FINANCEIRA
               </h1>
 
               <p className="text-lg text-zinc-300 mb-8 max-w-xl">
@@ -252,120 +254,7 @@ export default function HomePage() {
       </section>
 
 
-      <section id="quem-somos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4 animate-fade-in">
-              <span className="text-sm font-medium">QUEM SOMOS</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
-              Mais de <span className="text-yellow-400">30 anos</span> impactando vidas com inteligência e propósito
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-10 xs-gap-6 sm:gap-12 lg:gap-20 items-center">
-            <div className="relative animate-fade-in">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-0 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="/images/hero-image.webp"
-                  alt="Roberto Navarro"
-                  width={500}
-                  height={440}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-8 animate-slide-up">
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-                <p className="text-zinc-300 text-base font-semibold leading-relaxed">
-                  Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
-                </p>
-              </div>
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-                <p className="text-zinc-300 text-base font-semibold leading-relaxed">
-                  A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
-                </p>
-              </div>
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-                <p className="text-zinc-300 text-base font-semibold leading-relaxed">
-                  Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10 milhões de brasileiros e contribuir para a construção de um país rico e próspero.
-                </p>
-              </div>
-
-              {/* Seção de Estatísticas */}
-              <div className="w-full flex flex-col justify-end mt-10">
-                <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6 mb-4">
-                  {[
-                    { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
-                    { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas exclusivas de coaching" },
-                    { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros publicados" },
-                    { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos inspiradores" },
-                  ].map((stat, index) => (
-                    <div
-                      key={index}
-                      className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                        }`}
-                      style={{ transitionDelay: `${500 + index * 100}ms` }}
-                    >
-                      <div className="flex items-center gap-2 md:gap-4">
-                        <div className="bg-zinc-800 rounded-full p-2 md:p-3">{stat.icon}</div>
-                        <div>
-                          <p className="text-sm md:text-xl font-bold">{stat.value}</p>
-                          <p className="text-xs md:text-sm text-zinc-400">{stat.label}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-
-        {/* Estilos para o carrossel e vídeos */}
-        <style>{`
-    .carousel {
-      display: flex;
-      overflow: hidden;
-      width: 100%;
-    }
-    .carousel-item {
-      min-width: 100%;
-      transition: transform 0.5s ease;
-    }
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
-    }
-    .carousel {
-      animation: slide 9s infinite;
-    }
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%; /* Proporção 16:9 */
-      height: 0;
-      overflow: hidden;
-    }
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  `}</style>
-      </section>
+      
 
       {/* CSS Animations */}
       <style jsx global>{`
@@ -402,8 +291,8 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">NOSSAS FORMAÇÕES</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Formações que vão <span className="text-yellow-400">transformar sua mentalidade</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              FORMAÇÕES QUE VÃO  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"> TRANSFORMAR SUA MENTALIDADE</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender
@@ -416,7 +305,7 @@ export default function HomePage() {
             {/* LCF Mentoring */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">LCF Mentoring</h3>
+              <h3 className="text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">LCF MENTORING</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Imersão intensa em finanças, coaching de vida e estratégias práticas para você assumir o controle da sua
                 vida financeira.
@@ -436,7 +325,7 @@ export default function HomePage() {
             {/* Empreendedor Inteligente */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Empreendedor Inteligente</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">EMPREENDEDOR INTELIGENTE</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Formação exclusiva para empresários que querem escalar resultados, atrair investidores e gerir seus
                 negócios com segurança.
@@ -456,7 +345,7 @@ export default function HomePage() {
             {/* Educador Financeiro */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Educador Financeiro</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">EDUCADOR FINANCEIRO</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Transforme sua experiência em uma carreira lucrativa em apenas 90 dias e torne-se referência no ensino
                 de finanças.
@@ -476,7 +365,7 @@ export default function HomePage() {
             {/* LCF Mentoring Pro */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">LCF Mentoring Pro</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">LCF MENTORING PRO</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Transforme sua mentalidade e descubra seu propósito de vida com o programa mais completo de evolução
                 pessoal e profissional do Brasil.
@@ -496,7 +385,7 @@ export default function HomePage() {
             {/* Mentoria de Investimentos */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria de Investimentos</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">MENTORIA DE INVESTIMENTOS</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade
                 financeira.
@@ -516,7 +405,7 @@ export default function HomePage() {
             {/* Mentoria Individual */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentoria Individual</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">MENTORIA INDIVIDUAL</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Destrave seu potencial e alcance sua liberdade financeira com um acompanhamento 100% personalizado.
               </p>
@@ -534,6 +423,113 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <section id="quem-somos" className="py-12 xs:py-12 sm:py-16 md:py-20 relative">
+            {/* Background */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/images/ROBERTO_17.jpg"
+                alt="Roberto Navarro"
+                fill
+                className="object-cover w-full h-full opacity-70" // Reduced opacity for better text contrast
+                style={{
+                  objectPosition: "top",
+                }}
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+              />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/90 to-transparent md:from-black/100 md:via-black/60 md:to-transparent"></div>
+              {/* Noise Texture */}
+              <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 bg-repeat bg-[length:200px_200px]"></div>
+            </div>
+      
+            <div className="container mx-auto px-4 relative z-10">
+              {/* Heading */}
+              <div className="text-center mb-12">
+                <SectionBadge text="QUEM SOMOS" />
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
+                  MAIS DE  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">30 ANOS </span>
+                  IMPACTANDO VIDAS COM INTELIGÊNCIA E PROPÓSITO 
+                </h2>
+                <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
+                 Te guiamos na jornada de transformação financeira, emocional e espiritual. 
+                </p>
+              </div>
+      
+              {/* Content */}
+              <div className="grid md:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
+                
+      
+                {/* Text and Stats */}
+                <div className="flex flex-col gap-8">
+                  {/* Bio Text */}
+                  <div className="space-y-4 text-zinc-300 text-base md:text-lg leading-relaxed">
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/90 to-transparent rounded-full blur-3xl -z-10"></div>
+                    <div className="flex items-start gap-4">
+                      <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                      <p>
+                        Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                      <p>
+                        A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                      <p>
+                        Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10 milhões de brasileiros e contribuir para a construção de um país rico e próspero.
+                      </p>
+                    </div>
+                  </div>
+      
+                  {/* Statistics Badges */}
+                  <div className="w-full flex flex-col justify-end mt-8">
+                    <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
+                      {[
+                        { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
+                        { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas Exclusivas" },
+                        { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros Publicados" },
+                        { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos Inspiradores" },
+                      ].map((stat, index) => (
+                        <div
+                          key={index}
+                          className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-500 hover:border-yellow-500/50 hover:-translate-y-1 opacity-0 translate-y-12 animate-[fadeInUp_0.5s_ease-out_forwards]"
+                          style={{ animationDelay: `${500 + index * 100}ms` }}
+                        >
+                          <div className="flex items-center gap-2 md:gap-4">
+                            <div className="bg-zinc-800 rounded-full p-2 md:p-3">{stat.icon}</div>
+                            <div>
+                              <p className="text-sm md:text-xl font-bold text-white">{stat.value}</p>
+                              <p className="text-xs md:text-sm text-zinc-400">{stat.label}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            {/* Animation Styles */}
+            <style>{`
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(12px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `}</style>
+          </section>
       {/* Eventos Section - Block 4 */}
       <section id="eventos" className="py-12 xs-py-12 sm:py-16 md:py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -542,8 +538,8 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">EVENTOS PRESENCIAIS</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Eventos presenciais que geram <span className="text-yellow-400">mudanças reais</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              EVENTOS PRESENCIAIS QUE GERAM <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"> MUDANÇAS REAIS</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Nossos eventos são imersões poderosas criadas para desbloquear crenças, despertar seu potencial e colocar
@@ -555,7 +551,7 @@ export default function HomePage() {
             {/* Crenças da Riqueza */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Crenças da Riqueza</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">CRENÇAS DA RIQUEZA</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Supere bloqueios mentais e eleve seu padrão financeiro e pessoal.
               </p>
@@ -574,7 +570,7 @@ export default function HomePage() {
             {/* Segredos da Mente Milionária */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Segredos da Mente Milionária</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">SEGREDOS DA MENTE MILIONÁRIA</h3>
               <p className="text-zinc-300 mb-6 flex-1">Reprograme sua mentalidade e ative seu potencial milionário.</p>
               <div className="mt-auto">
                 <Button
@@ -591,7 +587,7 @@ export default function HomePage() {
             {/* Escalador de Negócios */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Escalador de Negócios</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">ESCALADOR DE NEGÓCIOS</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Aplique estratégias para escalar vendas, lucros e conquistar liberdade empresarial.
               </p>
@@ -610,7 +606,7 @@ export default function HomePage() {
             {/* Energia do Dinheiro */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Energia do Dinheiro</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">ENERGIA DO DINHEIRO</h3>
               <p className="text-zinc-300 mb-6 flex-1">
                 Descubra como alinhar sua energia com a frequência da prosperidade.
               </p>
@@ -665,25 +661,25 @@ export default function HomePage() {
 
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Livros para quem quer
+                  LIVROS PARA QUEM QUER
                 </span>{" "}
-                prosperar de verdade
+                PROSPERAR DE VERDADE
               </h2>
 
               <div className="space-y-6 mb-8">
-                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                
                   <p className="text-zinc-300">
                     Conheça os best-sellers de Roberto Navarro, que já impactaram milhares de leitores com estratégias
                     práticas e transformadoras.
                   </p>
-                </div>
+               
 
-                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-1">
+                
                   <p className="text-zinc-300">
-                    Cada página traz ensinamentos que moldaram a jornada de um multimilionário — agora disponíveis para
+                    Cada página traz ensinamentos que moldaram a jornada de um multimilionário, agora disponíveis para
                     você.
                   </p>
-                </div>
+              
               </div>
 
               <Button
@@ -707,8 +703,8 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">TREINAMENTOS DIGITAIS</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Aprenda no seu tempo com nossos <span className="text-yellow-400">treinamentos digitais</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+             APRENDA NO SEU TEMPO COM NOSSOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">TREINAMENTOS DIGITAIS</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Conheça nossos cursos gravados e descubra como eliminar dívidas, organizar sua vida financeira e construir
@@ -741,8 +737,8 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">CONTATO</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Entre em <span className="text-yellow-400">contato</span> conosco
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              ENTRE EM <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"> CONTATO</span> CONOSCO
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Estamos à disposição para ajudar você a transformar sua vida financeira. Entre em contato conosco e comece
@@ -753,8 +749,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xs-gap-6 sm:gap-12 max-w-5xl mx-auto">
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 xs-p-4 sm:p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <h3 className="text-xl xs-text-lg sm:text-2xl font-bold mb-4 xs-mb-4 sm:mb-6 text-yellow-400">
-                Informações de Contato
+              <h3 className="text-xl xs-text-lg sm:text-2xl font-bold mb-4 xs-mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                INFORMAÇÕES DE CONTATO
               </h3>
               <div className="space-y-3 xs-gap-3 sm:space-y-4">
                 <p className="text-sm xs-text-sm sm:text-base text-zinc-300">
@@ -777,8 +773,8 @@ export default function HomePage() {
 
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 xs-p-4 sm:p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <h3 className="text-xl xs-text-lg sm:text-2xl font-bold mb-4 xs-mb-4 sm:mb-6 text-yellow-400">
-                Envie uma Mensagem
+              <h3 className="text-xl xs-text-lg sm:text-2xl font-bold mb-4 xs-mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                ENVIE UMA MENSAGEM
               </h3>
               <form className="space-y-4 xs-gap-3 sm:space-y-4">
                 <div>
@@ -812,7 +808,7 @@ export default function HomePage() {
                   ></textarea>
                 </div>
                 <Button className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3">
-                  Enviar Mensagem
+                  ENVIAR MENSAGEM
                 </Button>
               </form>
             </div>

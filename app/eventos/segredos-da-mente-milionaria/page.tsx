@@ -25,6 +25,7 @@ import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { NewsletterSignup } from "@/components/newsletter-signup"
 import { SiteHeader } from "@/components/header"
+import NotableParticipants from "@/components/notable-persons"
 
 export default function SegredosDaMenteMilionaria() {
   const [isVisible, setIsVisible] = useState(false)
@@ -126,8 +127,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">BENEFÍCIOS DO EVENTO</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Por que participar do <span className="text-yellow-400">Segredos da Mente Milionária</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            POR QUE PARTICIPAR DO <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">SEGREDOS DA MENTE MILIONÁRIA</span>
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -184,8 +185,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">O QUE VOCÊ VAI DESCOBRIR</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              O passo a passo para <span className="text-yellow-400">despertar sua mente milionária</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+             O PASSO A PASSO PARA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">DESPERTAR SUA MENTE MILIONÁRIA</span>
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -219,55 +220,7 @@ const navigationItems = [
         </div>
       </section>
 
-      {/* Depoimentos Section */}
-      <section id="depoimentos" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">DEPOIMENTOS DE ALUNOS</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Quem já transformou sua vida com a <span className="text-yellow-400">Imersão</span>
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                name: "Alfredo Soares",
-                role: "Autoridade em vendas e autor best-seller",
-                image: "/images/alfredo-soares.webp",
-              },
-              {
-                name: "Tiago Brunet",
-                role: "Referência em treinamento de líderes e espiritualidade",
-                image: "/images/tiago-brunet.webp",
-              },
-              {
-                name: "Flávio Prado",
-                role: "Jornalista esportivo que já cobriu 10 Copas do Mundo",
-                image: "/images/flavio-prado.webp",
-              },
-              {
-                name: "Pyong Lee",
-                role: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
-                image: "/images/pyong-lee.webp",
-              },
-            ].map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-8 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2 text-center"
-              >
-                <div className="relative w-16 h-16 rounded-full overflow-hidden mx-auto mb-4">
-                  <Image src={testimonial.image} alt={testimonial.name} fill className="object-cover" />
-                </div>
-                <p className="font-bold text-yellow-400">{testimonial.name}</p>
-                <p className="text-sm text-zinc-400">{testimonial.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <NotableParticipants />
       <TestimonialsSection />
 
          {/* Newsletter Section */}
@@ -275,8 +228,8 @@ const navigationItems = [
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <NewsletterSignup
-            variant="hero"
-            title="Fique por dentro dos próximos eventos"
+        
+            title="FIQUE POR DENTRO DO PROXIMO EVENTO"
             description="Cadastre-se para receber em primeira mão informações sobre novos eventos e conteúdos exclusivos."
           />
         </div>

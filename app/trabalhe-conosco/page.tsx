@@ -52,8 +52,8 @@ export default function TrabalheConosco() {
         <div className="container mt-12 mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Faça parte do nosso <span className="text-yellow-400">time</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              FAÇA PARTE DO NOSSO <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">TIME</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Estamos sempre em busca de talentos que compartilham nossa missão de transformar vidas financeiras. Envie

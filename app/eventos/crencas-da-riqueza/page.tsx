@@ -101,32 +101,6 @@ const intelligenceTypes = [
   },
 ]
 
-const notableParticipants = [
-  {
-    name: "Alfredo Soares",
-    role: "Autoridade em vendas e autor best-seller",
-    image: "/professional-businessman-headshot.png",
-    testimonial: "Uma experiência transformadora que mudou minha visão sobre dinheiro e negócios.",
-  },
-  {
-    name: "Tiago Brunet",
-    role: "Referência em treinamento de líderes e espiritualidade",
-    image: "/professional-man-headshot.png",
-    testimonial: "Roberto tem um dom único de unir princípios espirituais e financeiros de forma prática.",
-  },
-  {
-    name: "Flávio Prado",
-    role: "Jornalista esportivo que já cobriu 10 Copas do Mundo",
-    image: "/sports-journalist-headshot.png",
-    testimonial: "Aprendi mais sobre finanças em um dia do que em anos de leituras e cursos.",
-  },
-  {
-    name: "Pyong Lee",
-    role: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
-    image: "/asian-influencer-headshot.png",
-    testimonial: "Uma metodologia que realmente funciona e transforma a mentalidade sobre dinheiro.",
-  },
-]
 
 const eventHighlights = [
   {
@@ -151,47 +125,7 @@ const eventHighlights = [
   },
 ]
 
-// Dados dos vídeos de transformação
-const transformationVideos = [
-  {
-    id: "4aYDKJQBnRw",
-    title: "Como superei minhas dívidas em 6 meses",
-    person: "Carlos Silva",
-    thumbnail: "/images/video-thumb-1.png",
-    description:
-      "De R$45 mil em dívidas a investidor em apenas 6 meses aplicando os princípios das Crenças da Riqueza.",
-  },
-  {
-    id: "yTELcwYTsnU",
-    title: "Minha jornada de funcionário a empresário",
-    person: "Mariana Costa",
-    thumbnail: "/images/video-thumb-2.png",
-    description:
-      "Abandonei o medo e a zona de conforto para empreender e hoje tenho liberdade financeira e geográfica.",
-  },
-  {
-    id: "W6rBTJKeJ4w",
-    title: "Como multipliquei meu patrimônio",
-    person: "Roberto Mendes",
-    thumbnail: "/images/video-thumb-3.png",
-    description:
-      "Aprendi a fazer o dinheiro trabalhar para mim e multipliquei meu patrimônio em 3x em apenas 18 meses.",
-  },
-  {
-    id: "dQw4w9WgXcQ",
-    title: "Da falência ao sucesso financeiro",
-    person: "Ana Paula Oliveira",
-    thumbnail: "/images/video-thumb-4.png",
-    description: "Perdi tudo em 2020, mas reconstruí minha vida financeira com os princípios que aprendi neste evento.",
-  },
-  {
-    id: "jNQXAC9IVRw",
-    title: "Como saí das dívidas e comecei a investir",
-    person: "João Pereira",
-    thumbnail: "/images/video-thumb-5.png",
-    description: "De endividado a investidor em 12 meses, aplicando os conceitos de inteligência financeira.",
-  },
-]
+
 
 export default function CrencasDaRiquezaPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -364,133 +298,7 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </section>
 
-      {/* Video Transformation Section */}
-      <section ref={videoRef} id="video-section" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/90 to-zinc-950/95"></div>
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <SectionBadge text="TRANSFORMAÇÃO REAL" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              VEJA COMO NOSSOS <span className="text-yellow-400">ALUNOS TRANSFORMARAM</span> SUAS VIDAS FINANCEIRAS
-            </h2>
-            <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed mb-12">
-              Histórias reais de pessoas que aplicaram os princípios das Crenças da Riqueza e mudaram completamente sua
-              relação com o dinheiro
-            </p>
-          </div>
-
-          <div className="relative">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent>
-                {transformationVideos.map((video, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                    <div className="h-full">
-                      <div className="bg-zinc-900/40 backdrop-blur-lg border border-zinc-700/30 rounded-3xl overflow-hidden hover:border-yellow-400/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-400/10 h-full flex flex-col">
-                        <div className="relative aspect-video cursor-pointer group" onClick={() => playVideo(video.id)}>
-                          <NextImage
-                            src={video.thumbnail}
-                            alt={video.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/30 transition-all">
-                            <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center animate-pulse shadow-lg shadow-yellow-400/50">
-                              <Play className="h-8 w-8 text-black ml-1" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="p-6 flex flex-col flex-grow">
-                          <div className="mb-2">
-                            <span className="bg-yellow-400/20 text-yellow-400 text-xs font-medium px-2.5 py-1 rounded-full">
-                              História de Sucesso
-                            </span>
-                          </div>
-                          <h3 className="text-xl font-bold mb-2 text-white">{video.title}</h3>
-                          <p className="text-yellow-400 text-sm mb-3">{video.person}</p>
-                          <p className="text-zinc-300 text-sm leading-relaxed flex-grow">{video.description}</p>
-                          <Button
-                            variant="ghost"
-                            className="mt-4 text-yellow-400 hover:text-yellow-500 hover:bg-yellow-400/10 p-0 flex items-center justify-start"
-                            onClick={() => playVideo(video.id)}
-                          >
-                            Assistir história completa
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="hidden md:block">
-                <CarouselPrevious className="left-0 -translate-x-1/2 bg-zinc-900/80 border-zinc-700/50 hover:bg-zinc-800 text-white" />
-                <CarouselNext className="right-0 translate-x-1/2 bg-zinc-900/80 border-zinc-700/50 hover:bg-zinc-800 text-white" />
-              </div>
-            </Carousel>
-          </div>
-
-          <div className="mt-16 grid md:grid-cols-3 gap-8">
-            <div className="bg-zinc-900/40 backdrop-blur-lg border border-zinc-700/30 rounded-2xl p-6 hover:border-yellow-400/40 transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-400/20 rounded-full p-2 flex-shrink-0">
-                  <Star className="h-5 w-5 text-yellow-400" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-yellow-400 mb-2">Resultados comprovados</h3>
-                  <p className="text-zinc-300 leading-relaxed">
-                    Mais de 130 mil pessoas já passaram por nossas formações e transformaram sua relação com o dinheiro.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-zinc-900/40 backdrop-blur-lg border border-zinc-700/30 rounded-2xl p-6 hover:border-yellow-400/40 transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-400/20 rounded-full p-2 flex-shrink-0">
-                  <Zap className="h-5 w-5 text-yellow-400" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-yellow-400 mb-2">Metodologia exclusiva</h3>
-                  <p className="text-zinc-300 leading-relaxed">
-                    Uma abordagem única que integra inteligência financeira, emocional, espiritual e empresarial.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-zinc-900/40 backdrop-blur-lg border border-zinc-700/30 rounded-2xl p-6 hover:border-yellow-400/40 transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-start gap-4">
-                <div className="bg-yellow-400/20 rounded-full p-2 flex-shrink-0">
-                  <Brain className="h-5 w-5 text-yellow-400" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-yellow-400 mb-2">Transformação mental</h3>
-                  <p className="text-zinc-300 leading-relaxed">
-                    Reprogramação de crenças limitantes e desenvolvimento de uma mentalidade de prosperidade.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <Button
-              asChild
-              className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-full px-8 py-4 text-base transition-all duration-300 shadow-lg hover:shadow-yellow-400/25"
-            >
-              <a href="#form">
-                QUERO TRANSFORMAR MINHA VIDA FINANCEIRA! <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
+            <TransformationVideos/>
 
       {/* What You'll Learn Section */}
       <section className="relative">
@@ -526,47 +334,7 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </section>
 
-      {/* Notable Participants Section */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-900/95"></div>
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <SectionBadge text="PARTICIPANTES" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              JÁ PASSARAM POR <span className="text-yellow-400">NOSSOS TREINAMENTOS</span>
-            </h2>
-            <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
-              Conheça algumas personalidades que já participaram dos nossos eventos
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {notableParticipants.map((person, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/40 backdrop-blur-lg border border-zinc-700/30 rounded-3xl overflow-hidden hover:border-yellow-400/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-yellow-400/10 group"
-              >
-                <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <div className="p-6">
-                  <div className="relative h-48 mb-6 overflow-hidden rounded-2xl">
-                    <NextImage
-                      src={person.image || "/placeholder.svg"}
-                      alt={person.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-yellow-400">{person.name}</h3>
-                  <p className="text-zinc-300 mb-4 leading-relaxed">{person.role}</p>
-                  <div className="bg-zinc-800/40 rounded-2xl p-4 border border-zinc-700/30">
-                    <p className="text-sm text-zinc-300 italic leading-relaxed">"{person.testimonial}"</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <NotableParticipants />
 
       {/* Testimonials Section */}
       <section id="depoimentos" className="py-24 relative">
@@ -579,8 +347,15 @@ export default function CrencasDaRiquezaPage() {
       <section id="mentores" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/95 to-zinc-900/95"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
+
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 -left-24 w-96 h-96 bg-yellow-400/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 -right-24 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <SectionBadge text="MENTORES" />
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
               CONHEÇA SEUS <span className="text-yellow-400">MENTORES</span>
@@ -589,93 +364,156 @@ export default function CrencasDaRiquezaPage() {
               Especialistas que vão guiar sua jornada de transformação
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-zinc-900/40 backdrop-blur-lg border border-zinc-700/30 rounded-3xl overflow-hidden hover:border-yellow-400/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-yellow-400/10">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-8">
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6">
-                  <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-yellow-400">
-                    <NextImage
-                      src="/professional-businessman-headshot.png"
-                      alt="Roberto Navarro"
-                      fill
-                      className="object-cover"
-                    />
+
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {/* Roberto Navarro */}
+            <div className="group relative">
+              {/* Glow effect */}
+              
+              <div className="relative bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/50 rounded-3xl overflow-hidden transition-all duration-500 group-hover:translate-y-[-8px] group-hover:shadow-2xl group-hover:shadow-yellow-400/10">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(250,204,21,0.12)_0%,_rgba(39,39,42,0)_60%)]"></div>
+
+                <div className="p-8">
+                  <div className="flex flex-col md:flex-row gap-8 mb-8">
+                    <div className="relative">
+                      {/* Decorative elements */}
+                     
+                      <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-yellow-400/80 shadow-lg shadow-yellow-400/20">
+                        <NextImage
+                          src="/images/ROBERTO_4.JPG"
+                          alt="Roberto Navarro"
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+
+                    
+                  
+                    </div>
+
+                    <div className="flex-1">
+                      <div className="inline-block px-3 py-1 mb-3 text-xs font-medium text-yellow-400 bg-yellow-400/10 rounded-full">
+                        Fundador do ICF
+                      </div>
+                      <h3 className="text-3xl font-bold mb-2 text-white group-hover:text-yellow-400 transition-colors">
+                        ROBERTO NAVARRO
+                      </h3>
+                      <p className="text-zinc-300 italic mb-4 leading-relaxed">
+                        De lavador de vidros aos 13 anos a referência nacional em inteligência financeira.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2 text-yellow-400">ROBERTO NAVARRO</h3>
-                    <p className="text-zinc-300 italic mb-4 leading-relaxed">
-                      De lavador de vidros aos 13 anos a referência nacional em inteligência financeira.
-                    </p>
+
+                  <div className="space-y-4 text-zinc-300">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-yellow-400">
+                        <CheckCircle className="h-5 w-5" />
+                      </div>
+                      <p className="leading-relaxed">
+                        Criador do conceito de Coach Financeiro no Brasil, Roberto já impactou mais de 130 mil pessoas
+                        com sua metodologia, que une estratégias financeiras práticas, inteligência emocional e
+                        princípios bíblicos.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-yellow-400">
+                        <CheckCircle className="h-5 w-5" />
+                      </div>
+                      <p className="leading-relaxed">
+                        Especialista em inteligência financeira, espiritual e emocional e possui vasta experiência no
+                        mundo dos negócios.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-yellow-400">
+                        <CheckCircle className="h-5 w-5" />
+                      </div>
+                      <p className="leading-relaxed">
+                        Sua missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida próspera, com
+                        autonomia e visão de futuro.
+                      </p>
+                    </div>
                   </div>
+
+                  
                 </div>
-                <div className="space-y-4 text-zinc-300">
-                  <p className="leading-relaxed">
-                    Roberto Navarro construiu uma trajetória de superação e transformação. Ele nasceu em um ambiente de
-                    escassez, onde o dinheiro era sempre um obstáculo — até que decidiu mudar sua realidade e a da sua
-                    família.
-                  </p>
-                  <p className="leading-relaxed">
-                    Criador do conceito de Coach Financeiro no Brasil, Roberto já impactou mais de 130 mil pessoas com
-                    sua metodologia, que une estratégias financeiras práticas, inteligência emocional e princípios
-                    bíblicos. Para ele, a liberdade financeira é consequência de um alinhamento entre mente, propósito e
-                    ação.
-                  </p>
-                  <p className="leading-relaxed">
-                    Reconhecido como o criador do coaching financeiro no Brasil, Roberto é especialista em inteligência
-                    financeira, espiritual e emocional e possui vasta experiência no mundo dos negócios. Hoje, sua
-                    missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida próspera, com autonomia e
-                    visão de futuro.
-                  </p>
-                </div>
-                <Button
-                  asChild
-                  className="mt-8 w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-2xl py-4 transition-all duration-300 shadow-lg hover:shadow-yellow-400/25"
-                >
-                  <a href="#form">GARANTA SUA VAGA!</a>
-                </Button>
               </div>
             </div>
-            <div className="bg-zinc-900/40 backdrop-blur-lg border border-zinc-700/30 rounded-3xl overflow-hidden hover:border-yellow-400/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-yellow-400/10">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="p-8">
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6">
-                  <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-yellow-400">
-                    <NextImage
-                      src="/professional-woman-headshot.png"
-                      alt="Raíssa Navarro"
-                      fill
-                      className="object-cover"
-                    />
+
+            {/* Raíssa Navarro */}
+            <div className="group relative">
+              {/* Glow effect */}
+              
+
+              <div className="relative bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/50 rounded-3xl overflow-hidden transition-all duration-500 group-hover:translate-y-[-8px] group-hover:shadow-2xl group-hover:shadow-yellow-400/10">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(250,204,21,0.12)_0%,_rgba(39,39,42,0)_60%)]"></div>
+
+                <div className="p-8">
+                  <div className="flex flex-col md:flex-row gap-8 mb-8">
+                    <div className="relative">
+                      {/* Decorative elements */}
+                    
+                      <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-yellow-400/80 shadow-lg shadow-yellow-400/20">
+                        <NextImage
+                          src="/images/RAISSA.png"
+                          alt="Raíssa Navarro"
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+
+                      
+                    </div>
+
+                    <div className="flex-1">
+                      <div className="inline-block px-3 py-1 mb-3 text-xs font-medium text-yellow-400 bg-yellow-400/10 rounded-full">
+                        Especialista em PNL
+                      </div>
+                      <h3 className="text-3xl font-bold mb-2 text-white group-hover:text-yellow-400 transition-colors">
+                        RAÍSSA NAVARRO
+                      </h3>
+                      <p className="text-zinc-300 italic mb-4 leading-relaxed">
+                        Especialista em comportamento humano e referência nacional em Programação Neurolinguística
+                        (PNL).
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2 text-yellow-400">RAÍSSA NAVARRO</h3>
-                    <p className="text-zinc-300 italic mb-4 leading-relaxed">
-                      Especialista em comportamento humano e referência nacional em Programação Neurolinguística (PNL).
-                    </p>
+
+                  <div className="space-y-4 text-zinc-300">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-yellow-400">
+                        <CheckCircle className="h-5 w-5" />
+                      </div>
+                      <p className="leading-relaxed">
+                        Membro da The Society of NLP, Raíssa Navarro é uma das poucas profissionais brasileiras
+                        autorizadas a ensinar PNL diretamente pela linha do Dr. Richard Bandler, cocriador da técnica.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-yellow-400">
+                        <CheckCircle className="h-5 w-5" />
+                      </div>
+                      <p className="leading-relaxed">
+                        Foi selecionada para compor a equipe de apoio do próprio Tony Robbins, o maior nome do coaching
+                        no mundo.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-yellow-400">
+                        <CheckCircle className="h-5 w-5" />
+                      </div>
+                      <p className="leading-relaxed">
+                        Raissa conduz seus alunos por um caminho de autoconhecimento, consciência e libertação
+                        emocional, sempre com bom humor e energia elevada.
+                      </p>
+                    </div>
                   </div>
+
                 </div>
-                <div className="space-y-4 text-zinc-300">
-                  <p className="leading-relaxed">
-                    Membro da The Society of NLP, Raíssa Navarro é uma das poucas profissionais brasileiras autorizadas
-                    a ensinar PNL diretamente pela linha do Dr. Richard Bandler, cocriador da técnica.
-                  </p>
-                  <p className="leading-relaxed">
-                    Foi selecionada para compor a equipe de apoio do próprio Tony Robbins, o maior nome do coaching no
-                    mundo e acumula mais de 10 anos em estudos sobre PNL e comportamento humano.
-                  </p>
-                  <p className="leading-relaxed">
-                    Raissa conduz seus alunos por um caminho de autoconhecimento, consciência e libertação emocional,
-                    sempre com bom humor e energia elevada. Seus ensinamentos são uma chave para quem quer vencer o
-                    medo, a procrastinação e o sentimento de incapacidade.
-                  </p>
-                </div>
-                <Button
-                  asChild
-                  className="mt-8 w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-2xl py-4 transition-all duration-300 shadow-lg hover:shadow-yellow-400/25"
-                >
-                  <a href="#form">GARANTA SUA VAGA!</a>
-                </Button>
               </div>
             </div>
           </div>
@@ -840,7 +678,8 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </section>
 
-     
+      
+
       <Footer />
       <WhatsAppButton />
     </div>
@@ -852,3 +691,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Award, Brain, Compass, FileText, Move, Target, Unlock, Zap } from "lucide-react"
 import { SiteHeader } from "@/components/header"
 import { X } from "lucide-react"
+import { CheckCircle } from "lucide-react"
+import NotableParticipants from "@/components/notable-persons"
+import TransformationVideos from "@/components/transformation-videos"
+

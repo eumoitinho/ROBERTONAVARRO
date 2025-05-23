@@ -9,7 +9,7 @@ interface NewsletterSignupProps {
   description: string;
 }
 
-export function NewsletterSignup({ title, description }: NewsletterSignupProps) {
+export function NewsletterFormacoes({ title, description }: NewsletterSignupProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");

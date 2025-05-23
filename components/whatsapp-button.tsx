@@ -1,33 +1,32 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState, useEffect } from "react"
-import { X } from "lucide-react"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
 
 interface WhatsappButtonProps {
-  message?: string
-  className?: string
-  children?: React.ReactNode
+  message?: string;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 export default function WhatsappButton({ message, className, children }: WhatsappButtonProps) {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // Mostrar o botão após 3 segundos
     const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 3000)
+      setIsVisible(true);
+    }, 3000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message || "")}`
+  const whatsappUrl = `https://wa.me/5512997659057?text=${encodeURIComponent(message || "")}`;
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
@@ -42,9 +41,16 @@ export default function WhatsappButton({ message, className, children }: Whatsap
           <p className="text-xs mb-3">
             Olá! Estou aqui para tirar suas dúvidas sobre nossas mentorias. Como posso te ajudar hoje?
           </p>
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={className}>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`relative inline-block px-4 py-2 text-white font-semibold rounded-lg bg-green-500 hover:bg-green-600 transition-all duration-300 ${className}`}
+          >
+            <span className="absolute inset-0 bg-green-600 rounded-lg -z-10"></span>
             {children || "Fale conosco no WhatsApp"}
           </a>
+          
         </div>
       )}
 
@@ -70,5 +76,5 @@ export default function WhatsappButton({ message, className, children }: Whatsap
         )}
       </button>
     </div>
-  )
+  );
 }

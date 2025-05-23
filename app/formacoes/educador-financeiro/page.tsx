@@ -32,6 +32,8 @@ import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { NewsletterSignup } from "@/components/newsletter-signup"
 import { SiteHeader } from "@/components/header"
+import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import QuemSomosSection from "@/components/mentor"
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -430,130 +432,71 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">OPORTUNIDADE EXCLUSIVA</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              SEJA UM <span className="text-yellow-400">TREINADOR LICENCIADO</span> DO INSTITUTO COACHING FINANCEIRO
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              SEJA UM <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">TREINADOR LICENCIADO</span> DO INSTITUTO COACHING FINANCEIRO
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Além de se formar como Educador Financeiro, você poderá atuar como treinador licenciado dos cursos
               oficiais do Instituto Coaching Financeiro (ICF).
             </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 mb-16">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <p className="text-zinc-300 mb-6">
+          
+            <p className="text-zinc-300 max-w-3xl mx-auto">
               Ao concluir a formação, você estará apto a revender treinamentos selecionados do ICF, utilizando o
               material didático oficial e emitindo certificados com a sua assinatura, reconhecidos diretamente pelo
               instituto. Ou seja: você já sai com um modelo de negócio pronto para gerar renda.
             </p>
-            <h3 className="text-xl font-bold mb-4 text-yellow-400">Confira os treinamentos disponíveis:</h3>
+            
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Livre de Dívidas",
-                description:
-                  "Estratégias práticas para negociação de dívidas e controle financeiro, com metodologia validada e conteúdo gravado. Uma base essencial para suas futuras aulas.",
-              },
-              {
-                title: "Investimentos Inteligentes",
-                description:
-                  "Curso introdutório e prático sobre bolsa de valores e renda fixa. Ideal para quem quer começar a investir com segurança e repassar seus conhecimentos a outras pessoas.",
-              },
-              {
-                title: "Transformação Financeira",
-                description:
-                  "Formação completa que aborda propósito com o dinheiro, liberdade financeira, planejamento de curto e longo prazo e criação de múltiplas fontes de renda.",
-              },
-            ].map((course, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <div className="p-6">
-                  <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
-                    <Image
-                      src={`/financial-education-course.png?key=5flil&key=5yilk&height=300&width=400&query=financial education course ${course.title}`}
-                      alt={course.title}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-yellow-400">{course.title}</h3>
-                  <p className="text-zinc-300 mb-6">{course.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+  {[
+    {
+      title: "LIVRE DE DÍVIDAS",
+      description:
+        "Estratégias práticas para negociação de dívidas e controle financeiro, com metodologia validada e conteúdo gravado. Uma base essencial para suas futuras aulas.",
+      image: "/images/DIVIDAS.jpg", // Caminho da imagem específica
+    },
+    {
+      title: "INVESTIMENTOS INTELIGENTES",
+      description:
+        "Curso introdutório e prático sobre bolsa de valores e renda fixa. Ideal para quem quer começar a investir com segurança e repassar seus conhecimentos a outras pessoas.",
+      image: "/images/INVESTIMENTO.jpg", // Caminho da imagem específica
+    },
+    {
+      title: "TRANSFORMAÇÃO FINANCEIRA",
+      description:
+        "Formação completa que aborda propósito com o dinheiro, liberdade financeira, planejamento de curto e longo prazo e criação de múltiplas fontes de renda.",
+      image: "/images/REALIZAR.jpg", // Caminho da imagem específica
+    },
+  ].map((course, index) => (
+    <div
+      key={index}
+      className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+    >
+      <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+      <div className="p-6">
+        <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
+          <Image
+            src={course.image} // Usa a imagem específica do curso
+            alt={course.title}
+            fill
+            className="object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+        <h3 className="text-xl font-bold mb-2 text-yellow-400">{course.title}</h3>
+        <p className="text-zinc-300 mb-6">{course.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
-      {/* Mentor Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">SEU MENTOR</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              CONHEÇA SEU <span className="text-yellow-400">MENTOR</span>
-            </h2>
-          </div>
+      <QuemSomosSection />
 
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-                <Image
-                  src="/images/roberto.webp"
-                  alt="Roberto Navarro"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
+      <TestimonialsSection />
 
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-yellow-400">Roberto Navarro</h3>
-              <div className="space-y-4 text-zinc-300">
-                <p>
-                  Roberto Navarro é um exemplo de superação e transformação. Começou sua trajetória profissional lavando
-                  vidros de carros aos 13 anos e, com determinação, construiu um caminho até se tornar multimilionário
-                  em menos de sete anos.
-                </p>
-                <p>
-                  Atualmente, é reconhecido como o maior Educador Financeiro do Brasil e criador do Coach Financeiro no
-                  país. Sua metodologia exclusiva combina estratégias de educação financeira, inteligência emocional e
-                  princípios bíblicos, proporcionando resultados reais para quem busca sair das dívidas, construir
-                  riqueza e alcançar liberdade. Ao longo de sua trajetória, já impactou mais de 13 mil alunos no Brasil
-                  e no mundo.
-                </p>
-                <p>
-                  Além de mentor e empreendedor, é autor de best-sellers e especialista em inteligência espiritual e
-                  emocional. Hoje, sua missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida
-                  próspera, com autonomia e visão de futuro.
-                </p>
-              </div>
 
-              <Button
-                className="cta-hover mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
-                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <TestimonialsSection/>
-
-      
       {/* Guarantees Section */}
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -562,8 +505,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">GARANTIAS</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              INVESTIMENTO <span className="text-yellow-400">SEGURO</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              INVESTIMENTO <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">SEGURO</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Oferecemos garantias que demonstram nossa confiança na eficácia do método.
@@ -606,116 +549,7 @@ const navigationItems = [
         </div>
       </section>
 
-      {/* Registration Section */}
-      <section id="inscricao" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">INSCRIÇÃO</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              ÚLTIMAS VAGAS: <span className="text-yellow-400">VOCÊ NASCEU PARA PROSPERAR</span>
-            </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o
-              primeiro passo rumo à liberdade financeira.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 relative overflow-hidden hover:border-yellow-500/50 transition-all duration-300">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            {error && (
-              <div
-                className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-                role="alert"
-              >
-                <strong className="font-bold">Erro:</strong>
-                <span className="block sm:inline">{error}</span>
-              </div>
-            )}
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Nome completo
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="Seu nome completo"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="seu@email.com"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                    Telefone (WhatsApp)
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="(00) 00000-0000"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="city" className="block text-sm font-medium mb-2">
-                    Cidade/Estado
-                  </label>
-                  <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="Sua cidade/estado"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Por que você quer se tornar um Educador Financeiro?
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  name="message"
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                  placeholder="Conte-nos um pouco sobre sua motivação..."
-                ></textarea>
-              </div>
-              <Button
-                className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Enviando..." : "QUERO SER UM EDUCADOR FINANCEIRO!"}
-              </Button>
-              <p className="text-xs text-zinc-400 text-center">
-                Ao enviar este formulário, você concorda com nossa política de privacidade e termos de uso.
-              </p>
-            </form>
-          </div>
-        </div>
-      </section>
+      <NewsletterFormacoes title="ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR" description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira."/>
 
       {/* FAQ Section */}
       <section className="py-20 relative">
@@ -725,8 +559,8 @@ const navigationItems = [
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">PERGUNTAS FREQUENTES</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              DÚVIDAS <span className="text-yellow-400">COMUNS</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              DÚVIDAS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">COMUNS</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Encontre respostas para as perguntas mais frequentes sobre a formação de Educador Financeiro.

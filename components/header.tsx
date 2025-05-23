@@ -114,11 +114,11 @@ const navigationItemsDefault = [
     },
     {
         title: "Sobre",
-        href: "/sobre",
+        href: "#quem-somos",
     },
     {
         title: "Contato",
-        href: "/contato",
+        href: "#contato",
     },
 
 ]

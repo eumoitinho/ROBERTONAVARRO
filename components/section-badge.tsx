@@ -10,11 +10,11 @@ export function SectionBadge({ text, className }: SectionBadgeProps) {
     <div className="flex justify-center mb-6">
       <div
         className={cn(
-          "inline-flex items-center justify-center px-4 py-1.5 rounded-full",
-          "bg-gradient-to-r from-yellow-500/10 to-amber-600/10",
-          "border border-yellow-500/30 backdrop-blur-sm",
-          "text-xs font-medium tracking-wider uppercase text-yellow-400",
-          "transform transition-all duration-300 hover:scale-105 hover:border-yellow-500/50",
+          "inline-flex items-center justify-center rounded-full py-2 px-4 mb-4",
+          "bg-gradient-to-r from-zinc-800/50 to-zinc-700/50",
+          "border border-zinc-500/30 backdrop-blur-sm",
+          "text-sm font-medium tracking-wider uppercase text-white",
+          "transform transition-all duration-300 hover:scale-105 hover:border-zinc-500/50",
           className,
         )}
       >
