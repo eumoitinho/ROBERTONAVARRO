@@ -39,7 +39,7 @@ export default function WhatsappButton({ message, className, children }: Whatsap
     const message = encodeURIComponent(
       `Olá! Gostaria de saber mais sobre os eventos do Roberto Navarro.`
     );
-    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+    window.open(`https://wa.me/5512997659057?text=${message}`, '_blank');
   };
 
   const whatsappUrl = `https://wa.me/5512997659057?text=${encodeURIComponent(message || "")}`;
@@ -58,6 +58,7 @@ export default function WhatsappButton({ message, className, children }: Whatsap
             Olá! Estou aqui para tirar suas dúvidas sobre nossas mentorias. Como posso te ajudar hoje?
           </p>
           <a
+            id="btn-call-wpp"
             href=""
             onClick={handleWhatsAppClick}
             target="_blank"
@@ -72,6 +73,7 @@ export default function WhatsappButton({ message, className, children }: Whatsap
       )}
 
       <button
+        id="btn-open-wpp"
         onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
