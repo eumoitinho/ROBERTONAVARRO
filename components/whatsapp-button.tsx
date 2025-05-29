@@ -25,6 +25,22 @@ export default function WhatsappButton({ message, className, children }: Whatsap
   }, []);
 
   if (!isVisible) return null;
+  const handleWhatsAppClick = () => {
+    // Track WhatsApp click in GTM
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'complete_whatsapp',
+        content_type: 'whatsapp',
+        category: 'contato'
+      });
+    }
+    
+    // Original WhatsApp functionality
+    const message = encodeURIComponent(
+      `Olá! Gostaria de saber mais sobre os eventos do Roberto Navarro.`
+    );
+    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+  };
 
   const whatsappUrl = `https://wa.me/5512997659057?text=${encodeURIComponent(message || "")}`;
 
@@ -42,7 +58,8 @@ export default function WhatsappButton({ message, className, children }: Whatsap
             Olá! Estou aqui para tirar suas dúvidas sobre nossas mentorias. Como posso te ajudar hoje?
           </p>
           <a
-            href={whatsappUrl}
+            href=""
+            onClick={handleWhatsAppClick}
             target="_blank"
             rel="noopener noreferrer"
             className={`relative inline-block px-4 py-2 text-white font-semibold rounded-lg bg-green-500 hover:bg-green-600 transition-all duration-300 ${className}`}
@@ -77,4 +94,5 @@ export default function WhatsappButton({ message, className, children }: Whatsap
       </button>
     </div>
   );
+
 }

@@ -4,6 +4,13 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SectionBadge } from "./section-badge";
 
+// Extend the Window interface to include dataLayer
+declare global {
+  interface Window {
+    dataLayer?: any[];
+  }
+}
+
 interface NewsletterSignupProps {
   title: string;
   description: string;
@@ -16,7 +23,7 @@ export function NewsletterSignup({ title, description }: NewsletterSignupProps) 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name || !email || !phone) {
@@ -28,6 +35,17 @@ export function NewsletterSignup({ title, description }: NewsletterSignupProps) 
     setError("");
 
     try {
+      // Push to dataLayer for GTM tracking
+      if (typeof window !== 'undefined' && window.dataLayer) {
+        window.dataLayer.push({
+          event: 'complete_formulario',
+          form_name: 'newsletter_signup',
+          user_email: email,
+          user_phone: phone,
+          user_name: name
+        });
+      }
+
       const response = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: {
@@ -50,7 +68,6 @@ export function NewsletterSignup({ title, description }: NewsletterSignupProps) 
       setIsSubmitting(false);
     }
   };
-
   return (
     <section id="inscricao" className="py-20 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
