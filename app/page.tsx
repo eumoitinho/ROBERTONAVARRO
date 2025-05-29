@@ -228,16 +228,7 @@ export default function HomePage() {
               </div>
 
               <div className="flex items-center gap-6">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-yellow-200 to-amber-500 flex items-center justify-center text-black font-bold text-xs"
-                    >
-                      {i}
-                    </div>
-                  ))}
-                </div>
+                
                 <div>
                   <div className="flex items-center gap-1 mb-1">
                     {[1, 2, 3, 4, 5].map((i) => (

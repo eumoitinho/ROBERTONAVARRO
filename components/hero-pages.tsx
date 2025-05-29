@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Brain, ChevronRight, Star, Users, Zap } from "lucide-react"
+import { BookOpen, Brain, ChevronRight, Star, Users, Video, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HeroCountdown } from "@/components/hero-countdown"
 
@@ -147,15 +147,11 @@ export default function HeroPages({
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-10 md:mt-0 mb-2 md:mb-4">
               {[
-                { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "500+", label: "Mentorados" },
-                { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "4.9/5", label: "Avaliação" },
-                { icon: <Zap className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "7+", label: "Anos de mentoria" },
-                {
-                  icon: <Brain className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />,
-                  value: "100%",
-                  label: "Transformação",
-                },
-              ].map((stat, index) => (
+                        { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
+                        { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas Exclusivas" },
+                        { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros Publicados" },
+                        { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos Inspiradores" },
+                      ].map((stat, index)  => (
                 <div
                   key={index}
                   className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${

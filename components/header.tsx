@@ -37,21 +37,6 @@ const navigationItemsDefault = [
                 href: "/formacoes/empreendedor-inteligente",
                 description: "Desenvolva habilidades empresariais",
             },
-            {
-                title: "LCF Mentoring Pro",
-                href: "/formacoes/lcf-mentoring-pro",
-                description: "Mentoria completa em liberdade financeira",
-            },
-            {
-                title: "Mentoria Individual",
-                href: "/formacoes/mentoria-individual",
-                description: "Acompanhamento personalizado",
-            },
-            {
-                title: "Mentoria de Investimentos",
-                href: "/formacoes/mentoria-de-investimentos",
-                description: "Estratégias avançadas de investimento",
-            },
         ],
     },
     {
@@ -109,6 +94,16 @@ const navigationItemsDefault = [
                 title: "Mentoria de Investimentos",
                 href: "/formacoes/mentoria-de-investimentos",
                 description: "Estratégias avançadas de investimento",
+            },
+            {
+                title: "LCF Mentoring Pro",
+                href: "/formacoes/lcf-mentoring-pro",
+                description: "Mentoria completa em liberdade financeira",
+            },
+            {
+                title: "LCF Mentoring",
+                href: "/formacoes/mentoria",
+                description: "Acompanhamento personalizado",
             },
         ],
     },
