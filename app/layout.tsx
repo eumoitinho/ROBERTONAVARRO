@@ -26,8 +26,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className="dark">
+      <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-KB66J525');
+            `,
+          }}
+        />
       <body className={`${montserrat.variable} font-montserrat`}>
-<script
+{/* Google Tag Manager (noscript) */}
+<noscript>
+  <iframe
+    src="https://www.googletagmanager.com/ns.html?id=GTM-KB66J525"
+    height={0}
+    width={0}
+    style={{ display: "none", visibility: "hidden" }}
+  ></iframe>
+</noscript>
+{/* End Google Tag Manager (noscript) */}
+{/* <script
   type="rocketlazyloadscript"
   dangerouslySetInnerHTML={{
     __html: `(function(l,d,t,r,c,k){
@@ -39,37 +62,13 @@ export default function RootLayout({
       ltq('init', '2Zz-0')
     })(window,document,'//tag.ltrck.com.br/lt11505.js?wp=1');`,
   }}
-></script>
+></script> */}
 <Analytics />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-K2RC346');
-            `,
-          }}
-        />
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-T23MMM8');
-            `,
-          }}
-        />
+        
+        
       </body>
     </html>
   )
