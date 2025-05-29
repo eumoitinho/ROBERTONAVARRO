@@ -699,7 +699,7 @@ Com base em centenas de histórias de sucesso, o programa entrega não apenas co
             }, { threshold: 0.5 });
             
             if (videoSection) {
-              observer.observe(videoSection) ;
+              observer.observe(videoSection);
             }
           }
         `,
