@@ -86,7 +86,7 @@ export function NewsletterFormacoes({ title, description }: NewsletterSignupProp
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form id="form-id-inscricao" onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
