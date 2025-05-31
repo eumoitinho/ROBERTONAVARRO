@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
+import { submitLead } from "@/lib/actions"
 
 // Extend the Window interface to include dataLayer
 declare global {
@@ -14,47 +15,44 @@ declare global {
 }
 
 interface NewsletterSignupProps {
+   onSubmit: (data: LeadFormData) => void
   title: string
   description: string
   source: string // Added source prop
 }
 
-export function NewsletterSignup({ title, description, source }: NewsletterSignupProps) {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
+export interface LeadFormData {
+  name: string
+  email: string
+  phone: string
+  source: string
+}
+
+export function NewsletterSignup({ title, description, source, onSubmit }: NewsletterSignupProps) {
+  const [formData, setFormData] = useState<LeadFormData>({
+    name: "",
+    email: "",
+    phone: "",
+    source: source,
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState("")
+  const [submitStatus, setSubmitStatus] = useState<{
+    success?: boolean
+    message?: string
+  }>({})
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!name || !email || !phone) {
-      setError("Por favor, preencha todos os campos.")
-      return
-    }
-
     setIsSubmitting(true)
-    setError("")
-
-    const scriptURL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL
-    if (!scriptURL) {
-      setError("A URL do script de destino não está configurada. Contate o administrador.")
-      setIsSubmitting(false)
-      return
-    }
-
-    const currentDate = new Date()
-    const date = currentDate.toLocaleDateString("pt-BR") // Format as DD/MM/YYYY
-    const time = currentDate.toLocaleTimeString("pt-BR") // Format as HH:MM:SS
-
-    const formData = new FormData()
-    formData.append("date", date)
-    formData.append("time", time)
-    formData.append("name", name)
-    formData.append("email", email)
-    formData.append("phone", phone)
-    formData.append("source", source)
+    setSubmitStatus({})
 
     try {
       // Push to dataLayer for GTM tracking
@@ -62,34 +60,42 @@ export function NewsletterSignup({ title, description, source }: NewsletterSignu
         window.dataLayer.push({
           event: "complete_formulario",
           form_name: "newsletter_signup",
-          user_email: email,
-          user_phone: phone,
-          user_name: name,
+          user_email: formData.email,
+          user_phone: formData.phone,
+          user_name: formData.name,
           form_source: source, // Added source to dataLayer
         })
       }
+      // Enviar para o servidor
+      const result = await submitLead(formData)
 
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: formData, // Sending as FormData
-      })
+      if (result.success) {
+        setSubmitStatus({
+          success: true,
+          message: "Dados enviados com sucesso! Entraremos em contato em breve.",
+        })
 
-      if (!response.ok) {
-        // Try to get error message from Google Script response if available
-        const errorData = await response.json().catch(() => null)
-        if (errorData && errorData.error) {
-          throw new Error(`Erro do servidor: ${errorData.error}`)
-        }
-        throw new Error("Erro ao enviar o formulário para a planilha. Tente novamente.")
+        // Limpar formulário
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          source: "",
+        })
+
+        // Chamar callback
+        onSubmit(formData)
+      } else {
+        setSubmitStatus({
+          success: false,
+          message: result.message || "Erro ao enviar seus dados. Por favor, tente novamente.",
+        })
       }
-
-      // Clear form and redirect
-      setName("")
-      setEmail("")
-      setPhone("")
-      window.location.href = "/obrigado"
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro desconhecido ao enviar o formulário.")
+    } catch (error) {
+      setSubmitStatus({
+        success: false,
+        message: "Erro ao enviar seus dados. Por favor, tente novamente.",
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -122,11 +128,20 @@ export function NewsletterSignup({ title, description, source }: NewsletterSignu
               Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
             </p>
 
-            {error && (
+            {submitStatus.success === false && submitStatus.message && (
               <div className="rounded-md bg-red-50 p-4 mb-4">
                 <div className="flex">
                   <div className="ml-3">
-                    <h3 className="text-sm font-medium text-red-800">{error}</h3>
+                    <h3 className="text-sm font-medium text-red-800">{submitStatus.message}</h3>
+                  </div>
+                </div>
+              </div>
+            )}
+            {submitStatus.success === true && submitStatus.message && (
+              <div className="rounded-md bg-green-50 p-4 mb-4">
+                <div className="flex">
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-green-800">{submitStatus.message}</h3>
                   </div>
                 </div>
               </div>
@@ -142,8 +157,8 @@ export function NewsletterSignup({ title, description, source }: NewsletterSignu
                     type="text"
                     id="name"
                     name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={formData.name}
+                    onChange={handleInputChange}
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="Seu nome completo"
                     required
@@ -157,8 +172,8 @@ export function NewsletterSignup({ title, description, source }: NewsletterSignu
                     type="email"
                     id="email"
                     name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="seu@email.com"
                     required
@@ -177,8 +192,8 @@ export function NewsletterSignup({ title, description, source }: NewsletterSignu
                     type="tel"
                     id="phone"
                     name="phone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="(00) 00000-0000"
                     required
