@@ -1,73 +1,99 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { SectionBadge } from "./section-badge";
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { SectionBadge } from "./section-badge"
 
 // Extend the Window interface to include dataLayer
 declare global {
   interface Window {
-    dataLayer?: any[];
+    dataLayer?: any[]
   }
 }
 
 interface NewsletterSignupProps {
-  title: string;
-  description: string;
+  title: string
+  description: string
+  source: string // Added source prop
 }
 
-export function NewsletterSignup({ title, description }: NewsletterSignupProps) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
+export function NewsletterSignup({ title, description, source }: NewsletterSignupProps) {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState("")
 
-const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
 
     if (!name || !email || !phone) {
-      setError("Por favor, preencha todos os campos.");
-      return;
+      setError("Por favor, preencha todos os campos.")
+      return
     }
 
-    setIsSubmitting(true);
-    setError("");
+    setIsSubmitting(true)
+    setError("")
+
+    const scriptURL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL
+    if (!scriptURL) {
+      setError("A URL do script de destino não está configurada. Contate o administrador.")
+      setIsSubmitting(false)
+      return
+    }
+
+    const currentDate = new Date()
+    const date = currentDate.toLocaleDateString("pt-BR") // Format as DD/MM/YYYY
+    const time = currentDate.toLocaleTimeString("pt-BR") // Format as HH:MM:SS
+
+    const formData = new FormData()
+    formData.append("date", date)
+    formData.append("time", time)
+    formData.append("name", name)
+    formData.append("email", email)
+    formData.append("phone", phone)
+    formData.append("source", source)
 
     try {
       // Push to dataLayer for GTM tracking
-      if (typeof window !== 'undefined' && window.dataLayer) {
+      if (typeof window !== "undefined" && window.dataLayer) {
         window.dataLayer.push({
-          event: 'complete_formulario',
-          form_name: 'newsletter_signup',
+          event: "complete_formulario",
+          form_name: "newsletter_signup",
           user_email: email,
           user_phone: phone,
-          user_name: name
-        });
+          user_name: name,
+          form_source: source, // Added source to dataLayer
+        })
       }
 
-      const response = await fetch("/api/newsletter/subscribe", {
+      const response = await fetch(scriptURL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, phone }),
-      });
+        body: formData, // Sending as FormData
+      })
 
       if (!response.ok) {
-        throw new Error("Erro ao enviar o formulário. Tente novamente.");
+        // Try to get error message from Google Script response if available
+        const errorData = await response.json().catch(() => null)
+        if (errorData && errorData.error) {
+          throw new Error(`Erro do servidor: ${errorData.error}`)
+        }
+        throw new Error("Erro ao enviar o formulário para a planilha. Tente novamente.")
       }
 
-      setName("");
-      setEmail("");
-      setPhone("");
-      alert("Inscrição realizada com sucesso!");
+      // Clear form and redirect
+      setName("")
+      setEmail("")
+      setPhone("")
+      window.location.href = "/obrigado"
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao enviar o formulário.");
+      setError(err instanceof Error ? err.message : "Erro desconhecido ao enviar o formulário.")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
   return (
     <section id="inscricao" className="py-20 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -77,7 +103,11 @@ const handleSubmit = async (e: React.FormEvent) => {
           {title.split(" ").map((word, index) => (
             <span
               key={index}
-              className={index === 4 || index === 5 || index === 6? "text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600" : "text-white"}
+              className={
+                index === 4 || index === 5 || index === 6
+                  ? "text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"
+                  : "text-white"
+              }
             >
               {word}{" "}
             </span>
@@ -86,7 +116,6 @@ const handleSubmit = async (e: React.FormEvent) => {
         <p className="text-lg text-zinc-300 max-w-3xl mx-auto mb-8">{description}</p>
         {/* Registration Form */}
         <div className="max-w-3xl mx-auto mt-20 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden">
-          
           <div className="p-8">
             <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">PREENCHA SEUS DADOS</h3>
             <p className="text-zinc-300 text-center mb-8">
@@ -106,7 +135,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white text-left">
                     Nome completo
                   </label>
                   <input
@@ -115,13 +144,13 @@ const handleSubmit = async (e: React.FormEvent) => {
                     name="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="Seu nome completo"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white text-left">
                     Email
                   </label>
                   <input
@@ -130,16 +159,18 @@ const handleSubmit = async (e: React.FormEvent) => {
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="seu@email.com"
                     required
                   />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-1 gap-6">
+                {" "}
+                {/* Changed to grid-cols-1 for phone to take full width if desired, or keep md:grid-cols-2 if you want it half width */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white text-left">
                     Telefone
                   </label>
                   <input
@@ -148,7 +179,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     name="phone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="(00) 00000-0000"
                     required
                   />
@@ -172,5 +203,5 @@ const handleSubmit = async (e: React.FormEvent) => {
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -228,7 +228,7 @@ const navigationItems = [
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <NewsletterSignup
-        
+            source="Segredos da Mente Milionária"
             title="FIQUE POR DENTRO DO PROXIMO EVENTO"
             description="Cadastre-se para receber em primeira mão informações sobre novos eventos e conteúdos exclusivos."
           />

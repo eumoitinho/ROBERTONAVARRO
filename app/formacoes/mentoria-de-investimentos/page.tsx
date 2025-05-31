@@ -158,7 +158,7 @@ const navigationItems = [
       <NotableParticipants />
 
       <TestimonialsSection />
-      <NewsletterFormacoes title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria de Investimentos" />
+      <NewsletterFormacoes title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria de Investimentos" source="Mentoria de Investimentos" />
       <Footer />
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />

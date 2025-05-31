@@ -258,7 +258,7 @@ export default function EscaladorDeNegocios() {
       {/* Mentor Section - imagem à esquerda, texto à direita */}
       <MentorSection />
 
-      <NewsletterSignup title="FIQUE LIGADO NO PRÓXIMO ESCALADOR DE NEGÓCIOS" description="Receba novidades e dicas exclusivas para escalar seu negócio." />
+      <NewsletterSignup source="Escalador de Negócios" title="FIQUE LIGADO NO PRÓXIMO ESCALADOR DE NEGÓCIOS" description="Receba novidades e dicas exclusivas para escalar seu negócio." />
 
 
       {/* <section className="py-20 relative">

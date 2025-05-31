@@ -549,7 +549,8 @@ const navigationItems = [
         </div>
       </section>
 
-      <NewsletterFormacoes title="ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR" description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira."/>
+      <NewsletterFormacoes title="ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR" 
+      description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira." source="Educador Financeiro"/>
 
       {/* FAQ Section */}
       <section className="py-20 relative">

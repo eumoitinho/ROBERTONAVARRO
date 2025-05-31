@@ -390,7 +390,7 @@ export default function EnergiaDodinheiroPage() {
      {/* Mentor Section */}
 <MentorSection />
 
-      <NewsletterSignup title="SAIBA QUANDO HAVERÁ A ENERGIA DO DINHEIRO" description="Inscreva-se para receber dicas e conteúdos exclusivos sobre finanças pessoais e investimentos." />
+      <NewsletterSignup source="Energia do Dinheiro" title="SAIBA QUANDO HAVERÁ A ENERGIA DO DINHEIRO" description="Inscreva-se para receber dicas e conteúdos exclusivos sobre finanças pessoais e investimentos." />
 
       <Footer />
       <WhatsAppButton />

@@ -163,7 +163,7 @@ const navigationItems = [
 
 
 <TestimonialsSection />
-      <NewsletterFormacoes title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria Individual" />
+      <NewsletterFormacoes title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria Individual" source="Mentoria Individual" />
 
      <Footer />
 
