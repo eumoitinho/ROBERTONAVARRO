@@ -23,7 +23,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos"
-import { NewsletterSignup } from "@/components/newsletter-signup"
+import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
 import MentorSection from "@/components/mentor"
 import { SectionBadge } from "@/components/section-badge"
 
@@ -390,7 +390,10 @@ export default function EnergiaDodinheiroPage() {
      {/* Mentor Section */}
 <MentorSection />
 
-      <NewsletterSignup source="Energia do Dinheiro" title="SAIBA QUANDO HAVERÁ A ENERGIA DO DINHEIRO" description="Inscreva-se para receber dicas e conteúdos exclusivos sobre finanças pessoais e investimentos." />
+      <NewsletterSignup source="Energia do Dinheiro" title="SAIBA QUANDO HAVERÁ A ENERGIA DO DINHEIRO" description="Inscreva-se para receber dicas e conteúdos exclusivos sobre finanças pessoais e investimentos." onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }} />
 
       <Footer />
       <WhatsAppButton />

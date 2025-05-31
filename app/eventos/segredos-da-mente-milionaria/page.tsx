@@ -23,7 +23,7 @@ import Logo from "@/components/logo"
 import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
-import { NewsletterSignup } from "@/components/newsletter-signup"
+import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
 import { SiteHeader } from "@/components/header"
 import NotableParticipants from "@/components/notable-persons"
 
@@ -230,8 +230,10 @@ const navigationItems = [
           <NewsletterSignup
             source="Segredos da Mente Milionária"
             title="FIQUE POR DENTRO DO PROXIMO EVENTO"
-            description="Cadastre-se para receber em primeira mão informações sobre novos eventos e conteúdos exclusivos."
-          />
+            description="Cadastre-se para receber em primeira mão informações sobre novos eventos e conteúdos exclusivos." onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }}     />
         </div>
       </section>
 

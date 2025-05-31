@@ -17,7 +17,7 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
 import MentorSection from "@/components/mentor"
-import { NewsletterSignup } from "@/components/newsletter-signup"
+import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
 import NotableParticipants from "@/components/notable-persons"
 
 export default function EscaladorDeNegocios() {
@@ -258,7 +258,10 @@ export default function EscaladorDeNegocios() {
       {/* Mentor Section - imagem à esquerda, texto à direita */}
       <MentorSection />
 
-      <NewsletterSignup source="Escalador de Negócios" title="FIQUE LIGADO NO PRÓXIMO ESCALADOR DE NEGÓCIOS" description="Receba novidades e dicas exclusivas para escalar seu negócio." />
+      <NewsletterSignup source="Escalador de Negócios" title="FIQUE LIGADO NO PRÓXIMO ESCALADOR DE NEGÓCIOS" description="Receba novidades e dicas exclusivas para escalar seu negócio." onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }} />
 
 
       {/* <section className="py-20 relative">

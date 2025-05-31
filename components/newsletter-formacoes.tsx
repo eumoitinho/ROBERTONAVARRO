@@ -5,6 +5,8 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
+import { submitLead } from "@/lib/actions"
+import { useRouter } from "next/navigation"
 
 // Extend the Window interface to include dataLayer
 declare global {
@@ -14,47 +16,37 @@ declare global {
 }
 
 interface NewsletterFormacoesProps {
+  onSubmit: (data: LeadFormData) => void
   title: string
   description: string
   source: string // Added source prop
 }
 
-export function NewsletterFormacoes({ title, description, source }: NewsletterFormacoesProps) {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
+export interface LeadFormData {
+  name: string
+  email: string
+  phone: string
+  source: string
+}
+
+export function NewsletterFormacoes({ onSubmit, title, description, source }: NewsletterFormacoesProps) {
+  const router = useRouter()
+  const [formData, setFormData] = useState<LeadFormData>({
+    name: "",
+    email: "",
+    phone: "",
+    source: source,
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState("")
+  const [submitStatus, setSubmitStatus] = useState<{
+    success?: boolean
+    message?: string
+  }>({})
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!name || !email || !phone) {
-      setError("Por favor, preencha todos os campos.")
-      return
-    }
-
     setIsSubmitting(true)
-    setError("")
-
-    const scriptURL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL
-    if (!scriptURL) {
-      setError("A URL do script de destino não está configurada. Contate o administrador.")
-      setIsSubmitting(false)
-      return
-    }
-
-    const currentDate = new Date()
-    const date = currentDate.toLocaleDateString("pt-BR") // Format as DD/MM/YYYY
-    const time = currentDate.toLocaleTimeString("pt-BR") // Format as HH:MM:SS
-
-    const formData = new FormData()
-    formData.append("date", date)
-    formData.append("time", time)
-    formData.append("name", name)
-    formData.append("email", email)
-    formData.append("phone", phone)
-    formData.append("source", source)
+    setSubmitStatus({})
 
     try {
       // Push to dataLayer for GTM tracking
@@ -62,38 +54,42 @@ export function NewsletterFormacoes({ title, description, source }: NewsletterFo
         window.dataLayer.push({
           event: "complete_formulario",
           form_name: "newsletter_signup",
-          user_email: email,
-          user_phone: phone,
-          user_name: name,
+          user_email: formData.email,
+          user_phone: formData.phone,
+          user_name: formData.name,
           form_source: source, // Added source to dataLayer
         })
       }
+      // Enviar para o servidor
+      const result = await submitLead(formData)
 
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: formData, // Sending as FormData
-      })
-
-      if (!response.ok) {
-        // Try to get error message from Google Script response if available
-        const errorData = await response.json().catch(() => null)
-        if (errorData && errorData.error) {
-          throw new Error(`Erro do servidor: ${errorData.error}`)
-        }
-        throw new Error("Erro ao enviar o formulário para a planilha. Tente novamente.")
+      if (result.success) {
+        setSubmitStatus({
+          success: true,
+          message: "Dados enviados com sucesso! Entraremos em contato em breve.",
+        })
+        // limpa o form
+        setFormData({ name: "", email: "", phone: "", source: "" })
+        // callback da página
+        onSubmit(formData)
+        // redireciona
+        router.push("/obrigado")
+      } else {
+        setSubmitStatus({
+          success: false,
+          message: result.message || "Erro ao enviar seus dados. Por favor, tente novamente.",
+        })
       }
-
-      // Clear form and redirect
-      setName("")
-      setEmail("")
-      setPhone("")
-      window.location.href = "/obrigado"
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro desconhecido ao enviar o formulário.")
+    } catch {
+      setSubmitStatus({
+        success: false,
+        message: "Erro ao enviar seus dados. Por favor, tente novamente.",
+      })
     } finally {
       setIsSubmitting(false)
     }
   }
+
   return (
     <section id="inscricao" className="py-20 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -122,68 +118,67 @@ export function NewsletterFormacoes({ title, description, source }: NewsletterFo
               Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
             </p>
 
-            {error && (
-              <div className="rounded-md bg-red-50 p-4 mb-4">
-                <div className="flex">
-                  <div className="ml-3">
-                    <h3 className="text-sm font-medium text-red-800">{error}</h3>
+            <form onSubmit={handleSubmit}>
+              {submitStatus.message && !submitStatus.success && (
+                <div className="rounded-md bg-red-50 p-4 mb-4">
+                  <div className="flex">
+                    <div className="ml-3">
+                      <h3 className="text-sm font-medium text-red-800">{submitStatus.message}</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+              {submitStatus.message && submitStatus.success && (
+                <div className="rounded-md bg-green-50 p-4 mb-4">
+                  <div className="flex">
+                    <div className="ml-3">
+                      <h3 className="text-sm font-medium text-green-800">{submitStatus.message}</h3>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white text-left">
-                    Nome completo
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                    placeholder="Seu nome completo"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white text-left">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                    placeholder="seu@email.com"
-                    required
-                  />
-                </div>
+              <div className="mb-6">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, name: e.target.value }))
+                  }
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
+                  placeholder="Seu nome completo"
+                  required
+                />
               </div>
-
-              <div className="grid md:grid-cols-1 gap-6">
-                {" "}
-                {/* Changed to grid-cols-1 for phone to take full width if desired, or keep md:grid-cols-2 if you want it half width */}
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white text-left">
-                    Telefone
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                    placeholder="(00) 00000-0000"
-                    required
-                  />
-                </div>
+              <div className="mb-6">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, email: e.target.value }))
+                  }
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
+                  placeholder="seu@email.com"
+                  required
+                />
+              </div>
+              <div className="mb-6">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, phone: e.target.value }))
+                  }
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
+                  placeholder="(00) 00000-0000"
+                  required
+                />
               </div>
 
               <Button
@@ -194,7 +189,7 @@ export function NewsletterFormacoes({ title, description, source }: NewsletterFo
                 {isSubmitting ? "Enviando..." : "GARANTIR MINHA VAGA AGORA"}
               </Button>
 
-              <p className="text-xs text-zinc-400 text-center">
+              <p className="text-xs text-zinc-400 text-center mt-4">
                 Ao clicar em "Garantir minha vaga agora", você concorda com nossos termos de uso e política de
                 privacidade.
               </p>

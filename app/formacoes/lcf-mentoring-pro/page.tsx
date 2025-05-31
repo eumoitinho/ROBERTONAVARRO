@@ -299,7 +299,10 @@ const navigationItems = [
         </div>
       </section> */}
 
-      <NewsletterFormacoes title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria Individual" source="LCF Mentoring Pro" />
+      <NewsletterFormacoes  onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }} title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria Individual" source="LCF Mentoring Pro" />
  {/* // FAQ Section */}
       <section className="py-20 bg-zinc-950/90 border-t border-zinc-800/50">
         <div className="container mx-auto px-4">

@@ -257,7 +257,10 @@ const navigationItems = [
 
       {/* 
 // Registration Section */}
-      <NewsletterFormacoes title="INSCREVA-SE AGORA E SAIA DO MODO SOBREVIVÊNCIA" description="Preencha seus dados abaixo e entre para um grupo seleto de empresários prontos para escalar resultados com inteligência e estratégia." source="Empreendedor Inteligente" />
+      <NewsletterFormacoes onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }} title="INSCREVA-SE AGORA E SAIA DO MODO SOBREVIVÊNCIA" description="Preencha seus dados abaixo e entre para um grupo seleto de empresários prontos para escalar resultados com inteligência e estratégia." source="Empreendedor Inteligente" />
 
       {/* FAQ Section */}
       <section className="py-20 relative">

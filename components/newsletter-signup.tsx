@@ -6,6 +6,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
 import { submitLead } from "@/lib/actions"
+import { useRouter } from "next/navigation"
 
 // Extend the Window interface to include dataLayer
 declare global {
@@ -29,6 +30,7 @@ export interface LeadFormData {
 }
 
 export function NewsletterSignup({ title, description, source, onSubmit }: NewsletterSignupProps) {
+  const router = useRouter()
   const [formData, setFormData] = useState<LeadFormData>({
     name: "",
     email: "",
@@ -74,24 +76,19 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
           success: true,
           message: "Dados enviados com sucesso! Entraremos em contato em breve.",
         })
-
-        // Limpar formulário
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          source: "",
-        })
-
-        // Chamar callback
+        // limpa o form
+        setFormData({ name: "", email: "", phone: "", source: "" })
+        // callback da página
         onSubmit(formData)
+        // redireciona
+        router.push("/obrigado")
       } else {
         setSubmitStatus({
           success: false,
           message: result.message || "Erro ao enviar seus dados. Por favor, tente novamente.",
         })
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({
         success: false,
         message: "Erro ao enviar seus dados. Por favor, tente novamente.",
@@ -99,7 +96,7 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
     } finally {
       setIsSubmitting(false)
     }
-  }
+    }
   return (
     <section id="inscricao" className="py-20 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>

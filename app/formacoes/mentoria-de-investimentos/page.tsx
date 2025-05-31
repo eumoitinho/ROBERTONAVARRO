@@ -158,7 +158,10 @@ const navigationItems = [
       <NotableParticipants />
 
       <TestimonialsSection />
-      <NewsletterFormacoes title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria de Investimentos" source="Mentoria de Investimentos" />
+      <NewsletterFormacoes onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }} title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria de Investimentos" source="Mentoria de Investimentos" />
       <Footer />
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />
