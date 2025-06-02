@@ -1,22 +1,20 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { kommoAPI } from "@/lib/kommo-api"
+import { kommoAuth } from "@/lib/kommo-auth"
 
 export async function POST(request: NextRequest) {
   try {
-    const pipelines = await kommoAPI.getPipelines()
+    await kommoAuth.revokeTokens()
 
     return NextResponse.json({
       success: true,
-      message: "Pipelines obtidos com sucesso",
-      data: pipelines,
+      message: "Tokens revogados com sucesso!",
     })
   } catch (error) {
-    console.error("Erro ao obter pipelines:", error)
-
+    console.error("Erro ao revogar tokens:", error)
     return NextResponse.json(
       {
         success: false,
-        message: "Erro ao obter pipelines",
+        message: "Erro ao revogar tokens",
         error: error instanceof Error ? error.message : "Erro desconhecido",
       },
       { status: 500 },

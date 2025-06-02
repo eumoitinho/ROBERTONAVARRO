@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import type { User } from "@/lib/auth"
-import { LayoutDashboard, Users, Calendar, Settings, LogOut, Menu, X } from "lucide-react"
+import { LayoutDashboard, Users, Calendar, Settings, LogOut, Menu, X, Activity } from "lucide-react"
 
 interface AdminSidebarProps {
   user?: User | null
@@ -28,6 +28,10 @@ export function AdminSidebar({ user }: AdminSidebarProps = {}) {
     setIsOpen(!isOpen)
   }
 
+  const closeSidebar = () => {
+    setIsOpen(false)
+  }
+
   const menuItems = [
     {
       name: "Dashboard",
@@ -45,6 +49,11 @@ export function AdminSidebar({ user }: AdminSidebarProps = {}) {
       icon: <Calendar className="h-5 w-5" />,
     },
     {
+      name: "Kommo Dashboard",
+      href: "/admin/kommo-dashboard",
+      icon: <Activity className="h-5 w-5" />,
+    },
+    {
       name: "Configurações",
       href: "/admin/configuracoes",
       icon: <Settings className="h-5 w-5" />,
@@ -56,6 +65,7 @@ export function AdminSidebar({ user }: AdminSidebarProps = {}) {
       <button
         className="fixed top-4 left-4 z-50 md:hidden bg-primary text-white p-2 rounded-md"
         onClick={toggleSidebar}
+        aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
       >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
@@ -64,7 +74,7 @@ export function AdminSidebar({ user }: AdminSidebarProps = {}) {
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 md:hidden ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
-        onClick={toggleSidebar}
+        onClick={closeSidebar}
       />
 
       <aside
@@ -86,7 +96,7 @@ export function AdminSidebar({ user }: AdminSidebarProps = {}) {
                 className={`flex items-center px-4 py-2 rounded-md transition-colors ${
                   pathname === item.href ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100"
                 }`}
-                onClick={() => setIsOpen(false)}
+                onClick={closeSidebar}
               >
                 {item.icon}
                 <span className="ml-3">{item.name}</span>

@@ -1,210 +1,183 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { SectionBadge } from "./section-badge"
-import { submitLead } from "@/lib/actions"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
-// Extend the Window interface to include dataLayer
-declare global {
-  interface Window {
-    dataLayer?: any[]
+interface FormData {
+  name: string
+  email: string
+  phone?: string
+  interest: string
+}
+
+interface NewsletterFormProps {
+  interest: string
+}
+
+async function sendToGoogleSheets(data: FormData) {
+  const scriptURL = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL
+  if (!scriptURL) {
+    console.error("Google Sheet URL not found in environment variables.")
+    return false
+  }
+
+  try {
+    const formData = new FormData()
+    formData.append("name", data.name)
+    formData.append("email", data.email)
+    formData.append("phone", data.phone || "") // Send empty string if phone is undefined
+    formData.append("interest", data.interest)
+
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      body: formData,
+    })
+
+    if (!response.ok) {
+      console.error("Error sending data to Google Sheets:", response.status, response.statusText)
+      return false
+    }
+
+    return true
+  } catch (error) {
+    console.error("Error sending data to Google Sheets:", error)
+    return false
   }
 }
 
-interface NewsletterFormacoesProps {
-  onSubmit: (data: LeadFormData) => void
-  title: string
-  description: string
-  source: string
-}
-
-export interface LeadFormData {
+async function sendLeadToKommo(data: {
   name: string
   email: string
   phone: string
   source: string
+  utmData: {
+    utm_source?: string
+    utm_medium?: string
+    utm_campaign?: string
+    utm_content?: string
+    utm_term?: string
+    referrer?: string
+    gclid?: string
+    fbclid?: string
+  }
+}) {
+  const kommoApiUrl = process.env.NEXT_PUBLIC_KOMMO_API_URL
+  const kommoApiKey = process.env.NEXT_PUBLIC_KOMMO_API_KEY
+
+  if (!kommoApiUrl || !kommoApiKey) {
+    console.error("Kommo API URL or API Key not found in environment variables.")
+    return
+  }
+
+  try {
+    const response = await fetch(kommoApiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": kommoApiKey,
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      console.error("Error sending data to Kommo:", response.status, response.statusText)
+      throw new Error(`Kommo API Error: ${response.status} ${response.statusText}`)
+    }
+
+    const responseData = await response.json()
+    console.log("Kommo API Response:", responseData)
+  } catch (error) {
+    console.error("Error sending data to Kommo:", error)
+    throw error // Re-throw to be caught by the caller
+  }
 }
 
-export function NewsletterFormacoes({ onSubmit, title, description, source }: NewsletterFormacoesProps) {
+const NewsletterForm = ({ interest }: NewsletterFormProps) => {
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "", interest: interest })
+  const [success, setSuccess] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
-  const [formData, setFormData] = useState<LeadFormData>({
-    name: "",
-    email: "",
-    phone: "",
-    source: source,
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<{
-    success?: boolean
-    message?: string
-  }>({})
+  const searchParams = useSearchParams()
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus({})
+    setError(null)
+
+    if (!formData.name || !formData.email) {
+      setError("Por favor, preencha todos os campos.")
+      return
+    }
 
     try {
-      // Push to dataLayer for GTM tracking
-      if (typeof window !== "undefined" && window.dataLayer) {
-        window.dataLayer.push({
-          event: "complete_formulario",
-          form_name: "newsletter_formacoes",
-          user_email: formData.email,
-          user_phone: formData.phone,
-          user_name: formData.name,
-          form_source: source,
-        })
-      }
+      const googleSheetsSuccess = await sendToGoogleSheets(formData)
 
-      // Enviar para o servidor (agora inclui Kommo + Google Sheets)
-      const result = await submitLead(formData)
+      if (googleSheetsSuccess) {
+        setSuccess(true)
+        setFormData({ name: "", email: "", interest: interest }) // Clear the form
+        // Optionally redirect or show a success message
+        console.log("Dados enviados para o Google Sheets com sucesso!")
 
-      if (result.success) {
-        setSubmitStatus({
-          success: true,
-          message: "Dados enviados com sucesso! Entraremos em contato em breve.",
-        })
-
-        // Push evento de conversão para GTM
-        if (typeof window !== "undefined" && window.dataLayer) {
-          window.dataLayer.push({
-            event: "conversion",
-            conversion_type: "formacao_lead_submission",
-            form_source: source,
-            user_email: formData.email,
+        try {
+          // Enviar para Kommo
+          await sendLeadToKommo({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || "",
+            source: `Formação ${formData.interest}`,
+            utmData: {
+              utm_source: searchParams.get("utm_source") || undefined,
+              utm_medium: searchParams.get("utm_medium") || undefined,
+              utm_campaign: searchParams.get("utm_campaign") || undefined,
+              utm_content: searchParams.get("utm_content") || undefined,
+              utm_term: searchParams.get("utm_term") || undefined,
+              referrer: document.referrer || undefined,
+              gclid: searchParams.get("gclid") || undefined,
+              fbclid: searchParams.get("fbclid") || undefined,
+            },
           })
+          console.log("Lead enviado para Kommo com sucesso!")
+        } catch (kommoError) {
+          console.error("Erro ao enviar para Kommo:", kommoError)
+          // Não falha o processo se o Kommo der erro
         }
-
-        // limpa o form
-        setFormData({ name: "", email: "", phone: "", source: source })
-        // callback da página
-        onSubmit(formData)
-        // redireciona
-        router.push("/obrigado")
       } else {
-        setSubmitStatus({
-          success: false,
-          message: result.message || "Erro ao enviar seus dados. Por favor, tente novamente.",
-        })
+        setError("Ocorreu um erro ao enviar os dados. Por favor, tente novamente.")
       }
-    } catch (error) {
-      console.error("Erro ao enviar formulário:", error)
-      setSubmitStatus({
-        success: false,
-        message: "Erro ao enviar seus dados. Por favor, tente novamente.",
-      })
-    } finally {
-      setIsSubmitting(false)
+    } catch (err) {
+      console.error("Erro ao enviar dados:", err)
+      setError("Ocorreu um erro ao enviar os dados. Por favor, tente novamente.")
     }
   }
 
   return (
-    <section id="inscricao" className="py-20 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-      <SectionBadge text="INSCRIÇÃO" />
-      <div className="container mx-auto px-4 relative z-10 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6">
-          {title.split(" ").map((word, index) => (
-            <span
-              key={index}
-              className={
-                index === 4 || index === 5 || index === 6
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"
-                  : "text-white"
-              }
-            >
-              {word}{" "}
-            </span>
-          ))}
-        </h2>
-        <p className="text-lg text-zinc-300 max-w-3xl mx-auto mb-8">{description}</p>
-
-        {/* Registration Form */}
-        <div className="max-w-3xl mx-auto mt-20 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden">
-          <div className="p-8">
-            <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">PREENCHA SEUS DADOS</h3>
-            <p className="text-zinc-300 text-center mb-8">
-              Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
-            </p>
-
-            <form onSubmit={handleSubmit}>
-              {submitStatus.message && !submitStatus.success && (
-                <div className="rounded-md bg-red-50 p-4 mb-4">
-                  <div className="flex">
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-red-800">{submitStatus.message}</h3>
-                    </div>
-                  </div>
-                </div>
-              )}
-              {submitStatus.message && submitStatus.success && (
-                <div className="rounded-md bg-green-50 p-4 mb-4">
-                  <div className="flex">
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-green-800">{submitStatus.message}</h3>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <div className="mb-6">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                  placeholder="Seu nome completo"
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                  placeholder="seu@email.com"
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                  placeholder="(00) 00000-0000"
-                  required
-                />
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg cta-hover"
-              >
-                {isSubmitting ? "Enviando..." : "GARANTIR MINHA VAGA AGORA"}
-              </Button>
-
-              <p className="text-xs text-zinc-400 text-center mt-4">
-                Ao clicar em "Garantir minha vaga agora", você concorda com nossos termos de uso e política de
-                privacidade.
-              </p>
-            </form>
+    <div>
+      {success ? (
+        <p>Obrigado! Sua inscrição foi recebida.</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <div>
+            <label htmlFor="name">Nome:</label>
+            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
           </div>
-        </div>
-      </div>
-    </section>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="phone">Telefone (opcional):</label>
+            <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+          </div>
+          <button type="submit">Inscrever-se</button>
+        </form>
+      )}
+    </div>
   )
 }
+
+export default NewsletterForm

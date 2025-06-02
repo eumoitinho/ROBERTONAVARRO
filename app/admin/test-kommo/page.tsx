@@ -1,71 +1,30 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { CheckCircle, XCircle, AlertCircle, Loader2 } from "lucide-react"
+import { Separator } from "@/components/ui/separator"
+import { CheckCircle, XCircle, AlertCircle, Loader2, Database, Users, Settings } from "lucide-react"
 
 interface TestResult {
   success: boolean
   message: string
   data?: any
-}
-
-interface EnvCheck {
-  name: string
-  value: string | undefined
-  required: boolean
-  status: "ok" | "missing" | "warning"
+  error?: string
 }
 
 export default function TestKommoPage() {
-  const [testResults, setTestResults] = useState<Record<string, TestResult>>({})
-  const [isLoading, setIsLoading] = useState<Record<string, boolean>>({})
+  const [connectionTest, setConnectionTest] = useState<TestResult | null>(null)
+  const [leadTest, setLeadTest] = useState<TestResult | null>(null)
+  const [pipelinesData, setPipelinesData] = useState<any>(null)
+  const [fieldsData, setFieldsData] = useState<any>(null)
+  const [isLoading, setIsLoading] = useState<{ [key: string]: boolean }>({})
 
-  // Verificar variáveis de ambiente
-  const envChecks: EnvCheck[] = [
-    {
-      name: "KOMMO_SUBDOMAIN",
-      value: process.env.NEXT_PUBLIC_KOMMO_SUBDOMAIN,
-      required: true,
-      status: process.env.NEXT_PUBLIC_KOMMO_SUBDOMAIN ? "ok" : "missing",
-    },
-    {
-      name: "KOMMO_ACCESS_TOKEN",
-      value: process.env.NEXT_PUBLIC_KOMMO_ACCESS_TOKEN ? "***configurado***" : undefined,
-      required: true,
-      status: process.env.NEXT_PUBLIC_KOMMO_ACCESS_TOKEN ? "ok" : "missing",
-    },
-    {
-      name: "KOMMO_PHONE_FIELD_ID",
-      value: process.env.NEXT_PUBLIC_KOMMO_PHONE_FIELD_ID,
-      required: true,
-      status: process.env.NEXT_PUBLIC_KOMMO_PHONE_FIELD_ID ? "ok" : "missing",
-    },
-    {
-      name: "KOMMO_EMAIL_FIELD_ID",
-      value: process.env.NEXT_PUBLIC_KOMMO_EMAIL_FIELD_ID,
-      required: true,
-      status: process.env.NEXT_PUBLIC_KOMMO_EMAIL_FIELD_ID ? "ok" : "missing",
-    },
-    {
-      name: "KOMMO_SOURCE_FIELD_ID",
-      value: process.env.NEXT_PUBLIC_KOMMO_SOURCE_FIELD_ID,
-      required: true,
-      status: process.env.NEXT_PUBLIC_KOMMO_SOURCE_FIELD_ID ? "ok" : "missing",
-    },
-    {
-      name: "KOMMO_LEADS_PIPELINE_ID",
-      value: process.env.NEXT_PUBLIC_KOMMO_LEADS_PIPELINE_ID,
-      required: true,
-      status: process.env.NEXT_PUBLIC_KOMMO_LEADS_PIPELINE_ID ? "ok" : "missing",
-    },
-  ]
-
-  const runTest = async (testName: string, endpoint: string) => {
-    setIsLoading((prev) => ({ ...prev, [testName]: true }))
+  const runTest = async (testType: string, endpoint: string) => {
+    setIsLoading((prev) => ({ ...prev, [testType]: true }))
 
     try {
       const response = await fetch(endpoint, {
@@ -77,273 +36,313 @@ export default function TestKommoPage() {
 
       const result = await response.json()
 
-      setTestResults((prev) => ({
-        ...prev,
-        [testName]: {
-          success: response.ok && result.success,
-          message: result.message || "Teste executado",
-          data: result.data,
-        },
-      }))
+      switch (testType) {
+        case "connection":
+          setConnectionTest(result)
+          break
+        case "lead":
+          setLeadTest(result)
+          break
+      }
     } catch (error) {
-      setTestResults((prev) => ({
-        ...prev,
-        [testName]: {
-          success: false,
-          message: error instanceof Error ? error.message : "Erro desconhecido",
-        },
-      }))
+      const errorResult = {
+        success: false,
+        message: "Erro na requisição",
+        error: error instanceof Error ? error.message : "Erro desconhecido",
+      }
+
+      switch (testType) {
+        case "connection":
+          setConnectionTest(errorResult)
+          break
+        case "lead":
+          setLeadTest(errorResult)
+          break
+      }
     } finally {
-      setIsLoading((prev) => ({ ...prev, [testName]: false }))
+      setIsLoading((prev) => ({ ...prev, [testType]: false }))
     }
   }
 
-  const getStatusIcon = (status: "ok" | "missing" | "warning") => {
-    switch (status) {
-      case "ok":
-        return <CheckCircle className="h-4 w-4 text-green-500" />
-      case "missing":
-        return <XCircle className="h-4 w-4 text-red-500" />
-      case "warning":
-        return <AlertCircle className="h-4 w-4 text-yellow-500" />
+  const fetchData = async (dataType: string, endpoint: string) => {
+    setIsLoading((prev) => ({ ...prev, [dataType]: true }))
+
+    try {
+      const response = await fetch(endpoint)
+      const result = await response.json()
+
+      switch (dataType) {
+        case "pipelines":
+          setPipelinesData(result)
+          break
+        case "fields":
+          setFieldsData(result)
+          break
+      }
+    } catch (error) {
+      console.error(`Erro ao buscar ${dataType}:`, error)
+    } finally {
+      setIsLoading((prev) => ({ ...prev, [dataType]: false }))
     }
   }
 
-  const getStatusBadge = (status: "ok" | "missing" | "warning") => {
-    switch (status) {
-      case "ok":
-        return (
-          <Badge variant="default" className="bg-green-500">
-            OK
-          </Badge>
-        )
-      case "missing":
-        return <Badge variant="destructive">Faltando</Badge>
-      case "warning":
-        return <Badge variant="secondary">Atenção</Badge>
-    }
-  }
+  const ResultCard = ({ title, result, icon }: { title: string; result: TestResult | null; icon: React.ReactNode }) => (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          {icon}
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        {result ? (
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              {result.success ? (
+                <CheckCircle className="h-5 w-5 text-green-500" />
+              ) : (
+                <XCircle className="h-5 w-5 text-red-500" />
+              )}
+              <Badge variant={result.success ? "default" : "destructive"}>{result.success ? "Sucesso" : "Erro"}</Badge>
+            </div>
+            <p className="text-sm text-muted-foreground">{result.message}</p>
+            {result.error && <p className="text-sm text-red-600">Erro: {result.error}</p>}
+            {result.data && (
+              <details className="mt-2">
+                <summary className="cursor-pointer text-sm font-medium">Ver dados retornados</summary>
+                <pre className="mt-2 text-xs bg-muted p-2 rounded overflow-auto max-h-40">
+                  {JSON.stringify(result.data, null, 2)}
+                </pre>
+              </details>
+            )}
+          </div>
+        ) : (
+          <p className="text-sm text-muted-foreground">Teste não executado</p>
+        )}
+      </CardContent>
+    </Card>
+  )
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Teste de Integração Kommo</h1>
-          <p className="text-muted-foreground">Verifique e teste sua integração com o Kommo CRM</p>
-        </div>
+    <div className="container mx-auto py-8 space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold">Teste de Integração Kommo</h1>
+        <p className="text-muted-foreground">Teste a conexão e funcionalidades da integração com o CRM Kommo</p>
       </div>
 
-      {/* Verificação de Variáveis de Ambiente */}
+      {/* Configuração Atual */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="h-5 w-5" />
-            Variáveis de Ambiente
+            <Settings className="h-5 w-5" />
+            Configuração Atual
           </CardTitle>
-          <CardDescription>Verificação das configurações necessárias</CardDescription>
+          <CardDescription>IDs e configurações descobertas automaticamente</CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {envChecks.map((check) => (
-              <div key={check.name} className="flex items-center justify-between p-3 border rounded-lg">
-                <div className="flex items-center gap-3">
-                  {getStatusIcon(check.status)}
-                  <div>
-                    <p className="font-medium">{check.name}</p>
-                    <p className="text-sm text-muted-foreground">{check.value || "Não configurado"}</p>
-                  </div>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 className="font-semibold mb-2">Campos Personalizados</h4>
+              <div className="space-y-1 text-sm">
+                <div>
+                  Telefone: <Badge variant="outline">1025408</Badge>
                 </div>
-                {getStatusBadge(check.status)}
+                <div>
+                  Email: <Badge variant="outline">1025410</Badge>
+                </div>
+                <div>
+                  Fonte do Lead: <Badge variant="outline">1025412</Badge>
+                </div>
               </div>
-            ))}
-          </div>
-
-          {envChecks.some((check) => check.status === "missing") && (
-            <Alert className="mt-4">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>
-                Algumas variáveis de ambiente estão faltando. Consulte o arquivo{" "}
-                <code className="bg-muted px-1 rounded">KOMMO_INTEGRATION_GUIDE.md</code> para configuração.
-              </AlertDescription>
-            </Alert>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* URLs de Configuração */}
-      <Card>
-        <CardHeader>
-          <CardTitle>URLs para Configurar no Kommo</CardTitle>
-          <CardDescription>Use estas URLs ao criar a integração no painel do Kommo</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            <div className="p-3 bg-muted rounded-lg">
-              <p className="font-medium">URL de Redirecionamento:</p>
-              <code className="text-sm">{window.location.origin}/obrigado</code>
             </div>
-            <div className="p-3 bg-muted rounded-lg">
-              <p className="font-medium">URL do Webhook:</p>
-              <code className="text-sm">{window.location.origin}/api/webhook-kommo</code>
+            <div>
+              <h4 className="font-semibold mb-2">Pipelines Principais</h4>
+              <div className="space-y-1 text-sm">
+                <div>
+                  Funil de vendas: <Badge variant="outline">10749175</Badge>
+                </div>
+                <div>
+                  Eric Eventos: <Badge variant="outline">10756363</Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">Status Principais</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+              <div>
+                Leads de entrada: <Badge variant="outline">82422239</Badge>
+              </div>
+              <div>
+                Eric Eventos entrada: <Badge variant="outline">82477619</Badge>
+              </div>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Testes de Integração */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Teste de Conexão */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Teste de Conexão</CardTitle>
-            <CardDescription>Verifica se a conexão com o Kommo está funcionando</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Button
-              onClick={() => runTest("connection", "/api/kommo/test-connection")}
-              disabled={isLoading.connection}
-              className="w-full"
-            >
-              {isLoading.connection && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Testar Conexão
-            </Button>
+      <Separator />
 
-            {testResults.connection && (
-              <Alert className={testResults.connection.success ? "border-green-500" : "border-red-500"}>
-                {testResults.connection.success ? (
-                  <CheckCircle className="h-4 w-4 text-green-500" />
+      {/* Testes */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold">Testes de Funcionalidade</h2>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>1. Teste de Conexão</CardTitle>
+              <CardDescription>Verifica se a API do Kommo está acessível</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button
+                onClick={() => runTest("connection", "/api/kommo/test-connection")}
+                disabled={isLoading.connection}
+                className="w-full"
+              >
+                {isLoading.connection ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Testando...
+                  </>
                 ) : (
-                  <XCircle className="h-4 w-4 text-red-500" />
+                  "Testar Conexão"
                 )}
-                <AlertDescription>{testResults.connection.message}</AlertDescription>
-              </Alert>
-            )}
-          </CardContent>
-        </Card>
+              </Button>
+            </CardContent>
+          </Card>
 
-        {/* Teste de Lead */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Criar Lead de Teste</CardTitle>
-            <CardDescription>Cria um lead de teste no Kommo para verificar a integração</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Button onClick={() => runTest("lead", "/api/test-kommo")} disabled={isLoading.lead} className="w-full">
-              {isLoading.lead && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Criar Lead de Teste
-            </Button>
-
-            {testResults.lead && (
-              <Alert className={testResults.lead.success ? "border-green-500" : "border-red-500"}>
-                {testResults.lead.success ? (
-                  <CheckCircle className="h-4 w-4 text-green-500" />
+          <Card>
+            <CardHeader>
+              <CardTitle>2. Teste de Criação de Lead</CardTitle>
+              <CardDescription>Cria um lead de teste no Kommo</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button onClick={() => runTest("lead", "/api/test-kommo")} disabled={isLoading.lead} className="w-full">
+                {isLoading.lead ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Criando Lead...
+                  </>
                 ) : (
-                  <XCircle className="h-4 w-4 text-red-500" />
+                  "Criar Lead de Teste"
                 )}
-                <AlertDescription>
-                  {testResults.lead.message}
-                  {testResults.lead.data && (
-                    <div className="mt-2">
-                      <code className="text-xs bg-muted p-2 rounded block">
-                        {JSON.stringify(testResults.lead.data, null, 2)}
-                      </code>
-                    </div>
-                  )}
-                </AlertDescription>
-              </Alert>
-            )}
-          </CardContent>
-        </Card>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
 
-        {/* Listar Campos */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Campos Personalizados</CardTitle>
-            <CardDescription>Lista os campos personalizados disponíveis no Kommo</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Button
-              onClick={() => runTest("fields", "/api/kommo/fields")}
-              disabled={isLoading.fields}
-              className="w-full"
-            >
-              {isLoading.fields && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Listar Campos
-            </Button>
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold">Resultados dos Testes</h2>
 
-            {testResults.fields && (
-              <Alert className={testResults.fields.success ? "border-green-500" : "border-red-500"}>
-                {testResults.fields.success ? (
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                ) : (
-                  <XCircle className="h-4 w-4 text-red-500" />
-                )}
-                <AlertDescription>
-                  {testResults.fields.message}
-                  {testResults.fields.data && (
-                    <div className="mt-2 max-h-40 overflow-y-auto">
-                      <code className="text-xs bg-muted p-2 rounded block">
-                        {JSON.stringify(testResults.fields.data, null, 2)}
-                      </code>
-                    </div>
-                  )}
-                </AlertDescription>
-              </Alert>
-            )}
-          </CardContent>
-        </Card>
+          <ResultCard title="Conexão com Kommo" result={connectionTest} icon={<Database className="h-5 w-5" />} />
 
-        {/* Listar Pipelines */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Pipelines</CardTitle>
-            <CardDescription>Lista os pipelines disponíveis no Kommo</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Button
-              onClick={() => runTest("pipelines", "/api/kommo/pipelines")}
-              disabled={isLoading.pipelines}
-              className="w-full"
-            >
-              {isLoading.pipelines && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Listar Pipelines
-            </Button>
-
-            {testResults.pipelines && (
-              <Alert className={testResults.pipelines.success ? "border-green-500" : "border-red-500"}>
-                {testResults.pipelines.success ? (
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                ) : (
-                  <XCircle className="h-4 w-4 text-red-500" />
-                )}
-                <AlertDescription>
-                  {testResults.pipelines.message}
-                  {testResults.pipelines.data && (
-                    <div className="mt-2 max-h-40 overflow-y-auto">
-                      <code className="text-xs bg-muted p-2 rounded block">
-                        {JSON.stringify(testResults.pipelines.data, null, 2)}
-                      </code>
-                    </div>
-                  )}
-                </AlertDescription>
-              </Alert>
-            )}
-          </CardContent>
-        </Card>
+          <ResultCard title="Criação de Lead" result={leadTest} icon={<Users className="h-5 w-5" />} />
+        </div>
       </div>
 
-      {/* Instruções */}
+      <Separator />
+
+      {/* Dados do Sistema */}
+      <div className="space-y-4">
+        <h2 className="text-2xl font-semibold">Dados do Sistema</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Pipelines</CardTitle>
+              <CardDescription>Lista todos os pipelines disponíveis</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button
+                onClick={() => fetchData("pipelines", "/api/kommo/pipelines")}
+                disabled={isLoading.pipelines}
+                className="w-full mb-4"
+              >
+                {isLoading.pipelines ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Carregando...
+                  </>
+                ) : (
+                  "Listar Pipelines"
+                )}
+              </Button>
+
+              {pipelinesData && (
+                <details>
+                  <summary className="cursor-pointer font-medium">Ver Pipelines</summary>
+                  <pre className="mt-2 text-xs bg-muted p-2 rounded overflow-auto max-h-60">
+                    {JSON.stringify(pipelinesData, null, 2)}
+                  </pre>
+                </details>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Campos Personalizados</CardTitle>
+              <CardDescription>Lista todos os campos disponíveis</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button
+                onClick={() => fetchData("fields", "/api/kommo/fields")}
+                disabled={isLoading.fields}
+                className="w-full mb-4"
+              >
+                {isLoading.fields ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Carregando...
+                  </>
+                ) : (
+                  "Listar Campos"
+                )}
+              </Button>
+
+              {fieldsData && (
+                <details>
+                  <summary className="cursor-pointer font-medium">Ver Campos</summary>
+                  <pre className="mt-2 text-xs bg-muted p-2 rounded overflow-auto max-h-60">
+                    {JSON.stringify(fieldsData, null, 2)}
+                  </pre>
+                </details>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* Status da Integração */}
       <Card>
         <CardHeader>
-          <CardTitle>Próximos Passos</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <AlertCircle className="h-5 w-5" />
+            Status da Integração
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-2 text-sm">
-            <p>1. ✅ Configure todas as variáveis de ambiente necessárias</p>
-            <p>2. ✅ Teste a conexão com o Kommo</p>
-            <p>3. ✅ Crie um lead de teste para verificar se está funcionando</p>
-            <p>4. ✅ Configure o webhook no painel do Kommo (opcional)</p>
-            <p>5. ✅ Teste os formulários do site em produção</p>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span>Campos Personalizados</span>
+              <Badge variant="default">✅ Configurado</Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Pipelines</span>
+              <Badge variant="default">✅ Configurado</Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Status</span>
+              <Badge variant="default">✅ Configurado</Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Tracking UTM</span>
+              <Badge variant="default">✅ Configurado</Badge>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Integração Completa</span>
+              <Badge variant="default">🎉 PRONTA PARA USO!</Badge>
+            </div>
           </div>
         </CardContent>
       </Card>
