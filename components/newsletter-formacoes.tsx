@@ -19,7 +19,7 @@ interface NewsletterFormacoesProps {
   onSubmit: (data: LeadFormData) => void
   title: string
   description: string
-  source: string // Added source prop
+  source: string
 }
 
 export interface LeadFormData {
@@ -53,14 +53,15 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
       if (typeof window !== "undefined" && window.dataLayer) {
         window.dataLayer.push({
           event: "complete_formulario",
-          form_name: "newsletter_signup",
+          form_name: "newsletter_formacoes",
           user_email: formData.email,
           user_phone: formData.phone,
           user_name: formData.name,
-          form_source: source, // Added source to dataLayer
+          form_source: source,
         })
       }
-      // Enviar para o servidor
+
+      // Enviar para o servidor (agora inclui Kommo + Google Sheets)
       const result = await submitLead(formData)
 
       if (result.success) {
@@ -68,8 +69,19 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
           success: true,
           message: "Dados enviados com sucesso! Entraremos em contato em breve.",
         })
+
+        // Push evento de conversão para GTM
+        if (typeof window !== "undefined" && window.dataLayer) {
+          window.dataLayer.push({
+            event: "conversion",
+            conversion_type: "formacao_lead_submission",
+            form_source: source,
+            user_email: formData.email,
+          })
+        }
+
         // limpa o form
-        setFormData({ name: "", email: "", phone: "", source: "" })
+        setFormData({ name: "", email: "", phone: "", source: source })
         // callback da página
         onSubmit(formData)
         // redireciona
@@ -80,7 +92,8 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
           message: result.message || "Erro ao enviar seus dados. Por favor, tente novamente.",
         })
       }
-    } catch {
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error)
       setSubmitStatus({
         success: false,
         message: "Erro ao enviar seus dados. Por favor, tente novamente.",
@@ -110,6 +123,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
           ))}
         </h2>
         <p className="text-lg text-zinc-300 max-w-3xl mx-auto mb-8">{description}</p>
+
         {/* Registration Form */}
         <div className="max-w-3xl mx-auto mt-20 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden">
           <div className="p-8">
@@ -144,9 +158,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
                   id="name"
                   name="name"
                   value={formData.name}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, name: e.target.value }))
-                  }
+                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                   placeholder="Seu nome completo"
                   required
@@ -158,9 +170,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
                   id="email"
                   name="email"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, email: e.target.value }))
-                  }
+                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                   placeholder="seu@email.com"
                   required
@@ -172,9 +182,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
                   id="phone"
                   name="phone"
                   value={formData.phone}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, phone: e.target.value }))
-                  }
+                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                   placeholder="(00) 00000-0000"
                   required
