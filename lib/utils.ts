@@ -5,9 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Função para capturar parâmetros UTM da URL (para uso no cliente)
+// Função para capturar parâmetros UTM da URL
 export function getUTMParameters() {
-  if (typeof window === "undefined") return {}
+  if (typeof window === "undefined") {
+    return {}
+  }
 
   const urlParams = new URLSearchParams(window.location.search)
 
@@ -20,12 +22,14 @@ export function getUTMParameters() {
   }
 }
 
-// Função para obter informações do navegador (para uso no cliente)
+// Função para capturar informações do navegador
 export function getBrowserInfo() {
-  if (typeof window === "undefined") return {}
+  if (typeof window === "undefined") {
+    return {}
+  }
 
   return {
     page_url: window.location.href,
-    user_agent: window.navigator.userAgent,
+    user_agent: navigator.userAgent,
   }
 }

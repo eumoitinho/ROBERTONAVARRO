@@ -23,7 +23,7 @@ import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
-import { LeadFormData, NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 import { Notable } from "next/font/google"
 import NotableParticipants from "@/components/notable-persons"
 import ReusableSection from "@/components/how-works"
@@ -163,7 +163,7 @@ const navigationItems = [
 
 
 <TestimonialsSection />
-      <NewsletterFormacoes title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria Individual" source="Mentoria Individual" onSubmit={() => {
+      <NewsletterFormacoes title="Mentoria Individual" description="Garanta sua vaga na Mentoria Individual" source="Mentoria Individual" onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
         }} />

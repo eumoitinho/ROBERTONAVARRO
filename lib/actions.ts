@@ -1,14 +1,10 @@
 "use server"
 
-// URL do webhook do Kommo CRM via WebConnect
-const KOMMO_WEBHOOK_URL =
-  "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde"
-
 export interface LeadData {
   name: string
   email: string
   phone: string
-  source?: string
+  source: string
   utm_source?: string
   utm_medium?: string
   utm_campaign?: string
@@ -20,64 +16,53 @@ export interface LeadData {
 
 export async function submitLead(data: LeadData) {
   try {
-    // Preparar dados para o Kommo seguindo o formato do WebConnect
-    const leadData = {
-      // Campos obrigatórios
+    const webhookUrl =
+      "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde"
+
+    const payload = {
       name: data.name,
       email: data.email,
       phone: data.phone,
-
-      // Fonte do lead
-      source: data.source || "Website",
-
-      // Parâmetros UTM (se disponíveis)
+      source: data.source,
       utm_source: data.utm_source,
       utm_medium: data.utm_medium,
       utm_campaign: data.utm_campaign,
       utm_term: data.utm_term,
       utm_content: data.utm_content,
-
-      // Dados adicionais
+      page_url: data.page_url,
+      user_agent: data.user_agent,
       created_at: new Date().toISOString(),
-      page_url: data.page_url || "",
-      user_agent: data.user_agent || "",
     }
 
-    // Enviar dados para o webhook do Kommo
-    const response = await fetch(KOMMO_WEBHOOK_URL, {
+    console.log("Enviando dados para Kommo:", payload)
+
+    const response = await fetch(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
-      body: JSON.stringify(leadData),
+      body: JSON.stringify(payload),
     })
 
     if (!response.ok) {
-      throw new Error(`Erro ao enviar lead para Kommo: ${response.status} - ${response.statusText}`)
+      const errorText = await response.text()
+      console.error("Erro na resposta do Kommo:", response.status, errorText)
+      throw new Error(`Erro HTTP: ${response.status}`)
     }
 
     const result = await response.json()
+    console.log("Resposta do Kommo:", result)
 
     return {
       success: true,
-      message: "Lead enviado com sucesso para o Kommo!",
+      message: "Lead enviado com sucesso!",
       data: result,
     }
   } catch (error) {
     console.error("Erro ao enviar lead para Kommo:", error)
     return {
       success: false,
-      message: error instanceof Error ? error.message : "Erro desconhecido ao enviar lead",
+      message: error instanceof Error ? error.message : "Erro desconhecido",
     }
-  }
-}
-
-// Função para buscar leads (mantida para compatibilidade, mas não funcional com Kommo)
-export async function getLeads() {
-  return {
-    success: false,
-    message: "Busca de leads não disponível com integração Kommo",
-    leads: [],
   }
 }

@@ -1,5 +1,6 @@
 import { VerifyTicket } from "@/components/verify-ticket"
 import { getRegistrationByTicketCode } from "@/lib/db"
+import type { Registration } from "@/lib/db"
 
 export const dynamic = "force-dynamic"
 
@@ -17,7 +18,7 @@ export default async function VerifyPage({
 
   try {
     // Buscar o registro usando o código decodificado
-    const registration = await getRegistrationByTicketCode(decodedCode)
+    const registration = (await getRegistrationByTicketCode(decodedCode)) as Registration | null
 
     console.log(`[VerifyPage] Resultado da busca:`, registration ? "Ticket encontrado" : "Ticket não encontrado")
 
