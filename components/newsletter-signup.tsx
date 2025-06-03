@@ -2,10 +2,10 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
-import { submitLead } from "@/lib/actions"
+import { submitLead, getUTMParameters } from "@/lib/actions"
 import { useRouter } from "next/navigation"
 
 // Extend the Window interface to include dataLayer
@@ -16,7 +16,7 @@ declare global {
 }
 
 interface NewsletterSignupProps {
-   onSubmit: (data: LeadFormData) => void
+  onSubmit: (data: LeadFormData) => void
   title: string
   description: string
   source: string // Added source prop
@@ -27,6 +27,11 @@ export interface LeadFormData {
   email: string
   phone: string
   source: string
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  utm_term?: string
+  utm_content?: string
 }
 
 export function NewsletterSignup({ title, description, source, onSubmit }: NewsletterSignupProps) {
@@ -42,6 +47,15 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
     success?: boolean
     message?: string
   }>({})
+
+  // Capturar parâmetros UTM quando o componente montar
+  useEffect(() => {
+    const utmParams = getUTMParameters()
+    setFormData((prev) => ({
+      ...prev,
+      ...utmParams,
+    }))
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -65,10 +79,14 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
           user_email: formData.email,
           user_phone: formData.phone,
           user_name: formData.name,
-          form_source: source, // Added source to dataLayer
+          form_source: source,
+          utm_source: formData.utm_source,
+          utm_medium: formData.utm_medium,
+          utm_campaign: formData.utm_campaign,
         })
       }
-      // Enviar para o servidor
+
+      // Enviar para o Kommo
       const result = await submitLead(formData)
 
       if (result.success) {
@@ -77,7 +95,17 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
           message: "Dados enviados com sucesso! Entraremos em contato em breve.",
         })
         // limpa o form
-        setFormData({ name: "", email: "", phone: "", source: "" })
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          source: source,
+          utm_source: formData.utm_source,
+          utm_medium: formData.utm_medium,
+          utm_campaign: formData.utm_campaign,
+          utm_term: formData.utm_term,
+          utm_content: formData.utm_content,
+        })
         // callback da página
         onSubmit(formData)
         // redireciona
@@ -96,7 +124,8 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
     } finally {
       setIsSubmitting(false)
     }
-    }
+  }
+
   return (
     <section id="inscricao" className="py-20 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
@@ -179,8 +208,6 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
               </div>
 
               <div className="grid md:grid-cols-1 gap-6">
-                {" "}
-                {/* Changed to grid-cols-1 for phone to take full width if desired, or keep md:grid-cols-2 if you want it half width */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white text-left">
                     Telefone

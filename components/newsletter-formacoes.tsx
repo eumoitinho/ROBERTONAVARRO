@@ -2,10 +2,10 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
-import { submitLead } from "@/lib/actions"
+import { submitLead, getUTMParameters } from "@/lib/actions"
 import { useRouter } from "next/navigation"
 
 // Extend the Window interface to include dataLayer
@@ -27,6 +27,11 @@ export interface LeadFormData {
   email: string
   phone: string
   source: string
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  utm_term?: string
+  utm_content?: string
 }
 
 export function NewsletterFormacoes({ onSubmit, title, description, source }: NewsletterFormacoesProps) {
@@ -43,6 +48,15 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
     message?: string
   }>({})
 
+  // Capturar parâmetros UTM quando o componente montar
+  useEffect(() => {
+    const utmParams = getUTMParameters()
+    setFormData((prev) => ({
+      ...prev,
+      ...utmParams,
+    }))
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -57,10 +71,14 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
           user_email: formData.email,
           user_phone: formData.phone,
           user_name: formData.name,
-          form_source: source, // Added source to dataLayer
+          form_source: source,
+          utm_source: formData.utm_source,
+          utm_medium: formData.utm_medium,
+          utm_campaign: formData.utm_campaign,
         })
       }
-      // Enviar para o servidor
+
+      // Enviar para o Kommo
       const result = await submitLead(formData)
 
       if (result.success) {
@@ -69,7 +87,17 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
           message: "Dados enviados com sucesso! Entraremos em contato em breve.",
         })
         // limpa o form
-        setFormData({ name: "", email: "", phone: "", source: "" })
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          source: source,
+          utm_source: formData.utm_source,
+          utm_medium: formData.utm_medium,
+          utm_campaign: formData.utm_campaign,
+          utm_term: formData.utm_term,
+          utm_content: formData.utm_content,
+        })
         // callback da página
         onSubmit(formData)
         // redireciona
@@ -144,9 +172,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
                   id="name"
                   name="name"
                   value={formData.name}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, name: e.target.value }))
-                  }
+                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                   placeholder="Seu nome completo"
                   required
@@ -158,9 +184,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
                   id="email"
                   name="email"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, email: e.target.value }))
-                  }
+                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                   placeholder="seu@email.com"
                   required
@@ -172,9 +196,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
                   id="phone"
                   name="phone"
                   value={formData.phone}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, phone: e.target.value }))
-                  }
+                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
                   className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                   placeholder="(00) 00000-0000"
                   required
