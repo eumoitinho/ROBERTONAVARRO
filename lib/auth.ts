@@ -15,52 +15,44 @@ export type User = {
 }
 
 export async function login(email: string, password: string) {
-  try {
-    const users = await sql<User[]>`SELECT * FROM users WHERE email = ${email}`
+  const users = await sql<User[]>`SELECT * FROM users WHERE email = ${email}`
 
-    if (users.length === 0) {
-      console.log(`Usuário não encontrado: ${email}`)
-      return null
-    }
-
-    const user = users[0]
-
-    // Verificar a senha usando bcrypt
-    const passwordMatch = await bcrypt.compare(password, user.password)
-
-    if (!passwordMatch) {
-      console.log(`Senha incorreta para usuário: ${email}`)
-      return null
-    }
-
-    // Criar token JWT
-    const token = await new SignJWT({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
-    })
-      .setProtectedHeader({ alg: "HS256" })
-      .setIssuedAt()
-      .setExpirationTime("24h")
-      .sign(secretKey)
-
-    cookies().set("auth_token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24, // 24 horas
-      path: "/",
-    })
-
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    }
-  } catch (error) {
-    console.error("Erro durante o login:", error)
+  if (users.length === 0) {
     return null
+  }
+
+  const user = users[0]
+
+  // Verificar a senha usando bcrypt
+  const passwordMatch = await bcrypt.compare(password, user.password)
+
+  if (!passwordMatch) {
+    return null
+  }
+
+  // Criar token JWT
+  const token = await new SignJWT({
+    id: user.id,
+    email: user.email,
+    role: user.role,
+  })
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("24h")
+    .sign(secretKey)
+
+  cookies().set("auth_token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 60 * 60 * 24, // 24 horas
+    path: "/",
+  })
+
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
   }
 }
 
@@ -80,11 +72,9 @@ export async function getSession() {
     return verified.payload as {
       id: number
       email: string
-      name: string
       role: string
     }
   } catch (error) {
-    console.error("Erro ao verificar token:", error)
     return null
   }
 }
@@ -111,7 +101,6 @@ export async function verifyAuth(request: NextRequest) {
     return verified.payload as {
       id: number
       email: string
-      name: string
       role: string
     }
   } catch (error) {
@@ -130,7 +119,7 @@ export async function getUserFromSession(): Promise<User | null> {
   return {
     id: session.id,
     email: session.email,
-    name: session.name || "Admin", // Assuming a default name for admin users
+    name: "Admin", // Assuming a default name for admin users
     role: session.role,
   }
 }

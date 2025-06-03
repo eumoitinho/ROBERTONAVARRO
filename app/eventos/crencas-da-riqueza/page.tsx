@@ -694,3 +694,4 @@ import { X } from "lucide-react"
 import { CheckCircle } from "lucide-react"
 import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos"
+

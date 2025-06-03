@@ -1,106 +1,88 @@
 "use server"
 
-import { sendLeadToKommo } from "./kommo-api"
+// URL do Google Apps Script Web App
+const GOOGLE_APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx4s6y8Y8RUhqwW1ICXMtG952oe8DbDQGp8ZvK85jRylwlAD6pCBuldkyCuJGWO5-KrzQ/exec"
 
-export interface LeadFormData {
+export interface LeadData {
   name: string
   email: string
   phone: string
-  source: string
+  source?: string
 }
 
-export async function submitLead(data: LeadFormData) {
+export async function submitLead(data: LeadData) {
   try {
-    console.log("Recebendo lead:", data)
+    // Adicionar data e hora atual
+    const now = new Date()
+    const formattedDate = `${now.getDate().toString().padStart(2, "0")}/${(now.getMonth() + 1).toString().padStart(2, "0")}/${now.getFullYear()}`
+    const formattedTime = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`
 
-    // Capturar dados UTM (se disponíveis no contexto)
-    const utmData = {
-      utm_source: undefined, // Será capturado no frontend
-      utm_medium: undefined,
-      utm_campaign: undefined,
-      utm_content: undefined,
-      utm_term: undefined,
-      referrer: undefined,
-      gclid: undefined,
-      fbclid: undefined,
+    const leadData = {
+      ...data,
+      date: formattedDate,
+      time: formattedTime,
     }
 
-    // Enviar para Kommo CRM (principal)
-    try {
-      const kommoResult = await sendLeadToKommo({
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        source: data.source,
-        utmData,
-      })
+    // Enviar dados para o Google Apps Script
+    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(leadData),
+      cache: "no-store",
+    })
 
-      console.log("Lead enviado para Kommo com sucesso:", kommoResult)
-
-      return {
-        success: true,
-        message: "Lead enviado com sucesso para o CRM!",
-        kommoResult,
-      }
-    } catch (kommoError) {
-      console.error("Erro ao enviar para Kommo:", kommoError)
-
-      // Se falhar no Kommo, ainda retorna sucesso para não quebrar a experiência do usuário
-      // Você pode implementar um fallback aqui (ex: Google Sheets, email, etc.)
-
-      return {
-        success: true,
-        message: "Dados recebidos com sucesso! Entraremos em contato em breve.",
-        warning: "Erro no CRM, mas dados foram salvos em backup.",
-      }
+    if (!response.ok) {
+      throw new Error(`Erro ao enviar lead: ${response.status}`)
     }
-  } catch (error) {
-    console.error("Erro geral ao processar lead:", error)
+
+    const result = await response.json()
 
     return {
+      success: true,
+      message: "Lead enviado com sucesso!",
+      data: result,
+    }
+  } catch (error) {
+    console.error("Erro ao enviar lead:", error)
+    return {
       success: false,
-      message: "Erro interno do servidor. Tente novamente em alguns minutos.",
-      error: error instanceof Error ? error.message : "Erro desconhecido",
+      message: error instanceof Error ? error.message : "Erro desconhecido ao enviar lead",
     }
   }
 }
 
-// Função para testar a integração com Kommo
-export async function testKommoIntegration() {
+// Função para buscar leads (se necessário)
+export async function getLeads() {
   try {
-    const testData = {
-      name: "João Silva (TESTE AUTOMÁTICO)",
-      email: `teste-${Date.now()}@exemplo.com`,
-      phone: "(11) 99999-9999",
-      source: "Teste Automático - Integração Kommo",
-      utmData: {
-        utm_source: "website",
-        utm_medium: "teste",
-        utm_campaign: "integracao_kommo",
-        utm_content: "teste_automatico",
-        referrer: "https://financeirocoach.com.br",
+    // Buscar leads do Google Apps Script
+    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
+      cache: "no-store",
+    })
+
+    if (!response.ok) {
+      throw new Error(`Erro ao buscar leads: ${response.status}`)
     }
 
-    console.log("Iniciando teste de integração Kommo...")
-
-    const result = await sendLeadToKommo(testData)
-
-    console.log("Teste concluído com sucesso:", result)
+    const data = await response.json()
 
     return {
       success: true,
-      message: "Teste de integração Kommo realizado com sucesso!",
-      data: result,
-      testData,
+      leads: data.leads || [],
     }
   } catch (error) {
-    console.error("Erro no teste de integração Kommo:", error)
-
+    console.error("Erro ao buscar leads:", error)
     return {
       success: false,
-      message: "Erro no teste de integração Kommo",
-      error: error instanceof Error ? error.message : "Erro desconhecido",
+      message: error instanceof Error ? error.message : "Erro desconhecido ao buscar leads",
+      leads: [],
     }
   }
 }
