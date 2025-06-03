@@ -2,7 +2,7 @@
 
 // URL do webhook do Kommo CRM via WebConnect
 const KOMMO_WEBHOOK_URL =
-  "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b2793b4fc77440af834dd7dde"
+  "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde"
 
 export interface LeadData {
   name: string
@@ -14,6 +14,8 @@ export interface LeadData {
   utm_campaign?: string
   utm_term?: string
   utm_content?: string
+  page_url?: string
+  user_agent?: string
 }
 
 export async function submitLead(data: LeadData) {
@@ -37,8 +39,8 @@ export async function submitLead(data: LeadData) {
 
       // Dados adicionais
       created_at: new Date().toISOString(),
-      page_url: typeof window !== "undefined" ? window.location.href : "",
-      user_agent: typeof window !== "undefined" ? window.navigator.userAgent : "",
+      page_url: data.page_url || "",
+      user_agent: data.user_agent || "",
     }
 
     // Enviar dados para o webhook do Kommo
@@ -68,21 +70,6 @@ export async function submitLead(data: LeadData) {
       success: false,
       message: error instanceof Error ? error.message : "Erro desconhecido ao enviar lead",
     }
-  }
-}
-
-// Função para capturar parâmetros UTM da URL (para uso no cliente)
-export function getUTMParameters() {
-  if (typeof window === "undefined") return {}
-
-  const urlParams = new URLSearchParams(window.location.search)
-
-  return {
-    utm_source: urlParams.get("utm_source") || undefined,
-    utm_medium: urlParams.get("utm_medium") || undefined,
-    utm_campaign: urlParams.get("utm_campaign") || undefined,
-    utm_term: urlParams.get("utm_term") || undefined,
-    utm_content: urlParams.get("utm_content") || undefined,
   }
 }
 
