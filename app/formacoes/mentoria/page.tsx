@@ -568,7 +568,7 @@ Com base em centenas de histórias de sucesso, o programa entrega não apenas co
         </div>
       </section>
 
-      <NewsletterFormacoes  title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Garanta sua vaga na Mentoria Individual" onSubmit={() => {
+      <NewsletterFormacoes  title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a LCF Mentoring" onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
         }} source="LCF Mentoring" />
