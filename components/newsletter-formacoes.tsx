@@ -103,7 +103,7 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
         // callback da página
         onSubmit(formData)
         // redireciona
-        router.push("/obrigado")
+        router.push("/obrigado?source=" + encodeURIComponent(source))
       } else {
         setSubmitStatus({
           success: false,
