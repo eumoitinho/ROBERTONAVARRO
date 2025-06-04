@@ -28,22 +28,15 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
         </svg>
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-yellow-400">Inscrição Recebida!</h1>
         <p className="text-lg text-zinc-300 mb-8">
-          Obrigado por se inscrever! Seus dados foram enviados com sucesso.
+          Obrigado! Seus dados foram recebidos com sucesso.
         </p>
-        <p className="text-md text-zinc-400 mb-8">Enquanto isso, entre em contato agora mesmo!</p>
+        <p className="text-md text-zinc-400 mb-8"> Se preferir, entre em contato agora mesmo com a nossa equipe para mais informações.</p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button
             asChild
             className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-lg text-lg"
           >
             <Link href={`https://wa.me/5512997659057?text=${message}`}>Falar com a equipe</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black font-semibold py-3 px-6 rounded-lg text-lg"
-          >
-            <Link href="/eventos/crencas-da-riqueza">Ver Eventos</Link>
           </Button>
         </div>
       </div>
