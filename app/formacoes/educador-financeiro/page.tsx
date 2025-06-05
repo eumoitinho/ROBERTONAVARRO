@@ -4,12 +4,9 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
   ArrowRight,
-  ChevronRight,
-  Star,
   Users,
   Zap,
   Shield,
@@ -20,20 +17,15 @@ import {
   BarChart,
   Target,
   Briefcase,
+  CheckCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
-import MobileMenu from "@/components/mobile-menu"
-import Logo from "@/components/logo"
-import CountdownTimer from "@/components/countdown-timer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
-import { NewsletterSignup } from "@/components/newsletter-signup"
 import { SiteHeader } from "@/components/header"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
-import QuemSomosSection from "@/components/mentor"
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -100,135 +92,95 @@ export default function EducadorFinanceiroPage() {
       setIsSubmitting(false)
     }
   }
-const navigationItems = [
-  { title: "Início", href: "/" },
-  { title: "Sobre o Curso", href: "#sobre-curso" },
-  { title: "Benefícios", href: "#beneficios" },
-  { title: "Depoimentos", href: "#depoimentos" },
-  { title: "Inscrição", href: "#inscricao", isButton: true },
-];
+  const navigationItems = [
+    { title: "Início", href: "/" },
+    { title: "Sobre o Curso", href: "#sobre-curso" },
+    { title: "Benefícios", href: "#beneficios" },
+    { title: "Depoimentos", href: "#depoimentos" },
+    { title: "Inscrição", href: "#inscricao", isButton: true },
+  ]
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-<SiteHeader
-  navigationItems={navigationItems}
-  showInicio={true}
-/>
+      <SiteHeader navigationItems={navigationItems} showInicio={true} />
       <HeroPages
-  title="EDUCADOR FINANCEIRO"
-  secondtitle="Transforme seu conhecimento em liberdade financeira em apenas 90 dias."
-  subtitle="Roberto Navarro"
-  description={`Aprenda estratégias comprovadas para se tornar um Educador Financeiro de sucesso e conquistar sua liberdade financeira.`}
-  image="/images/HERO_EDUCADOR.png"
-  ctaText="QUERO SER UM EDUCADOR FINANCEIRO!"
-  ctaHref="#inscricao"
-  secondaryCtaText="Saiba mais"
-  secondaryCtaHref="#sobre-curso"
-/>
+        title="EDUCADOR FINANCEIRO"
+        secondtitle="Alcance a liberdade financeira e multiplique esse poder com o mundo"
+        subtitle="Roberto Navarro"
+        description={`Formação completa para quem deseja dominar suas finanças, construir novas fontes de renda e impactar vidas através da educação financeira.`}
+        image="/images/HERO_EDUCADOR.png"
+        ctaText="QUERO SER UM EDUCADOR FINANCEIRO!"
+        ctaHref="#inscricao"
+        secondaryCtaText="Saiba mais"
+        secondaryCtaHref="#sobre-curso"
+      />
 
-      {/* Hero Section
-      <section className="relative pt-64 pb-40 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/HERO_EDUCADOR.png"
-            alt="Roberto Navarro"
-            fill
-            className="object-cover mt-20 pt-18"
-            style={{ objectPosition: "right" }}
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/70 via-60% to-transparent"></div>
-        </div>
-        
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
-        <div
-          className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
+      {/* MEC Certification Section - Enhanced */}
+      <section className="py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/30 to-transparent"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/5 rounded-full filter blur-3xl opacity-30"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/5 rounded-full filter blur-3xl opacity-20"></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div
-              className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            >
-              <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-yellow-400"></span>
-                <span className="text-sm font-medium">Roberto Navarro</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                EDUCADOR <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  FINANCEIRO
-                </span>
-              </h1>
-              <p className="text-xl text-zinc-300 mb-4 max-w-xl">
-                Transforme seu conhecimento em liberdade financeira em apenas 90 dias
-              </p>
-              <p className="text-lg text-zinc-300 mb-8 max-w-xl">
-                Aprenda estratégias comprovadas para se tornar um Educador Financeiro de sucesso e conquistar sua liberdade financeira.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
-                  onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
-                >
-                  QUERO SER UM EDUCADOR FINANCEIRO!
-                </Button>
-                <Button
-                  asChild
-                  className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-6 text-base"
-                >
-                  <Link href="#sobre-curso">
-                    Saiba mais <ChevronRight className="h-4 w-4 ml-1" />
-                  </Link>
-                </Button>
-              </div>
-              <div className="flex items-center gap-6">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-yellow-200 to-amber-500 flex items-center justify-center text-black font-bold text-xs"
-                    >
-                      {i}
-                    </div>
-                  ))}
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-5 gap-8 items-center">
+              {/* MEC Seal - Left side */}
+              <div className="md:col-span-2 flex justify-center">
+                <div className="relative certificate-animation">
+                  <Image
+                    src="/images/MEC.png"
+                    alt="Reconhecido pelo MEC"
+                    width={240}
+                    height={240}
+                    className="z-10 relative"
+                  />
+                  <div className="absolute inset-0 bg-yellow-500/20 rounded-full filter blur-xl -z-10"></div>
                 </div>
-                <div>
-                  <div className="flex items-center gap-1 mb-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+              </div>
+
+              {/* Content - Right side */}
+              <div className="md:col-span-3 space-y-6">
+                <h3
+                  className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 certificate-item"
+                  style={{ animationDelay: "0.1s" }}
+                >
+                  EXCELÊNCIA RECONHECIDA PELO MINISTÉRIO DA EDUCAÇÃO
+                </h3>
+
+                <p
+                  className="text-zinc-300 text-lg leading-relaxed certificate-item"
+                  style={{ animationDelay: "0.3s" }}
+                >
+                  Formação com <span className="text-yellow-400 font-semibold">certificação oficial</span> que valida
+                  suas competências e abre portas no mercado. Um diferencial que comprova a qualidade do nosso método e
+                  garante credibilidade à sua atuação profissional.
+                </p>
+
+                <div className="pt-2 certificate-item" style={{ animationDelay: "0.5s" }}>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-yellow-400" />
+                      <span className="text-zinc-200">Reconhecimento nacional</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-yellow-400" />
+                      <span className="text-zinc-200">Validação profissional</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-yellow-400" />
+                      <span className="text-zinc-200">Credibilidade garantida</span>
+                    </div>
                   </div>
-                  <p className="text-sm text-zinc-400">
-                    <span className="text-white font-medium">13.000+</span> alunos formados
-                  </p>
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
-      </section> */}
-
-                  {/* Image Content */}
-            {/* <div className="relative flex items-center">
-      <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-      <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 w-full relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-        <Image
-          src="/images/ROBERTO_12.jpg"
-          alt="Roberto Navarro"
-          width={500}
-          height={440}
-          className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-          style={{ maxHeight: "100%", objectFit: "contain" }}
-        />
-      </div>
-    </div> */}
+      </section>
 
       {/* About Section */}
       <section id="sobre-curso" className="py-20 relative">
@@ -241,10 +193,6 @@ const navigationItems = [
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               SEJA UM AGENTE DA MUDANÇA E ENSINE O CAMINHO PARA A <span className="text-yellow-400">PROSPERIDADE</span>
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              A formação de Educador Financeiro é o seu passaporte para uma nova realidade mais segura, próspera e cheia
-              de propósito.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -258,34 +206,37 @@ const navigationItems = [
                   width={500}
                   height={440}
                   className="w-[1000px] h-[500px] object-cover hover:scale-105 transition-transform duration-500"
-                  style={{ objectPosition: "top" }} // <-- ajuste aqui
+                  style={{ objectPosition: "top" }}
                 />
               </div>
             </div>
 
             <div>
-              <div className="space-y-8 text-lg leading-relaxed text-zinc-300">
-
+              <div className="space-y-6 text-lg leading-relaxed text-zinc-300">
                 <p>
-                  <strong className="text-yellow-400">Nos próximos 90 dias</strong>, você vai dominar os fundamentos da educação financeira, aprender a criar <span className="text-yellow-400">planos personalizados</span> para diferentes perfis, desenvolver habilidades de <span className="text-yellow-400">comunicação e persuasão</span>, além de ter acesso a <span className="text-yellow-400">ferramentas práticas</span> e <span className="text-yellow-400">mentoria especializada</span>.
+                  Com <span className="text-yellow-400 font-semibold">certificação reconhecida pelo MEC</span>, a
+                  formação de Educador Financeiro é o seu passaporte para uma nova realidade de propósito e
+                  prosperidade.
                 </p>
 
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>
-                    É uma jornada que vai <span className="text-yellow-400">muito além da teoria</span>.
-                  </li>
-                  <li>
-                    Você vai aprender a <span className="text-yellow-400">construir autoridade</span>, conquistar alunos ou clientes e criar <span className="text-yellow-400">fontes reais de renda</span>.
-                  </li>
-                  <li>
-                    Contribua para que outras pessoas também tenham uma <span className="text-yellow-400">vida financeira equilibrada</span>.
-                  </li>
-                </ul>
-
                 <p>
-                  <span className="font-semibold text-yellow-400">Não deixe a oportunidade passar.</span> Essa pode ser a virada que você esperava!
+                  Em apenas <span className="text-yellow-400 font-semibold">6 meses</span>, você verá resultados
+                  concretos em sua vida e aprenderá como dominar os fundamentos da educação financeira e aplicar os
+                  conhecimentos na prática.
                 </p>
 
+                <p>
+                  Além de possibilitar seu crescimento individual, você desenvolverá{" "}
+                  <span className="text-yellow-400">habilidades pedagógicas e de comunicação</span> para transmitir esse
+                  conhecimento de forma eficaz, seja em consultorias, palestras ou cursos. O mercado busca educadores
+                  financeiros qualificados, e você estará pronto para atender a essa demanda.
+                </p>
+
+                <p>
+                  Além de impactar vidas, a formação abre portas para{" "}
+                  <span className="text-yellow-400">novas fontes de renda</span> e permite que você construa um negócio
+                  sólido e rentável no campo da educação financeira.
+                </p>
               </div>
 
               <Button
@@ -310,9 +261,6 @@ const navigationItems = [
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               TUDO O QUE VOCÊ PRECISA PARA <span className="text-yellow-400">TRANSFORMAR SUA CARREIRA</span>
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Conheça os recursos exclusivos que vão impulsionar sua jornada como Educador Financeiro.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -374,9 +322,6 @@ const navigationItems = [
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               BENEFÍCIOS DA <span className="text-yellow-400">FORMAÇÃO</span>
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Descubra como a formação de Educador Financeiro pode transformar sua vida pessoal e profissional.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -433,69 +378,191 @@ const navigationItems = [
               <span className="text-sm font-medium">OPORTUNIDADE EXCLUSIVA</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              SEJA UM <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">TREINADOR LICENCIADO</span> DO INSTITUTO COACHING FINANCEIRO
+              SEJA UM{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                TREINADOR LICENCIADO
+              </span>{" "}
+              DO INSTITUTO COACHING FINANCEIRO
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Além de se formar como Educador Financeiro, você poderá atuar como treinador licenciado dos cursos
-              oficiais do Instituto Coaching Financeiro (ICF).
-            </p>
-          
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Ao concluir a formação, você estará apto a revender treinamentos selecionados do ICF, utilizando o
-              material didático oficial e emitindo certificados com a sua assinatura, reconhecidos diretamente pelo
-              instituto. Ou seja: você já sai com um modelo de negócio pronto para gerar renda.
-            </p>
-            
+            <div className="max-w-4xl mx-auto space-y-4 text-zinc-300 text-lg">
+              <p>
+                Além de se formar como Educador Financeiro, você poderá atuar como treinador licenciado dos cursos
+                oficiais do Instituto Coaching Financeiro (ICF).
+              </p>
+              <p>
+                Ao concluir a formação, você estará apto a revender treinamentos selecionados do ICF, utilizando o
+                material didático oficial e emitindo certificados com a sua assinatura, reconhecidos diretamente pelo
+                instituto. Ou seja: você já sai com um modelo de negócio pronto para gerar renda.
+              </p>
+              <p className="text-yellow-400 font-semibold">Confira os treinamentos disponíveis:</p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-  {[
-    {
-      title: "LIVRE DE DÍVIDAS",
-      description:
-        "Estratégias práticas para negociação de dívidas e controle financeiro, com metodologia validada e conteúdo gravado. Uma base essencial para suas futuras aulas.",
-      image: "/images/DIVIDAS.jpg", // Caminho da imagem específica
-    },
-    {
-      title: "INVESTIMENTOS INTELIGENTES",
-      description:
-        "Curso introdutório e prático sobre bolsa de valores e renda fixa. Ideal para quem quer começar a investir com segurança e repassar seus conhecimentos a outras pessoas.",
-      image: "/images/INVESTIMENTO.jpg", // Caminho da imagem específica
-    },
-    {
-      title: "TRANSFORMAÇÃO FINANCEIRA",
-      description:
-        "Formação completa que aborda propósito com o dinheiro, liberdade financeira, planejamento de curto e longo prazo e criação de múltiplas fontes de renda.",
-      image: "/images/REALIZAR.jpg", // Caminho da imagem específica
-    },
-  ].map((course, index) => (
-    <div
-      key={index}
-      className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-    >
-      <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-      <div className="p-6">
-        <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
-          <Image
-            src={course.image} // Usa a imagem específica do curso
-            alt={course.title}
-            fill
-            className="object-cover hover:scale-105 transition-transform duration-500"
-          />
-        </div>
-        <h3 className="text-xl font-bold mb-2 text-yellow-400">{course.title}</h3>
-        <p className="text-zinc-300 mb-6">{course.description}</p>
-      </div>
-    </div>
-  ))}
-</div>
+            {[
+              {
+                title: "LIVRE DE DÍVIDAS",
+                description:
+                  "Estratégias práticas para negociação de dívidas e controle financeiro, com metodologia validada e conteúdo gravado. Uma base essencial para suas futuras aulas.",
+                image: "/images/DIVIDAS.jpg",
+              },
+              {
+                title: "INVESTIMENTOS INTELIGENTES",
+                description:
+                  "Curso introdutório e prático sobre bolsa de valores e renda fixa. Ideal para quem quer começar a investir com segurança e repassar seus conhecimentos a outras pessoas.",
+                image: "/images/INVESTIMENTO.jpg",
+              },
+              {
+                title: "TRANSFORMAÇÃO FINANCEIRA",
+                description:
+                  "Formação completa que aborda propósito com o dinheiro, liberdade financeira, planejamento de curto e longo prazo e criação de múltiplas fontes de renda.",
+                image: "/images/REALIZAR.jpg",
+              },
+            ].map((course, index) => (
+              <div
+                key={index}
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+              >
+                <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <div className="p-6">
+                  <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
+                    <Image
+                      src={course.image || "/placeholder.svg"}
+                      alt={course.title}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-yellow-400">{course.title}</h3>
+                  <p className="text-zinc-300 mb-6">{course.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <QuemSomosSection />
+      {/* Mentor Section */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">SEU MENTOR</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              CONHEÇA SEU <span className="text-yellow-400">MENTOR</span>
+            </h2>
+          </div>
 
-      <TestimonialsSection />
+          <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <Image
+                  src="/images/ROBERTO_12.jpg"
+                  alt="Roberto Navarro"
+                  width={500}
+                  height={600}
+                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500 rounded-2xl"
+                />
+              </div>
+            </div>
 
+            <div>
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4">Roberto Navarro</h3>
+              <div className="space-y-4 text-lg leading-relaxed text-zinc-300">
+                <p>
+                  Roberto Navarro é um exemplo de superação e transformação. Começou sua trajetória profissional lavando
+                  vidros de carros aos 13 anos e, com determinação, construiu um caminho até se tornar multimilionário
+                  em menos de sete anos.
+                </p>
+                <p>
+                  Atualmente, é reconhecido como o{" "}
+                  <span className="text-yellow-400">maior Educador Financeiro do Brasil</span> e criador do Coach
+                  Financeiro no país. Sua metodologia exclusiva combina estratégias de educação financeira, inteligência
+                  emocional e princípios bíblicos, proporcionando resultados reais para quem busca sair das dívidas,
+                  construir riqueza e alcançar liberdade.
+                </p>
+                <p>
+                  Ao longo de sua trajetória, já impactou <span className="text-yellow-400">mais de 13 mil alunos</span>{" "}
+                  no Brasil e no mundo.
+                </p>
+                <p>
+                  Além de mentor e empreendedor, é autor de best-sellers e especialista em inteligência espiritual e
+                  emocional. Hoje, sua missão é clara:{" "}
+                  <span className="text-yellow-400">ajudar 10 milhões de brasileiros</span> a conquistarem uma vida
+                  próspera, com autonomia e visão de futuro.
+                </p>
+              </div>
+
+              <Button
+                className="cta-hover mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Notable Persons Section */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">REFERÊNCIAS</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              QUEM JÁ PASSOU PELOS <span className="text-yellow-400">TREINAMENTOS</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Alfredo Soares",
+                description: "Autoridade em vendas e autor best-seller",
+                image: "/placeholder.svg?height=300&width=300",
+              },
+              {
+                name: "Tiago Brunet",
+                description: "Referência em treinamento de líderes e espiritualidade",
+                image: "/placeholder.svg?height=300&width=300",
+              },
+              {
+                name: "Flávio Prado",
+                description: "Jornalista esportivo que já cobriu 10 Copas do Mundo e eventos em mais de 60 países",
+                image: "/placeholder.svg?height=300&width=300",
+              },
+              {
+                name: "Pyong Lee",
+                description: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
+                image: "/placeholder.svg?height=300&width=300",
+              },
+            ].map((person, index) => (
+              <div
+                key={index}
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+              >
+                <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800">
+                  <Image
+                    src={person.image || "/placeholder.svg"}
+                    alt={person.name}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-yellow-400">{person.name}</h3>
+                <p className="text-zinc-300 text-sm">{person.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Guarantees Section */}
       <section className="py-20 relative">
@@ -506,11 +573,11 @@ const navigationItems = [
               <span className="text-sm font-medium">GARANTIAS</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              INVESTIMENTO <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">SEGURO</span>
+              INVESTIMENTO{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                SEGURO
+              </span>
             </h2>
-            <p className="text-zinc-300 max-w-3xl mx-auto">
-              Oferecemos garantias que demonstram nossa confiança na eficácia do método.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -549,11 +616,15 @@ const navigationItems = [
         </div>
       </section>
 
-      <NewsletterFormacoes onSubmit={() => {
+      <NewsletterFormacoes
+        onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
-        }} title="ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR" 
-      description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira." source="Educador Financeiro"/>
+        }}
+        title="ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR"
+        description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira."
+        source="Educador Financeiro"
+      />
 
       {/* FAQ Section */}
       <section className="py-20 relative">
@@ -564,7 +635,10 @@ const navigationItems = [
               <span className="text-sm font-medium">PERGUNTAS FREQUENTES</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              DÚVIDAS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">COMUNS</span>
+              DÚVIDAS{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                COMUNS
+              </span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
               Encontre respostas para as perguntas mais frequentes sobre a formação de Educador Financeiro.
@@ -616,9 +690,7 @@ const navigationItems = [
         </div>
       </section>
 
-   
-
-     <Footer />
+      <Footer />
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />
