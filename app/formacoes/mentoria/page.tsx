@@ -53,7 +53,7 @@ const navigationItems = [
   { title: "Benefícios", href: "#beneficios" },
   { title: "Como Funciona", href: "#sobre" },
   { title: "Depoimentos", href: "#depoimentos" },
-  { title: "Inscrição", href: "#form", isButton: true },
+  { title: "Inscrição", href: "#inscricao", isButton: true },
 ];
 
 // Adicionar event listener para a tecla ESC para fechar o vídeo
@@ -112,9 +112,9 @@ useEffect(() => {
         subtitle="Mentoria Exclusiva"
         description="Uma imersão profunda e transformadora em finanças pessoais, coaching de vida e estratégias práticas para você conquistar a sua liberdade financeira."
         image="/images/HERO_MENTORIA.png"
-        ctaText="QUERO PARTICIPAR"
-        ctaHref="#beneficios"
-        secondaryCtaText="Saiba mais"
+        ctaText="MAIS INFORMAÇÕES SOBRE A FORMAÇÃO"
+        ctaHref="#Ssobre"
+        secondaryCtaText="Contate-nos"
         secondaryCtaHref="#sobre" secondtitle={"Você no controle da sua vida"}        
       />
 
@@ -179,7 +179,7 @@ useEffect(() => {
       
 
       <ReusableSection
-        id="sobre-o-programa"
+        id="sobre"
         title="O QUE É O"
         subtitle="LCF MENTORING?"
         description="Um programa único no Brasil que une Life Coaching e Mentor Coaching Financeiro.
@@ -568,7 +568,7 @@ Com base em centenas de histórias de sucesso, o programa entrega não apenas co
         </div>
       </section>
 
-      <NewsletterFormacoes  title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a LCF Mentoring" onSubmit={() => {
+      <NewsletterFormacoes title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a LCF Mentoring" onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
         }} source="LCF Mentoring" />
