@@ -27,6 +27,7 @@ import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 import NotableParticipants from "@/components/notable-persons"
+import TransformationVideos from "@/components/transformation-videos"
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -313,7 +314,7 @@ export default function EducadorFinanceiroPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 relative">
+      <section id="beneficios" className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
@@ -508,6 +509,7 @@ export default function EducadorFinanceiroPage() {
           </div>
         </div>
       </section>
+      <TransformationVideos/>
 
       <NotableParticipants/>
       {/* Guarantees Section */}

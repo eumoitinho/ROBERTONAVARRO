@@ -102,7 +102,7 @@ export default function TransformationVideos() {
   }
 
   return (
-    <section id="video-section" className="py-24 relative">
+    <section id="depoimentos" className="py-24 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/90 to-zinc-950/95"></div>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
