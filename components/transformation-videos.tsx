@@ -238,7 +238,7 @@ export default function TransformationVideos() {
             asChild
             className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-yellow-400/25"
           >
-            <a href="#form">
+            <a href="#inscricao">
               Transformar Minha Vida Financeira! <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
