@@ -148,13 +148,16 @@ export function SiteHeader({
         return false
     }
 
-    const navItems = (
-  showInicio && pathname !== "/"
-    ? [{ title: "Início", href: "/" }, ...navigationItems.filter(i => i.title !== "Início")]
-    : navigationItems.filter(i => showInicio ? true : i.title !== "Início")
-).filter((item: any) => !item.isButton)
+     // Se for landing (showInicio=true e não for raiz), usar a própria página como "Início"
+  const inicioHref = showInicio && pathname !== "/" ? pathname : "/"
 
-const ctaButton = navigationItems.find((item: any) => item.isButton);
+  // monta o menu, incluindo o link "Início" apontando para inicioHref
+  const navItems = showInicio
+    ? [{ title: "Início", href: inicioHref }, ...navigationItems.filter(i => i.title !== "Início")]
+    : navigationItems.filter(i => i.title !== "Início")
+
+  const ctaButton = navigationItems.find((item: any) => item.isButton)
+
 
     return (
         <header

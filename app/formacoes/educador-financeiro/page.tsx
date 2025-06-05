@@ -26,6 +26,7 @@ import HeroPages from "@/components/hero-pages"
 import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import NotableParticipants from "@/components/notable-persons"
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -508,62 +509,7 @@ export default function EducadorFinanceiroPage() {
         </div>
       </section>
 
-      {/* Notable Persons Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">REFERÊNCIAS</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              QUEM JÁ PASSOU PELOS <span className="text-yellow-400">TREINAMENTOS</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                name: "Alfredo Soares",
-                description: "Autoridade em vendas e autor best-seller",
-                image: "/placeholder.svg?height=300&width=300",
-              },
-              {
-                name: "Tiago Brunet",
-                description: "Referência em treinamento de líderes e espiritualidade",
-                image: "/placeholder.svg?height=300&width=300",
-              },
-              {
-                name: "Flávio Prado",
-                description: "Jornalista esportivo que já cobriu 10 Copas do Mundo e eventos em mais de 60 países",
-                image: "/placeholder.svg?height=300&width=300",
-              },
-              {
-                name: "Pyong Lee",
-                description: "Hipnólogo e youtuber com mais de 8 milhões de inscritos",
-                image: "/placeholder.svg?height=300&width=300",
-              },
-            ].map((person, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800">
-                  <Image
-                    src={person.image || "/placeholder.svg"}
-                    alt={person.name}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">{person.name}</h3>
-                <p className="text-zinc-300 text-sm">{person.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <NotableParticipants/>
       {/* Guarantees Section */}
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
