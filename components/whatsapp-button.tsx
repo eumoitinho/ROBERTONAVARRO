@@ -13,7 +13,7 @@ interface WhatsappButtonProps {
   source?: string; // New prop for custom source
 }
 
-export default function WhatsappButton({ message, className, children, source = "Botão WhatsApp" }: WhatsappButtonProps) {
+export default function WhatsappButton({ message, className, children, source }: WhatsappButtonProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -24,7 +24,7 @@ export default function WhatsappButton({ message, className, children, source = 
     name: "",
     email: "",
     phone: "",
-    source: source, // Use the source prop
+    source: source || "Botão WhatsApp",
     utm_source: undefined,
     utm_medium: undefined,
     utm_campaign: undefined,
@@ -45,7 +45,7 @@ export default function WhatsappButton({ message, className, children, source = 
     if (isOpen) {
       const utm = getUTMParameters();
       const info = getBrowserInfo();
-      setFormData(f => ({ ...f, ...utm, ...info, source }));
+      setFormData(f => ({ ...f, ...utm, ...info, source: source || f.source }));
     }
   }, [isOpen, source]);
 
