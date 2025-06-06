@@ -406,7 +406,10 @@ const navigationItems = [
      <Footer />
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="LCF Mentoring PRO"
+        className="custom-class"
+      />
     </div>
   )
 }

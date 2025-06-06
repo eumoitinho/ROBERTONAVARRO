@@ -319,7 +319,10 @@ const navigationItems = [
 <Footer />
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Empreendedor Inteligente"
+        className="custom-class"
+      />
     </div>
   )
 }

@@ -641,7 +641,10 @@ export default function EducadorFinanceiroPage() {
       <Footer />
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Educador Financeiro"
+        className="custom-class"
+      />
     </div>
   )
 }

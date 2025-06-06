@@ -396,7 +396,10 @@ export default function EnergiaDodinheiroPage() {
         }} />
 
       <Footer />
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Energia do Dinheiro"
+        className="custom-class"
+      />
     </div>
   )
 }

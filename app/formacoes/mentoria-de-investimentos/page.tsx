@@ -164,7 +164,10 @@ const navigationItems = [
         }} title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a Mentoria de Investimentos" source="Mentoria de Investimentos" />
       <Footer />
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Mentoria de Investimentos"
+        className="custom-class"
+      />
     </div>
   )
 }

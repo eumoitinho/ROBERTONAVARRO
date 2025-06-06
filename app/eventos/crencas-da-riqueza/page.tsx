@@ -681,7 +681,10 @@ export default function CrencasDaRiquezaPage() {
       
 
       <Footer />
-      <WhatsAppButton />
+      <WhatsappButton
+  source="Crenças da Riqueza"
+  className="custom-class"
+/>
     </div>
   )
 }
@@ -693,4 +696,6 @@ import { SiteHeader } from "@/components/header"
 import { X } from "lucide-react"
 import { CheckCircle } from "lucide-react"
 import NotableParticipants from "@/components/notable-persons"
-import TransformationVideos from "@/components/transformation-videos"
+import TransformationVideos from "@/components/transformation-videos" 
+import WhatsappButton from "@/components/whatsapp-button"
+

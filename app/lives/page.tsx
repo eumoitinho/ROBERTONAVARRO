@@ -402,7 +402,10 @@ const navigationItems = [
       </footer>
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Lives"
+        className="custom-class"
+      />
     </div>
   )
 }

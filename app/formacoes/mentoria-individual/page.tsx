@@ -171,7 +171,10 @@ const navigationItems = [
      <Footer />
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Mentoria Individual"
+        className="custom-class"
+      />
     </div>
   )
 }

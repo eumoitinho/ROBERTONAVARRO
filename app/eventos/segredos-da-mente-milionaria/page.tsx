@@ -238,7 +238,10 @@ const navigationItems = [
       </section>
 
       <Footer />
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Segredos da Mente Milionária"
+        className="custom-class"
+      />
     </div>
   )
 }

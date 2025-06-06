@@ -291,7 +291,10 @@ export default function EscaladorDeNegocios() {
       <Footer />
 
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="Escalador de Negócios"
+        className="custom-class"
+      />
     </main>
   )
 }

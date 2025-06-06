@@ -667,7 +667,10 @@ Com base em centenas de histórias de sucesso, o programa entrega não apenas co
 
      <Footer />
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
+      <WhatsAppButton
+        source="LCF Mentoring"
+        className="custom-class"
+      />
       {/* YouTube API Script for autoplay */}
       <script
         dangerouslySetInnerHTML={{
