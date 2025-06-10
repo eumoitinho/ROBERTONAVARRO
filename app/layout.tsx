@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Script from "next/script"
 import { Analytics } from "@vercel/analytics/next"
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   title: "Roberto Navarro | Transforme sua Mentalidade",
   description:
     "Descubra as chaves para destravar uma mentalidade de riqueza e alcançar novos patamares no seu negócio.",
-  generator: "v0.dev",
+  generator: "Moitinho.dev",
 }
 
 export default function RootLayout({
@@ -26,28 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-KB66J525" />
        <body className={`${montserrat.variable} font-montserrat`}>
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-MCWKQ7WJ');
-            `,
-          }}
-        />
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MCWKQ7WJ"
-            height={0}
-            width={0}
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript>
+        
        
 <Analytics />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
