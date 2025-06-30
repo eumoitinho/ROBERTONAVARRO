@@ -238,13 +238,23 @@ export function SiteHeader({
       <Link href={ctaButton.href}>{ctaButton.title}</Link>
     </Button>
   ) : (
+    <>
     <Button
-      asChild
-      variant="outline"
-      className="border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 hover:border-yellow-400"
-    >
-      <Link href="/eventos/crencas-da-riqueza#form">Próximo Evento</Link>
-    </Button>
+        asChild
+        variant="default"
+        className="border-yellow-500 text-black hover:text-yellow-500 hover:bg-yellow-500/10 hover:border-yellow-400"
+      >
+        <Link href="/blog">Blog</Link>
+      </Button>
+      <Button
+        asChild
+        variant="outline"
+        className="border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 hover:border-yellow-400"
+      >
+        <Link href="/eventos/crencas-da-riqueza#form">Próximo Evento</Link>
+      </Button>
+      
+    </>
   )}
 </div>
 
