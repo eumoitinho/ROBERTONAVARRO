@@ -251,7 +251,7 @@ const navigationItems = [
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">11 de Julho de 2025, 10h às 20h</p>
+                  <p className="text-zinc-300 text-lg">08 de Julho de 2025, 10h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
