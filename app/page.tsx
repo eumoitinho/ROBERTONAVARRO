@@ -412,6 +412,47 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
+
+            {/* Método TF */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">MÉTODO TF</h3>
+
+              <p className="text-zinc-300 mb-6 flex-1">
+                Formação focada no desenvolvimento de uma mentalidade de riqueza, combinada com estratégias práticas e comprovadas para aumentar sua renda.
+              </p>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                 <Link href="/formacoes/mentoria-individual">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Mentor Coach Financeiro*/}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
+              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">MÉTODO TF</h3>
+
+              <p className="text-zinc-300 mb-6 flex-1">
+                Formação que une inteligência financeira, desenvolvimento pessoal e coaching para transformar sua vida e permitir que você ajude outros a fazerem o mesmo com propósito e estratégia.
+              </p>
+              <div className="mt-auto">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                >
+                 <Link href="/formacoes/mentoria-individual">
+                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -483,7 +524,7 @@ export default function HomePage() {
                   <div className="w-full flex flex-col justify-end mt-8">
                     <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
                       {[
-                        { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
+                        { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "+1,5 Milhões", label: "Alunos" },
                         { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas Exclusivas" },
                         { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros Publicados" },
                         { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos Inspiradores" },
