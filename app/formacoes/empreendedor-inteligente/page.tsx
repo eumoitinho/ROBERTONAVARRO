@@ -17,6 +17,7 @@ import {
   TrendingUp,
   UserPlus,
   Users2,
+  BedDouble,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -28,6 +29,7 @@ import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 import QuemSomosSection from "@/components/mentor"
+import { FaMoneyBill } from "react-icons/fa"
 
 export default function EmpreendedorInteligentePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -170,6 +172,36 @@ const navigationItems = [
         </div>
       </section>
 
+      <section id="grandes-empresarios" className="py-20 relative">
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+        <span className="text-sm font-medium">VALOR DO PROGRAMA</span>
+      </div>
+      <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        O QUE OS GRANDES EMPRESÁRIOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">SABEM</span> QUE VOCÊ AINDA NÃO SABE
+      </h2>
+      <p className="text-zinc-300 max-w-3xl mx-auto">
+        O programa <span className="font-semibold">Empreendedor Inteligente</span> é destinado a empresários que desejam parar de sobreviver e começar a crescer com consistência. Em 3 dias, você vai aprender as estratégias usadas pelos empresários mais bem-sucedidos do Brasil para escalar faturamento, otimizar gestão, organizar finanças e atrair parceiros estratégicos.
+      </p>
+      <p className="text-zinc-300 max-w-3xl mx-auto mt-4">
+        Você também terá acesso a uma rede de empresários que compartilham experiências reais, além de métodos práticos que você pode aplicar imediatamente no seu negócio. Não é sobre motivação: é sobre transformação empresarial com técnica, visão e resultado.
+      </p>
+    </div>
+    <div className="text-center mt-12">
+      <Button
+        asChild
+        className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+      >
+        <Link href="#inscricao">
+          GARANTA SUA VAGA AGORA! <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    </div>
+  </div>
+</section>
+
       {/* // What You Will Learn Section */}
       <section id="o-que-aprender" className="py-20 relative">
         <div className="container mx-auto px-4 relative z-10">
@@ -220,6 +252,16 @@ const navigationItems = [
                 desc: "Crie uma base financeira sólida para crescer com segurança e consistência.",
               },
               {
+                icon: <FaMoneyBill className="h-6 w-6 text-yellow-400" />,
+                title: "Diversificação de rendas",
+                desc: "Descubra como criar novas fontes de receita e blindar seu negócio contra imprevistos.",
+              },
+              {
+                icon: <BedDouble className="h-6 w-6 text-yellow-400" />,
+                title: "Plano de aposentadoria" ,
+                desc: "Aprenda a construir sua liberdade financeira e garantir um futuro tranquilo, mesmo fora da operação.",
+              }, 
+              {
                 icon: <Users2 className="h-6 w-6 text-yellow-400" />,
                 title: "Networking de alto nível",
                 desc: "Conecte-se com empresários que podem abrir portas e transformar seu negócio.",
@@ -249,7 +291,126 @@ const navigationItems = [
           </div>
         </div>
       </section>
+      
+<section id="metodologia-lean" className="py-20 relative">
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+        <span className="text-sm font-medium">METODOLOGIA</span>
+      </div>
+      <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        METODOLOGIA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">LEAN</span> PARA CRESCIMENTO EFICIENTE
+      </h2>
+      <p className="text-zinc-300 max-w-3xl mx-auto">
+        Empresas que crescem de forma consistente mesmo em tempos difíceis têm algo em comum: uma gestão enxuta, inteligente e focada em resultados. Aprenda com a Metodologia Lean, usada pelas maiores empresas do mundo, para eliminar desperdícios, otimizar processos e crescer com eficiência.
+      </p>
+    </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {[
+        {
+          icon: <TrendingUp className="h-6 w-6 text-yellow-400" />,
+          title: "Crescimento x Escala",
+          desc: "Entenda a diferença entre crescer e escalar — e como se preparar para isso com segurança e previsibilidade.",
+        },
+        {
+          icon: <DollarSign className="h-6 w-6 text-yellow-400" />,
+          title: "Capital de Giro",
+          desc: "Organize seu fluxo de caixa, equilibre entradas e saídas e mantenha seu negócio financeiramente saudável.",
+        },
+        {
+          icon: <Zap className="h-6 w-6 text-yellow-400" />,
+          title: "Modelo de Trabalho ABC",
+          desc: "Implante um modelo de operação eficiente, com prioridades bem definidas e foco no que gera valor.",
+        },
+        {
+          icon: <Users className="h-6 w-6 text-yellow-400" />,
+          title: "Marketing Digital",
+          desc: "Use a comunicação digital para fortalecer sua presença online, atraindo e fidelizando clientes.",
+        },
+        {
+          icon: <BarChart className="h-6 w-6 text-yellow-400" />,
+          title: "Valuation",
+          desc: "Saiba quanto vale sua empresa e como aumentar esse valor, preparando-se para investidores.",
+        },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+        >
+          <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4">
+            {item.icon}
+          </div>
+          <h3 className="text-xl font-bold mb-2 text-yellow-400">{item.title}</h3>
+          <p className="text-zinc-300">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div className="text-center mt-12">
+      <Button
+        asChild
+        className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+      >
+        <Link href="#inscricao">
+          GARANTA SUA VAGA AGORA! <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    </div>
+  </div>
+</section>
 
+<section id="para-quem" className="py-20 relative">
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+        <span className="text-sm font-medium">PÚBLICO-ALVO</span>
+      </div>
+      <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        PARA QUEM É O <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">EMPREENDEDOR INTELIGENTE</span>?
+      </h2>
+      <p className="text-zinc-300 max-w-3xl mx-auto">
+        O treinamento é indicado para empresários e empreendedores que enfrentam desafios como falta de clientes ou dificuldades para fazer o negócio prosperar. Aqui, você pode:
+      </p>
+    </div>
+    <div className="max-w-2xl mx-auto">
+      <ul className="space-y-6">
+        {[
+          {
+            title: "Construir um planejamento eficiente",
+            desc: "Atinga seu primeiro milhão com um plano claro e prático.",
+          },
+          {
+            title: "Criar objetivos práticos",
+            desc: "Desenvolva uma empresa rica e próspera com metas bem definidas.",
+          },
+          {
+            title: "Elaborar estratégias inteligentes",
+            desc: "Torne seu negócio o número 1 do seu segmento com abordagens eficazes.",
+          },
+        ].map((item, index) => (
+          <li
+            key={index}
+            className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300"
+          >
+            <h3 className="text-xl font-bold mb-2 text-yellow-400">{item.title}</h3>
+            <p className="text-zinc-300">{item.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div className="text-center mt-12">
+      <Button
+        asChild
+        className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+      >
+        <Link href="#inscricao">
+          GARANTA SUA VAGA AGORA! <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    </div>
+  </div>
+</section>
+      
       <QuemSomosSection />
 
       <TestimonialsSection />

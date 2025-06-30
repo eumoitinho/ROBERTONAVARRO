@@ -301,7 +301,7 @@ const navigationItems = [
               asChild
               className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-8 py-4 text-base"
             >
-              <a href="https://www.instagram.com/robertonavarrooficial/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.youtube.com/@RobertoNavarroOficial/streams" target="_blank" rel="noopener noreferrer">
                 Ver todas as lives <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>

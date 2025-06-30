@@ -436,7 +436,7 @@ export default function HomePage() {
             {/* Mentor Coach Financeiro*/}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">MÉTODO TF</h3>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Mentor Coach Financeiro</h3>
 
               <p className="text-zinc-300 mb-6 flex-1">
                 Formação que une inteligência financeira, desenvolvimento pessoal e coaching para transformar sua vida e permitir que você ajude outros a fazerem o mesmo com propósito e estratégia.

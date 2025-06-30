@@ -73,7 +73,7 @@ export default function QuemSomosSection() {
             <div className="w-full flex flex-col justify-end mt-8">
               <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
                 {[
-                  { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "300 Mil+", label: "Mentorados" },
+                  { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "+1,5 Milhões", label: "de Alunos" },
                   { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas Exclusivas" },
                   { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros Publicados" },
                   { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos Inspiradores" },
