@@ -268,7 +268,7 @@ const navigationItems = [
 
           <TicketPricingCards
             eventId={1}
-            eventName="Crenças da Riqueza"
+            eventName="Segredos da Mente Milionária"
             ticketTypes={[
               {
                 id: 2782193,
