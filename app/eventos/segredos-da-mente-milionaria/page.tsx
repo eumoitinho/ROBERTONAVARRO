@@ -238,7 +238,7 @@ const navigationItems = [
               ESCOLHA SEU <span className="text-yellow-400">INGRESSO</span>
             </h2>
             <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
-              Participe do evento transformador Crenças da Riqueza e comece a mudar sua relação com o dinheiro. Vagas
+              Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o dinheiro. Vagas
               limitadas!
             </p>
           </div>
@@ -261,7 +261,7 @@ const navigationItems = [
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">Centro de Convenções, São Paulo, SP</p>
+                  <p className="text-zinc-300 text-lg">Alameda Araguaia, 751, Alphaville, Barueri - SP</p>
                 </div>
               </div>
             </div>
