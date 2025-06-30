@@ -29,6 +29,7 @@ import { SiteHeader } from "@/components/header"
 import NotableParticipants from "@/components/notable-persons"
 import { TicketPricingCards } from "@/components/ticket-pricing-cards"
 import { SectionBadge } from "@/components/section-badge"
+import Footerlp from "@/components/footerlp"
 
 export default function SegredosDaMenteMilionaria() {
   const [isVisible, setIsVisible] = useState(false)
@@ -226,7 +227,7 @@ const navigationItems = [
       <NotableParticipants />
       <TestimonialsSection />
 
-       <section id="form" className="py-24 relative">
+       <section id="inscricao" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-zinc-900/95"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.03)_0%,_rgba(39,39,42,0.1)_100%)]"></div>
@@ -301,11 +302,8 @@ const navigationItems = [
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton
-        source="Segredos da Mente Milionária"
-        className="custom-class"
-      />
+      <Footerlp />
+      
     </div>
   )
 }
