@@ -1,185 +1,184 @@
-
 export const ptBlogPosts = [
   {
     id: 1,
-    title: "Cadê a Sua Versão Milionária? Talvez o Que Falte Não Seja Planejamento… Mas Coragem",
-    excerpt: "Descubra por que sua versão milionária está adormecida e como vencer as crenças limitantes que sabotam seus sonhos mais ambiciosos.",
+    title: "Cadê a Sua Versão Milionária? Talvez Falte Coragem, Não Planejamento",
+    excerpt: "Descubra como crenças limitantes sabotam seus sonhos e aprenda a despertar sua mentalidade milionária com coragem e ação.",
     image: "/images/blog-mindset.jpg",
     date: "20 de Junho, 2025",
     author: "Roberto Navarro",
-    category: "Mindset",
+    category: "Mentalidade",
     slug: "cade-sua-versao-milionaria",
     content: `
-      <h2>Cadê a Sua Versão Milionária? Talvez o Que Falte Não Seja Planejamento… Mas Coragem</h2>
-      <p>Cadê aquela pessoa que jurava que ia ser milionária? Sério… onde foi parar? Aquela versão sua que fazia planos, que falava com brilho nos olhos sobre liberdade, que dizia com convicção: “Um dia eu vou conquistar tudo que eu quero”.</p>
+      <h2>Cadê a Sua Versão Milionária?</h2>
+      <p>Lembra daquela versão sua que sonhava grande? Que planejava conquistar a liberdade financeira e viver com propósito? Onde ela está agora? Talvez ela não tenha desaparecido — talvez ela esteja apenas adormecida, esperando um empurrão de coragem para despertar.</p>
       
-      <h3>Quando a ambição dá lugar ao conformismo</h3>
-      <p>Será que ela sumiu? Será que virou um adulto responsável demais? Será que começou a chamar medo de “realismo”? Ou simplesmente… desistiu no meio do caminho?</p>
+      <h3>Por Que Você Parou de Sonhar Grande?</h3>
+      <p>Com o tempo, muitos de nós trocam ambição por conformismo. Chamamos medo de “realismo” e nos contentamos com metas pequenas. Mas a verdade é que você não parou por falta de tempo ou oportunidades. Algo dentro de você está te segurando — uma voz sutil que diz: “Não arrisque”, “Não é o momento” ou “Você não é capaz”.</p>
       
-      <h3>Você não parou por falta de oportunidade</h3>
-      <p>Vamos encarar a verdade: você não parou por falta de tempo, nem por falta de conhecimento. Você parou porque tem algo aí dentro que te sabota. Uma voz invisível sussurrando:</p>
+      <h3>Crenças Limitantes: O Inimigo Silencioso</h3>
+      <p>Essas vozes são crenças limitantes, um sistema interno que sabota seus planos mesmo quando tudo parece favorável. Elas não surgem por acaso. São fruto de experiências, medos e inseguranças acumuladas, que te fazem priorizar a segurança em vez do crescimento.</p>
       <ul>
-        <li>“Melhor não arriscar.”</li>
-        <li>“Agora não é o momento.”</li>
-        <li>“Quem é você pra ter tudo isso?”</li>
+        <li><strong>“Melhor não arriscar”</strong>: Evita o fracasso, mas também o sucesso.</li>
+        <li><strong>“Agora não é o momento”</strong>: Adia seus sonhos indefinidamente.</li>
+        <li><strong>“Quem sou eu pra isso?”</strong>: Mina sua autoconfiança.</li>
       </ul>
       
-      <h3>Crenças limitantes: o sistema que sabota em silêncio</h3>
-      <p>Isso não é falta de planejamento. Isso é sistema de crenças limitantes operando em silêncio. Um mecanismo interno que te impede de avançar, mesmo quando tudo fora de você parece estar a favor.</p>
+      <h3>O Perigo de Se Contentar com Pouco</h3>
+      <p>Quando você aceita “apenas pagar as contas” como suficiente, sua versão milionária perde força. Cada dia conformado é um passo para trás. A boa notícia? Essa versão ainda está aí, esperando uma decisão sua para voltar à ativa.</p>
       
-      <h3>O perigo das metas pequenas</h3>
-      <p>Enquanto você se contenta com metas pequenas e diz pra si mesmo que “só de estar pagando as contas já tá bom”, a sua versão milionária… tá morrendo um pouquinho mais a cada dia.</p>
+      <h3>Coragem: O Ingrediente que Falta</h3>
+      <p>Planejar é importante, mas sem coragem, seus planos ficam no papel. Coragem é o que transforma sonhos em realidade. É o que faz você silenciar as desculpas, enfrentar o medo e agir, mesmo com incertezas.</p>
       
-      <h3>A escolha é sua: desculpas ou reação</h3>
-      <p>A pergunta agora é direta: você vai continuar se escondendo atrás das desculpas… ou vai reagir? Sua versão milionária ainda está aí dentro — viva, esperando uma decisão. Está pronto pra dar voz a ela, silenciar as desculpas e começar a agir como quem realmente nasceu pra prosperar?</p>
-      
-      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e desperte agora a sua mentalidade milionária. O caminho começa por dentro.</a></p>
+      <h3>Desperte Sua Mentalidade Milionária</h3>
+      <p>A escolha é sua: continuar preso às desculpas ou reagir? Sua versão milionária está viva, pronta para liderar. Comece hoje, dê o primeiro passo e construa a mentalidade que te levará ao topo.</p>
+      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e desperte sua mentalidade milionária agora!</a></p>
     `,
   },
   {
     id: 2,
-    title: "A Estabilidade Que Você Defende Pode Estar Cobrando um Preço Alto Demais",
-    excerpt: "Saiba como a falsa sensação de estabilidade pode estar sabotando sua liberdade, saúde mental e seus projetos mais importantes.",
+    title: "Estabilidade: Segurança ou Armadilha Silenciosa?",
+    excerpt: "Entenda como a busca por estabilidade pode estar custando sua liberdade e descubra como recuperar sua coragem para viver plenamente.",
     image: "/images/blog-stability.jpg",
     date: "15 de Junho, 2025",
     author: "Roberto Navarro",
-    category: "Courage",
+    category: "Coragem",
     slug: "estabilidade-preco-alto",
     content: `
-      <h2>A Estabilidade Que Você Defende Pode Estar Cobrando um Preço Alto Demais</h2>
-      <p>Você tá com essa estabilidade toda… mas eu chamo ela de medo bem disfarçado. Você se convenceu de que está seguro, mas, no fundo, só está acomodado. E isso pode estar custando mais do que você imagina.</p>
+      <h2>Estabilidade: Segurança ou Armadilha?</h2>
+      <p>Você se sente seguro na sua zona de conforto? Talvez essa “estabilidade” que você tanto defende seja apenas medo disfarçado. Acomodar-se pode parecer seguro, mas o preço pode ser alto: sua saúde, energia e liberdade.</p>
       
-      <h3>Quando estabilidade vira prisão</h3>
-      <p>Você segue num trabalho que te esgota, que rouba sua energia, que mina sua saúde. Tudo porque o desconhecido parece mais assustador do que o cansaço que já virou rotina.</p>
+      <h3>Quando a Estabilidade Vira Prisão</h3>
+      <p>Quantas vezes você permaneceu em um trabalho que te esgota, só porque o desconhecido parece mais assustador? A rotina pode ser confortável, mas, aos poucos, ela rouba sua vitalidade e adia seus sonhos.</p>
       
-      <h3>A coragem que falta (e a verdade que ninguém fala)</h3>
-      <p>Você adia conversas importantes, procrastina decisões que poderiam mudar sua vida e culpa a falta de tempo. Mas, no fundo, o que está faltando mesmo… é coragem.</p>
+      <h3>A Verdadeira Razão da Procrastinação</h3>
+      <p>Você adia decisões importantes — uma conversa, uma mudança de carreira, um novo projeto — e culpa a falta de tempo. Mas, no fundo, o que falta é coragem. Coragem para enfrentar o desconforto e dar o próximo passo.</p>
       
-      <h3>Seu sistema de proteção invisível</h3>
-      <p>Você construiu um sistema invisível pra se proteger. Uma teia de desculpas sofisticadas que funcionam como escudo emocional:</p>
+      <h3>Seu Escudo de Desculpas</h3>
+      <p>Para se proteger, você criou um sistema de desculpas que parecem lógicas, mas só te mantêm parado:</p>
       <ul>
-        <li>“Agora não é o momento.”</li>
-        <li>“Depois que eu quitar essa dívida.”</li>
-        <li>“Quando as coisas acalmarem no trabalho.”</li>
+        <li>“Agora não é o momento ideal.”</li>
+        <li>“Primeiro, preciso quitar minhas dívidas.”</li>
+        <li>“Quando o trabalho estiver mais calmo.”</li>
       </ul>
+      <p>Essas justificativas são um escudo emocional, mas também uma armadilha que te impede de crescer.</p>
       
-      <h3>O problema não está fora, mas dentro</h3>
-      <p>A verdade é que o problema nunca foi o mundo lá fora. Foi a armadilha mental que você mesmo construiu. E o pior? Essa ideia de estabilidade que você criou… tá custando a sua liberdade.</p>
+      <h3>O Preço da Falsa Segurança</h3>
+      <p>A estabilidade só é valiosa quando não custa sua paz ou seu propósito. Se ela está drenando sua energia ou adiando seus projetos, é hora de questionar: vale a pena pagar esse preço?</p>
       
-      <h3>O custo silencioso da sua “segurança”</h3>
-      <p>Porque estabilidade só é boa quando não custa sua saúde mental. Sua energia. Seus projetos. Sua vida. Está na hora de repensar o que você chama de estabilidade. Se ela está custando sua paz, seu propósito e seu progresso… então talvez você esteja pagando caro demais.</p>
-      
-      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e dê o primeiro passo rumo a uma liberdade que não sacrifica sua essência.</a></p>
+      <h3>Quebre o Ciclo Hoje</h3>
+      <p>O problema não está no mundo lá fora, mas na mentalidade que você construiu. Para reconquistar sua liberdade, comece enfrentando pequenos medos. Cada passo corajoso te aproxima da vida que você merece.</p>
+      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e dê o primeiro passo para uma vida livre e plena!</a></p>
     `,
   },
   {
     id: 3,
-    title: "Ninguém Fracassa por Falta de Sonhos, Mas Sim por Falta de Preparo Emocional",
-    excerpt: "Entenda por que o preparo emocional é a chave para vencer seus maiores desafios pessoais e profissionais.",
+    title: "O Segredo para Vencer Desafios: Preparo Emocional",
+    excerpt: "Sonhos não bastam. Descubra por que o preparo emocional é a chave para superar desafios e alcançar grandes vitórias.",
     image: "/images/blog-emotional-preparation.jpg",
     date: "10 de Junho, 2025",
     author: "Roberto Navarro",
-    category: "Emotional Intelligence",
+    category: "Inteligência Emocional",
     slug: "preparo-emocional",
     content: `
-      <h2>Ninguém Fracassa por Falta de Sonhos, Mas Sim por Falta de Preparo Emocional</h2>
-      <p>Ninguém fracassa por falta de sonhos. As pessoas fracassam porque não estão preparadas emocionalmente para encarar seus desafios. Muitos preferem ignorar essa verdade e acreditar apenas no poder das metas altas e grandes sonhos.</p>
+      <h2>Por Que Sonhos Não São Suficientes?</h2>
+      <p>Todo mundo tem sonhos grandes, mas poucos estão prontos para enfrentar os desafios que vêm com eles. O fracasso não acontece por falta de ambição, mas por falta de preparo emocional. Sem ele, até os melhores planos desmoronam.</p>
       
-      <h3>Por que muitos recuam diante dos desafios?</h3>
-      <p>Todos têm sonhos grandes, objetivos ousados, mas quando a vida coloca um desafio gigante à frente, muitos recuam. Lembre-se da clássica história de Davi e Golias: todo mundo conhece o resultado, mas poucos param para refletir sobre o motivo real da vitória.</p>
+      <h3>A Lição de Davi e Golias</h3>
+      <p>Você já conhece a história de Davi e Golias. Mas o que fez Davi vencer não foi só coragem ou fé — foi preparo. Antes de enfrentar o gigante, ele já havia derrotado leões e ursos, construindo uma base emocional sólida longe dos holofotes.</p>
       
-      <h3>A verdade sobre a vitória de Davi</h3>
-      <p>Davi não derrotou Golias apenas por fé ou coragem. Ele venceu porque estava preparado. Antes daquele confronto, já havia enfrentado leões e ursos sozinho, longe dos holofotes. Enquanto outros tremiam diante do gigante, Davi já tinha uma estrutura emocional sólida, construída no anonimato.</p>
-      
-      <h3>Quantos Golias você já enfrentou?</h3>
-      <p>Pense agora nas oportunidades que você já teve e não aproveitou:</p>
+      <h3>Seus Próprios Gigantes</h3>
+      <p>Pense nas oportunidades que você deixou passar:</p>
       <ul>
-        <li>Uma entrevista decisiva.</li>
-        <li>Uma grande oportunidade de negócio.</li>
-        <li>Aquela venda importante que travou na hora.</li>
-        <li>A mudança de carreira que você adiou.</li>
+        <li>Uma entrevista de emprego decisiva.</li>
+        <li>Um negócio promissor que você hesitou em perseguir.</li>
+        <li>Uma venda que travou no momento crucial.</li>
+        <li>Uma mudança de carreira que você adiou.</li>
       </ul>
-      <p>O que fez você travar não foi falta de vontade, mas falta de preparo emocional para lidar com o peso da responsabilidade e do desafio.</p>
+      <p>O que te parou não foi falta de vontade, mas a ausência de preparo emocional para lidar com a pressão.</p>
       
-      <h3>Por que motivação não é suficiente</h3>
-      <p>Você não vai vencer seu Golias se continuar usando as mesmas armas pequenas. Frases motivacionais, livros bonitos e vídeos inspiradores não bastam quando o gigante estiver diante de você. É preciso algo mais sólido, um preparo emocional verdadeiro.</p>
+      <h3>Motivação Não Basta</h3>
+      <p>Frases inspiradoras e vídeos motivacionais podem te animar, mas não te preparam para o peso de um grande desafio. Para vencer seus “Golias”, você precisa de uma estrutura emocional forte, construída com prática e autoconhecimento.</p>
       
-      <h3>A dura realidade das pequenas vitórias</h3>
-      <p>Infelizmente, muitos seguirão pela vida colecionando apenas pequenas vitórias, evitando as grandes batalhas que realmente importam. Acertar tarefas simples é fácil, mas são as grandes batalhas que definem sua vida e seu futuro.</p>
+      <h3>Construa Sua Força Emocional</h3>
+      <p>Preparo emocional é como treinar um músculo. Comece enfrentando pequenos desafios, refletindo sobre suas reações e aprendendo a gerenciar o medo e a ansiedade. Com o tempo, você estará pronto para as grandes batalhas que definem sua vida.</p>
       
-      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e comece a se preparar emocionalmente para as grandes vitórias que realmente importam!</a></p>
+      <h3>Prepare-se para Grandes Vitórias</h3>
+      <p>Não se contente com pequenas conquistas. Invista no seu preparo emocional e transforme desafios em oportunidades. Sua próxima grande vitória está esperando — você está pronto para buscá-la?</p>
+      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e comece a construir sua força emocional hoje!</a></p>
     `,
   },
   {
     id: 4,
-    title: "Você Aprendeu a Ganhar Dinheiro, Mas Não a Se Relacionar com Ele",
-    excerpt: "Entenda por que suas decisões financeiras são emocionais e como mudar esse padrão pode transformar sua vida.",
+    title: "Como Se Relacionar com o Dinheiro de Forma Consciente",
+    excerpt: "Suas decisões financeiras são mais emocionais do que racionais. Aprenda a mudar esse padrão e transforme sua relação com o dinheiro.",
     image: "/images/blog-financial-emotions.jpg",
     date: "05 de Junho, 2025",
     author: "Roberto Navarro",
-    category: "Financial Decisions",
+    category: "Decisões Financeiras",
     slug: "relacao-com-dinheiro",
     content: `
-      <h2>Você Aprendeu a Ganhar Dinheiro, Mas Não a Se Relacionar com Ele</h2>
-      <p>Você aprendeu a ganhar dinheiro… mas ninguém te ensinou a se relacionar com ele. A escola te ensinou matemática financeira, mas não te preparou para lidar com o medo, com a ansiedade, com o impulso.</p>
+      <h2>O Dinheiro e Suas Emoções</h2>
+      <p>Você sabe ganhar dinheiro, mas já parou para pensar como se relaciona com ele? A escola te ensinou a fazer contas, mas ninguém te preparou para lidar com o medo, a ansiedade ou os impulsos que influenciam suas decisões financeiras.</p>
       
-      <h3>O problema não está na conta, mas no padrão</h3>
-      <p>Você sabe fazer conta. Mas não sabe explicar por que vive gastando com o que não precisa e deixando de investir no que realmente importa. E aí chega a conclusão que poucos admitem: o problema nunca foi a planilha. Foi o padrão.</p>
+      <h3>O Problema Não É a Planilha</h3>
+      <p>Você conhece as regras básicas de finanças, mas ainda gasta com coisas desnecessárias e deixa de investir no que importa. O problema não está na matemática — está nos padrões emocionais que guiam suas escolhas.</p>
       
-      <h3>Decisões financeiras são emocionais</h3>
-      <p>Mais de 70% das decisões financeiras que você toma têm origem emocional e inconsciente. Não é falta de informação. É falta de consciência.</p>
-      <p>Você pode ter disciplina de militar, pode ter lido todos os livros de finanças, pode ter suas metas bem definidas… Mas enquanto não entender o que está por trás de cada escolha, vai continuar preso no mesmo ciclo:</p>
+      <h3>Decisões Financeiras São Emocionais</h3>
+      <p>Estudos mostram que mais de 70% das decisões financeiras têm raízes emocionais. Compras por impulso, medo de checar o extrato ou hesitação em investir não são apenas hábitos — são reflexos de emoções não processadas.</p>
       <ul>
-        <li>Ganho.</li>
-        <li>Gasto.</li>
-        <li>Culpa.</li>
-        <li>E zero patrimônio.</li>
+        <li><strong>Compra impulsiva</strong>: Uma tentativa de aliviar uma dor emocional.</li>
+        <li><strong>Medo do extrato</strong>: Resultado de decisões no piloto automático.</li>
+        <li><strong>Culpa após gastos</strong>: Sinal de desconexão com seus valores.</li>
       </ul>
       
-      <h3>As emoções por trás dos seus gastos</h3>
-      <p>Sabe aquele alívio depois de uma compra por impulso? Aquilo não é só consumo. É a sua mente tentando anestesiar uma dor que você nem sabe qual é. Sabe aquele medo de abrir o extrato no fim do mês? É o resultado acumulado de dezenas de decisões tomadas no piloto automático emocional.</p>
+      <h3>Quebre o Ciclo Financeiro</h3>
+      <p>Muitos caem no mesmo padrão: ganham, gastam, sentem culpa e terminam com pouco ou nenhum patrimônio. Para mudar isso, você precisa trazer consciência às suas escolhas financeiras, entendendo as emoções por trás de cada decisão.</p>
       
-      <h3>Toda decisão financeira é emocional</h3>
-      <p>Essa é a verdade que precisa ser dita: toda decisão financeira… antes de ser racional, é emocional. E ignorar isso… custa caro. Custa noites mal dormidas. Custa discussões em casa. Custa projetos adiados. Custa a vida que você queria estar construindo… mas ainda não começou.</p>
+      <h3>Construa uma Nova Relação com o Dinheiro</h3>
+      <p>Comece pequeno: pergunte-se por que você gasta, evita ou investe de certas formas. Alinhe suas decisões financeiras aos seus objetivos de longo prazo. Com consciência e prática, você pode transformar sua relação com o dinheiro em uma ferramenta de liberdade.</p>
       
-      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e dê o primeiro passo para mudar sua relação com o dinheiro de forma consciente e definitiva!</a></p>
+      <h3>Dê o Primeiro Passo</h3>
+      <p>Ignorar as emoções por trás do dinheiro custa caro — noites mal dormidas, discussões e sonhos adiados. Comece hoje a construir uma relação consciente e saudável com suas finanças.</p>
+      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e transforme sua relação com o dinheiro agora!</a></p>
     `,
   },
   {
     id: 5,
-    title: "Estabilidade ou Armadilha? Por Que o Seu Conforto Pode Ser Seu Maior Inimigo",
-    excerpt: "Descubra como a busca pela estabilidade pode ser um disfarce para o medo e como recuperar sua coragem para viver plenamente.",
+    title: "Conforto: Seu Aliado ou Maior Inimigo?",
+    excerpt: "A estabilidade que você busca pode ser uma armadilha. Aprenda a identificar o medo disfarçado e recupere sua coragem para viver plenamente.",
     image: "/images/blog-comfort-trap.jpg",
     date: "01 de Junho, 2025",
     author: "Roberto Navarro",
-    category: "Courage",
+    category: "Coragem",
     slug: "estabilidade-armadilha",
     content: `
-      <h2>Estabilidade ou Armadilha? Por Que o Seu Conforto Pode Ser Seu Maior Inimigo</h2>
-      <p>O que você chama de estabilidade, eu chamo de medo disfarçado. Você acredita que está seguro, mas talvez esteja apenas acomodado. Essa sensação confortável pode estar custando sua energia, saúde e liberdade.</p>
+      <h2>Estabilidade ou Medo Disfarçado?</h2>
+      <p>Você chama de estabilidade, mas e se for apenas acomodação? A zona de conforto pode parecer segura, mas muitas vezes custa sua saúde, energia e liberdade. Está na hora de questionar o que te mantém parado.</p>
       
-      <h3>Estabilidade ou acomodação?</h3>
-      <p>Você continua em um emprego que drena suas energias, mina sua saúde e afasta você de seus sonhos. O desconhecido parece assustador demais, fazendo com que o cansaço diário seja aceito como rotina.</p>
+      <h3>Conforto que Drena</h3>
+      <p>Quantos continuam em empregos que esgotam, só porque o desconhecido parece mais arriscado? Aceitar a exaustão como rotina é um sinal de que sua “estabilidade” pode estar te aprisionando.</p>
       
-      <h3>O verdadeiro motivo da procrastinação</h3>
-      <p>Você adia conversas importantes e procrastina decisões que poderiam mudar sua vida. Coloca a culpa na falta de tempo, mas no fundo você sabe que o que realmente falta é coragem.</p>
+      <h3>Por Que Você Adia Mudanças?</h3>
+      <p>Decisões importantes — como mudar de carreira ou iniciar um projeto — são adiadas com desculpas como “falta de tempo”. Mas a verdadeira barreira é o medo de sair da zona de conforto.</p>
       
-      <h3>A armadilha mental das desculpas</h3>
-      <p>Você construiu um sistema invisível para se proteger: uma teia de desculpas sofisticadas que funcionam como escudo emocional:</p>
+      <h3>Suas Desculpas São Armadilhas</h3>
+      <p>Você criou um sistema de proteção com justificativas que parecem razoáveis:</p>
       <ul>
-        <li>“Agora não é o momento.”</li>
-        <li>“Depois que eu quitar as dívidas.”</li>
-        <li>“Quando as coisas acalmarem no trabalho.”</li>
+        <li>“Não é o momento certo.”</li>
+        <li>“Preciso resolver minhas dívidas primeiro.”</li>
+        <li>“Quando o trabalho estiver mais tranquilo.”</li>
       </ul>
+      <p>Essas desculpas te mantêm seguro, mas também estagnado.</p>
       
-      <h3>O preço real da falsa segurança</h3>
-      <p>O problema nunca esteve no mundo externo, mas na armadilha mental que você mesmo criou. A estabilidade só é realmente boa quando não custa sua liberdade.</p>
+      <h3>O Verdadeiro Custo da Estabilidade</h3>
+      <p>Estabilidade é boa apenas quando não sacrifica sua paz ou seus sonhos. Se ela está custando sua saúde mental ou adiando sua felicidade, é hora de repensar suas prioridades.</p>
       
-      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Chegou o momento de quebrar esse ciclo. Está pronto para encarar seus medos e reconquistar a coragem necessária para viver plenamente?</a></p>
+      <h3>Reconquiste Sua Coragem</h3>
+      <p>A mudança começa com pequenos atos de coragem. Enfrente um medo, tome uma decisão adiada, dê o primeiro passo. Cada ação te aproxima de uma vida mais plena e alinhada com seus propósitos.</p>
+      <p><a href="/empreendedor-inteligente#inscricao" class="text-yellow-400 hover:underline">Clique aqui e comece a quebrar as barreiras do conforto hoje!</a></p>
     `,
   },
 ];
-
 export const ptCategories = [
   "Todas",
   "Mentalidade",

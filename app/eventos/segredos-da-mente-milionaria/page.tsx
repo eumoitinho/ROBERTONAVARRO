@@ -15,6 +15,7 @@ import {
   GraduationCap,
   Clock,
   MapPin,
+  Calendar,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -26,6 +27,8 @@ import Footer from "@/components/footer"
 import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
 import { SiteHeader } from "@/components/header"
 import NotableParticipants from "@/components/notable-persons"
+import { TicketPricingCards } from "@/components/ticket-pricing-cards"
+import { SectionBadge } from "@/components/section-badge"
 
 export default function SegredosDaMenteMilionaria() {
   const [isVisible, setIsVisible] = useState(false)
@@ -223,17 +226,78 @@ const navigationItems = [
       <NotableParticipants />
       <TestimonialsSection />
 
-         {/* Newsletter Section */}
-      <section id="inscricao" className="py-16 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+       <section id="form" className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-zinc-900/95"></div>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.03)_0%,_rgba(39,39,42,0.1)_100%)]"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <NewsletterSignup
-            source="Segredos da Mente Milionária"
-            title="FIQUE POR DENTRO DO PROXIMO EVENTO"
-            description="Cadastre-se para receber em primeira mão informações sobre novos eventos e conteúdos exclusivos." onSubmit={() => {
-          /* não precisa mais chamar router.push aqui,
-             o componente já faz isso */
-        }}     />
+          <div className="text-center mb-16">
+            <SectionBadge text="INSCRIÇÃO" />
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              ESCOLHA SEU <span className="text-yellow-400">INGRESSO</span>
+            </h2>
+            <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
+              Participe do evento transformador Crenças da Riqueza e comece a mudar sua relação com o dinheiro. Vagas
+              limitadas!
+            </p>
+          </div>
+
+          <div className="mb-16">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+              <div className="flex items-center gap-4">
+                <div className="bg-yellow-400/10 backdrop-blur-sm rounded-full p-4 flex-shrink-0">
+                  <Calendar className="h-7 w-7 text-yellow-400" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
+                  <p className="text-zinc-300 text-lg">11 de Julho de 2025, 10h às 20h</p>
+                </div>
+              </div>
+              <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
+              <div className="flex items-center gap-4">
+                <div className="bg-yellow-400/10 backdrop-blur-sm rounded-full p-4 flex-shrink-0">
+                  <MapPin className="h-7 w-7 text-yellow-400" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold text-white">Local</h4>
+                  <p className="text-zinc-300 text-lg">Centro de Convenções, São Paulo, SP</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <TicketPricingCards
+            eventId={1}
+            eventName="Crenças da Riqueza"
+            ticketTypes={[
+              {
+                id: 2782193,
+                name: "Ingresso Especial",
+                price: 9.9,
+                description: "Acesso completo ao evento presencial",
+                benefits: [
+                  "Experiência completa de 10 horas",
+                  "Material digital exclusivo",
+                  "Certificado de participação",
+                  "Networking com participantes",
+                ],
+              },
+              {
+                id: 2782194,
+                name: "Ingresso VIP",
+                price: 49.9,
+                description: "Experiência premium com benefícios exclusivos",
+                benefits: [
+                  "Tudo do Ingresso Especial",
+                  "Assentos nas primeiras fileiras",
+                  "Perguntas e respostas com Roberto Navarro",
+                  "Compre 1, leve 2 (traga um acompanhante)",
+                  "Acesso antecipado ao evento",
+                ],
+                featured: true,
+              },
+            ]}
+          />
         </div>
       </section>
 
