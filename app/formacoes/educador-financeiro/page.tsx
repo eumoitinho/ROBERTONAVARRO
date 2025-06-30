@@ -222,11 +222,11 @@ export default function EducadorFinanceiroPage() {
                 </p>
 
                 <p>
-                  Em apenas <span className="text-yellow-400 font-semibold">6 meses</span>, você verá resultados
+                  Em apenas <span className="text-yellow-400 font-semibold">Poucos dias</span>, você verá resultados
                   concretos em sua vida e aprenderá como dominar os fundamentos da educação financeira e aplicar os
                   conhecimentos na prática.
                 </p>
-
+ 
                 <p>
                   Além de possibilitar seu crescimento individual, você desenvolverá{" "}
                   <span className="text-yellow-400">habilidades pedagógicas e de comunicação</span> para transmitir esse
@@ -336,7 +336,7 @@ export default function EducadorFinanceiroPage() {
               },
               {
                 icon: <Award className="h-6 w-6 text-yellow-400" />,
-                title: "Empoderamento profissional",
+                title: "Reconhecimento profissional",
                 description:
                   "Torne-se referência no ensino de finanças e conquiste autoridade e credibilidade na área.",
               },
@@ -453,8 +453,11 @@ export default function EducadorFinanceiroPage() {
               <span className="text-sm font-medium">SEU MENTOR</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              CONHEÇA SEU <span className="text-yellow-400">MENTOR</span>
+              APRENDA COM O MENTOR DOS <span className="text-yellow-400">MENTORES</span>
             </h2>
+            <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
+              O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil!
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
@@ -537,10 +540,10 @@ export default function EducadorFinanceiroPage() {
                   "Seu investimento em si mesmo é protegido por uma garantia de satisfação total. Se, por algum motivo, dentro dos primeiros 7 dias de acesso à formação, você decidir que o treinamento não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.",
               },
               {
-                icon: <Target className="h-6 w-6 text-yellow-400" />,
-                title: "Garantia de resultado em 6 meses",
+                icon: <Target className="h-6 w-6 text-yellow-400 font-bold" />,
+                title: "Garantia de resultado em poucos dias",
                 description:
-                  "Se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira dentro de 6 meses, devolveremos o dobro do seu investimento no curso. Isso demonstra não apenas a confiança na eficácia de nosso método, mas também nosso compromisso com o seu progresso e resultados.",
+                  "Se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira dentro de poucos dias, devolveremos o dobro do seu investimento no curso. Isso demonstra não apenas a confiança na eficácia de nosso método, mas também nosso compromisso com o seu progresso e resultados.",
               },
               {
                 icon: <Award className="h-6 w-6 text-yellow-400" />,
@@ -620,6 +623,19 @@ export default function EducadorFinanceiroPage() {
                   question: "Terei suporte após a conclusão do curso?",
                   answer:
                     "Sim, oferecemos suporte contínuo após a conclusão do curso. Você terá acesso a uma comunidade exclusiva de educadores financeiros, além de mentorias periódicas e materiais atualizados para continuar aprimorando suas habilidades.",
+                },
+                {
+                  question: "A formação serve para gerar renda ou só para melhorar minha vida pessoal?",
+                  answer:
+                    "As duas coisas. Você aprenderá a transformar sua própria vida financeira e também como transformar esse conhecimento em uma fonte de renda.",
+                },
+                {question: "O curso tem carga horária flexível?",
+                  answer:
+                    "Sim. O conteúdo é online, com acesso 24h por dia, permitindo que você estude no seu ritmo e de onde quiser.",
+                },
+                {question: "É possível se tornar um treinador licenciado?",
+                  answer: 
+                    "Sim. Após a formação, você poderá se tornar um treinador oficial do Instituto Coaching Financeiro, com direito a revender treinamentos certificados e gerar renda com um modelo de negócio já validado.",
                 },
               ].map((faq, index) => (
                 <AccordionItem
