@@ -132,7 +132,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
             window.dataLayer.push({
               event: "sendEvent",
               category: "ecommerce",
-              eventGA4: "purchase",
+              eventGA4: "purchase_completed",
               content_type: "product",
             })
           }
