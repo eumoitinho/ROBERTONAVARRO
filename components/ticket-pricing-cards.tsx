@@ -346,18 +346,19 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
               style={{ zIndex: 9999 }}
             >
               <div className="p-6 md:p-8">
-                <div className="flex justify-between items-center mb-8">
+                <div className="flex justify-between items-center mb-8 relative">
                   <h2 className="text-2xl font-bold text-white">Finalizar Pagamento</h2>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="text-zinc-400 hover:text-white hover:bg-zinc-800/50 rounded-full w-10 h-10"
-                    onClick={handleCloseCheckout}
-                  >
-                    <X className="h-6 w-6" />
-                    <span className="sr-only">Fechar</span>
-                  </Button>
-                </div>
+                    <Button
+    variant="ghost"
+    size="icon"
+    // Ajuste no posicionamento:
+    className="text-zinc-400 hover:text-white hover:bg-zinc-800/50 rounded-full w-10 h-10 absolute top-0 right-0 md:static md:ml-auto"
+    onClick={handleCloseCheckout}
+  >
+    <X className="h-6 w-6" />
+    <span className="sr-only">Fechar</span>
+  </Button>
+</div>
 
                 <div className="bg-zinc-800/40 backdrop-blur-md rounded-3xl p-6 mb-8 border border-zinc-700/30">
                   <div className="flex items-center gap-3 mb-3">
