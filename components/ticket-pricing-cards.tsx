@@ -113,7 +113,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
           // Trigger conversion event
           if (window.dataLayer) {
             window.dataLayer.push({
-              event: "purchase",
+              event: "purchase_completed",
               ecommerce: {
                 currency: "BRL",
                 transaction_id: Date.now().toString(),
