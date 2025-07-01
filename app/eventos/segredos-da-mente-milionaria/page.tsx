@@ -268,7 +268,7 @@ export default function SegredosDaMenteMilionaria() {
                   "Certificado de participação",
                   "Networking com participantes",
                 ],
-                checkoutUrl: "https://sun.eduzz.com/1W3Z2ZRGW2",
+                eduzzContentId: "E9OOG6859B", // ID do produto na Eduzz
               },
               {
                 id: 2782194,
@@ -283,7 +283,7 @@ export default function SegredosDaMenteMilionaria() {
                   "Acesso antecipado ao evento",
                 ],
                 featured: true,
-                checkoutUrl: "https://sun.eduzz.com/1W3Z2ZRGW2",
+                eduzzContentId: "6W48G3XN0Z", // ID do produto VIP na Eduzz
               },
             ]}
           />

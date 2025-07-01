@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Check, Loader2 } from "lucide-react"
@@ -21,7 +23,7 @@ interface TicketType {
   description: string
   benefits: string[]
   featured?: boolean
-  checkoutUrl: string
+  eduzzContentId: string // ID do produto na Eduzz para o embed
 }
 
 // Esquema do formulário
@@ -38,15 +40,34 @@ interface TicketPricingCardsProps {
   ticketTypes: TicketType[]
 }
 
+// Declaração de tipos para o Eduzz
+declare global {
+  interface Window {
+    Eduzz: {
+      Checkout: {
+        init: (config: {
+          contentId: string
+          target: string
+          errorCover?: boolean
+          onSuccess?: () => void
+          onError?: (error: any) => void
+        }) => void
+      }
+    }
+    dataLayer?: Object[]
+  }
+}
+
 export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPricingCardsProps) {
   const [selectedTicket, setSelectedTicket] = useState<TicketType | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [paymentUrl, setPaymentUrl] = useState<string | null>(null)
+  const [showCheckout, setShowCheckout] = useState(false)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const router = useRouter()
   const checkoutPanelRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
+  const eduzzScriptLoaded = useRef(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -66,8 +87,100 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
 
   const handleCloseCheckout = () => {
     setSelectedTicket(null)
+    setShowCheckout(false)
     // Restore body scroll
     document.body.style.overflow = "unset"
+  }
+
+  // Load Eduzz script
+  const loadEduzzScript = () => {
+    if (eduzzScriptLoaded.current) return Promise.resolve()
+
+    return new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script")
+      script.src = "https://cdn.eduzzcdn.com/sun/bridge/bridge.js"
+      script.async = true
+      script.type = "module"
+
+      script.onload = () => {
+        eduzzScriptLoaded.current = true
+        resolve()
+      }
+
+      script.onerror = () => {
+        reject(new Error("Falha ao carregar script da Eduzz"))
+      }
+
+      document.head.appendChild(script)
+    })
+  }
+
+  // Initialize Eduzz checkout
+  const initializeEduzzCheckout = async (contentId: string) => {
+    try {
+      await loadEduzzScript()
+
+      // Wait for Eduzz to be available
+      const waitForEduzz = () => {
+        return new Promise<void>((resolve) => {
+          const checkEduzz = () => {
+            if (window.Eduzz && window.Eduzz.Checkout) {
+              resolve()
+            } else {
+              setTimeout(checkEduzz, 100)
+            }
+          }
+          checkEduzz()
+        })
+      }
+
+      await waitForEduzz()
+
+      window.Eduzz.Checkout.init({
+        contentId: contentId,
+        target: "eduzz-checkout-container",
+        errorCover: true,
+        onSuccess: () => {
+          // Disparar evento de conversão
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: "purchase",
+              ecommerce: {
+                currency: "BRL",
+                transaction_id: Date.now().toString(),
+                value: selectedTicket?.price || 0,
+                items: [
+                  {
+                    item_id: selectedTicket?.id.toString() || "",
+                    item_name: selectedTicket?.name || "",
+                    price: selectedTicket?.price || 0,
+                    quantity: 1,
+                  },
+                ],
+              },
+            })
+
+            // Evento específico para o GTM
+            window.dataLayer.push({
+              event: "sendEvent",
+              category: "ecommerce",
+              eventGA4: "purchase",
+              content_type: "product",
+            })
+          }
+
+          setSuccessMessage("Compra realizada com sucesso!")
+          setTimeout(() => {
+            router.push("/obrigado")
+          }, 2000)
+        },
+        onError: (error) => {
+          setError("Erro ao processar pagamento: " + error.message)
+        },
+      })
+    } catch (err) {
+      setError("Erro ao inicializar checkout: " + (err as Error).message)
+    }
   }
 
   // Handle clicks outside the checkout panel to close it
@@ -105,8 +218,41 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     setSuccessMessage(null)
 
     try {
-      // Simply set the payment URL to the checkout URL from the ticket
-      setPaymentUrl(selectedTicket.checkoutUrl)
+      // Disparar evento de início de checkout
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: "begin_checkout",
+          ecommerce: {
+            currency: "BRL",
+            value: selectedTicket.price,
+            items: [
+              {
+                item_id: selectedTicket.id.toString(),
+                item_name: selectedTicket.name,
+                price: selectedTicket.price,
+                quantity: 1,
+              },
+            ],
+          },
+        })
+
+        // Evento específico para o GTM
+        window.dataLayer.push({
+          event: "sendEvent",
+          category: "ecommerce",
+          eventGA4: "begin_checkout",
+          content_type: "product",
+        })
+      }
+
+      // Disparar clique no botão oculto para trigger do GTM
+      const hiddenButton = document.getElementById("chk-finish-payment-button")
+      if (hiddenButton) {
+        hiddenButton.click()
+      }
+
+      setShowCheckout(true)
+      await initializeEduzzCheckout(selectedTicket.eduzzContentId)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao processar sua compra")
     } finally {
@@ -233,23 +379,37 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                   </Alert>
                 )}
 
-                {paymentUrl ? (
-                  <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
-                    <iframe
-                      src={paymentUrl}
-                      title="Finalizar Pagamento"
-                      width="100%"
-                      height="500px"
-                      frameBorder="0"
-                      allow="payment"
-                    />
-                    <div className="p-4 bg-zinc-800">
+                {showCheckout ? (
+                  <div className="bg-white rounded-3xl overflow-hidden shadow-2xl min-h-[500px]">
+                    {/* Container customizado para o checkout da Eduzz */}
+                    <div className="p-6">
+                      <div className="text-center mb-4">
+                        <h3 className="text-xl font-semibold text-gray-800">Finalize seu Pagamento</h3>
+                        <p className="text-gray-600">Escolha a forma de pagamento que preferir</p>
+                      </div>
+
+                      {/* Container onde o checkout da Eduzz será renderizado */}
+                      <div
+                        id="eduzz-checkout-container"
+                        className="min-h-[400px] w-full"
+                        style={
+                          {
+                            // Estilos customizados para o checkout
+                            "--eduzz-primary-color": "#f59e0b",
+                            "--eduzz-secondary-color": "#1f2937",
+                            "--eduzz-border-radius": "12px",
+                          } as React.CSSProperties
+                        }
+                      />
+                    </div>
+
+                    <div className="p-4 bg-zinc-800 border-t">
                       <Button
                         variant="outline"
-                        onClick={() => setPaymentUrl(null)}
+                        onClick={() => setShowCheckout(false)}
                         className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 rounded-xl"
                       >
-                        Voltar
+                        Voltar aos Dados
                       </Button>
                     </div>
                   </div>
@@ -329,6 +489,14 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                         )}
                       />
 
+                      {/* Botão oculto para trigger do GTM */}
+                      <button
+                        id="chk-finish-payment-button"
+                        type="button"
+                        style={{ display: "none" }}
+                        aria-hidden="true"
+                      />
+
                       <Button
                         type="submit"
                         disabled={isSubmitting}
@@ -351,6 +519,34 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
           </>
         )}
       </AnimatePresence>
+
+      {/* CSS customizado para o checkout da Eduzz */}
+      <style jsx global>{`
+        #eduzz-checkout-container {
+          /* Customizações do design do checkout */
+        }
+        
+        #eduzz-checkout-container .eduzz-checkout-form {
+          border-radius: 12px !important;
+          box-shadow: none !important;
+        }
+        
+        #eduzz-checkout-container .eduzz-button-primary {
+          background: linear-gradient(to right, #f59e0b, #d97706) !important;
+          border-radius: 8px !important;
+          font-weight: 600 !important;
+        }
+        
+        #eduzz-checkout-container .eduzz-input {
+          border-radius: 8px !important;
+          border: 1px solid #e5e7eb !important;
+        }
+        
+        #eduzz-checkout-container .eduzz-input:focus {
+          border-color: #f59e0b !important;
+          box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+        }
+      `}</style>
     </div>
   )
 }
