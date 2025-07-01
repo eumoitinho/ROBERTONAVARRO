@@ -1,48 +1,46 @@
 "use client"
 
 import type React from "react"
-
+import {TicketPricingCards} from "@/components/ticket-pricing-cards"
 import { useState, useEffect } from "react"
 import { Users, Zap, Brain, Target, Wallet, GraduationCap, MapPin, Calendar } from "lucide-react"
 import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { SiteHeader } from "@/components/header"
 import NotableParticipants from "@/components/notable-persons"
-import { TicketPricingCards } from "@/components/ticket-pricing-cards"
 import { SectionBadge } from "@/components/section-badge"
 import Footerlp from "@/components/footerlp"
 
 const ticketTypes = [
   {
-                id: 2782193,
-                name: "Ingresso Especial",
-                price: 9.9,
-                description: "Acesso completo ao evento presencial",
-                benefits: [
-                  "Experiência completa de 10 horas",
-                  "Material digital exclusivo",
-                  "Certificado de participação",
-                  "Networking com participantes",
-                ],
-                eduzzContentId: "E9OOG6859B", // ID do produto na Eduzz
-              },
-              {
-                id: 2782194,
-                name: "Ingresso VIP",
-                price: 49.9,
-                description: "Experiência premium com benefícios exclusivos",
-                benefits: [
-                  "Tudo do Ingresso Especial",
-                  "Assentos nas primeiras fileiras",
-                  "Perguntas e respostas com Roberto Navarro",
-                  "Compre 1, leve 2 (traga um acompanhante)",
-                  "Acesso antecipado ao evento",
-                ],
-                featured: true,
-                eduzzContentId: "6W48G3XN0Z", // ID do produto VIP na Eduzz
-              },
+    id: 2782193,
+    name: "Ingresso Especial",
+    price: 9.9,
+    description: "Acesso completo ao evento presencial",
+    benefits: [
+      "Experiência completa de 10 horas",
+      "Material digital exclusivo",
+      "Certificado de participação",
+      "Networking com participantes",
+    ],
+    eduzzContentId: "E9OOG6859B", // ID do produto na Eduzz
+  },
+  {
+    id: 2782194,
+    name: "Ingresso VIP",
+    price: 49.9,
+    description: "Experiência premium com benefícios exclusivos",
+    benefits: [
+      "Tudo do Ingresso Especial",
+      "Assentos nas primeiras fileiras",
+      "Perguntas e respostas com Roberto Navarro",
+      "Compre 1, leve 2 (traga um acompanhante)",
+      "Acesso antecipado ao evento",
+    ],
+    featured: true,
+    eduzzContentId: "6W48G3XN0Z", // ID do produto VIP na Eduzz
+  },
 ]
-
 
 export default function SegredosDaMenteMilionaria() {
   const [isVisible, setIsVisible] = useState(false)
@@ -105,6 +103,7 @@ export default function SegredosDaMenteMilionaria() {
       setIsSubmitting(false)
     }
   }
+
   const navigationItems = [
     { title: "Início", href: "/" },
     { title: "Benefícios", href: "#beneficios" },
@@ -112,8 +111,9 @@ export default function SegredosDaMenteMilionaria() {
     { title: "Depoimentos", href: "#depoimentos" },
     { title: "Inscrição", href: "#inscricao", isButton: true },
   ]
+
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
       <SiteHeader navigationItems={navigationItems} showInicio={true} />
 
@@ -283,9 +283,9 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
 
-           <TicketPricingCards eventId={1} eventName="Segredos da Mente Milionária" ticketTypes={ticketTypes} />
+          <TicketPricingCards eventId={6} eventName="Segredos da Mente Milionária" ticketTypes={ticketTypes} />
         </div>
       </section>
 
