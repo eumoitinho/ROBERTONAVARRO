@@ -274,7 +274,7 @@ const navigationItems = [
               {
                 id: 2782193,
                 name: "Ingresso Especial",
-                price: 9.9,
+                price: 0.0,
                 description: "Acesso completo ao evento presencial",
                 benefits: [
                   "Experiência completa de 10 horas",
@@ -286,7 +286,7 @@ const navigationItems = [
               {
                 id: 2782194,
                 name: "Ingresso VIP",
-                price: 49.9,
+                price: 0.0,
                 description: "Experiência premium com benefícios exclusivos",
                 benefits: [
                   "Tudo do Ingresso Especial",
