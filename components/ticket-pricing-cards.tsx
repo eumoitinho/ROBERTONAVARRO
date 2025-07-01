@@ -49,6 +49,12 @@ declare global {
           contentId: string
           target: string
           errorCover?: boolean
+          customer?: {
+            name?: string
+            email?: string
+            phone?: string
+            document?: string
+          }
           onSuccess?: () => void
           onError?: (error: any) => void
         }) => void
@@ -64,6 +70,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
   const [error, setError] = useState<string | null>(null)
   const [showCheckout, setShowCheckout] = useState(false)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [customerData, setCustomerData] = useState<z.infer<typeof formSchema> | null>(null)
   const router = useRouter()
   const checkoutPanelRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
@@ -88,6 +95,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
   const handleCloseCheckout = () => {
     setSelectedTicket(null)
     setShowCheckout(false)
+    setCustomerData(null)
     // Restore body scroll
     document.body.style.overflow = "unset"
   }
@@ -115,8 +123,8 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     })
   }
 
-  // Initialize Eduzz checkout
-  const initializeEduzzCheckout = async (contentId: string) => {
+  // Initialize Eduzz checkout with customer data
+  const initializeEduzzCheckout = async (contentId: string, customerInfo: z.infer<typeof formSchema>) => {
     try {
       await loadEduzzScript()
 
@@ -136,11 +144,30 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
 
       await waitForEduzz()
 
+      // Limpar container anterior
+      const container = document.getElementById("eduzz-checkout-container")
+      if (container) {
+        container.innerHTML = ""
+      }
+
+      // Preparar dados do cliente para a Eduzz
+      const customerData = {
+        name: customerInfo.name,
+        email: customerInfo.email,
+        phone: customerInfo.phone.replace(/\D/g, ""), // Remove formatação do telefone
+        ...(customerInfo.document && { document: customerInfo.document.replace(/\D/g, "") }),
+      }
+
+      console.log("Inicializando checkout da Eduzz com dados:", customerData)
+
       window.Eduzz.Checkout.init({
         contentId: contentId,
         target: "eduzz-checkout-container",
         errorCover: true,
+        customer: customerData, // Passa os dados do cliente para pré-preenchimento
         onSuccess: () => {
+          console.log("Compra realizada com sucesso!")
+
           // Disparar evento de conversão
           if (window.dataLayer) {
             window.dataLayer.push({
@@ -171,14 +198,18 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
 
           setSuccessMessage("Compra realizada com sucesso!")
           setTimeout(() => {
-            router.push("/obrigado")
+            router.push(
+              `/obrigado_pela_compra?product_id=${selectedTicket?.id}&value=${selectedTicket?.price}&transaction_id=${Date.now()}`,
+            )
           }, 2000)
         },
         onError: (error) => {
-          setError("Erro ao processar pagamento: " + error.message)
+          console.error("Erro no checkout da Eduzz:", error)
+          setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"))
         },
       })
     } catch (err) {
+      console.error("Erro ao inicializar checkout:", err)
       setError("Erro ao inicializar checkout: " + (err as Error).message)
     }
   }
@@ -218,6 +249,9 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     setSuccessMessage(null)
 
     try {
+      // Salvar dados do cliente
+      setCustomerData(values)
+
       // Disparar evento de início de checkout
       if (window.dataLayer) {
         window.dataLayer.push({
@@ -251,12 +285,26 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         hiddenButton.click()
       }
 
+      console.log("Dados do formulário:", values)
+      console.log("Iniciando checkout para:", selectedTicket.name)
+
       setShowCheckout(true)
-      await initializeEduzzCheckout(selectedTicket.eduzzContentId)
+      await initializeEduzzCheckout(selectedTicket.eduzzContentId, values)
     } catch (err) {
+      console.error("Erro ao processar checkout:", err)
       setError(err instanceof Error ? err.message : "Erro ao processar sua compra")
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const handleBackToForm = () => {
+    setShowCheckout(false)
+    setCustomerData(null)
+    // Limpar container do checkout
+    const container = document.getElementById("eduzz-checkout-container")
+    if (container) {
+      container.innerHTML = ""
     }
   }
 
@@ -348,7 +396,9 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
             >
               <div className="p-6 md:p-8">
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-2xl font-bold text-white">Finalizar Compra</h2>
+                  <h2 className="text-2xl font-bold text-white">
+                    {showCheckout ? "Finalizar Pagamento" : "Finalizar Compra"}
+                  </h2>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -370,6 +420,29 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                     <span className="text-3xl font-bold text-white">R$ {selectedTicket.price.toFixed(2)}</span>
                     <span className="text-sm text-zinc-400">por ingresso</span>
                   </div>
+
+                  {/* Mostrar dados do cliente quando estiver no checkout */}
+                  {showCheckout && customerData && (
+                    <div className="mt-4 pt-4 border-t border-zinc-700/50">
+                      <p className="text-sm text-zinc-400 mb-2">Dados do cliente:</p>
+                      <div className="text-sm text-zinc-300 space-y-1">
+                        <p>
+                          <strong>Nome:</strong> {customerData.name}
+                        </p>
+                        <p>
+                          <strong>Email:</strong> {customerData.email}
+                        </p>
+                        <p>
+                          <strong>Telefone:</strong> {customerData.phone}
+                        </p>
+                        {customerData.document && (
+                          <p>
+                            <strong>CPF:</strong> {customerData.document}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {error && (
@@ -385,7 +458,8 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                     <div className="p-6">
                       <div className="text-center mb-4">
                         <h3 className="text-xl font-semibold text-gray-800">Finalize seu Pagamento</h3>
-                        <p className="text-gray-600">Escolha a forma de pagamento que preferir</p>
+                        <p className="text-gray-600">Seus dados já foram preenchidos automaticamente</p>
+                        <p className="text-sm text-gray-500 mt-2">✅ Nome, email e telefone já configurados</p>
                       </div>
 
                       {/* Container onde o checkout da Eduzz será renderizado */}
@@ -406,16 +480,23 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                     <div className="p-4 bg-zinc-800 border-t">
                       <Button
                         variant="outline"
-                        onClick={() => setShowCheckout(false)}
-                        className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 rounded-xl"
+                        onClick={handleBackToForm}
+                        className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 rounded-xl bg-transparent"
                       >
-                        Voltar aos Dados
+                        ← Voltar aos Dados
                       </Button>
                     </div>
                   </div>
                 ) : (
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <div className="bg-blue-500/10 border border-blue-500/30 rounded-2xl p-4 mb-6">
+                        <p className="text-blue-400 text-sm">
+                          💡 <strong>Dica:</strong> Seus dados serão automaticamente preenchidos no checkout, evitando
+                          que você precise digitá-los novamente!
+                        </p>
+                      </div>
+
                       <FormField
                         control={form.control}
                         name="name"
@@ -545,6 +626,22 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         #eduzz-checkout-container .eduzz-input:focus {
           border-color: #f59e0b !important;
           box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+        }
+
+        /* Ocultar campos já preenchidos no checkout da Eduzz */
+        #eduzz-checkout-container input[name="customer_name"],
+        #eduzz-checkout-container input[name="customer_email"],
+        #eduzz-checkout-container input[name="customer_phone"],
+        #eduzz-checkout-container input[name="customer_document"] {
+          background-color: #f3f4f6 !important;
+          border: 2px solid #10b981 !important;
+        }
+
+        #eduzz-checkout-container input[name="customer_name"]:before,
+        #eduzz-checkout-container input[name="customer_email"]:before,
+        #eduzz-checkout-container input[name="customer_phone"]:before {
+          content: "✅ ";
+          color: #10b981;
         }
       `}</style>
     </div>
