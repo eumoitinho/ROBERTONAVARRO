@@ -78,6 +78,42 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     })
   }
 
+  // Handle purchase completion
+  const handlePurchaseComplete = () => {
+    if (window.dataLayer && selectedTicket) {
+      window.dataLayer.push({
+        event: "purchase_completed",
+        ecommerce: {
+          currency: "BRL",
+          transaction_id: Date.now().toString(),
+          value: selectedTicket.price || 0,
+          items: [
+            {
+              item_id: selectedTicket.id.toString() || "",
+              item_name: selectedTicket.name || "",
+              price: selectedTicket.price || 0,
+              quantity: 1,
+            },
+          ],
+        },
+      })
+
+      window.dataLayer.push({
+        event: "sendEvent",
+        category: "ecommerce",
+        eventGA4: "purchase_completed",
+        content_type: "product",
+      })
+    }
+
+    setSuccessMessage("Compra realizada com sucesso!")
+    setTimeout(() => {
+      router.push(
+        `/obrigado?product_id=${selectedTicket?.id}&value=${selectedTicket?.price}&transaction_id=${Date.now()}`
+      )
+    }, 2000)
+  }
+
   // Initialize Eduzz checkout
   const initializeEduzzCheckout = async (contentId: string) => {
     try {
@@ -110,39 +146,10 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         target: "eduzz-checkout-container",
         errorCover: true,
         onSuccess: () => {
-          // Trigger conversion event
-          if (window.dataLayer) {
-            window.dataLayer.push({
-              event: "purchase_completed",
-              ecommerce: {
-                currency: "BRL",
-                transaction_id: Date.now().toString(),
-                value: selectedTicket?.price || 0,
-                items: [
-                  {
-                    item_id: selectedTicket?.id.toString() || "",
-                    item_name: selectedTicket?.name || "",
-                    price: selectedTicket?.price || 0,
-                    quantity: 1,
-                  },
-                ],
-              },
-            })
-
-            window.dataLayer.push({
-              event: "sendEvent",
-              category: "ecommerce",
-              eventGA4: "purchase_completed",
-              content_type: "product",
-            })
-          }
-
-          setSuccessMessage("Compra realizada com sucesso!")
-          setTimeout(() => {
-            router.push(
-              `/obrigado?product_id=${selectedTicket?.id}&value=${selectedTicket?.price}&transaction_id=${Date.now()}`
-            )
-          }, 2000)
+          console.log("Eduzz onSuccess triggered")
+          handlePurchaseComplete()
+          // Open Eduzz redirect in new tab
+          window.open("https://app.eduzz.com", "_blank")
         },
         onError: (error) => {
           console.error("Erro no checkout da Eduzz:", error)
@@ -150,6 +157,17 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         },
         redirectUrl: "https://app.eduzz.com" // Eduzz default redirect URL
       })
+
+      // Fallback: Listen for redirect to detect purchase completion
+      const originalPushState = history.pushState
+      history.pushState = function (...args) {
+        originalPushState.apply(history, args)
+        if (window.location.href.includes("app.eduzz.com")) {
+          console.log("Detected Eduzz redirect, triggering purchase_completed")
+          handlePurchaseComplete()
+        }
+        return originalPushState
+      }
     } catch (err) {
       console.error("Erro ao inicializar checkout:", err)
       setError("Erro ao inicializar checkout: " + (err as Error).message)
