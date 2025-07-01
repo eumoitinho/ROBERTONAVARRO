@@ -272,7 +272,7 @@ const navigationItems = [
             eventName="Segredos da Mente Milionária"
             ticketTypes={[
               {
-                id: 2782193,
+                id: 2783513,
                 name: "Ingresso Especial",
                 price: 0.0,
                 description: "Acesso completo ao evento presencial",
@@ -284,7 +284,7 @@ const navigationItems = [
                 ],
               },
               {
-                id: 2782194,
+                id: 2783513,
                 name: "Ingresso VIP",
                 price: 0.0,
                 description: "Experiência premium com benefícios exclusivos",
