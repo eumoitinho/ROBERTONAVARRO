@@ -23,7 +23,7 @@ const ticketTypes = [
       "Certificado de participação",
       "Networking com participantes",
     ],
-    eduzzContentId: "1W3Z2ZRGW2s", // ID do produto na Eduzz
+    eduzzContentId: "1W3Z2ZRGW2", // ID do produto na Eduzz
   },
   {
     id: 2782194,
