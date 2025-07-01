@@ -432,6 +432,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
 
                       <Button
                         type="submit"
+                        id="pre-checkout-button"
                         disabled={isSubmitting}
                         className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold py-6 rounded-2xl text-lg transition-all duration-300 shadow-lg hover:shadow-yellow-400/25"
                       >
