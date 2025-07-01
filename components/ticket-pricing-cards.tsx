@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Check, CreditCard, Landmark, QrCode, Loader2 } from "lucide-react"
+import { X, Check, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useRouter } from "next/navigation"
 
@@ -22,6 +21,7 @@ interface TicketType {
   description: string
   benefits: string[]
   featured?: boolean
+  checkoutUrl: string
 }
 
 // Esquema do formulário
@@ -30,7 +30,6 @@ const formSchema = z.object({
   email: z.string().email({ message: "Por favor, insira um email válido." }),
   phone: z.string().min(10, { message: "O telefone deve ter pelo menos 10 dígitos." }),
   document: z.string().optional(),
-  paymentMethod: z.enum(["credit_card", "boleto", "pix"]),
 })
 
 interface TicketPricingCardsProps {
@@ -56,7 +55,6 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
       email: "",
       phone: "",
       document: "",
-      paymentMethod: "credit_card",
     },
   })
 
@@ -107,63 +105,8 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     setSuccessMessage(null)
 
     try {
-      const requestData = {
-        eventId,
-        productId: selectedTicket.id,
-        customer: {
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          document: values.document || undefined,
-        },
-        paymentMethod: values.paymentMethod,
-      }
-
-      let response = await fetch("/api/tickets/purchase", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestData),
-      })
-
-      if (!response.ok) {
-        response = await fetch("/api/register-ticket", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(requestData),
-        })
-      }
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        let errorMessage = "Erro ao processar compra"
-        try {
-          if (errorText) {
-            const errorData = JSON.parse(errorText)
-            errorMessage = errorData.error || errorData.message || errorMessage
-          }
-        } catch {
-          errorMessage = errorText || `Erro: ${response.status}`
-        }
-        throw new Error(errorMessage)
-      }
-
-      const responseText = await response.text()
-      if (!responseText) {
-        setSuccessMessage("Inscrição realizada com sucesso!")
-        setTimeout(() => router.push(`/inscricao/confirmacao`), 2000)
-        return
-      }
-
-      const data = JSON.parse(responseText)
-      if (data.paymentUrl) {
-        setPaymentUrl(data.paymentUrl)
-      } else if (data.ticketCode) {
-        setSuccessMessage(`Inscrição realizada com sucesso! Seu código de ingresso é: ${data.ticketCode}`)
-        setTimeout(() => router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`), 2000)
-      } else if (data.success) {
-        setSuccessMessage("Inscrição realizada com sucesso!")
-        setTimeout(() => router.push(`/inscricao/confirmacao`), 2000)
-      }
+      // Simply set the payment URL to the checkout URL from the ticket
+      setPaymentUrl(selectedTicket.checkoutUrl)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao processar sua compra")
     } finally {
@@ -386,50 +329,6 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                         )}
                       />
 
-                      <div className="space-y-4">
-                        <h3 className="text-white font-medium text-lg">Forma de Pagamento</h3>
-                        <FormField
-                          control={form.control}
-                          name="paymentMethod"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormControl>
-                                <RadioGroup
-                                  onValueChange={field.onChange}
-                                  defaultValue={field.value}
-                                  className="grid grid-cols-3 gap-4"
-                                >
-                                  {[
-                                    { value: "credit_card", label: "Cartão", icon: CreditCard },
-                                    { value: "boleto", label: "Boleto", icon: Landmark },
-                                    { value: "pix", label: "PIX", icon: QrCode },
-                                  ].map((method) => (
-                                    <div
-                                      key={method.value}
-                                      className={`bg-zinc-800/40 backdrop-blur-sm border rounded-2xl p-4 cursor-pointer hover:border-yellow-400/50 transition-all duration-300 ${
-                                        field.value === method.value
-                                          ? "border-yellow-400/50 bg-yellow-400/10"
-                                          : "border-zinc-600/40"
-                                      }`}
-                                    >
-                                      <RadioGroupItem value={method.value} id={method.value} className="hidden" />
-                                      <label
-                                        htmlFor={method.value}
-                                        className="cursor-pointer flex flex-col items-center gap-2"
-                                      >
-                                        <method.icon className="h-6 w-6 text-yellow-400" />
-                                        <span className="text-zinc-300 text-sm font-medium">{method.label}</span>
-                                      </label>
-                                    </div>
-                                  ))}
-                                </RadioGroup>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
                       <Button
                         type="submit"
                         disabled={isSubmitting}
@@ -441,7 +340,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                             Processando...
                           </>
                         ) : (
-                          `Finalizar Pagamento - R$ ${selectedTicket.price.toFixed(2)}`
+                          `Continuar para Pagamento - R$ ${selectedTicket.price.toFixed(2)}`
                         )}
                       </Button>
                     </form>

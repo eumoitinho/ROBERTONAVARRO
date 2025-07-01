@@ -1,30 +1,11 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import {
-  ArrowRight,
-  CheckCircle,
-  Star,
-  Users,
-  Zap,
-  Brain,
-  Target,
-  Wallet,
-  GraduationCap,
-  Clock,
-  MapPin,
-  Calendar,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import WhatsAppButton from "@/components/whatsapp-button"
-import MobileMenu from "@/components/mobile-menu"
-import Logo from "@/components/logo"
+import { Users, Zap, Brain, Target, Wallet, GraduationCap, MapPin, Calendar } from "lucide-react"
 import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection }  from "@/components/testimonials-section"
-import Footer from "@/components/footer"
-import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { SiteHeader } from "@/components/header"
 import NotableParticipants from "@/components/notable-persons"
 import { TicketPricingCards } from "@/components/ticket-pricing-cards"
@@ -92,22 +73,17 @@ export default function SegredosDaMenteMilionaria() {
       setIsSubmitting(false)
     }
   }
-const navigationItems = [
-  { title: "Início", href: "/" },
-  { title: "Benefícios", href: "#beneficios" },
-  { title: "O Que Aprender", href: "#o-que-aprender" },
-  { title: "Depoimentos", href: "#depoimentos" },
-  { title: "Inscrição", href: "#inscricao", isButton: true },
-];
+  const navigationItems = [
+    { title: "Início", href: "/" },
+    { title: "Benefícios", href: "#beneficios" },
+    { title: "O Que Aprender", href: "#o-que-aprender" },
+    { title: "Depoimentos", href: "#depoimentos" },
+    { title: "Inscrição", href: "#inscricao", isButton: true },
+  ]
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
-<SiteHeader
-  navigationItems={navigationItems}
-  showInicio={true}
-/>
-
-
+      <SiteHeader navigationItems={navigationItems} showInicio={true} />
 
       {/* Hero Section */}
       <HeroPages
@@ -120,7 +96,6 @@ const navigationItems = [
         ctaHref="#inscricao"
         secondaryCtaText="Saiba mais"
         secondaryCtaHref="#beneficios"
-        
       />
 
       {/* Benefícios Section */}
@@ -132,7 +107,10 @@ const navigationItems = [
               <span className="text-sm font-medium">BENEFÍCIOS DO EVENTO</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            POR QUE PARTICIPAR DO <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">SEGREDOS DA MENTE MILIONÁRIA</span>
+              POR QUE PARTICIPAR DO{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                SEGREDOS DA MENTE MILIONÁRIA
+              </span>
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -140,22 +118,26 @@ const navigationItems = [
               {
                 icon: <Wallet className="h-8 w-8 text-yellow-400" />,
                 title: "Segurança financeira",
-                description: "Descubra como criar uma base sólida, com reserva de emergência e planejamento para o futuro.",
+                description:
+                  "Descubra como criar uma base sólida, com reserva de emergência e planejamento para o futuro.",
               },
               {
                 icon: <Target className="h-8 w-8 text-yellow-400" />,
                 title: "Propósito de vida",
-                description: "Tenha clareza sobre seu propósito de vida e carreira e abra portas para novas oportunidades.",
+                description:
+                  "Tenha clareza sobre seu propósito de vida e carreira e abra portas para novas oportunidades.",
               },
               {
                 icon: <Zap className="h-8 w-8 text-yellow-400" />,
                 title: "Liberdade financeira",
-                description: "Aprenda a diferença entre sobreviver e viver com liberdade — sem depender de salário ou trabalho ativo.",
+                description:
+                  "Aprenda a diferença entre sobreviver e viver com liberdade — sem depender de salário ou trabalho ativo.",
               },
               {
                 icon: <Brain className="h-8 w-8 text-yellow-400" />,
                 title: "Mentalidade milionária",
-                description: "Supere crenças limitantes sobre dinheiro e adote os hábitos, atitudes e estratégias dos que alcançaram a verdadeira riqueza.",
+                description:
+                  "Supere crenças limitantes sobre dinheiro e adote os hábitos, atitudes e estratégias dos que alcançaram a verdadeira riqueza.",
               },
               {
                 icon: <GraduationCap className="h-8 w-8 text-yellow-400" />,
@@ -190,7 +172,10 @@ const navigationItems = [
               <span className="text-sm font-medium">O QUE VOCÊ VAI DESCOBRIR</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-             O PASSO A PASSO PARA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">DESPERTAR SUA MENTE MILIONÁRIA</span>
+              O PASSO A PASSO PARA{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+                DESPERTAR SUA MENTE MILIONÁRIA
+              </span>
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -198,7 +183,8 @@ const navigationItems = [
               {
                 icon: <Wallet className="h-8 w-8 text-yellow-400" />,
                 title: "Múltiplas fontes de renda",
-                description: "Entenda como combinar renda principal, extra e passiva para construir sua riqueza de forma estratégica.",
+                description:
+                  "Entenda como combinar renda principal, extra e passiva para construir sua riqueza de forma estratégica.",
               },
               {
                 icon: <Zap className="h-8 w-8 text-yellow-400" />,
@@ -227,7 +213,7 @@ const navigationItems = [
       <NotableParticipants />
       <TestimonialsSection />
 
-       <section id="inscricao" className="py-24 relative">
+      <section id="inscricao" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-zinc-900/95"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.03)_0%,_rgba(39,39,42,0.1)_100%)]"></div>
@@ -238,8 +224,8 @@ const navigationItems = [
               ESCOLHA SEU <span className="text-yellow-400">INGRESSO</span>
             </h2>
             <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
-              Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o dinheiro. Vagas
-              limitadas!
+              Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o
+              dinheiro. Vagas limitadas!
             </p>
           </div>
 
@@ -268,11 +254,11 @@ const navigationItems = [
           </div>
 
           <TicketPricingCards
-            eventId={2783513}
+            eventId={1}
             eventName="Segredos da Mente Milionária"
             ticketTypes={[
               {
-                id: 2783514,
+                id: 2782193,
                 name: "Ingresso Especial",
                 price: 9.9,
                 description: "Acesso completo ao evento presencial",
@@ -282,9 +268,10 @@ const navigationItems = [
                   "Certificado de participação",
                   "Networking com participantes",
                 ],
+                checkoutUrl: "https://sun.eduzz.com/1W3Z2ZRGW2",
               },
               {
-                id: 2783514,
+                id: 2782194,
                 name: "Ingresso VIP",
                 price: 49.9,
                 description: "Experiência premium com benefícios exclusivos",
@@ -296,6 +283,7 @@ const navigationItems = [
                   "Acesso antecipado ao evento",
                 ],
                 featured: true,
+                checkoutUrl: "https://sun.eduzz.com/1W3Z2ZRGW2",
               },
             ]}
           />
@@ -303,7 +291,6 @@ const navigationItems = [
       </section>
 
       <Footerlp />
-      
     </div>
   )
 }
