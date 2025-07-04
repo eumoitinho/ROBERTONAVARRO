@@ -1,29 +1,29 @@
-"use client";
+"use client"
 
-import type React from "react";
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { useRouter } from "next/navigation";
+import type React from "react"
+import { useState, useRef, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { X, Check, Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { useRouter } from "next/navigation"
 
 // Interface for the ticket types
 interface TicketType {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  benefits: string[];
-  featured?: boolean;
-  eduzzContentId: string;
+  id: number
+  name: string
+  price: number
+  description: string
+  benefits: string[]
+  featured?: boolean
+  eduzzContentId: string
 }
 
 interface TicketPricingCardsProps {
-  eventId: number;
-  eventName: string;
-  ticketTypes: TicketType[];
+  eventId: number
+  eventName: string
+  ticketTypes: TicketType[]
 }
 
 // Declaração de tipos para o Eduzz
@@ -32,77 +32,77 @@ declare global {
     Eduzz: {
       Checkout: {
         init: (config: {
-          contentId: string;
-          target: string;
-          errorCover?: boolean;
-          onSuccess?: () => void;
-          onError?: (error: any) => void;
-          redirectUrl?: string;
-        }) => void;
-      };
-    };
-    dataLayer?: Object[];
+          contentId: string
+          target: string
+          errorCover?: boolean
+          onSuccess?: () => void
+          onError?: (error: any) => void
+          redirectUrl?: string
+        }) => void
+      }
+    }
+    dataLayer?: Object[]
   }
 }
 
 export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPricingCardsProps) {
-  const [selectedTicket, setSelectedTicket] = useState<TicketType | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const router = useRouter();
-  const checkoutPanelRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const eduzzScriptLoaded = useRef(false);
+  const [selectedTicket, setSelectedTicket] = useState<TicketType | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const router = useRouter()
+  const checkoutPanelRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const eduzzScriptLoaded = useRef(false)
 
   // Load Eduzz script
   const loadEduzzScript = () => {
-    if (eduzzScriptLoaded.current) return Promise.resolve();
+    if (eduzzScriptLoaded.current) return Promise.resolve()
 
     return new Promise<void>((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = "https://cdn.eduzzcdn.com/sun/bridge/bridge.js";
-      script.async = true;
-      script.type = "module";
+      const script = document.createElement("script")
+      script.src = "https://cdn.eduzzcdn.com/sun/bridge/bridge.js"
+      script.async = true
+      script.type = "module"
 
       script.onload = () => {
-        eduzzScriptLoaded.current = true;
-        resolve();
-      };
+        eduzzScriptLoaded.current = true
+        resolve()
+      }
 
       script.onerror = () => {
-        reject(new Error("Falha ao carregar script da Eduzz"));
-      };
+        reject(new Error("Falha ao carregar script da Eduzz"))
+      }
 
-      document.head.appendChild(script);
-    });
-  };
+      document.head.appendChild(script)
+    })
+  }
 
   // Initialize Eduzz checkout
   const initializeEduzzCheckout = async (contentId: string, ticket: TicketType) => {
     try {
-      await loadEduzzScript();
+      await loadEduzzScript()
 
       // Wait for Eduzz to be available
       const waitForEduzz = () => {
         return new Promise<void>((resolve) => {
           const checkEduzz = () => {
             if (window.Eduzz && window.Eduzz.Checkout) {
-              resolve();
+              resolve()
             } else {
-              setTimeout(checkEduzz, 100);
+              setTimeout(checkEduzz, 100)
             }
-          };
-          checkEduzz();
-        });
-      };
+          }
+          checkEduzz()
+        })
+      }
 
-      await waitForEduzz();
+      await waitForEduzz()
 
       // Clear previous container
-      const container = document.getElementById("eduzz-checkout-container");
+      const container = document.getElementById("eduzz-checkout-container")
       if (container) {
-        container.innerHTML = "";
+        container.innerHTML = ""
       }
 
       window.Eduzz.Checkout.init({
@@ -111,9 +111,11 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         errorCover: true,
         onSuccess: () => {
           if (window.dataLayer) {
+            const transactionId = `eduzz-${Date.now()}`
             window.dataLayer.push({
               event: "purchase_completed",
               ecommerce: {
+                transaction_id: transactionId,
                 currency: "BRL",
                 value: ticket.price,
                 items: [
@@ -125,29 +127,32 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                   },
                 ],
               },
-            });
+            })
           }
-          setSuccessMessage("Compra realizada com sucesso!");
+          setSuccessMessage("Compra realizada com sucesso!")
+          setTimeout(() => {
+            router.push("/inscricao/confirmacao")
+          }, 3000)
         },
         onError: (error) => {
-          console.error("Erro no checkout da Eduzz:", error);
-          setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"));
+          console.error("Erro no checkout da Eduzz:", error)
+          setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"))
         },
         // Removido redirectUrl para evitar sobrescrita
-      });
+      })
     } catch (err) {
-      console.error("Erro ao inicializar checkout:", err);
-      setError("Erro ao inicializar checkout: " + (err as Error).message);
+      console.error("Erro ao inicializar checkout:", err)
+      setError("Erro ao inicializar checkout: " + (err as Error).message)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const handleSelectTicket = (ticket: TicketType) => {
-    setSelectedTicket(ticket);
-    setIsSubmitting(true);
-    setError(null);
-    setSuccessMessage(null);
+    setSelectedTicket(ticket)
+    setIsSubmitting(true)
+    setError(null)
+    setSuccessMessage(null)
 
     // Trigger begin_checkout event
     if (window.dataLayer) {
@@ -165,58 +170,58 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
             },
           ],
         },
-      });
+      })
 
       window.dataLayer.push({
         event: "sendEvent",
         category: "ecommerce",
         eventGA4: "begin_checkout",
         content_type: "product",
-      });
+      })
     }
 
     // Initialize checkout
-    initializeEduzzCheckout(ticket.eduzzContentId, ticket);
-    document.body.style.overflow = "hidden";
-  };
+    initializeEduzzCheckout(ticket.eduzzContentId, ticket)
+    document.body.style.overflow = "hidden"
+  }
 
   const handleCloseCheckout = () => {
-    setSelectedTicket(null);
-    setIsSubmitting(false);
-    setError(null);
-    setSuccessMessage(null);
-    const container = document.getElementById("eduzz-checkout-container");
+    setSelectedTicket(null)
+    setIsSubmitting(false)
+    setError(null)
+    setSuccessMessage(null)
+    const container = document.getElementById("eduzz-checkout-container")
     if (container) {
-      container.innerHTML = "";
+      container.innerHTML = ""
     }
-    document.body.style.overflow = "unset";
-  };
+    document.body.style.overflow = "unset"
+  }
 
   // Handle clicks outside and escape key
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (overlayRef.current && event.target === overlayRef.current) {
-        handleCloseCheckout();
+        handleCloseCheckout()
       }
-    };
+    }
 
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        handleCloseCheckout();
+        handleCloseCheckout()
       }
-    };
+    }
 
     if (selectedTicket) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleEscapeKey);
+      document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("keydown", handleEscapeKey)
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscapeKey);
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedTicket]);
+      document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("keydown", handleEscapeKey)
+      document.body.style.overflow = "unset"
+    }
+  }, [selectedTicket])
 
   if (successMessage) {
     return (
@@ -229,7 +234,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
           <p className="text-center text-zinc-400 mt-4">Redirecionando...</p>
         </CardContent>
       </Card>
-    );
+    )
   }
 
   return (
@@ -372,31 +377,31 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
 
       {/* CSS customizado para o checkout da Eduzz */}
       <style jsx global>{`
-        #eduzz-checkout-container {
-          /* Customizações do design do checkout */
-        }
-        
-        #eduzz-checkout-container .eduzz-checkout-form {
-          border-radius: 12px !important;
-          box-shadow: none !important;
-        }
-        
-        #eduzz-checkout-container .eduzz-button-primary {
-          background: linear-gradient(to right, #f59e0b, #d97706) !important;
-          border-radius: 8px !important;
-          font-weight: 600 !important;
-        }
-        
-        #eduzz-checkout-container .eduzz-input {
-          border-radius: 8px !important;
-          border: 1px solid #e5e7eb !important;
-        }
-        
-        #eduzz-checkout-container .eduzz-input:focus {
-          border-color: #f59e0b !important;
-          box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
-        }
-      `}</style>
+      #eduzz-checkout-container {
+        /* Customizações do design do checkout */
+      }
+      
+      #eduzz-checkout-container .eduzz-checkout-form {
+        border-radius: 12px !important;
+        box-shadow: none !important;
+      }
+      
+      #eduzz-checkout-container .eduzz-button-primary {
+        background: linear-gradient(to right, #f59e0b, #d97706) !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+      }
+      
+      #eduzz-checkout-container .eduzz-input {
+        border-radius: 8px !important;
+        border: 1px solid #e5e7eb !important;
+      }
+      
+      #eduzz-checkout-container .eduzz-input:focus {
+        border-color: #f59e0b !important;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+      }
+    `}</style>
     </div>
-  );
+  )
 }
