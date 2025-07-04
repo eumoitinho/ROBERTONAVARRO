@@ -110,29 +110,9 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         target: "eduzz-checkout-container",
         errorCover: true,
         onSuccess: () => {
-          if (window.dataLayer) {
-            const transactionId = `eduzz-${Date.now()}`
-            window.dataLayer.push({
-              event: "purchase_completed",
-              ecommerce: {
-                transaction_id: transactionId,
-                currency: "BRL",
-                value: ticket.price,
-                items: [
-                  {
-                    item_id: ticket.id.toString(),
-                    item_name: ticket.name,
-                    price: ticket.price,
-                    quantity: 1,
-                  },
-                ],
-              },
-            })
-          }
-          setSuccessMessage("Compra realizada com sucesso!")
-          setTimeout(() => {
-            router.push("/inscricao/confirmacao")
-          }, 3000)
+          // Don't fire GTM event here. The redirect to /obrigado will handle it.
+          // This callback may not even fire if Eduzz redirects immediately.
+          setSuccessMessage("Processando sua compra... Você será redirecionado em breve.")
         },
         onError: (error) => {
           console.error("Erro no checkout da Eduzz:", error)
@@ -377,31 +357,31 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
 
       {/* CSS customizado para o checkout da Eduzz */}
       <style jsx global>{`
-      #eduzz-checkout-container {
-        /* Customizações do design do checkout */
-      }
-      
-      #eduzz-checkout-container .eduzz-checkout-form {
-        border-radius: 12px !important;
-        box-shadow: none !important;
-      }
-      
-      #eduzz-checkout-container .eduzz-button-primary {
-        background: linear-gradient(to right, #f59e0b, #d97706) !important;
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-      }
-      
-      #eduzz-checkout-container .eduzz-input {
-        border-radius: 8px !important;
-        border: 1px solid #e5e7eb !important;
-      }
-      
-      #eduzz-checkout-container .eduzz-input:focus {
-        border-color: #f59e0b !important;
-        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
-      }
-    `}</style>
+    #eduzz-checkout-container {
+      /* Customizações do design do checkout */
+    }
+    
+    #eduzz-checkout-container .eduzz-checkout-form {
+      border-radius: 12px !important;
+      box-shadow: none !important;
+    }
+    
+    #eduzz-checkout-container .eduzz-button-primary {
+      background: linear-gradient(to right, #f59e0b, #d97706) !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+    }
+    
+    #eduzz-checkout-container .eduzz-input {
+      border-radius: 8px !important;
+      border: 1px solid #e5e7eb !important;
+    }
+    
+    #eduzz-checkout-container .eduzz-input:focus {
+      border-color: #f59e0b !important;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+    }
+  `}</style>
     </div>
   )
 }
