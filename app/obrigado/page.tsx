@@ -147,6 +147,8 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
           </Button>
         </div>
       </div>
+      {/* Script de integração Eduzz Thank You */}
+      <script src="https://cdn.eduzzcdn.com/sun/thankyou/thankyou.js"></script>
     </div>
   )
 }
