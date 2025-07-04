@@ -24,10 +24,12 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
     } as URLSearchParams
   }, [searchParams])
 
-  const productId = params.get("product_id")
-  const value = params.get("value")
+  // Aceita tanto os nomes antigos quanto os nomes vindos da Eduzz
+  const productId = params.get("product_id") || params.get("produto")
+  const value = params.get("value") || params.get("valor")
   const transactionId = params.get("transaction_id")
-  const email = params.get("email")
+  const email = params.get("email") || params.get("email_comprador")
+  const name = params.get("name") || params.get("nome_comprador")
   const eventName = params.get("event_name")
   const ticketName = params.get("ticket_name")
 
@@ -109,6 +111,11 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
             <p className="text-md text-zinc-400 mb-2">
               Valor pago: <span className="font-semibold text-yellow-300">R$ {Number(value).toFixed(2)}</span>
             </p>
+            {name && (
+              <p className="text-md text-zinc-400 mb-2">
+                Nome: <span className="font-semibold text-yellow-300">{name}</span>
+              </p>
+            )}
             {email && (
               <p className="text-md text-zinc-400 mb-2">
                 O ingresso será enviado para: <span className="font-semibold text-yellow-300">{email}</span>
