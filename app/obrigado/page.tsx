@@ -61,10 +61,9 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
         eventGA4: "purchase_completed",
         content_type: "product",
       });
-      console.log("Evento purchase_completed disparado com transaction_id:", transactionId);
+      console.log("Evento purchase_completed disparado com transaction_id:", transactionId, "e parâmetros:", params.toString());
     }
   }, [productId, value, transactionId, ticketName, isValidPurchase]);
-
   // Configuração da mensagem para o WhatsApp
   const source = typeof searchParams?.source === "string" ? searchParams.source : "site";
   const message = encodeURIComponent(
