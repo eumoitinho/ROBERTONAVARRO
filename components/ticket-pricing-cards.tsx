@@ -111,12 +111,15 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         errorCover: true,
         onSuccess: () => {
           console.log("Eduzz onSuccess triggered")
-          setSuccessMessage("Compra realizada com sucesso!")
-          setTimeout(() => {
-            router.push(
-              `/obrigado?product_id=${selectedTicket?.id}&value=${selectedTicket?.price}&transaction_id=${Date.now()}`
-            )
-          }, 2000)
+          setSelectedTicket(null)
+          setIsSubmitting(false)
+          setError(null)
+          setSuccessMessage(null)
+          const container = document.getElementById("eduzz-checkout-container")
+          if (container) {
+            container.innerHTML = ""
+          }
+          document.body.style.overflow = "unset"
         },
         onError: (error) => {
           console.error("Erro no checkout da Eduzz:", error)
