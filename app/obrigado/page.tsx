@@ -1,47 +1,45 @@
-"use client"
+"use client";
+
 // app/obrigado/page.tsx
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { useEffect, useMemo } from "react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useEffect, useMemo } from "react";
 
 interface ObrigadoPageProps {
-  searchParams?: { [key: string]: string | string[] | undefined }
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
   // Pega os dados da query string (SSR + fallback para client)
   const params = useMemo(() => {
     if (typeof window !== "undefined") {
-      return new URLSearchParams(window.location.search)
+      return new URLSearchParams(window.location.search);
     }
     // SSR fallback para Next.js
     return {
       get: (key: string) => {
-        const value = searchParams?.[key]
-        if (Array.isArray(value)) return value[0]
-        return value
-      }
-    } as URLSearchParams
-  }, [searchParams])
+        const value = searchParams?.[key];
+        if (Array.isArray(value)) return value[0];
+        return value;
+      },
+    } as URLSearchParams;
+  }, [searchParams]);
 
   // Aceita tanto os nomes antigos quanto os nomes vindos da Eduzz
-  const productId = params.get("product_id") || params.get("produto")
-  const value = params.get("value") || params.get("valor")
-  const transactionId = params.get("transaction_id")
-  const email = params.get("email") || params.get("email_comprador")
-  const name = params.get("name") || params.get("nome_comprador")
-  const eventName = params.get("event_name")
-  const ticketName = params.get("ticket_name")
+  const productId = params.get("product_id") || params.get("produto");
+  const value = params.get("value") || params.get("valor");
+  const transactionId = params.get("transaction_id");
+  const email = params.get("email") || params.get("email_comprador");
+  const name = params.get("name") || params.get("nome_comprador");
+  const eventName = params.get("event_name");
+  const ticketName = params.get("ticket_name");
 
-  // Só dispara o evento se vier de uma compra (tem todos os parâmetros obrigatórios)
+  // Validação dos parâmetros obrigatórios
+  const isValidPurchase = productId && value && transactionId && !isNaN(Number(value));
+
+  // Dispara o evento de compra no dataLayer
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      window.dataLayer &&
-      productId &&
-      value &&
-      transactionId
-    ) {
+    if (typeof window !== "undefined" && window.dataLayer && isValidPurchase) {
       window.dataLayer.push({
         event: "purchase_completed",
         ecommerce: {
@@ -57,21 +55,25 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
             },
           ],
         },
-      })
+      });
       window.dataLayer.push({
         event: "sendEvent",
         category: "ecommerce",
         eventGA4: "purchase_completed",
         content_type: "product",
-      })
+      });
+      console.log("Evento purchase_completed disparado no dataLayer");
     }
-  }, [productId, value, transactionId, ticketName])
+  }, [productId, value, transactionId, ticketName, isValidPurchase]);
 
-  const source = typeof searchParams?.source === "string" ? searchParams.source : "site"
-  const message = encodeURIComponent(`Olá! Acabei de me inscrever no ${source} e gostaria de saber mais sobre.`)
+  // Configuração da mensagem para o WhatsApp
+  const source = typeof searchParams?.source === "string" ? searchParams.source : "site";
+  const message = encodeURIComponent(
+    `Olá! Acabei de me inscrever no ${source} e gostaria de saber mais sobre.`
+  );
 
   // Mensagem personalizada se vier de compra
-  const isCompra = !!(productId && value && transactionId)
+  const isCompra = isValidPurchase;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-900 to-yellow-900 text-white p-4">
@@ -95,9 +97,7 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
         </h1>
         {isCompra ? (
           <>
-            <p className="text-lg text-zinc-300 mb-4">
-              Obrigado por sua compra!
-            </p>
+            <p className="text-lg text-zinc-300 mb-4">Obrigado por sua compra!</p>
             {eventName && (
               <p className="text-md text-zinc-400 mb-2">
                 Evento: <span className="font-semibold text-yellow-300">{eventName}</span>
@@ -147,8 +147,13 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
           </Button>
         </div>
       </div>
-      {/* Script de integração Eduzz Thank You */}
-      <script src="https://cdn.eduzzcdn.com/sun/thankyou/thankyou.js"></script>
+      {/* Script de integração Eduzz Thank You com configuração dinâmica */}
+      <script
+        src="https://cdn.eduzzcdn.com/sun/thankyou/thankyou.js"
+        data-transaction-id={transactionId}
+        data-product-id={productId}
+        data-value={value}
+      ></script>
     </div>
-  )
+  );
 }
