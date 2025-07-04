@@ -78,43 +78,6 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     })
   }
 
-  // Handle purchase completion
-  const handlePurchaseComplete = () => {
-    if (window.dataLayer && selectedTicket) {
-      console.log("Evento de compra concluída enviado") // Log para debug
-      window.dataLayer.push({
-        event: "purchase_completed",
-        ecommerce: {
-          currency: "BRL",
-          transaction_id: Date.now().toString(),
-          value: selectedTicket.price || 0,
-          items: [
-            {
-              item_id: selectedTicket.id.toString() || "",
-              item_name: selectedTicket.name || "",
-              price: selectedTicket.price || 0,
-              quantity: 1,
-            },
-          ],
-        },
-      })
-
-      window.dataLayer.push({
-        event: "sendEvent",
-        category: "ecommerce",
-        eventGA4: "purchase_completed",
-        content_type: "product",
-      })
-    }
-
-    setSuccessMessage("Compra realizada com sucesso!")
-    setTimeout(() => {
-      router.push(
-        `/obrigado?product_id=${selectedTicket?.id}&value=${selectedTicket?.price}&transaction_id=${Date.now()}`
-      )
-    }, 2000)
-  }
-
   // Initialize Eduzz checkout
   const initializeEduzzCheckout = async (contentId: string) => {
     try {
@@ -148,9 +111,12 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         errorCover: true,
         onSuccess: () => {
           console.log("Eduzz onSuccess triggered")
-          handlePurchaseComplete()
-          // Open Eduzz redirect in new tab
-          window.open("https://app.eduzz.com", "_blank")
+          setSuccessMessage("Compra realizada com sucesso!")
+          setTimeout(() => {
+            router.push(
+              `/obrigado?product_id=${selectedTicket?.id}&value=${selectedTicket?.price}&transaction_id=${Date.now()}`
+            )
+          }, 2000)
         },
         onError: (error) => {
           console.error("Erro no checkout da Eduzz:", error)
