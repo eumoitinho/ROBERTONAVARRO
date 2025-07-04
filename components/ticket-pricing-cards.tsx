@@ -81,6 +81,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
   // Handle purchase completion
   const handlePurchaseComplete = () => {
     if (window.dataLayer && selectedTicket) {
+      console.log("Evento de compra concluída enviado") // Log para debug
       window.dataLayer.push({
         event: "purchase_completed",
         ecommerce: {
@@ -157,17 +158,6 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         },
         redirectUrl: "https://app.eduzz.com" // Eduzz default redirect URL
       })
-
-      // Fallback: Listen for redirect to detect purchase completion
-      const originalPushState = history.pushState
-      history.pushState = function (...args) {
-        originalPushState.apply(history, args)
-        if (window.location.href.includes("app.eduzz.com")) {
-          console.log("Detected Eduzz redirect, triggering purchase_completed")
-          handlePurchaseComplete()
-        }
-        return originalPushState
-      }
     } catch (err) {
       console.error("Erro ao inicializar checkout:", err)
       setError("Erro ao inicializar checkout: " + (err as Error).message)
@@ -224,32 +214,6 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     }
     document.body.style.overflow = "unset"
   }
-
-  // Handle clicks outside and escape key
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (overlayRef.current && event.target === overlayRef.current) {
-        handleCloseCheckout()
-      }
-    }
-
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        handleCloseCheckout()
-      }
-    }
-
-    if (selectedTicket) {
-      document.addEventListener("mousedown", handleClickOutside)
-      document.addEventListener("keydown", handleEscapeKey)
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-      document.removeEventListener("keydown", handleEscapeKey)
-      document.body.style.overflow = "unset"
-    }
-  }, [selectedTicket])
 
   if (successMessage) {
     return (

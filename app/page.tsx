@@ -426,7 +426,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                 <Link href="/formacoes/mentoria-individual">
+                 <Link href="">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -446,7 +446,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                 <Link href="/formacoes/mentoria-individual">
+                 <Link href="">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
