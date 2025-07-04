@@ -105,21 +105,51 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         container.innerHTML = ""
       }
 
-      window.Eduzz.Checkout.init({
-        contentId: contentId,
-        target: "eduzz-checkout-container",
-        errorCover: true,
-        onSuccess: () => {
-          // Don't fire GTM event here. The redirect to /obrigado will handle it.
-          // This callback may not even fire if Eduzz redirects immediately.
-          setSuccessMessage("Processando sua compra... Você será redirecionado em breve.")
+      // ...existing code...
+
+window.Eduzz.Checkout.init({
+  contentId: contentId,
+  target: "eduzz-checkout-container",
+  errorCover: true,
+  onSuccess: () => {
+    // Adicionar o evento purchase_completed aqui
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: "purchase",
+        ecommerce: {
+          transaction_id: Date.now().toString(), // ou um ID único da transação
+          currency: "BRL",
+          value: ticket.price,
+          items: [
+            {
+              item_id: ticket.id.toString(),
+              item_name: ticket.name,
+              price: ticket.price,
+              quantity: 1,
+            },
+          ],
         },
-        onError: (error) => {
-          console.error("Erro no checkout da Eduzz:", error)
-          setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"))
-        },
-        // Removido redirectUrl para evitar sobrescrita
       })
+
+      window.dataLayer.push({
+        event: "purchase_completed",
+        category: "ecommerce",
+        eventGA4: "purchase",
+        content_type: "product",
+        value: ticket.price,
+        currency: "BRL",
+      })
+    }
+    
+    setSuccessMessage("Processando sua compra... Você será redirecionado em breve.")
+  },
+  onError: (error) => {
+    console.error("Erro no checkout da Eduzz:", error)
+    setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"))
+  },
+})
+
+// ...existing code...
     } catch (err) {
       console.error("Erro ao inicializar checkout:", err)
       setError("Erro ao inicializar checkout: " + (err as Error).message)
