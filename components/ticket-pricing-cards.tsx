@@ -110,23 +110,14 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         target: "eduzz-checkout-container",
         errorCover: true,
         onSuccess: () => {
-          console.log("Eduzz onSuccess triggered")
-          setSelectedTicket(null)
-          setIsSubmitting(false)
-          setError(null)
-          setSuccessMessage(null)
-          const container = document.getElementById("eduzz-checkout-container")
-          if (container) {
-            container.innerHTML = ""
-          }
-          document.body.style.overflow = "unset"
+          console.log("Eduzz onSuccess triggered");
+          // Lógica de redirecionamento aqui, se necessário
         },
         onError: (error) => {
-          console.error("Erro no checkout da Eduzz:", error)
-          setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"))
-        },
-        redirectUrl: "https://app.eduzz.com" // Eduzz default redirect URL
-      })
+          console.error("Erro no checkout da Eduzz:", error);
+          setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"));
+        }
+      });
     } catch (err) {
       console.error("Erro ao inicializar checkout:", err)
       setError("Erro ao inicializar checkout: " + (err as Error).message)
