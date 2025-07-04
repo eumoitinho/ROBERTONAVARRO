@@ -37,7 +37,6 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
   // Validação dos parâmetros obrigatórios
   const isValidPurchase = productId && value && transactionId && !isNaN(Number(value));
 
-  // Dispara o evento de compra no dataLayer
   useEffect(() => {
     if (typeof window !== "undefined" && window.dataLayer && isValidPurchase) {
       window.dataLayer.push({
@@ -62,7 +61,7 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
         eventGA4: "purchase_completed",
         content_type: "product",
       });
-      console.log("Evento purchase_completed disparado no dataLayer");
+      console.log("Evento purchase_completed disparado com transaction_id:", transactionId);
     }
   }, [productId, value, transactionId, ticketName, isValidPurchase]);
 
