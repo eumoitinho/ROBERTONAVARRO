@@ -110,8 +110,23 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         target: "eduzz-checkout-container",
         errorCover: true,
         onSuccess: () => {
-          console.log("Eduzz onSuccess triggered");
-          // Removido redirecionamento manual, deixando a Eduzz gerenciar
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: "purchase_completed",
+              ecommerce: {
+                currency: "BRL",
+                value: ticket.price,
+                items: [
+                  {
+                    item_id: ticket.id.toString(),
+                    item_name: ticket.name,
+                    price: ticket.price,
+                    quantity: 1,
+                  },
+                ],
+              },
+            });
+          }
           setSuccessMessage("Compra realizada com sucesso!");
         },
         onError: (error) => {
