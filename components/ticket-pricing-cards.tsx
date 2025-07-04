@@ -111,12 +111,14 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         errorCover: true,
         onSuccess: () => {
           console.log("Eduzz onSuccess triggered");
-          // Lógica de redirecionamento aqui, se necessário
+          // Opcional: forçar redirecionamento como fallback
+          window.location.href = `https://robertonavarrooficial.com.br/obrigado?transaction_id=${Date.now()}&produto=${contentId}`;
         },
         onError: (error) => {
           console.error("Erro no checkout da Eduzz:", error);
           setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"));
         }
+        // Remova ou ajuste: redirectUrl: "https://app.eduzz.com"
       });
     } catch (err) {
       console.error("Erro ao inicializar checkout:", err)
