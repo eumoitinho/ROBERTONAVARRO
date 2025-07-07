@@ -43,41 +43,18 @@ const ticketTypes = [
 ]
 
 export default function SegredosDaMenteMilionaria() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    setIsVisible(true)
-    const style = document.createElement("style")
-    style.innerHTML = `
-      .cta-hover {
-        transition: all 0.3s ease;
-      }
-      .cta-hover:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
-      }
-      .cta-hover-subtle {
-        transition: all 0.3s ease;
-      }
-      .cta-hover-subtle:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
-      }
-    `
-    document.head.appendChild(style)
-  }, [])
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError(null)
-
-    const formData = new FormData(e.currentTarget)
-
-    try {
-      const response = await fetch("/api/registrations", {
+  // Página fallback: evento indisponível
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 to-yellow-900 text-center px-4">
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 text-yellow-400 drop-shadow-lg">Evento Indisponível</h1>
+      <p className="text-lg md:text-2xl text-zinc-200 mb-8 max-w-xl mx-auto">
+        Esta página não está mais disponível.<br />
+        O evento "Segredos da Mente Milionária" foi removido do ar.
+      </p>
+      <a href="/" className="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-full px-8 py-4 text-lg transition-all shadow-lg">Voltar para a Home</a>
+    </div>
+  )
+}
         method: "POST",
         body: JSON.stringify({
           eventId: 6,
