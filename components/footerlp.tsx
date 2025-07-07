@@ -40,7 +40,6 @@ const footerLinks = {
     { title: "Energia do Dinheiro", href: "/eventos/energia-do-dinheiro" },
     { title: "Escalador de Negócios", href: "/eventos/escalador-de-negocios" },
     { title: "Crenças da Riqueza", href: "/eventos/crencas-da-riqueza" },
-    { title: "Segredos da Mente Milionária", href: "/eventos/segredos-da-mente-milionaria" },
   ],
   institucional: [
     { title: "Sobre Roberto Navarro", href: "./#sobre" },
