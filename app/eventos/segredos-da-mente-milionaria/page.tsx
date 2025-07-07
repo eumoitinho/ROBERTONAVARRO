@@ -285,7 +285,7 @@ export default function SegredosDaMenteMilionaria() {
             </div>
           </div>
 
-          <TicketPricingCards eventId={6} eventName="Segredos da Mente Milionária" ticketTypes={ticketTypes} />
+          {/* <TicketPricingCards eventId={6} eventName="Segredos da Mente Milionária" ticketTypes={ticketTypes} /> */}
         </div>
       </section>
 
