@@ -698,4 +698,3 @@ import { CheckCircle } from "lucide-react"
 import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos" 
 import WhatsappButton from "@/components/whatsapp-button"
-

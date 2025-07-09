@@ -11,6 +11,7 @@ import { SiteHeader } from "@/components/header";
 import { ptBlogPosts } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
 
 // Componente para barra de progresso de leitura
 const ReadingProgress = () => {
@@ -290,7 +291,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     { title: "Início", href: "/" },
     { title: "Empreendedor Inteligente", href: "/empreendedor-inteligente" },
     { title: "Blog", href: "/blog", isActive: true },
-    { title: "Inscrição", href: "/empreendedor-inteligente#inscricao", isButton: true },
+    { title: "Newsletter", href: "/empreendedor-inteligente#inscricao", isButton: true },
   ];
 
   return (
@@ -305,7 +306,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </Head>
 
       {/* Header */}
-      <SiteHeader navigationItems={navigationItems} showInicio={true} />
+      <SiteHeader />
 
       {/* Blog Post Content */}
       <section className="py-24 relative">
@@ -368,15 +369,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       Gostou do artigo?
                     </h3>
                     <p className="text-zinc-300 mb-6 text-lg leading-relaxed">
-                      Transforme sua mentalidade e seus resultados com o programa Empreendedor Inteligente. 
+                      Transforme sua mentalidade e seus resultados com nossas formações. 
                       Aprenda as estratégias dos maiores empresários para escalar resultados com inteligência e liberdade.
                     </p>
                     <Button 
                       asChild
                       className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105"
                     >
-                      <Link href="/empreendedor-inteligente#inscricao">
-                        Saiba Mais Sobre o Programa
+                      <Link href="/#formacoes">
+                        Saiba mais
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
                     </Button>
@@ -443,7 +444,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-zinc-900/80 to-zinc-800/80 relative overflow-hidden">
+      {/* <section className="py-24 bg-gradient-to-r from-zinc-900/80 to-zinc-800/80 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-500/5 via-transparent to-transparent"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-8">
@@ -460,6 +461,32 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               GARANTA SUA VAGA AGORA! <ArrowRight className="ml-3 h-6 w-6" />
             </Link>
           </Button>
+        </div>
+      </section> */}
+      {/* Newsletter Section */}
+      <section id="newsletter" className="py-20 bg-gradient-to-r from-zinc-900/50 to-zinc-800/50">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              RECEBA NOSSOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">MELHORES INSIGHTS</span>
+            </h2>
+            <p className="text-zinc-300 mb-8 text-lg leading-relaxed">
+              Cadastre-se para receber semanalmente artigos exclusivos sobre empreendedorismo, mentalidade e crescimento pessoal.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder="Seu melhor e-mail"
+                className="flex-1 bg-zinc-900/50 border-zinc-700/50 rounded-xl text-white placeholder-zinc-400 focus:border-yellow-400 focus:ring-yellow-400/20"
+              />
+              <Button className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl px-8">
+                Inscrever-se
+              </Button>
+            </div>
+            <p className="text-xs text-zinc-400 mt-4">
+              Sem spam. Cancele quando quiser.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -479,4 +506,3 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
-

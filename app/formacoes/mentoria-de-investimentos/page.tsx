@@ -16,7 +16,6 @@ import {
   GraduationCap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
 import Logo from "@/components/logo"
 import HeroPages from "@/components/hero-pages"
@@ -26,6 +25,7 @@ import { SiteHeader } from "@/components/header"
 import ReusableSection from "@/components/how-works"
 import NotableParticipants from "@/components/notable-persons"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import Footerlp from "@/components/footerlp"
 
 export default function MentoriaDeInvestimentos() {
   const [isVisible, setIsVisible] = useState(false)
@@ -51,38 +51,40 @@ export default function MentoriaDeInvestimentos() {
     `
     document.head.appendChild(style)
   }, [])
-const navigationItems = [
-  { title: "Início", href: "/" },
-  { title: "Benefícios", href: "#beneficios" },
-  { title: "Como Funciona", href: "#como-funciona" },
-  { title: "Depoimentos", href: "#depoimentos" },
-  { title: "Inscrição", href: "#inscricao", isButton: true },
-];
+
+  const navigationItems = [
+    { title: "Início", href: "/" },
+    { title: "Benefícios", href: "#beneficios" },
+    { title: "Como Funciona", href: "#como-funciona" },
+    { title: "Depoimentos", href: "#depoimentos" },
+    { title: "Inscrição", href: "#inscricao", isButton: true },
+  ];
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Header */}
       <SiteHeader
         navigationItems={navigationItems}
-  showInicio={true}
-/>
-      {/* 
-     // Hero Section */}
-    <HeroPages
+        showInicio={true}
+      />
+
+      {/* Hero Section */}
+      <HeroPages
         title="MENTORIA DE INVESTIMENTOS"
         subtitle="Multiplique seu patrimônio com estratégia e segurança"
         description="Um programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade financeira."
         image="/images/HERO_MENTORIAINVESTIMENTOS.png"
         ctaText="QUERO ME INSCREVER"
         ctaHref="#inscricao"
-        secondaryCtaText="Saiba mais"
-        secondaryCtaHref="#beneficios"
         secondtitle="Transforme sua vida financeira com a mentoria de investimentos"
-        />
-      {/* // Benefícios Section */}
+        // secondaryCtaText e secondaryCtaHref removidos
+      />
+
+      {/* Benefícios Section */}
       <section id="beneficios" className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
-           <div className="text-center mb-16">
+          <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">BENEFÍCIOS DA MENTORIA</span>
             </div>
@@ -135,6 +137,7 @@ const navigationItems = [
           </div>
         </div>
       </section>
+
       {/* Como Funciona Section */}
       <ReusableSection
         id="como-funciona"
@@ -155,19 +158,26 @@ const navigationItems = [
         ctaText="QUERO DOMINAR OS INVESTIMENTOS"
         ctaHref="#inscricao"
       />
+
       <NotableParticipants />
 
-      <TestimonialsSection />
-      <NewsletterFormacoes onSubmit={() => {
-          /* não precisa mais chamar router.push aqui,
-             o componente já faz isso */
-        }} title="INSCREVA-SE PARA A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a Mentoria de Investimentos" source="Mentoria de Investimentos" />
-      <Footer />
+      {/* Depoimentos Section com CTA corrigido */}
+      <TestimonialsSection
+       
+      />
+
+      <NewsletterFormacoes
+        onSubmit={() => {}}
+        title="INSCREVA-SE PARA A MUDANÇA DE VIDA"
+        description="Obtenha mais informações sobre a Mentoria de Investimentos"
+        source="Mentoria de Investimentos"
+      />
+      <Footerlp />
       {/* Floating WhatsApp Button */}
-      <WhatsAppButton
+      {/* <WhatsAppButton
         source="Mentoria de Investimentos"
         className="custom-class"
-      />
+      /> */}
     </div>
   )
 }

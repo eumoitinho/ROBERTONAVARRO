@@ -42,6 +42,7 @@
     "@radix-ui/react-tooltip": "latest",
     "@remix-run/react": "latest",
     "@sveltejs/kit": "latest",
+    "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "latest",
     "@vercel/postgres": "latest",
     "autoprefixer": "^10.4.20",

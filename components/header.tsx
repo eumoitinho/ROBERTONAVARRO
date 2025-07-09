@@ -18,7 +18,20 @@ import Logo from "@/components/logo"
 import { cn } from "@/lib/utils"
 
 // NOVA ESTRUTURA DE LINKS BASEADA NO FOOTER
-const navigationItemsDefault = [
+type NavigationSubItem = {
+    title: string
+    href: string
+    description?: string
+}
+
+type NavigationItem = {
+    title: string
+    href: string
+    items?: NavigationSubItem[]
+    isButton?: boolean
+}
+
+const navigationItemsDefault: NavigationItem[] = [
     {
         title: "Início",
         href: "/",
@@ -179,8 +192,8 @@ export function SiteHeader({
                     {/* Desktop Navigation */}
                     <NavigationMenu className="hidden lg:flex">
                         <NavigationMenuList className="space-x-2">
-                            {navItems.map((item) => (
-                                <NavigationMenuItem key={item.href}>
+                            {navItems.map((item, idx) => (
+                                <NavigationMenuItem key={`${item.href}-${idx}`}>
                                     {item.items ? (
                                         <>
                                             <NavigationMenuTrigger
@@ -192,13 +205,13 @@ export function SiteHeader({
                                                 {item.title}
                                             </NavigationMenuTrigger>
                                             <NavigationMenuContent>
-                                                <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                                    {item.items.map((subItem: any) => (
-                                                        <NavigationMenuLink key={subItem.href} asChild>
+                                                <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-zinc-950/95  shadow-xl rounded-xl">
+                                                    {item.items.map((subItem: any, subIdx: number) => (
+                                                        <NavigationMenuLink key={`${subItem.href}-${subIdx}`} asChild>
                                                             <Link
                                                                 href={subItem.href}
                                                                 className={cn(
-                                                                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-zinc-800/50 hover:text-yellow-400 focus:bg-zinc-800/50 focus:text-yellow-400",
+                                                                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-zinc-800 hover:text-yellow-400 focus:bg-zinc-800/50 focus:text-yellow-400",
                                                                     isActivePath(subItem.href) && "bg-zinc-800/30 text-yellow-400",
                                                                 )}
                                                             >
@@ -242,17 +255,17 @@ export function SiteHeader({
     <Button
         asChild
         variant="default"
-        className="border-yellow-500 text-black hover:text-yellow-500 hover:bg-yellow-500/10 hover:border-yellow-400"
+        className="border-yellow-500 bg-yellow-500 text-black hover:text-yellow-500 hover:bg-yellow-500/10 hover:border-yellow-400"
       >
         <Link href="/blog">Blog</Link>
       </Button>
-      <Button
+      {/* <Button
         asChild
         variant="outline"
         className="border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 hover:border-yellow-400"
       >
-        <Link href="/eventos/crencas-da-riqueza#form">Próximo Evento</Link>
-      </Button>
+        <Link href="/eventos/crencas-da-riqueza#form">Newsletter</Link>
+      </Button> */}
       
     </>
   )}
@@ -272,15 +285,15 @@ export function SiteHeader({
                                     <Logo className="h-8 w-auto" />
                                 </Link>
 
-                                {navItems.map((item) => (
-                                    <div key={item.href} className="space-y-2">
+                                {navItems.map((item, idx) => (
+                                    <div key={`${item.href}-${idx}`} className="space-y-2">
                                         {item.items ? (
                                             <div className="space-y-2">
                                                 <div className="font-medium text-yellow-400 text-sm uppercase tracking-wider">{item.title}</div>
                                                 <div className="space-y-1 pl-4">
-                                                    {item.items.map((subItem: any) => (
+                                                    {item.items.map((subItem: any, subIdx: number) => (
                                                         <Link
-                                                            key={subItem.href}
+                                                            key={`${subItem.href}-${subIdx}`}
                                                             href={subItem.href}
                                                             onClick={() => setIsMobileMenuOpen(false)}
                                                             className={cn(

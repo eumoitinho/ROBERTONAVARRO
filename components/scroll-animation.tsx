@@ -5,7 +5,7 @@ import { useEffect, useRef, type ReactNode } from "react"
 interface ScrollAnimationProps {
   children: ReactNode
   animation: string
-  delay?: string
+  animationDelay?: string
   threshold?: number
   className?: string
 }
@@ -13,7 +13,7 @@ interface ScrollAnimationProps {
 export const ScrollAnimation = ({
   children,
   animation,
-  delay = "",
+  animationDelay,
   threshold = 0.1,
   className = "",
 }: ScrollAnimationProps) => {
@@ -24,18 +24,16 @@ export const ScrollAnimation = ({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animated")
-            entry.target.classList.add(animation)
-            if (delay) {
-              entry.target.classList.add(delay)
-            }
-            observer.unobserve(entry.target)
+            const target = entry.target as HTMLElement
+            target.classList.add("animated")
+            target.classList.add(animation)
+            observer.unobserve(target)
           }
         })
       },
       {
         threshold: threshold,
-        rootMargin: "0px 0px -100px 0px",
+        rootMargin: "0px 0px -50px 0px",
       },
     )
 
@@ -48,14 +46,13 @@ export const ScrollAnimation = ({
         observer.unobserve(elementRef.current)
       }
     }
-  }, [animation, delay, threshold])
+  }, [animation, threshold])
 
   return (
-    <div ref={elementRef} className={`scroll-animation ${className}`}>
+    <div ref={elementRef} className={`scroll-animation ${className}`} style={{ animationDelay: animationDelay }}>
       {children}
     </div>
   )
 }
 
-// Also add a default export for backward compatibility
 export default ScrollAnimation
