@@ -560,7 +560,7 @@ export default function CrencasDaRiquezaPage() {
             </div>
           </div>
 
-          <TicketPricingCards
+          {/* <TicketPricingCards
             eventId={1}
             eventName="Crenças da Riqueza"
             ticketTypes={[
@@ -591,7 +591,7 @@ export default function CrencasDaRiquezaPage() {
                 featured: true,
               },
             ]}
-          />
+          /> */}
         </div>
       </section>
 

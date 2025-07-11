@@ -1,16 +1,11 @@
 "use client"
 
+import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Check, CreditCard, Landmark, QrCode, Loader2 } from "lucide-react"
+import { X, Check, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useRouter } from "next/navigation"
 
@@ -22,16 +17,8 @@ interface TicketType {
   description: string
   benefits: string[]
   featured?: boolean
+  eduzzContentId: string
 }
-
-// Esquema do formulário
-const formSchema = z.object({
-  name: z.string().min(3, { message: "O nome deve ter pelo menos 3 caracteres." }),
-  email: z.string().email({ message: "Por favor, insira um email válido." }),
-  phone: z.string().min(10, { message: "O telefone deve ter pelo menos 10 dígitos." }),
-  document: z.string().optional(),
-  paymentMethod: z.enum(["credit_card", "boleto", "pix"]),
-})
 
 interface TicketPricingCardsProps {
   eventId: number
@@ -39,40 +26,188 @@ interface TicketPricingCardsProps {
   ticketTypes: TicketType[]
 }
 
+// Declaração de tipos para o Eduzz
+declare global {
+  interface Window {
+    Eduzz: {
+      Checkout: {
+        init: (config: {
+          contentId: string
+          target: string
+          errorCover?: boolean
+          onSuccess?: () => void
+          onError?: (error: any) => void
+          redirectUrl?: string
+        }) => void
+      }
+    }
+    dataLayer?: Object[]
+  }
+}
+
 export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPricingCardsProps) {
   const [selectedTicket, setSelectedTicket] = useState<TicketType | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [paymentUrl, setPaymentUrl] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const router = useRouter()
   const checkoutPanelRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
+  const eduzzScriptLoaded = useRef(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      document: "",
-      paymentMethod: "credit_card",
-    },
-  })
+  // Load Eduzz script
+  const loadEduzzScript = () => {
+    if (eduzzScriptLoaded.current) return Promise.resolve()
+
+    return new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script")
+      script.src = "https://cdn.eduzzcdn.com/sun/bridge/bridge.js"
+      script.async = true
+      script.type = "module"
+
+      script.onload = () => {
+        eduzzScriptLoaded.current = true
+        resolve()
+      }
+
+      script.onerror = () => {
+        reject(new Error("Falha ao carregar script da Eduzz"))
+      }
+
+      document.head.appendChild(script)
+    })
+  }
+
+  // Initialize Eduzz checkout
+  const initializeEduzzCheckout = async (contentId: string, ticket: TicketType) => {
+    try {
+      await loadEduzzScript()
+
+      // Wait for Eduzz to be available
+      const waitForEduzz = () => {
+        return new Promise<void>((resolve) => {
+          const checkEduzz = () => {
+            if (window.Eduzz && window.Eduzz.Checkout) {
+              resolve()
+            } else {
+              setTimeout(checkEduzz, 100)
+            }
+          }
+          checkEduzz()
+        })
+      }
+
+      await waitForEduzz()
+
+      // Clear previous container
+      const container = document.getElementById("eduzz-checkout-container")
+      if (container) {
+        container.innerHTML = ""
+      }
+
+      // ...existing code...
+
+window.Eduzz.Checkout.init({
+  contentId: contentId,
+  target: "eduzz-checkout-container",
+  errorCover: true,
+  onSuccess: () => {
+    // Adicionar o evento purchase_completed aqui
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: "purchase",
+        ecommerce: {
+          transaction_id: Date.now().toString(), // ou um ID único da transação
+          currency: "BRL",
+          value: ticket.price,
+          items: [
+            {
+              item_id: ticket.id.toString(),
+              item_name: ticket.name,
+              price: ticket.price,
+              quantity: 1,
+            },
+          ],
+        },
+      })
+
+      window.dataLayer.push({
+        event: "purchase_completed",
+        category: "ecommerce",
+        eventGA4: "purchase",
+        content_type: "product",
+        value: ticket.price,
+        currency: "BRL",
+      })
+    }
+    
+    setSuccessMessage("Processando sua compra... Você será redirecionado em breve.")
+  },
+  onError: (error) => {
+    console.error("Erro no checkout da Eduzz:", error)
+    setError("Erro ao processar pagamento: " + (error?.message || "Erro desconhecido"))
+  },
+})
+
+// ...existing code...
+    } catch (err) {
+      console.error("Erro ao inicializar checkout:", err)
+      setError("Erro ao inicializar checkout: " + (err as Error).message)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const handleSelectTicket = (ticket: TicketType) => {
     setSelectedTicket(ticket)
-    // Prevent body scroll when modal is open
+    setIsSubmitting(true)
+    setError(null)
+    setSuccessMessage(null)
+
+    // Trigger begin_checkout event
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: "begin_checkout",
+        ecommerce: {
+          currency: "BRL",
+          value: ticket.price,
+          items: [
+            {
+              item_id: ticket.id.toString(),
+              item_name: ticket.name,
+              price: ticket.price,
+              quantity: 1,
+            },
+          ],
+        },
+      })
+
+      window.dataLayer.push({
+        event: "sendEvent",
+        category: "ecommerce",
+        eventGA4: "begin_checkout",
+        content_type: "product",
+      })
+    }
+
+    // Initialize checkout
+    initializeEduzzCheckout(ticket.eduzzContentId, ticket)
     document.body.style.overflow = "hidden"
   }
 
   const handleCloseCheckout = () => {
     setSelectedTicket(null)
-    // Restore body scroll
+    setIsSubmitting(false)
+    setError(null)
+    setSuccessMessage(null)
+    const container = document.getElementById("eduzz-checkout-container")
+    if (container) {
+      container.innerHTML = ""
+    }
     document.body.style.overflow = "unset"
   }
 
-  // Handle clicks outside the checkout panel to close it
+  // Handle clicks outside and escape key
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (overlayRef.current && event.target === overlayRef.current) {
@@ -94,82 +229,9 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
       document.removeEventListener("keydown", handleEscapeKey)
-      // Cleanup: restore body scroll if component unmounts
       document.body.style.overflow = "unset"
     }
   }, [selectedTicket])
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!selectedTicket) return
-
-    setIsSubmitting(true)
-    setError(null)
-    setSuccessMessage(null)
-
-    try {
-      const requestData = {
-        eventId,
-        productId: selectedTicket.id,
-        customer: {
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          document: values.document || undefined,
-        },
-        paymentMethod: values.paymentMethod,
-      }
-
-      let response = await fetch("/api/tickets/purchase", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestData),
-      })
-
-      if (!response.ok) {
-        response = await fetch("/api/register-ticket", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(requestData),
-        })
-      }
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        let errorMessage = "Erro ao processar compra"
-        try {
-          if (errorText) {
-            const errorData = JSON.parse(errorText)
-            errorMessage = errorData.error || errorData.message || errorMessage
-          }
-        } catch {
-          errorMessage = errorText || `Erro: ${response.status}`
-        }
-        throw new Error(errorMessage)
-      }
-
-      const responseText = await response.text()
-      if (!responseText) {
-        setSuccessMessage("Inscrição realizada com sucesso!")
-        setTimeout(() => router.push(`/inscricao/confirmacao`), 2000)
-        return
-      }
-
-      const data = JSON.parse(responseText)
-      if (data.paymentUrl) {
-        setPaymentUrl(data.paymentUrl)
-      } else if (data.ticketCode) {
-        setSuccessMessage(`Inscrição realizada com sucesso! Seu código de ingresso é: ${data.ticketCode}`)
-        setTimeout(() => router.push(`/inscricao/confirmacao?ticket=${data.ticketCode}`), 2000)
-      } else if (data.success) {
-        setSuccessMessage("Inscrição realizada com sucesso!")
-        setTimeout(() => router.push(`/inscricao/confirmacao`), 2000)
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao processar sua compra")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   if (successMessage) {
     return (
@@ -228,8 +290,16 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
               <Button
                 className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-2xl py-4 text-base transition-all duration-300 group-hover:shadow-lg group-hover:shadow-yellow-400/25"
                 onClick={() => handleSelectTicket(ticket)}
+                disabled={isSubmitting}
               >
-                Selecionar Ingresso
+                {isSubmitting && selectedTicket?.id === ticket.id ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Carregando...
+                  </>
+                ) : (
+                  "Selecionar Ingresso"
+                )}
               </Button>
             </CardFooter>
           </Card>
@@ -258,12 +328,12 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
               style={{ zIndex: 9999 }}
             >
               <div className="p-6 md:p-8">
-                <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-2xl font-bold text-white">Finalizar Compra</h2>
+                <div className="flex justify-between items-center mb-8 relative">
+                  <h2 className="text-2xl font-bold text-white">Finalizar Pagamento</h2>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="text-zinc-400 hover:text-white hover:bg-zinc-800/50 rounded-full w-10 h-10"
+                    className="text-zinc-400 hover:text-white hover:bg-zinc-800/50 rounded-full w-10 h-10 absolute top-0 right-0 md:static md:ml-auto"
                     onClick={handleCloseCheckout}
                   >
                     <X className="h-6 w-6" />
@@ -290,169 +360,58 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
                   </Alert>
                 )}
 
-                {paymentUrl ? (
-                  <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
-                    <iframe
-                      src={paymentUrl}
-                      title="Finalizar Pagamento"
-                      width="100%"
-                      height="500px"
-                      frameBorder="0"
-                      allow="payment"
-                    />
-                    <div className="p-4 bg-zinc-800">
-                      <Button
-                        variant="outline"
-                        onClick={() => setPaymentUrl(null)}
-                        className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 rounded-xl"
-                      >
-                        Voltar
-                      </Button>
+                <div className="bg-white rounded-3xl overflow-hidden shadow-2xl min-h-[500px]">
+                  <div className="p-6">
+                    <div className="text-center mb-4">
+                      <h3 className="text-xl font-semibold text-gray-800">Finalize seu Pagamento</h3>
+                      <p className="text-gray-600">Preencha os dados para continuar</p>
                     </div>
+                    <div
+                      id="eduzz-checkout-container"
+                      className="min-h-[400px] w-full"
+                      style={
+                        {
+                          "--eduzz-primary-color": "#f59e0b",
+                          "--eduzz-secondary-color": "#1f2937",
+                          "--eduzz-border-radius": "12px",
+                        } as React.CSSProperties
+                      }
+                    />
                   </div>
-                ) : (
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-white font-medium">Nome completo</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Seu nome completo"
-                                {...field}
-                                className="bg-zinc-800/40 backdrop-blur-sm border-zinc-600/40 text-white placeholder-zinc-400 focus:ring-yellow-400 focus:border-yellow-400 rounded-2xl py-3 px-4"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-white font-medium">Email</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="email"
-                                placeholder="seu@email.com"
-                                {...field}
-                                className="bg-zinc-800/40 backdrop-blur-sm border-zinc-600/40 text-white placeholder-zinc-400 focus:ring-yellow-400 focus:border-yellow-400 rounded-2xl py-3 px-4"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-white font-medium">Telefone</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="tel"
-                                placeholder="(00) 00000-0000"
-                                {...field}
-                                className="bg-zinc-800/40 backdrop-blur-sm border-zinc-600/40 text-white placeholder-zinc-400 focus:ring-yellow-400 focus:border-yellow-400 rounded-2xl py-3 px-4"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="document"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-white font-medium">
-                              CPF <span className="text-xs text-zinc-400">(opcional)</span>
-                            </FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="000.000.000-00"
-                                {...field}
-                                className="bg-zinc-800/40 backdrop-blur-sm border-zinc-600/40 text-white placeholder-zinc-400 focus:ring-yellow-400 focus:border-yellow-400 rounded-2xl py-3 px-4"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
 
-                      <div className="space-y-4">
-                        <h3 className="text-white font-medium text-lg">Forma de Pagamento</h3>
-                        <FormField
-                          control={form.control}
-                          name="paymentMethod"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormControl>
-                                <RadioGroup
-                                  onValueChange={field.onChange}
-                                  defaultValue={field.value}
-                                  className="grid grid-cols-3 gap-4"
-                                >
-                                  {[
-                                    { value: "credit_card", label: "Cartão", icon: CreditCard },
-                                    { value: "boleto", label: "Boleto", icon: Landmark },
-                                    { value: "pix", label: "PIX", icon: QrCode },
-                                  ].map((method) => (
-                                    <div
-                                      key={method.value}
-                                      className={`bg-zinc-800/40 backdrop-blur-sm border rounded-2xl p-4 cursor-pointer hover:border-yellow-400/50 transition-all duration-300 ${
-                                        field.value === method.value
-                                          ? "border-yellow-400/50 bg-yellow-400/10"
-                                          : "border-zinc-600/40"
-                                      }`}
-                                    >
-                                      <RadioGroupItem value={method.value} id={method.value} className="hidden" />
-                                      <label
-                                        htmlFor={method.value}
-                                        className="cursor-pointer flex flex-col items-center gap-2"
-                                      >
-                                        <method.icon className="h-6 w-6 text-yellow-400" />
-                                        <span className="text-zinc-300 text-sm font-medium">{method.label}</span>
-                                      </label>
-                                    </div>
-                                  ))}
-                                </RadioGroup>
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <Button
-                        type="submit"
-                        id="pre-checkout-button"
-                        disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold py-6 rounded-2xl text-lg transition-all duration-300 shadow-lg hover:shadow-yellow-400/25"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                            Processando...
-                          </>
-                        ) : (
-                          `Finalizar Pagamento - R$ ${selectedTicket.price.toFixed(2)}`
-                        )}
-                      </Button>
-                    </form>
-                  </Form>
-                )}
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+      {/* CSS customizado para o checkout da Eduzz */}
+      <style jsx global>{`
+    #eduzz-checkout-container {
+      /* Customizações do design do checkout */
+    }
+    
+    #eduzz-checkout-container .eduzz-checkout-form {
+      border-radius: 12px !important;
+      box-shadow: none !important;
+    }
+    
+    #eduzz-checkout-container .eduzz-button-primary {
+      background: linear-gradient(to right, #f59e0b, #d97706) !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+    }
+    
+    #eduzz-checkout-container .eduzz-input {
+      border-radius: 8px !important;
+      border: 1px solid #e5e7eb !important;
+    }
+    
+    #eduzz-checkout-container .eduzz-input:focus {
+      border-color: #f59e0b !important;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+    }
+  `}</style>
     </div>
   )
 }

@@ -222,7 +222,7 @@ export default function EducadorFinanceiroPage() {
                 </p>
 
                 <p>
-                  Em apenas <span className="text-yellow-400 font-semibold">Poucos dias</span>, você verá resultados
+                  Em  <span className="text-yellow-400 font-semibold">poucos dias</span>, você verá resultados
                   concretos em sua vida e aprenderá como dominar os fundamentos da educação financeira e aplicar os
                   conhecimentos na prática.
                 </p>
@@ -532,38 +532,42 @@ export default function EducadorFinanceiroPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                icon: <Shield className="h-6 w-6 text-yellow-400" />,
-                title: "Garantia legal de 7 dias",
-                description:
-                  "Seu investimento em si mesmo é protegido por uma garantia de satisfação total. Se, por algum motivo, dentro dos primeiros 7 dias de acesso à formação, você decidir que o treinamento não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.",
-              },
-              {
-                icon: <Target className="h-6 w-6 text-yellow-400 font-bold" />,
-                title: "Garantia de resultado em poucos dias",
-                description:
-                  "Se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira dentro de poucos dias, devolveremos o dobro do seu investimento no curso. Isso demonstra não apenas a confiança na eficácia de nosso método, mas também nosso compromisso com o seu progresso e resultados.",
-              },
-              {
-                icon: <Award className="h-6 w-6 text-yellow-400" />,
-                title: "Certificação reconhecida",
-                description:
-                  "Ao concluir com sucesso a formação, você receberá uma certificação reconhecida no MEC que comprova suas habilidades e competências como educador financeiro, aumentando suas oportunidades de carreira e credibilidade de mercado.",
-              },
-            ].map((guarantee, index) => (
-              <div
-                key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
-              >
-                <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4 mx-auto">
-                  {guarantee.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-center text-yellow-400">{guarantee.title}</h3>
-                <p className="text-zinc-300 text-center">{guarantee.description}</p>
-              </div>
-            ))}
-          </div>
+  {[
+    {
+      icon: <Shield className="h-6 w-6 text-yellow-400" />,
+      title: "Garantia legal de 7 dias",
+      description:
+        "Seu investimento em si mesmo é protegido por uma garantia de satisfação total. Se, por algum motivo, dentro dos primeiros 7 dias de acesso à formação, você decidir que o treinamento não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.",
+    },
+    {
+      icon: <Target className="h-6 w-6 text-yellow-400 font-bold" />,
+      title: "Garantia de resultados em 6 meses",
+      description:
+        "Se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira dentro de poucos dias, devolveremos o dobro do seu investimento no curso. Isso demonstra não apenas a confiança na eficácia de nosso método, mas também nosso compromisso com o seu progresso e resultados.",
+    },
+    {
+      icon: <Award className="h-6 w-6 text-yellow-400" />,
+      title: "Certificação reconhecida",
+      description:
+        "Ao concluir com sucesso a formação, você receberá uma certificação reconhecida no MEC que comprova suas habilidades e competências como educador financeiro, aumentando suas oportunidades de carreira e credibilidade de mercado.",
+    },
+  ].map((guarantee, index) => (
+    <div
+      key={index}
+      className={`bg-zinc-900/50 backdrop-blur-sm border rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 ${
+        guarantee.title === "Garantia de resultados em 6 meses"
+          ? "border-yellow-400/30 shadow-[0_0_10px_rgba(234,179,8,0.2)]"
+          : "border-zinc-800/50"
+      }`}
+    >
+      <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4 mx-auto">
+        {guarantee.icon}
+      </div>
+      <h3 className="text-xl font-bold mb-4 text-center text-yellow-400">{guarantee.title}</h3>
+      <p className="text-zinc-300 text-center">{guarantee.description}</p>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 

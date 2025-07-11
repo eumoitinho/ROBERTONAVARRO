@@ -81,9 +81,9 @@ export default function TrainingSection() {
               como pensar como os verdadeiros milionários.
             </p>
             <Button asChild className="w-full bg-yellow-500 hover:bg-yellow-600 text-black">
-              <Link href="/segredos-da-mente-milionaria">
+              {/* <Link href="/segredos-da-mente-milionaria">
                 Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+              </Link> */}
             </Button>
           </div>
         </div>

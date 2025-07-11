@@ -426,7 +426,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                 <Link href="/formacoes/mentoria-individual">
+                 <Link href="">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -446,7 +446,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                 <Link href="/formacoes/mentoria-individual">
+                 <Link href="">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -600,22 +600,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Segredos da Mente Milionária */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">SEGREDOS DA MENTE MILIONÁRIA</h3>
-              <p className="text-zinc-300 mb-6 flex-1">Reprograme sua mentalidade e ative seu potencial milionário.</p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                  <Link href="/eventos/segredos-da-mente-milionaria">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
+            {/* Card removido: Segredos da Mente Milionária */}
 
             {/* Escalador de Negócios */}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
