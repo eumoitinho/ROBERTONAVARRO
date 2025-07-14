@@ -302,7 +302,7 @@ const navigationItems = [
       <NewsletterFormacoes  onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
-        }} title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a LCF Mentoring Pro" source="LCF Mentoring Pro" />
+        }} title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a LCF Mentoring Pro" source="LCF Mentoring Pro" ctaText="CONQUISTE SUA VAGA!" />
  {/* // FAQ Section */}
       <section className="py-20 bg-zinc-950/90 border-t border-zinc-800/50">
         <div className="container mx-auto px-4">

@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation"
 // Extend the Window interface to include dataLayer
 declare global {
   interface Window {
-    dataLayer?: any[]
+    dataLayer?: Object[]
   }
 }
 
@@ -21,6 +21,7 @@ interface NewsletterFormacoesProps {
   title: string
   description: string
   source: string
+  ctaText?: string
 }
 
 export interface LeadFormData {
@@ -35,7 +36,7 @@ export interface LeadFormData {
   utm_content?: string
 }
 
-export function NewsletterFormacoes({ onSubmit, title, description, source }: NewsletterFormacoesProps) {
+export function NewsletterFormacoes({ onSubmit, title, description, source, ctaText }: NewsletterFormacoesProps) {
   const router = useRouter()
   const [formData, setFormData] = useState<LeadFormData>({
     name: "",
@@ -210,11 +211,15 @@ export function NewsletterFormacoes({ onSubmit, title, description, source }: Ne
                 disabled={isSubmitting}
                 className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg cta-hover"
               >
-                {isSubmitting ? "Enviando..." : "GARANTIR MINHA VAGA AGORA"}
+                {isSubmitting
+                  ? "Enviando..."
+                  : (typeof ctaText === "string" && ctaText.trim() !== ""
+                      ? ctaText
+                      : "GARANTIR MINHA VAGA AGORA")}
               </Button>
 
               <p className="text-xs text-zinc-400 text-center mt-4">
-                Ao clicar em "Garantir minha vaga agora", você concorda com nossos termos de uso e política de
+                Ao clicar em "{typeof ctaText === "string" && ctaText.trim() !== "" ? ctaText : "Garantir minha vaga agora"}", você concorda com nossos termos de uso e política de
                 privacidade.
               </p>
             </form>
