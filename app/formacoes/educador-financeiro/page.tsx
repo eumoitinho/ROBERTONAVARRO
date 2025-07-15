@@ -579,6 +579,7 @@ export default function EducadorFinanceiroPage() {
         title="ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR"
         description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira."
         source="Educador Financeiro"
+        ctaText="QUERO SER UM EDUCADOR FINANCEIRO!"
       />
 
       {/* FAQ Section */}
