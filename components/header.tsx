@@ -87,7 +87,11 @@ const navigationItemsDefault: NavigationItem[] = [
                 href: "/eventos/crencas-da-riqueza",
                 description: "Transforme sua mentalidade financeira",
             },
-            // { title: "Segredos da Mente Milionária", href: "/eventos/segredos-da-mente-milionaria", description: "Desvende os segredos da mente milionária" },
+            {
+                title: "Segredos da Mente Milionária",
+                href: "/eventos/segredos-da-mente-milionaria",
+                description: "Desvende os segredos da mente milionária",
+            },
         ],
     },
     {
