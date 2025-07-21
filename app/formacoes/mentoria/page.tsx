@@ -571,7 +571,7 @@ Com base em centenas de histórias de sucesso, o programa entrega não apenas co
       <NewsletterFormacoes title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA" description="Obtenha mais informações sobre a LCF Mentoring" onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
-        }} source="LCF Mentoring" />
+        }} source="LCF Mentoring" ctaText="CONQUISTE SUA VAGA!" />
 
       {/* Media Section */}
       <section className="py-16">

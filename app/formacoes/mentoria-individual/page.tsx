@@ -163,7 +163,7 @@ const navigationItems = [
 
 
 <TestimonialsSection />
-      <NewsletterFormacoes title="Mentoria Individual" description="Obtenha mais informações sobre a Mentoria Individual" source="Mentoria Individual" onSubmit={() => {
+      <NewsletterFormacoes title="Mentoria Individual" description="Obtenha mais informações sobre a Mentoria Individual" source="Mentoria Individual" ctaText="QUERO TRANSFORMAR MINHA VIDA" onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
         }} />
