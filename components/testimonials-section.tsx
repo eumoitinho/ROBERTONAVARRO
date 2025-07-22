@@ -150,7 +150,7 @@ export function TestimonialsSection() {
             asChild
             className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base transition-all duration-300 hover:scale-105"
           >
-            <a href="#formacoes">
+            <a href="#inscricao">
               COMECE SUA TRANSFORMAÇÃO <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
