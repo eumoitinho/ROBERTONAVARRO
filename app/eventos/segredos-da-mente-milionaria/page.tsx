@@ -218,7 +218,7 @@ export default function SegredosDaMenteMilionaria() {
       <NotableParticipants />
       <TestimonialsSection />
 
-      {/*<section id="inscricao" className="py-24 relative">
+      <section id="inscricao" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-zinc-900/95"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.03)_0%,_rgba(39,39,42,0.1)_100%)]"></div>
@@ -226,7 +226,7 @@ export default function SegredosDaMenteMilionaria() {
           <div className="text-center mb-16">
             <SectionBadge text="INSCRIÇÃO" />
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              ESCOLHA SEU <span className="text-yellow-400">INGRESSO</span>
+              GARANTA SEU <span className="text-yellow-400">INGRESSO</span>
             </h2>
             <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
               Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o
@@ -256,10 +256,20 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
               </div>
             </div>
-          </div></div>
-      </section>*}
+          </div>
 
-          {/* <TicketPricingCards eventId={6} eventName="Segredos da Mente Milionária" ticketTypes={ticketTypes} /> */}
+          <div className="flex justify-center">
+            <a 
+              href="https://sun.eduzz.com/39YDX2R49O" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-yellow-400 hover:bg-yellow-500 text-zinc-900 font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              GARANTIR MINHA INSCRIÇÃO
+            </a>
+          </div>
+        </div>
+      </section>
         
 
       <Footerlp />
