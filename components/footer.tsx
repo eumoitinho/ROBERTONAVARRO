@@ -5,6 +5,7 @@ import { JSX, Key } from "react"
 import { NewsletterSignup } from "./newsletter-signup"
 import { Mail, Phone, MapPin } from "lucide-react"
 import { UrlObject } from "url"
+import ReclameAquiSeal from "./reclame-aqui-seal"
 
 const socialIcons: Record<string, JSX.Element> = {
   facebook: <FaFacebookF className="w-4 h-4 md:w-5 md:h-5" />,
@@ -66,7 +67,7 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div className="py-12">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
             {/* Brand Section */}
             <div className="lg:col-span-2">
               <Link href="/" className="inline-block mb-6">
@@ -161,6 +162,11 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* Reclame Aqui Seal */}
+            <div className="flex justify-center lg:justify-start">
+              <ReclameAquiSeal />
             </div>
           </div>
         </div>
