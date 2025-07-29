@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Calendar, Clock, Instagram } from "lucide-react"
+import { ArrowRight, Calendar, Clock, Youtube } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import MobileMenu from "@/components/mobile-menu"
@@ -33,7 +33,7 @@ export default function LivesPage() {
         box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
       }
       
-      .instagram-container {
+      .youtube-container {
         position: relative;
         width: 100%;
         padding-bottom: 100%;
@@ -41,7 +41,7 @@ export default function LivesPage() {
         border-radius: 1rem;
       }
       
-      .instagram-container iframe {
+      .youtube-container iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -51,13 +51,13 @@ export default function LivesPage() {
       }
       
       @media (min-width: 768px) {
-        .instagram-container {
+        .youtube-container {
           padding-bottom: 80%;
         }
       }
       
       @media (min-width: 1024px) {
-        .instagram-container {
+        .youtube-container {
           padding-bottom: 56.25%;
         }
       }
@@ -149,10 +149,10 @@ const navigationItems = [
         title="LIVES DIÁRIAS"
         subtitle="Conteúdo gratuito"
         secondtitle="Conhecimento transformador todos os dias"
-        description="Acompanhe as lives diárias de Roberto Navarro no Instagram e transforme sua mentalidade e suas finanças com conteúdo prático e de alta qualidade."
+        description="Acompanhe as lives diárias de Roberto Navarro no YouTube e transforme sua mentalidade e suas finanças com conteúdo prático e de alta qualidade."
         image="/images/roberto-palestra.jpeg"
-        ctaText="SEGUIR NO INSTAGRAM"
-        ctaHref="https://www.instagram.com/robertonavarrooficial/"
+        ctaText="SEGUIR NO YOUTUBE"
+        ctaHref="https://www.youtube.com/@RobertoNavarroOficial"
         secondaryCtaText="Ver programação"
         secondaryCtaHref="#programacao"
       />
@@ -169,7 +169,7 @@ const navigationItems = [
               ACOMPANHE NOSSAS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">LIVES DIÁRIAS</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
-              Todos os dias às 19h, Roberto Navarro traz conteúdo exclusivo e gratuito no Instagram para transformar sua
+              Todos os dias às 19h, Roberto Navarro traz conteúdo exclusivo e gratuito no YouTube para transformar sua
               mentalidade e suas finanças.
             </p>
           </div>
@@ -199,9 +199,9 @@ const navigationItems = [
               asChild
               className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
             >
-              <a href="https://www.instagram.com/robertonavarrooficial/" target="_blank" rel="noopener noreferrer">
-                <Instagram className="mr-2 h-5 w-5" />
-                SEGUIR NO INSTAGRAM
+              <a href="https://www.youtube.com/@RobertoNavarroOficial" target="_blank" rel="noopener noreferrer">
+                <Youtube className="mr-2 h-5 w-5" />
+                SEGUIR NO YOUTUBE
               </a>
             </Button>
           </div>
@@ -223,13 +223,14 @@ const navigationItems = [
           <div className="max-w-4xl mx-auto">
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-              <div className="instagram-container">
+              <div className="youtube-container">
                 <iframe
-                  src="https://www.instagram.com/robertonavarrooficial/embed"
+                  src="https://www.youtube.com/embed/live_stream?channel=UCQZQZQZQZQZQZQZQZQZQZQ"
                   allowTransparency={true}
                   allowFullScreen={true}
                   scrolling="no"
-                  title="Instagram Feed"
+                  title="YouTube Live Stream"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 ></iframe>
               </div>
             </div>
@@ -239,8 +240,8 @@ const navigationItems = [
                 asChild
                 className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
               >
-                <a href="https://www.instagram.com/robertonavarrooficial/" target="_blank" rel="noopener noreferrer">
-                  ABRIR NO INSTAGRAM
+                <a href="https://www.youtube.com/@RobertoNavarroOficial" target="_blank" rel="noopener noreferrer">
+                  ABRIR NO YOUTUBE
                 </a>
               </Button>
             </div>
@@ -284,11 +285,11 @@ const navigationItems = [
                 <div className="p-4">
                   <Button asChild className="w-full bg-zinc-800 hover:bg-zinc-700 text-white">
                     <a
-                      href={`https://www.instagram.com/robertonavarrooficial/`}
+                      href={`https://www.youtube.com/@RobertoNavarroOficial`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Assistir no Instagram
+                      Assistir no YouTube
                     </a>
                   </Button>
                 </div>
@@ -316,14 +317,14 @@ const navigationItems = [
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">NÃO PERCA NENHUMA LIVE!</h2>
             <p className="text-lg mb-6 text-zinc-300">
-              Ative as notificações no Instagram e seja avisado sempre que uma nova live começar.
+              Ative as notificações no YouTube e seja avisado sempre que uma nova live começar.
             </p>
             <Button
               asChild
               className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-base"
             >
-              <a href="https://www.instagram.com/robertonavarrooficial/" target="_blank" rel="noopener noreferrer">
-                <Instagram className="mr-2 h-5 w-5" />
+              <a href="https://www.youtube.com/@RobertoNavarroOficial" target="_blank" rel="noopener noreferrer">
+                <Youtube className="mr-2 h-5 w-5" />
                 SEGUIR E ATIVAR NOTIFICAÇÕES
               </a>
             </Button>
