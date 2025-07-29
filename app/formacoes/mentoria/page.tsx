@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import LeadCapturePopup from "@/components/lead-capture-popup"
+import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 import { ArrowRight, ChevronDown, Users, Star, Zap, Brain, CheckCircle, Award, BarChart, DollarSign, Target, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -23,6 +25,8 @@ export default function MentoriaPage() {
     const [error, setError] = useState<string | null>(null)
     const [activeVideoId, setActiveVideoId] = useState<string | null>(null)
     const videoModalRef = useRef<HTMLDivElement>(null)
+    const { isTriggered: showPopup } = useScrollTrigger({ threshold: 35, delay: 1500 })
+    const [isPopupVisible, setIsPopupVisible] = useState(false)
 useEffect(() => {
   setIsVisible(true)
 
@@ -47,6 +51,12 @@ useEffect(() => {
   `
   document.head.appendChild(style)
 }, [])
+
+useEffect(() => {
+  if (showPopup) {
+    setIsPopupVisible(true)
+  }
+}, [showPopup])
 
 const navigationItems = [
   { title: "Início", href: "/" },
@@ -671,6 +681,15 @@ Com base em centenas de histórias de sucesso, o programa entrega não apenas co
         source="LCF Mentoring"
         className="custom-class"
       />
+
+      {/* Lead Capture Popup */}
+      <LeadCapturePopup
+        isVisible={isPopupVisible}
+        onClose={() => setIsPopupVisible(false)}
+        title="Conquiste sua Liberdade Financeira"
+        subtitle="Transforme sua vida com o programa mais completo de coaching financeiro do Brasil"
+      />
+
       {/* YouTube API Script for autoplay */}
       <script
         dangerouslySetInnerHTML={{

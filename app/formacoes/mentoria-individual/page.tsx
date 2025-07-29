@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import LeadCapturePopup from "@/components/lead-capture-popup"
+import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 import {
   ArrowRight,
   CheckCircle,
@@ -30,6 +32,8 @@ import ReusableSection from "@/components/how-works"
 
 export default function MentoriaIndividual() {
   const [isVisible, setIsVisible] = useState(false)
+  const { isTriggered: showPopup } = useScrollTrigger({ threshold: 35, delay: 1500 })
+  const [isPopupVisible, setIsPopupVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
@@ -52,6 +56,12 @@ export default function MentoriaIndividual() {
     `
     document.head.appendChild(style)
   }, [])
+
+  useEffect(() => {
+    if (showPopup) {
+      setIsPopupVisible(true)
+    }
+  }, [showPopup])
 const navigationItems = [
   { title: "Início", href: "/" },
   { title: "Benefícios", href: "#beneficios" },
@@ -174,6 +184,14 @@ const navigationItems = [
       <WhatsAppButton
         source="Mentoria Individual"
         className="custom-class"
+      />
+
+      {/* Lead Capture Popup */}
+      <LeadCapturePopup
+        isVisible={isPopupVisible}
+        onClose={() => setIsPopupVisible(false)}
+        title="Mentoria Individual Exclusiva"
+        subtitle="Acompanhamento personalizado para transformar sua vida financeira e pessoal"
       />
     </div>
   )

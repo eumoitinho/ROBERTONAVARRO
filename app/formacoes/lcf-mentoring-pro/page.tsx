@@ -4,6 +4,8 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import LeadCapturePopup from "@/components/lead-capture-popup"
+import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import WhatsAppButton from "@/components/whatsapp-button"
 import Logo from "@/components/logo"
@@ -37,6 +39,8 @@ export default function LCFMentoringPro() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+  const { isTriggered: showPopup } = useScrollTrigger({ threshold: 35, delay: 1500 })
+  const [isPopupVisible, setIsPopupVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
@@ -62,6 +66,12 @@ export default function LCFMentoringPro() {
     `
     document.head.appendChild(style)
   }, [])
+
+  useEffect(() => {
+    if (showPopup) {
+      setIsPopupVisible(true)
+    }
+  }, [showPopup])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -409,6 +419,14 @@ const navigationItems = [
       <WhatsAppButton
         source="LCF Mentoring PRO"
         className="custom-class"
+      />
+
+      {/* Lead Capture Popup */}
+      <LeadCapturePopup
+        isVisible={isPopupVisible}
+        onClose={() => setIsPopupVisible(false)}
+        title="Transforme sua Vida com o LCF Mentoring PRO"
+        subtitle="Desenvolva inteligência financeira, emocional e espiritual em um programa completo"
       />
     </div>
   )
