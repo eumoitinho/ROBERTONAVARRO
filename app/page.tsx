@@ -16,10 +16,12 @@ import { SiteHeader } from "@/components/header"
 import QuemSomosSection from "@/components/mentor"
 import { SectionBadge } from "@/components/section-badge"
 import TransformationVideos from "@/components/transformation-videos"
+import EventPopup from "@/components/event-popup"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
+  const [showEventPopup, setShowEventPopup] = useState(false)
 
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -58,6 +60,13 @@ export default function HomePage() {
       }
     `
     document.head.appendChild(style)
+
+    // Show event popup after 3 seconds
+    const popupTimer = setTimeout(() => {
+      setShowEventPopup(true)
+    }, 3000)
+
+    return () => clearTimeout(popupTimer)
   }, [])
 
   return (
@@ -857,6 +866,12 @@ export default function HomePage() {
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton />
+
+      {/* Event Popup */}
+      <EventPopup 
+        isVisible={showEventPopup}
+        onClose={() => setShowEventPopup(false)}
+      />
     </div>
   )
 }
