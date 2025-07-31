@@ -50,6 +50,16 @@ const navigationItemsDefault: NavigationItem[] = [
                 href: "/formacoes/empreendedor-inteligente",
                 description: "Desenvolva habilidades empresariais",
             },
+            {
+                title: "Método TF",
+                href: "/formacoes/metodo-tf",
+                description: "Desbloqueie a riqueza em sua vida",
+            },
+            {
+                title: "Mentor Coaching Financeiro",
+                href: "/formacoes/mentor-coaching-financeiro",
+                description: "Transforme-se em um gerador de riqueza",
+            },
         ],
     },
     {
@@ -65,6 +75,32 @@ const navigationItemsDefault: NavigationItem[] = [
                 title: "Livros",
                 href: "/livros",
                 description: "Biblioteca de conhecimento financeiro",
+            },
+        ],
+    },
+    {
+        title: "Livros",
+        href: "/livros",
+        items: [
+            {
+                title: "A Sabedoria do Dinheiro",
+                href: "/livros/sabedoria-do-dinheiro",
+                description: "Transforme sua mentalidade financeira",
+            },
+            {
+                title: "Quebrando Mitos com o Dinheiro",
+                href: "/livros/quebrando-mitos",
+                description: "Liberte-se das crenças limitantes",
+            },
+            {
+                title: "A Arte de Enriquecer",
+                href: "/livros/arte-de-enriquecer",
+                description: "Metodologia prática para prosperar",
+            },
+            {
+                title: "Coaching Financeiro",
+                href: "/livros/coaching-financeiro",
+                description: "Equilíbrio emocional e financeiro",
             },
         ],
     },

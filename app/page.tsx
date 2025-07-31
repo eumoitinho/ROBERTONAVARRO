@@ -426,16 +426,15 @@ export default function HomePage() {
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">MÉTODO TF</h3>
-
               <p className="text-zinc-300 mb-6 flex-1">
-                Formação focada no desenvolvimento de uma mentalidade de riqueza, combinada com estratégias práticas e comprovadas para aumentar sua renda.
+                Desbloqueie a riqueza em sua vida com estratégias comprovadas para superar bloqueios financeiros e alcançar a prosperidade.
               </p>
               <div className="mt-auto">
                 <Button
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                 <Link href="">
+                 <Link href="/formacoes/metodo-tf">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -445,17 +444,16 @@ export default function HomePage() {
             {/* Mentor Coach Financeiro*/}
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
               <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">MENTOR COACH FINANCEIRO</h3>
-
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">MENTOR COACHING FINANCEIRO</h3>
               <p className="text-zinc-300 mb-6 flex-1">
-                Formação que une inteligência financeira, desenvolvimento pessoal e coaching para transformar sua vida e permitir que você ajude outros a fazerem o mesmo com propósito e estratégia.
+                Transforme-se em um verdadeiro gerador de riqueza com a metodologia que reprograma sua relação com o dinheiro.
               </p>
               <div className="mt-auto">
                 <Button
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
                 >
-                 <Link href="">
+                 <Link href="/formacoes/mentor-coaching-financeiro">
                     SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>

@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(npm run dev:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npx eslint:*)",
+      "Bash(pnpm install:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": []
   }
