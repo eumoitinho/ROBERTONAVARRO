@@ -106,8 +106,8 @@ export default function SegredosDaMenteMilionaria() {
       <HeroPages
         title="SEGREDOS DA MENTE MILIONÁRIA"
         subtitle="Imersão exclusiva e transformadora"
-        secondtitle="A liberdade financeira começa com uma mudança de mentalidade"
-        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Alameda Araguaia, Alphaville - SP"
+        secondtitle="Em 9 de agosto alcance a liberdade financeira com uma mudança de mentalidade"
+        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Hotel Pergamon - Rua Frei Caneca 80, Consolação - SP"
         image="/images/HERO_SEGREDOS.png"
         ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
         ctaHref="#inscricao"
