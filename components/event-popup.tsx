@@ -28,7 +28,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
   }
 
   const handleInscreverClick = () => {
-    window.open("https://sun.eduzz.com/39YDX2R49O", "_blank")
+    window.open("https://sun.eduzz.com/Z0B5XXE6WA", "_blank")
     handleClose()
   }
 
