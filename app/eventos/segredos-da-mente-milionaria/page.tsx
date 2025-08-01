@@ -254,7 +254,7 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">30 de julho de 2025, 13h às 20h</p>
+                  <p className="text-zinc-300 text-lg">09 de agosto de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
@@ -264,7 +264,7 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">Alameda Araguaia, 751, Alphaville, Barueri - SP</p>
+                  <p className="text-zinc-300 text-lg">Hotel Pergamon - Rua Frei Caneca 80, Consolação - SP</p>
                 </div>
               </div>
             </div>
