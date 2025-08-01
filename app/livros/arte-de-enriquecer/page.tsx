@@ -15,7 +15,9 @@ import {
   BarChart3,
   Star,
   Quote,
-  Palette
+  Palette,
+  Brain,
+  Target
 } from "lucide-react"
 import WhatsAppButton from "@/components/whatsapp-button"
 import Footer from "@/components/footer"
