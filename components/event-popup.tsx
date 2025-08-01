@@ -74,7 +74,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             </div>
             <div>
               <p className="text-sm text-zinc-400">Data</p>
-              <p className="text-white font-semibold">30 de julho de 2025</p>
+              <p className="text-white font-semibold">09 de agosto de 2025</p>
             </div>
           </div>
 
@@ -94,7 +94,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             </div>
             <div>
               <p className="text-sm text-zinc-400">Local</p>
-              <p className="text-white font-semibold">Alphaville, Barueri - SP</p>
+              <p className="text-white font-semibold">Hotel Pergamon - Rua Frei Caneca 80, Consolação - SP</p>
             </div>
           </div>
         </div>
