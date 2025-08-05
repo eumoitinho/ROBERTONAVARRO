@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import LeadCapturePopup from "@/components/lead-capture-popup"
-import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 import {
   ArrowRight,
   CheckCircle,
@@ -47,8 +45,6 @@ import Footerlp from "@/components/footerlp"
 
 export default function MentoriaDeInvestimentos() {
   const [isVisible, setIsVisible] = useState(false)
-  const { isTriggered: showPopup } = useScrollTrigger({ threshold: 35, delay: 1500 })
-  const [isPopupVisible, setIsPopupVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
@@ -72,11 +68,6 @@ export default function MentoriaDeInvestimentos() {
     document.head.appendChild(style)
   }, [])
 
-  useEffect(() => {
-    if (showPopup) {
-      setIsPopupVisible(true)
-    }
-  }, [showPopup])
 
   const navigationItems = [
     { title: "Início", href: "/" },
@@ -465,13 +456,6 @@ export default function MentoriaDeInvestimentos() {
         </div>
       </footer>
 
-      {/* Lead Capture Popup */}
-      <LeadCapturePopup
-        isVisible={isPopupVisible}
-        onClose={() => setIsPopupVisible(false)}
-        title="Aprenda a Investir com Segurança"
-        subtitle="Transforme sua relação com o dinheiro e conquiste sua liberdade financeira"
-      />
     </div>
   )
 }

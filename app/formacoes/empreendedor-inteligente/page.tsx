@@ -6,8 +6,6 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import LeadCapturePopup from "@/components/lead-capture-popup"
-import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 import {
   ArrowRight,
   ChevronRight,
@@ -38,8 +36,6 @@ export default function EmpreendedorInteligentePage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
-  const { isTriggered: showPopup } = useScrollTrigger({ threshold: 35, delay: 1500 })
-  const [isPopupVisible, setIsPopupVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
@@ -66,11 +62,6 @@ export default function EmpreendedorInteligentePage() {
     document.head.appendChild(style)
   }, [])
 
-  useEffect(() => {
-    if (showPopup) {
-      setIsPopupVisible(true)
-    }
-  }, [showPopup])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -495,13 +486,6 @@ const navigationItems = [
         className="custom-class"
       />
 
-      {/* Lead Capture Popup */}
-      <LeadCapturePopup
-        isVisible={isPopupVisible}
-        onClose={() => setIsPopupVisible(false)}
-        title="Transforme sua Empresa com o Empreendedor Inteligente"
-        subtitle="Aprenda a escalar resultados, atrair investidores e otimizar sua gestão empresarial"
-      />
     </div>
   )
 }

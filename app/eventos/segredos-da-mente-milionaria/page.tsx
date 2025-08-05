@@ -10,8 +10,6 @@ import { SiteHeader } from "@/components/header"
 import NotableParticipants from "@/components/notable-persons"
 import { SectionBadge } from "@/components/section-badge"
 import Footerlp from "@/components/footerlp"
-import LeadCapturePopup from "@/components/lead-capture-popup"
-import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 
 const ticketTypes = [
   {
@@ -51,14 +49,7 @@ export default function SegredosDaMenteMilionaria() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   
   // Lead capture popup
-  const { isTriggered: showPopup } = useScrollTrigger({ threshold: 30, delay: 2000 })
-  const [isPopupVisible, setIsPopupVisible] = useState(false)
   
-  useEffect(() => {
-    if (showPopup) {
-      setIsPopupVisible(true)
-    }
-  }, [showPopup])
 
     const handleSubmit = async (formData: FormData) => {
       try {
@@ -285,14 +276,6 @@ export default function SegredosDaMenteMilionaria() {
         
 
       <Footerlp />
-      
-      {/* Lead Capture Popup */}
-      <LeadCapturePopup
-        isVisible={isPopupVisible}
-        onClose={() => setIsPopupVisible(false)}
-        title="🎯 Não Perca Esta Oportunidade Única!"
-        subtitle="Receba conteúdos exclusivos sobre mentalidade milionária e seja o primeiro a saber sobre nossos eventos"
-      />
     </div>
   )
 }

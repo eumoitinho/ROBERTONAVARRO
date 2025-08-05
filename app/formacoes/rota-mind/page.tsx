@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react"
 import NextImage from "next/image"
-import LeadCapturePopup from "@/components/lead-capture-popup"
-import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 import {
   ArrowRight,
   Calendar,
@@ -161,18 +159,11 @@ const advisoryBenefits = [
 export default function RotaMindPage() {
   const [isVisible, setIsVisible] = useState(false)
   const router = useRouter()
-  const { isTriggered: showPopup } = useScrollTrigger({ threshold: 35, delay: 1500 })
-  const [isPopupVisible, setIsPopupVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
-  useEffect(() => {
-    if (showPopup) {
-      setIsPopupVisible(true)
-    }
-  }, [showPopup])
 
   const meusLinksCustomizados = [
     { title: "O Que É", href: "#o-que-e" },
@@ -755,13 +746,6 @@ export default function RotaMindPage() {
       <Footer />
       <WhatsAppButton />
 
-      {/* Lead Capture Popup */}
-      <LeadCapturePopup
-        isVisible={isPopupVisible}
-        onClose={() => setIsPopupVisible(false)}
-        title="Faça Parte do Clube de Negócios Mais Seleto do Brasil"
-        subtitle="Conecte-se com empresários de alto nível e acelere o crescimento do seu negócio"
-      />
     </div>
   )
 }
