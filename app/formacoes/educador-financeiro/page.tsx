@@ -28,22 +28,13 @@ import { SiteHeader } from "@/components/header"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos"
-import LeadCapturePopup from "@/components/lead-capture-popup"
-import { useScrollTrigger } from "@/hooks/use-scroll-trigger"
 
 export default function EducadorFinanceiroPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   
   // Lead capture popup
-  const { isTriggered: showPopup } = useScrollTrigger({ threshold: 35, delay: 1500 })
-  const [isPopupVisible, setIsPopupVisible] = useState(false)
   
-  useEffect(() => {
-    if (showPopup) {
-      setIsPopupVisible(true)
-    }
-  }, [showPopup])
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
@@ -677,14 +668,6 @@ export default function EducadorFinanceiroPage() {
       <WhatsAppButton
         source="Educador Financeiro"
         className="custom-class"
-      />
-      
-      {/* Lead Capture Popup */}
-      <LeadCapturePopup
-        isVisible={isPopupVisible}
-        onClose={() => setIsPopupVisible(false)}
-        title="💰 Transforme-se em um Educador Financeiro!"
-        subtitle="Receba materiais exclusivos e seja o primeiro a saber sobre oportunidades na área de educação financeira"
       />
     </div>
   )
