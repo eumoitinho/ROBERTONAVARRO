@@ -5,6 +5,7 @@ import { JSX, Key } from "react"
 import { NewsletterSignup } from "./newsletter-signup"
 import { Mail, Phone, MapPin } from "lucide-react"
 import { UrlObject } from "url"
+import RaVerifiedSeals from "./ra-verified-seals"
 
 const socialIcons: Record<string, JSX.Element> = {
   facebook: <FaFacebookF className="w-4 h-4 md:w-5 md:h-5" />,
@@ -119,6 +120,11 @@ export default function Footerlp() {
                 Cookies
               </Link>
             </div>
+          </div>
+          
+          {/* RA Verified Seals */}
+          <div className="mt-6 pt-6 border-t border-zinc-800/50">
+            <RaVerifiedSeals />
           </div>
         </div>
       </div>
