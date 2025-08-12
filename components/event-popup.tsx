@@ -28,7 +28,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
   }
 
   const handleInscreverClick = () => {
-    window.open("https://sun.eduzz.com/Z0B5XXE6WA", "_blank")
+    window.open("https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto", "_blank")
     handleClose()
   }
 
@@ -74,7 +74,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             </div>
             <div>
               <p className="text-sm text-zinc-400">Data</p>
-              <p className="text-white font-semibold">09 de agosto de 2025</p>
+              <p className="text-white font-semibold">26 de agosto de 2025</p>
             </div>
           </div>
 
@@ -94,7 +94,8 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             </div>
             <div>
               <p className="text-sm text-zinc-400">Local</p>
-              <p className="text-white font-semibold">Hotel Pergamon - Rua Frei Caneca 80, Consolação - SP</p>
+              <p className="text-white font-semibold">Hotel Nacional Inn
+Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP</p>
             </div>
           </div>
         </div>

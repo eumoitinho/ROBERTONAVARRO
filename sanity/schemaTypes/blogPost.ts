@@ -120,16 +120,41 @@ export default defineType({
           ]
         },
         {
-          type: 'code',
-          options: {
-            language: 'javascript',
-            languageAlternatives: [
-              {title: 'JavaScript', value: 'javascript'},
-              {title: 'HTML', value: 'html'},
-              {title: 'CSS', value: 'css'},
-              {title: 'Python', value: 'python'},
-            ],
-            withFilename: true
+          type: 'object',
+          name: 'codeBlock',
+          title: 'Código',
+          fields: [
+            {
+              name: 'language',
+              title: 'Linguagem',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'JavaScript', value: 'javascript'},
+                  {title: 'HTML', value: 'html'},
+                  {title: 'CSS', value: 'css'},
+                  {title: 'Python', value: 'python'},
+                  {title: 'TypeScript', value: 'typescript'},
+                  {title: 'JSON', value: 'json'},
+                ]
+              }
+            },
+            {
+              name: 'filename',
+              title: 'Nome do Arquivo',
+              type: 'string',
+            },
+            {
+              name: 'code',
+              title: 'Código',
+              type: 'text',
+            }
+          ],
+          preview: {
+            select: {
+              title: 'filename',
+              subtitle: 'language'
+            }
           }
         }
       ],

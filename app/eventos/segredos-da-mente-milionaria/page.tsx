@@ -97,8 +97,9 @@ export default function SegredosDaMenteMilionaria() {
       <HeroPages
         title="SEGREDOS DA MENTE MILIONÁRIA"
         subtitle="Imersão exclusiva e transformadora"
-        secondtitle="Em 9 de agosto alcance a liberdade financeira com uma mudança de mentalidade"
-        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Hotel Pergamon - Rua Frei Caneca 80, Consolação - SP"
+        secondtitle="Em 26 de agosto alcance a liberdade financeira com uma mudança de mentalidade"
+        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Hotel Naciona Inn
+Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP"
         image="/images/HERO_SEGREDOS.png"
         ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
         ctaHref="#inscricao"
@@ -245,7 +246,7 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">09 de agosto de 2025, 13h às 20h</p>
+                  <p className="text-zinc-300 text-lg">26 de agosto de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
@@ -255,7 +256,8 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">Hotel Pergamon - Rua Frei Caneca 80, Consolação - SP</p>
+                  <p className="text-zinc-300 text-lg">Hotel Nacional Inn
+Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP</p>
                 </div>
               </div>
             </div>
@@ -263,7 +265,7 @@ export default function SegredosDaMenteMilionaria() {
 
           <div className="flex justify-center">
             <a 
-              href="https://sun.eduzz.com/Z0B5XXE6WA" 
+              href="https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="bg-yellow-400 hover:bg-yellow-500 text-zinc-900 font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"

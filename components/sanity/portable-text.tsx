@@ -24,11 +24,18 @@ const components = {
         </div>
       )
     },
-    code: ({ value }: any) => {
+    codeBlock: ({ value }: any) => {
       return (
-        <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4">
-          <code className="text-sm">{value.code}</code>
-        </pre>
+        <div className="my-6">
+          {value.filename && (
+            <div className="bg-gray-200 px-4 py-2 rounded-t-lg text-sm font-mono">
+              {value.filename}
+            </div>
+          )}
+          <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto">
+            <code className="text-sm">{value.code}</code>
+          </pre>
+        </div>
       )
     },
   },

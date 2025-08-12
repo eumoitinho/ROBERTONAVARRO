@@ -6,6 +6,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.sanity.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
+    {
+      protocol: 'http',
+      hostname: 'img.youtube.com',
+    }
     ],
   },
   serverExternalPackages: ['sanity', '@sanity/vision'],

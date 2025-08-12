@@ -1,5 +1,53 @@
 import { groq } from 'next-sanity'
 
+// Site Settings Query
+export const SITE_SETTINGS_QUERY = groq`
+  *[_type == "siteSettings"][0] {
+    title,
+    description,
+    logo,
+    favicon,
+    whatsapp,
+    eventPopup,
+    leadPopup,
+    navigation,
+    footer,
+    socialMedia,
+    contact,
+    analytics,
+    defaultSeo,
+    theme
+  }
+`
+
+// Home Page Query
+export const HOME_PAGE_QUERY = groq`
+  *[_type == "homePage"][0] {
+    hero,
+    about,
+    formations {
+      ...,
+      featuredFormations[]->{
+        _id,
+        title,
+        slug,
+        subtitle,
+        description,
+        heroImage,
+        price
+      }
+    },
+    events,
+    books,
+    testimonials,
+    transformationVideos,
+    ctaSection,
+    location,
+    seo
+  }
+`
+
+// Blog Queries
 export const POSTS_QUERY = groq`
   *[_type == "blogPost"] | order(publishedAt desc) {
     _id,
@@ -46,6 +94,7 @@ export const CATEGORIES_QUERY = groq`
   }
 `
 
+// Page Queries
 export const PAGES_QUERY = groq`
   *[_type == "page"] {
     _id,
@@ -70,20 +119,7 @@ export const PAGE_QUERY = groq`
   }
 `
 
-export const SITE_SETTINGS_QUERY = groq`
-  *[_type == "siteSettings"][0] {
-    title,
-    logo,
-    favicon,
-    header,
-    footer,
-    socialMedia,
-    contact,
-    analytics,
-    defaultSeo
-  }
-`
-
+// Formation Queries
 export const FORMATIONS_QUERY = groq`
   *[_type == "formation"] | order(title asc) {
     _id,
@@ -114,5 +150,132 @@ export const FORMATION_QUERY = groq`
     cta,
     guarantee,
     seo
+  }
+`
+
+// Event Queries
+export const EVENTS_QUERY = groq`
+  *[_type == "event"] | order(date desc) {
+    _id,
+    title,
+    slug,
+    subtitle,
+    description,
+    heroImage,
+    eventType,
+    date,
+    endDate,
+    time,
+    location,
+    pricing,
+    status,
+    featured
+  }
+`
+
+export const EVENT_QUERY = groq`
+  *[_type == "event" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    subtitle,
+    description,
+    longDescription,
+    heroImage,
+    eventType,
+    date,
+    endDate,
+    time,
+    location,
+    pricing,
+    capacity,
+    speakers,
+    schedule,
+    benefits,
+    targetAudience,
+    partners,
+    testimonials,
+    gallery,
+    videos,
+    faq,
+    cta,
+    status,
+    featured,
+    seo
+  }
+`
+
+export const UPCOMING_EVENTS_QUERY = groq`
+  *[_type == "event" && status == "upcoming"] | order(date asc) {
+    _id,
+    title,
+    slug,
+    description,
+    heroImage,
+    date,
+    location,
+    pricing
+  }
+`
+
+// Book Queries
+export const BOOKS_QUERY = groq`
+  *[_type == "book"] | order(order asc, title asc) {
+    _id,
+    title,
+    slug,
+    author,
+    subtitle,
+    description,
+    coverImage,
+    pricing,
+    purchaseLinks,
+    formats,
+    featured
+  }
+`
+
+export const BOOK_QUERY = groq`
+  *[_type == "book" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    author,
+    subtitle,
+    description,
+    longDescription,
+    coverImage,
+    backCoverImage,
+    isbn,
+    publisher,
+    publishDate,
+    pages,
+    language,
+    categories,
+    pricing,
+    purchaseLinks,
+    formats,
+    highlights,
+    chapters,
+    testimonials,
+    preview,
+    bonus,
+    faq,
+    seo,
+    featured
+  }
+`
+
+export const FEATURED_BOOKS_QUERY = groq`
+  *[_type == "book" && featured == true] | order(order asc) {
+    _id,
+    title,
+    slug,
+    author,
+    subtitle,
+    description,
+    coverImage,
+    pricing,
+    purchaseLinks
   }
 `
