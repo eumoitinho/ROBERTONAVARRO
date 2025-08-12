@@ -41,7 +41,7 @@ export interface User {
 }
 
 // Conexão com o banco de dados
-const db = neon(process.env.DATABASE_URL!)
+const db = neon(process.env.DATABASE_URL || 'postgresql://fake:fake@localhost:5432/fake')
 
 // Funções para eventos
 export async function getAllEvents() {
