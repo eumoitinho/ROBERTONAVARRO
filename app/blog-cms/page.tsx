@@ -4,10 +4,19 @@ import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
 
 export default async function BlogCMSPage() {
-  const [posts, categories] = await Promise.all([
-    getPosts(),
-    getCategories()
-  ])
+  let posts: any[] = []
+  let categories: any[] = []
+  
+  try {
+    const [postsData, categoriesData] = await Promise.all([
+      getPosts(),
+      getCategories()
+    ])
+    posts = postsData || []
+    categories = categoriesData || []
+  } catch (error) {
+    console.log('Sanity CMS not available during build:', error)
+  }
 
   return (
     <div className="container mx-auto px-4 py-12">
