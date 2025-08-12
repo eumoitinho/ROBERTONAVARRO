@@ -55,8 +55,8 @@ export function TestimonialsSection() {
 
               {/* Testimonial text */}
               <p className="text-zinc-300 text-base leading-relaxed mb-6">
-                "Eu estava completamente endividada, sem esperança de sair do vermelho. O método do Roberto me ajudou
-                a organizar minhas finanças, quitar dívidas e voltar a sonhar. Hoje tenho controle e paz financeira!"
+                &ldquo;Eu estava completamente endividada, sem esperança de sair do vermelho. O método do Roberto me ajudou
+                a organizar minhas finanças, quitar dívidas e voltar a sonhar. Hoje tenho controle e paz financeira!&rdquo;
               </p>
 
               {/* Stars */}
@@ -92,8 +92,8 @@ export function TestimonialsSection() {
 
               {/* Testimonial text */}
               <p className="text-zinc-300 text-base leading-relaxed mb-6">
-                "Sempre achei impossível sair das dívidas do cartão. Com as orientações do Roberto, consegui
-                renegociar tudo, criar uma reserva e até investir. Minha vida mudou completamente."
+                &ldquo;Sempre achei impossível sair das dívidas do cartão. Com as orientações do Roberto, consegui
+                renegociar tudo, criar uma reserva e até investir. Minha vida mudou completamente.&rdquo;
               </p>
 
               {/* Stars */}
@@ -129,8 +129,8 @@ export function TestimonialsSection() {
 
               {/* Testimonial text */}
               <p className="text-zinc-300 text-base leading-relaxed mb-6">
-                "O Roberto me mostrou que é possível recomeçar. Saí do sufoco das dívidas, aprendi a gastar com
-                consciência e hoje ajudo minha família a ter uma vida mais tranquila."
+                &ldquo;O Roberto me mostrou que é possível recomeçar. Saí do sufoco das dívidas, aprendi a gastar com
+                consciência e hoje ajudo minha família a ter uma vida mais tranquila.&rdquo;
               </p>
 
               {/* Stars */}

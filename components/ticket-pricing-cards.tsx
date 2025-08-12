@@ -378,7 +378,7 @@ window.Eduzz.Checkout.init({
                       }
                     />
                   </div>
-
+                </div>
               </div>
             </motion.div>
           </>

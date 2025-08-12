@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Calendar, User, Mail, Phone } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
+import Image from "next/image";
 
 interface TicketCardProps {
   ticketCode: string;
@@ -65,7 +66,7 @@ export function TicketCard({
             <h2 className="text-xl font-bold text-white drop-shadow-md">{eventName}</h2>
             {logoUrl && (
               <div className="mt-2">
-                <img src={logoUrl} alt={eventName} className="h-8 w-auto" />
+                <Image src={logoUrl} alt={eventName} width={120} height={32} className="h-8 w-auto" />
               </div>
             )}
           </div>
