@@ -279,3 +279,140 @@ export const FEATURED_BOOKS_QUERY = groq`
     purchaseLinks
   }
 `
+
+// Navigation Queries
+export const NAVIGATION_QUERY = groq`
+  *[_type == "navigation" && active == true][0] {
+    _id,
+    title,
+    items,
+    ctaButton,
+    mobileMenu
+  }
+`
+
+// Footer Query
+export const FOOTER_QUERY = groq`
+  *[_type == "footer" && active == true][0] {
+    _id,
+    title,
+    logo,
+    description,
+    columns,
+    socialMedia,
+    newsletter,
+    contact,
+    payments,
+    certifications,
+    bottomBar,
+    floatingButtons,
+    scripts
+  }
+`
+
+// Popup Queries
+export const ACTIVE_POPUPS_QUERY = groq`
+  *[_type == "popup" && active == true] | order(priority desc) {
+    _id,
+    title,
+    slug,
+    type,
+    content,
+    form,
+    buttons,
+    trigger,
+    display,
+    targeting,
+    frequency,
+    styling,
+    analytics,
+    schedule
+  }
+`
+
+export const POPUP_QUERY = groq`
+  *[_type == "popup" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    type,
+    content,
+    form,
+    buttons,
+    trigger,
+    display,
+    targeting,
+    frequency,
+    styling,
+    analytics,
+    schedule,
+    active
+  }
+`
+
+// Live Page Query
+export const LIVE_PAGE_QUERY = groq`
+  *[_type == "livePage"][0] {
+    _id,
+    title,
+    hero,
+    currentLive {
+      ...,
+      registrationForm->{
+        _id,
+        title,
+        slug,
+        type,
+        content,
+        form
+      }
+    },
+    upcomingLives,
+    pastLives,
+    categories,
+    newsletter,
+    seo
+  }
+`
+
+// Policies Query
+export const POLICIES_QUERY = groq`
+  *[_type == "policies" && active == true] {
+    _id,
+    title,
+    slug,
+    type
+  }
+`
+
+export const POLICY_QUERY = groq`
+  *[_type == "policies" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    type,
+    content,
+    sections,
+    lastUpdated,
+    effectiveDate,
+    version,
+    contactInfo
+  }
+`
+
+// Career Page Query
+export const CAREER_PAGE_QUERY = groq`
+  *[_type == "careerPage"][0] {
+    _id,
+    title,
+    hero,
+    culture,
+    benefits,
+    jobOpenings,
+    applicationProcess,
+    testimonials,
+    talentBank,
+    faq,
+    seo
+  }
+`
