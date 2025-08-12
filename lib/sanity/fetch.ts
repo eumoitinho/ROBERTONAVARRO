@@ -29,15 +29,30 @@ export async function getHomePage() {
 
 // Blog
 export async function getPosts() {
-  return client.fetch(POSTS_QUERY)
+  try {
+    return client.fetch(POSTS_QUERY)
+  } catch (error) {
+    console.log('Error fetching posts:', error)
+    return []
+  }
 }
 
 export async function getPost(slug: string) {
-  return client.fetch(POST_QUERY, { slug })
+  try {
+    return client.fetch(POST_QUERY, { slug })
+  } catch (error) {
+    console.log('Error fetching post:', error)
+    return null
+  }
 }
 
 export async function getCategories() {
-  return client.fetch(CATEGORIES_QUERY)
+  try {
+    return client.fetch(CATEGORIES_QUERY)
+  } catch (error) {
+    console.log('Error fetching categories:', error)
+    return []
+  }
 }
 
 // Pages
