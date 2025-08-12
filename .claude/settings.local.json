@@ -39,7 +39,8 @@
       "Bash(touch:*)",
       "Bash(curl:*)",
       "Bash(cd:*)",
-      "Bash(npx sanity:*)"
+      "Bash(npx sanity:*)",
+      "Bash(npm run lint)"
     ],
     "deny": []
   }
