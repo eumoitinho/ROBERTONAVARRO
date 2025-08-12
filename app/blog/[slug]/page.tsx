@@ -10,7 +10,7 @@ import Footer from "@/components/footer";
 import { SiteHeader } from "@/components/header";
 import { ptBlogPosts } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 
 // Componente para barra de progresso de leitura
@@ -47,12 +47,14 @@ const TableOfContents = ({ content }: { content: string }) => {
   const [activeSection, setActiveSection] = useState('');
 
   // Extrair títulos do HTML
-  const headings = content.match(/<h[2-3][^>]*>(.*?)<\/h[2-3]>/g)?.map((heading, index) => {
-    const level = parseInt(heading.match(/<h([2-3])/)?.[1] || '2');
-    const text = heading.replace(/<[^>]*>/g, '');
-    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    return { id, text, level };
-  }) || [];
+  const headings = useMemo(() => {
+    return content.match(/<h[2-3][^>]*>(.*?)<\/h[2-3]>/g)?.map((heading, index) => {
+      const level = parseInt(heading.match(/<h([2-3])/)?.[1] || '2');
+      const text = heading.replace(/<[^>]*>/g, '');
+      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      return { id, text, level };
+    }) || [];
+  }, [content]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -262,7 +264,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   if (!post) {
     notFound();
-    return null;
   }
 
   // Calcular tempo de leitura estimado

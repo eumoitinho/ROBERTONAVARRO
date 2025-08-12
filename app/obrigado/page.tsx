@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Script from "next/script"
 import { Button } from "@/components/ui/button"
 import { useEffect, useMemo } from "react"
 import { CheckCircle } from "lucide-react"
@@ -137,12 +138,13 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
       </div>
       {/* Script de integração Eduzz Thank You com configuração dinâmica */}
       {isValidPurchase && (
-        <script
+        <Script
           src="https://cdn.eduzzcdn.com/sun/thankyou/thankyou.js"
           data-transaction-id={transactionId}
           data-product-id={productId}
           data-value={value}
-        ></script>
+          strategy="afterInteractive"
+        />
       )}
     </div>
   )
