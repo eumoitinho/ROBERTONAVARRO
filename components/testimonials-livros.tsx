@@ -44,7 +44,7 @@ export const TestimonialsLivros = ({ heading, description, testimonials }: Props
                     <Star key={starIndex} className="mr-1 size-5 fill-yellow-400 text-yellow-400" />
                   ))}
               </div>
-              <blockquote className="text-zinc-300 md:text-md flex-grow">"{testimonial.quote}"</blockquote>
+              <blockquote className="text-zinc-300 md:text-md flex-grow">{testimonial.quote}</blockquote>
               <div className="mt-5 flex w-full items-center pt-5 border-t border-zinc-800 md:mt-6">
                 <Image
                   src={testimonial.avatar.src || "/placeholder.svg"}
