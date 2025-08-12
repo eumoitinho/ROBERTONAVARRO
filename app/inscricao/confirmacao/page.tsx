@@ -9,9 +9,9 @@ export const dynamic = "force-dynamic"
 export default async function ConfirmacaoPage({
   searchParams,
 }: {
-  searchParams: { ticket?: string }
+  searchParams: Promise<{ ticket?: string }>
 }) {
-  const { ticket } = searchParams
+  const { ticket } = await searchParams
 
   console.log(`[ConfirmacaoPage] Código do ticket: ${ticket || "não fornecido"}`)
 

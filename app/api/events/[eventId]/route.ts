@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getEventById } from "@/lib/db"
 
-export async function GET(request: NextRequest, { params }: { params: { eventId: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ eventId: string }> }) {
   try {
-    const eventId = Number.parseInt(params.eventId)
+    const { eventId: eventIdParam } = await params
+    const eventId = Number.parseInt(eventIdParam)
 
     if (isNaN(eventId)) {
       return NextResponse.json({ error: "ID do evento inválido" }, { status: 400 })

@@ -9,13 +9,13 @@ import Image from "next/image"
 export const dynamic = "force-dynamic"
 
 interface TicketPageProps {
-  params: {
+  params: Promise<{
     code: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: TicketPageProps): Promise<Metadata> {
-  const { code } = params
+  const { code } = await params
 
   try {
     const registration = await getRegistrationWithEventDetails(code)
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: TicketPageProps): Promise<Met
 }
 
 export default async function TicketPage({ params }: TicketPageProps) {
-  const { code } = params
+  const { code } = await params
   const decodedCode = decodeURIComponent(code)
 
   console.log(`[Page] Buscando ticket com código: ${decodedCode}`)

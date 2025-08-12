@@ -7,9 +7,9 @@ export const dynamic = "force-dynamic"
 export default async function VerifyPage({
   params,
 }: {
-  params: { code: string }
+  params: Promise<{ code: string }>
 }) {
-  const { code } = params
+  const { code } = await params
 
   // Decodificar o código caso esteja em formato URL-encoded
   const decodedCode = decodeURIComponent(code)

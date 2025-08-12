@@ -6,9 +6,9 @@ import { notFound } from "next/navigation"
 export default async function InscricaoPage({
   searchParams,
 }: {
-  searchParams: { evento?: string }
+  searchParams: Promise<{ evento?: string }>
 }) {
-  const eventSlug = searchParams.evento
+  const { evento: eventSlug } = await searchParams
 
   if (!eventSlug) {
     return (
