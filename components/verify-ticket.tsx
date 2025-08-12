@@ -86,11 +86,6 @@ export function VerifyTicket({ code, registration, error }: VerifyTicketProps) {
               <p>
                 <strong>Evento:</strong> {registration.event_name || "N/A"}
               </p>
-              {registration.event_date && (
-                <p>
-                  <strong>Data do evento:</strong> {new Date(registration.event_date).toLocaleDateString("pt-BR")}
-                </p>
-              )}
               <p>
                 <strong>Status:</strong> {registration.attended ? "Já realizou check-in" : "Pendente de check-in"}
               </p>

@@ -46,7 +46,7 @@ const db = neon(process.env.DATABASE_URL!)
 // Funções para eventos
 export async function getAllEvents() {
   try {
-    const result = await db<Event[]>`
+    const result = await db`
       SELECT * FROM events
       ORDER BY event_date DESC
     `
@@ -59,7 +59,7 @@ export async function getAllEvents() {
 
 export async function getEventById(id: number) {
   try {
-    const result = await db<Event[]>`
+    const result = await db`
       SELECT * FROM events
       WHERE id = ${id}
     `
@@ -72,7 +72,7 @@ export async function getEventById(id: number) {
 
 export async function getEventBySlug(slug: string) {
   try {
-    const result = await db<Event[]>`
+    const result = await db`
       SELECT * FROM events
       WHERE slug = ${slug}
     `
@@ -85,11 +85,11 @@ export async function getEventBySlug(slug: string) {
 
 // Funções para inscrições
 export async function createRegistration(
-  data: Omit<Registration, "id" | "created_at" | "attended" | "attended_at" | "event_name">,
+  data: Omit<Registration, "id" | "created_at" | "attended" | "attended_at" | "event_name" | "ticket_code">,
 ) {
   try {
     const ticket_code = Math.random().toString(36).substring(2, 15).toUpperCase()
-    const result = await db<Registration[]>`
+    const result = await db`
       INSERT INTO registrations (
         event_id, name, email, phone, ticket_code
       ) VALUES (
@@ -106,7 +106,7 @@ export async function createRegistration(
 
 export async function getRegistrationsByEvent(eventId: number) {
   try {
-    const result = await db<Registration[]>`
+    const result = await db`
       SELECT r.*, e.name as event_name
       FROM registrations r
       JOIN events e ON r.event_id = e.id
@@ -122,7 +122,7 @@ export async function getRegistrationsByEvent(eventId: number) {
 
 export async function getRegistrationByTicketCode(ticketCode: string) {
   try {
-    const result = await db<Registration[]>`
+    const result = await db`
       SELECT * FROM registrations
       WHERE ticket_code = ${ticketCode}
     `
@@ -135,7 +135,7 @@ export async function getRegistrationByTicketCode(ticketCode: string) {
 
 export async function getRegistrationWithEventDetails(ticketCode: string) {
   try {
-    const result = await db<Registration[]>`
+    const result = await db`
       SELECT 
         r.*,
         e.name as event_name,
@@ -162,7 +162,7 @@ export async function getRegistrationWithEventDetails(ticketCode: string) {
 
 export async function markAttendance(ticketCode: string) {
   try {
-    const result = await db<Registration[]>`
+    const result = await db`
       UPDATE registrations
       SET attended = TRUE, attended_at = NOW()
       WHERE ticket_code = ${ticketCode}
@@ -178,7 +178,7 @@ export async function markAttendance(ticketCode: string) {
 // Funções para usuários
 export async function getUserByEmail(email: string) {
   try {
-    const result = await db<User[]>`
+    const result = await db`
       SELECT * FROM users
       WHERE email = ${email}
     `
@@ -191,7 +191,7 @@ export async function getUserByEmail(email: string) {
 
 export async function createUser(data: Omit<User, "id" | "created_at">) {
   try {
-    const result = await db<User[]>`
+    const result = await db`
       INSERT INTO users (
         email, password, name, role
       ) VALUES (

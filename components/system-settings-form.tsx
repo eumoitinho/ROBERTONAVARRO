@@ -32,8 +32,8 @@ const formSchema = z.object({
   emailPassword: z.string().min(1, {
     message: "Por favor, insira a senha SMTP.",
   }),
-  enableEmailNotifications: z.boolean().default(false),
-  enableSmsNotifications: z.boolean().default(false),
+  enableEmailNotifications: z.boolean(),
+  enableSmsNotifications: z.boolean(),
 })
 
 export function SystemSettingsForm() {
@@ -50,8 +50,8 @@ export function SystemSettingsForm() {
       emailPort: "587",
       emailUsername: "usuario@exemplo.com",
       emailPassword: "",
-      enableEmailNotifications: true,
-      enableSmsNotifications: false,
+      enableEmailNotifications: true as boolean,
+      enableSmsNotifications: false as boolean,
     },
   })
 

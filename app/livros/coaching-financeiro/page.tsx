@@ -209,7 +209,7 @@ export default function CoachingFinanceiroPage() {
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {pillars.map((pillar, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 150}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 150}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 h-full">
                   <CardContent className="p-6">
                     <div className="bg-blue-500/10 rounded-full p-4 w-fit mx-auto mb-4 text-blue-400">
@@ -247,7 +247,7 @@ export default function CoachingFinanceiroPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {transformations.map((item, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 h-full">
                   <CardContent className="p-6 text-center">
                     <div className="bg-blue-500/10 rounded-full p-4 w-fit mx-auto mb-4 text-blue-400">
@@ -361,7 +361,7 @@ export default function CoachingFinanceiroPage() {
                         CRIADOR DO CONCEITO
                       </Badge>
                     </ScrollAnimation>
-                    <ScrollAnimation animation="fadeInUp" delay={100}>
+                    <ScrollAnimation animation="fadeInUp" animationDelay="100ms">
                       <h2 className="text-3xl font-bold mb-4">
                         Roberto{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-600">
@@ -370,17 +370,17 @@ export default function CoachingFinanceiroPage() {
                       </h2>
                     </ScrollAnimation>
                     <div className="space-y-4 text-zinc-300">
-                      <ScrollAnimation animation="fadeInUp" delay={200}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="200ms">
                         <p>
                           Pioneiro e criador do conceito de Coaching Financeiro no Brasil, Roberto Navarro revolucionou a forma como milhares de pessoas lidam com suas finanças.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={300}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="300ms">
                         <p>
                           Sua abordagem única integra técnicas avançadas de coaching com educação financeira prática, criando resultados extraordinários na vida de seus alunos.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={400}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="400ms">
                         <p>
                           Este livro é a síntese de anos de experiência transformando vidas através do equilíbrio entre mente, emoções e finanças.
                         </p>

@@ -130,10 +130,10 @@ export default async function TicketPage({ params }: TicketPageProps) {
           <div>
             <TicketCard
               ticketCode={registration.ticket_code}
-              eventId={registration.event_id}
+              name={registration.name}
+              email={registration.email}
+              phone={registration.phone}
               eventName={registration.event_name}
-              attendeeName={registration.name}
-              eventDetails={registration}
             />
 
             <div className="mt-8 text-center">

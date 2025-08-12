@@ -15,13 +15,13 @@ export type User = {
 }
 
 export async function login(email: string, password: string) {
-  const users = await sql<User[]>`SELECT * FROM users WHERE email = ${email}`
+  const users = await sql`SELECT * FROM users WHERE email = ${email}`
 
-  if (users.length === 0) {
+  if (users.rows.length === 0) {
     return null
   }
 
-  const user = users[0]
+  const user = users.rows[0]
 
   // Verificar a senha usando bcrypt
   const passwordMatch = await bcrypt.compare(password, user.password)
@@ -41,7 +41,8 @@ export async function login(email: string, password: string) {
     .setExpirationTime("24h")
     .sign(secretKey)
 
-  cookies().set("auth_token", token, {
+  const cookieStore = await cookies()
+  cookieStore.set("auth_token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     maxAge: 60 * 60 * 24, // 24 horas
@@ -57,11 +58,13 @@ export async function login(email: string, password: string) {
 }
 
 export async function logout() {
-  cookies().delete("auth_token")
+  const cookieStore = await cookies()
+  cookieStore.delete("auth_token")
 }
 
 export async function getSession() {
-  const token = cookies().get("auth_token")?.value
+  const cookieStore = await cookies()
+  const token = cookieStore.get("auth_token")?.value
 
   if (!token) {
     return null

@@ -301,7 +301,7 @@ export default function MentorCoachingFinanceiroPage() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-12">
             {symptoms.map((symptom, index) => (
-              <ScrollAnimation key={index} animation="fadeInLeft" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInLeft" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-red-900/30 hover:border-red-500/50 transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex gap-4">
@@ -340,7 +340,7 @@ export default function MentorCoachingFinanceiroPage() {
                     MENTOR COACHING FINANCEIRO
                   </Badge>
                 </ScrollAnimation>
-                <ScrollAnimation animation="fadeInUp" delay={100}>
+                <ScrollAnimation animation="fadeInUp" animationDelay="100ms">
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
                     A metodologia que vai{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
@@ -350,17 +350,17 @@ export default function MentorCoachingFinanceiroPage() {
                   </h2>
                 </ScrollAnimation>
                 <div className="space-y-4 text-zinc-300">
-                  <ScrollAnimation animation="fadeInUp" delay={200}>
+                  <ScrollAnimation animation="fadeInUp" animationDelay="200ms">
                     <p>
                       O Mentor Coaching Financeiro é resultado de mais de uma década de pesquisa e aplicação prática com milhares de alunos. É a síntese de tudo que Roberto Navarro descobriu sobre como pessoas realmente bem-sucedidas pensam, sentem e agem em relação ao dinheiro.
                     </p>
                   </ScrollAnimation>
-                  <ScrollAnimation animation="fadeInUp" delay={300}>
+                  <ScrollAnimation animation="fadeInUp" animationDelay="300ms">
                     <p className="font-semibold text-yellow-400 text-lg">
                       Esta não é mais uma formação sobre &quot;como investir&quot; ou &quot;como controlar gastos&quot;.
                     </p>
                   </ScrollAnimation>
-                  <ScrollAnimation animation="fadeInUp" delay={400}>
+                  <ScrollAnimation animation="fadeInUp" animationDelay="400ms">
                     <p>
                       Este é um processo de transformação profunda que ataca a raiz do problema: sua programação inconsciente sobre dinheiro, sucesso e merecimento.
                     </p>
@@ -389,7 +389,7 @@ export default function MentorCoachingFinanceiroPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {learningModules.map((module, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 h-full">
                   <CardContent className="p-6">
                     <div className="bg-yellow-500/10 rounded-full p-4 w-fit mb-4 mx-auto">
@@ -427,7 +427,7 @@ export default function MentorCoachingFinanceiroPage() {
 
           <div className="space-y-6 max-w-5xl mx-auto">
             {targetAudience.map((audience, index) => (
-              <ScrollAnimation key={index} animation="fadeInLeft" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInLeft" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300">
                   <CardContent className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
@@ -470,7 +470,7 @@ export default function MentorCoachingFinanceiroPage() {
                         MENTOR
                       </Badge>
                     </ScrollAnimation>
-                    <ScrollAnimation animation="fadeInUp" delay={100}>
+                    <ScrollAnimation animation="fadeInUp" animationDelay="100ms">
                       <h2 className="text-3xl font-bold mb-4">
                         APRENDA COM O{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
@@ -478,32 +478,32 @@ export default function MentorCoachingFinanceiroPage() {
                         </span>
                       </h2>
                     </ScrollAnimation>
-                    <ScrollAnimation animation="fadeInUp" delay={200}>
+                    <ScrollAnimation animation="fadeInUp" animationDelay="200ms">
                       <p className="text-zinc-300 mb-6">
                         O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil!
                       </p>
                     </ScrollAnimation>
-                    <ScrollAnimation animation="fadeInUp" delay={300}>
+                    <ScrollAnimation animation="fadeInUp" animationDelay="300ms">
                       <h3 className="text-2xl font-bold mb-4 text-yellow-400">Roberto Navarro</h3>
                     </ScrollAnimation>
                     <div className="space-y-4 text-zinc-300">
-                      <ScrollAnimation animation="fadeInUp" delay={400}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="400ms">
                         <p>
                           Roberto Navarro é um exemplo de superação e transformação. Começou sua trajetória profissional lavando vidros de carros aos 13 anos e, com determinação, se tornou multimilionário em menos de sete anos.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={500}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="500ms">
                         <p>
                           Atualmente, é reconhecido como o maior Educador Financeiro do Brasil e criador do Coach Financeiro no país. Sua metodologia exclusiva combina estratégias de educação financeira, inteligência emocional e princípios bíblicos.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={600}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="600ms">
                         <p>
                           Ao longo de sua trajetória, já impactou mais de 1,5 milhão de alunos no Brasil e no mundo.
                         </p>
                       </ScrollAnimation>
                     </div>
-                    <ScrollAnimation animation="fadeInUp" delay={700}>
+                    <ScrollAnimation animation="fadeInUp" animationDelay="700ms">
                       <Button
                         className="mt-6 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-6 py-3"
                         asChild
@@ -539,7 +539,7 @@ export default function MentorCoachingFinanceiroPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {expectedResults.map((result, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
                   <CheckCircle className="h-8 w-8 text-yellow-400 mb-4" />
                   <h3 className="text-lg font-bold mb-2">{result.title}</h3>
@@ -596,7 +596,7 @@ export default function MentorCoachingFinanceiroPage() {
 
           <div className="space-y-6 max-w-4xl mx-auto mb-12">
             {paths.map((path, index) => (
-              <ScrollAnimation key={index} animation="fadeInLeft" delay={index * 150}>
+              <ScrollAnimation key={index} animation="fadeInLeft" animationDelay={`${index * 150}ms`}>
                 <Card className={`bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-${path.color.replace('text-', '')}/50 transition-all duration-300`}>
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">

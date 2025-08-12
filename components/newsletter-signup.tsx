@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation"
 // Extend the Window interface to include dataLayer
 declare global {
   interface Window {
-    dataLayer?: any[]
+    dataLayer?: Object[]
   }
 }
 

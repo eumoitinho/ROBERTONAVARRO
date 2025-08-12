@@ -2,7 +2,7 @@ import React from "react"
 import { Button, type ButtonProps } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-interface EnhancedButtonProps extends ButtonProps {
+interface EnhancedButtonProps extends Omit<ButtonProps, "variant"> {
   variant?: "primary" | "secondary" | "outline" | "subtle"
 }
 

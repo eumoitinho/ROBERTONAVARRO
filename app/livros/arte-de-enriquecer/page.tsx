@@ -211,7 +211,7 @@ export default function ArteDeEnriquecerPage() {
 
           <div className="max-w-4xl mx-auto space-y-4">
             {strategies.map((strategy, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-emerald-500/50 transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
@@ -253,7 +253,7 @@ export default function ArteDeEnriquecerPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 h-full">
                   <CardContent className="p-6 text-center">
                     <div className="bg-emerald-500/10 rounded-full p-4 w-fit mx-auto mb-4 text-emerald-400">
@@ -325,7 +325,7 @@ export default function ArteDeEnriquecerPage() {
                         AUTOR
                       </Badge>
                     </ScrollAnimation>
-                    <ScrollAnimation animation="fadeInUp" delay={100}>
+                    <ScrollAnimation animation="fadeInUp" animationDelay="100ms">
                       <h2 className="text-3xl font-bold mb-4">
                         Roberto{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
@@ -334,17 +334,17 @@ export default function ArteDeEnriquecerPage() {
                       </h2>
                     </ScrollAnimation>
                     <div className="space-y-4 text-zinc-300">
-                      <ScrollAnimation animation="fadeInUp" delay={200}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="200ms">
                         <p>
                           De lavador de carros a multimilionário em menos de 7 anos, Roberto Navarro é a prova viva de que a arte de enriquecer pode ser aprendida.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={300}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="300ms">
                         <p>
                           Sua experiência prática e metodologia comprovada já transformaram a vida financeira de centenas de milhares de pessoas em todo o Brasil.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={400}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="400ms">
                         <p>
                           Neste livro, ele compartilha os segredos que aprendeu em sua jornada e nas vidas dos grandes milionários que estudou.
                         </p>

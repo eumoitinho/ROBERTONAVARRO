@@ -209,7 +209,7 @@ export default function SabedoriaDoDinheiroPage() {
 
           <div className="max-w-3xl mx-auto space-y-4">
             {chapters.map((chapter, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 50}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 50}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300">
                   <CardContent className="p-6 flex items-start gap-4">
                     <div className="flex-shrink-0">
@@ -249,7 +249,7 @@ export default function SabedoriaDoDinheiroPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 h-full">
                   <CardContent className="p-6 text-center">
                     <div className="bg-yellow-500/10 rounded-full p-4 w-fit mx-auto mb-4 text-yellow-400">
@@ -321,7 +321,7 @@ export default function SabedoriaDoDinheiroPage() {
                         AUTOR
                       </Badge>
                     </ScrollAnimation>
-                    <ScrollAnimation animation="fadeInUp" delay={100}>
+                    <ScrollAnimation animation="fadeInUp" animationDelay="100ms">
                       <h2 className="text-3xl font-bold mb-4">
                         Roberto{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
@@ -330,17 +330,17 @@ export default function SabedoriaDoDinheiroPage() {
                       </h2>
                     </ScrollAnimation>
                     <div className="space-y-4 text-zinc-300">
-                      <ScrollAnimation animation="fadeInUp" delay={200}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="200ms">
                         <p>
                           Maior educador financeiro do Brasil, com mais de 1,5 milhão de alunos impactados em todo o mundo.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={300}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="300ms">
                         <p>
                           Criador do conceito de Coaching Financeiro no país, Roberto Navarro desenvolveu uma metodologia única que une finanças, inteligência emocional e espiritualidade.
                         </p>
                       </ScrollAnimation>
-                      <ScrollAnimation animation="fadeInUp" delay={400}>
+                      <ScrollAnimation animation="fadeInUp" animationDelay="400ms">
                         <p>
                           Com 5 livros publicados e centenas de vídeos educativos, sua missão é democratizar o acesso à educação financeira de qualidade.
                         </p>

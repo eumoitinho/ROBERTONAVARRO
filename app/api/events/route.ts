@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
       ORDER BY event_date ASC
     `
 
-    return NextResponse.json(events)
+    return NextResponse.json(events.rows)
   } catch (error) {
     console.error("Erro ao buscar eventos:", error)
     return NextResponse.json({ error: "Erro ao buscar eventos" }, { status: 500 })
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
         ${slug}, 
         ${description || null}, 
         ${location || null}, 
-        ${event_date ? new Date(event_date) : null}, 
+        ${event_date ? new Date(event_date).toISOString() : null}, 
         ${max_attendees || null},
         '#3B82F6',
         '#8B5CF6',
@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
       RETURNING *
     `
 
-    return NextResponse.json(result[0])
+    return NextResponse.json(result.rows[0])
   } catch (error) {
     console.error("Erro ao criar evento:", error)
     return NextResponse.json({ error: "Erro ao criar evento" }, { status: 500 })

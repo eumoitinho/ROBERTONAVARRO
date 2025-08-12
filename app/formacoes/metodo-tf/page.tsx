@@ -196,7 +196,7 @@ export default function MetodoTFPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">
                     {stat.number}
@@ -267,7 +267,7 @@ export default function MetodoTFPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {targetAudience.map((item, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
                   <CardContent className="p-6">
                     <div className="bg-yellow-500/10 rounded-full p-4 w-fit mx-auto mb-4 text-yellow-400">
@@ -304,7 +304,7 @@ export default function MetodoTFPage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
-              <ScrollAnimation key={index} animation="fadeInLeft" delay={index * 100}>
+              <ScrollAnimation key={index} animation="fadeInLeft" animationDelay={`${index * 100}ms`}>
                 <div className="flex gap-4">
                   <div className="flex-shrink-0">
                     <div className="bg-yellow-500/10 rounded-full p-3 text-yellow-400">
@@ -339,7 +339,7 @@ export default function MetodoTFPage() {
 
           <div className="max-w-3xl mx-auto space-y-4">
             {courseContent.map((item, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 50}>
+              <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 50}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300">
                   <CardContent className="p-6 flex items-start gap-4">
                     <div className="flex-shrink-0">
@@ -442,7 +442,7 @@ export default function MetodoTFPage() {
               </Card>
             </ScrollAnimation>
 
-            <ScrollAnimation animation="fadeInUp" delay={100}>
+            <ScrollAnimation animation="fadeInUp" animationDelay="100ms">
               <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 text-center hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
                 <CardContent className="p-6">
                   <Users className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
@@ -452,7 +452,7 @@ export default function MetodoTFPage() {
               </Card>
             </ScrollAnimation>
 
-            <ScrollAnimation animation="fadeInUp" delay={200}>
+            <ScrollAnimation animation="fadeInUp" animationDelay="200ms">
               <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 text-center hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
                 <CardContent className="p-6">
                   <BookOpen className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
