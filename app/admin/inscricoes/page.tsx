@@ -77,7 +77,7 @@ export default function InscricoesPage() {
             </div>
 
             {selectedEventId ? (
-              <RegistrationsList eventId={Number.parseInt(selectedEventId)} events={events} />
+              <RegistrationsList events={events} />
             ) : (
               <div className="text-center py-8 text-gray-500">
                 {events.length > 0 ? "Selecione um evento para ver as inscrições" : "Nenhum evento encontrado"}

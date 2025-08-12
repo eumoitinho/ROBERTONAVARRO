@@ -150,10 +150,6 @@ export default function CheckInPage() {
                       Aponte a câmera para o QR code do ticket para fazer o check-in automaticamente.
                     </p>
                     <QRCodeScanner
-                      onScan={(code) => {
-                        // O componente QRCodeScanner já faz o check-in
-                      }}
-                      eventId={Number.parseInt(selectedEventId)}
                       events={events}
                     />
                   </div>

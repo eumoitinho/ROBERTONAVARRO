@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       SELECT id FROM events WHERE slug = ${slug}
     `
 
-    if (existingEvent.length > 0) {
+    if (existingEvent.rows.length > 0) {
       return NextResponse.json({ error: "Slug já está em uso" }, { status: 400 })
     }
 
