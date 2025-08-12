@@ -14,7 +14,7 @@ export default function PoliticaPrivacidadePage() {
             <section>
               <h2 className="text-xl font-semibold mb-3 text-white">1. Introdução</h2>
               <p className="mb-2">
-                A presente Política de Privacidade tem por finalidade demonstrar o compromisso de Roberto Navarro ("nós", "nosso") 
+                A presente Política de Privacidade tem por finalidade demonstrar o compromisso de Roberto Navarro (&ldquo;nós&rdquo;, &ldquo;nosso&rdquo;) 
                 com a privacidade e proteção dos dados pessoais coletados, além de estabelecer as regras sobre a coleta, registro, 
                 armazenamento, uso, compartilhamento e eliminação dos dados pessoais coletados.
               </p>

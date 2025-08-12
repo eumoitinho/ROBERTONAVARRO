@@ -62,7 +62,7 @@ export default function NotableParticipants() {
                 <h3 className="text-xl font-bold mb-2 text-yellow-400">{person.name}</h3>
                 <p className="text-zinc-300 mb-4 leading-relaxed">{person.role}</p>
                 <div className="bg-zinc-800/40 rounded-2xl p-4 border border-zinc-700/30">
-                  <p className="text-sm text-zinc-300 italic leading-relaxed">"{person.testimonial}"</p>
+                  <p className="text-sm text-zinc-300 italic leading-relaxed">&ldquo;{person.testimonial}&rdquo;</p>
                 </div>
               </div>
             </div>

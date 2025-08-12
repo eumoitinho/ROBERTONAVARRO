@@ -236,7 +236,7 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
               </Button>
 
               <p className="text-xs text-zinc-400 text-center">
-                Ao clicar em "Garantir minha vaga agora", você concorda com nossos termos de uso e política de
+                Ao clicar em &ldquo;Garantir minha vaga agora&rdquo;, você concorda com nossos termos de uso e política de
                 privacidade.
               </p>
             </form>

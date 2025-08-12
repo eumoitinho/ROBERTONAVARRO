@@ -246,7 +246,7 @@ export default function MentorCoachingFinanceiroPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
                 <div className="absolute bottom-8 left-8 right-8">
                   <p className="text-white text-lg font-semibold">
-                    "A verdadeira riqueza começa na mente. Quando você muda sua mentalidade, você muda sua vida."
+                    &ldquo;A verdadeira riqueza começa na mente. Quando você muda sua mentalidade, você muda sua vida.&rdquo;
                   </p>
                   <p className="text-yellow-400 mt-2">- Roberto Navarro</p>
                 </div>

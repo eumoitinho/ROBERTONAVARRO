@@ -609,7 +609,7 @@ export default function CrencasDaRiquezaPage() {
                   <h3 className="text-xl font-bold mb-2 text-yellow-400">{person.name}</h3>
                   <p className="text-zinc-300 mb-4">{person.role}</p>
                   <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700/50">
-                    <p className="text-sm text-zinc-300 italic">"{person.testimonial}"</p>
+                    <p className="text-sm text-zinc-300 italic">&ldquo;{person.testimonial}&rdquo;</p>
                   </div>
                 </div>
               </div>

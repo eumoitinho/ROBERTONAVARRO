@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -26,22 +26,7 @@ export function RegistrationsList({ events = [] }: RegistrationsListProps) {
   const [loadingEvents, setLoadingEvents] = useState<boolean>(events.length === 0)
   const [localEvents, setLocalEvents] = useState<Event[]>(events)
 
-  useEffect(() => {
-    if (events.length > 0) {
-      setLocalEvents(events)
-      setLoadingEvents(false)
-    } else {
-      fetchEvents()
-    }
-  }, [events])
-
-  useEffect(() => {
-    if (selectedEvent) {
-      fetchRegistrations(Number.parseInt(selectedEvent))
-    }
-  }, [selectedEvent])
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     setLoadingEvents(true)
     try {
       const response = await fetch("/api/events")
@@ -60,9 +45,9 @@ export function RegistrationsList({ events = [] }: RegistrationsListProps) {
     } finally {
       setLoadingEvents(false)
     }
-  }
+  }, [toast])
 
-  const fetchRegistrations = async (eventId: number) => {
+  const fetchRegistrations = useCallback(async (eventId: number) => {
     setLoading(true)
     try {
       const response = await fetch(`/api/events/${eventId}/registrations`)
@@ -82,7 +67,22 @@ export function RegistrationsList({ events = [] }: RegistrationsListProps) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [toast])
+
+  useEffect(() => {
+    if (events.length > 0) {
+      setLocalEvents(events)
+      setLoadingEvents(false)
+    } else {
+      fetchEvents()
+    }
+  }, [events, fetchEvents])
+
+  useEffect(() => {
+    if (selectedEvent) {
+      fetchRegistrations(Number.parseInt(selectedEvent))
+    }
+  }, [selectedEvent, fetchRegistrations])
 
   const filteredRegistrations = registrations.filter(
     (reg) =>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -28,23 +28,7 @@ export function QRCodeScanner({ events = [] }: QRCodeScannerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
 
-  useEffect(() => {
-    if (events.length > 0) {
-      setLocalEvents(events)
-      setLoadingEvents(false)
-    } else {
-      fetchEvents()
-    }
-
-    return () => {
-      // Limpar stream ao desmontar
-      if (streamRef.current) {
-        streamRef.current.getTracks().forEach((track) => track.stop())
-      }
-    }
-  }, [events])
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     setLoadingEvents(true)
     try {
       const response = await fetch("/api/events")
@@ -63,7 +47,23 @@ export function QRCodeScanner({ events = [] }: QRCodeScannerProps) {
     } finally {
       setLoadingEvents(false)
     }
-  }
+  }, [toast])
+
+  useEffect(() => {
+    if (events.length > 0) {
+      setLocalEvents(events)
+      setLoadingEvents(false)
+    } else {
+      fetchEvents()
+    }
+
+    return () => {
+      // Limpar stream ao desmontar
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop())
+      }
+    }
+  }, [events, fetchEvents])
 
   const startScanner = async () => {
     setError(null)

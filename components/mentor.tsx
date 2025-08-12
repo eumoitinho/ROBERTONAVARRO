@@ -58,7 +58,7 @@ export default function QuemSomosSection() {
               <div className="flex items-start gap-4">
                 <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
                 <p>
-                  A virada em sua vida veio quando Roberto percebeu que havia um "vilão invisível" bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
+                  A virada em sua vida veio quando Roberto percebeu que havia um &ldquo;vilão invisível&rdquo; bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
                 </p>
               </div>
               <div className="flex items-start gap-4">
