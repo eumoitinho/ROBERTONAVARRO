@@ -37,7 +37,9 @@
       "Bash(pnpm install:*)",
       "Bash(npx tsc:*)",
       "Bash(touch:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(cd:*)",
+      "Bash(npx sanity:*)"
     ],
     "deny": []
   }
