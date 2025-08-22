@@ -25,8 +25,8 @@ export default function EventCTAButton({
   const [ctaLink, setCtaLink] = useState(eduzzUrl || "#form")
 
   useEffect(() => {
-    // Only process UTM params if we have a valid Eduzz URL
-    if (eduzzUrl && eduzzUrl !== "#form" && eduzzUrl.includes("eduzz.com")) {
+    // Process UTM params for Eduzz or Blinket URLs
+    if (eduzzUrl && eduzzUrl !== "#form" && (eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com.br"))) {
       const utmParams = getUTMParams()
       const linkWithUTM = buildURLWithUTM(eduzzUrl, utmParams)
       setCtaLink(linkWithUTM)
@@ -48,8 +48,8 @@ export default function EventCTAButton({
     >
       <a 
         href={ctaLink} 
-        target={eduzzUrl.includes("eduzz.com") ? "_blank" : "_self"}
-        rel={eduzzUrl.includes("eduzz.com") ? "noopener noreferrer" : undefined}
+        target={(eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com.br")) ? "_blank" : "_self"}
+        rel={(eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com.br")) ? "noopener noreferrer" : undefined}
       >
         {buttonText}
         {showArrow && <ArrowRight className="ml-2 h-5 w-5" />}

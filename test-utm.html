@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Parâmetros UTM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        h1 {
+            color: #fbbf24;
+        }
+        .test-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #fbbf24;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .test-link:hover {
+            background: #f59e0b;
+        }
+        .info {
+            background: #27272a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        code {
+            background: #3f3f46;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste de Parâmetros UTM para Eventos</h1>
+    
+    <div class="info">
+        <h2>Como funciona:</h2>
+        <p>Quando você clica em um dos links abaixo, os parâmetros UTM são passados para a página do evento.</p>
+        <p>O componente <code>EventCTAButton</code> captura esses parâmetros e os adiciona ao link do Eduzz automaticamente.</p>
+    </div>
+
+    <h2>Links de Teste:</h2>
+    
+    <h3>Segredos da Mente Milionária (Blinket):</h3>
+    <a href="/eventos/segredos-da-mente-milionaria?utm_source=facebook&utm_medium=social&utm_campaign=lancamento&utm_content=story" 
+       class="test-link" target="_blank">
+        Facebook Story
+    </a>
+    <br>
+    <a href="/eventos/segredos-da-mente-milionaria?utm_source=instagram&utm_medium=social&utm_campaign=lancamento&utm_content=feed" 
+       class="test-link" target="_blank">
+        Instagram Feed
+    </a>
+    <br>
+    <a href="/eventos/segredos-da-mente-milionaria?utm_source=google&utm_medium=cpc&utm_campaign=search&utm_term=coaching+financeiro" 
+       class="test-link" target="_blank">
+        Google Ads
+    </a>
+    <br>
+    <a href="/eventos/segredos-da-mente-milionaria?utm_source=email&utm_medium=newsletter&utm_campaign=base&fbclid=IwAR123456" 
+       class="test-link" target="_blank">
+        Email Marketing (com fbclid)
+    </a>
+    
+    <br><br>
+    
+    <h3>Crenças da Riqueza (Eduzz - quando configurar):</h3>
+    <a href="/eventos/crencas-da-riqueza?utm_source=facebook&utm_medium=social&utm_campaign=lancamento&utm_content=story" 
+       class="test-link" target="_blank">
+        Facebook Story
+    </a>
+    <br>
+    <a href="/eventos/crencas-da-riqueza?utm_source=instagram&utm_medium=social&utm_campaign=lancamento&utm_content=feed" 
+       class="test-link" target="_blank">
+        Instagram Feed
+    </a>
+
+    <div class="info">
+        <h2>⚠️ Importante:</h2>
+        <p>Para que os links funcionem corretamente, você precisa:</p>
+        <ol>
+            <li>Substituir a URL do Eduzz no arquivo <code>page-cms.tsx</code> de cada evento</li>
+            <li>Procurar por: <code>const EDUZZ_BASE_URL = "https://pay.eduzz.com/seu-produto-aqui"</code></li>
+            <li>Substituir pelo link real do produto no Eduzz</li>
+        </ol>
+    </div>
+
+    <div class="info">
+        <h2>🔍 Como verificar se está funcionando:</h2>
+        <ol>
+            <li>Clique em um dos links de teste acima</li>
+            <li>Na página do evento, abra o console do navegador (F12)</li>
+            <li>Você verá logs mostrando os parâmetros UTM capturados</li>
+            <li>Passe o mouse sobre o botão "GARANTIR MINHA VAGA" e veja o link no rodapé do navegador</li>
+            <li>O link deve conter todos os parâmetros UTM</li>
+        </ol>
+    </div>
+</body>
+</html>

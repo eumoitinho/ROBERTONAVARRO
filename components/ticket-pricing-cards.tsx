@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useRouter } from "next/navigation"
+import { getUTMParams } from "@/lib/utm-tracker"
 
 // Interface for the ticket types
 interface TicketType {
@@ -105,13 +106,24 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         container.innerHTML = ""
       }
 
-      // ...existing code...
+      // Get UTM parameters
+      const utmParams = getUTMParams()
+      
+      // Log UTM parameters for debugging
+      if (Object.keys(utmParams).length > 0) {
+        console.log('UTM Parameters being sent to Eduzz:', utmParams)
+      }
 
-window.Eduzz.Checkout.init({
-  contentId: contentId,
-  target: "eduzz-checkout-container",
-  errorCover: true,
-  onSuccess: () => {
+      // Initialize Eduzz with UTM parameters
+      window.Eduzz.Checkout.init({
+        contentId: contentId,
+        target: "eduzz-checkout-container",
+        errorCover: true,
+        // Pass UTM parameters to Eduzz
+        ...(Object.keys(utmParams).length > 0 && { 
+          urlParams: new URLSearchParams(utmParams as Record<string, string>).toString() 
+        }),
+        onSuccess: () => {
     // Adicionar o evento purchase_completed aqui
     if (window.dataLayer) {
       window.dataLayer.push({

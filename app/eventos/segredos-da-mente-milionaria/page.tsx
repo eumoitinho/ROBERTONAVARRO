@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/header"
 import NotableParticipants from "@/components/notable-persons"
 import { SectionBadge } from "@/components/section-badge"
 import Footerlp from "@/components/footerlp"
+import EventCTAButton from "@/components/event-cta-button"
 
 const ticketTypes = [
   {
@@ -264,14 +265,12 @@ Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP</p>
           </div>
 
           <div className="flex justify-center">
-            <a 
-              href="https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <EventCTAButton
+              eduzzUrl="https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto"
+              buttonText="GARANTIR MINHA INSCRIÇÃO"
               className="bg-yellow-400 hover:bg-yellow-500 text-zinc-900 font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              GARANTIR MINHA INSCRIÇÃO
-            </a>
+              showArrow={false}
+            />
           </div>
         </div>
       </section>
