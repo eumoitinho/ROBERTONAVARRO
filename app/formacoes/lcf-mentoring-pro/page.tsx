@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
+import { getFormation } from '@/lib/sanity/fetch'
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -36,12 +37,25 @@ export default function LCFMentoringPro() {
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [formationData, setFormationData] = useState<any>(null)
   const router = useRouter()
 
   useEffect(() => {
     setIsVisible(true)
 
-    // Add keyframe animation for hover effects
+    // Fetch Sanity data for this formation
+    const fetchFormationData = async () => {
+      try {
+        const data = await getFormation('lcf-mentoring-pro')
+        setFormationData(data)
+      } catch (error) {
+        console.log('Using default formation content:', error)
+      }
+    }
+
+    fetchFormationData()
+
+    // Add keyframe animation for hover effects - IDÊNTICO AO ORIGINAL
     const style = document.createElement("style")
     style.innerHTML = `
       .cta-hover {
@@ -98,6 +112,42 @@ export default function LCFMentoringPro() {
       setIsSubmitting(false)
     }
   }
+  // Use Sanity data or fallback to original static content
+  // Use Sanity data or fallback to original static content
+  const formationTitle = formationData?.title || "LCF MENTORING PRO"
+  const formationSubtitle = formationData?.subtitle || "Você já tem o dinheiro. Agora, só falta o controle!"
+  const formationDescription = formationData?.description || "O LCF Mentoring PRO reúne os treinamentos mais transformadores do educador financeiro Roberto Navarro em um único programa criado para te colocar no seleto grupo de pessoas que vivem com consciência, riqueza e propósito."
+  const formationPrice = formationData?.price?.value ? `R$ ${formationData.price.value.toLocaleString()}` : "R$ 20.000"
+  const formationBenefits = formationData?.benefits || [
+    "Acesso vitalício aos principais treinamentos",
+    "4 imersões presenciais intensivas", 
+    "Mais de 100h de conteúdo prático",
+    "Suporte direto e acompanhamento",
+    "Garantia de 6 meses: Se sua vida não mudar, devolvemos seu dinheiro"
+  ]
+  const formationModules = formationData?.modules || [
+    {
+      icon: <BarChart className="h-6 w-6" />,
+      title: "Inteligência emocional",
+      desc: "Domine suas emoções e padrões mentais, desenvolvendo resiliência, clareza e foco para tomar decisões consistentes em qualquer área da vida."
+    },
+    {
+      icon: <DollarSign className="h-6 w-6" />,
+      title: "Inteligência financeira", 
+      desc: "Destrave suas crenças limitantes e aprenda a organizar, direcionar e multiplicar seus recursos com consciência e consistência."
+    },
+    {
+      icon: <Award className="h-6 w-6" />,
+      title: "Inteligência espiritual",
+      desc: "Conecte sua jornada material com seu propósito de vida. Viver com significado não é um luxo - é a base para prosperar com equilíbrio."
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
+      title: "Inteligência estratégica",
+      desc: "Alinhe carreira, investimentos, rotina e hábitos com um plano de ação realista e poderoso."
+    }
+  ]
+
 const navigationItems = [
   { title: "Início", href: "/" },
   { title: "O Que Aprender", href: "#o-que-aprender" },
@@ -113,10 +163,10 @@ const navigationItems = [
       />
 
       <HeroPages
-        title="LCF MENTORING PRO"
-        secondtitle="Você já tem o dinheiro. Agora, só falta o controle!"
+        title={formationTitle}
+        secondtitle={formationSubtitle}
         subtitle="Mentoria Exclusiva para Transformação"
-        description={`O LCF Mentoring PRO reúne os treinamentos mais transformadores do educador financeiro Roberto Navarro em um único programa criado para te colocar no seleto grupo de pessoas que vivem com consciência, riqueza e propósito.`}
+        description={formationDescription}
         image="/images/HERO_MENTORIA.png"
         ctaText="CONQUISTE SUA VAGA!"
         ctaHref="#inscricao"
@@ -137,28 +187,7 @@ const navigationItems = [
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                icon: <BarChart className="h-6 w-6" />,
-                title: "Inteligência emocional",
-                desc: "Domine suas emoções e padrões mentais, desenvolvendo resiliência, clareza e foco para tomar decisões consistentes em qualquer área da vida.",
-              },
-              {
-                icon: <DollarSign className="h-6 w-6" />,
-                title: "Inteligência financeira",
-                desc: "Destrave suas crenças limitantes e aprenda a organizar, direcionar e multiplicar seus recursos com consciência e consistência.",
-              },
-              {
-                icon: <Award className="h-6 w-6" />,
-                title: "Inteligência espiritual",
-                desc: "Conecte sua jornada material com seu propósito de vida. Viver com significado não é um luxo - é a base para prosperar com equilíbrio.",
-              },
-              {
-                icon: <Target className="h-6 w-6" />,
-                title: "Inteligência estratégica",
-                desc: "Alinhe carreira, investimentos, rotina e hábitos com um plano de ação realista e poderoso.",
-              },
-            ].map((module, index) => (
+            {formationModules.map((module: any, index: number) => (
               <div
                 key={index}
                 className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2"
@@ -204,10 +233,10 @@ const navigationItems = [
 
     
      
-      {/* <section className="py-20 relative overflow-hidden">
+      {/* Investment Section - LAYOUT ORIGINAL COM DADOS DO SANITY */}
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-zinc-900 to-zinc-950 z-0"></div>
 
-      
         <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
         <div
           className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
@@ -219,29 +248,16 @@ const navigationItems = [
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
               <div className="max-w-md w-full bg-zinc-900/90 border-2 border-yellow-500/40 rounded-3xl p-10 shadow-xl hover:border-yellow-500/80 transition-all duration-300 hover:-translate-y-2">
-                <h3 className="text-2xl font-bold text-yellow-400 mb-4 text-center">LCF Mentoring Pro</h3>
-                <p className="text-4xl font-extrabold text-yellow-400 mb-2 text-center">R$ 20.000,00</p>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4 text-center">{formationTitle}</h3>
+                <p className="text-4xl font-extrabold text-yellow-400 mb-2 text-center">{formationPrice}</p>
                 <p className="text-zinc-300 mb-6 text-center">Condições facilitadas e parcelamento disponíveis</p>
                 <ul className="space-y-3 mb-8 text-zinc-300 text-base">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                    Acesso vitalício aos principais treinamentos
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />4 imersões presenciais intensivas
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                    Mais de 100h de conteúdo prático
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                    Suporte direto e acompanhamento
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                    Garantia de 6 meses: <br /> Se sua vida não mudar, devolvemos seu dinheiro
-                  </li>
+                  {formationBenefits.map((benefit: string, index: number) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
+                      {benefit}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -261,22 +277,24 @@ const navigationItems = [
               <p className="text-lg text-zinc-300 mb-4">
                 Acesso vitalício, suporte real e garantia total para sua transformação.
               </p>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                Networking com alunos de alto nível
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                Comunidade exclusiva
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                Mentorias ao vivo e acompanhamento
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
-                Material complementar e ferramentas práticas
-              </li>
+              <ul className="space-y-2 mb-8">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
+                  Networking com alunos de alto nível
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
+                  Comunidade exclusiva
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
+                  Mentorias ao vivo e acompanhamento
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-yellow-400 mt-1" />
+                  Material complementar e ferramentas práticas
+                </li>
+              </ul>
 
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Button
@@ -298,7 +316,7 @@ const navigationItems = [
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       <NewsletterFormacoes  onSubmit={() => {
           /* não precisa mais chamar router.push aqui,

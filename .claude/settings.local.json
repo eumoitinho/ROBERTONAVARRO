@@ -42,6 +42,7 @@
       "Bash(npx sanity:*)",
       "Bash(npm run lint)"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "acceptEdits"
   }
 }

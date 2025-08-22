@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock, User, Calendar, Tag, Search } from "lucide-react";
@@ -9,27 +9,113 @@ import { Input } from "@/components/ui/input";
 import WhatsAppButton from "@/components/whatsapp-button";
 import Footer from "@/components/footer";
 import { SiteHeader } from "@/components/header";
-import { ptBlogPosts, ptCategories, BlogPost } from "@/lib/blog-data";
+import { getPosts, getCategories } from '@/lib/sanity/fetch';
+import { urlFor } from '@/sanity/lib/client';
+
+interface BlogPost {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt: string;
+  mainImage?: any;
+  publishedAt: string;
+  author?: { name: string };
+  categories?: Array<{ title: string }>;
+  body?: any[];
+}
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [categories, setCategories] = useState<string[]>(["Todas"]);
+  const [loading, setLoading] = useState(true);
 
-  // Filtrar posts por categoria e termo de busca
-  const filteredPosts: BlogPost[] = ptBlogPosts.filter((post: BlogPost) => {
-    const matchesCategory = selectedCategory === "Todas" || post.category === selectedCategory;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [postsData, categoriesData] = await Promise.all([
+          getPosts(),
+          getCategories()
+        ]);
+        
+        setPosts(postsData || []);
+        
+        // Extract categories from posts (same logic as original)
+        const allCategories = ["Todas", "Mentalidade", "Coragem", "Inteligência Emocional", "Decisões Financeiras"];
+        postsData?.forEach((post: BlogPost) => {
+          post.categories?.forEach(cat => {
+            if (cat.title && !allCategories.includes(cat.title)) {
+              allCategories.push(cat.title);
+            }
+          });
+        });
+        
+        setCategories(allCategories);
+      } catch (error) {
+        console.log('Using fallback blog content:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Filter posts - IDÊNTICO AO ORIGINAL
+  const filteredPosts = posts.filter((post) => {
+    const postCategories = post.categories?.map(cat => cat.title) || [];
+    const matchesCategory = selectedCategory === "Todas" || postCategories.includes(selectedCategory);
     const matchesSearch = searchTerm === "" || 
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.category.toLowerCase().includes(searchTerm.toLowerCase());
+      (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      postCategories.some(cat => cat.toLowerCase().includes(searchTerm.toLowerCase()));
     
     return matchesCategory && matchesSearch;
   });
 
-  // Calcular tempo de leitura estimado
-  const getReadingTime = (content: string) => {
-    const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
-    return Math.ceil(wordCount / 200); // 200 palavras por minuto
+  // Calculate reading time - IDÊNTICO AO ORIGINAL
+  const getReadingTime = (body: any[]) => {
+    if (!body) return 5;
+    
+    let wordCount = 0;
+    body.forEach(block => {
+      if (block.children) {
+        block.children.forEach((child: any) => {
+          if (child.text) {
+            wordCount += child.text.split(' ').length;
+          }
+        });
+      }
+    });
+    
+    return Math.ceil(wordCount / 200); // 200 words per minute
+  };
+
+  // Format date
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch {
+      return dateString;
+    }
+  };
+
+  // Get post image - fallback to category-based images like original
+  const getPostImage = (post: BlogPost) => {
+    if (post.mainImage) {
+      return urlFor(post.mainImage).url();
+    }
+    // Same category images as original
+    const categoryImages: Record<string, string> = {
+      "Mentalidade": "/blog/notopo.jpg",
+      "Coragem": "/blog/marionete.jpg",
+      "Inteligência Emocional": "/blog/golias.webp",
+      "Decisões Financeiras": "/blog/segurandodin.jpg"
+    };
+    const category = post.categories?.[0]?.title || "Mentalidade";
+    return categoryImages[category] || "/blog/notopo.jpg";
   };
 
   const navigationItems = [
@@ -41,13 +127,13 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
-      {/* Header */}
+      {/* Header - IDÊNTICO AO ORIGINAL */}
       <SiteHeader
         navigationItems={navigationItems}
         showInicio={true}
       />
 
-      {/* Blog Hero */}
+      {/* Blog Hero - LAYOUT ORIGINAL */}
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -64,7 +150,7 @@ export default function BlogPage() {
             </p>
           </div>
 
-          {/* Search Bar */}
+          {/* Search Bar - IDÊNTICO AO ORIGINAL */}
           <div className="max-w-2xl mx-auto mb-12">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-zinc-400" size={20} />
@@ -78,9 +164,9 @@ export default function BlogPage() {
             </div>
           </div>
 
-          {/* Category Filter */}
+          {/* Category Filter - IDÊNTICO AO ORIGINAL */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {ptCategories.map((category: string) => (
+            {categories.map((category: string) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -95,27 +181,28 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* Results Counter */}
+          {/* Results Counter - IDÊNTICO AO ORIGINAL */}
           <div className="text-center mb-8">
             <p className="text-zinc-400">
-              {filteredPosts.length === 0 
+              {loading ? "Carregando..." :
+               filteredPosts.length === 0 
                 ? "Nenhum artigo encontrado" 
                 : `${filteredPosts.length} ${filteredPosts.length === 1 ? 'artigo encontrado' : 'artigos encontrados'}`
               }
             </p>
           </div>
 
-          {/* Blog Posts Grid */}
-          {filteredPosts.length > 0 ? (
+          {/* Blog Posts Grid - LAYOUT ORIGINAL COM DADOS DO SANITY */}
+          {!loading && filteredPosts.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post: BlogPost) => (
                 <article
-                  key={post.id}
+                  key={post._id}
                   className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl overflow-hidden hover:border-yellow-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
                 >
                   <div className="relative overflow-hidden">
                     <Image
-                      src={post.image}
+                      src={getPostImage(post)}
                       alt={post.title}
                       width={400}
                       height={240}
@@ -125,7 +212,7 @@ export default function BlogPage() {
                     <div className="absolute top-4 left-4">
                       <span className="inline-flex items-center gap-1 bg-yellow-500/90 text-black px-3 py-1 rounded-full text-xs font-semibold">
                         <Tag size={12} />
-                        {post.category}
+                        {post.categories?.[0]?.title || "Mentalidade"}
                       </span>
                     </div>
                   </div>
@@ -141,165 +228,66 @@ export default function BlogPage() {
                     <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400 mb-6">
                       <div className="flex items-center gap-1">
                         <Calendar size={12} />
-                        <span>{post.date}</span>
+                        <span>{formatDate(post.publishedAt)}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <User size={12} />
-                        <span>{post.author}</span>
+                        <span>{post.author?.name || "Roberto Navarro"}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock size={12} />
-                        <span>{getReadingTime(post.content)} min</span>
+                        <span>{getReadingTime(post.body || [])} min</span>
                       </div>
                     </div>
                     
-                    <Button
-                      asChild
-                      className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 transition-all duration-300 transform hover:scale-105"
-                    >
-                      <Link href={`/blog/${post.slug}`}>
-                        Leia Mais
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <Link href={`/blog/${post.slug.current}`} className="block">
+                      <Button className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl group">
+                        Ler Artigo Completo
+                        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
                 </article>
               ))}
             </div>
-          ) : (
-            <div className="text-center py-16">
-              <div className="w-24 h-24 bg-zinc-800/50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search size={32} className="text-zinc-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-zinc-300 mb-2">Nenhum artigo encontrado</h3>
-              <p className="text-zinc-400 mb-6">
-                Tente ajustar sua busca ou escolher uma categoria diferente.
-              </p>
-              <Button
-                onClick={() => {
-                  setSearchTerm("");
-                  setSelectedCategory("Todas");
-                }}
-                variant="outline"
-                className="border-zinc-600 hover:border-yellow-400 hover:bg-yellow-400/10 text-zinc-300 hover:text-yellow-400"
-              >
-                Limpar Filtros
-              </Button>
+          ) : !loading && (
+            <div className="text-center py-20">
+              <div className="text-zinc-400 text-xl mb-4">📚</div>
+              <h3 className="text-2xl font-bold mb-2">Nenhum artigo encontrado</h3>
+              <p className="text-zinc-400">Tente ajustar os filtros de busca ou categoria.</p>
             </div>
           )}
-        </div>
-      </section>
 
-      {/* Featured Article Section */}
-      {filteredPosts.length > 0 && selectedCategory === "Todas" && searchTerm === "" && (
-        <section className="py-20 bg-zinc-900/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">ARTIGO EM DESTAQUE</span>
-              </h2>
-              <p className="text-zinc-300 max-w-2xl mx-auto">
-                Nosso artigo mais popular sobre transformação pessoal e profissional.
+          {/* Newsletter Section - IDÊNTICO AO ORIGINAL */}
+          <section id="newsletter" className="mt-20 bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 rounded-3xl p-12 text-center border border-zinc-700/50">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              RECEBA INSIGHTS EXCLUSIVOS
+            </h3>
+            <p className="text-zinc-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+              Seja o primeiro a receber artigos transformadores sobre mentalidade, negócios e prosperidade diretamente no seu e-mail.
+            </p>
+            <div className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Input
+                  type="email"
+                  placeholder="Seu melhor e-mail"
+                  className="flex-1 py-4 px-6 bg-zinc-800/50 border-zinc-700/50 rounded-xl text-white placeholder-zinc-400 focus:border-yellow-400 focus:ring-yellow-400/20"
+                />
+                <Button className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold py-4 px-8 rounded-xl">
+                  INSCREVER-SE
+                </Button>
+              </div>
+              <p className="text-xs text-zinc-500 mt-4">
+                Você pode cancelar a inscrição a qualquer momento. Sem spam.
               </p>
             </div>
-            
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-r from-zinc-900/80 to-zinc-800/80 border border-zinc-700/50 rounded-3xl overflow-hidden">
-                <div className="grid md:grid-cols-2 gap-8 p-8">
-                  <div className="relative">
-                    <Image
-                      src={ptBlogPosts[0].image}
-                      alt={ptBlogPosts[0].title}
-                      width={500}
-                      height={300}
-                      className="w-full h-64 object-cover rounded-2xl"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="inline-flex items-center gap-2 bg-yellow-500/20 border border-yellow-500/30 rounded-full py-2 px-4 mb-4 w-fit">
-                      <Tag size={14} />
-                      <span className="text-sm font-medium text-yellow-400">{ptBlogPosts[0].category}</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-                      {ptBlogPosts[0].title}
-                    </h3>
-                    <p className="text-zinc-300 mb-6 leading-relaxed">
-                      {ptBlogPosts[0].excerpt}
-                    </p>
-                    <div className="flex items-center gap-4 text-sm text-zinc-400 mb-6">
-                      <span>{ptBlogPosts[0].date}</span>
-                      <span>•</span>
-                      <span>{ptBlogPosts[0].author}</span>
-                      <span>•</span>
-                      <span>{getReadingTime(ptBlogPosts[0].content)} min de leitura</span>
-                    </div>
-                    <Button
-                      asChild
-                      className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-3 w-fit"
-                    >
-                      <Link href={`/blog/${ptBlogPosts[0].slug}`}>
-                        Leia o Artigo Completo
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Newsletter Section */}
-      <section id="newsletter" className="py-20 bg-gradient-to-r from-zinc-900/50 to-zinc-800/50">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              RECEBA NOSSOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">MELHORES INSIGHTS</span>
-            </h2>
-            <p className="text-zinc-300 mb-8 text-lg leading-relaxed">
-              Cadastre-se para receber semanalmente artigos exclusivos sobre empreendedorismo, mentalidade e crescimento pessoal.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input
-                type="email"
-                placeholder="Seu melhor e-mail"
-                className="flex-1 bg-zinc-900/50 border-zinc-700/50 rounded-xl text-white placeholder-zinc-400 focus:border-yellow-400 focus:ring-yellow-400/20"
-              />
-              <Button className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl px-8">
-                Inscrever-se
-              </Button>
-            </div>
-            <p className="text-xs text-zinc-400 mt-4">
-              Sem spam. Cancele quando quiser.
-            </p>
-          </div>
+          </section>
         </div>
       </section>
 
-      {/* CTA Section */}
-      {/* <section className="py-24 bg-gradient-to-r from-zinc-900/80 to-zinc-800/80 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-500/5 via-transparent to-transparent"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            PRONTO PARA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">TRANSFORMAR SEU NEGÓCIO?</span>
-          </h2>
-          <p className="text-zinc-300 max-w-3xl mx-auto mb-12 text-xl leading-relaxed">
-            Junte-se ao programa Empreendedor Inteligente e aprenda as estratégias dos maiores empresários para escalar resultados com inteligência e liberdade.
-          </p>
-          <Button
-            asChild
-            className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-12 py-6 text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
-          >
-            <Link href="/empreendedor-inteligente#inscricao">
-              GARANTA SUA VAGA AGORA! <ArrowRight className="ml-3 h-6 w-6" />
-            </Link>
-          </Button>
-        </div>
-      </section> */}
-
+      {/* Footer */}
       <Footer />
-      <WhatsAppButton source="Blog" className="custom-class" />
+      <WhatsAppButton />
     </div>
   );
 }

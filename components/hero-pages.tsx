@@ -6,6 +6,7 @@ import Link from "next/link"
 import { BookOpen, Brain, ChevronRight, Star, Users, Video, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HeroCountdown } from "@/components/hero-countdown"
+import EventCTAButton from "@/components/event-cta-button"
 
 type HeroPagesProps = {
   title: string
@@ -121,12 +122,21 @@ export default function HeroPages({
             }`}
             style={{ transitionDelay: "400ms" }}
           >
-            <Button
-              className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
-              asChild
-            >
-              <Link href={ctaHref}>{ctaText}</Link>
-            </Button>
+            {ctaHref && ctaHref.includes("eduzz.com") ? (
+              <EventCTAButton
+                eduzzUrl={ctaHref}
+                buttonText={ctaText}
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
+                showArrow={false}
+              />
+            ) : (
+              <Button
+                className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
+                asChild
+              >
+                <Link href={ctaHref}>{ctaText}</Link>
+              </Button>
+            )}
             <Button
               asChild
               className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-white font-medium rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
