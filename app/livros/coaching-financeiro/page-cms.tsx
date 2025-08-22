@@ -223,7 +223,7 @@ export default function CoachingFinanceiroPage() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {pillars.map((pillar, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 0.1}>
+              <ScrollAnimation key={index} animation="fadeInUp">
                 <Card className="bg-zinc-900/50 border-zinc-800/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 h-full">
                   <CardContent className="p-6">
                     <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center text-white mb-4">
@@ -328,7 +328,7 @@ export default function CoachingFinanceiroPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {transformations.map((item, index) => (
-              <ScrollAnimation key={index} animation="fadeInUp" delay={index * 0.1}>
+              <ScrollAnimation key={index} animation="fadeInUp">
                 <Card className="bg-zinc-900/50 border-zinc-800/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2">
                   <CardContent className="p-6 text-center">
                     <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center text-white mb-4 mx-auto">
@@ -407,7 +407,11 @@ export default function CoachingFinanceiroPage() {
       </section>
 
       {/* Testimonials Section */}
-      <TestimonialsLivros testimonials={testimonials} />
+      <TestimonialsLivros 
+        heading="O QUE DIZEM OS LEITORES"
+        description="Veja como o livro Coaching Financeiro tem transformado a vida financeira de milhares de pessoas"
+        testimonials={testimonials} 
+      />
 
       {/* CTA Section - LAYOUT ORIGINAL */}
       <section className="py-20 bg-gradient-to-r from-blue-900/20 to-cyan-900/20">

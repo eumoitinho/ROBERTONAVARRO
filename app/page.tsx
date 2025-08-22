@@ -394,7 +394,7 @@ export default function HomePage() {
       <WhatsAppButton />
 
       {/* Event Popup */}
-      {showEventPopup && <EventPopup onClose={() => setShowEventPopup(false)} />}
+      {showEventPopup && <EventPopup isVisible={showEventPopup} onClose={() => setShowEventPopup(false)} />}
     </div>
   )
 }
