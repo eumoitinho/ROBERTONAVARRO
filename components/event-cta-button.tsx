@@ -23,18 +23,42 @@ export default function EventCTAButton({
   size = "default"
 }: EventCTAButtonProps) {
   const [ctaLink, setCtaLink] = useState(eduzzUrl || "#form")
+  
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Recapture UTMs at click time to ensure we have the latest
+    const utmParams = getUTMParams()
+    
+    if (eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com")) {
+      const finalUrl = buildURLWithUTM(eduzzUrl, utmParams)
+      
+      console.log('=== CLICK EVENT ===')
+      console.log('UTMs at click time:', utmParams)
+      console.log('Final URL being opened:', finalUrl)
+      
+      // Prevent default and manually open with the correct URL
+      e.preventDefault()
+      window.open(finalUrl, '_blank', 'noopener,noreferrer')
+    }
+  }
 
   useEffect(() => {
     // Process UTM params for Eduzz or Blinket URLs
-    if (eduzzUrl && eduzzUrl !== "#form" && (eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com.br"))) {
+    if (eduzzUrl && eduzzUrl !== "#form") {
+      // Always try to get UTM params, regardless of the URL
       const utmParams = getUTMParams()
-      const linkWithUTM = buildURLWithUTM(eduzzUrl, utmParams)
-      setCtaLink(linkWithUTM)
       
-      // Log for debugging
-      if (Object.keys(utmParams).length > 0) {
-        console.log('UTM Parameters captured:', utmParams)
-        console.log('Final URL with UTM:', linkWithUTM)
+      // Debug logs
+      console.log('EventCTAButton - Original URL:', eduzzUrl)
+      console.log('EventCTAButton - UTM Params found:', utmParams)
+      console.log('EventCTAButton - Current URL:', window.location.href)
+      
+      // Build URL with UTMs if it's an external link
+      if (eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com")) {
+        const linkWithUTM = buildURLWithUTM(eduzzUrl, utmParams)
+        console.log('EventCTAButton - Final URL with UTM:', linkWithUTM)
+        setCtaLink(linkWithUTM)
+      } else {
+        setCtaLink(eduzzUrl)
       }
     }
   }, [eduzzUrl])
@@ -47,7 +71,8 @@ export default function EventCTAButton({
       asChild
     >
       <a 
-        href={ctaLink} 
+        href={ctaLink}
+        onClick={handleClick}
         target={(eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com.br")) ? "_blank" : "_self"}
         rel={(eduzzUrl.includes("eduzz.com") || eduzzUrl.includes("blinket.com.br")) ? "noopener noreferrer" : undefined}
       >
