@@ -37,8 +37,8 @@ import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos"
 import EventCTAButton from "@/components/event-cta-button"
 
-// Base Eduzz URL - substitua pelo link real do Eduzz quando disponível
-const EDUZZ_BASE_URL = "https://pay.eduzz.com/seu-produto-aqui" // TODO: Substituir pelo link real do Eduzz
+// Link do Blinket para o evento Crenças da Riqueza
+const BLINKET_URL = "https://evento.blinket.com.br/crencas-da-riqueza-03-setembro"
 
 export default function CrencasDaRiquezaPageCMS() {
   const [isVisible, setIsVisible] = useState(false)
@@ -312,11 +312,11 @@ export default function CrencasDaRiquezaPageCMS() {
         description={eventDescription}
         image="/images/HERO_CRENCAS.png"
         ctaText="GARANTA SUA VAGA!"
-        ctaHref={EDUZZ_BASE_URL}
+        ctaHref={BLINKET_URL}
         secondaryCtaText="Saiba mais"
         secondaryCtaHref="#o-que-aprender"
         showCountdown={true}
-        countdownTargetDate={new Date("2025-05-27T19:00:00")}
+        countdownTargetDate={new Date("2025-09-03T13:00:00")}
       />
 
       {/* Challenges Section - IDÊNTICO AO ORIGINAL */}
@@ -588,7 +588,7 @@ export default function CrencasDaRiquezaPageCMS() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">27 de Junho de 2025, 9h às 19h</p>
+                  <p className="text-zinc-300 text-lg">03 de Setembro de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
@@ -598,7 +598,7 @@ export default function CrencasDaRiquezaPageCMS() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">Centro de Convenções, São Paulo, SP</p>
+                  <p className="text-zinc-300 text-lg">Alameda Araguaia, 751 - Alphaville Industrial, Barueri - SP</p>
                 </div>
               </div>
             </div>
@@ -648,7 +648,7 @@ export default function CrencasDaRiquezaPageCMS() {
               </div>
 
               <EventCTAButton
-                eduzzUrl={EDUZZ_BASE_URL}
+                eduzzUrl={BLINKET_URL}
                 buttonText="GARANTIR MINHA VAGA AGORA"
                 className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold rounded-full px-10 py-6 text-xl shadow-2xl hover:shadow-yellow-500/25 transform hover:-translate-y-1 transition-all duration-300"
                 showArrow={true}

@@ -98,8 +98,8 @@ export default function SegredosDaMenteMilionaria() {
       <HeroPages
         title="SEGREDOS DA MENTE MILIONÁRIA"
         subtitle="Imersão exclusiva e transformadora"
-        secondtitle="Em 26 de agosto alcance a liberdade financeira com uma mudança de mentalidade"
-        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Hotel Naciona Inn
+        secondtitle="Em 03 de setembro alcance a liberdade financeira com uma mudança de mentalidade"
+        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Hotel Nacional Inn
 Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP"
         image="/images/HERO_SEGREDOS.png"
         ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
@@ -247,7 +247,7 @@ Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP"
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">26 de agosto de 2025, 13h às 20h</p>
+                  <p className="text-zinc-300 text-lg">03 de setembro de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
