@@ -10,8 +10,42 @@ interface EventPopupProps {
   onClose: () => void
 }
 
+const events = [
+  {
+    id: 1,
+    title: "SEGREDOS DA MENTE MILIONÁRIA",
+    subtitle: "Transforme sua mentalidade e aprenda os segredos dos milionários",
+    date: "26 de agosto de 2025",
+    time: "13h às 20h",
+    location: "Hotel Nacional Inn\nAv. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP",
+    url: "https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto",
+    benefits: [
+      "Mentalidade milionária na prática",
+      "Como criar múltiplas fontes de renda",
+      "Estratégias de investimento inteligente",
+      "Transformação de crenças limitantes"
+    ]
+  },
+  {
+    id: 2,
+    title: "CRENÇAS DA RIQUEZA",
+    subtitle: "Desbloqueie seu potencial e supere crenças limitantes sobre dinheiro",
+    date: "03 de setembro de 2025",
+    time: "13h às 20h",
+    location: "Alameda Araguaia, 751\nAlphaville Industrial, Barueri - SP",
+    url: "https://evento.blinket.com.br/crencas-da-riqueza-03-setembro",
+    benefits: [
+      "Identificar e neutralizar crenças limitantes",
+      "Expandir sua mentalidade financeira",
+      "Técnicas práticas de transformação mental",
+      "Estratégias para destravar seu potencial"
+    ]
+  }
+]
+
 export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
   const [isClosing, setIsClosing] = useState(false)
+  const [selectedEvent, setSelectedEvent] = useState(0)
 
   const handleClose = () => {
     setIsClosing(true)
@@ -28,11 +62,13 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
   }
 
   const handleInscreverClick = () => {
-    window.open("https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto", "_blank")
+    window.open(events[selectedEvent].url, "_blank")
     handleClose()
   }
 
   if (!isVisible) return null
+
+  const currentEvent = events[selectedEvent]
 
   return (
     <div 
@@ -41,7 +77,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
       }`}
       onClick={handleBackdropClick}
     >
-      <div className={`bg-gradient-to-br from-zinc-900 to-zinc-950 border border-yellow-500/20 rounded-2xl max-w-lg w-full p-8 relative transform transition-all duration-300 ${
+      <div className={`bg-gradient-to-br from-zinc-900 to-zinc-950 border border-yellow-500/20 rounded-2xl max-w-2xl w-full p-8 relative transform transition-all duration-300 ${
         isClosing ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
       }`}>
         {/* Close Button */}
@@ -52,6 +88,23 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
           <X className="h-6 w-6" />
         </button>
 
+        {/* Event Tabs */}
+        <div className="flex mb-6 gap-2">
+          {events.map((event, index) => (
+            <button
+              key={event.id}
+              onClick={() => setSelectedEvent(index)}
+              className={`flex-1 py-3 px-4 text-sm font-medium rounded-lg transition-all duration-200 ${
+                selectedEvent === index
+                  ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+              }`}
+            >
+              {event.title.includes('SEGREDOS') ? 'SEGREDOS DA MENTE' : 'CRENÇAS DA RIQUEZA'}
+            </button>
+          ))}
+        </div>
+
         {/* Header */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 bg-yellow-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-full py-2 px-4 mb-4">
@@ -59,22 +112,26 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             <span className="text-sm font-medium text-yellow-400">PRÓXIMO EVENTO</span>
           </div>
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            SEGREDOS DA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">MENTE MILIONÁRIA</span>
+            {currentEvent.title.includes('SEGREDOS') ? (
+              <>SEGREDOS DA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">MENTE MILIONÁRIA</span></>
+            ) : (
+              <>CRENÇAS DA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">RIQUEZA</span></>
+            )}
           </h3>
           <p className="text-zinc-300 text-sm leading-relaxed">
-            Transforme sua mentalidade e aprenda os segredos dos milionários em um evento presencial exclusivo
+            {currentEvent.subtitle}
           </p>
         </div>
 
         {/* Event Details */}
-        <div className="space-y-4 mb-8">
+        <div className="grid md:grid-cols-3 gap-4 mb-8">
           <div className="flex items-center gap-3">
             <div className="bg-yellow-500/10 backdrop-blur-sm rounded-full p-2 flex-shrink-0">
               <Calendar className="h-5 w-5 text-yellow-400" />
             </div>
             <div>
               <p className="text-sm text-zinc-400">Data</p>
-              <p className="text-white font-semibold">26 de agosto de 2025</p>
+              <p className="text-white font-semibold text-sm">{currentEvent.date}</p>
             </div>
           </div>
 
@@ -84,7 +141,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             </div>
             <div>
               <p className="text-sm text-zinc-400">Horário</p>
-              <p className="text-white font-semibold">13h às 20h</p>
+              <p className="text-white font-semibold text-sm">{currentEvent.time}</p>
             </div>
           </div>
 
@@ -94,8 +151,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             </div>
             <div>
               <p className="text-sm text-zinc-400">Local</p>
-              <p className="text-white font-semibold">Hotel Nacional Inn
-Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP</p>
+              <p className="text-white font-semibold text-sm whitespace-pre-line">{currentEvent.location}</p>
             </div>
           </div>
         </div>
@@ -103,13 +159,8 @@ Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP</p>
         {/* Benefits */}
         <div className="mb-8">
           <h4 className="text-lg font-semibold text-white mb-4">O que você vai aprender:</h4>
-          <div className="space-y-3">
-            {[
-              "Mentalidade milionária na prática",
-              "Como criar múltiplas fontes de renda",
-              "Estratégias de investimento inteligente",
-              "Transformação de crenças limitantes"
-            ].map((benefit, index) => (
+          <div className="grid md:grid-cols-2 gap-3">
+            {currentEvent.benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-yellow-400 rounded-full flex-shrink-0"></div>
                 <p className="text-zinc-300 text-sm">{benefit}</p>
