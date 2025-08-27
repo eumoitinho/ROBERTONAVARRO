@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { X, Calendar, MapPin, Clock, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { getUTMParams, buildURLWithUTM } from "@/lib/utm-tracker"
 
 interface EventPopupProps {
   isVisible: boolean
@@ -15,7 +16,7 @@ const events = [
     id: 1,
     title: "SEGREDOS DA MENTE MILIONÁRIA",
     subtitle: "Transforme sua mentalidade e aprenda os segredos dos milionários",
-    date: "26 de agosto de 2025",
+    date: "03 de setembro de 2025",
     time: "13h às 20h",
     location: "Hotel Nacional Inn\nAv. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP",
     url: "https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto",
@@ -62,7 +63,15 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
   }
 
   const handleInscreverClick = () => {
-    window.open(events[selectedEvent].url, "_blank")
+    // Captura UTMs e adiciona ao link
+    const utmParams = getUTMParams()
+    const finalUrl = buildURLWithUTM(events[selectedEvent].url, utmParams)
+    
+    console.log('=== POPUP CLICK ===')
+    console.log('UTMs capturados:', utmParams)
+    console.log('URL final com UTMs:', finalUrl)
+    
+    window.open(finalUrl, "_blank")
     handleClose()
   }
 
