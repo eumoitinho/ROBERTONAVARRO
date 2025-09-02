@@ -249,7 +249,7 @@ export default function CrencasDaRiquezaPage() {
         title="CRENÇAS DA RIQUEZA"
         subtitle="Transformação mental"
         secondtitle="A riqueza começa na mente e se materializa nas decisões"
-        description="Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e realização pessoal."
+        description="Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e realização pessoal.<br> 10 de Setembro das 13h às 20h | Alameda Araguaia, 751 - Alphaville - SP"
         image="/images/HERO_CRENCAS.png"
         ctaText="GARANTA SUA VAGA!"
         ctaHref="#form"
@@ -544,7 +544,7 @@ export default function CrencasDaRiquezaPage() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">27 de Junho de 2025, 9h às 19h</p>
+                  <p className="text-zinc-300 text-lg">10 de Setembro, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
@@ -554,7 +554,7 @@ export default function CrencasDaRiquezaPage() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">Centro de Convenções, São Paulo, SP</p>
+                  <p className="text-zinc-300 text-lg">Alameda Araguaia, 751 - Alphaville - SP</p>
                 </div>
               </div>
             </div>
