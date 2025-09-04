@@ -65,6 +65,40 @@ export default function EducadorFinanceiroPage() {
         transform: translateY(-2px);
         box-shadow: 0 7px 15px -5px rgba(239, 68, 68, 0.2);
       }
+
+      /* Override yellow colors with red for this page only */
+      .bg-gradient-to-r.from-yellow-500 {
+        background-image: linear-gradient(to right, rgb(239 68 68) var(--tw-gradient-from-position), rgb(220 38 38) var(--tw-gradient-to-position)) !important;
+      }
+      .text-transparent.bg-clip-text.bg-gradient-to-r.from-yellow-500 {
+        background-image: linear-gradient(to right, rgb(248 113 113), rgb(220 38 38)) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+      }
+      .hover\\:from-yellow-600:hover {
+        --tw-gradient-from: rgb(220 38 38) var(--tw-gradient-from-position) !important;
+      }
+      .hover\\:to-amber-700:hover {
+        --tw-gradient-to: rgb(185 28 28) var(--tw-gradient-to-position) !important;
+      }
+      .text-yellow-400 {
+        color: rgb(248 113 113) !important;
+      }
+      .bg-yellow-400 {
+        background-color: rgb(248 113 113) !important;
+      }
+      .border-yellow-500\\/50 {
+        border-color: rgb(239 68 68 / 0.5) !important;
+      }
+      .hover\\:border-yellow-500\\/50:hover {
+        border-color: rgb(239 68 68 / 0.5) !important;
+      }
+      .via-yellow-500\\/50 {
+        --tw-gradient-to: rgb(239 68 68 / 0.5) var(--tw-gradient-to-position) !important;
+      }
+      .cta-hover.text-black {
+        color: white !important;
+      }
     `
     document.head.appendChild(style)
   }, [])
