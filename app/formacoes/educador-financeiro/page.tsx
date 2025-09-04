@@ -115,7 +115,7 @@ export default function EducadorFinanceiroPage() {
       {/* Header */}
       <SiteHeader navigationItems={navigationItems} showInicio={true} />
       <HeroPages
-        title="EDUCADOR FINANCEIRO ABUNDANTE"
+        title="EDUCADOR FINANCEIRO"
         secondtitle="A única formação do mercado com LICENÇA PROFISSIONAL chancelada pela Roberto Navarro Academia - RNA"
         subtitle="Roberto Navarro"
         description={`Torne-se um Educador Financeiro licenciado com certificação reconhecida pelo MEC. Transforme vidas enquanto constrói sua própria prosperidade com respaldo profissional e metodologia validada.`}
