@@ -18,6 +18,12 @@ import {
   Target,
   Briefcase,
   CheckCircle,
+  GraduationCap,
+  FileText,
+  Video,
+  Globe,
+  TrendingUp,
+  Star,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -49,7 +55,7 @@ export default function EducadorFinanceiroPage() {
       }
       .cta-hover:hover {
         transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+        box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.3);
       }
       
       .cta-hover-subtle {
@@ -57,7 +63,7 @@ export default function EducadorFinanceiroPage() {
       }
       .cta-hover-subtle:hover {
         transform: translateY(-2px);
-        box-shadow: 0 7px 15px -5px rgba(245, 158, 11, 0.2);
+        box-shadow: 0 7px 15px -5px rgba(239, 68, 68, 0.2);
       }
     `
     document.head.appendChild(style)
@@ -105,16 +111,16 @@ export default function EducadorFinanceiroPage() {
     { title: "Inscrição", href: "#inscricao", isButton: true },
   ]
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-red-950/5 to-zinc-950 text-white">
       {/* Header */}
       <SiteHeader navigationItems={navigationItems} showInicio={true} />
       <HeroPages
-        title="EDUCADOR FINANCEIRO"
-        secondtitle="Alcance a liberdade financeira e multiplique esse poder com o mundo"
+        title="EDUCADOR FINANCEIRO ABUNDANTE"
+        secondtitle="A única formação do mercado com LICENÇA PROFISSIONAL chancelada pela Roberto Navarro Academia - RNA"
         subtitle="Roberto Navarro"
-        description={`Formação completa para quem deseja dominar suas finanças, construir novas fontes de renda e impactar vidas através da educação financeira.`}
+        description={`Torne-se um Educador Financeiro licenciado com certificação reconhecida pelo MEC. Transforme vidas enquanto constrói sua própria prosperidade com respaldo profissional e metodologia validada.`}
         image="/images/HERO_EDUCADOR.png"
-        ctaText="QUERO SER UM EDUCADOR FINANCEIRO!"
+        ctaText="QUERO MINHA LICENÇA PROFISSIONAL!"
         ctaHref="#inscricao"
         secondaryCtaText="Saiba mais"
         secondaryCtaHref="#sobre-curso"
@@ -122,13 +128,13 @@ export default function EducadorFinanceiroPage() {
 
       {/* MEC Certification Section - Enhanced */}
       <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
 
         {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/30 to-transparent"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/5 rounded-full filter blur-3xl opacity-30"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/5 rounded-full filter blur-3xl opacity-20"></div>
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/5 rounded-full filter blur-3xl opacity-30"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-red-600/5 rounded-full filter blur-3xl opacity-20"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
@@ -143,14 +149,14 @@ export default function EducadorFinanceiroPage() {
                     height={240}
                     className="z-10 relative"
                   />
-                  <div className="absolute inset-0 bg-yellow-500/20 rounded-full filter blur-xl -z-10"></div>
+                  <div className="absolute inset-0 bg-red-500/20 rounded-full filter blur-xl -z-10"></div>
                 </div>
               </div>
 
               {/* Content - Right side */}
               <div className="md:col-span-3 space-y-6">
                 <h3
-                  className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 certificate-item"
+                  className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 certificate-item"
                   style={{ animationDelay: "0.1s" }}
                 >
                   EXCELÊNCIA RECONHECIDA PELO MINISTÉRIO DA EDUCAÇÃO
@@ -160,7 +166,7 @@ export default function EducadorFinanceiroPage() {
                   className="text-zinc-300 text-lg leading-relaxed certificate-item"
                   style={{ animationDelay: "0.3s" }}
                 >
-                  Formação com <span className="text-yellow-400 font-semibold">certificação oficial</span> que valida
+                  Formação com <span className="text-red-400 font-semibold">certificação oficial</span> que valida
                   suas competências e abre portas no mercado. Um diferencial que comprova a qualidade do nosso método e
                   garante credibilidade à sua atuação profissional.
                 </p>
@@ -168,19 +174,115 @@ export default function EducadorFinanceiroPage() {
                 <div className="pt-2 certificate-item" style={{ animationDelay: "0.5s" }}>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-yellow-400" />
+                      <CheckCircle className="h-5 w-5 text-red-400" />
                       <span className="text-zinc-200">Reconhecimento nacional</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-yellow-400" />
+                      <CheckCircle className="h-5 w-5 text-red-400" />
                       <span className="text-zinc-200">Validação profissional</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-yellow-400" />
+                      <CheckCircle className="h-5 w-5 text-red-400" />
                       <span className="text-zinc-200">Credibilidade garantida</span>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Professional License Section - Premium */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-red-950/20 via-zinc-900 to-zinc-950"></div>
+        
+        {/* Premium decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 border border-red-500/30 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+              <div className="text-center mb-10">
+                <div className="inline-block mb-6">
+                  <div className="bg-gradient-to-r from-red-500 to-red-600 p-[2px] rounded-full">
+                    <div className="bg-zinc-900 rounded-full px-6 py-3">
+                      <span className="text-red-400 font-bold text-sm tracking-wider">DIFERENCIAL EXCLUSIVO</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  SUA <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">LICENÇA PROFISSIONAL</span> PARA ATUAR COMO EDUCADOR FINANCEIRO
+                </h2>
+                
+                <p className="text-xl text-zinc-200 mb-8">
+                  Esta é a <strong className="text-red-400">ÚNICA formação do mercado</strong> que te concede uma Licença Profissional 
+                  chancelada pela Roberto Navarro Academia (RNA)
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 mb-10">
+                <div className="space-y-6">
+                  <h3 className="text-xl font-bold text-red-400 mb-4">Essa será sua transformação:</h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Licença para atuar como Educador Financeiro",
+                      "Respeito profissional no mercado",
+                      "Mais valorização do seu serviço",
+                      "Respaldo do ICF para ensinar sobre geração de riqueza",
+                      "Ampliar o número de clientes ativos",
+                      "Consolidar uma carreira próspera e segura"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-200">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-6">
+                  <h3 className="text-xl font-bold text-red-400 mb-4">Benefícios da Licença:</h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Mais poder nas suas negociações",
+                      "Mais otimismo na sua carreira",
+                      "Mais admiração no seu círculo social",
+                      "Licença chancelada pela RNA",
+                      "Respaldo profissional que reduz a concorrência",
+                      "Ganhos maiores que os demais profissionais"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <Award className="h-5 w-5 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-200">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-zinc-900/50 rounded-2xl p-6 border border-red-500/20">
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <Shield className="h-8 w-8 text-red-400" />
+                  <h3 className="text-2xl font-bold text-center text-red-400">
+                    Em breve irão sobreviver no mercado apenas quem tiver respeitada Licença Profissional!
+                  </h3>
+                </div>
+                <p className="text-center text-zinc-300">
+                  Roberto Navarro criou essa Licença para separar os Profissionais dos amadores. 
+                  Garanta sua posição no mercado com a credibilidade de quem é referência nacional em educação financeira.
+                </p>
+              </div>
+
+              <div className="text-center mt-8">
+                <Button
+                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-full px-10 py-5 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  GARANTIR MINHA LICENÇA PROFISSIONAL <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
               </div>
             </div>
           </div>
@@ -196,15 +298,15 @@ export default function EducadorFinanceiroPage() {
               <span className="text-sm font-medium">SOBRE O CURSO</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              SEJA UM AGENTE DA MUDANÇA E ENSINE O CAMINHO PARA A <span className="text-yellow-400">PROSPERIDADE</span>
+              SEJA UM AGENTE DA MUDANÇA E ENSINE O CAMINHO PARA A <span className="text-red-400">PROSPERIDADE</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-3xl blur-3xl -z-10"></div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-red-400 transition-all duration-300 hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-400 to-red-500"></div>
                 <Image
                   src="/images/ROBERTO_5.jpg"
                   alt="Educador Financeiro Workshop"
@@ -219,33 +321,33 @@ export default function EducadorFinanceiroPage() {
             <div>
               <div className="space-y-6 text-lg leading-relaxed text-zinc-300">
                 <p>
-                  Com <span className="text-yellow-400 font-semibold">certificação reconhecida pelo MEC</span>, a
+                  Com <span className="text-red-400 font-semibold">certificação reconhecida pelo MEC</span>, a
                   formação de Educador Financeiro é o seu passaporte para uma nova realidade de propósito e
                   prosperidade.
                 </p>
 
                 <p>
-                  Em  <span className="text-yellow-400 font-semibold">poucos dias</span>, você verá resultados
+                  Em  <span className="text-red-400 font-semibold">poucos dias</span>, você verá resultados
                   concretos em sua vida e aprenderá como dominar os fundamentos da educação financeira e aplicar os
                   conhecimentos na prática.
                 </p>
  
                 <p>
                   Além de possibilitar seu crescimento individual, você desenvolverá{" "}
-                  <span className="text-yellow-400">habilidades pedagógicas e de comunicação</span> para transmitir esse
+                  <span className="text-red-400">habilidades pedagógicas e de comunicação</span> para transmitir esse
                   conhecimento de forma eficaz, seja em consultorias, palestras ou cursos. O mercado busca educadores
                   financeiros qualificados, e você estará pronto para atender a essa demanda.
                 </p>
 
                 <p>
                   Além de impactar vidas, a formação abre portas para{" "}
-                  <span className="text-yellow-400">novas fontes de renda</span> e permite que você construa um negócio
+                  <span className="text-red-400">novas fontes de renda</span> e permite que você construa um negócio
                   sólido e rentável no campo da educação financeira.
                 </p>
               </div>
 
               <Button
-                className="cta-hover mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover mt-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-full px-8 py-4 text-base"
                 onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
               >
                 QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
@@ -264,51 +366,51 @@ export default function EducadorFinanceiroPage() {
               <span className="text-sm font-medium">RECURSOS</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              TUDO O QUE VOCÊ PRECISA PARA <span className="text-yellow-400">TRANSFORMAR SUA CARREIRA</span>
+              TUDO O QUE VOCÊ PRECISA PARA <span className="text-red-400">TRANSFORMAR SUA CARREIRA</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <BookOpen className="h-6 w-6 text-yellow-400" />,
+                icon: <BookOpen className="h-6 w-6 text-red-400" />,
                 title: "Conhecimento abrangente",
                 description: "Do básico ao avançado em finanças pessoais, planejamento e investimentos.",
               },
               {
-                icon: <Briefcase className="h-6 w-6 text-yellow-400" />,
+                icon: <Briefcase className="h-6 w-6 text-red-400" />,
                 title: "Ferramentas práticas",
                 description: "Planilhas, checklists e templates prontos para aplicar com seus alunos ou clientes.",
               },
               {
-                icon: <Users className="h-6 w-6 text-yellow-400" />,
+                icon: <Users className="h-6 w-6 text-red-400" />,
                 title: "Mentoria personalizada",
                 description: "Orientação direta de especialistas para acelerar sua evolução.",
               },
               {
-                icon: <Zap className="h-6 w-6 text-yellow-400" />,
+                icon: <Zap className="h-6 w-6 text-red-400" />,
                 title: "Networking e oportunidades",
                 description: "Acesso a uma comunidade ativa e conexões com profissionais da área.",
               },
               {
-                icon: <Award className="h-6 w-6 text-yellow-400" />,
+                icon: <Award className="h-6 w-6 text-red-400" />,
                 title: "Certificação reconhecida",
                 description: "Competências validadas com um certificado que abre portas no mercado.",
               },
               {
-                icon: <Lightbulb className="h-6 w-6 text-yellow-400" />,
+                icon: <Lightbulb className="h-6 w-6 text-red-400" />,
                 title: "Método validado",
                 description: "Metodologia estruturada para ensinar finanças de forma clara, envolvente e eficaz.",
               },
             ].map((feature, index) => (
               <div
                 key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10"
               >
                 <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">{feature.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-red-400">{feature.title}</h3>
                 <p className="text-zinc-300">{feature.description}</p>
               </div>
             ))}
@@ -318,58 +420,303 @@ export default function EducadorFinanceiroPage() {
 
       {/* Benefits Section */}
       <section id="beneficios" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">BENEFÍCIOS</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              BENEFÍCIOS DA <span className="text-yellow-400">FORMAÇÃO</span>
+              BENEFÍCIOS DA <span className="text-red-400">FORMAÇÃO</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
-                icon: <DollarSign className="h-6 w-6 text-yellow-400" />,
+                icon: <DollarSign className="h-6 w-6 text-red-400" />,
                 title: "Independência financeira",
                 description:
                   "Aprenda a aplicar os conceitos ensinados em sua própria vida e alcance estabilidade e liberdade financeira.",
               },
               {
-                icon: <Award className="h-6 w-6 text-yellow-400" />,
+                icon: <Award className="h-6 w-6 text-red-400" />,
                 title: "Reconhecimento profissional",
                 description:
                   "Torne-se referência no ensino de finanças e conquiste autoridade e credibilidade na área.",
               },
               {
-                icon: <Target className="h-6 w-6 text-yellow-400" />,
+                icon: <Target className="h-6 w-6 text-red-400" />,
                 title: "Realização de sonhos",
                 description:
                   "Use seu novo conhecimento para alcançar objetivos pessoais e inspirar outros a fazerem o mesmo.",
               },
               {
-                icon: <BarChart className="h-6 w-6 text-yellow-400" />,
+                icon: <BarChart className="h-6 w-6 text-red-400" />,
                 title: "Alta rentabilidade",
                 description: "Transforme a educação financeira em uma fonte real de renda com potencial escalável.",
               },
             ].map((benefit, index) => (
               <div
                 key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10"
               >
                 <div className="flex items-start gap-4">
                   <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center">
                     {benefit.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2 text-yellow-400">{benefit.title}</h3>
+                    <h3 className="text-xl font-bold mb-2 text-red-400">{benefit.title}</h3>
                     <p className="text-zinc-300">{benefit.description}</p>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Modules Section */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+              <span className="text-sm font-medium">MÓDULOS DO CURSO</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              CONTEÚDO <span className="text-red-400">COMPLETO E ESTRUTURADO</span>
+            </h2>
+            <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
+              Formação completa com mais de 40 aulas organizadas em 5 módulos + bônus exclusivos
+            </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto space-y-8">
+            {/* Módulo Inicial */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
+                <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                  <GraduationCap className="h-6 w-6" />
+                  MÓDULO INICIAL - MUDANÇA DE MENTALIDADE
+                </h3>
+              </div>
+              <div className="p-6 grid md:grid-cols-2 gap-4">
+                {[
+                  "Introdução à Virada de Chave",
+                  "Qualidade de Vida",
+                  "A Importância da Qualidade de Vida",
+                  "O que é Muito Dinheiro pra Você?",
+                  "Maiores Erros e Acertos com o Dinheiro",
+                  "Como você quer se Sentir?",
+                  "O que te motiva?",
+                  "Custo de Vida",
+                  "Sentimento com o Dinheiro"
+                ].map((aula, index) => (
+                  <div key={index} className="flex items-center gap-3 text-zinc-300">
+                    <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                    <span className="text-sm">{aula}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Módulo 2 */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
+                <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                  <FileText className="h-6 w-6" />
+                  MÓDULO 2 - CLAREAMENTO FINANCEIRO
+                </h3>
+              </div>
+              <div className="p-6 grid md:grid-cols-2 gap-4">
+                {[
+                  "Introdução à Clareza Financeira",
+                  "Causa das Dívidas",
+                  "Despesas Fantasmas",
+                  "Tomada de Decisão",
+                  "Classificação de Contas",
+                  "Dívida Boa X Dívida Ruim",
+                  "Qual o tipo de Dívida você tem?",
+                  "A Mágica dos Juros Compostos"
+                ].map((aula, index) => (
+                  <div key={index} className="flex items-center gap-3 text-zinc-300">
+                    <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                    <span className="text-sm">{aula}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Módulo 3 */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
+                <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                  <TrendingUp className="h-6 w-6" />
+                  MÓDULO 3 - A GERAÇÃO DO DINHEIRO
+                </h3>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-zinc-400 mb-4">(Te preparando pro Mercado)</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    "Introdução à Geração de Dinheiro",
+                    "Triatlon da Riqueza",
+                    "Renda Principal e Perguntas",
+                    "Renda Extra",
+                    "Renda Passiva",
+                    "Limitações Financeiras",
+                    "Teste a sua meta",
+                    "Oportunidade de Renda - MMN e Venda Direta",
+                    "Oportunidade de Renda - Negócio Próprio, Franquia, Licença",
+                    "Oportunidade de Renda - Marketing Digital",
+                    "Oportunidade de Renda - Coach",
+                    "Make Money"
+                  ].map((aula, index) => (
+                    <div key={index} className="flex items-center gap-3 text-zinc-300">
+                      <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                      <span className="text-sm">{aula}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Módulo 4 */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
+                <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                  <BarChart className="h-6 w-6" />
+                  MÓDULO 4 - LIBERDADE FINANCEIRA E INVESTIMENTOS
+                </h3>
+              </div>
+              <div className="p-6 grid md:grid-cols-2 gap-4">
+                {[
+                  "Introdução e Fundo de Investimentos",
+                  "Fundo de Investimentos - Multimercado",
+                  "Fundo de Ações",
+                  "Renda Fixa - CDB",
+                  "Renda Fixa - Debentures",
+                  "Renda Fixa - LCI e LCA",
+                  "Renda Fixa - Tesouro Direto",
+                  "Home Brocker - Ações",
+                  "Conclusão do Curso"
+                ].map((aula, index) => (
+                  <div key={index} className="flex items-center gap-3 text-zinc-300">
+                    <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                    <span className="text-sm">{aula}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Módulo 5 */}
+            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
+                <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                  <Star className="h-6 w-6" />
+                  MÓDULO 5 - FINANÇAS COM ROBERTO NAVARRO
+                </h3>
+              </div>
+              <div className="p-6">
+                <p className="text-sm text-zinc-400 mb-4">Apostila de Acompanhamento incluída</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    "Ciência da Riqueza",
+                    "Pilares da Riqueza",
+                    "Padrão de Gastos",
+                    "Projeto Reduzir para Prosperidade",
+                    "Oportunidade de Renda Extra",
+                    "Como Garantir um Futuro com Muito Dinheiro",
+                    "Como Construir sua Riqueza"
+                  ].map((aula, index) => (
+                    <div key={index} className="flex items-center gap-3 text-zinc-300">
+                      <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
+                      <span className="text-sm">{aula}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Bônus Section */}
+            <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 border border-red-500/30 rounded-3xl overflow-hidden">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-4">
+                <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                  <Award className="h-6 w-6" />
+                  BÔNUS EXCLUSIVOS
+                </h3>
+              </div>
+              <div className="p-6 space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-red-400">Materiais e Ferramentas</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-300 text-sm">5 apostilas físicas com mais de 30 exercícios e dinâmicas</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-300 text-sm">Scripts de vendas validados e testados</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-300 text-sm">Acesso vitalício com atualizações mensais</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-red-400">Cursos Bônus</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-300 text-sm">Curso de Comunicação para vendas</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-300 text-sm">Mentoria Como Atrair Riqueza</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-300 text-sm">Curso Viva Livre das Dívidas</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-1" />
+                        <span className="text-zinc-300 text-sm">Aprenda a criar uma Landing Page Lucrativa</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-6 bg-zinc-900/50 rounded-2xl border border-red-500/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Video className="h-6 w-6 text-red-400" />
+                    <h4 className="text-lg font-semibold text-red-400">Bônus Especial</h4>
+                  </div>
+                  <p className="text-zinc-300 mb-4">
+                    <strong className="text-red-400">3 dias intensos ao Vivo Online com Roberto Navarro!</strong>
+                  </p>
+                  <p className="text-zinc-300 text-sm">
+                    Além das aulas gravadas, você terá acesso a um intensivo ao vivo com o próprio Roberto Navarro, 
+                    onde poderá tirar dúvidas, receber orientações personalizadas e aprofundar seu conhecimento com 
+                    o maior educador financeiro do Brasil.
+                  </p>
+                </div>
+
+                <div className="mt-6 p-6 bg-zinc-900/50 rounded-2xl border border-red-500/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Globe className="h-6 w-6 text-red-400" />
+                    <h4 className="text-lg font-semibold text-red-400">Afiliação Premium</h4>
+                  </div>
+                  <p className="text-zinc-300 text-sm">
+                    Possibilidade de se afiliar com produto de <strong className="text-red-400">70% de comissão</strong>, 
+                    permitindo que você monetize seu conhecimento enquanto ajuda outras pessoas a transformarem suas vidas financeiras.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -384,7 +731,7 @@ export default function EducadorFinanceiroPage() {
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               SEJA UM{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
                 TREINADOR LICENCIADO
               </span>{" "}
               DO INSTITUTO COACHING FINANCEIRO
@@ -399,7 +746,7 @@ export default function EducadorFinanceiroPage() {
                 material didático oficial e emitindo certificados com a sua assinatura, reconhecidos diretamente pelo
                 instituto. Ou seja: você já sai com um modelo de negócio pronto para gerar renda.
               </p>
-              <p className="text-yellow-400 font-semibold">Confira os treinamentos disponíveis:</p>
+              <p className="text-red-400 font-semibold">Confira os treinamentos disponíveis:</p>
             </div>
           </div>
 
@@ -426,9 +773,9 @@ export default function EducadorFinanceiroPage() {
             ].map((course, index) => (
               <div
                 key={index}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10"
+                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10"
               >
-                <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <div className="h-1 w-full bg-gradient-to-r from-red-400 to-red-500"></div>
                 <div className="p-6">
                   <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
                     <Image
@@ -438,7 +785,7 @@ export default function EducadorFinanceiroPage() {
                       className="object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-yellow-400">{course.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 text-red-400">{course.title}</h3>
                   <p className="text-zinc-300 mb-6">{course.description}</p>
                 </div>
               </div>
@@ -449,14 +796,14 @@ export default function EducadorFinanceiroPage() {
 
       {/* Mentor Section */}
       <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
               <span className="text-sm font-medium">SEU MENTOR</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              APRENDA COM O MENTOR DOS <span className="text-yellow-400">MENTORES</span>
+              APRENDA COM O MENTOR DOS <span className="text-red-400">MENTORES</span>
             </h2>
             <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
               O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil!
@@ -465,9 +812,9 @@ export default function EducadorFinanceiroPage() {
 
           <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-3xl blur-3xl -z-10"></div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-3xl blur-3xl -z-10"></div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-6 relative overflow-hidden hover:border-red-400 transition-all duration-300 hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-400 to-red-500"></div>
                 <Image
                   src="/images/ROBERTO_12.jpg"
                   alt="Roberto Navarro"
@@ -479,7 +826,7 @@ export default function EducadorFinanceiroPage() {
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-yellow-400 mb-4">Roberto Navarro</h3>
+              <h3 className="text-2xl font-bold text-red-400 mb-4">Roberto Navarro</h3>
               <div className="space-y-4 text-lg leading-relaxed text-zinc-300">
                 <p>
                   Roberto Navarro é um exemplo de superação e transformação. Começou sua trajetória profissional lavando
@@ -488,25 +835,25 @@ export default function EducadorFinanceiroPage() {
                 </p>
                 <p>
                   Atualmente, é reconhecido como o{" "}
-                  <span className="text-yellow-400">maior Educador Financeiro do Brasil</span> e criador do Coach
+                  <span className="text-red-400">maior Educador Financeiro do Brasil</span> e criador do Coach
                   Financeiro no país. Sua metodologia exclusiva combina estratégias de educação financeira, inteligência
                   emocional e princípios bíblicos, proporcionando resultados reais para quem busca sair das dívidas,
                   construir riqueza e alcançar liberdade.
                 </p>
                 <p>
-                  Ao longo de sua trajetória, já impactou <span className="text-yellow-400">mais de 13 mil alunos</span>{" "}
+                  Ao longo de sua trajetória, já impactou <span className="text-red-400">mais de 13 mil alunos</span>{" "}
                   no Brasil e no mundo.
                 </p>
                 <p>
                   Além de mentor e empreendedor, é autor de best-sellers e especialista em inteligência espiritual e
                   emocional. Hoje, sua missão é clara:{" "}
-                  <span className="text-yellow-400">ajudar 10 milhões de brasileiros</span> a conquistarem uma vida
+                  <span className="text-red-400">ajudar 10 milhões de brasileiros</span> a conquistarem uma vida
                   próspera, com autonomia e visão de futuro.
                 </p>
               </div>
 
               <Button
-                className="cta-hover mt-8 bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-4 text-base"
+                className="cta-hover mt-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-full px-8 py-4 text-base"
                 onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
               >
                 QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
@@ -528,7 +875,7 @@ export default function EducadorFinanceiroPage() {
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               INVESTIMENTO{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
                 SEGURO
               </span>
             </h2>
@@ -537,19 +884,19 @@ export default function EducadorFinanceiroPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
   {[
     {
-      icon: <Shield className="h-6 w-6 text-yellow-400" />,
+      icon: <Shield className="h-6 w-6 text-red-400" />,
       title: "Garantia legal de 7 dias",
       description:
         "Seu investimento em si mesmo é protegido por uma garantia de satisfação total. Se, por algum motivo, dentro dos primeiros 7 dias de acesso à formação, você decidir que o treinamento não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.",
     },
     {
-      icon: <Target className="h-6 w-6 text-yellow-400 font-bold" />,
+      icon: <Target className="h-6 w-6 text-red-400 font-bold" />,
       title: "Garantia de resultados em 6 meses",
       description:
         "Se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira dentro de poucos dias, devolveremos o dobro do seu investimento no curso. Isso demonstra não apenas a confiança na eficácia de nosso método, mas também nosso compromisso com o seu progresso e resultados.",
     },
     {
-      icon: <Award className="h-6 w-6 text-yellow-400" />,
+      icon: <Award className="h-6 w-6 text-red-400" />,
       title: "Certificação reconhecida",
       description:
         "Ao concluir com sucesso a formação, você receberá uma certificação reconhecida no MEC que comprova suas habilidades e competências como educador financeiro, aumentando suas oportunidades de carreira e credibilidade de mercado.",
@@ -557,16 +904,16 @@ export default function EducadorFinanceiroPage() {
   ].map((guarantee, index) => (
     <div
       key={index}
-      className={`bg-zinc-900/50 backdrop-blur-sm border rounded-3xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 ${
+      className={`bg-zinc-900/50 backdrop-blur-sm border rounded-3xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10 ${
         guarantee.title === "Garantia de resultados em 6 meses"
-          ? "border-yellow-400/30 shadow-[0_0_10px_rgba(234,179,8,0.2)]"
+          ? "border-red-400/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]"
           : "border-zinc-800/50"
       }`}
     >
       <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4 mx-auto">
         {guarantee.icon}
       </div>
-      <h3 className="text-xl font-bold mb-4 text-center text-yellow-400">{guarantee.title}</h3>
+      <h3 className="text-xl font-bold mb-4 text-center text-red-400">{guarantee.title}</h3>
       <p className="text-zinc-300 text-center">{guarantee.description}</p>
     </div>
   ))}
@@ -587,7 +934,7 @@ export default function EducadorFinanceiroPage() {
 
       {/* FAQ Section */}
       <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -595,7 +942,7 @@ export default function EducadorFinanceiroPage() {
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               DÚVIDAS{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
                 COMUNS
               </span>
             </h2>

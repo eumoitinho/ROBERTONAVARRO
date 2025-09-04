@@ -40,7 +40,8 @@
       "Bash(curl:*)",
       "Bash(cd:*)",
       "Bash(npx sanity:*)",
-      "Bash(npm run lint)"
+      "Bash(npm run lint)",
+      "Read(//home/moitinho/Downloads/**)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"
