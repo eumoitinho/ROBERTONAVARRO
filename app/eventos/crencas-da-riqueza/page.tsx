@@ -136,8 +136,8 @@ export default function CrencasDaRiquezaPage() {
   const modalRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
-  // Data do evento (27 de Junho de 2025)
-  const eventDate = new Date("2025-06-27T09:00:00")
+  // Data do evento (10 de Setembro de 2025)
+  const eventDate = new Date("2025-09-10T13:00:00")
 
   useEffect(() => {
     setIsVisible(true)
@@ -256,7 +256,7 @@ export default function CrencasDaRiquezaPage() {
         secondaryCtaText="Saiba mais"
         secondaryCtaHref="#o-que-aprender"
         showCountdown={true}
-        countdownTargetDate={new Date("2025-05-27T19:00:00")}
+        countdownTargetDate={new Date("2025-09-10T13:00:00")}
       />
 
       {/* Challenges Section */}
@@ -544,7 +544,7 @@ export default function CrencasDaRiquezaPage() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">27 de Junho de 2025, 9h às 19h</p>
+                  <p className="text-zinc-300 text-lg">10 de Setembro de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
@@ -554,7 +554,7 @@ export default function CrencasDaRiquezaPage() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">Centro de Convenções, São Paulo, SP</p>
+                  <p className="text-zinc-300 text-lg">Alameda Araguaia, 751, Barueri, SP</p>
                 </div>
               </div>
             </div>
