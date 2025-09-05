@@ -34,7 +34,7 @@ const events = [
     date: "10 de setembro de 2025",
     time: "13h às 20h",
     location: "Alameda Araguaia, 751\nAlphaville Industrial, Barueri - SP",
-    url: "https://evento.blinket.com.br/crencas-da-riqueza-03-setembro",
+    url: "https://evento.blinket.com.br/crencas-da-riqueza",
     benefits: [
       "Identificar e neutralizar crenças limitantes",
       "Expandir sua mentalidade financeira",
@@ -109,7 +109,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
                   : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
               }`}
             >
-              {event.title.includes('SEGREDOS') ? 'SEGREDOS DA MENTE' : 'CRENÇAS DA RIQUEZA'}
+              {event.title.includes('CRENÇAS DA RIQUEZA') ? 'CRENÇAS DA RIQUEZA' : 'SEGREDOS DA MENTE'}
             </button>
           ))}
         </div>
