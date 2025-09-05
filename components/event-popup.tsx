@@ -94,7 +94,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
                   : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
               }`}
             >
-              {event.title.includes('CRENÇAS DA RIQUEZA') ? 'CRENÇAS DA RIQUEZA' : 'SEGREDOS DA MENTE'}
+              {event.title}
             </button>
           ))}
         </div>
@@ -106,11 +106,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             <span className="text-sm font-medium text-yellow-400">PRÓXIMO EVENTO</span>
           </div>
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            {currentEvent.title.includes('SEGREDOS') ? (
-              <>SEGREDOS DA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">MENTE MILIONÁRIA</span></>
-            ) : (
-              <>CRENÇAS DA <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">RIQUEZA</span></>
-            )}
+            {currentEvent.title}
           </h3>
           <p className="text-zinc-300 text-sm leading-relaxed">
             {currentEvent.subtitle}
