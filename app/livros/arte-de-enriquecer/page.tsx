@@ -154,7 +154,7 @@ export default function ArteDeEnriquecerPage() {
               <div className="relative mx-auto max-w-sm">
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-600/20 blur-3xl"></div>
                 <Image
-                  src="/LIVROS-ROBERTO-NAVARRO-AEpng"
+                  src="/LIVROS-ROBERTO-NAVARRO-AE.png"
                   alt="A Arte de Enriquecer - Capa do Livro"
                   width={400}
                   height={600}
@@ -319,6 +319,7 @@ export default function ArteDeEnriquecerPage() {
                       className="object-contain object-center"
                     />
                   </ScrollAnimation>
+
                   <div className="p-8 md:p-12">
                     <ScrollAnimation animation="fadeInUp">
                       <Badge variant="outline" className="mb-4 px-4 py-2 border-emerald-500/50 bg-emerald-500/5">
