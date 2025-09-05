@@ -110,8 +110,8 @@ export default function CoachingFinanceiroPage() {
             <ScrollAnimation animation="fadeInLeft">
               <div>
                 <Badge variant="outline" className="mb-6 px-4 py-2 border-blue-500/50 bg-blue-500/5">
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  <span className="text-sm font-medium">LIVRO EQUILIBRADOR</span>
+                  <BookOpen className="w-4 h-4 mr-2 text-yellow-500" />
+                  <span className="text-sm font-medium text-yellow-500">LIVRO EQUILIBRADOR</span>
                 </Badge>
 
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
@@ -143,7 +143,7 @@ export default function CoachingFinanceiroPage() {
                       <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <span className="text-zinc-400">4.9/5 (356 avaliações)</span>
+                  <span className="text-yellow-500">4.9/5 (356 avaliações)</span>
                 </div>
               </div>
             </ScrollAnimation>
@@ -352,7 +352,7 @@ export default function CoachingFinanceiroPage() {
                       src="/images/ROBERTO_10.jpg"
                       alt="Roberto Navarro"
                       fill
-                      className="object-cover"
+                      className="object-contain object-center"
                     />
                   </ScrollAnimation>
                   <div className="p-8 md:p-12">

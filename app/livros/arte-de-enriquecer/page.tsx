@@ -112,8 +112,8 @@ export default function ArteDeEnriquecerPage() {
             <ScrollAnimation animation="fadeInLeft">
               <div>
                 <Badge variant="outline" className="mb-6 px-4 py-2 border-emerald-500/50 bg-emerald-500/5">
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  <span className="text-sm font-medium">LIVRO PRÁTICO</span>
+                  <BookOpen className="w-4 h-4 mr-2 text-yellow-500" />
+                  <span className="text-sm font-medium text-yellow-500">LIVRO PRÁTICO</span>
                 </Badge>
 
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
@@ -145,7 +145,7 @@ export default function ArteDeEnriquecerPage() {
                       <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <span className="text-zinc-400">5.0/5 (412 avaliações)</span>
+                  <span className="text-yellow-500">5.0/5 (412 avaliações)</span>
                 </div>
               </div>
             </ScrollAnimation>
@@ -316,7 +316,7 @@ export default function ArteDeEnriquecerPage() {
                       src="/images/ROBERTO_9.jpg"
                       alt="Roberto Navarro"
                       fill
-                      className="object-cover"
+                      className="object-contain object-center"
                     />
                   </ScrollAnimation>
                   <div className="p-8 md:p-12">
