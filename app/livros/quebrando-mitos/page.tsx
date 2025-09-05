@@ -148,7 +148,7 @@ export default function QuebrandoMitosPage() {
               <div className="relative mx-auto max-w-sm">
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-orange-600/20 blur-3xl"></div>
                 <Image
-                  src="/images/MITOS.png"
+                  src="/LIVROS-ROBERTO-NAVARRO-QM-2.png"
                   alt="Quebrando Mitos com o Dinheiro - Capa do Livro"
                   width={400}
                   height={600}

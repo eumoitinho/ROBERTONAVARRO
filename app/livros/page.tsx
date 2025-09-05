@@ -19,7 +19,7 @@ const books = [
     title: "A Sabedoria do Dinheiro",
     description:
       "Transforme sua mentalidade e atraia a prosperidade. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito, mantendo a espiritualidade e a abundância no centro de sua jornada.",
-    image: "/images/SABEDORIA.png",
+    image: "/LIVROS-ROBERTO-NAVARRO-SD.png",
     badge: "Essencial",
     href: kitPurchaseLink,
   },
@@ -27,7 +27,7 @@ const books = [
     title: "Quebrando Mitos com o Dinheiro",
     description:
       "Liberte-se das crenças que limitam sua prosperidade. Identifique os mitos que sabotam sua vida financeira e substitua-os por atitudes conscientes e focadas em resultados.",
-    image: "/images/MITOS.png",
+    image: "/LIVROS-ROBERTO-NAVARRO-QM.png",
     badge: "Transformador",
     href: kitPurchaseLink,
   },
@@ -35,7 +35,7 @@ const books = [
     title: "A Arte de Enriquecer",
     description:
       "Riqueza é um caminho, não um privilégio. Descubra a metodologia prática para dobrar sua renda, administrar seus ganhos e aproveitar a vida como os verdadeiros ricos fazem.",
-    image: "/images/ARTE.png",
+    image: "/LIVROS-ROBERTO-NAVARRO-AE.png",
     badge: "Prático",
     href: kitPurchaseLink,
   },
@@ -43,7 +43,7 @@ const books = [
     title: "Coaching Financeiro",
     description:
       "Controle emocional, clareza financeira e ação: a tríade para o sucesso. Estratégias, histórias reais e exercícios práticos para transformar sua relação com o dinheiro.",
-    image: "/images/COACHING.png",
+    image: "/LIVROS-ROBERTO-NAVARRO-CF.png",
     badge: "Equilíbrio",
     href: kitPurchaseLink,
   },

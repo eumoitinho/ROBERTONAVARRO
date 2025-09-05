@@ -152,7 +152,7 @@ export default function SabedoriaDoDinheiroPage() {
               <div className="relative mx-auto max-w-sm">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 blur-3xl"></div>
                 <Image
-                  src="/images/SABEDORIA.png"
+                  src="/LIVROS-ROBERTO-NAVARRO-SD.png"
                   alt="A Sabedoria do Dinheiro - Capa do Livro"
                   width={400}
                   height={600}

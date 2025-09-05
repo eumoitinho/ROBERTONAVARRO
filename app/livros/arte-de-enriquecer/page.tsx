@@ -154,7 +154,7 @@ export default function ArteDeEnriquecerPage() {
               <div className="relative mx-auto max-w-sm">
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-600/20 blur-3xl"></div>
                 <Image
-                  src="/images/ARTE.png"
+                  src="/LIVROS-ROBERTO-NAVARRO-AEpng"
                   alt="A Arte de Enriquecer - Capa do Livro"
                   width={400}
                   height={600}
