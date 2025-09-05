@@ -152,7 +152,7 @@ export default function CoachingFinanceiroPage() {
               <div className="relative mx-auto max-w-sm">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-600/20 blur-3xl"></div>
                 <Image
-                  src="/images/COACHING.png"
+                  src="/LIVROS-ROBERTO-NAVARRO-CF-2.png"
                   alt="Coaching Financeiro - Capa do Livro"
                   width={400}
                   height={600}
