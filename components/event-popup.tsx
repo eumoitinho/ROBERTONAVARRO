@@ -13,21 +13,6 @@ interface EventPopupProps {
 
 const events = [
   {
-    id: 1,
-    title: "SEGREDOS DA MENTE MILIONÁRIA",
-    subtitle: "Transforme sua mentalidade e aprenda os segredos dos milionários",
-    date: "03 de setembro de 2025",
-    time: "13h às 20h",
-    location: "Hotel Nacional Inn\nAv. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP",
-    url: "https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto",
-    benefits: [
-      "Mentalidade milionária na prática",
-      "Como criar múltiplas fontes de renda",
-      "Estratégias de investimento inteligente",
-      "Transformação de crenças limitantes"
-    ]
-  },
-  {
     id: 2,
     title: "CRENÇAS DA RIQUEZA",
     subtitle: "Desbloqueie seu potencial e supere crenças limitantes sobre dinheiro",

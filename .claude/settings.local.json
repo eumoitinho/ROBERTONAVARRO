@@ -41,7 +41,12 @@
       "Bash(cd:*)",
       "Bash(npx sanity:*)",
       "Bash(npm run lint)",
-      "Read(//home/moitinho/Downloads/**)"
+      "Read(//home/moitinho/Downloads/**)",
+      "Bash(pnpm dev:*)",
+      "Bash(NODE_ENV=development pnpm next dev --port 3000)",
+      "Bash(lsof:*)",
+      "Bash(npx next:*)",
+      "Bash(next:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"
