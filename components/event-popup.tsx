@@ -16,7 +16,7 @@ const events = [
     id: 2,
     title: "CRENÇAS DA RIQUEZA",
     subtitle: "Desbloqueie seu potencial e supere crenças limitantes sobre dinheiro",
-    date: "10 de setembro de 2025",
+    date: "13 de setembro de 2025",
     time: "13h às 20h",
     location: "Alameda Araguaia, 751\nAlphaville Industrial, Barueri - SP",
     url: "https://evento.blinket.com.br/crencas-da-riqueza",

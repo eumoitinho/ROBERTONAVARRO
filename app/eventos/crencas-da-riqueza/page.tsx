@@ -256,7 +256,7 @@ export default function CrencasDaRiquezaPage() {
         secondaryCtaText="Saiba mais"
         secondaryCtaHref="#o-que-aprender"
         showCountdown={true}
-        countdownTargetDate={new Date("2025-09-10T13:00:00")}
+        countdownTargetDate={new Date("2025-09-13T13:00:00")}
       />
 
       {/* Challenges Section */}
@@ -544,7 +544,7 @@ export default function CrencasDaRiquezaPage() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">10 de Setembro de 2025, 13h às 20h</p>
+                  <p className="text-zinc-300 text-lg">13 de Setembro de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
