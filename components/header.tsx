@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu } from "lucide-react"
+import { Menu, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
     NavigationMenu,
@@ -172,12 +173,16 @@ interface SiteHeaderProps {
     className?: string
     navigationItems?: typeof navigationItemsDefault
     showInicio?: boolean // mostra ou não o link "Início"
+    cartItems?: any[] // itens do carrinho
+    onCartClick?: () => void // função para abrir o carrinho
 }
 
 export function SiteHeader({
     className,
     navigationItems = navigationItemsDefault,
     showInicio = false,
+    cartItems = [],
+    onCartClick,
 }: SiteHeaderProps) {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -278,6 +283,23 @@ export function SiteHeader({
                     </NavigationMenu>
 
 <div className="hidden lg:flex items-center space-x-4">
+  {/* Carrinho de Compras */}
+  {cartItems && cartItems.length >= 0 && onCartClick && (
+    <Button
+      onClick={onCartClick}
+      variant="ghost"
+      size="icon"
+      className="relative text-white hover:bg-zinc-800/50 hover:text-yellow-400"
+    >
+      <ShoppingCart className="h-6 w-6" />
+      {cartItems.length > 0 && (
+        <Badge className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center p-0 min-w-0">
+          {cartItems.length}
+        </Badge>
+      )}
+    </Button>
+  )}
+
   {ctaButton ? (
     <Button
       key={ctaButton.title}
@@ -307,14 +329,33 @@ export function SiteHeader({
   )}
 </div>
 
-                    {/* Mobile Menu */}
-                    <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                        <SheetTrigger asChild className="lg:hidden">
-                            <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800/50">
-                                <Menu className="h-6 w-6" />
-                                <span className="sr-only">Abrir menu</span>
+                    {/* Mobile Actions */}
+                    <div className="flex lg:hidden items-center space-x-2">
+                        {/* Carrinho Mobile */}
+                        {cartItems && cartItems.length >= 0 && onCartClick && (
+                            <Button
+                                onClick={onCartClick}
+                                variant="ghost"
+                                size="icon"
+                                className="relative text-white hover:bg-zinc-800/50 hover:text-yellow-400"
+                            >
+                                <ShoppingCart className="h-6 w-6" />
+                                {cartItems.length > 0 && (
+                                    <Badge className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center p-0 min-w-0">
+                                        {cartItems.length}
+                                    </Badge>
+                                )}
                             </Button>
-                        </SheetTrigger>
+                        )}
+                        
+                        {/* Mobile Menu */}
+                        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                            <SheetTrigger asChild>
+                                <Button variant="ghost" size="icon" className="text-white hover:bg-zinc-800/50">
+                                    <Menu className="h-6 w-6" />
+                                    <span className="sr-only">Abrir menu</span>
+                                </Button>
+                            </SheetTrigger>
                         <SheetContent side="right" className="w-[300px] bg-zinc-950 border-zinc-800">
                             <div className="flex flex-col space-y-4 mt-8">
                                 <Link href="/" className="mb-4">
@@ -371,7 +412,8 @@ export function SiteHeader({
 </div>
                             </div>
                         </SheetContent>
-                    </Sheet>
+                        </Sheet>
+                    </div>
                 </div>
             </div>
         </header>

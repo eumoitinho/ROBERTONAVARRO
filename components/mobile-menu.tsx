@@ -41,7 +41,7 @@ export default function MobileMenu({ links }: MobileMenuProps) {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex flex-col" ref={menuRef}>
+        <div className="fixed inset-0 z-50 bg-black/90 flex flex-col max-h-screen" ref={menuRef}>
           <div className="flex justify-end p-4">
             <button
               onClick={() => setIsOpen(false)}
@@ -52,7 +52,7 @@ export default function MobileMenu({ links }: MobileMenuProps) {
             </button>
           </div>
 
-          <nav className="flex flex-col items-center justify-center flex-1 gap-6 px-6 overflow-y-auto">
+          <nav className="flex flex-col items-center flex-1 gap-6 px-6 py-6 overflow-y-auto min-h-0">
             {links.map((link) => (
               <div key={link.label} className="w-full max-w-xs flex flex-col items-center">
                 {link.submenu ? (
