@@ -37,6 +37,8 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import { submitLead } from "@/lib/actions"
+import { getUTMParameters, getBrowserInfo } from "@/lib/utils"
 import QuemSomosSection from "@/components/mentor"
 
 interface CartItem {
@@ -134,7 +136,7 @@ export default function SemanaDaIndependenciaPage() {
     return getTotalOriginalPrice() - getTotalPrice()
   }
 
-  const handleWhatsAppPurchase = () => {
+  const handleWhatsAppPurchase = async () => {
     if (!customerData.name.trim()) {
       alert("Por favor, preencha seu nome.")
       return
@@ -146,6 +148,27 @@ export default function SemanaDaIndependenciaPage() {
 
     const totalValue = getTotalPrice()
     const savings = getTotalSavings()
+
+    // Enviar lead para o Kommo
+    try {
+      const utmParams = getUTMParameters()
+      const browserInfo = getBrowserInfo()
+      
+      const leadData = {
+        name: customerData.name,
+        email: customerData.email || '',
+        phone: customerData.phone || '',
+        source: `LP Independência - Carrinho: ${cartItems.map(item => item.title).join(', ')}`,
+        ...utmParams,
+        ...browserInfo
+      }
+      
+      await submitLead(leadData)
+      console.log('Lead enviado para o Kommo com sucesso')
+    } catch (error) {
+      console.error('Erro ao enviar lead para o Kommo:', error)
+      // Continua mesmo se houver erro no Kommo
+    }
 
     const message = `Olá! Quero comprar os produtos da campanha Independência Financeira:
 

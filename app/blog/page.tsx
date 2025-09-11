@@ -11,6 +11,7 @@ import Footer from "@/components/footer";
 import { SiteHeader } from "@/components/header";
 import { getPosts, getCategories } from '@/lib/sanity/fetch';
 import { urlFor } from '@/sanity/lib/client';
+import { fallbackBlogPosts } from '@/lib/blog-fallback';
 
 interface BlogPost {
   _id: string;
@@ -27,8 +28,8 @@ interface BlogPost {
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [categories, setCategories] = useState<string[]>(["Todas"]);
+  const [posts, setPosts] = useState<BlogPost[]>(fallbackBlogPosts);
+  const [categories, setCategories] = useState<string[]>(["Todas", "Mentalidade", "Coragem", "Inteligência Emocional", "Decisões Financeiras"]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,11 +40,15 @@ export default function BlogPage() {
           getCategories()
         ]);
         
-        setPosts(postsData || []);
+        // Use fetched posts if available, otherwise keep fallback
+        if (postsData && postsData.length > 0) {
+          setPosts(postsData);
+        }
         
         // Extract categories from posts (same logic as original)
         const allCategories = ["Todas", "Mentalidade", "Coragem", "Inteligência Emocional", "Decisões Financeiras"];
-        postsData?.forEach((post: BlogPost) => {
+        const currentPosts = postsData && postsData.length > 0 ? postsData : fallbackBlogPosts;
+        currentPosts?.forEach((post: BlogPost) => {
           post.categories?.forEach(cat => {
             if (cat.title && !allCategories.includes(cat.title)) {
               allCategories.push(cat.title);
@@ -54,6 +59,7 @@ export default function BlogPage() {
         setCategories(allCategories);
       } catch (error) {
         console.log('Using fallback blog content:', error);
+        // Keep fallback posts on error
       } finally {
         setLoading(false);
       }
