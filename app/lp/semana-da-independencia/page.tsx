@@ -466,7 +466,7 @@ Quero finalizar a compra!`
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/50 to-transparent"></div>
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/bgsite.jpg"
+            src="/Prancheta 1.png"
             alt="Independência Financeira"
             fill
             className="object-cover w-full h-full"
