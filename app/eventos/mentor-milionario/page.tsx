@@ -558,7 +558,7 @@ export default function MentorMilionario() {
             </Button>
             <div className="mt-12">
               <p className="text-lg italic text-zinc-400">
-                "A prosperidade não é um acidente. É uma escolha estratégica."
+                &quot;A prosperidade não é um acidente. É uma escolha estratégica.&quot;
               </p>
               <p className="text-md text-zinc-500 mt-2">- Roberto Navarro</p>
             </div>
