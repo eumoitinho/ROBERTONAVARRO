@@ -139,7 +139,7 @@ export default function HeroPages({
             )}
             <Button
               asChild
-              className="cta-hover-subtle bg-transparent hover:bg-zinc-800/50 border border-zinc-700 text-black font-medium rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
+              className="cta-hover-subtle bg-transparent hover:bg-yellow-500/10 border border-yellow-500/50 text-yellow-400 font-medium rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base hover:text-yellow-300 hover:border-yellow-400/70"
             >
               <Link href={secondaryCtaHref}>
                 {secondaryCtaText} <ChevronRight className="h-4 w-4 ml-1" />

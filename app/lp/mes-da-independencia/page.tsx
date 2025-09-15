@@ -200,8 +200,8 @@ Quero finalizar a compra!`
       description: "Seja reconhecido como profissional licenciado e transforme vidas através da educação financeira. Com certificação do MEC, a formação de Educador Financeiro te possibilita construir uma carreira sólida e rentável, realizando consultorias, palestras e treinamentos pagos. Além disso, você recebe sem custo adicional o curso Make Money, um método direto e comprovado para acelerar seus ganhos e transformar sua vida financeira em poucos meses.",
       color: "from-yellow-500 to-amber-600",
       tag: "educador",
-      price: 997,
-      originalPrice: 1994
+      price: 2497,
+      originalPrice: 4994
     },
     {
       title: "LCF MENTORING",
@@ -209,8 +209,8 @@ Quero finalizar a compra!`
       description: "O Life Coaching Financeiro Mentoring (LCF) é uma imersão única de 7 dias, onde você mergulha em técnicas de PNL, inteligência emocional, produtividade e coaching financeiro para transformar sua vida em todos os aspectos. Além do curso, você recebe gratuitamente a formação Educador Financeiro, que lhe permite atuar como mentor e expandir suas competências sobre finanças e desenvolvimento humano.",
       color: "from-yellow-500 to-amber-600",
       tag: "lcf",
-      price: 1497,
-      originalPrice: 2994
+      price: 6997,
+      originalPrice: 13994
     },
     {
       title: "EMPREENDEDOR INTELIGENTE",
@@ -218,8 +218,8 @@ Quero finalizar a compra!`
       description: "O Empreendedor Inteligente é um programa de 3 dias para empresários e empreendedores que estão cansados de viver apagando incêndios e buscam meios de escalar o faturamento, atrair investidores e otimizar processos. Como bônus, você leva a Mentoria de Investimentos, formação que revela as estratégias práticas de quem realmente investe com segurança e resultado.",
       color: "from-yellow-500 to-amber-600",
       tag: "empreendedor",
-      price: 1997,
-      originalPrice: 3994
+      price: 6997,
+      originalPrice: 13994
     },
     {
       title: "MENTORIA DE INVESTIMENTOS",
@@ -227,8 +227,8 @@ Quero finalizar a compra!`
       description: "Na Mentoria de Investimentos, você vai descobrir os meios mais seguros de como multiplicar seu patrimônio. O programa te mostra como estruturar um plano de investimentos adaptado ao seu perfil e aos seus objetivos. De presente, você leva a formação Educador Financeiro e descobre como ampliar suas oportunidades profissionais e como desenvolver habilidades pedagógicas e de comunicação.",
       color: "from-yellow-500 to-amber-600",
       tag: "investimentos",
-      price: 1497,
-      originalPrice: 2994
+      price: 4997,
+      originalPrice: 9994
     },
     {
       title: "LCF PRO",
@@ -236,8 +236,8 @@ Quero finalizar a compra!`
       description: "O LCF PRO é o programa mais completo de transformação financeira e pessoal do Brasil. É um mergulho profundo em mentalidade, negócios e finanças, que vai levar você de onde está hoje até a vida que realmente merece viver, com clareza de propósito, liberdade e patrimônio sólido. Como bônus, você pode escolher uma outra mentoria para tornar sua formação ainda mais completa e personalizada.",
       color: "from-yellow-500 to-amber-600",
       tag: "lcf-pro",
-      price: 2997,
-      originalPrice: 5994
+      price: 16000,
+      originalPrice: 32000
     },
     {
       title: "2 MENTORIAS",
@@ -245,8 +245,8 @@ Quero finalizar a compra!`
       description: "Quer acelerar sua evolução em todas as áreas? Ao adquirir duas mentorias, você ganha a terceira sem custo adicional. Isso significa que você pode economizar e construir uma trilha de conhecimento que une carreira, negócios e investimentos. É a oportunidade perfeita para quem deseja abrir várias frentes de crescimento, com a segurança de estar aprendendo diretamente com um dos maiores especialistas em finanças do Brasil.",
       color: "from-yellow-500 to-amber-600",
       tag: "duas-mentorias",
-      price: 3997,
-      originalPrice: 7994
+      price: 18000,
+      originalPrice: 36000
     }
   ]
 
@@ -505,7 +505,7 @@ Quero finalizar a compra!`
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6 self-start mt-2">
             <span className="flex h-2 w-2 rounded-full bg-green-400"></span>
-            <span className="text-xs md:text-sm font-medium">CAMPANHA ESPECIAL - SEMANA DA INDEPENDÊNCIA</span>
+            <span className="text-xs md:text-sm font-medium">CAMPANHA ESPECIAL - MÊS DA INDEPENDÊNCIA</span>
           </div>
 
           {/* Central content */}
@@ -629,7 +629,7 @@ Quero finalizar a compra!`
               Não dependa do acaso para alcançar o sucesso! Conquistar a liberdade financeira não é uma simples questão de sorte. Exige estratégia, conhecimento e preparo.
             </p>
             <p className="text-zinc-300 max-w-3xl mx-auto mb-8">
-              Para comemorar a Semana da Independência, o Instituto Coaching Financeiro (ICF) lançou uma campanha especial para você dar o próximo passo rumo ao sucesso:
+              Para comemorar a Mês da Independência, o Instituto Coaching Financeiro (ICF) lançou uma campanha especial para você dar o próximo passo rumo ao sucesso:
             </p>
             
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 mb-8 max-w-2xl mx-auto">

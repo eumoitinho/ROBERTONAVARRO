@@ -129,6 +129,11 @@ const navigationItemsDefault: NavigationItem[] = [
                 href: "/eventos/crencas-da-riqueza",
                 description: "Reprograme suas crenças financeiras",
             },
+            {
+                title: "Mentor Milionário",
+                href: "/eventos/mentor-milionario",
+                description: "Transforme conhecimento em fortuna",
+            },
         ],
     },
     {

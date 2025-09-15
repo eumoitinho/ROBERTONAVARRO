@@ -13,18 +13,24 @@ interface EventPopupProps {
 
 const events = [
   {
-    id: 2,
-    title: "CRENÇAS DA RIQUEZA",
-    subtitle: "Desbloqueie seu potencial e supere crenças limitantes sobre dinheiro",
-    date: "13 de setembro de 2025",
-    time: "13h às 20h",
-    location: "Alameda Araguaia, 751\nAlphaville Industrial, Barueri - SP",
-    url: "https://evento.blinket.com.br/crencas-da-riqueza",
+    id: 1,
+    title: "MÊS DA INDEPENDÊNCIA",
+    subtitle: "Declare sua independência financeira com ofertas imperdíveis",
+    date: "Até 30 de setembro",
+    time: "Promoção por tempo limitado",
+    location: "Ofertas Especiais",
+    url: "/lp/mes-da-independencia",
     benefits: [
-      "Identificar e neutralizar crenças limitantes",
-      "Expandir sua mentalidade financeira",
-      "Técnicas práticas de transformação mental",
-      "Estratégias para destravar seu potencial"
+      "Educador Financeiro - R$ 2.497,00",
+      "Mentoria de Investimentos - R$ 4.997,00",
+      "Empreendedor - R$ 6.997,00",
+      "LCF - R$ 6.997,00"
+    ],
+    additionalBenefits: [
+      "2 Mentorias - R$ 18.000,00",
+      "LCF Pro - R$ 16.000,00",
+      "Compre 1 formação e ganhe outra GRÁTIS",
+      "Compre 2 formações e ganhe a 3ª GRÁTIS"
     ]
   }
 ]
@@ -48,15 +54,20 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
   }
 
   const handleInscreverClick = () => {
-    // Captura UTMs e adiciona ao link
-    const utmParams = getUTMParams()
-    const finalUrl = buildURLWithUTM(events[selectedEvent].url, utmParams)
-    
-    console.log('=== POPUP CLICK ===')
-    console.log('UTMs capturados:', utmParams)
-    console.log('URL final com UTMs:', finalUrl)
-    
-    window.open(finalUrl, "_blank")
+    // Para URLs internas, navegue diretamente
+    if (events[selectedEvent].url.startsWith('/')) {
+      window.location.href = events[selectedEvent].url
+    } else {
+      // Captura UTMs e adiciona ao link externo
+      const utmParams = getUTMParams()
+      const finalUrl = buildURLWithUTM(events[selectedEvent].url, utmParams)
+
+      console.log('=== POPUP CLICK ===')
+      console.log('UTMs capturados:', utmParams)
+      console.log('URL final com UTMs:', finalUrl)
+
+      window.open(finalUrl, "_blank")
+    }
     handleClose()
   }
 
@@ -103,7 +114,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 bg-yellow-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-full py-2 px-4 mb-4">
             <Star className="h-4 w-4 text-yellow-400" />
-            <span className="text-sm font-medium text-yellow-400">PRÓXIMO EVENTO</span>
+            <span className="text-sm font-medium text-yellow-400">MÊS DE OFERTA</span>
           </div>
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
             {currentEvent.title}
@@ -148,15 +159,36 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
 
         {/* Benefits */}
         <div className="mb-8">
-          <h4 className="text-lg font-semibold text-white mb-4">O que você vai aprender:</h4>
-          <div className="grid md:grid-cols-2 gap-3">
+          <h4 className="text-lg font-semibold text-white mb-4">Ofertas Especiais:</h4>
+          <div className="grid md:grid-cols-2 gap-3 mb-4">
             {currentEvent.benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-yellow-400 rounded-full flex-shrink-0"></div>
-                <p className="text-zinc-300 text-sm">{benefit}</p>
+                <p className="text-zinc-300 text-sm font-semibold">{benefit}</p>
               </div>
             ))}
           </div>
+          {'additionalBenefits' in currentEvent && (
+            <>
+              <div className="grid md:grid-cols-2 gap-3 mb-4">
+                {currentEvent.additionalBenefits.slice(0, 2).map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-yellow-400 rounded-full flex-shrink-0"></div>
+                    <p className="text-zinc-300 text-sm font-semibold">{benefit}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mt-4">
+                <div className="space-y-2">
+                  {currentEvent.additionalBenefits.slice(2).map((benefit, index) => (
+                    <p key={index} className="text-yellow-400 font-bold text-center">
+                      ✨ {benefit}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* CTA Button */}
@@ -165,7 +197,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
             onClick={handleInscreverClick}
             className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
           >
-            GARANTIR MINHA INSCRIÇÃO
+            VER TODAS AS OFERTAS
           </Button>
           
           <p className="text-xs text-zinc-500 text-center">
