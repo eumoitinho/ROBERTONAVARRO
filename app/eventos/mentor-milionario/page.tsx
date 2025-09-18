@@ -38,6 +38,8 @@ import { SiteHeader } from "@/components/header"
 import MentorSection from "@/components/mentor"
 import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
 import NotableParticipants from "@/components/notable-persons"
+import { SectionBadge } from "@/components/section-badge"
+import EventCTAButton from "@/components/event-cta-button"
 
 export default function MentorMilionario() {
   const [isVisible, setIsVisible] = useState(false)
@@ -572,10 +574,89 @@ export default function MentorMilionario() {
       {/* Mentor Section - imagem à esquerda, texto à direita */}
       <MentorSection />
 
-      <NewsletterSignup source="Mentor Milionário" title="GARANTA SUA VAGA NO MENTOR MILIONÁRIO" description="Inscreva-se agora e dê o primeiro passo para conquistar seu primeiro milhão e se tornar um mentor de sucesso." onSubmit={() => {
-          /* não precisa mais chamar router.push aqui,
-             o componente já faz isso */
-        }} />
+      <section id="form" className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-zinc-900/95"></div>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.03)_0%,_rgba(39,39,42,0.1)_100%)]"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <SectionBadge text="INSCRIÇÃO" />
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              ESCOLHA SEU <span className="text-yellow-400">INGRESSO</span>
+            </h2>
+            <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
+              Participe do evento Mentor Milionário e comece a mudar sua relação com o dinheiro. Vagas
+              limitadas!
+            </p>
+          </div>
+
+          <div className="mb-16">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+              <div className="flex items-center gap-4">
+                <div className="bg-yellow-400/10 backdrop-blur-sm rounded-full p-4 flex-shrink-0">
+                  <Calendar className="h-7 w-7 text-yellow-400" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
+                  <p className="text-zinc-300 text-lg"> 24 de Setembro de 2025, 13h às 20h</p>
+                </div>
+              </div>
+              <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
+              <div className="flex items-center gap-4">
+                <div className="bg-yellow-400/10 backdrop-blur-sm rounded-full p-4 flex-shrink-0">
+                  <MapPin className="h-7 w-7 text-yellow-400" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold text-white">Local</h4>
+                  <p className="text-zinc-300 text-lg">Alameda Araguaia, 751, Barueri, SP</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+                      <EventCTAButton
+              eduzzUrl="https://evento.blinket.com.br/mentor-milionario"
+              buttonText="GARANTIR MINHA INSCRIÇÃO"
+              className="bg-yellow-400 hover:bg-yellow-500 text-zinc-900 font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              showArrow={false}
+            />
+                    </div>
+
+          {/* <TicketPricingCards
+            eventId={1}
+            eventName="Crenças da Riqueza"
+            ticketTypes={[
+              {
+                id: 2745132,
+                name: "Ingresso Especial",
+                price: 9.9,
+                description: "Acesso completo ao evento presencial",
+                benefits: [
+                  "Experiência completa de 10 horas",
+                  "Material digital exclusivo",
+                  "Certificado de participação",
+                  "Networking com participantes",
+                ],
+              },
+              {
+                id: 2745133,
+                name: "Ingresso VIP",
+                price: 49.9,
+                description: "Experiência premium com benefícios exclusivos",
+                benefits: [
+                  "Tudo do Ingresso Especial",
+                  "Assentos nas primeiras fileiras",
+                  "Perguntas e respostas com Roberto Navarro",
+                  "Compre 1, leve 2 (traga um acompanhante)",
+                  "Acesso antecipado ao evento",
+                ],
+                featured: true,
+              },
+            ]}
+          /> */}
+        </div>
+      </section>
 
 
       {/* <section className="py-20 relative">
