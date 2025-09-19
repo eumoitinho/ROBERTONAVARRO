@@ -574,7 +574,7 @@ export default function MentorMilionario() {
       {/* Mentor Section - imagem à esquerda, texto à direita */}
       <MentorSection />
 
-      <section id="form" className="py-24 relative">
+      <section id="inscricao" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-zinc-900/95"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.03)_0%,_rgba(39,39,42,0.1)_100%)]"></div>
