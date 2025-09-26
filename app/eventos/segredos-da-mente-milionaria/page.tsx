@@ -247,7 +247,7 @@ Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP"
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">03 de setembro de 2025, 13h às 20h</p>
+                  <p className="text-zinc-300 text-lg">30 de setembro de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
@@ -257,8 +257,7 @@ Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP"
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">Hotel Nacional Inn
-Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP</p>
+                  <p className="text-zinc-300 text-lg">R. Alameda Araguaia, 751</p>
                 </div>
               </div>
             </div>
