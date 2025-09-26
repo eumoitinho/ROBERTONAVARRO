@@ -98,7 +98,7 @@ export default function SegredosDaMenteMilionaria() {
       <HeroPages
         title="SEGREDOS DA MENTE MILIONÁRIA"
         subtitle="Imersão exclusiva e transformadora"
-        secondtitle="Em 03 de setembro alcance a liberdade financeira com uma mudança de mentalidade"
+        secondtitle="Em 30 de setembro alcance a liberdade financeira com uma mudança de mentalidade"
         description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Alameda Araguaia, 751 - Alphaville"
         image="/images/HERO_SEGREDOS.png"
         ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
