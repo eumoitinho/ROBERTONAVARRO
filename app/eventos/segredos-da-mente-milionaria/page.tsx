@@ -265,7 +265,7 @@ Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP"
 
           <div className="flex justify-center">
             <EventCTAButton
-              eduzzUrl="https://evento.blinket.com.br/segredos-da-mente-milionaria-26-agosto"
+              eduzzUrl="https://evento.blinket.com.br/segredos-da-mente-milionaria"
               buttonText="GARANTIR MINHA INSCRIÇÃO"
               className="bg-yellow-400 hover:bg-yellow-500 text-zinc-900 font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               showArrow={false}
