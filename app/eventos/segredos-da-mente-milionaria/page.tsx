@@ -99,8 +99,7 @@ export default function SegredosDaMenteMilionaria() {
         title="SEGREDOS DA MENTE MILIONÁRIA"
         subtitle="Imersão exclusiva e transformadora"
         secondtitle="Em 03 de setembro alcance a liberdade financeira com uma mudança de mentalidade"
-        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Hotel Nacional Inn
-Av. Benedicto Campos, 35 - Jardim do Trevo, Campinas - SP"
+        description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Alameda Araguaia, 751 - Alphaville"
         image="/images/HERO_SEGREDOS.png"
         ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
         ctaHref="#inscricao"
