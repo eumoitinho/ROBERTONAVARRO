@@ -9,21 +9,10 @@ import { Input } from "@/components/ui/input";
 import WhatsAppButton from "@/components/whatsapp-button";
 import Footer from "@/components/footer";
 import { SiteHeader } from "@/components/header";
-import { getPosts, getCategories } from '@/lib/sanity/fetch';
-import { urlFor } from '@/sanity/lib/client';
-import { fallbackBlogPosts } from '@/lib/blog-fallback';
+import { getAllPosts, getCategories } from '@/lib/basehub/queries';
+import { fallbackBlogPosts } from '@/lib/basehub/fallback-data';
+import type { BlogPost } from '@/lib/basehub/client';
 
-interface BlogPost {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  excerpt: string;
-  mainImage?: any;
-  publishedAt: string;
-  author?: { name: string };
-  categories?: Array<{ title: string }>;
-  body?: any[];
-}
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
@@ -36,7 +25,7 @@ export default function BlogPage() {
     const fetchData = async () => {
       try {
         const [postsData, categoriesData] = await Promise.all([
-          getPosts(),
+          getAllPosts(),
           getCategories()
         ]);
         
@@ -49,11 +38,9 @@ export default function BlogPage() {
         const allCategories = ["Todas", "Mentalidade", "Coragem", "Inteligência Emocional", "Decisões Financeiras"];
         const currentPosts = postsData && postsData.length > 0 ? postsData : fallbackBlogPosts;
         currentPosts?.forEach((post: BlogPost) => {
-          post.categories?.forEach(cat => {
-            if (cat.title && !allCategories.includes(cat.title)) {
-              allCategories.push(cat.title);
-            }
-          });
+          if (post.category && !allCategories.includes(post.category)) {
+            allCategories.push(post.category);
+          }
         });
         
         setCategories(allCategories);
@@ -70,31 +57,23 @@ export default function BlogPage() {
 
   // Filter posts - IDÊNTICO AO ORIGINAL
   const filteredPosts = posts.filter((post) => {
-    const postCategories = post.categories?.map(cat => cat.title) || [];
-    const matchesCategory = selectedCategory === "Todas" || postCategories.includes(selectedCategory);
-    const matchesSearch = searchTerm === "" || 
-      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const postCategory = post.category || "";
+    const matchesCategory = selectedCategory === "Todas" || postCategory === selectedCategory;
+    const matchesSearch = searchTerm === "" ||
+      post._title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      postCategories.some(cat => cat.toLowerCase().includes(searchTerm.toLowerCase()));
-    
+      postCategory.toLowerCase().includes(searchTerm.toLowerCase());
+
     return matchesCategory && matchesSearch;
   });
 
-  // Calculate reading time - IDÊNTICO AO ORIGINAL
-  const getReadingTime = (body: any[]) => {
-    if (!body) return 5;
-    
-    let wordCount = 0;
-    body.forEach(block => {
-      if (block.children) {
-        block.children.forEach((child: any) => {
-          if (child.text) {
-            wordCount += child.text.split(' ').length;
-          }
-        });
-      }
-    });
-    
+  // Calculate reading time
+  const getReadingTime = (post: BlogPost) => {
+    if (post.readingTime) return post.readingTime;
+
+    if (!post.content?.raw) return 5;
+
+    const wordCount = post.content.raw.split(' ').length;
     return Math.ceil(wordCount / 200); // 200 words per minute
   };
 
@@ -108,10 +87,10 @@ export default function BlogPage() {
     }
   };
 
-  // Get post image - fallback to category-based images like original
+  // Get post image - fallback to category-based images
   const getPostImage = (post: BlogPost) => {
-    if (post.mainImage) {
-      return urlFor(post.mainImage).url();
+    if (post.coverImage?.url) {
+      return post.coverImage.url;
     }
     // Same category images as original
     const categoryImages: Record<string, string> = {
@@ -120,7 +99,7 @@ export default function BlogPage() {
       "Inteligência Emocional": "/blog/golias.webp",
       "Decisões Financeiras": "/blog/segurandodin.jpg"
     };
-    const category = post.categories?.[0]?.title || "Mentalidade";
+    const category = post.category || "Mentalidade";
     return categoryImages[category] || "/blog/notopo.jpg";
   };
 
@@ -209,7 +188,7 @@ export default function BlogPage() {
                   <div className="relative overflow-hidden">
                     <Image
                       src={getPostImage(post)}
-                      alt={post.title}
+                      alt={post._title}
                       width={400}
                       height={240}
                       className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
@@ -218,14 +197,14 @@ export default function BlogPage() {
                     <div className="absolute top-4 left-4">
                       <span className="inline-flex items-center gap-1 bg-yellow-500/90 text-black px-3 py-1 rounded-full text-xs font-semibold">
                         <Tag size={12} />
-                        {post.categories?.[0]?.title || "Mentalidade"}
+                        {post.category || "Mentalidade"}
                       </span>
                     </div>
                   </div>
                   
                   <div className="p-6">
                     <h2 className="text-xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors line-clamp-2">
-                      {post.title}
+                      {post._title}
                     </h2>
                     <p className="text-zinc-300 mb-4 line-clamp-3 leading-relaxed">
                       {post.excerpt}
@@ -238,15 +217,15 @@ export default function BlogPage() {
                       </div>
                       <div className="flex items-center gap-1">
                         <User size={12} />
-                        <span>{post.author?.name || "Roberto Navarro"}</span>
+                        <span>{post.author || "Roberto Navarro"}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock size={12} />
-                        <span>{getReadingTime(post.body || [])} min</span>
+                        <span>{getReadingTime(post)} min</span>
                       </div>
                     </div>
                     
-                    <Link href={`/blog/${post.slug.current}`} className="block">
+                    <Link href={`/blog/${post.slug}`} className="block">
                       <Button className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl group">
                         Ler Artigo Completo
                         <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />

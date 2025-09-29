@@ -1,40 +1,50 @@
-import { getPost, getPosts } from '@/lib/sanity/fetch'
-import { PortableText } from '@/components/sanity/portable-text'
+import { getPostBySlug, getAllPosts } from '@/lib/basehub/queries'
+import { fallbackBlogPosts } from '@/lib/basehub/fallback-data'
 import Image from 'next/image'
-import { urlFor } from '@/sanity/lib/client'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
 export async function generateStaticParams() {
-  const posts = await getPosts()
-  
-  return posts.map((post: any) => ({
-    slug: post.slug?.current,
-  }))
+  try {
+    const posts = await getAllPosts()
+    return posts.map((post) => ({
+      slug: post.slug,
+    }))
+  } catch (error) {
+    // Fallback to predefined slugs when API fails
+    return fallbackBlogPosts.map((post) => ({
+      slug: post.slug,
+    }))
+  }
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params
-  const post = await getPost(resolvedParams.slug)
-  
+  let post = await getPostBySlug(resolvedParams.slug)
+
+  // Fallback to static posts if BaseHub doesn't return anything
+  if (!post) {
+    post = fallbackBlogPosts.find(p => p.slug === resolvedParams.slug) || null
+  }
+
   if (!post) {
     notFound()
   }
 
   return (
     <article className="container mx-auto px-4 py-12 max-w-4xl">
-      <Link 
-        href="/blog-cms" 
+      <Link
+        href="/blog"
         className="text-blue-600 hover:underline mb-4 inline-block"
       >
         ← Voltar para o blog
       </Link>
 
-      {post.mainImage && (
+      {post.coverImage && (
         <div className="relative h-96 w-full mb-8">
           <Image
-            src={urlFor(post.mainImage).url()}
-            alt={post.mainImage.alt || post.title}
+            src={post.coverImage.url}
+            alt={post.coverImage.alt || post._title}
             fill
             className="object-cover rounded-lg"
           />
@@ -42,8 +52,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       )}
 
       <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-        
+        <h1 className="text-4xl font-bold mb-4">{post._title}</h1>
+
         <div className="flex flex-wrap gap-4 text-sm text-gray-600">
           {post.author && (
             <span>Por {post.author}</span>
@@ -59,16 +69,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           )}
         </div>
 
-        {post.categories && post.categories.length > 0 && (
+        {post.category && (
           <div className="flex flex-wrap gap-2 mt-4">
-            {post.categories.map((category: any) => (
-              <span
-                key={category._id}
-                className="px-3 py-1 bg-gray-200 rounded-full text-sm"
-              >
-                {category.title}
-              </span>
-            ))}
+            <span className="px-3 py-1 bg-gray-200 rounded-full text-sm">
+              {post.category}
+            </span>
           </div>
         )}
       </header>
@@ -79,18 +84,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       )}
 
-      {post.body && (
-        <div className="prose prose-lg max-w-none">
-          <PortableText value={post.body} />
-        </div>
+      {post.content?.html && (
+        <div
+          className="prose prose-lg max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content.html }}
+        />
       )}
 
       <div className="mt-12 pt-8 border-t">
         <Link
-          href="/studio"
+          href="/blog"
           className="text-blue-600 hover:underline"
         >
-          Editar este post no Sanity Studio →
+          ← Voltar ao blog
         </Link>
       </div>
     </article>
