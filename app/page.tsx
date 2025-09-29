@@ -17,14 +17,11 @@ import QuemSomosSection from "@/components/mentor"
 import { SectionBadge } from "@/components/section-badge"
 import TransformationVideos from "@/components/transformation-videos"
 import EventPopup from "@/components/event-popup"
-import { getSiteSettings, getHomePage } from '@/lib/sanity/fetch'
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
   const [showEventPopup, setShowEventPopup] = useState(false)
-  const [homePageData, setHomePageData] = useState<any>(null)
-  const [siteSettings, setSiteSettings] = useState<any>(null)
 
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -42,22 +39,7 @@ export default function HomePage() {
 
   useEffect(() => {
     setIsVisible(true)
-    
-    // Fetch Sanity data
-    const fetchData = async () => {
-      try {
-        const [homeData, settingsData] = await Promise.all([
-          getHomePage(),
-          getSiteSettings()
-        ])
-        setHomePageData(homeData)
-        setSiteSettings(settingsData)
-      } catch (error) {
-        console.log('Using default content:', error)
-      }
-    }
-
-    fetchData()
+    // Using static data - no CMS needed
 
     // Add keyframe animation for hover effects - IDÊNTICO AO ORIGINAL
     const style = document.createElement("style")
@@ -89,12 +71,13 @@ export default function HomePage() {
   }, [])
 
   // Use Sanity data or fallback to defaults
-  const heroTitle = homePageData?.hero?.headline || "TRANSFORME SUA MENTALIDADE"
-  const heroSubtitle = homePageData?.hero?.subheadline || "E CONQUISTE UMA NOVA REALIDADE FINANCEIRA"
-  const heroDescription = homePageData?.hero?.description || "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira."
-  const highlightText = homePageData?.hero?.highlightText || "INSTITUTO COACHING FINANCEIRO"
-  const achievementsNumber = homePageData?.hero?.achievements?.[0]?.number || "300.000+"
-  const achievementsLabel = homePageData?.hero?.achievements?.[0]?.label || "vidas transformadas"
+  // Static content
+  const heroTitle = "TRANSFORME SUA MENTALIDADE"
+  const heroSubtitle = "E CONQUISTE UMA NOVA REALIDADE FINANCEIRA"
+  const heroDescription = "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira."
+  const highlightText = "INSTITUTO COACHING FINANCEIRO"
+  const achievementsNumber = "300.000+"
+  const achievementsLabel = "vidas transformadas"
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">

@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { getFormation } from '@/lib/sanity/fetch'
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import WhatsAppButton from "@/components/whatsapp-button"
@@ -37,23 +36,12 @@ export default function LCFMentoringPro() {
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [formationData, setFormationData] = useState<any>(null)
   const router = useRouter()
 
   useEffect(() => {
     setIsVisible(true)
 
-    // Fetch Sanity data for this formation
-    const fetchFormationData = async () => {
-      try {
-        const data = await getFormation('lcf-mentoring-pro')
-        setFormationData(data)
-      } catch (error) {
-        console.log('Using default formation content:', error)
-      }
-    }
-
-    fetchFormationData()
+    // Using static data - no CMS needed
 
     // Add keyframe animation for hover effects - IDÊNTICO AO ORIGINAL
     const style = document.createElement("style")
@@ -114,18 +102,19 @@ export default function LCFMentoringPro() {
   }
   // Use Sanity data or fallback to original static content
   // Use Sanity data or fallback to original static content
-  const formationTitle = formationData?.title || "LCF MENTORING PRO"
-  const formationSubtitle = formationData?.subtitle || "Você já tem o dinheiro. Agora, só falta o controle!"
-  const formationDescription = formationData?.description || "O LCF Mentoring PRO reúne os treinamentos mais transformadores do educador financeiro Roberto Navarro em um único programa criado para te colocar no seleto grupo de pessoas que vivem com consciência, riqueza e propósito."
-  const formationPrice = formationData?.price?.value ? `R$ ${formationData.price.value.toLocaleString()}` : "R$ 20.000"
-  const formationBenefits = formationData?.benefits || [
+  // Static content
+  const formationTitle = "LCF MENTORING PRO"
+  const formationSubtitle = "Você já tem o dinheiro. Agora, só falta o controle!"
+  const formationDescription = "O LCF Mentoring PRO reúne os treinamentos mais transformadores do educador financeiro Roberto Navarro em um único programa criado para te colocar no seleto grupo de pessoas que vivem com consciência, riqueza e propósito."
+  const formationPrice = "R$ 20.000"
+  const formationBenefits = [
     "Acesso vitalício aos principais treinamentos",
     "4 imersões presenciais intensivas", 
     "Mais de 100h de conteúdo prático",
     "Suporte direto e acompanhamento",
     "Garantia de 6 meses: Se sua vida não mudar, devolvemos seu dinheiro"
   ]
-  const formationModules = formationData?.modules || [
+  const formationModules = [
     {
       icon: <BarChart className="h-6 w-6" />,
       title: "Inteligência emocional",

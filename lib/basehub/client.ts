@@ -1,6 +1,8 @@
 import { basehub as basehubClient } from 'basehub';
 
-export const basehub = basehubClient;
+export const basehub = basehubClient({
+  token: process.env.BASEHUB_TOKEN!,
+});
 
 export interface BlogPost {
   _id: string;
