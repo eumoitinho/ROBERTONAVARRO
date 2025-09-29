@@ -1,3 +1,4 @@
+import { basehub } from 'basehub';
 import type { BlogPost, BlogCategory } from './client';
 
 export async function getAllPosts(): Promise<BlogPost[]> {
@@ -7,10 +8,52 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       return [];
     }
 
-    // BaseHub query would go here
-    // For now, return empty to use fallback data
-    console.log('BaseHub integration ready, but returning fallback until posts are imported');
-    return [];
+    const result = await basehub().query({
+      blog: {
+        posts: {
+          items: {
+            _id: true,
+            _title: true,
+            _slug: true,
+            excerpt: true,
+            date: true,
+            author: {
+              _id: true,
+              _title: true,
+            },
+            body: {
+              html: true,
+              plainText: true,
+              readingTime: true,
+            },
+            coverImage: {
+              url: true,
+              alt: true,
+            }
+          }
+        }
+      }
+    });
+
+    // Transform BaseHub data to BlogPost format
+    return result.blog.posts.items.map(post => ({
+      _id: post._id,
+      _title: post._title,
+      slug: post._slug,
+      excerpt: post.excerpt,
+      content: {
+        html: post.body?.html || '',
+        raw: post.body?.plainText || ''
+      },
+      coverImage: post.coverImage ? {
+        url: post.coverImage.url,
+        alt: post.coverImage.alt || post._title
+      } : undefined,
+      publishedAt: post.date,
+      author: post.author._title,
+      category: 'Geral', // Default category until we implement categories
+      readingTime: post.body?.readingTime || Math.ceil(post.excerpt.split(' ').length / 200),
+    }));
   } catch (error) {
     console.error('Error fetching posts from BaseHub:', error);
     return [];
@@ -24,9 +67,54 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       return null;
     }
 
-    // BaseHub query by slug would go here
-    console.log(`BaseHub integration ready for slug: ${slug}, but returning fallback until posts are imported`);
-    return null;
+    const result = await basehub().query({
+      blog: {
+        posts: {
+          items: {
+            _id: true,
+            _title: true,
+            _slug: true,
+            excerpt: true,
+            date: true,
+            author: {
+              _id: true,
+              _title: true,
+            },
+            body: {
+              html: true,
+              plainText: true,
+              readingTime: true,
+            },
+            coverImage: {
+              url: true,
+              alt: true,
+            }
+          }
+        }
+      }
+    });
+
+    const post = result.blog.posts.items.find(p => p._slug === slug);
+    if (!post) return null;
+
+    return {
+      _id: post._id,
+      _title: post._title,
+      slug: post._slug,
+      excerpt: post.excerpt,
+      content: {
+        html: post.body?.html || '',
+        raw: post.body?.plainText || ''
+      },
+      coverImage: post.coverImage ? {
+        url: post.coverImage.url,
+        alt: post.coverImage.alt || post._title
+      } : undefined,
+      publishedAt: post.date,
+      author: post.author._title,
+      category: 'Geral', // Default category until we implement categories
+      readingTime: post.body?.readingTime || Math.ceil(post.excerpt.split(' ').length / 200),
+    };
   } catch (error) {
     console.error('Error fetching post from BaseHub:', error);
     return null;
