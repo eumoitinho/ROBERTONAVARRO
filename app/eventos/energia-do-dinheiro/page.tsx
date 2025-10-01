@@ -3,34 +3,21 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Star, Users, Zap, Brain, Target, Wallet, GraduationCap, Play, X } from 'lucide-react'
+import { ArrowRight, Wallet, Brain, Target, Zap, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
-import MobileMenu from "@/components/mobile-menu"
-import Logo from "@/components/logo"
 import HeroPages from "@/components/hero-pages"
 import { TestimonialsSection }  from "@/components/testimonials-section"
 import Footer from "@/components/footer"
 import { SiteHeader } from "@/components/header"
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos"
-import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
+import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 import MentorSection from "@/components/mentor"
 import { SectionBadge } from "@/components/section-badge"
 
 export default function EnergiaDodinheiroPage() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null)
   const videoModalRef = useRef<HTMLDivElement>(null)
 
@@ -109,85 +96,12 @@ export default function EnergiaDodinheiroPage() {
     }
   }, [activeVideoId])
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError(null)
-
-    const formData = new FormData(e.currentTarget)
-
-    try {
-      const response = await fetch("/api/registrations", {
-        method: "POST",
-        body: JSON.stringify({
-          eventId: 10,
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || "Erro ao processar inscrição")
-      }
-
-      const data = await response.json()
-      window.location.href = `/inscricao/confirmacao?ticket=${data.ticketCode}`
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Ocorreu um erro ao processar sua inscrição")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   const navigationItems = [
     { title: "Início", href: "/" },
     { title: "Benefícios", href: "#beneficios" },
     { title: "Como Funciona", href: "#como-funciona" },
     { title: "Depoimentos", href: "#depoimentos" },
     { title: "Inscreva-se", href: "#inscricao", isButton: true }
-  ]
-  
-  const transformationVideos = [
-    {
-      id: "4aYDKJQBnRw",
-      title: "Como superei minhas dívidas em 6 meses",
-      person: "Carlos Silva",
-      description: "Carlos compartilha como saiu de um ciclo de dívidas para uma vida financeira equilibrada.",
-      thumbnail: "/images/video-thumb-1.png"
-    },
-    {
-      id: "yTELcwYTsnU",
-      title: "Minha jornada para a liberdade financeira",
-      person: "Ana Oliveira",
-      description: "Ana conta como transformou sua mentalidade sobre dinheiro e alcançou a independência.",
-      thumbnail: "/images/video-thumb-2.png"
-    },
-    {
-      id: "W6rBTJKeJ4w",
-      title: "Do zero ao primeiro milhão",
-      person: "Roberto Mendes",
-      description: "Roberto revela as estratégias que o levaram a conquistar seu primeiro milhão.",
-      thumbnail: "/images/video-thumb-3.png"
-    },
-    {
-      id: "dQw4w9WgXcQ",
-      title: "Como multipliquei meu patrimônio",
-      person: "Juliana Costa",
-      description: "Juliana explica como conseguiu multiplicar seu patrimônio em apenas 2 anos.",
-      thumbnail: "/images/video-thumb-4.png"
-    },
-    {
-      id: "xvFZjo5PgG0",
-      title: "Transformando conhecimento em renda",
-      person: "Marcos Pereira",
-      description: "Marcos mostra como transformou seu conhecimento em múltiplas fontes de renda.",
-      thumbnail: "/images/video-thumb-5.png"
-    }
   ]
 
   return (
@@ -208,7 +122,7 @@ export default function EnergiaDodinheiroPage() {
       <HeroPages
         title="ENERGIA DO DINHEIRO"
         subtitle="Desbloqueie a energia do dinheiro e transforme sua realidade"
-        secondtitle="Dois dias intensos de transformação para mudar sua relação com o dinheiro"
+        secondtitle="07 de Outubro - Das 13h às 20h"
         description="Alinhe sua energia com a prosperidade e conquiste abundância real na vida e nos negócios. Este evento não entrega apenas conhecimento, mas vivências profundas que desbloqueiam crenças, dissolvem padrões limitantes e ativam a força interna da prosperidade."
         image="/images/HERO_ENERGIA.png"
         ctaText="GARANTA SUA VAGA!"
@@ -306,7 +220,7 @@ export default function EnergiaDodinheiroPage() {
               Mais do que uma mentoria, um <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">despertar de consciência</span>
             </h2>
             <p className="text-zinc-300 mb-6 font-medium">
-              Durante 2 dias transformadores, você vai acessar um novo nível de consciência sobre dinheiro, abundância, valor próprio e energia. Este evento não entrega apenas conhecimento, mas vivências profundas que desbloqueiam crenças, dissolvem padrões limitantes e ativam a força interna da prosperidade.
+              No dia 07 de outubro, das 13h às 20h, você vai acessar um novo nível de consciência sobre dinheiro, abundância, valor próprio e energia. Este evento não entrega apenas conhecimento, mas vivências profundas que desbloqueiam crenças, dissolvem padrões limitantes e ativam a força interna da prosperidade.
             </p>
             <div className="block sm:hidden md:block bg-zinc-900/50 rounded-lg p-4 mt-6">
             <ul className="space-y-4 text-zinc-300">
@@ -390,10 +304,16 @@ export default function EnergiaDodinheiroPage() {
      {/* Mentor Section */}
 <MentorSection />
 
-      <NewsletterSignup source="Energia do Dinheiro" title="SAIBA QUANDO HAVERÁ A ENERGIA DO DINHEIRO" description="Inscreva-se para receber dicas e conteúdos exclusivos sobre finanças pessoais e investimentos." onSubmit={() => {
+      <NewsletterFormacoes
+        source="Energia do Dinheiro"
+        title="GARANTA SUA VAGA NO ENERGIA DO DINHEIRO"
+        description="Preencha o formulário abaixo e reserve sua vaga neste evento transformador que acontece no dia 07 de outubro, das 13h às 20h."
+        ctaText="GARANTIR MINHA VAGA AGORA!"
+        onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
-        }} />
+        }}
+      />
 
       <Footer />
       <WhatsAppButton
