@@ -37,6 +37,10 @@ export default function HeroPagesRed({
 }: HeroPagesRedProps) {
   const [currentImage, setCurrentImage] = useState(image);
   const [isVisible, setIsVisible] = useState(false);
+  const titleWords = title.trim().split(/\s+/);
+  const highlightTitle =
+    titleWords.length > 1 ? titleWords[titleWords.length - 1] : titleWords[0] ?? "";
+  const baseTitle = titleWords.length > 1 ? titleWords.slice(0, -1).join(" ") : "";
 
   useEffect(() => {
     setIsVisible(true);
@@ -99,15 +103,21 @@ export default function HeroPagesRed({
           <div
             className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
           >
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 md:mb-2 leading-tight">
-              {title.split(" ")[0]}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
-                {title.split(" ").slice(1).join(" ")}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 md:mb-2 leading-[1.05] max-w-3xl text-white">
+              {baseTitle && (
+                <span className="block md:inline md:whitespace-nowrap">{baseTitle}</span>
+              )}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-red-400 md:inline">
+                {highlightTitle}
               </span>
             </h1>
-            <p className="text-xl md:text-2xl font-semibold mb-4 text-zinc-300">{secondtitle}</p>
+            <p className="text-lg md:text-2xl font-semibold mb-4 text-zinc-100/85 max-w-3xl leading-relaxed">
+              {secondtitle}
+            </p>
             {description && (
-              <p className="text-base md:text-xl text-zinc-300 mb-6 max-w-xl whitespace-pre-line">{description}</p>
+              <p className="text-base md:text-xl text-zinc-300/90 mb-8 max-w-2xl leading-relaxed">
+                {description}
+              </p>
             )}
           </div>
           {/* Buttons */}
@@ -121,12 +131,12 @@ export default function HeroPagesRed({
               <EventCTAButton
                 eduzzUrl={ctaHref}
                 buttonText={ctaText}
-                className="cta-hover bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-red-500 via-red-600 to-red-700 px-7 md:px-9 py-3 md:py-4 text-sm md:text-base font-semibold text-white shadow-[0_18px_40px_-18px_rgba(239,68,68,0.75)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_55px_-18px_rgba(239,68,68,0.85)] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
                 showArrow={false}
               />
             ) : (
               <Button
-                className="cta-hover bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-full px-6 md:px-8 py-3 md:py-4 text-sm md:text-base"
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-red-500 via-red-600 to-red-700 px-7 md:px-9 py-3 md:py-4 text-sm md:text-base font-semibold text-white shadow-[0_18px_40px_-18px_rgba(239,68,68,0.75)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_55px_-18px_rgba(239,68,68,0.85)] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
                 asChild
               >
                 <Link href={ctaHref}>{ctaText}</Link>

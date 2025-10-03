@@ -157,13 +157,9 @@ export default function EducadorFinanceiroPage() {
 
       {/* MEC Certification Section - Enhanced */}
       <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/5 rounded-full filter blur-3xl opacity-30"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-red-600/5 rounded-full filter blur-3xl opacity-20"></div>
+        <SectionBackdrop variant="muted" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/25 to-transparent"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
@@ -224,12 +220,10 @@ export default function EducadorFinanceiroPage() {
 
       {/* Professional License Section - Premium */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-red-950/20 via-zinc-900 to-zinc-950"></div>
-        
-        {/* Premium decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
-        
+        <SectionBackdrop variant="intense" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent"></div>
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 border border-red-500/30 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
@@ -322,8 +316,8 @@ export default function EducadorFinanceiroPage() {
       </section>
 
       {/* About Section */}
-      <section id="sobre-curso" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section id="sobre-curso" className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -452,8 +446,8 @@ export default function EducadorFinanceiroPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -513,8 +507,8 @@ export default function EducadorFinanceiroPage() {
       </section>
 
       {/* Benefits Section */}
-      <section id="beneficios" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section id="beneficios" className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -571,8 +565,8 @@ export default function EducadorFinanceiroPage() {
       </section>
 
       {/* Modules Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -816,8 +810,8 @@ export default function EducadorFinanceiroPage() {
       </section>
 
       {/* Licensed Trainer Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -889,8 +883,8 @@ export default function EducadorFinanceiroPage() {
       </section>
 
       {/* Mentor Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="intense" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -956,12 +950,12 @@ export default function EducadorFinanceiroPage() {
           </div>
         </div>
       </section>
-      <TransformationVideos/>
+  <TransformationVideos accent="red" />
 
-      <NotableParticipants/>
+  <NotableParticipants accent="red" />
       {/* Guarantees Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -1024,11 +1018,12 @@ export default function EducadorFinanceiroPage() {
         description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira."
         source="Educador Financeiro"
         ctaText="QUERO SER UM EDUCADOR FINANCEIRO!"
+        accent="red"
       />
 
       {/* FAQ Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-zinc-900 to-zinc-950 z-0"></div>
+      <section className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
@@ -1103,7 +1098,7 @@ export default function EducadorFinanceiroPage() {
         </div>
       </section>
 
-      <Footer />
+  <Footer accent="red" />
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton

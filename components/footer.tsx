@@ -1,12 +1,11 @@
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTiktok } from "react-icons/fa"
 import Link from "next/link"
 import Logo from "./logo"
-import { JSX, Key } from "react"
-import { NewsletterSignup } from "./newsletter-signup"
+import { JSX } from "react"
 import { Mail, Phone, MapPin } from "lucide-react"
-import { UrlObject } from "url"
 import ReclameAquiSeal from "./reclame-aqui-seal"
 import RaVerifiedSeals from "./ra-verified-seals"
+import { cn } from "@/lib/utils"
 
 const socialIcons: Record<string, JSX.Element> = {
   facebook: <FaFacebookF className="w-4 h-4 md:w-5 md:h-5" />,
@@ -58,11 +57,43 @@ const footerLinks = {
   ],
 }
 
+type Accent = "yellow" | "red"
 
+const accentStyles: Record<Accent, {
+  contactIcon: string
+  sectionHeading: string
+  linkHover: string
+  socialHover: string
+  socialShadow: string
+  bottomLinkHover: string
+}> = {
+  yellow: {
+    contactIcon: "text-yellow-400",
+    sectionHeading: "text-yellow-400",
+    linkHover: "hover:text-yellow-400",
+    socialHover: "hover:bg-yellow-500",
+    socialShadow: "",
+    bottomLinkHover: "hover:text-yellow-400",
+  },
+  red: {
+    contactIcon: "text-red-400",
+    sectionHeading: "text-red-400",
+    linkHover: "hover:text-red-400",
+    socialHover: "hover:bg-red-500",
+    socialShadow: "shadow-[0_0_20px_rgba(239,68,68,0.15)] hover:shadow-[0_0_25px_rgba(239,68,68,0.35)]",
+    bottomLinkHover: "hover:text-red-400",
+  },
+}
 
-export default function Footer() {
+interface FooterProps {
+  accent?: Accent
+}
+
+export default function Footer({ accent = "yellow" }: FooterProps) {
+  const styles = accentStyles[accent]
+
   return (
-    <footer className="bg-zinc-950 border-t border-zinc-800/50">
+  <footer className="bg-zinc-950 border-t border-zinc-800/50">
       
 
       {/* Main Footer Content */}
@@ -82,15 +113,15 @@ export default function Footer() {
               {/* Contact Info */}
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3 text-zinc-400">
-                  <Mail className="h-4 w-4 text-yellow-400" />
+                  <Mail className={cn("h-4 w-4", styles.contactIcon)} />
                   <span className="text-sm">contato@robertonavarrooficial.com.br</span>
                 </div>
                 <div className="flex items-center gap-3 text-zinc-400">
-                  <Phone className="h-4 w-4 text-yellow-400" />
+                  <Phone className={cn("h-4 w-4", styles.contactIcon)} />
                   <span className="text-sm">(12) 99765-9057</span>
                 </div>
                 <div className="flex items-center gap-3 text-zinc-400">
-                  <MapPin className="h-4 w-4 text-yellow-400" />
+                  <MapPin className={cn("h-4 w-4", styles.contactIcon)} />
                   <span className="text-sm">São Paulo, SP - Brasil</span>
                 </div>
               </div>
@@ -103,7 +134,11 @@ export default function Footer() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 transition-colors group"
+                    className={cn(
+                      "w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center transition-colors group",
+                      styles.socialHover,
+                      styles.socialShadow,
+                    )}
                     aria-label={key}
                   >
                     {socialIcons[key]}
@@ -114,11 +149,14 @@ export default function Footer() {
 
             {/* Formações */}
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-yellow-400">Formações</h4>
+              <h4 className={cn("text-sm font-semibold uppercase tracking-wider mb-4", styles.sectionHeading)}>Formações</h4>
               <ul className="space-y-2">
                 {footerLinks.formacoes.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                    <Link
+                      href={link.href}
+                      className={cn("text-sm text-zinc-400 transition-colors", styles.linkHover)}
+                    >
                       {link.title}
                     </Link>
                   </li>
@@ -128,22 +166,30 @@ export default function Footer() {
 
             {/* Mentorias */}
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-yellow-400">Mentorias</h4>
+              <h4 className={cn("text-sm font-semibold uppercase tracking-wider mb-4", styles.sectionHeading)}>Mentorias</h4>
               <ul className="space-y-2">
                 {footerLinks.mentorias.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                    <Link
+                      href={link.href}
+                      className={cn("text-sm text-zinc-400 transition-colors", styles.linkHover)}
+                    >
                       {link.title}
                     </Link>
                   </li>
                 ))}
               </ul>
 
-              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 mt-6 text-yellow-400">Conteúdo</h4>
+              <h4 className={cn("text-sm font-semibold uppercase tracking-wider mb-4 mt-6", styles.sectionHeading)}>
+                Conteúdo
+              </h4>
               <ul className="space-y-2">
                 {footerLinks.conteudo.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                    <Link
+                      href={link.href}
+                      className={cn("text-sm text-zinc-400 transition-colors", styles.linkHover)}
+                    >
                       {link.title}
                     </Link>
                   </li>
@@ -153,11 +199,16 @@ export default function Footer() {
 
             {/* Institucional */}
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-yellow-400">Institucional</h4>
+              <h4 className={cn("text-sm font-semibold uppercase tracking-wider mb-4", styles.sectionHeading)}>
+                Institucional
+              </h4>
               <ul className="space-y-2">
                 {footerLinks.institucional.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-zinc-400 hover:text-yellow-400 transition-colors">
+                    <Link
+                      href={link.href}
+                      className={cn("text-sm text-zinc-400 transition-colors", styles.linkHover)}
+                    >
                       {link.title}
                     </Link>
                   </li>
@@ -183,14 +234,20 @@ export default function Footer() {
             <div className="flex flex-wrap justify-center md:justify-end gap-6">
               <Link
                 href="/politica-privacidade"
-                className="text-sm text-zinc-500 hover:text-yellow-400 transition-colors"
+                className={cn("text-sm text-zinc-500 transition-colors", styles.bottomLinkHover)}
               >
                 Política de Privacidade
               </Link>
-              <Link href="/termos-uso" className="text-sm text-zinc-500 hover:text-yellow-400 transition-colors">
+              <Link
+                href="/termos-uso"
+                className={cn("text-sm text-zinc-500 transition-colors", styles.bottomLinkHover)}
+              >
                 Termos de Uso
               </Link>
-              <Link href="/cookies" className="text-sm text-zinc-500 hover:text-yellow-400 transition-colors">
+              <Link
+                href="/cookies"
+                className={cn("text-sm text-zinc-500 transition-colors", styles.bottomLinkHover)}
+              >
                 Cookies
               </Link>
             </div>
