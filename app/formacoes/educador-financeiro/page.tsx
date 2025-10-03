@@ -389,6 +389,68 @@ export default function EducadorFinanceiroPage() {
         </div>
       </section>
 
+      {/* Exclusive Materials Section */}
+      <section className="py-20 relative overflow-hidden">
+        <SectionBackdrop variant="intense" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600/80 to-red-500/60 border border-red-400/60 rounded-full px-5 py-2 uppercase tracking-[0.25em] text-xs text-red-100 shadow-[0_0_25px_rgba(239,68,68,0.25)]">
+                MATERIAIS EXCLUSIVOS
+              </div>
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-4xl font-bold leading-tight text-white">
+                  EXPERIMENTE A <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">IMERSÃO</span> DO EDUCADOR FINANCEIRO
+                </h2>
+                <p className="text-lg text-zinc-300 max-w-2xl">
+                  Tenha uma prévia da jornada com materiais oficiais, bastidores e um vídeo de apresentação conduzido pelo time da RNA. Explore o ritmo da formação antes de garantir sua vaga definitiva.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  "Download de apostilas e exercícios selecionados",
+                  "Bastidores da metodologia com orientações do time",
+                  "Vídeo introdutório guiado pela equipe oficial RNA",
+                  "Checklist para acelerar seus primeiros atendimentos",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-3 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-950/80 via-zinc-950/70 to-red-900/40 p-4 backdrop-blur-sm shadow-[0_0_25px_rgba(239,68,68,0.15)]"
+                  >
+                    <CheckCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-zinc-200">{item}</p>
+                  </div>
+                ))}
+              </div>
+
+              <Button
+                className={cn(primaryButtonBase, "mt-2 w-full sm:w-auto px-8 py-4 text-base shadow-[0_0_35px_rgba(239,68,68,0.35)]")}
+                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                ACESSAR PRÉVIA EXCLUSIVA <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <div className="relative w-full max-w-[360px] mx-auto">
+              <div className="absolute -inset-10 bg-[radial-gradient(circle,_rgba(239,68,68,0.35)_0%,_rgba(0,0,0,0)_60%)] blur-3xl opacity-90" />
+              <div className="relative rounded-[32px] border border-red-500/50 bg-gradient-to-br from-red-950/80 via-zinc-950/70 to-red-900/60 p-4 shadow-[0_25px_70px_rgba(239,68,68,0.35)] backdrop-blur">
+                <div className="absolute top-4 right-4 h-3 w-3 rounded-full bg-red-400 animate-pulse" aria-hidden />
+                <div className="relative overflow-hidden rounded-3xl aspect-[9/16] bg-black">
+                  <video
+                    src="/educador/WhatsApp%20Video%202025-08-21%20at%2010.38.45.mp4"
+                    controls
+                    playsInline
+                    poster="/images/HERO_EDUCADOR_MOBILE.png"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
