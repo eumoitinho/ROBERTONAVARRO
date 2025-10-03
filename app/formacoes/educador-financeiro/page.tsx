@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import {
@@ -25,6 +25,7 @@ import {
   TrendingUp,
   Star,
 } from "lucide-react"
+import { motion, type Variants } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -34,40 +35,68 @@ import { SiteHeader } from "@/components/header"
 import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos"
+import { cn } from "@/lib/utils"
+
+const viewportConfig = { once: true, amount: 0.2 } as const
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+}
+
+const fadeInScale: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.05,
+    },
+  },
+}
+
+const SectionBackdrop = ({ variant = "default" }: { variant?: "default" | "muted" | "intense" }) => (
+  <>
+    <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black" />
+    <div
+      className={cn(
+        "absolute inset-0 pointer-events-none",
+        variant === "intense"
+          ? "bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.25)_0%,_rgba(0,0,0,0)_60%)] opacity-80"
+          : variant === "muted"
+            ? "bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.12)_0%,_rgba(0,0,0,0)_60%)] opacity-55"
+            : "bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.18)_0%,_rgba(0,0,0,0)_62%)] opacity-65",
+      )}
+    />
+  </>
+)
+
+const primaryButtonBase =
+  "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(239,68,68,0.35)] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
 
 export default function EducadorFinanceiroPage() {
-  const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  
-  // Lead capture popup
-  
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
-
-  useEffect(() => {
-    setIsVisible(true)
-
-    // Add keyframe animation for hover effects
-    const style = document.createElement("style")
-    style.innerHTML = `
-      .cta-hover {
-        transition: all 0.3s ease;
-      }
-      .cta-hover:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.3);
-      }
-      
-      .cta-hover-subtle {
-        transition: all 0.3s ease;
-      }
-      .cta-hover-subtle:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 7px 15px -5px rgba(239, 68, 68, 0.2);
-      }
-    `
-    document.head.appendChild(style)
-  }, [])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -278,7 +307,10 @@ export default function EducadorFinanceiroPage() {
 
               <div className="text-center mt-8">
                 <Button
-                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-full px-10 py-5 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className={cn(
+                    primaryButtonBase,
+                    "px-10 py-5 text-lg shadow-lg hover:shadow-xl hover:-translate-y-1",
+                  )}
                   onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
                 >
                   GARANTIR MINHA LICENÇA PROFISSIONAL <ArrowRight className="ml-2 h-5 w-5" />
@@ -347,7 +379,7 @@ export default function EducadorFinanceiroPage() {
               </div>
 
               <Button
-                className="cta-hover mt-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-full px-8 py-4 text-base"
+                className={cn(primaryButtonBase, "mt-8 px-8 py-4 text-base")}
                 onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
               >
                 QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
@@ -853,7 +885,7 @@ export default function EducadorFinanceiroPage() {
               </div>
 
               <Button
-                className="cta-hover mt-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-full px-8 py-4 text-base"
+                className={cn(primaryButtonBase, "mt-8 px-8 py-4 text-base")}
                 onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
               >
                 QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />

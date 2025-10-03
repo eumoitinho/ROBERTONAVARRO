@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
 import { submitLead } from "@/lib/actions"
-import { getUTMParameters, getBrowserInfo } from "@/lib/utils"
+import { cn, getUTMParameters, getBrowserInfo } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 
 // Extend the Window interface to include dataLayer
@@ -22,6 +22,49 @@ interface NewsletterFormacoesProps {
   description: string
   source: string
   ctaText?: string
+  accent?: "yellow" | "red"
+}
+
+type Accent = "yellow" | "red"
+
+type AccentStyles = {
+  highlightGradient: string
+  focusRing: string
+  buttonGradient: string
+  buttonText: string
+  buttonShadow: string
+  cardBorder: string
+  cardHover: string
+  radialOverlay: string
+  headingAccent: string
+  accentText: string
+}
+
+const accentStyles: Record<Accent, AccentStyles> = {
+  yellow: {
+    highlightGradient: "text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500",
+    focusRing: "focus:ring-yellow-500 focus:ring-offset-0",
+    buttonGradient: "bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700",
+    buttonText: "text-black",
+    buttonShadow: "shadow-[0_18px_40px_-18px_rgba(234,179,8,0.55)]",
+    cardBorder: "border-zinc-800/50",
+    cardHover: "hover:border-yellow-400/30",
+    radialOverlay: "bg-[radial-gradient(circle_at_center,_rgba(234,179,8,0.18)_0%,_rgba(12,10,9,0)_62%)]",
+    headingAccent: "text-yellow-400",
+    accentText: "text-yellow-300",
+  },
+  red: {
+    highlightGradient: "text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600",
+    focusRing: "focus:ring-red-500 focus:ring-offset-0",
+    buttonGradient: "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
+    buttonText: "text-white",
+    buttonShadow: "shadow-[0_18px_40px_-18px_rgba(239,68,68,0.65)]",
+    cardBorder: "border-red-500/15",
+    cardHover: "hover:border-red-500/40",
+    radialOverlay: "bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.22)_0%,_rgba(12,10,9,0)_60%)]",
+    headingAccent: "text-red-400",
+    accentText: "text-red-300",
+  },
 }
 
 export interface LeadFormData {
@@ -36,8 +79,18 @@ export interface LeadFormData {
   utm_content?: string
 }
 
-export function NewsletterFormacoes({ onSubmit, title, description, source, ctaText }: NewsletterFormacoesProps) {
+export function NewsletterFormacoes({
+  onSubmit,
+  title,
+  description,
+  source,
+  ctaText,
+  accent = "yellow",
+}: NewsletterFormacoesProps) {
   const router = useRouter()
+  const styles = accentStyles[accent]
+  const titleWords = title.split(" ").filter(Boolean)
+  const highlightStartIndex = Math.max(0, titleWords.length - 3)
   const [formData, setFormData] = useState<LeadFormData>({
     name: "",
     email: "",
@@ -122,107 +175,144 @@ export function NewsletterFormacoes({ onSubmit, title, description, source, ctaT
   }
 
   return (
-    <section id="inscricao" className="py-20 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
-      <SectionBadge text="INSCRIÇÃO" />
-      <div className="container mx-auto px-4 relative z-10 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6">
-          {title.split(" ").map((word, index) => (
-            <span
-              key={index}
-              className={
-                index === 4 || index === 5 || index === 6
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"
-                  : "text-white"
-              }
-            >
-              {word}{" "}
-            </span>
-          ))}
-        </h2>
-        <p className="text-lg text-zinc-300 max-w-3xl mx-auto mb-8">{description}</p>
-        {/* Registration Form */}
-        <div className="max-w-3xl mx-auto mt-20 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden">
-          <div className="p-8">
-            <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">PREENCHA SEUS DADOS</h3>
-            <p className="text-zinc-300 text-center mb-8">
-              Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
-            </p>
+    <section id="inscricao" className="relative overflow-hidden py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black" />
+        <div className={cn("absolute inset-0 opacity-70", styles.radialOverlay)} />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-20" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-10" />
+      </div>
 
-            <form onSubmit={handleSubmit}>
-              {submitStatus.message && !submitStatus.success && (
-                <div className="rounded-md bg-red-50 p-4 mb-4">
-                  <div className="flex">
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-red-800">{submitStatus.message}</h3>
-                    </div>
-                  </div>
-                </div>
-              )}
-              {submitStatus.message && submitStatus.success && (
-                <div className="rounded-md bg-green-50 p-4 mb-4">
-                  <div className="flex">
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-green-800">{submitStatus.message}</h3>
-                    </div>
-                  </div>
-                </div>
-              )}
+      <div className="relative z-10">
+        <SectionBadge
+          text="INSCRIÇÃO"
+          className={cn(
+            "bg-zinc-900/60 border-zinc-700/60 text-zinc-100",
+            accent === "red" ? "from-red-500/30 to-red-600/30" : "from-yellow-500/25 to-amber-500/25",
+          )}
+        />
 
-              <div className="mb-6">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                  placeholder="Seu nome completo"
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                  placeholder="seu@email.com"
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
-                  placeholder="(00) 00000-0000"
-                  required
-                />
-              </div>
+        <div className="container mx-auto px-4 text-center">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              {titleWords.map((word, index) => (
+                <span
+                  key={`${word}-${index}`}
+                  className={cn(
+                    "inline-block transition-colors duration-300",
+                    index >= highlightStartIndex ? styles.highlightGradient : "text-white",
+                  )}
+                >
+                  {word}{" "}
+                </span>
+              ))}
+            </h2>
+            <p className="mt-4 text-lg text-zinc-300 md:text-xl">{description}</p>
+          </div>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl py-4 text-lg cta-hover"
-              >
-                {isSubmitting
-                  ? "Enviando..."
-                  : (typeof ctaText === "string" && ctaText.trim() !== ""
-                      ? ctaText
-                      : "GARANTIR MINHA VAGA AGORA")}
-              </Button>
+          <div
+            className={cn(
+              "relative mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border bg-zinc-900/70 p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_45px_-20px_rgba(0,0,0,0.45)]",
+              styles.cardBorder,
+              styles.cardHover,
+            )}
+          >
+            <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-40">
+              <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.04)_0%,transparent_65%)]" />
+            </div>
 
-              <p className="text-xs text-zinc-400 text-center mt-4">
-                Ao clicar em &ldquo;{typeof ctaText === "string" && ctaText.trim() !== "" ? ctaText : "Garantir minha vaga agora"}&rdquo;, você concorda com nossos termos de uso e política de
-                privacidade.
+            <div className="relative">
+              <h3 className={cn("text-2xl font-semibold text-center", styles.headingAccent)}>PREENCHA SEUS DADOS</h3>
+              <p className="mt-4 text-center text-sm text-zinc-400">
+                Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
               </p>
-            </form>
+
+              <form onSubmit={handleSubmit} className="mt-8 space-y-6 text-left">
+                {submitStatus.message && !submitStatus.success && (
+                  <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-300">
+                    {submitStatus.message}
+                  </div>
+                )}
+                {submitStatus.message && submitStatus.success && (
+                  <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-sm text-emerald-300">
+                    {submitStatus.message}
+                  </div>
+                )}
+
+                <div className="space-y-6">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                    className={cn(
+                      "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                      styles.focusRing,
+                      accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                    )}
+                    placeholder="Seu nome completo"
+                    required
+                  />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                    className={cn(
+                      "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                      styles.focusRing,
+                      accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                    )}
+                    placeholder="seu@email.com"
+                    required
+                  />
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                    className={cn(
+                      "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                      styles.focusRing,
+                      accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                    )}
+                    placeholder="(00) 00000-0000"
+                    required
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={cn(
+                    "cta-hover group relative w-full overflow-hidden rounded-2xl py-4 text-lg font-semibold transition-all duration-300",
+                    styles.buttonGradient,
+                    styles.buttonText,
+                    styles.buttonShadow,
+                  )}
+                >
+                  <span className="relative z-10">
+                    {isSubmitting
+                      ? "Enviando..."
+                      : typeof ctaText === "string" && ctaText.trim() !== ""
+                        ? ctaText
+                        : "GARANTIR MINHA VAGA AGORA"}
+                  </span>
+                  <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-40">
+                    <div className="absolute inset-y-0 left-1/2 h-full w-2/3 -translate-x-1/2 rounded-full bg-white/40 blur-3xl" />
+                  </span>
+                </Button>
+
+                <p className={cn("text-center text-xs", styles.accentText)}>
+                  Ao clicar em &ldquo;
+                  {typeof ctaText === "string" && ctaText.trim() !== "" ? ctaText : "Garantir minha vaga agora"}
+                  &rdquo;, você concorda com nossos termos de uso e política de privacidade.
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>
