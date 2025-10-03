@@ -1019,9 +1019,10 @@ export default function EducadorFinanceiroPage() {
         source="Educador Financeiro"
         ctaText="QUERO SER UM EDUCADOR FINANCEIRO!"
         accent="red"
-      />
+            />
+            <div aria-hidden className="h-16 md:h-24" />
 
-      {/* FAQ Section */}
+            {/* FAQ Section */}
       <section className="py-20 relative overflow-hidden">
         <SectionBackdrop variant="muted" />
         <div className="container mx-auto px-4 relative z-10">
