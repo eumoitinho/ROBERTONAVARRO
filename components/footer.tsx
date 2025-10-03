@@ -254,9 +254,9 @@ export default function Footer({ accent = "yellow" }: FooterProps) {
           </div>
           
           {/* RA Verified Seals */}
-          <div className="mt-6 pt-6 border-t border-zinc-800/50">
+          {/* <div className="mt-6 pt-6 border-t border-zinc-800/50">
             <RaVerifiedSeals />
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
