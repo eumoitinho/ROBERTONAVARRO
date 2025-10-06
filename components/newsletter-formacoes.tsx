@@ -199,7 +199,7 @@ export function NewsletterFormacoes({
                 <span
                   key={`${word}-${index}`}
                   className={cn(
-                    "inline-block transition-colors duration-300",
+                    "transition-colors duration-300",
                     index >= highlightStartIndex ? styles.highlightGradient : "text-white",
                   )}
                 >
