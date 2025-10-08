@@ -1,10 +1,11 @@
+  export interface Mutation {
     /** Start a job that can be awaited and the result given directly. Under the hood, it runs `transactionAsync` and polls for the result until it is available. You can pass a `timeout` argument, the default being 30_000ms. */
     transaction: TransactionStatus
     /** Start an asynchronous job to mutate BaseHub data. Returns a transaction ID which you can use to get the result of the job. */
     transactionAsync: Scalars['String']
     transactionStatus: TransactionStatus
     __typename: 'Mutation'
-}
+  }
 
 export interface Newsletter {
     _analyticsKey: Scalars['String']
