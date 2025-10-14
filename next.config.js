@@ -17,6 +17,21 @@ const nextConfig = {
     ],
   },
   serverExternalPackages: ['sanity', '@sanity/vision'],
+  // Exclude static assets from being treated as pages
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  async headers() {
+    return [
+      {
+        source: '/:path*.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
   webpack: (config, { isServer }) => {
     // Fix for Sanity/Jest worker issues
     if (!isServer) {

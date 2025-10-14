@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
 import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
+import { UTMTracker } from "@/components/utm-tracker"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
         {/* End Meta Pixel Code */}
        
 <Analytics />
+        <UTMTracker />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true} disableTransitionOnChange>
           {children}
         </ThemeProvider>
