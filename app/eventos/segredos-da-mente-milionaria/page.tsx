@@ -275,7 +275,7 @@ export default function SegredosDaMenteMilionaria() {
       </section> */}
         
       <NewsletterFormacoes
-        source="segredos-da-mente-milionaria"
+        source="Segredos da Mente Milionária"
         title="GARANTA SUA VAGA NO SEGREDOS DA MENTE MILIONÁRIA"
         description="Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o
               dinheiro. Vagas limitadas!"

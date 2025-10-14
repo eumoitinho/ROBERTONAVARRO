@@ -560,14 +560,7 @@ export default function CrencasDaRiquezaPage() {
             </div>
           </div>
 
-          <div className="flex justify-center">
-                      <EventCTAButton
-                        eduzzUrl="https://evento.blinket.com.br/crencas-da-riqueza"
-                        buttonText="GARANTIR MINHA INSCRIÇÃO"
-                        className="bg-yellow-400 hover:bg-yellow-500 text-zinc-900 font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-                        showArrow={false}
-                      />
-                    </div>
+         
 
           {/* <TicketPricingCards
             eventId={1}
