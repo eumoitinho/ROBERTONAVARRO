@@ -1,5 +1,5 @@
-import { getPostBySlug, getAllPosts } from '@/lib/basehub/queries'
-import { fallbackBlogPosts } from '@/lib/basehub/fallback-data'
+import { getPostBySlug, getAllPosts } from '@/lib/blog/queries'
+import { fallbackBlogPosts } from '@/lib/blog/fallback-data'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -18,13 +18,12 @@ export async function generateStaticParams() {
   }
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params
-  let post = await getPostBySlug(resolvedParams.slug)
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  let post = await getPostBySlug(params.slug)
 
   // Fallback to static posts if BaseHub doesn't return anything
   if (!post) {
-    post = fallbackBlogPosts.find(p => p.slug === resolvedParams.slug) || null
+    post = fallbackBlogPosts.find(p => p.slug === params.slug) || null
   }
 
   if (!post) {

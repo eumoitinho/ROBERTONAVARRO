@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { getRegistrationsByEvent } from "@/lib/db"
 import { verifyAuth } from "@/lib/auth"
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ eventId: string }> }) {
+export async function GET(request: NextRequest, { params }: { params: { eventId: string } }) {
   try {
     // Verificar autenticação
     const session = await verifyAuth(request)
@@ -10,7 +10,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json({ error: "Não autorizado" }, { status: 401 })
     }
 
-    const { eventId: eventIdParam } = await params
+    const { eventId: eventIdParam } = params
     const eventId = Number.parseInt(eventIdParam)
     if (isNaN(eventId)) {
       return NextResponse.json({ error: "ID de evento inválido" }, { status: 400 })
