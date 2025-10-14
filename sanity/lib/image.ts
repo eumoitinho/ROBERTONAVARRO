@@ -7,8 +7,8 @@ const builder = createImageUrlBuilder({
   dataset: sanityConfig.dataset,
 });
 
-export const urlForImage = (source: Image | null | undefined) => {
+export const urlForImage = (source: Image | null | undefined): string | undefined => {
   if (!source) return undefined;
 
-  return builder.image(source).auto('format');
+  return builder.image(source).auto('format').url();
 };

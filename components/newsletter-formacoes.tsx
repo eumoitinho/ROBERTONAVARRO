@@ -8,6 +8,7 @@ import { SectionBadge } from "./section-badge"
 import { submitLead } from "@/lib/actions"
 import { cn, getUTMParameters, getBrowserInfo } from "@/lib/utils"
 import { useRouter } from "next/navigation"
+import { Calendar, MapPin } from "lucide-react"
 
 // Extend the Window interface to include dataLayer
 declare global {
@@ -23,6 +24,9 @@ interface NewsletterFormacoesProps {
   source: string
   ctaText?: string
   accent?: "yellow" | "red"
+  eventDate?: string
+  eventTime?: string
+  eventLocation?: string
 }
 
 type Accent = "yellow" | "red"
@@ -86,6 +90,9 @@ export function NewsletterFormacoes({
   source,
   ctaText,
   accent = "yellow",
+  eventDate,
+  eventTime,
+  eventLocation,
 }: NewsletterFormacoesProps) {
   const router = useRouter()
   const styles = accentStyles[accent]
@@ -208,6 +215,55 @@ export function NewsletterFormacoes({
               ))}
             </h2>
             <p className="mt-4 text-lg text-zinc-300 md:text-xl">{description}</p>
+
+            {/* Seção de Data e Localização */}
+            {(eventDate || eventTime || eventLocation) && (
+              <div className="mt-12 mb-8">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                  {(eventDate || eventTime) && (
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={cn(
+                          "backdrop-blur-sm rounded-full p-4 flex-shrink-0",
+                          accent === "red" ? "bg-red-500/10" : "bg-yellow-400/10",
+                        )}
+                      >
+                        <Calendar
+                          className={cn("h-7 w-7", accent === "red" ? "text-red-400" : "text-yellow-400")}
+                        />
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
+                        <p className="text-zinc-300 text-lg">
+                          {eventDate}
+                          {eventDate && eventTime && ", "}
+                          {eventTime}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {(eventDate || eventTime) && eventLocation && (
+                    <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
+                  )}
+                  {eventLocation && (
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={cn(
+                          "backdrop-blur-sm rounded-full p-4 flex-shrink-0",
+                          accent === "red" ? "bg-red-500/10" : "bg-yellow-400/10",
+                        )}
+                      >
+                        <MapPin className={cn("h-7 w-7", accent === "red" ? "text-red-400" : "text-yellow-400")} />
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold text-white">Local</h4>
+                        <p className="text-zinc-300 text-lg">{eventLocation}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div

@@ -11,6 +11,7 @@ import NotableParticipants from "@/components/notable-persons"
 import { SectionBadge } from "@/components/section-badge"
 import Footerlp from "@/components/footerlp"
 import EventCTAButton from "@/components/event-cta-button"
+import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 
 const ticketTypes = [
   {
@@ -98,7 +99,7 @@ export default function SegredosDaMenteMilionaria() {
       <HeroPages
         title="SEGREDOS DA MENTE MILIONÁRIA"
         subtitle="Imersão exclusiva e transformadora"
-        secondtitle="Em 30 de setembro alcance a liberdade financeira com uma mudança de mentalidade"
+        secondtitle="Em 22 de outubro alcance a liberdade financeira com uma mudança de mentalidade"
         description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Alameda Araguaia, 751 - Alphaville"
         image="/images/HERO_SEGREDOS.png"
         ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
@@ -222,7 +223,7 @@ export default function SegredosDaMenteMilionaria() {
       <NotableParticipants />
       <TestimonialsSection />
 
-      <section id="inscricao" className="py-24 relative">
+      {/*<section id="inscricao" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-zinc-900/95"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(250,204,21,0.03)_0%,_rgba(39,39,42,0.1)_100%)]"></div>
@@ -246,7 +247,7 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Data e Horário</h4>
-                  <p className="text-zinc-300 text-lg">30 de setembro de 2025, 13h às 20h</p>
+                  <p className="text-zinc-300 text-lg">22 de outubro de 2025, 13h às 20h</p>
                 </div>
               </div>
               <div className="hidden md:block w-px h-16 bg-zinc-700/30"></div>
@@ -256,7 +257,7 @@ export default function SegredosDaMenteMilionaria() {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold text-white">Local</h4>
-                  <p className="text-zinc-300 text-lg">R. Alameda Araguaia, 751</p>
+                  <p className="text-zinc-300 text-lg">R. Alameda Araguaia, 751 - Alphaville, Campinas - SP</p>
                 </div>
               </div>
             </div>
@@ -271,8 +272,22 @@ export default function SegredosDaMenteMilionaria() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
         
+      <NewsletterFormacoes
+        source="Segredos da Mente Milionária"
+        title="GARANTA SUA VAGA NO SEGREDOS DA MENTE MILIONÁRIA"
+        description="Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o
+              dinheiro. Vagas limitadas!"
+        ctaText="GARANTIR MINHA VAGA AGORA!"
+        eventDate="22 de outubro de 2025"
+  eventTime="13h às 20h"
+  eventLocation="R. Alameda Araguaia, 751 - Alphaville, Campinas - SP"
+  onSubmit={() => {
+    /* não precisa mais chamar router.push aqui,
+       o componente já faz isso */
+  }}
+      />
 
       <Footerlp />
     </div>

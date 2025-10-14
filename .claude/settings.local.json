@@ -46,7 +46,9 @@
       "Bash(NODE_ENV=development pnpm next dev --port 3000)",
       "Bash(lsof:*)",
       "Bash(npx next:*)",
-      "Bash(next:*)"
+      "Bash(next:*)",
+      "Bash(tree:*)",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "defaultMode": "acceptEdits"
