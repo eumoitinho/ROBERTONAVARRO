@@ -1,9 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getRegistrationWithEventDetails } from "@/lib/db"
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ code: string }> }) {
+export async function GET(request: NextRequest, { params }: { params: { code: string } }) {
   try {
-    const { code: ticketCode } = await params
+    const { code: ticketCode } = params
 
     if (!ticketCode) {
       return NextResponse.json({ error: "Código de ticket não fornecido" }, { status: 400 })

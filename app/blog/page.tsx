@@ -9,9 +9,9 @@ import { Input } from "@/components/ui/input";
 import WhatsAppButton from "@/components/whatsapp-button";
 import Footer from "@/components/footer";
 import { SiteHeader } from "@/components/header";
-import { getAllPosts, getCategories } from '@/lib/basehub/queries';
-import { fallbackBlogPosts } from '@/lib/basehub/fallback-data';
-import type { BlogPost } from '@/lib/basehub/client';
+import { getAllPosts, getCategories } from '@/lib/blog/queries';
+import { fallbackBlogPosts } from '@/lib/blog/fallback-data';
+import type { BlogPost } from '@/lib/blog/client';
 
 
 export default function BlogPage() {

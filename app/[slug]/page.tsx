@@ -16,9 +16,8 @@ export async function generateStaticParams() {
 }
 
 // Metadata
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const page = await getPageBySlug(resolvedParams.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const page = await getPageBySlug(params.slug);
   const siteSettings = await getSiteSettings();
 
   if (!page) {
@@ -47,10 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function DynamicPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
+export default async function DynamicPage({ params }: { params: { slug: string } }) {
   const [page, siteSettings] = await Promise.all([
-    getPageBySlug(resolvedParams.slug),
+    getPageBySlug(params.slug),
     getSiteSettings(),
   ]);
 

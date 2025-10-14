@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { sql } from "@/lib/db"
 import { getUserFromSession } from "@/lib/auth"
 
-export async function PUT(request: NextRequest, { params }: { params: Promise<{ eventId: string }> }) {
+export async function PUT(request: NextRequest, { params }: { params: { eventId: string } }) {
   try {
     // Verificar autenticação
     const user = await getUserFromSession()
@@ -10,7 +10,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json({ error: "Não autorizado" }, { status: 401 })
     }
 
-    const { eventId } = await params
+    const { eventId } = params
     if (!eventId) {
       return NextResponse.json({ error: "ID do evento não fornecido" }, { status: 400 })
     }

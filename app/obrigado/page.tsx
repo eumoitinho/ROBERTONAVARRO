@@ -3,15 +3,14 @@
 import Link from "next/link"
 import Script from "next/script"
 import { Button } from "@/components/ui/button"
-import { useEffect, useMemo, use } from "react"
+import { useEffect, useMemo } from "react"
 import { CheckCircle } from "lucide-react"
 
 interface ObrigadoPageProps {
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
-  const searchParamsData = searchParams ? use(searchParams) : undefined;
   // Pega os dados da query string (SSR + fallback para client)
   const params = useMemo(() => {
     if (typeof window !== "undefined") {
@@ -20,12 +19,12 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
     // SSR fallback para Next.js
     return {
       get: (key: string) => {
-        const value = searchParamsData?.[key]
+        const value = searchParams?.[key]
         if (Array.isArray(value)) return value[0]
         return value
       },
     } as URLSearchParams
-  }, [searchParamsData])
+  }, [searchParams])
 
   // Aceita vários nomes de parâmetros da Eduzz para maior compatibilidade
   const productId = params.get("product_id") || params.get("produto")
@@ -75,7 +74,7 @@ export default function ObrigadoPage({ searchParams }: ObrigadoPageProps) {
   }, [productId, value, transactionId, ticketName, eventName, isValidPurchase])
 
   // Configuração da mensagem para o WhatsApp
-  const source = typeof searchParamsData?.source === "string" ? searchParamsData.source : "site"
+  const source = typeof searchParams?.source === "string" ? searchParams.source : "site"
   const message = encodeURIComponent(`Olá! Acabei de me inscrever no ${source} e gostaria de saber mais sobre.`)
 
   const isCompra = isValidPurchase

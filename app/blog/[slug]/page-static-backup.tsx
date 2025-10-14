@@ -10,7 +10,7 @@ import Footer from "@/components/footer";
 import { SiteHeader } from "@/components/header";
 import { ptBlogPosts } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
-import { useState, useEffect, useMemo, use } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 
 // Componente para barra de progresso de leitura
@@ -258,8 +258,8 @@ const EnhancedArticleContent = ({ content }: { content: string }) => {
   );
 };
 
-export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const [showBackToTop, setShowBackToTop] = useState(false);
   const post = ptBlogPosts.find((p) => p.slug === slug);
 
