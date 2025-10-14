@@ -1,0 +1,1191 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "siteName",
+        "type": "string",
+        "title": "Nome do Site"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "siteUrl",
+        "type": "url",
+        "title": "URL do Site"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "logo",
+        "type": "image"
+      },
+      {
+        "name": "tagline",
+        "type": "string",
+        "title": "Slogan"
+      },
+      {
+        "fields": [
+          {
+            "name": "email",
+            "type": "string",
+            "title": "E-mail"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "title": "Telefone"
+          },
+          {
+            "name": "whatsapp",
+            "type": "string",
+            "title": "WhatsApp"
+          },
+          {
+            "rows": 3,
+            "name": "address",
+            "type": "text",
+            "title": "Endereço"
+          }
+        ],
+        "name": "contact",
+        "type": "object",
+        "title": "Informações de Contato"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "facebook",
+            "type": "url"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "instagram",
+            "type": "url"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "twitter",
+            "type": "url",
+            "title": "Twitter/X"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "linkedin",
+            "type": "url",
+            "title": "LinkedIn"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "youtube",
+            "type": "url",
+            "title": "YouTube"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "tiktok",
+            "type": "url",
+            "title": "TikTok"
+          }
+        ],
+        "name": "socialMedia",
+        "type": "object",
+        "title": "Redes Sociais"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "name": "href",
+                "type": "string",
+                "title": "Link"
+              },
+              {
+                "initialValue": false,
+                "name": "isButton",
+                "type": "boolean",
+                "title": "Exibir como Botão?"
+              },
+              {
+                "initialValue": false,
+                "name": "openInNewTab",
+                "type": "boolean",
+                "title": "Abrir em Nova Aba?"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "mainNavigation",
+        "type": "array",
+        "title": "Menu de Navegação Principal"
+      },
+      {
+        "fields": [
+          {
+            "name": "copyrightText",
+            "type": "string",
+            "title": "Texto de Copyright"
+          },
+          {
+            "of": [
+              {
+                "fields": [
+                  {
+                    "name": "title",
+                    "type": "string",
+                    "title": "Título"
+                  },
+                  {
+                    "name": "href",
+                    "type": "string",
+                    "title": "Link"
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "name": "footerLinks",
+            "type": "array",
+            "title": "Links do Rodapé"
+          },
+          {
+            "initialValue": true,
+            "name": "showSocialMedia",
+            "type": "boolean",
+            "title": "Mostrar Redes Sociais?"
+          }
+        ],
+        "name": "footer",
+        "type": "object",
+        "title": "Configurações do Rodapé"
+      },
+      {
+        "fields": [
+          {
+            "name": "defaultMetaTitle",
+            "type": "string",
+            "title": "Título SEO Padrão"
+          },
+          {
+            "rows": 3,
+            "name": "defaultMetaDescription",
+            "type": "text",
+            "title": "Descrição SEO Padrão"
+          },
+          {
+            "name": "defaultOgImage",
+            "type": "image",
+            "title": "Imagem OG Padrão"
+          },
+          {
+            "name": "googleAnalyticsId",
+            "type": "string",
+            "title": "Google Analytics ID"
+          },
+          {
+            "name": "facebookPixelId",
+            "type": "string",
+            "title": "Facebook Pixel ID"
+          }
+        ],
+        "name": "seo",
+        "type": "object",
+        "title": "SEO Padrão"
+      },
+      {
+        "options": {
+          "collapsible": true,
+          "collapsed": true
+        },
+        "fields": [
+          {
+            "rows": 5,
+            "name": "headerScripts",
+            "type": "text",
+            "title": "Scripts no <head>"
+          },
+          {
+            "rows": 5,
+            "name": "bodyScripts",
+            "type": "text",
+            "title": "Scripts no <body>"
+          },
+          {
+            "rows": 5,
+            "name": "customCSS",
+            "type": "text",
+            "title": "CSS Global Customizado"
+          }
+        ],
+        "name": "scripts",
+        "type": "object",
+        "title": "Scripts e Integrações"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document",
+    "title": "Configurações do Site"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Nome interno da página (não aparece no site)",
+        "name": "title",
+        "type": "string",
+        "title": "Título da Página"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "URL única da página (ex: /eventos/mentor-milionario)",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL da Página"
+      },
+      {
+        "initialValue": true,
+        "description": "Desative para remover a página do site",
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Página Ativa?"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "title",
+            "type": "string",
+            "title": "Título Principal"
+          },
+          {
+            "rows": 3,
+            "name": "subtitle",
+            "type": "text",
+            "title": "Subtítulo"
+          },
+          {
+            "rows": 4,
+            "name": "description",
+            "type": "text",
+            "title": "Descrição"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Texto Alternativo"
+              }
+            ],
+            "name": "backgroundImage",
+            "type": "image",
+            "title": "Imagem de Fundo"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Preto/Cinza Escuro",
+                  "value": "bg-zinc-950"
+                },
+                {
+                  "title": "Gradiente Dourado",
+                  "value": "bg-gradient-to-r from-yellow-500 to-amber-600"
+                },
+                {
+                  "title": "Gradiente Escuro",
+                  "value": "bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900"
+                },
+                {
+                  "title": "Transparente",
+                  "value": "bg-transparent"
+                }
+              ]
+            },
+            "initialValue": "bg-zinc-950",
+            "name": "backgroundColor",
+            "type": "string",
+            "title": "Cor de Fundo (se não usar imagem)"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Branco",
+                  "value": "text-white"
+                },
+                {
+                  "title": "Preto",
+                  "value": "text-black"
+                },
+                {
+                  "title": "Dourado",
+                  "value": "text-yellow-500"
+                }
+              ]
+            },
+            "initialValue": "text-white",
+            "name": "textColor",
+            "type": "string",
+            "title": "Cor do Texto"
+          },
+          {
+            "fields": [
+              {
+                "name": "text",
+                "type": "string",
+                "title": "Texto do Botão"
+              },
+              {
+                "name": "link",
+                "type": "string"
+              },
+              {
+                "initialValue": false,
+                "name": "openInNewTab",
+                "type": "boolean",
+                "title": "Abrir em Nova Aba?"
+              }
+            ],
+            "name": "primaryButton",
+            "type": "object",
+            "title": "Botão Principal"
+          },
+          {
+            "fields": [
+              {
+                "name": "text",
+                "type": "string",
+                "title": "Texto do Botão"
+              },
+              {
+                "name": "link",
+                "type": "string"
+              },
+              {
+                "initialValue": false,
+                "name": "openInNewTab",
+                "type": "boolean",
+                "title": "Abrir em Nova Aba?"
+              }
+            ],
+            "name": "secondaryButton",
+            "type": "object",
+            "title": "Botão Secundário (Opcional)"
+          }
+        ],
+        "name": "heroSection",
+        "type": "object",
+        "title": "Seção Hero (Topo da Página)"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "name": "href",
+                      "type": "string",
+                      "title": "URL"
+                    },
+                    {
+                      "initialValue": false,
+                      "name": "blank",
+                      "type": "boolean",
+                      "title": "Abrir em nova aba?"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Negrito"
+                },
+                {
+                  "value": "em",
+                  "title": "Itálico"
+                },
+                {
+                  "value": "underline",
+                  "title": "Sublinhado"
+                },
+                {
+                  "value": "highlight",
+                  "title": "Destaque Dourado"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Lista com marcadores"
+              },
+              {
+                "value": "number",
+                "title": "Lista numerada"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "H1"
+              },
+              {
+                "value": "h2",
+                "title": "H2"
+              },
+              {
+                "value": "h3",
+                "title": "H3"
+              },
+              {
+                "value": "h4",
+                "title": "H4"
+              },
+              {
+                "value": "blockquote",
+                "title": "Citação"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Texto Alternativo"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Legenda"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "mainContent",
+        "type": "array",
+        "title": "Conteúdo Principal"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "name": "subtitle",
+                "type": "string",
+                "title": "Subtítulo"
+              },
+              {
+                "rows": 8,
+                "name": "content",
+                "type": "text",
+                "title": "Conteúdo"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Transparente",
+                      "value": "bg-transparent"
+                    },
+                    {
+                      "title": "Cinza Escuro",
+                      "value": "bg-zinc-900"
+                    },
+                    {
+                      "title": "Dourado",
+                      "value": "bg-gradient-to-r from-yellow-500 to-amber-600"
+                    }
+                  ]
+                },
+                "name": "backgroundColor",
+                "type": "string",
+                "title": "Cor de Fundo"
+              }
+            ],
+            "type": "object",
+            "name": "textSection",
+            "title": "Seção de Texto"
+          },
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "fields": [
+                  {
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Texto Alternativo"
+                  }
+                ],
+                "name": "image",
+                "type": "image",
+                "title": "Imagem"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Legenda"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Imagem à Esquerda",
+                      "value": "left"
+                    },
+                    {
+                      "title": "Imagem à Direita",
+                      "value": "right"
+                    },
+                    {
+                      "title": "Imagem no Centro",
+                      "value": "center"
+                    },
+                    {
+                      "title": "Imagem em Tela Cheia",
+                      "value": "full"
+                    }
+                  ]
+                },
+                "name": "layout",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "imageSection",
+            "title": "Seção com Imagem"
+          },
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "title": "Descrição"
+              },
+              {
+                "name": "buttonText",
+                "type": "string",
+                "title": "Texto do Botão"
+              },
+              {
+                "name": "buttonLink",
+                "type": "string",
+                "title": "Link do Botão"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Dourado",
+                      "value": "gold"
+                    },
+                    {
+                      "title": "Preto",
+                      "value": "dark"
+                    },
+                    {
+                      "title": "Branco",
+                      "value": "light"
+                    }
+                  ]
+                },
+                "name": "style",
+                "type": "string",
+                "title": "Estilo"
+              }
+            ],
+            "type": "object",
+            "name": "ctaSection",
+            "title": "Seção de Call-to-Action"
+          },
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Título da Seção"
+              },
+              {
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "name": "icon",
+                        "type": "string",
+                        "title": "Ícone (emoji ou texto)"
+                      },
+                      {
+                        "name": "title",
+                        "type": "string",
+                        "title": "Título"
+                      },
+                      {
+                        "name": "description",
+                        "type": "text",
+                        "title": "Descrição"
+                      }
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "name": "features",
+                "type": "array",
+                "title": "Benefícios"
+              }
+            ],
+            "type": "object",
+            "name": "featuresSection",
+            "title": "Seção de Benefícios/Características"
+          },
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "videoUrl",
+                "type": "url",
+                "title": "URL do Vídeo (YouTube/Vimeo)"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "title": "Descrição"
+              }
+            ],
+            "type": "object",
+            "name": "videoSection",
+            "title": "Seção de Vídeo"
+          }
+        ],
+        "name": "contentSections",
+        "type": "array",
+        "title": "Seções de Conteúdo"
+      },
+      {
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Texto Alternativo"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Legenda"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Galeria de Imagens"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "name",
+                "type": "string",
+                "title": "Nome"
+              },
+              {
+                "name": "role",
+                "type": "string",
+                "title": "Cargo/Função"
+              },
+              {
+                "rows": 4,
+                "name": "content",
+                "type": "text",
+                "title": "Depoimento"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image",
+                "title": "Foto"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "min",
+                        "constraint": 1
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 5
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "rating",
+                "type": "number",
+                "title": "Avaliação (1-5)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "testimonials",
+        "type": "array",
+        "title": "Depoimentos"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "question",
+                "type": "string",
+                "title": "Pergunta"
+              },
+              {
+                "rows": 4,
+                "name": "answer",
+                "type": "text",
+                "title": "Resposta"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "faq",
+        "type": "array",
+        "title": "Perguntas Frequentes (FAQ)"
+      },
+      {
+        "options": {
+          "collapsible": true,
+          "collapsed": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 60
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Título que aparece nos resultados de busca (máx. 60 caracteres)",
+            "name": "metaTitle",
+            "type": "string",
+            "title": "Título SEO"
+          },
+          {
+            "rows": 3,
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Descrição que aparece nos resultados de busca (máx. 160 caracteres)",
+            "name": "metaDescription",
+            "type": "text",
+            "title": "Descrição SEO"
+          },
+          {
+            "options": {
+              "layout": "tags"
+            },
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "keywords",
+            "type": "array",
+            "title": "Palavras-chave"
+          },
+          {
+            "description": "Imagem que aparece quando a página é compartilhada em redes sociais (1200x630px recomendado)",
+            "name": "ogImage",
+            "type": "image",
+            "title": "Imagem de Compartilhamento (Open Graph)"
+          },
+          {
+            "initialValue": false,
+            "description": "Impede que a página apareça nos resultados de busca",
+            "name": "noIndex",
+            "type": "boolean",
+            "title": "Não indexar esta página?"
+          }
+        ],
+        "name": "seo",
+        "type": "object",
+        "title": "SEO & Metadados"
+      },
+      {
+        "options": {
+          "collapsible": true,
+          "collapsed": true
+        },
+        "fields": [
+          {
+            "initialValue": true,
+            "name": "showHeader",
+            "type": "boolean",
+            "title": "Mostrar Cabeçalho?"
+          },
+          {
+            "initialValue": true,
+            "name": "showFooter",
+            "type": "boolean",
+            "title": "Mostrar Rodapé?"
+          },
+          {
+            "initialValue": true,
+            "name": "showWhatsAppButton",
+            "type": "boolean",
+            "title": "Mostrar Botão do WhatsApp?"
+          },
+          {
+            "rows": 5,
+            "description": "CSS personalizado para esta página específica",
+            "name": "customCSS",
+            "type": "text",
+            "title": "CSS Customizado"
+          }
+        ],
+        "name": "settings",
+        "type": "object",
+        "title": "Configurações da Página"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Homepage",
+              "value": "homepage"
+            },
+            {
+              "title": "Evento",
+              "value": "event"
+            },
+            {
+              "title": "Formação",
+              "value": "formation"
+            },
+            {
+              "title": "Livro",
+              "value": "book"
+            },
+            {
+              "title": "Landing Page",
+              "value": "landing"
+            },
+            {
+              "title": "Institucional",
+              "value": "institutional"
+            },
+            {
+              "title": "Blog",
+              "value": "blog"
+            },
+            {
+              "title": "Outra",
+              "value": "other"
+            }
+          ]
+        },
+        "initialValue": "other",
+        "name": "pageType",
+        "type": "string",
+        "title": "Tipo de Página"
+      },
+      {
+        "initialValue": 0,
+        "description": "Ordem de exibição no menu (menor número aparece primeiro)",
+        "name": "order",
+        "type": "number",
+        "title": "Ordem de Exibição"
+      }
+    ],
+    "name": "page",
+    "type": "document",
+    "title": "Página"
+  }
+]
