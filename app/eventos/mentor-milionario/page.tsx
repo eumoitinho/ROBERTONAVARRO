@@ -40,6 +40,7 @@ import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
 import NotableParticipants from "@/components/notable-persons"
 import { SectionBadge } from "@/components/section-badge"
 import EventCTAButton from "@/components/event-cta-button"
+import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 
 export default function MentorMilionario() {
   const [isVisible, setIsVisible] = useState(false)
@@ -614,14 +615,17 @@ export default function MentorMilionario() {
             </div>
           </div>
 
-          <div className="flex justify-center">
-                      <EventCTAButton
-              eduzzUrl="https://evento.blinket.com.br/mentor-milionario"
-              buttonText="GARANTIR MINHA INSCRIÇÃO"
-              className="bg-yellow-400 hover:bg-yellow-500 text-zinc-900 font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-              showArrow={false}
-            />
-                    </div>
+          <NewsletterFormacoes
+        source="Mentor Milionário"
+        title="GARANTA SUA VAGA NO MENTOR MILIONÁRIO"
+        description="Participe do evento Mentor Milionário e comece a mudar sua relação com o dinheiro. Vagas
+              limitadas!"
+        ctaText="GARANTIR MINHA VAGA AGORA!"
+        onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }}
+      />
 
           {/* <TicketPricingCards
             eventId={1}

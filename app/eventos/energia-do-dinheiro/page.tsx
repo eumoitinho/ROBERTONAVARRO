@@ -307,7 +307,7 @@ export default function EnergiaDodinheiroPage() {
       <NewsletterFormacoes
         source="Energia do Dinheiro"
         title="GARANTA SUA VAGA NO ENERGIA DO DINHEIRO"
-        description="Preencha o formulário abaixo e reserve sua vaga neste evento transformador que acontece no dia 07 de outubro, das 13h às 20h."
+        description="Preencha o formulário abaixo e fique atento ao próximo evento"
         ctaText="GARANTIR MINHA VAGA AGORA!"
         onSubmit={() => {
           /* não precisa mais chamar router.push aqui,

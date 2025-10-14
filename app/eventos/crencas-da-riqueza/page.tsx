@@ -687,7 +687,16 @@ export default function CrencasDaRiquezaPage() {
         </div>
       </section>
 
-      
+      <NewsletterFormacoes
+        source="Crenças da Riqueza"
+        title="GARANTA SUA VAGA NO CRENÇAS DA RIQUEZA"
+        description="Preencha o formulário abaixo e fique ligado no próximo evento"
+        ctaText="GARANTIR MINHA VAGA AGORA!"
+        onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }}
+      />
 
       <Footer />
       <WhatsappButton
@@ -708,4 +717,5 @@ import NotableParticipants from "@/components/notable-persons"
 import TransformationVideos from "@/components/transformation-videos" 
 import WhatsappButton from "@/components/whatsapp-button"
 import EventCTAButton from "@/components/event-cta-button"
+import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 

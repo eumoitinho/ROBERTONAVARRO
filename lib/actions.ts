@@ -26,10 +26,48 @@ const LEADLOVERS_SEQUENCE_CODE = 1554588
 const LEADLOVERS_LEVEL_CODE = 1
 const LEADLOVERS_TAG = 649481
 
+// Mapeamento de webhooks por evento/página
+const WEBHOOK_URLS: Record<string, string> = {
+  // Energia do Dinheiro
+  "energia-do-dinheiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/10bb731833c0cc2e49ec0c08a84f795bce797dade58f1dec712c864bb5fb17f9",
+  "Energia do Dinheiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/10bb731833c0cc2e49ec0c08a84f795bce797dade58f1dec712c864bb5fb17f9",
+  
+  // Mentor Milionário
+  "mentor-milionario": "https://data.widgets.wearekwid.com/api/webhook/34323419/b73e5487da23018fccd52f8b185dec90fe7295c8daf1277654f634a07a75a937",
+  "Mentor Milionário": "https://data.widgets.wearekwid.com/api/webhook/34323419/b73e5487da23018fccd52f8b185dec90fe7295c8daf1277654f634a07a75a937",
+  
+  // Crenças da Riqueza
+  "crencas": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  "Crenças": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  "crencas-da-riqueza": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  "Crenças da Riqueza": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  
+  // Segredos da Mente Milionária
+  "segredos-da-mente-milionaria": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
+  "Segredos da Mente Milionária": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
+  
+  // Educador Financeiro (webhook padrão)
+  "default": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde"
+}
+
+/**
+ * Determina o webhook correto baseado na origem do lead
+ */
+function getWebhookUrl(source: string): string {
+  // Normaliza o source para comparação
+  const normalizedSource = source.toLowerCase().trim()
+  
+  // Verifica se há um webhook específico para esse source
+  const webhookUrl = WEBHOOK_URLS[source] || WEBHOOK_URLS[normalizedSource] || WEBHOOK_URLS["default"]
+  
+  console.log(`[Webhook] Source: "${source}" -> URL: ${webhookUrl.substring(0, 60)}...`)
+  
+  return webhookUrl
+}
+
 export async function submitLead(data: LeadData) {
   try {
-    const kommoWebhookUrl =
-      "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde"
+    const kommoWebhookUrl = getWebhookUrl(data.source)
 
     const payload = {
       name: data.name,
