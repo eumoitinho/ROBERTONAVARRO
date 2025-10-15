@@ -123,8 +123,8 @@ export default function HomePageClient({ data }: Props) {
                 <p className="text-zinc-300 mb-6 flex-1">{card.description}</p>
                 <div className="mt-auto">
                   <Button asChild className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full">
-                    <Link href={card.link}>
-                      {card.buttonText} <ArrowRight className="ml-2 h-4 w-4" />
+                    <Link href={card.link || '#'}>
+                      {(card.buttonText || 'SAIBA MAIS')} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
