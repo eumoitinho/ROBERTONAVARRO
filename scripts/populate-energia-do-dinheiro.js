@@ -3,7 +3,7 @@ const { createClient } = require('@sanity/client');
 const client = createClient({
   projectId: 'c2lnfkl6',
   dataset: 'production',
-  token: process.env.SANITY_API_TOKEN,
+  token: 'skWAAvzokKB69IMln1BX1fFOlKIVEVrjpLV1T8oO8PFGAiafhJLIsAmj6lez1rciKRVZ5OZvJXANnJA6OK3XyP5BeVRiB68ji4YdW6IsaTNn7aoYLKhSxHEgK4nSy6BAdheiOMV8v29gsikB7yE4tbAeLuBuckLPbwxrz0gO7hV8Q4Mn9Sr9',
   useCdn: false,
   apiVersion: '2024-01-01',
 });
