@@ -1,9 +1,21 @@
 #!/usr/bin/env node
 // Popula/atualiza o documento da homepage no Sanity via HTTP API
 
+try {
+  // Carrega .env.local se existir
+  const { config } = require('dotenv')
+  config({ path: '.env.local' })
+  config()
+} catch (_) {}
+
 const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_DATASET || process.env.SANITY_STUDIO_DATASET
-const TOKEN = process.env.SANITY_API_WRITE_TOKEN
+const TOKEN =
+  process.env.SANITY_API_WRITE_TOKEN ||
+  process.env.SANITY_WRITE_TOKEN ||
+  process.env.SANITY_API_TOKEN ||
+  process.env.SANITY_TOKEN ||
+  process.env.SANITY_STUDIO_TOKEN
 const API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2023-10-01'
 
 if (!PROJECT_ID || !DATASET || !TOKEN) {
