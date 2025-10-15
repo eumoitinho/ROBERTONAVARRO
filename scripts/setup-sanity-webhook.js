@@ -44,11 +44,11 @@ async function setupWebhook() {
     console.log('3. Vá em "API" → "Webhooks"');
     console.log('4. Clique em "Create webhook"');
     console.log('5. Preencha:\n');
-    console.log(`   Name: Content Revalidation (Homepage + Events)`);
+    console.log(`   Name: Homepage Revalidation`);
     console.log(`   URL: ${webhookUrl}`);
     console.log(`   Dataset: ${client.config().dataset}`);
     console.log(`   Trigger on: Create, Update, Delete`);
-    console.log(`   Filter: _type == "homepage" || _type == "eventPage"`);
+    console.log(`   Filter: _type == "homepage"`);
     console.log(`   HTTP method: POST`);
     console.log(`   API version: v2024-01-01`);
     console.log(`   Include drafts: No`);
