@@ -43,7 +43,7 @@ export default function FormationPageClientWrapper({ data }: Props) {
 
       {/* Hero Section */}
       <HeroPages
-        title={data.hero?.title || data.title || "Formação" || "Formação"}
+        title={data.hero?.title || data.title || "Formação"}
         subtitle={data.hero?.subtitle || ''}
         secondtitle={data.hero?.description || ''}
         description=""
