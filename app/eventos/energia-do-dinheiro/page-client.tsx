@@ -187,7 +187,7 @@ export default function EventPageClientWrapper({ data }: Props) {
                   className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 hover:border-yellow-500/50 transition-all duration-300"
                 >
                   <div className="text-3xl font-bold text-yellow-400 mb-4">
-                    {index + 1}
+                    {step.step}
                   </div>
                   <h3 className="text-lg font-bold mb-2">
                     {step.title}
