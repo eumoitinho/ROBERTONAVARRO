@@ -11,7 +11,8 @@
     "populate-homepage": "node scripts/populate-homepage.js",
     "sanity-setup": "node scripts/populate-homepage.js",
     "setup-webhook": "node scripts/setup-sanity-webhook.js",
-    "populate-crencas": "node scripts/populate-crencas-da-riqueza.js"
+    "populate-crencas": "node scripts/populate-crencas-da-riqueza.js",
+    "populate-energia": "node scripts/populate-energia-do-dinheiro.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
