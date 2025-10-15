@@ -1,0 +1,37 @@
+╔════════════════════════════════════════════════════╗
+║   ⚠️  ERRO: Workspace missing context value       ║
+╠════════════════════════════════════════════════════╣
+║                                                    ║
+║  CAUSA: Variáveis Sanity não configuradas          ║
+║                                                    ║
+║  ✅ SOLUÇÃO RÁPIDA (1 min):                        ║
+║  ────────────────────────────────────              ║
+║  Voltar para homepage hardcoded:                   ║
+║                                                    ║
+║  cp __archive__/page-hardcoded-backup.tsx \        ║
+║     app/page.tsx                                   ║
+║  rm app/page-client.tsx                            ║
+║  npm run dev                                       ║
+║                                                    ║
+║  ✅ Funciona imediatamente!                        ║
+║                                                    ║
+║  ────────────────────────────────────              ║
+║                                                    ║
+║  ✨ SOLUÇÃO COMPLETA (15 min):                     ║
+║  ────────────────────────────────────              ║
+║  Configurar Sanity:                                ║
+║                                                    ║
+║  1. https://sanity.io/manage                       ║
+║  2. Criar projeto                                  ║
+║  3. Copiar Project ID                              ║
+║  4. Criar .env.local:                              ║
+║     NEXT_PUBLIC_SANITY_PROJECT_ID=id_aqui          ║
+║     NEXT_PUBLIC_SANITY_DATASET=production          ║
+║  5. npm run dev                                    ║
+║  6. npm run studio                                 ║
+║                                                    ║
+║  Ver guia completo:                                ║
+║  docs/SANITY_ENV_SETUP.md                          ║
+║  RESOLVER_ERRO_SANITY.md                           ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝

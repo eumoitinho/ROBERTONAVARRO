@@ -1,157 +1,20 @@
-import { sanityClient } from './client';
-import { homepageQuery } from './homepage-queries';
+const { createClient } = require('@sanity/client');
+require('dotenv').config({ path: '.env.local' });
 
-// ========================================
-// INTERFACES TYPESCRIPT COMPLETAS
-// ========================================
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET,
+  token: process.env.SANITY_API_TOKEN,
+  apiVersion: '2024-01-01',
+  useCdn: false,
+});
 
-export interface HomepageHeroSection {
-  badge: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  backgroundImage?: {
-    asset: any;
-    hotspot?: any;
-    crop?: any;
-  };
-  primaryButtonText: string;
-  primaryButtonLink: string;
-  achievementsNumber: string;
-  achievementsLabel: string;
-}
-
-export interface FormacaoCard {
-  title: string;
-  description: string;
-  link: string;
-  buttonText: string;
-}
-
-export interface FormacoesSection {
-  badge: string;
-  title: string;
-  highlightedText: string;
-  description: string;
-  formacoes: FormacaoCard[];
-}
-
-export interface MentorStat {
-  icon: 'users' | 'star' | 'book' | 'video';
-  value: string;
-  label: string;
-}
-
-export interface MentorSection {
-  badge: string;
-  title: string;
-  highlightedText: string;
-  subtitle: string;
-  backgroundImage?: {
-    asset: any;
-  };
-  bioParagraphs: string[];
-  stats: MentorStat[];
-}
-
-export interface TransformationVideo {
-  youtubeId: string;
-  title: string;
-  person: string;
-  description: string;
-  chipLabel: string;
-  thumbnail?: {
-    asset: any;
-  };
-}
-
-export interface VideoStat {
-  icon: 'star' | 'zap' | 'brain';
-  title: string;
-  description: string;
-}
-
-export interface VideosSection {
-  badge: string;
-  title: string;
-  highlightedText: string;
-  description: string;
-  videos: TransformationVideo[];
-  stats: VideoStat[];
-  ctaButtonText: string;
-  ctaButtonLink: string;
-}
-
-export interface Testimonial {
-  name: string;
-  role: string;
-  initial: string;
-  quote: string;
-  rating: number;
-  image?: {
-    asset: any;
-  };
-}
-
-export interface TestimonialsSection {
-  badge: string;
-  title: string;
-  highlightedText: string;
-  description: string;
-  testimonials: Testimonial[];
-  ctaText: string;
-  ctaButtonText: string;
-  ctaButtonLink: string;
-}
-
-export interface LocationSection {
-  show: boolean;
-  address?: string;
-  phone?: string;
-  email?: string;
-  mapEmbedUrl?: string;
-}
-
-export interface SectionControls {
-  showMentorSection: boolean;
-  showVideosSection: boolean;
-  showTestimonialsSection: boolean;
-  showLocationSection: boolean;
-  showEventPopup: boolean;
-}
-
-export interface SEO {
-  metaTitle?: string;
-  metaDescription?: string;
-  keywords?: string[];
-  ogImage?: {
-    asset: any;
-  };
-}
-
-export interface HomepageData {
-  _id: string;
-  _type: 'homepage';
-  title: string;
-  heroSection: HomepageHeroSection;
-  formacoesSection: FormacoesSection;
-  mentorSection: MentorSection;
-  videosSection: VideosSection;
-  testimonialsSection: TestimonialsSection;
-  locationSection: LocationSection;
-  sectionControls: SectionControls;
-  seo?: SEO;
-}
-
-// ========================================
-// FALLBACK DATA COMPLETO
-// ========================================
-
-export const fallbackHomepageData: HomepageData = {
-  _id: 'homepage-fallback',
+const homepageData = {
   _type: 'homepage',
+  _id: 'homepage-main',
   title: 'Homepage Principal',
   
+  // Hero Section
   heroSection: {
     badge: 'INSTITUTO COACHING FINANCEIRO',
     title: 'TRANSFORME SUA MENTALIDADE',
@@ -163,6 +26,7 @@ export const fallbackHomepageData: HomepageData = {
     achievementsLabel: 'vidas transformadas',
   },
   
+  // Formações Section
   formacoesSection: {
     badge: 'NOSSAS FORMAÇÕES',
     title: 'FORMAÇÕES QUE VÃO TRANSFORMAR SUA MENTALIDADE',
@@ -220,6 +84,7 @@ export const fallbackHomepageData: HomepageData = {
     ],
   },
   
+  // Mentor Section
   mentorSection: {
     badge: 'MENTOR',
     title: 'CONHEÇA SEU MENTOR',
@@ -238,6 +103,7 @@ export const fallbackHomepageData: HomepageData = {
     ],
   },
   
+  // Videos Section
   videosSection: {
     badge: 'TRANSFORMAÇÃO REAL',
     title: 'VEJA COMO NOSSOS ALUNOS TRANSFORMARAM SUAS VIDAS FINANCEIRAS',
@@ -265,9 +131,10 @@ export const fallbackHomepageData: HomepageData = {
     ctaButtonLink: '#inscricao',
   },
   
+  // Testimonials Section
   testimonialsSection: {
     badge: 'DEPOIMENTOS',
-    title: 'O QUE NOSSO ALUNOS DIZEM',
+    title: 'O QUE NOSSOS ALUNOS DIZEM',
     highlightedText: 'ALUNOS DIZEM',
     description: 'Conheça as histórias de transformação de pessoas que já passaram pelos nossos programas.',
     testimonials: [
@@ -298,10 +165,16 @@ export const fallbackHomepageData: HomepageData = {
     ctaButtonLink: '#inscricao',
   },
   
+  // Location Section
   locationSection: {
     show: true,
+    address: 'Av. Contorno, 8395 - sala 403, Lourdes, Belo Horizonte - MG, 30110-130',
+    phone: '+55 (31) 3515-3920',
+    email: 'contato@robertonavarro.com.br',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.733889379698!2d-43.95082732447524!3d-19.939468681437743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa699f5d3d0a00d%3A0x7dcfd6e5ed69c5e6!2sAv.%20do%20Contorno%2C%208395%20-%20Santo%20Agostinho%2C%20Belo%20Horizonte%20-%20MG%2C%2030110-130!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr',
   },
   
+  // Section Controls
   sectionControls: {
     showMentorSection: true,
     showVideosSection: true,
@@ -310,6 +183,7 @@ export const fallbackHomepageData: HomepageData = {
     showEventPopup: false,
   },
   
+  // SEO
   seo: {
     metaTitle: 'Roberto Navarro | Transforme sua Mentalidade',
     metaDescription: 'Descubra as chaves para destravar uma mentalidade de riqueza e alcançar novos patamares no seu negócio.',
@@ -324,53 +198,65 @@ export const fallbackHomepageData: HomepageData = {
   },
 };
 
-// ========================================
-// API FUNCTION
-// ========================================
-
-export async function getHomepage(): Promise<HomepageData> {
+async function populateHomepage() {
   try {
-    const homepage = await sanityClient.fetch<HomepageData>(homepageQuery);
+    console.log('🚀 Iniciando população da homepage no Sanity...\n');
     
-    if (!homepage) {
-      console.log('[Homepage] Usando fallback data (Sanity não configurado)');
-      return fallbackHomepageData;
+    console.log('📊 Configuração:');
+    console.log(`   Project ID: ${client.config().projectId}`);
+    console.log(`   Dataset: ${client.config().dataset}\n`);
+    
+    // Verificar se já existe
+    console.log('🔍 Verificando se já existe uma homepage...');
+    const existing = await client.fetch(`*[_type == "homepage"][0]`);
+    
+    if (existing) {
+      console.log('⚠️  Homepage já existe!');
+      console.log(`   ID: ${existing._id}`);
+      console.log(`   Título: ${existing.title}\n`);
+      
+      console.log('❓ Deseja sobrescrever? (O script vai criar um novo documento)');
+      console.log('   Para deletar o existente, use: npm run sanity-delete\n');
+      
+      // Criar com ID diferente para não sobrescrever
+      homepageData._id = `homepage-${Date.now()}`;
+      console.log(`📝 Criando nova homepage com ID: ${homepageData._id}\n`);
     }
     
-    // Garantir que todos os campos obrigatórios existam (merge com fallback)
-    return {
-      ...fallbackHomepageData,
-      ...homepage,
-      heroSection: { ...fallbackHomepageData.heroSection, ...homepage.heroSection },
-      formacoesSection: { 
-        ...fallbackHomepageData.formacoesSection, 
-        ...homepage.formacoesSection,
-        formacoes: homepage.formacoesSection?.formacoes || fallbackHomepageData.formacoesSection.formacoes,
-      },
-      mentorSection: { 
-        ...fallbackHomepageData.mentorSection, 
-        ...homepage.mentorSection,
-        bioParagraphs: homepage.mentorSection?.bioParagraphs || fallbackHomepageData.mentorSection.bioParagraphs,
-        stats: homepage.mentorSection?.stats || fallbackHomepageData.mentorSection.stats,
-      },
-      videosSection: { 
-        ...fallbackHomepageData.videosSection, 
-        ...homepage.videosSection,
-        videos: homepage.videosSection?.videos || fallbackHomepageData.videosSection.videos,
-        stats: homepage.videosSection?.stats || fallbackHomepageData.videosSection.stats,
-      },
-      testimonialsSection: { 
-        ...fallbackHomepageData.testimonialsSection, 
-        ...homepage.testimonialsSection,
-        testimonials: homepage.testimonialsSection?.testimonials || fallbackHomepageData.testimonialsSection.testimonials,
-      },
-      locationSection: { ...fallbackHomepageData.locationSection, ...homepage.locationSection },
-      sectionControls: { ...fallbackHomepageData.sectionControls, ...homepage.sectionControls },
-      seo: { ...fallbackHomepageData.seo, ...homepage.seo },
-    };
+    console.log('💾 Criando documento no Sanity...');
+    const result = await client.create(homepageData);
+    
+    console.log('\n✅ Homepage populada com sucesso!');
+    console.log(`   ID: ${result._id}`);
+    console.log(`   Rev: ${result._rev}\n`);
+    
+    console.log('📊 Estatísticas:');
+    console.log(`   - Hero Section: ✅`);
+    console.log(`   - ${homepageData.formacoesSection.formacoes.length} Formações: ✅`);
+    console.log(`   - ${homepageData.mentorSection.bioParagraphs.length} Parágrafos Mentor: ✅`);
+    console.log(`   - ${homepageData.videosSection.videos.length} Vídeos: ✅`);
+    console.log(`   - ${homepageData.testimonialsSection.testimonials.length} Depoimentos: ✅`);
+    console.log(`   - Localização: ✅`);
+    console.log(`   - Controles: ✅`);
+    console.log(`   - SEO: ✅\n`);
+    
+    console.log('🎉 Pronto! Acesse o Studio para ver o conteúdo:');
+    console.log('   http://localhost:3000/studio\n');
+    
   } catch (error) {
-    console.error('[Homepage] Erro ao buscar do Sanity:', error);
-    return fallbackHomepageData;
+    console.error('\n❌ Erro ao popular homepage:');
+    console.error(error.message);
+    
+    if (error.message.includes('projectId')) {
+      console.log('\n💡 Dica: Verifique se as variáveis de ambiente estão configuradas em .env.local');
+      console.log('   - NEXT_PUBLIC_SANITY_PROJECT_ID');
+      console.log('   - NEXT_PUBLIC_SANITY_DATASET');
+      console.log('   - SANITY_API_TOKEN\n');
+    }
+    
+    process.exit(1);
   }
 }
+
+populateHomepage();
 

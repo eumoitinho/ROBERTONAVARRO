@@ -6,14 +6,14 @@ import Link from "next/link"
 import { ArrowRight, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import WhatsAppButton from "@/components/shared/whatsapp-button"
-import LocationMap from "@/components/events/location-map"
-import { TestimonialsSection } from "@/components/marketing/testimonials-section"
 import Footer from "@/components/layout/footer"
 import { useClickOutside } from "@/hooks/use-click-outside"
 import { SiteHeader } from "@/components/layout/header"
-import QuemSomosSection from "@/components/marketing/mentor"
-import TransformationVideos from "@/components/marketing/transformation-videos"
 import EventPopup from "@/components/events/event-popup"
+import MentorEditable from "@/components/marketing/mentor-editable"
+import TransformationVideosEditable from "@/components/marketing/transformation-videos-editable"
+import TestimonialsSectionEditable from "@/components/marketing/testimonials-section-editable"
+import LocationMapEditable from "@/components/events/location-map-editable"
 import type { HomepageData } from "@/sanity/lib/homepage-api"
 import { urlForImage } from "@/sanity/lib/image"
 
@@ -57,14 +57,14 @@ export default function HomePage({ data }: HomePageProps) {
     document.head.appendChild(style)
 
     // Show event popup after 3 seconds (se habilitado)
-    if (data.showEventPopup) {
+    if (data.sectionControls.showEventPopup) {
       const popupTimer = setTimeout(() => {
         setShowEventPopup(true)
       }, 3000)
 
       return () => clearTimeout(popupTimer)
     }
-  }, [data.showEventPopup])
+  }, [data.sectionControls.showEventPopup])
 
   // Dados do Sanity
   const heroSection = data.heroSection
@@ -226,10 +226,10 @@ export default function HomePage({ data }: HomePageProps) {
       </section>
 
       {/* Seções Adicionais - CONDICIONAIS */}
-      {data.showQuemSomosSection && <QuemSomosSection />}
-      {data.showTransformationVideos && <TransformationVideos />}
-      {data.showTestimonials && <TestimonialsSection />}
-      {data.showLocationMap && <LocationMap />}
+      {data.sectionControls.showMentorSection && <MentorEditable data={data.mentorSection} />}
+      {data.sectionControls.showVideosSection && <TransformationVideosEditable data={data.videosSection} />}
+      {data.sectionControls.showTestimonialsSection && <TestimonialsSectionEditable data={data.testimonialsSection} />}
+      {data.sectionControls.showLocationSection && <LocationMapEditable data={data.locationSection} />}
 
       {/* Footer */}
       <Footer />
@@ -238,7 +238,7 @@ export default function HomePage({ data }: HomePageProps) {
       <WhatsAppButton />
 
       {/* Event Popup - CONDICIONAL */}
-      {showEventPopup && data.showEventPopup && (
+      {showEventPopup && data.sectionControls.showEventPopup && (
         <EventPopup isVisible={showEventPopup} onClose={() => setShowEventPopup(false)} />
       )}
     </div>
