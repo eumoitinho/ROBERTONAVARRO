@@ -6,9 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useToast } from "@/hooks/use-toast"
-import { UserSettingsForm } from "@/components/user-settings-form"
-import { EventSettingsForm } from "@/components/event-settings-form"
-import { SystemSettingsForm } from "@/components/system-settings-form"
+import { UserSettingsForm } from "@/components/admin/user-settings-form"
+import { EventSettingsForm } from "@/components/admin/event-settings-form"
+import { SystemSettingsForm } from "@/components/admin/system-settings-form"
 
 export default function ConfiguracoesPage() {
   const { toast } = useToast()

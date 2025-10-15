@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { exchangeCodeForToken } from "@/lib/eduzz-auth"
+import { exchangeCodeForToken } from "@/lib/api/eduzz-auth"
 
 export const dynamic = 'force-dynamic'
 

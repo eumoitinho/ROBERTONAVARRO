@@ -1,6 +1,6 @@
 import { Suspense } from "react"
-import { getEventBySlug } from "@/lib/db"
-import { RegistrationForm } from "@/components/registration-form"
+import { getEventBySlug } from "@/lib/database/db"
+import { RegistrationForm } from "@/components/admin/registration-form"
 import { notFound } from "next/navigation"
 
 export default async function InscricaoPage({

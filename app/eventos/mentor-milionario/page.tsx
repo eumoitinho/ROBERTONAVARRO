@@ -27,20 +27,20 @@ import {
   Trophy,
   Briefcase
 } from "lucide-react"
-import Logo from "@/components/logo"
-import MobileMenu from "@/components/mobile-menu"
-import WhatsAppButton from "@/components/whatsapp-button"
+import Logo from "@/components/shared/logo"
+import MobileMenu from "@/components/layout/mobile-menu"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
 import { useRouter } from "next/navigation"
-import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import Footer from "@/components/footer"
-import { SiteHeader } from "@/components/header"
-import MentorSection from "@/components/mentor"
-import { LeadFormData, NewsletterSignup } from "@/components/newsletter-signup"
-import NotableParticipants from "@/components/notable-persons"
-import { SectionBadge } from "@/components/section-badge"
-import EventCTAButton from "@/components/event-cta-button"
-import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import HeroPages from "@/components/events/hero-pages"
+import { TestimonialsSection } from "@/components/marketing/testimonials-section"
+import Footer from "@/components/layout/footer"
+import { SiteHeader } from "@/components/layout/header"
+import MentorSection from "@/components/marketing/mentor"
+import { LeadFormData, NewsletterSignup } from "@/components/forms/newsletter-signup"
+import NotableParticipants from "@/components/events/notable-persons"
+import { SectionBadge } from "@/components/marketing/section-badge"
+import EventCTAButton from "@/components/events/event-cta-button"
+import { NewsletterFormacoes } from "@/components/forms/newsletter-formacoes"
 
 export default function MentorMilionario() {
   const [isVisible, setIsVisible] = useState(false)

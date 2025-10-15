@@ -27,11 +27,11 @@ import {
   Lightbulb,
   Star
 } from "lucide-react"
-import WhatsAppButton from "@/components/whatsapp-button"
-import Footer from "@/components/footer"
-import { SiteHeader } from "@/components/header"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import ScrollAnimation from "@/components/scroll-animation"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
+import Footer from "@/components/layout/footer"
+import { SiteHeader } from "@/components/layout/header"
+import { TestimonialsSection } from "@/components/marketing/testimonials-section"
+import ScrollAnimation from "@/components/shared/scroll-animation"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const ctaLink = "#inscricao" // Alterar para o link real quando disponível

@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { getPageBySlug, getAllPageSlugs, getSiteSettings } from '@/sanity/lib/api';
-import UniversalPage from '@/components/universal-page';
+import UniversalPage from '@/components/shared/universal-page';
 import { notFound } from 'next/navigation';
 
 // Revalidate every hour

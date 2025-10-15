@@ -1,6 +1,6 @@
-import { VerifyTicket } from "@/components/verify-ticket"
-import { getRegistrationByTicketCode } from "@/lib/db"
-import type { Registration } from "@/lib/db"
+import { VerifyTicket } from "@/components/admin/verify-ticket"
+import { getRegistrationByTicketCode } from "@/lib/database/db"
+import type { Registration } from "@/lib/database/db"
 
 export const dynamic = "force-dynamic"
 

@@ -1,8 +1,8 @@
-import { DashboardStats } from "@/components/dashboard-stats"
-import { DashboardChart } from "@/components/dashboard-chart"
-import { getUserFromSession } from "@/lib/auth"
+import { DashboardStats } from "@/components/admin/dashboard-stats"
+import { DashboardChart } from "@/components/admin/dashboard-chart"
+import { getUserFromSession } from "@/lib/services/auth"
 import { redirect } from "next/navigation"
-import { getEventStats } from "@/lib/db"
+import { getEventStats } from "@/lib/database/db"
 
 export default async function DashboardPage() {
   const user = await getUserFromSession()

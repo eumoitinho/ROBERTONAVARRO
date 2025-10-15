@@ -9,6 +9,13 @@
 
 # production
 /build
+/dist
+
+# archive and backups
+/__archive__
+backup_*
+*.backup
+*.old
 
 # debug
 npm-debug.log*

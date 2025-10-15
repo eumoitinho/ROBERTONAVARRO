@@ -5,11 +5,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Calendar, Clock, Youtube } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import WhatsAppButton from "@/components/whatsapp-button"
-import MobileMenu from "@/components/mobile-menu"
-import Logo from "@/components/logo"
-import HeroPages from "@/components/hero-pages"
-import { SiteHeader } from "@/components/header"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
+import MobileMenu from "@/components/layout/mobile-menu"
+import Logo from "@/components/shared/logo"
+import HeroPages from "@/components/events/hero-pages"
+import { SiteHeader } from "@/components/layout/header"
 
 export default function LivesPage() {
   const [isVisible, setIsVisible] = useState(false)

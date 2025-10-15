@@ -1,6 +1,6 @@
 import type React from "react"
-import { AdminSidebar } from "@/components/admin-sidebar"
-import { getUserFromSession } from "@/lib/auth"
+import { AdminSidebar } from "@/components/admin/admin-sidebar"
+import { getUserFromSession } from "@/lib/services/auth"
 
 export default async function AdminLayout({
   children,

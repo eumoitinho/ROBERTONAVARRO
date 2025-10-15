@@ -1,17 +1,17 @@
 "use client"
 
 import type React from "react"
-import {TicketPricingCards} from "@/components/ticket-pricing-cards"
+import {TicketPricingCards} from "@/components/events/ticket-pricing-cards"
 import { useState, useEffect } from "react"
 import { Users, Zap, Brain, Target, Wallet, GraduationCap, MapPin, Calendar } from "lucide-react"
-import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { SiteHeader } from "@/components/header"
-import NotableParticipants from "@/components/notable-persons"
-import { SectionBadge } from "@/components/section-badge"
-import Footerlp from "@/components/footerlp"
-import EventCTAButton from "@/components/event-cta-button"
-import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import HeroPages from "@/components/events/hero-pages"
+import { TestimonialsSection } from "@/components/marketing/testimonials-section"
+import { SiteHeader } from "@/components/layout/header"
+import NotableParticipants from "@/components/events/notable-persons"
+import { SectionBadge } from "@/components/marketing/section-badge"
+import Footerlp from "@/components/layout/footerlp"
+import EventCTAButton from "@/components/events/event-cta-button"
+import { NewsletterFormacoes } from "@/components/forms/newsletter-formacoes"
 
 const ticketTypes = [
   {

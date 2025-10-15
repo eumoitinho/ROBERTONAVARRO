@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { getRegistrationWithEventDetails, getEventBySlug } from "@/lib/db"
-import { TicketCard } from "@/components/ticket-card"
+import { getRegistrationWithEventDetails, getEventBySlug } from "@/lib/database/db"
+import { TicketCard } from "@/components/products/ticket-card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Home, MapPin, Calendar } from "lucide-react"

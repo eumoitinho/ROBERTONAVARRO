@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { createRegistration, getEventById } from "@/lib/db"
+import { createRegistration, getEventById } from "@/lib/database/db"
 
 export async function POST(request: NextRequest) {
   try {

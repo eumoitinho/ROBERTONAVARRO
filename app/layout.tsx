@@ -2,11 +2,11 @@ import type { ReactNode } from "react"
 import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/layout/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
 import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
-import { UTMTracker } from "@/components/utm-tracker"
+import { UTMTracker } from "@/components/forms/utm-tracker"
 
 const montserrat = Montserrat({
   subsets: ["latin"],

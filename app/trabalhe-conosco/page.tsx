@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Star, ArrowRight, ChevronRight } from "lucide-react"
-import WhatsAppButton from "@/components/whatsapp-button"
-import MobileMenu from "@/components/mobile-menu"
-import Logo from "@/components/logo"
-import Footer from "@/components/footer"
-import { SiteHeader } from "@/components/header"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
+import MobileMenu from "@/components/layout/mobile-menu"
+import Logo from "@/components/shared/logo"
+import Footer from "@/components/layout/footer"
+import { SiteHeader } from "@/components/layout/header"
 
 export default function TrabalheConosco() {
   const [isVisible, setIsVisible] = useState(false)

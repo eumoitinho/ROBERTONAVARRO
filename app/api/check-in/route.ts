@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getRegistrationByTicketCode, markAttendance } from "@/lib/db"
+import { getRegistrationByTicketCode, markAttendance } from "@/lib/database/db"
 
 export async function POST(request: NextRequest) {
   try {

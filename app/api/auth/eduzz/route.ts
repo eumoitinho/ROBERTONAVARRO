@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getEduzzAuthUrl } from "@/lib/eduzz-auth"
+import { getEduzzAuthUrl } from "@/lib/api/eduzz-auth"
 import { v4 as uuidv4 } from "uuid"
 
 export const dynamic = 'force-dynamic'

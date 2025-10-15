@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getRegistrationWithEventDetails } from "@/lib/db"
+import { getRegistrationWithEventDetails } from "@/lib/database/db"
 
 export async function GET(request: NextRequest, { params }: { params: { code: string } }) {
   try {

@@ -5,9 +5,9 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import WhatsAppButton from "@/components/whatsapp-button"
-import Logo from "@/components/logo"
-import MobileMenu from "@/components/mobile-menu"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
+import Logo from "@/components/shared/logo"
+import MobileMenu from "@/components/layout/mobile-menu"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -24,13 +24,13 @@ import {
   DollarSign,
   ChevronRight,
 } from "lucide-react"
-import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection }  from "@/components/testimonials-section"
-import Footer from "@/components/footer"
-import { SiteHeader } from "@/components/header"
-import ReusableSection from "@/components/how-works"
-import QuemSomosSection from "@/components/mentor"
-import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import HeroPages from "@/components/events/hero-pages"
+import { TestimonialsSection }  from "@/components/marketing/testimonials-section"
+import Footer from "@/components/layout/footer"
+import { SiteHeader } from "@/components/layout/header"
+import ReusableSection from "@/components/marketing/how-works"
+import QuemSomosSection from "@/components/marketing/mentor"
+import { NewsletterFormacoes } from "@/components/forms/newsletter-formacoes"
 
 export default function LCFMentoringPro() {
   const [isVisible, setIsVisible] = useState(false)

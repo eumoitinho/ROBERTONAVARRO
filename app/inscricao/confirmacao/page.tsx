@@ -1,5 +1,5 @@
-import { TicketCard } from "@/components/ticket-card"
-import { getRegistrationByTicketCode } from "@/lib/db"
+import { TicketCard } from "@/components/products/ticket-card"
+import { getRegistrationByTicketCode } from "@/lib/database/db"
 import { Button } from "@/components/ui/button"
 import { Home } from "lucide-react"
 import Link from "next/link"

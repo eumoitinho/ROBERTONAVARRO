@@ -32,16 +32,16 @@ import {
   BedDouble,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import MobileMenu from "@/components/mobile-menu"
-import Logo from "@/components/logo"
-import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection }  from "@/components/testimonials-section"
-import Footer from "@/components/footer"
-import { SiteHeader } from "@/components/header"
-import ReusableSection from "@/components/how-works"
-import NotableParticipants from "@/components/notable-persons"
-import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
-import Footerlp from "@/components/footerlp"
+import MobileMenu from "@/components/layout/mobile-menu"
+import Logo from "@/components/shared/logo"
+import HeroPages from "@/components/events/hero-pages"
+import { TestimonialsSection }  from "@/components/marketing/testimonials-section"
+import Footer from "@/components/layout/footer"
+import { SiteHeader } from "@/components/layout/header"
+import ReusableSection from "@/components/marketing/how-works"
+import NotableParticipants from "@/components/events/notable-persons"
+import { NewsletterFormacoes } from "@/components/forms/newsletter-formacoes"
+import Footerlp from "@/components/layout/footerlp"
 
 export default function MentoriaDeInvestimentos() {
   const [isVisible, setIsVisible] = useState(false)

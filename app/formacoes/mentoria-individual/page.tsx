@@ -16,17 +16,17 @@ import {
   GraduationCap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import WhatsAppButton from "@/components/whatsapp-button"
-import MobileMenu from "@/components/mobile-menu"
-import Logo from "@/components/logo"
-import HeroPages from "@/components/hero-pages"
-import { TestimonialsSection }  from "@/components/testimonials-section"
-import Footer from "@/components/footer"
-import { SiteHeader } from "@/components/header"
-import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
+import MobileMenu from "@/components/layout/mobile-menu"
+import Logo from "@/components/shared/logo"
+import HeroPages from "@/components/events/hero-pages"
+import { TestimonialsSection }  from "@/components/marketing/testimonials-section"
+import Footer from "@/components/layout/footer"
+import { SiteHeader } from "@/components/layout/header"
+import { NewsletterFormacoes } from "@/components/forms/newsletter-formacoes"
 import { Notable } from "next/font/google"
-import NotableParticipants from "@/components/notable-persons"
-import ReusableSection from "@/components/how-works"
+import NotableParticipants from "@/components/events/notable-persons"
+import ReusableSection from "@/components/marketing/how-works"
 
 export default function MentoriaIndividual() {
   const [isVisible, setIsVisible] = useState(false)

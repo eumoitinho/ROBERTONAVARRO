@@ -19,11 +19,11 @@ import {
   Brain,
   Target
 } from "lucide-react"
-import WhatsAppButton from "@/components/whatsapp-button"
-import Footer from "@/components/footer"
-import { SiteHeader } from "@/components/header"
-import ScrollAnimation from "@/components/scroll-animation"
-import { TestimonialsLivros } from "@/components/testimonials-livros"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
+import Footer from "@/components/layout/footer"
+import { SiteHeader } from "@/components/layout/header"
+import ScrollAnimation from "@/components/shared/scroll-animation"
+import { TestimonialsLivros } from "@/components/marketing/testimonials-livros"
 
 const purchaseLink = "https://sun.eduzz.com/956345"
 

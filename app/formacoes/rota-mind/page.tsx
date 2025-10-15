@@ -18,13 +18,13 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import WhatsAppButton from "@/components/whatsapp-button"
+import WhatsAppButton from "@/components/shared/whatsapp-button"
 import { useRouter } from "next/navigation"
-import HeroPages from "@/components/hero-pages"
-import { SectionBadge } from "@/components/section-badge"
-import Footer from "@/components/footer"
+import HeroPages from "@/components/events/hero-pages"
+import { SectionBadge } from "@/components/marketing/section-badge"
+import Footer from "@/components/layout/footer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { SiteHeader } from "@/components/header"
+import { SiteHeader } from "@/components/layout/header"
 
 // Dados para a página
 const challenges = [

@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getRegistrationsByEvent } from "@/lib/db"
-import { verifyAuth } from "@/lib/auth"
+import { getRegistrationsByEvent } from "@/lib/database/db"
+import { verifyAuth } from "@/lib/services/auth"
 
 export async function GET(request: NextRequest, { params }: { params: { eventId: string } }) {
   try {

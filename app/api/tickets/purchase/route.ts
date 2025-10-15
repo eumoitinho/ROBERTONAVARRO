@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { createEduzzInvoice, getEduzzProductIdForEvent } from "@/lib/eduzz-api"
-import { sql } from "@/lib/db"
+import { createEduzzInvoice, getEduzzProductIdForEvent } from "@/lib/api/eduzz-api"
+import { sql } from "@/lib/database/db"
 
 export async function POST(request: NextRequest) {
   try {

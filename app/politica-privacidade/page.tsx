@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { SiteHeader } from "@/components/header"
-import  Footer  from "@/components/footer"
+import { SiteHeader } from "@/components/layout/header"
+import  Footer  from "@/components/layout/footer"
 
 export default function PoliticaPrivacidadePage() {
   return (

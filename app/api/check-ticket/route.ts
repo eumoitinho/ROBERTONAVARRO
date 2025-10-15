@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getRegistrationByTicketCode } from "@/lib/db"
+import { getRegistrationByTicketCode } from "@/lib/database/db"
 
 export const dynamic = 'force-dynamic'
 
