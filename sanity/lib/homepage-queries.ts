@@ -1,13 +1,11 @@
 import { groq } from 'next-sanity';
 
-// Query completa para buscar a homepage com TODOS os dados
+// Query para buscar a homepage
 export const homepageQuery = groq`
   *[_type == "homepage"][0] {
     _id,
     _type,
     title,
-    
-    // Hero Section
     heroSection {
       badge,
       title,
@@ -23,8 +21,6 @@ export const homepageQuery = groq`
       achievementsNumber,
       achievementsLabel
     },
-    
-    // Formações Section
     formacoesSection {
       badge,
       title,
@@ -37,91 +33,11 @@ export const homepageQuery = groq`
         buttonText
       }
     },
-    
-    // Mentor Section
-    mentorSection {
-      badge,
-      title,
-      highlightedText,
-      subtitle,
-      backgroundImage {
-        asset->,
-        hotspot,
-        crop
-      },
-      bioParagraphs,
-      stats[] {
-        icon,
-        value,
-        label
-      }
-    },
-    
-    // Videos Section
-    videosSection {
-      badge,
-      title,
-      highlightedText,
-      description,
-      videos[] {
-        youtubeId,
-        title,
-        person,
-        description,
-        chipLabel,
-        thumbnail {
-          asset->
-        }
-      },
-      stats[] {
-        icon,
-        title,
-        description
-      },
-      ctaButtonText,
-      ctaButtonLink
-    },
-    
-    // Testimonials Section
-    testimonialsSection {
-      badge,
-      title,
-      highlightedText,
-      description,
-      testimonials[] {
-        name,
-        role,
-        initial,
-        quote,
-        rating,
-        image {
-          asset->
-        }
-      },
-      ctaText,
-      ctaButtonText,
-      ctaButtonLink
-    },
-    
-    // Location Section
-    locationSection {
-      show,
-      address,
-      phone,
-      email,
-      mapEmbedUrl
-    },
-    
-    // Section Controls
-    sectionControls {
-      showMentorSection,
-      showVideosSection,
-      showTestimonialsSection,
-      showLocationSection,
-      showEventPopup
-    },
-    
-    // SEO
+    showQuemSomosSection,
+    showTransformationVideos,
+    showTestimonials,
+    showLocationMap,
+    showEventPopup,
     seo {
       metaTitle,
       metaDescription,

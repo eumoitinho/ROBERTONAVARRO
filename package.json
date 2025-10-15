@@ -7,10 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "studio": "sanity dev --host 0.0.0.0",
-    "populate-homepage": "node scripts/populate-homepage.js",
-    "sanity-setup": "node scripts/populate-homepage.js",
-    "setup-webhook": "node scripts/setup-sanity-webhook.js"
+    "studio": "sanity dev --host 0.0.0.0"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

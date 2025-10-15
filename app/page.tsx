@@ -1,9 +1,7 @@
 import { getHomepage, fallbackHomepageData } from '@/sanity/lib/homepage-api';
 import HomePageClient from './page-client';
 
-// Revalidação sob demanda via webhook (mais rápido)
-// Fallback: revalidar a cada 60 segundos se webhook falhar
-export const revalidate = 60;
+export const revalidate = 3600; // Revalidar a cada hora
 
 export async function generateMetadata() {
   const data = await getHomepage();
