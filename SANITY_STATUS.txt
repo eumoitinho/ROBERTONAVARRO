@@ -1,0 +1,24 @@
+🎨 SANITY CMS - STATUS RÁPIDO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ O QUE ESTÁ 100% NO SANITY (Editável):
+   • Páginas dinâmicas via /[slug]
+   • Configurações globais do site
+   
+❌ O QUE ESTÁ HARDCODED (Código):
+   • Homepage (/)
+   • 5 Eventos (/eventos/*)
+   • 9 Formações (/formacoes/*)  
+   • 4 Livros (/livros/*)
+   • Blog (preparado mas usando fallback)
+   • Landing pages e outras
+
+📊 TOTAL: ~4% no Sanity | ~96% Hardcoded
+
+🎯 RECOMENDAÇÃO:
+   Manter assim para controle e performance.
+   Migrar apenas Blog para Sanity (prioridade).
+
+📚 Ver detalhes completos:
+   docs/SANITY_INTEGRATION_STATUS.md
+   docs/SANITY_QUICK_SUMMARY.md
