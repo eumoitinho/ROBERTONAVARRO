@@ -6,7 +6,7 @@ import EventPageClientWrapper from './page-client';
 export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const event = await getEventBySlug('escalador-de-negocios');
+  const event = await getEventBySlug('crencas-da-riqueza');
   
   if (!event) {
     return {
@@ -25,11 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function EscaladorDeNegociosPage() {
-  const event = await getEventBySlug('escalador-de-negocios');
+export default async function CrencasDaRiquezaPage() {
+  const event = await getEventBySlug('crencas-da-riqueza');
 
   if (!event) {
-    console.error('[Escalador de Negócios] Evento não encontrado no Sanity');
+    console.error('[Crenças da Riqueza] Evento não encontrado no Sanity');
     notFound();
   }
 

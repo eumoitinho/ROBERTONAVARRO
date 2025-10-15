@@ -47,7 +47,7 @@ export default function EventPageClientWrapper({ data }: Props) {
         subtitle={data.hero?.subtitle || ''}
         secondtitle={data.hero?.description || ''}
         description=""
-        image={data.hero?.backgroundImage ? '/images/HERO_ENERGIA.png' : '/images/HERO_ENERGIA.png'}
+        image={data.hero?.backgroundImage ? '/images/HERO_CRENCAS.png' : '/images/HERO_CRENCAS.png'}
         ctaText={data.hero?.ctaText || 'QUERO PARTICIPAR'}
         ctaHref={data.hero?.ctaLink || '#inscricao'}
       />
@@ -68,7 +68,7 @@ export default function EventPageClientWrapper({ data }: Props) {
               )}
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {data.challenges.items.map((challenge, index) => (
                 <div
                   key={index}
@@ -156,44 +156,6 @@ export default function EventPageClientWrapper({ data }: Props) {
                   </h3>
                   <p className="text-zinc-300">
                     {highlight.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Metodologia */}
-      {data.controls?.showMethodology && data.methodology && data.methodology.steps && data.methodology.steps.length > 0 && (
-        <section className="py-20 relative">
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-16">
-              {data.methodology.badge && <SectionBadge text={data.methodology.badge} />}
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {data.methodology.title}
-              </h2>
-              {data.methodology.description && (
-                <p className="text-zinc-300 max-w-3xl mx-auto text-lg">
-                  {data.methodology.description}
-                </p>
-              )}
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {data.methodology.steps.map((step, index) => (
-                <div
-                  key={index}
-                  className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 hover:border-yellow-500/50 transition-all duration-300"
-                >
-                  <div className="text-3xl font-bold text-yellow-400 mb-4">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-zinc-300">
-                    {step.description}
                   </p>
                 </div>
               ))}
@@ -391,3 +353,4 @@ export default function EventPageClientWrapper({ data }: Props) {
     </div>
   )
 }
+
