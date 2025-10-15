@@ -12,12 +12,7 @@
     "sanity-setup": "node scripts/populate-homepage.js",
     "setup-webhook": "node scripts/setup-sanity-webhook.js",
     "populate-crencas": "node scripts/populate-crencas-da-riqueza.js",
-    "populate-energia": "node scripts/populate-energia-do-dinheiro.js",
-    "populate-escalador": "node scripts/populate-escalador-de-negocios.js",
-    "populate-mentor": "node scripts/populate-mentor-milionario.js",
-    "populate-segredos": "node scripts/populate-segredos-da-mente-milionaria.js",
-    "populate-educador": "node scripts/populate-educador-financeiro.js",
-    "populate-all-events": "npm run populate-crencas && npm run populate-energia && npm run populate-escalador && npm run populate-mentor && npm run populate-segredos"
+    "populate-energia": "node scripts/populate-energia-do-dinheiro.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
