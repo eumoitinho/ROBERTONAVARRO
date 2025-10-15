@@ -51,16 +51,6 @@ export async function POST(request: NextRequest) {
         console.log('[Revalidate] ✅ Homepage revalidada');
         break;
 
-      case 'eventPage':
-        if (payload.slug?.current) {
-          const path = `/eventos/${payload.slug.current}`;
-          console.log(`[Revalidate] Revalidando evento: ${path}`);
-          revalidatePath(path);
-          revalidateTag(`event-${payload.slug.current}`);
-          console.log(`[Revalidate] ✅ Evento ${path} revalidado`);
-        }
-        break;
-
       case 'page':
         if (payload.slug?.current) {
           const path = `/${payload.slug.current}`;

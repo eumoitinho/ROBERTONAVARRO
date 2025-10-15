@@ -2,7 +2,6 @@ import type { SchemaTypeDefinition } from 'sanity';
 import page from './page';
 import siteSettings from './siteSettings';
 import homepage from './homepage';
-import eventPage from './eventPage';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Configurações Globais
@@ -13,7 +12,4 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 
   // Páginas
   page,
-
-  // Eventos
-  eventPage,
 ];
