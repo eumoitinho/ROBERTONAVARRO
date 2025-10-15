@@ -1,5 +1,12 @@
-import { client } from './client'
-import type { FormationPageData } from './types'
+import { createClient } from '@sanity/client'
+
+const client = createClient({
+  projectId: 'c2lnfkl6',
+  dataset: 'production',
+  useCdn: false,
+  apiVersion: '2024-01-01',
+})
+// Interfaces TypeScript
 
 // Queries GROQ para Formações
 export const formationQueries = {

@@ -43,7 +43,7 @@ export default function EventPageClientWrapper({ data }: Props) {
 
       {/* Hero Section */}
       <HeroPages
-        title={data.hero?.title || data.title}
+        title={data.hero?.title || data.title || "Formação"}
         subtitle={data.hero?.subtitle || ''}
         secondtitle={data.hero?.description || ''}
         description=""
