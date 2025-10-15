@@ -61,6 +61,16 @@ export async function POST(request: NextRequest) {
         }
         break;
 
+      case 'formationPage':
+        if (payload.slug?.current) {
+          const path = `/formacoes/${payload.slug.current}`;
+          console.log(`[Revalidate] Revalidando formação: ${path}`);
+          revalidatePath(path);
+          revalidateTag(`formation-${payload.slug.current}`);
+          console.log(`[Revalidate] ✅ Formação ${path} revalidada`);
+        }
+        break;
+
       case 'page':
         if (payload.slug?.current) {
           const path = `/${payload.slug.current}`;
