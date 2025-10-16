@@ -70,7 +70,7 @@ export function ContentSection({ items }: ContentSectionProps) {
 
         {/* Content Display */}
         <div className="max-w-6xl mx-auto">
-          <Card className="bg-zinc-900/40 backdrop-blur-lg border-zinc-700/30 rounded-3xl overflow-hidden">
+          <Card className="bg-zinc-900/40 backdrop-blur-md border-zinc-700/30 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid md:grid-cols-2 gap-0">
                 {/* Left Side - Description */}

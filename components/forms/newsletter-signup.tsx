@@ -149,7 +149,7 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
         </h2>
         <p className="text-lg text-zinc-300 max-w-3xl mx-auto mb-8">{description}</p>
         {/* Registration Form */}
-        <div className="max-w-3xl mx-auto mt-20 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden">
+        <div className="max-w-3xl mx-auto mt-20 bg-zinc-900/50 backdrop-blur border border-zinc-800/50 rounded-3xl overflow-hidden">
           <div className="p-8">
             <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">PREENCHA SEUS DADOS</h3>
             <p className="text-zinc-300 text-center mb-8">

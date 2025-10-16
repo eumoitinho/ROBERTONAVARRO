@@ -77,7 +77,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
 
   return (
     <div 
-      className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${
+      className={`fixed inset-0 bg-black/80 backdrop-blur z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${
         isClosing ? 'opacity-0' : 'opacity-100'
       }`}
       onClick={handleBackdropClick}
@@ -112,7 +112,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
 
         {/* Header */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 bg-yellow-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-full py-2 px-4 mb-4">
+          <div className="inline-flex items-center gap-2 bg-yellow-500/10 backdrop-blur border border-yellow-500/20 rounded-full py-2 px-4 mb-4">
             <Star className="h-4 w-4 text-yellow-400" />
             <span className="text-sm font-medium text-yellow-400">MÊS DE OFERTA</span>
           </div>
@@ -127,7 +127,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
         {/* Event Details */}
         <div className="grid md:grid-cols-3 gap-4 mb-8">
           <div className="flex items-center gap-3">
-            <div className="bg-yellow-500/10 backdrop-blur-sm rounded-full p-2 flex-shrink-0">
+            <div className="bg-yellow-500/10 backdrop-blur rounded-full p-2 flex-shrink-0">
               <Calendar className="h-5 w-5 text-yellow-400" />
             </div>
             <div>
@@ -137,7 +137,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="bg-yellow-500/10 backdrop-blur-sm rounded-full p-2 flex-shrink-0">
+            <div className="bg-yellow-500/10 backdrop-blur rounded-full p-2 flex-shrink-0">
               <Clock className="h-5 w-5 text-yellow-400" />
             </div>
             <div>
@@ -147,7 +147,7 @@ export default function EventPopup({ isVisible, onClose }: EventPopupProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="bg-yellow-500/10 backdrop-blur-sm rounded-full p-2 flex-shrink-0">
+            <div className="bg-yellow-500/10 backdrop-blur rounded-full p-2 flex-shrink-0">
               <MapPin className="h-5 w-5 text-yellow-400" />
             </div>
             <div>

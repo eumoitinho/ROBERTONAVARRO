@@ -48,7 +48,7 @@ export default function QuemSomosSection() {
           <div className="flex flex-col gap-8">
             {/* Bio Text */}
             <div className="space-y-4 text-zinc-300 text-base md:text-lg leading-relaxed">
-              <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/90 to-transparent rounded-full blur-3xl -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/90 to-transparent rounded-full blur-lg -z-10"></div>
               <div className="flex items-start gap-4">
                 <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
                 <p>
@@ -80,7 +80,7 @@ export default function QuemSomosSection() {
                 ].map((stat, index) => (
                   <div
                     key={index}
-                    className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-500 hover:border-yellow-500/50 hover:-translate-y-1 opacity-0 translate-y-12 animate-[fadeInUp_0.5s_ease-out_forwards]"
+                    className="bg-zinc-900/50 backdrop-blur border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-500 hover:border-yellow-500/50 hover:-translate-y-1 opacity-0 translate-y-12 animate-[fadeInUp_0.5s_ease-out_forwards]"
                     style={{ animationDelay: `${500 + index * 100}ms` }}
                   >
                     <div className="flex items-center gap-2 md:gap-4">

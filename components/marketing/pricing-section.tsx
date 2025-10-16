@@ -23,7 +23,7 @@ export default function PricingSection() {
         </p>
 
         <div className="flex justify-center mb-12 animate-on-scroll fade-in delay-300">
-          <div className="bg-black/60 backdrop-blur-sm p-2 rounded-full border border-zinc-700 flex">
+          <div className="bg-black/60 backdrop-blur p-2 rounded-full border border-zinc-700 flex">
             <button
               className={`py-2 px-6 rounded-full text-sm font-bold transition-all ${isMonthly ? "bg-yellow-400 text-black" : "text-white"}`}
               onClick={() => setIsMonthly(true)}

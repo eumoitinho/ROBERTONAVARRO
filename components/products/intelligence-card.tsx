@@ -30,7 +30,7 @@ export function IntelligenceCard({
         isActive
           ? "bg-gradient-to-br from-yellow-500/20 via-amber-600/10 to-yellow-500/5 border-yellow-500/50 shadow-lg shadow-yellow-500/10"
           : "bg-zinc-900/50 border-zinc-800/50 hover:border-yellow-500/30 hover:shadow-md hover:shadow-yellow-500/5",
-        "backdrop-blur-sm border p-6 md:p-8",
+        "backdrop-blur border p-6 md:p-8",
         className,
       )}
       onClick={onClick}

@@ -25,7 +25,7 @@ export const TestimonialsLivros = ({ heading, description, testimonials }: Props
     <section id="depoimentos" className="py-20 relative bg-zinc-950">
       <div className="container mx-auto px-4">
         <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+          <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
             <span className="text-sm font-medium">DEPOIMENTOS</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold mb-4">{heading}</h2>

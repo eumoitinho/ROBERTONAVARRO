@@ -224,7 +224,7 @@ export function NewsletterFormacoes({
                     <div className="flex items-center gap-4">
                       <div
                         className={cn(
-                          "backdrop-blur-sm rounded-full p-4 flex-shrink-0",
+                          "backdrop-blur rounded-full p-4 flex-shrink-0",
                           accent === "red" ? "bg-red-500/10" : "bg-yellow-400/10",
                         )}
                       >
@@ -249,7 +249,7 @@ export function NewsletterFormacoes({
                     <div className="flex items-center gap-4">
                       <div
                         className={cn(
-                          "backdrop-blur-sm rounded-full p-4 flex-shrink-0",
+                          "backdrop-blur rounded-full p-4 flex-shrink-0",
                           accent === "red" ? "bg-red-500/10" : "bg-yellow-400/10",
                         )}
                       >
@@ -268,7 +268,7 @@ export function NewsletterFormacoes({
 
           <div
             className={cn(
-              "relative mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border bg-zinc-900/70 p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_45px_-20px_rgba(0,0,0,0.45)]",
+              "relative mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border bg-zinc-900/70 p-8 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_45px_-20px_rgba(0,0,0,0.45)]",
               styles.cardBorder,
               styles.cardHover,
             )}
@@ -358,7 +358,7 @@ export function NewsletterFormacoes({
                         : "GARANTIR MINHA VAGA AGORA"}
                   </span>
                   <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-40">
-                    <div className="absolute inset-y-0 left-1/2 h-full w-2/3 -translate-x-1/2 rounded-full bg-white/40 blur-3xl" />
+                    <div className="absolute inset-y-0 left-1/2 h-full w-2/3 -translate-x-1/2 rounded-full bg-white/40 blur-lg" />
                   </span>
                 </Button>
 

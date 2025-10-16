@@ -11,15 +11,15 @@ export function TestimonialsSection() {
       </div>
 
       {/* Floating elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-lg opacity-30 animate-pulse"></div>
       <div
-        className="absolute bottom-20 right-10 w-80 h-80 bg-amber-500/10 rounded-full filter blur-3xl opacity-20 animate-pulse"
+        className="absolute bottom-20 right-10 w-80 h-80 bg-amber-500/10 rounded-full filter blur-lg opacity-20 animate-pulse"
         style={{ animationDelay: "1s" }}
       ></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8 md:mb-16">
-          <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+          <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
             <span className="text-sm font-medium">DEPOIMENTOS</span>
           </div>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
@@ -33,8 +33,8 @@ export function TestimonialsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Testimonial 1 */}
           <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-            <div className="relative bg-zinc-900/60 backdrop-blur-lg border border-zinc-800/50 rounded-3xl p-8 h-full transition-all duration-500 group-hover:border-yellow-500/50 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-yellow-500/10">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+            <div className="relative bg-zinc-900/60 backdrop-blur-md border border-zinc-800/50 rounded-3xl p-8 h-full transition-all duration-500 group-hover:border-yellow-500/50 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-yellow-500/10">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-t-3xl"></div>
 
               {/* Quote icon */}
@@ -70,8 +70,8 @@ export function TestimonialsSection() {
 
           {/* Testimonial 2 */}
           <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-            <div className="relative bg-zinc-900/60 backdrop-blur-lg border border-zinc-800/50 rounded-3xl p-8 h-full transition-all duration-500 group-hover:border-yellow-500/50 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-yellow-500/10">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+            <div className="relative bg-zinc-900/60 backdrop-blur-md border border-zinc-800/50 rounded-3xl p-8 h-full transition-all duration-500 group-hover:border-yellow-500/50 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-yellow-500/10">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-t-3xl"></div>
 
               {/* Quote icon */}
@@ -107,8 +107,8 @@ export function TestimonialsSection() {
 
           {/* Testimonial 3 */}
           <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-            <div className="relative bg-zinc-900/60 backdrop-blur-lg border border-zinc-800/50 rounded-3xl p-8 h-full transition-all duration-500 group-hover:border-yellow-500/50 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-yellow-500/10">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+            <div className="relative bg-zinc-900/60 backdrop-blur-md border border-zinc-800/50 rounded-3xl p-8 h-full transition-all duration-500 group-hover:border-yellow-500/50 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-yellow-500/10">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-t-3xl"></div>
 
               {/* Quote icon */}

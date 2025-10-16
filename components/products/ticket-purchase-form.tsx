@@ -198,7 +198,7 @@ export function TicketPurchaseForm({ eventId, eventName }: TicketPurchaseFormPro
   }
 
   return (
-    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-yellow-500/30 bg-zinc-900/80 backdrop-blur-sm">
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-yellow-500/30 bg-zinc-900/80 backdrop-blur">
       <CardHeader className="bg-yellow-50/10 rounded-t-xl p-6">
         <CardTitle className="text-2xl font-bold text-yellow-500">Comprar Ingresso</CardTitle>
         <CardDescription className="text-zinc-400">{eventName}</CardDescription>

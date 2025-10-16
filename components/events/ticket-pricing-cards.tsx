@@ -266,7 +266,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
         {ticketTypes.map((ticket) => (
           <Card
             key={ticket.id}
-            className={`bg-zinc-900/30 backdrop-blur-lg border-zinc-700/30 hover:border-yellow-400/40 transition-all duration-500 hover:-translate-y-2 overflow-hidden rounded-3xl cursor-pointer group h-full flex flex-col ${
+            className={`bg-zinc-900/30 backdrop-blur-md border-zinc-700/30 hover:border-yellow-400/40 transition-all duration-500 hover:-translate-y-2 overflow-hidden rounded-3xl cursor-pointer group h-full flex flex-col ${
               ticket.featured ? "border-yellow-400/40 shadow-2xl shadow-yellow-500/10 scale-105" : ""
             }`}
             onClick={() => handleSelectTicket(ticket)}
@@ -327,7 +327,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9998]"
+              className="fixed inset-0 bg-black/80 backdrop-blur z-[9998]"
               style={{ zIndex: 9998 }}
             />
             <motion.div
@@ -336,7 +336,7 @@ export function TicketPricingCards({ eventId, eventName, ticketTypes }: TicketPr
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed top-0 right-0 h-full w-full md:w-[600px] lg:w-[700px] bg-zinc-900/95 backdrop-blur-xl border-l border-zinc-700/50 overflow-y-auto rounded-l-3xl shadow-2xl"
+              className="fixed top-0 right-0 h-full w-full md:w-[600px] lg:w-[700px] bg-zinc-900/95 backdrop-blur-md border-l border-zinc-700/50 overflow-y-auto rounded-l-3xl shadow-2xl"
               style={{ zIndex: 9999 }}
             >
               <div className="p-6 md:p-8">

@@ -89,7 +89,7 @@ export default function HeroPages({
         {/* Badge */}
         {subtitle && (
           <div
-            className={`inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-6 self-start mt-2 transition-all duration-1000 ${
+            className={`inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur border border-zinc-700/50 rounded-full py-2 px-4 mb-6 self-start mt-2 transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
             }`}
             style={{ transitionDelay: "200ms" }}
@@ -164,7 +164,7 @@ export default function HeroPages({
                       ].map((stat, index)  => (
                 <div
                   key={index}
-                  className={`bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${
+                  className={`bg-zinc-900/50 backdrop-blur border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-1000 hover:border-yellow-500/50 hover:-translate-y-1 ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   }`}
                   style={{ transitionDelay: `${500 + index * 100}ms` }}

@@ -99,7 +99,7 @@ export default function NotableParticipants({
 						<div
 							key={index}
 											className={cn(
-												"group overflow-hidden rounded-3xl border border-zinc-700/30 bg-zinc-900/40 backdrop-blur-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl",
+												"group overflow-hidden rounded-3xl border border-zinc-700/30 bg-zinc-900/40 backdrop-blur-md transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl",
 								styles.cardHover,
 								styles.shadow
 							)}

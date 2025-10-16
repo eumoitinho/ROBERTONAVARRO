@@ -223,7 +223,7 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
                   <div className="flex h-full">
                     <div
                       className={cn(
-                        "flex h-full w-full flex-col overflow-hidden rounded-3xl border border-zinc-700/30 bg-zinc-900/40 backdrop-blur-lg transition-all duration-500",
+                        "flex h-full w-full flex-col overflow-hidden rounded-3xl border border-zinc-700/30 bg-zinc-900/40 backdrop-blur-md transition-all duration-500",
                         styles.cardHover,
                       )}
                     >
@@ -291,7 +291,7 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
             <div
               key={title}
               className={cn(
-                "rounded-2xl border border-zinc-700/30 bg-zinc-900/40 p-6 backdrop-blur-lg transition-all duration-300 hover:-translate-y-1",
+                "rounded-2xl border border-zinc-700/30 bg-zinc-900/40 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1",
                 styles.statsCardHover,
                 styles.statsShadow,
               )}
