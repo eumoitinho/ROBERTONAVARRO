@@ -272,7 +272,7 @@ export default function LCFMentoringProClient({ data }: Props) {
             <h2 className="text-2xl md:text-3xl font-bold mb-2">
               {n.faq?.title || (<>DÚVIDAS? <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">NÓS RESPONDEMOS</span></>)}
             </h2>
-            <p className="text-zinc-400">{n.faq?.description || "Confira as respostas para as principais dúvidas sobre o LCF Mentoring PRO."}</p>
+            <p className="text-zinc-400">Confira as respostas para as principais dúvidas sobre o LCF Mentoring PRO.</p>
           </div>
           <div className="max-w-2xl mx-auto">
             <Accordion type="multiple" className="space-y-3">
