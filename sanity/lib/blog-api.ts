@@ -35,14 +35,33 @@ export interface SanityBlogPost {
 
 // Convert Sanity blog post to our BlogPost interface
 function convertSanityPost(sanityPost: SanityBlogPost): BlogPost {
+  // Extract text content from Sanity portable text
+  let contentText = ''
+  let contentHtml = ''
+  
+  if (sanityPost.content && Array.isArray(sanityPost.content)) {
+    contentText = sanityPost.content
+      .filter(block => block._type === 'block' && block.children)
+      .map(block => 
+        block.children
+          ?.filter(child => child._type === 'span' && child.text)
+          .map(child => child.text)
+          .join('')
+      )
+      .join('\n')
+    
+    // For now, use the text content as HTML
+    contentHtml = contentText
+  }
+  
   return {
     _id: sanityPost._id,
     _title: sanityPost.title,
     slug: sanityPost.slug.current,
     excerpt: sanityPost.excerpt,
     content: {
-      raw: '', // We'll generate this from the content array if needed
-      html: sanityPost.content ? JSON.stringify(sanityPost.content) : ''
+      raw: contentText,
+      html: contentHtml
     },
     coverImage: sanityPost.coverImage?.asset?.url ? {
       url: sanityPost.coverImage.asset.url,
