@@ -103,10 +103,22 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         )}
 
         {post.content?.html && (
-          <div
-            className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-yellow-400 prose-a:text-yellow-400 hover:prose-a:text-yellow-300 prose-blockquote:text-zinc-400 prose-blockquote:border-yellow-500/50 prose-li:text-zinc-300"
-            dangerouslySetInnerHTML={{ __html: post.content.html }}
-          />
+          <div className="prose prose-lg prose-invert max-w-none">
+            <div
+              className="prose-headings:text-white prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-6 prose-h1:mt-8 prose-h1:text-white
+                       prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-4 prose-h2:mt-6 prose-h2:text-yellow-400
+                       prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-3 prose-h3:mt-4 prose-h3:text-white
+                       prose-p:text-zinc-300 prose-p:leading-relaxed prose-p:mb-4 prose-p:text-base
+                       prose-strong:text-yellow-400 prose-strong:font-semibold
+                       prose-em:text-zinc-200 prose-em:italic
+                       prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:text-yellow-300 hover:prose-a:underline
+                       prose-blockquote:text-zinc-300 prose-blockquote:border-l-yellow-500 prose-blockquote:border-l-4 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:bg-zinc-800/30 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:my-6
+                       prose-ul:text-zinc-300 prose-ul:space-y-2 prose-ul:my-4
+                       prose-li:text-zinc-300 prose-li:leading-relaxed prose-li:mb-2
+                       prose-ol:text-zinc-300 prose-ol:space-y-2 prose-ol:my-4"
+              dangerouslySetInnerHTML={{ __html: post.content.html }}
+            />
+          </div>
         )}
 
         <div className="mt-12 pt-8 border-t border-zinc-800">

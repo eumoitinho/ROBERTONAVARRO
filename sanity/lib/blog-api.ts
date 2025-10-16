@@ -40,18 +40,16 @@ function convertSanityPost(sanityPost: SanityBlogPost): BlogPost {
   let contentHtml = ''
   
   if (sanityPost.content && Array.isArray(sanityPost.content)) {
-    contentText = sanityPost.content
-      .filter(block => block._type === 'block' && block.children)
-      .map(block => 
-        block.children
-          ?.filter((child: any) => child._type === 'span' && child.text)
-          .map((child: any) => child.text)
-          .join('')
-      )
-      .join('\n')
-    
-    // For now, use the text content as HTML
-    contentHtml = contentText
+    // Try to get the original HTML content from the first block if it exists
+    const firstBlock = sanityPost.content[0]
+    if (firstBlock && firstBlock._type === 'block' && firstBlock.children) {
+      const firstChild = firstBlock.children[0]
+      if (firstChild && firstChild.text) {
+        // If the content is stored as plain text, we need to get it from fallback
+        contentText = firstChild.text
+        contentHtml = firstChild.text
+      }
+    }
   }
   
   return {
