@@ -88,6 +88,18 @@ const doc = {
     videoSrc: 'https://example.com/video.mp4',
     ctaText: 'ACESSAR PRÉVIA EXCLUSIVA'
   },
+  aboutSection: {
+    badge: 'SOBRE O CURSO',
+    heading: 'SEJA UM AGENTE DA MUDANÇA E ENSINE O CAMINHO PARA A PROSPERIDADE',
+    paragraphs: [
+      'Com certificação reconhecida pelo MEC, a formação de Educador Financeiro é o seu passaporte para uma nova realidade de propósito e prosperidade.',
+      'Em poucos dias, você verá resultados concretos em sua vida e aprenderá como dominar os fundamentos da educação financeira e aplicar os conhecimentos na prática.',
+      'Você desenvolverá habilidades pedagógicas e de comunicação para atuar em consultorias, palestras ou cursos.',
+      'A formação abre portas para novas fontes de renda e permite construir um negócio sólido no campo da educação financeira.',
+    ],
+    ctaText: 'QUERO SER UM EDUCADOR FINANCEIRO!',
+    ctaLink: '#inscricao'
+  },
   features: {
     badge: 'RECURSOS',
     title: 'TUDO O QUE VOCÊ PRECISA PARA TRANSFORMAR SUA CARREIRA',

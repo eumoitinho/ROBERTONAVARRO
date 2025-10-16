@@ -150,13 +150,13 @@ export default function EducadorFinanceiroClient({ data }: Props) {
       {/* Header */}
       <SiteHeader navigationItems={navigationItems} showInicio={true} />
       <HeroPagesRed
-        title="EDUCADOR FINANCEIRO"
-        secondtitle="A única formação do mercado com LICENÇA PROFISSIONAL chancelada pela Roberto Navarro Academia - RNA"
-        subtitle="Roberto Navarro"
-        description={`Torne-se um Educador Financeiro licenciado com certificação reconhecida pelo MEC. Transforme vidas enquanto constrói sua própria prosperidade com respaldo profissional e metodologia validada.`}
-        image="/images/HERO_EDUCADOR.png"
-        ctaText="QUERO MINHA LICENÇA PROFISSIONAL!"
-        ctaHref="#inscricao"
+        title={n.hero?.title || "EDUCADOR FINANCEIRO"}
+        secondtitle={n.hero?.subtitle || "A única formação do mercado com LICENÇA PROFISSIONAL chancelada pela Roberto Navarro Academia - RNA"}
+        subtitle={n.hero?.subtitle || ""}
+        description={n.hero?.description || `Torne-se um Educador Financeiro licenciado com certificação reconhecida pelo MEC. Transforme vidas enquanto constrói sua própria prosperidade com respaldo profissional e metodologia validada.`}
+        image={n.hero?.backgroundImage?.asset?.url || "/images/HERO_EDUCADOR.png"}
+        ctaText={n.hero?.ctaText || "QUERO MINHA LICENÇA PROFISSIONAL!"}
+        ctaHref={n.hero?.ctaLink || "#inscricao"}
         secondaryCtaText="Saiba mais"
         secondaryCtaHref="#sobre-curso"
       />
@@ -174,7 +174,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
               <div className="md:col-span-2 flex justify-center">
                 <div className="relative certificate-animation">
                   <Image
-                    src="/images/MEC.png"
+                    src={n.mecSection?.image?.asset?.url || "/images/MEC.png"}
                     alt="Reconhecido pelo MEC"
                     width={240}
                     height={240}
@@ -190,32 +190,30 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                   className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 certificate-item"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  EXCELÊNCIA RECONHECIDA PELO MINISTÉRIO DA EDUCAÇÃO
+                  {n.mecSection?.heading || 'EXCELÊNCIA RECONHECIDA PELO MINISTÉRIO DA EDUCAÇÃO'}
                 </h3>
 
                 <p
                   className="text-zinc-300 text-lg leading-relaxed certificate-item"
                   style={{ animationDelay: "0.3s" }}
                 >
-                  Formação com <span className="text-red-400 font-semibold">certificação oficial</span> que valida
-                  suas competências e abre portas no mercado. Um diferencial que comprova a qualidade do nosso método e
-                  garante credibilidade à sua atuação profissional.
+                  {n.mecSection?.description || (
+                    <>Formação com <span className="text-red-400 font-semibold">certificação oficial</span> que valida suas competências e abre portas no mercado. Um diferencial que comprova a qualidade do nosso método e garante credibilidade à sua atuação profissional.</>
+                  )}
                 </p>
 
                 <div className="pt-2 certificate-item" style={{ animationDelay: "0.5s" }}>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-red-400" />
-                      <span className="text-zinc-200">Reconhecimento nacional</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-red-400" />
-                      <span className="text-zinc-200">Validação profissional</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-red-400" />
-                      <span className="text-zinc-200">Credibilidade garantida</span>
-                    </div>
+                    {(n.mecSection?.points || [
+                      'Reconhecimento nacional',
+                      'Validação profissional',
+                      'Credibilidade garantida',
+                    ]).map((p, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-red-400" />
+                        <span className="text-zinc-200">{p}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -254,16 +252,16 @@ export default function EducadorFinanceiroClient({ data }: Props) {
 
               <div className="grid md:grid-cols-2 gap-8 mb-10">
                 <div className="space-y-6">
-                  <h3 className="text-xl font-bold text-red-400 mb-4">Essa será sua transformação:</h3>
+                  <h3 className="text-xl font-bold text-red-400 mb-4">{n.licenseSection?.transformationsTitle || 'Essa será sua transformação:'}</h3>
                   <ul className="space-y-4">
-                    {[
+                    {(n.licenseSection?.transformations || [
                       "Licença para atuar como Educador Financeiro",
                       "Respeito profissional no mercado",
                       "Mais valorização do seu serviço",
                       "Respaldo do ICF para ensinar sobre geração de riqueza",
                       "Ampliar o número de clientes ativos",
                       "Consolidar uma carreira próspera e segura"
-                    ].map((item, index) => (
+                    ]).map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <CheckCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-1" />
                         <span className="text-zinc-200">{item}</span>
@@ -273,16 +271,16 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 </div>
 
                 <div className="space-y-6">
-                  <h3 className="text-xl font-bold text-red-400 mb-4">Benefícios da Licença:</h3>
+                  <h3 className="text-xl font-bold text-red-400 mb-4">{n.licenseSection?.benefitsTitle || 'Benefícios da Licença:'}</h3>
                   <ul className="space-y-4">
-                    {[
+                    {(n.licenseSection?.benefits || [
                       "Mais poder nas suas negociações",
                       "Mais otimismo na sua carreira",
                       "Mais admiração no seu círculo social",
                       "Licença chancelada pela RNA",
                       "Respaldo profissional que reduz a concorrência",
                       "Ganhos maiores que os demais profissionais"
-                    ].map((item, index) => (
+                    ]).map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <Award className="h-5 w-5 text-red-400 flex-shrink-0 mt-1" />
                         <span className="text-zinc-200">{item}</span>
@@ -296,7 +294,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <Shield className="h-8 w-8 text-red-400" />
                   <h3 className="text-2xl font-bold text-center text-red-400">
-                    Em breve irão sobreviver no mercado apenas quem tiver respeitada Licença Profissional!
+                    {n.licenseSection?.statement || 'Em breve irão sobreviver no mercado apenas quem tiver respeitada Licença Profissional!'}
                   </h3>
                 </div>
                 <p className="text-center text-zinc-300">
@@ -395,24 +393,26 @@ export default function EducadorFinanceiroClient({ data }: Props) {
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600/80 to-red-500/60 border border-red-400/60 rounded-full px-5 py-2 uppercase tracking-[0.25em] text-xs text-red-100 shadow-[0_0_25px_rgba(239,68,68,0.25)]">
-                MATERIAIS EXCLUSIVOS
+                {n.exclusiveMaterials?.badge || 'MATERIAIS EXCLUSIVOS'}
               </div>
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-4xl font-bold leading-tight text-white">
-                  EXPERIMENTE A <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">IMERSÃO</span> DO EDUCADOR FINANCEIRO
+                  {n.exclusiveMaterials?.heading || (
+                    <>EXPERIMENTE A <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">IMERSÃO</span> DO EDUCADOR FINANCEIRO</>
+                  )}
                 </h2>
                 <p className="text-lg text-zinc-300 max-w-2xl">
-                  Tenha uma prévia da jornada com materiais oficiais, bastidores e um vídeo de apresentação conduzido pelo time da RNA. Explore o ritmo da formação antes de garantir sua vaga definitiva.
+                  {n.exclusiveMaterials?.description || 'Tenha uma prévia da jornada com materiais oficiais, bastidores e um vídeo de apresentação conduzido pelo time da RNA. Explore o ritmo da formação antes de garantir sua vaga definitiva.'}
                 </p>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                {[
+                {(n.exclusiveMaterials?.chips || [
                   "Download de apostilas e exercícios selecionados",
                   "Bastidores da metodologia com orientações do time",
                   "Vídeo introdutório guiado pela equipe oficial RNA",
                   "Checklist para acelerar seus primeiros atendimentos",
-                ].map((item) => (
+                ]).map((item) => (
                   <div
                     key={item}
                     className="flex items-start gap-3 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-950/80 via-zinc-950/70 to-red-900/40 p-4 backdrop-blur-sm shadow-[0_0_25px_rgba(239,68,68,0.15)]"
@@ -427,7 +427,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 className={cn(primaryButtonBase, "mt-2 w-full sm:w-auto px-8 py-4 text-base shadow-[0_0_35px_rgba(239,68,68,0.35)]")}
                 onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
               >
-                ACESSAR PRÉVIA EXCLUSIVA <ArrowRight className="h-4 w-4" />
+                {(n.exclusiveMaterials?.ctaText || 'ACESSAR PRÉVIA EXCLUSIVA')} <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
 
@@ -437,10 +437,10 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 <div className="absolute top-4 right-4 h-3 w-3 rounded-full bg-red-400 animate-pulse" aria-hidden />
                 <div className="relative overflow-hidden rounded-3xl aspect-[9/16] bg-black">
                   <video
-                    src="/educador/WhatsApp%20Video%202025-08-21%20at%2010.38.45.mp4"
+                    src={n.exclusiveMaterials?.videoSrc || "/educador/WhatsApp%20Video%202025-08-21%20at%2010.38.45.mp4"}
                     controls
                     playsInline
-                    poster="/images/HERO_EDUCADOR_MOBILE.png"
+                    poster={(n.exclusiveMaterials?.videoPoster as any)?.asset?.url || "/images/HERO_EDUCADOR_MOBILE.png"}
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -464,45 +464,12 @@ export default function EducadorFinanceiroClient({ data }: Props) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <BookOpen className="h-6 w-6 text-red-400" />,
-                title: "Conhecimento abrangente",
-                description: "Do básico ao avançado em finanças pessoais, planejamento e investimentos.",
-              },
-              {
-                icon: <Briefcase className="h-6 w-6 text-red-400" />,
-                title: "Ferramentas práticas",
-                description: "Planilhas, checklists e templates prontos para aplicar com seus alunos ou clientes.",
-              },
-              {
-                icon: <Users className="h-6 w-6 text-red-400" />,
-                title: "Mentoria personalizada",
-                description: "Orientação direta de especialistas para acelerar sua evolução.",
-              },
-              {
-                icon: <Zap className="h-6 w-6 text-red-400" />,
-                title: "Networking e oportunidades",
-                description: "Acesso a uma comunidade ativa e conexões com profissionais da área.",
-              },
-              {
-                icon: <Award className="h-6 w-6 text-red-400" />,
-                title: "Certificação reconhecida",
-                description: "Competências validadas com um certificado que abre portas no mercado.",
-              },
-              {
-                icon: <Lightbulb className="h-6 w-6 text-red-400" />,
-                title: "Método validado",
-                description: "Metodologia estruturada para ensinar finanças de forma clara, envolvente e eficaz.",
-              },
-            ].map((feature, index) => (
+            {(n.features?.items || []).map((feature, index) => (
               <div
                 key={index}
                 className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10"
               >
-                <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  {feature.icon}
-                </div>
+                {/* Ícones configuráveis podem ser tratados aqui se necessário */}
                 <h3 className="text-xl font-bold mb-2 text-red-400">{feature.title}</h3>
                 <p className="text-zinc-300">{feature.description}</p>
               </div>
@@ -844,26 +811,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "LIVRE DE DÍVIDAS",
-                description:
-                  "Estratégias práticas para negociação de dívidas e controle financeiro, com metodologia validada e conteúdo gravado. Uma base essencial para suas futuras aulas.",
-                image: "/images/DIVIDAS.jpg",
-              },
-              {
-                title: "INVESTIMENTOS INTELIGENTES",
-                description:
-                  "Curso introdutório e prático sobre bolsa de valores e renda fixa. Ideal para quem quer começar a investir com segurança e repassar seus conhecimentos a outras pessoas.",
-                image: "/images/INVESTIMENTO.jpg",
-              },
-              {
-                title: "TRANSFORMAÇÃO FINANCEIRA",
-                description:
-                  "Formação completa que aborda propósito com o dinheiro, liberdade financeira, planejamento de curto e longo prazo e criação de múltiplas fontes de renda.",
-                image: "/images/REALIZAR.jpg",
-              },
-            ].map((course, index) => (
+            {(n.trainerSection?.courses || []).map((course, index) => (
               <div
                 key={index}
                 className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10"
@@ -872,7 +820,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 <div className="p-6">
                   <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
                     <Image
-                      src={course.image || "/placeholder.svg"}
+                      src={(course as any).image?.asset?.url || "/placeholder.svg"}
                       alt={course.title}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-500"
@@ -891,15 +839,15 @@ export default function EducadorFinanceiroClient({ data }: Props) {
       <section className="py-20 relative overflow-hidden">
         <SectionBackdrop variant="intense" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
+            <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">SEU MENTOR</span>
+              <span className="text-sm font-medium">{n.mentorSection?.badge || 'SEU MENTOR'}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              APRENDA COM O MENTOR DOS <span className="text-red-400">MENTORES</span>
+              {n.mentorSection?.title || <>APRENDA COM O MENTOR DOS <span className="text-red-400">MENTORES</span></>}
             </h2>
             <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
-              O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil!
+              {(n.mentorSection?.paragraphs && n.mentorSection.paragraphs[0]) || 'O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil!'}
             </p>
           </div>
 
@@ -964,47 +912,30 @@ export default function EducadorFinanceiroClient({ data }: Props) {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-              <span className="text-sm font-medium">GARANTIAS</span>
+              <span className="text-sm font-medium">{n.guarantees?.badge || 'GARANTIAS'}</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              INVESTIMENTO{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
-                SEGURO
-              </span>
+              {n.guarantees?.title || (
+                <>INVESTIMENTO{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
+                  SEGURO
+                </span></>
+              )}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-  {[
-    {
-      icon: <Shield className="h-6 w-6 text-red-400" />,
-      title: "Garantia legal de 7 dias",
-      description:
-        "Seu investimento em si mesmo é protegido por uma garantia de satisfação total. Se, por algum motivo, dentro dos primeiros 7 dias de acesso à formação, você decidir que o treinamento não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.",
-    },
-    {
-      icon: <Target className="h-6 w-6 text-red-400 font-bold" />,
-      title: "Garantia de resultados em 6 meses",
-      description:
-        "Se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira dentro de poucos dias, devolveremos o dobro do seu investimento no curso. Isso demonstra não apenas a confiança na eficácia de nosso método, mas também nosso compromisso com o seu progresso e resultados.",
-    },
-    {
-      icon: <Award className="h-6 w-6 text-red-400" />,
-      title: "Certificação reconhecida",
-      description:
-        "Ao concluir com sucesso a formação, você receberá uma certificação reconhecida no MEC que comprova suas habilidades e competências como educador financeiro, aumentando suas oportunidades de carreira e credibilidade de mercado.",
-    },
-  ].map((guarantee, index) => (
+  {(n.guarantees?.items || []).map((guarantee, index) => (
     <div
       key={index}
       className={`bg-zinc-900/50 backdrop-blur-sm border rounded-3xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10 ${
-        guarantee.title === "Garantia de resultados em 6 meses"
-          ? "border-red-400/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]"
-          : "border-zinc-800/50"
+        guarantee.title === 'Garantia de resultados em 6 meses'
+          ? 'border-red-400/30 shadow-[0_0_10px_rgba(239,68,68,0.2)]'
+          : 'border-zinc-800/50'
       }`}
     >
       <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4 mx-auto">
-        {guarantee.icon}
+        <Shield className="h-6 w-6 text-red-400" />
       </div>
       <h3 className="text-xl font-bold mb-4 text-center text-red-400">{guarantee.title}</h3>
       <p className="text-zinc-300 text-center">{guarantee.description}</p>
@@ -1015,14 +946,11 @@ export default function EducadorFinanceiroClient({ data }: Props) {
       </section>
 
       <NewsletterFormacoes
-        onSubmit={() => {
-          /* não precisa mais chamar router.push aqui,
-             o componente já faz isso */
-        }}
-        title="ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR"
-        description="Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira."
+        onSubmit={() => {}}
+        title={n.newsletter?.title || "ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR"}
+        description={n.newsletter?.description || "Participe da formação que já mudou milhares de vidas e pode mudar a sua. Preencha seus dados abaixo e dê o primeiro passo rumo à liberdade financeira."}
         source="Educador Financeiro"
-        ctaText="QUERO SER UM EDUCADOR FINANCEIRO!"
+        ctaText={n.newsletter?.ctaText || "QUERO SER UM EDUCADOR FINANCEIRO!"}
         accent="red"
             />
             <div aria-hidden className="h-16 md:h-24" />

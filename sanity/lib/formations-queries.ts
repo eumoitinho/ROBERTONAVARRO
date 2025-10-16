@@ -13,6 +13,7 @@ export const formationBySlugQuery = `*[_type == "formationPage" && slug.current 
   faq{ badge, title, items[]{ question, answer } },
   finalCta{ title, description, buttonText, buttonLink },
   mecSection{ heading, description, image{asset->{url}}, points },
+  aboutSection{ badge, heading, paragraphs, image{asset->{url}}, ctaText, ctaLink },
   licenseSection{ transformationsTitle, transformations, benefitsTitle, benefits, statement },
   exclusiveMaterials{ badge, heading, description, chips, videoSrc, videoPoster{asset->{url}}, ctaText },
   features{ badge, title, items[]{ icon, title, description } },

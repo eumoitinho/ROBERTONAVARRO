@@ -91,6 +91,21 @@ export default defineType({
       ],
     }),
 
+    // Seção Sobre o Curso
+    defineField({
+      name: 'aboutSection',
+      title: 'Seção Sobre o Curso',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'heading', title: 'Título', type: 'string' }),
+        defineField({ name: 'paragraphs', title: 'Parágrafos', type: 'array', of: [{ type: 'text' }] }),
+        defineField({ name: 'image', title: 'Imagem', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'ctaText', title: 'Texto CTA', type: 'string' }),
+        defineField({ name: 'ctaLink', title: 'Link CTA', type: 'string' }),
+      ],
+    }),
+
     // Seção MEC (certificação)
     defineField({
       name: 'mecSection',
