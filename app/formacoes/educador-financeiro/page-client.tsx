@@ -821,7 +821,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                   <div className="relative h-48 mb-6 overflow-hidden rounded-xl bg-zinc-800 flex items-center justify-center">
                     <Image
                       src={(course as any).image?.asset?.url || "/placeholder.svg"}
-                      alt={course.title}
+                      alt={course.title || ''}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-500"
                     />

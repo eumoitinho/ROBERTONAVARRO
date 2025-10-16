@@ -20,7 +20,13 @@ export const formationBySlugQuery = `*[_type == "formationPage" && slug.current 
   trainerSection{ badge, title, description, courses[]{ title, description, image{asset->{url}} } },
   mentorSection{ badge, title, image{asset->{url}}, paragraphs },
   guarantees{ badge, title, items[]{ title, description } },
-  newsletter{ title, description, ctaText }
+  newsletter{ title, description, ctaText },
+  challengesSection{ badge, title, description, items[]{ title, desc } },
+  valueSection{ badge, title, paragraphs, ctaText, ctaLink },
+  learnSection{ badge, title, items[]{ title, desc, icon }, ctaText, ctaLink },
+  methodologySection{ badge, title, description, items[]{ title, desc, icon }, ctaText, ctaLink },
+  audienceSection{ badge, title, intro, bullets[]{ title, desc }, ctaText, ctaLink },
+  faqSection{ badge, title, items[]{ question, answer } }
 }`
 
 

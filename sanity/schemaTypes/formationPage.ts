@@ -222,6 +222,101 @@ export default defineType({
       ],
     }),
 
+    // Seções específicas (Empreendedor Inteligente)
+    defineField({
+      name: 'challengesSection',
+      title: 'Seção Desafios',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        defineField({ name: 'items', title: 'Itens', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'title', title: 'Título', type: 'string' }),
+          defineField({ name: 'desc', title: 'Descrição', type: 'text' }),
+        ] }]}),
+      ],
+    }),
+
+    defineField({
+      name: 'valueSection',
+      title: 'Seção Valor do Programa',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'paragraphs', title: 'Parágrafos', type: 'array', of: [{ type: 'text' }] }),
+        defineField({ name: 'ctaText', title: 'Texto CTA', type: 'string' }),
+        defineField({ name: 'ctaLink', title: 'Link CTA', type: 'string' }),
+      ],
+    }),
+
+    defineField({
+      name: 'learnSection',
+      title: 'Seção O que vai aprender',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'items', title: 'Itens', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'title', title: 'Título', type: 'string' }),
+          defineField({ name: 'desc', title: 'Descrição', type: 'text' }),
+          defineField({ name: 'icon', title: 'Ícone (nome)', type: 'string' }),
+        ] }]}),
+        defineField({ name: 'ctaText', title: 'Texto CTA', type: 'string' }),
+        defineField({ name: 'ctaLink', title: 'Link CTA', type: 'string' }),
+      ],
+    }),
+
+    defineField({
+      name: 'methodologySection',
+      title: 'Seção Metodologia Lean',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        defineField({ name: 'items', title: 'Itens', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'title', title: 'Título', type: 'string' }),
+          defineField({ name: 'desc', title: 'Descrição', type: 'text' }),
+          defineField({ name: 'icon', title: 'Ícone (nome)', type: 'string' }),
+        ] }]}),
+        defineField({ name: 'ctaText', title: 'Texto CTA', type: 'string' }),
+        defineField({ name: 'ctaLink', title: 'Link CTA', type: 'string' }),
+      ],
+    }),
+
+    defineField({
+      name: 'audienceSection',
+      title: 'Seção Público-Alvo',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'intro', title: 'Introdução', type: 'text' }),
+        defineField({ name: 'bullets', title: 'Tópicos', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'title', title: 'Título', type: 'string' }),
+          defineField({ name: 'desc', title: 'Descrição', type: 'text' }),
+        ] }]}),
+        defineField({ name: 'ctaText', title: 'Texto CTA', type: 'string' }),
+        defineField({ name: 'ctaLink', title: 'Link CTA', type: 'string' }),
+      ],
+    }),
+
+    defineField({
+      name: 'faqSection',
+      title: 'Seção FAQ',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'items', title: 'Perguntas', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'question', title: 'Pergunta', type: 'string' }),
+          defineField({ name: 'answer', title: 'Resposta', type: 'text' }),
+        ] }]}),
+      ],
+    }),
+
     defineField({
       name: 'bonuses',
       title: 'Bônus',

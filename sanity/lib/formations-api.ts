@@ -24,6 +24,12 @@ export type FormationPageData = {
   guarantees?: { badge?: string; title?: string; items?: Array<{ title?: string; description?: string }> }
   newsletter?: { title?: string; description?: string; ctaText?: string }
   aboutSection?: { badge?: string; heading?: string; paragraphs?: string[]; image?: { asset?: { url?: string } }; ctaText?: string; ctaLink?: string }
+  challengesSection?: { badge?: string; title?: string; description?: string; items?: Array<{ title?: string; desc?: string }> }
+  valueSection?: { badge?: string; title?: string; paragraphs?: string[]; ctaText?: string; ctaLink?: string }
+  learnSection?: { badge?: string; title?: string; items?: Array<{ title?: string; desc?: string; icon?: string }>; ctaText?: string; ctaLink?: string }
+  methodologySection?: { badge?: string; title?: string; description?: string; items?: Array<{ title?: string; desc?: string; icon?: string }>; ctaText?: string; ctaLink?: string }
+  audienceSection?: { badge?: string; title?: string; intro?: string; bullets?: Array<{ title?: string; desc?: string }>; ctaText?: string; ctaLink?: string }
+  faqSection?: { badge?: string; title?: string; items?: Array<{ question?: string; answer?: string }> }
 }
 
 export async function getFormationBySlug(slug: string): Promise<FormationPageData | null> {
