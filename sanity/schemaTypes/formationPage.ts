@@ -91,6 +91,122 @@ export default defineType({
       ],
     }),
 
+    // Seção MEC (certificação)
+    defineField({
+      name: 'mecSection',
+      title: 'Seção MEC',
+      type: 'object',
+      fields: [
+        defineField({ name: 'heading', title: 'Título', type: 'string' }),
+        defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        defineField({ name: 'image', title: 'Imagem', type: 'image' }),
+        defineField({ name: 'points', title: 'Pontos', type: 'array', of: [{ type: 'string' }] }),
+      ],
+    }),
+
+    // Seção Licença Profissional
+    defineField({
+      name: 'licenseSection',
+      title: 'Seção Licença Profissional',
+      type: 'object',
+      fields: [
+        defineField({ name: 'transformationsTitle', title: 'Título Transformações', type: 'string' }),
+        defineField({ name: 'transformations', title: 'Transformações', type: 'array', of: [{ type: 'string' }] }),
+        defineField({ name: 'benefitsTitle', title: 'Título Benefícios', type: 'string' }),
+        defineField({ name: 'benefits', title: 'Benefícios', type: 'array', of: [{ type: 'string' }] }),
+        defineField({ name: 'statement', title: 'Frase Central', type: 'string' }),
+      ],
+    }),
+
+    // Materiais exclusivos
+    defineField({
+      name: 'exclusiveMaterials',
+      title: 'Materiais Exclusivos',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'heading', title: 'Título', type: 'string' }),
+        defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        defineField({ name: 'chips', title: 'Chips/Itens', type: 'array', of: [{ type: 'string' }] }),
+        defineField({ name: 'videoSrc', title: 'Vídeo (URL)', type: 'url' }),
+        defineField({ name: 'videoPoster', title: 'Poster do Vídeo', type: 'image' }),
+        defineField({ name: 'ctaText', title: 'Texto CTA', type: 'string' }),
+      ],
+    }),
+
+    // Recursos/Features
+    defineField({
+      name: 'features',
+      title: 'Recursos',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'items', title: 'Itens', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'icon', title: 'Ícone (nome)', type: 'string' }),
+          defineField({ name: 'title', title: 'Título', type: 'string' }),
+          defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        ] }] }),
+      ],
+    }),
+
+    // Treinador licenciado
+    defineField({
+      name: 'trainerSection',
+      title: 'Seção Treinador Licenciado',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        defineField({ name: 'courses', title: 'Cursos', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'title', title: 'Título', type: 'string' }),
+          defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+          defineField({ name: 'image', title: 'Imagem', type: 'image' }),
+        ] }]}),
+      ],
+    }),
+
+    // Mentor
+    defineField({
+      name: 'mentorSection',
+      title: 'Seção Mentor',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'image', title: 'Imagem', type: 'image' }),
+        defineField({ name: 'paragraphs', title: 'Parágrafos', type: 'array', of: [{ type: 'text' }] }),
+      ],
+    }),
+
+    // Garantias
+    defineField({
+      name: 'guarantees',
+      title: 'Garantias',
+      type: 'object',
+      fields: [
+        defineField({ name: 'badge', title: 'Badge', type: 'string' }),
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'items', title: 'Itens', type: 'array', of: [{ type: 'object', fields: [
+          defineField({ name: 'title', title: 'Título', type: 'string' }),
+          defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        ] }]}),
+      ],
+    }),
+
+    // Newsletter/CTA
+    defineField({
+      name: 'newsletter',
+      title: 'Newsletter/CTA',
+      type: 'object',
+      fields: [
+        defineField({ name: 'title', title: 'Título', type: 'string' }),
+        defineField({ name: 'description', title: 'Descrição', type: 'text' }),
+        defineField({ name: 'ctaText', title: 'Texto CTA', type: 'string' }),
+      ],
+    }),
+
     defineField({
       name: 'bonuses',
       title: 'Bônus',

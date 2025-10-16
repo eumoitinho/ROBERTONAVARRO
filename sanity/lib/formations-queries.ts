@@ -11,7 +11,15 @@ export const formationBySlugQuery = `*[_type == "formationPage" && slug.current 
   pricing{ badge, title, description, tickets[]{ name, price, description, features[], highlighted, ctaText, ctaLink } },
   testimonials{ badge, title, description, items[]{ name, role, quote, rating } },
   faq{ badge, title, items[]{ question, answer } },
-  finalCta{ title, description, buttonText, buttonLink }
+  finalCta{ title, description, buttonText, buttonLink },
+  mecSection{ heading, description, image{asset->{url}}, points },
+  licenseSection{ transformationsTitle, transformations, benefitsTitle, benefits, statement },
+  exclusiveMaterials{ badge, heading, description, chips, videoSrc, videoPoster{asset->{url}}, ctaText },
+  features{ badge, title, items[]{ icon, title, description } },
+  trainerSection{ badge, title, description, courses[]{ title, description, image{asset->{url}} } },
+  mentorSection{ badge, title, image{asset->{url}}, paragraphs },
+  guarantees{ badge, title, items[]{ title, description } },
+  newsletter{ title, description, ctaText }
 }`
 
 
