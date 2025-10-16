@@ -6,10 +6,12 @@ import formationPage from './formationPage';
 import blogPost from './blogPost';
 import eventPage from './eventPage';
 import bookPage from './bookPage';
+import integrations from './integrations';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Configurações Globais
   siteSettings,
+  integrations,
 
   // Páginas
   page,
