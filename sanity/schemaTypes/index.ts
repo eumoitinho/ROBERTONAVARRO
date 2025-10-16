@@ -5,6 +5,7 @@ import homepage from './homepage';
 import formationPage from './formationPage';
 import blogPost from './blogPost';
 import eventPage from './eventPage';
+import bookPage from './bookPage';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Configurações Globais
@@ -15,6 +16,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   homepage,
   formationPage,
   eventPage,
+  bookPage,
   
   // Blog
   blogPost,
