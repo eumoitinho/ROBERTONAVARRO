@@ -1,5 +1,11 @@
 import type { BlogPost, BlogCategory } from './client';
 import { fallbackBlogPosts } from './fallback-data';
+import { 
+  getAllBlogPosts, 
+  getBlogPostBySlug, 
+  getBlogCategories, 
+  getBlogPostsByCategory 
+} from '@/sanity/lib/blog-api';
 
 const slugify = (value: string) =>
   value
@@ -20,20 +26,46 @@ const fallbackCategories: BlogCategory[] = Array.from(
   ).values()
 );
 
-const posts = fallbackBlogPosts;
-
 export async function getAllPosts(): Promise<BlogPost[]> {
-  return posts;
+  try {
+    const posts = await getAllBlogPosts();
+    return posts;
+  } catch (error) {
+    console.error('[getAllPosts] Error:', error);
+    return fallbackBlogPosts;
+  }
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  return posts.find((post) => post.slug === slug) ?? null;
+  try {
+    const post = await getBlogPostBySlug(slug);
+    return post;
+  } catch (error) {
+    console.error('[getPostBySlug] Error:', error);
+    return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
+  }
 }
 
 export async function getCategories(): Promise<BlogCategory[]> {
-  return fallbackCategories;
+  try {
+    const categories = await getBlogCategories();
+    return categories.map(category => ({
+      _id: category,
+      _title: category,
+      slug: slugify(category)
+    }));
+  } catch (error) {
+    console.error('[getCategories] Error:', error);
+    return fallbackCategories;
+  }
 }
 
 export async function getPostsByCategory(category: string): Promise<BlogPost[]> {
-  return posts.filter((post) => post.category?.toLowerCase() === category.toLowerCase());
+  try {
+    const posts = await getBlogPostsByCategory(category);
+    return posts;
+  } catch (error) {
+    console.error('[getPostsByCategory] Error:', error);
+    return fallbackBlogPosts.filter((post) => post.category?.toLowerCase() === category.toLowerCase());
+  }
 }
