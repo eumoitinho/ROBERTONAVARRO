@@ -44,8 +44,8 @@ function convertSanityPost(sanityPost: SanityBlogPost): BlogPost {
       .filter(block => block._type === 'block' && block.children)
       .map(block => 
         block.children
-          ?.filter(child => child._type === 'span' && child.text)
-          .map(child => child.text)
+          ?.filter((child: any) => child._type === 'span' && child.text)
+          .map((child: any) => child.text)
           .join('')
       )
       .join('\n')
