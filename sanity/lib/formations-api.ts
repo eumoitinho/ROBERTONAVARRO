@@ -15,6 +15,15 @@ export type FormationPageData = {
   testimonials?: { badge?: string; title?: string; description?: string; items?: Array<{ name?: string; role?: string; quote?: string; rating?: number }> }
   faq?: { badge?: string; title?: string; items?: Array<{ question?: string; answer?: string }> }
   finalCta?: { title?: string; description?: string; buttonText?: string; buttonLink?: string }
+  mecSection?: { heading?: string; description?: string; image?: { asset?: { url?: string } }; points?: string[] }
+  licenseSection?: { transformationsTitle?: string; transformations?: string[]; benefitsTitle?: string; benefits?: string[]; statement?: string }
+  exclusiveMaterials?: { badge?: string; heading?: string; description?: string; chips?: string[]; videoSrc?: string; videoPoster?: { asset?: { url?: string } }; ctaText?: string }
+  features?: { badge?: string; title?: string; items?: Array<{ icon?: string; title?: string; description?: string }> }
+  trainerSection?: { badge?: string; title?: string; description?: string; courses?: Array<{ title?: string; description?: string; image?: { asset?: { url?: string } } }> }
+  mentorSection?: { badge?: string; title?: string; image?: { asset?: { url?: string } }; paragraphs?: string[] }
+  guarantees?: { badge?: string; title?: string; items?: Array<{ title?: string; description?: string }> }
+  newsletter?: { title?: string; description?: string; ctaText?: string }
+  aboutSection?: { badge?: string; heading?: string; paragraphs?: string[]; image?: { asset?: { url?: string } }; ctaText?: string; ctaLink?: string }
 }
 
 export async function getFormationBySlug(slug: string): Promise<FormationPageData | null> {
