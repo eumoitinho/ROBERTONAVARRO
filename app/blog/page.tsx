@@ -5,8 +5,8 @@ export const revalidate = 60
 
 export default async function BlogPage() {
   const [posts, categoriesData] = await Promise.all([
-    getAllPosts(),
-    getCategories()
+          getAllPosts(),
+          getCategories()
   ])
   
   // Convert categories to string array
