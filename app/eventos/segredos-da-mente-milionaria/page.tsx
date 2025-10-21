@@ -282,7 +282,7 @@ export default function SegredosDaMenteMilionaria() {
         ctaText="GARANTIR MINHA VAGA AGORA!"
         eventDate="22 de outubro de 2025"
   eventTime="13h às 20h"
-  eventLocation="R. Alameda Araguaia, 751 - Alphaville, Campinas - SP"
+  eventLocation="R. Alameda Araguaia, 751 - Alphaville - SP"
   onSubmit={() => {
     /* não precisa mais chamar router.push aqui,
        o componente já faz isso */
