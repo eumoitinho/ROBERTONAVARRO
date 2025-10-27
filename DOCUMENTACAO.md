@@ -482,9 +482,9 @@ Ambas as partes se comprometem a manter confidencialidade sobre:
 - Metodologias proprietÃ¡rias
 
 ### CrÃ©ditos de Desenvolvimento
-**Desenvolvido por**: Catalisti Holding  
+**Desenvolvido por**: M2Z 
 **Desenvolvedor**: Joao Vitor Moitinho Silva  
-**Para**: Roberto Navarro ServiÃ§os  
+**Para**: Roberto Navarro 
 **Ano**: 2025
 
 ---
