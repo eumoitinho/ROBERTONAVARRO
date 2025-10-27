@@ -4,7 +4,6 @@ export default defineType({
   name: 'formationPage',
   title: 'Formação',
   type: 'document',
-  __experimental_actions: ['update', 'publish', 'create', 'delete'], // Prevent deleting
   fields: [
     defineField({ name: 'title', title: 'Título', type: 'string', validation: r => r.required() }),
     defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title' }, validation: r => r.required() }),
