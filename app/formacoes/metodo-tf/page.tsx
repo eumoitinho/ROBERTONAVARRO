@@ -34,7 +34,7 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import ScrollAnimation from "@/components/scroll-animation"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-const ctaLink = "https://payment-link-v3.pagar.me/pl_g3JlLz9pMqjnqgzTZuDO2KXWZ6V7aAYD" // Alterar para o link real quando disponível
+const ctaLink = "https://payment-link-v3.pagar.me/pl_Pn3V2r9NJpGRYqas09TLRMWY01KemEgv" // Alterar para o link real quando disponível
 
 export default function MetodoTFPage() {
   const [isVisible, setIsVisible] = useState(false)
