@@ -5,19 +5,25 @@ export default function Logo({
   width = 180,
   height = 50,
   variant = "white",
+  src,
 }: {
   className?: string
   width?: number
   height?: number
   variant?: "white" | "yellow"
+  src?: string
 }) {
+  const defaultSrc = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image_1-VTfVPh3t1DtDdS9lNmHAVfulKK5lOf.png"
+  const imageSrc = src ?? defaultSrc
+
   return (
     <div className={`relative ${className}`} style={{ width, height }}>
       <Image
-        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image_1-VTfVPh3t1DtDdS9lNmHAVfulKK5lOf.png"
+        src={imageSrc}
         alt="Roberto Navarro Logo"
         fill
         className="object-contain"
+        unoptimized
         style={{
           filter:
             variant === "yellow"

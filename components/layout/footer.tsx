@@ -87,13 +87,26 @@ const accentStyles: Record<Accent, {
 
 interface FooterProps {
   accent?: Accent
+  siteSettings?: any
 }
 
-export default function Footer({ accent = "yellow" }: FooterProps) {
+export default function Footer({ accent = "yellow", siteSettings }: FooterProps) {
   const styles = accentStyles[accent]
 
+  const footer = siteSettings?.footer || {}
+  const contact = siteSettings?.contact || {}
+  const social = siteSettings?.socialMedia || {}
+
+  // Build social links from siteSettings.socialMedia when present
+  const siteSocialLinks: Record<string, string> = {}
+  if (social.facebook) siteSocialLinks.facebook = social.facebook
+  if (social.instagram) siteSocialLinks.instagram = social.instagram
+  if (social.youtube) siteSocialLinks.youtube = social.youtube
+  if (social.linkedin) siteSocialLinks.linkedin = social.linkedin
+  if (social.tiktok) siteSocialLinks.tiktok = social.tiktok
+
   return (
-  <footer className="bg-zinc-950 border-t border-zinc-800/50">
+    <footer className="bg-zinc-950 border-t border-zinc-800/50">
       
 
       {/* Main Footer Content */}
@@ -106,29 +119,27 @@ export default function Footer({ accent = "yellow" }: FooterProps) {
                 <Logo className="h-12 w-auto" />
               </Link>
               <p className="text-zinc-400 mb-6 max-w-md">
-                Transformando vidas financeiras em todo o Brasil desde 2015. Mais de 130 mil pessoas já passaram por
-                nossas formações e mentorias.
+                {siteSettings?.tagline || "Transformando vidas financeiras em todo o Brasil desde 2015. Mais de 130 mil pessoas já passaram por nossas formações e mentorias."}
               </p>
 
               {/* Contact Info */}
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3 text-zinc-400">
                   <Mail className={cn("h-4 w-4", styles.contactIcon)} />
-                  <span className="text-sm">contato@robertonavarrooficial.com.br</span>
+                  <span className="text-sm">{contact.email || "contato@robertonavarrooficial.com.br"}</span>
                 </div>
                 <div className="flex items-center gap-3 text-zinc-400">
                   <Phone className={cn("h-4 w-4", styles.contactIcon)} />
-                  <span className="text-sm">(12) 99765-9057</span>
+                  <span className="text-sm">{contact.phone || "(12) 99765-9057"}</span>
                 </div>
                 <div className="flex items-center gap-3 text-zinc-400">
                   <MapPin className={cn("h-4 w-4", styles.contactIcon)} />
-                  <span className="text-sm">São Paulo, SP - Brasil</span>
+                  <span className="text-sm">{contact.address || "São Paulo, SP - Brasil"}</span>
                 </div>
               </div>
-
               {/* Social Links */}
               <div className="flex space-x-4">
-                {Object.entries(socialLinks).map(([key, href]) => (
+                {(Object.keys(siteSocialLinks).length > 0 ? Object.entries(siteSocialLinks) : Object.entries(socialLinks)).map(([key, href]) => (
                   <Link
                     key={key}
                     href={href}
@@ -197,22 +208,29 @@ export default function Footer({ accent = "yellow" }: FooterProps) {
               </ul>
             </div>
 
-            {/* Institucional */}
+            {/* Institucional or custom footer links from siteSettings */}
             <div>
               <h4 className={cn("text-sm font-semibold uppercase tracking-wider mb-4", styles.sectionHeading)}>
-                Institucional
+                {footer?.title || "Institucional"}
               </h4>
               <ul className="space-y-2">
-                {footerLinks.institucional.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className={cn("text-sm text-zinc-400 transition-colors", styles.linkHover)}
-                    >
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
+                {footer?.footerLinks && footer.footerLinks.length > 0 ? (
+                  footer.footerLinks.map((link: any) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className={cn("text-sm text-zinc-400 transition-colors", styles.linkHover)}>
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  footerLinks.institucional.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className={cn("text-sm text-zinc-400 transition-colors", styles.linkHover)}>
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))
+                )}
               </ul>
             </div>
 

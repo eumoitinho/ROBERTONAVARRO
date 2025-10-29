@@ -21,102 +21,35 @@ type TransformationVideo = {
 };
 
 const transformationVideos: TransformationVideo[] = [
-  {
-    id: "sVcR5iq1BG0",
-    title: "Estudo de Caso Fabio Santos - ICF",
-    person: "Fabio Santos",
-    description: "Relato de transformação financeira com o Instituto Coaching Financeiro.",
-  },
-  {
-    id: "AyjH3rNe37M",
-    title: "Estudo de Caso Clelio - ICF",
-    person: "Clelio",
-    description: "História de superação e sucesso com o Instituto Coaching Financeiro.",
-  },
-  {
-    id: "pmbpDqpkK78",
-    title: "Estudo de Caso Wagner Jovino - ICF",
-    person: "Wagner Jovino",
-    description: "Transformação financeira e pessoal com o Instituto Coaching Financeiro.",
-  },
-  {
-    id: "7N97LDt9F5Y",
-    title: "Estudo de Caso Rodrigo - ICF",
-    person: "Rodrigo",
-    description: "Como Rodrigo transformou sua vida financeira com o ICF.",
-  },
-  {
-    id: "FUkJWtmjGtM",
-    title: "Depoimento João Leles - ICF",
-    person: "João Leles",
-    description: "Depoimento sobre a experiência com o Instituto Coaching Financeiro.",
-  },
-  {
-    id: "Jyokxvo-WOo",
-    title: "Depoimento Ricardo - ICF",
-    person: "Ricardo",
-    description: "Relato de transformação financeira com o Instituto Coaching Financeiro.",
-  },
-  {
-    id: "GQVv0wnK4So",
-    title: "Como Roosevelt transformou sua vida financeira - ICF",
-    person: "Roosevelt",
-    description: "História de sucesso com o Instituto Coaching Financeiro.",
-  },
-  {
-    id: "kfZ-hck8bJI",
-    title: "Depoimentos - Instituto Coaching Financeiro - ICF",
-    person: "Vários Participantes",
-    description: "Compilado de depoimentos sobre o impacto do Instituto Coaching Financeiro.",
-  },
-  {
-    id: "4aYDKJQBnRw",
-    title: "Como superei minhas dívidas em 6 meses",
-    person: "Carlos Eduardo Silva",
-    description:
-      "De R$45 mil em dívidas a investidor em apenas 6 meses aplicando os princípios das Crenças da Riqueza.",
-    chipLabel: "Transformação Real",
-  },
-  {
-    id: "yTELcwYTsnU",
-    title: "Minha jornada de funcionário a empresário",
-    person: "João Gabriel Pereira",
-    description:
-      "Abandonei o medo e a zona de conforto para empreender e hoje tenho liberdade financeira e geográfica.",
-    chipLabel: "Transformação Real",
-  },
-  {
-    id: "W6rBTJKeJ4w",
-    title: "Como multipliquei meu patrimônio",
-    person: "Roberto Ferreira Mendes",
-    description:
-      "Aprendi a fazer o dinheiro trabalhar para mim e multipliquei meu patrimônio em 3x em apenas 18 meses.",
-    chipLabel: "Transformação Real",
-  },
+  { id: "sVcR5iq1BG0", title: "Estudo de Caso Fabio Santos - ICF", person: "Fabio Santos", description: "Relato de transformação financeira com o Instituto Coaching Financeiro." },
+  { id: "AyjH3rNe37M", title: "Estudo de Caso Clelio - ICF", person: "Clelio", description: "História de superação e sucesso com o Instituto Coaching Financeiro." },
+  { id: "pmbpDqpkK78", title: "Estudo de Caso Wagner Jovino - ICF", person: "Wagner Jovino", description: "Transformação financeira e pessoal com o Instituto Coaching Financeiro." },
+  { id: "7N97LDt9F5Y", title: "Estudo de Caso Rodrigo - ICF", person: "Rodrigo", description: "Como Rodrigo transformou sua vida financeira com o ICF." },
+  { id: "FUkJWtmjGtM", title: "Depoimento João Leles - ICF", person: "João Leles", description: "Depoimento sobre a experiência com o Instituto Coaching Financeiro." },
+  { id: "Jyokxvo-WOo", title: "Depoimento Ricardo - ICF", person: "Ricardo", description: "Relato de transformação financeira com o Instituto Coaching Financeiro." },
+  { id: "GQVv0wnK4So", title: "Como Roosevelt transformou sua vida financeira - ICF", person: "Roosevelt", description: "História de sucesso com o ICF." },
+  { id: "kfZ-hck8bJI", title: "Depoimentos - Instituto Coaching Financeiro - ICF", person: "Vários Participantes", description: "Compilado de depoimentos sobre o impacto do Instituto Coaching Financeiro." },
+  { id: "4aYDKJQBnRw", title: "Como superei minhas dívidas em 6 meses", person: "Carlos Eduardo Silva", description: "De R$45 mil em dívidas a investidor em apenas 6 meses aplicando os princípios das Crenças da Riqueza.", chipLabel: "Transformação Real" },
+  { id: "yTELcwYTsnU", title: "Minha jornada de funcionário a empresário", person: "João Gabriel Pereira", description: "Abandonei o medo e a zona de conforto para empreender e hoje tenho liberdade financeira e geográfica.", chipLabel: "Transformação Real" },
+  { id: "W6rBTJKeJ4w", title: "Como multipliquei meu patrimônio", person: "Roberto Ferreira Mendes", description: "Aprendi a fazer o dinheiro trabalhar para mim e multipliquei meu patrimônio em 3x em apenas 18 meses.", chipLabel: "Transformação Real" },
 ];
 
-type AccentStyles = {
-  topLine: string;
-  highlightGradient: string;
-  cardHover: string;
-  chipBg: string;
-  chipText: string;
-  personText: string;
-  circleBg: string;
-  iconColor: string;
-  playButtonBg: string;
-  playButtonShadow: string;
-  playIconColor: string;
-  buttonGradient: string;
-  buttonTextColor: string;
-  buttonShadow: string;
-  statsCardHover: string;
-  statsShadow: string;
-  videoBorder: string;
-};
+const defaultStats = [
+  { icon: Star, title: "Resultados Comprovados", description: "Mais de 130 mil pessoas já passaram por nossas formações e transformaram sua relação com o dinheiro." },
+  { icon: Zap, title: "Metodologia Exclusiva", description: "Uma abordagem única que integra inteligência financeira, emocional, espiritual e empresarial." },
+  { icon: Brain, title: "Transformação Mental", description: "Reprogramação de crenças limitantes e desenvolvimento de uma mentalidade de prosperidade." },
+];
 
-const accentStyles: Record<Accent, AccentStyles> = {
-  yellow: {
+interface TransformationVideosProps {
+  accent?: Accent;
+  orientation?: Orientation;
+  data?: any;
+}
+
+export default function TransformationVideos({ accent = "yellow", orientation = "landscape", data }: TransformationVideosProps) {
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+
+  const styles = (accent === 'yellow' ? {
     topLine: "bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent",
     highlightGradient: "bg-gradient-to-r from-yellow-500 to-amber-600",
     cardHover: "hover:border-yellow-400/40 hover:shadow-yellow-400/10",
@@ -134,8 +67,7 @@ const accentStyles: Record<Accent, AccentStyles> = {
     statsCardHover: "hover:border-yellow-400/40",
     statsShadow: "hover:shadow-yellow-400/10",
     videoBorder: "border border-yellow-400/30",
-  },
-  red: {
+  } : {
     topLine: "bg-gradient-to-r from-transparent via-red-500/30 to-transparent",
     highlightGradient: "bg-gradient-to-r from-red-500 to-red-600",
     cardHover: "hover:border-red-500/40 hover:shadow-red-500/10",
@@ -153,36 +85,8 @@ const accentStyles: Record<Accent, AccentStyles> = {
     statsCardHover: "hover:border-red-500/40",
     statsShadow: "hover:shadow-red-500/10",
     videoBorder: "border border-red-500/30",
-  },
-};
+  }) as any;
 
-const stats = [
-  {
-    icon: Star,
-    title: "Resultados Comprovados",
-    description: "Mais de 130 mil pessoas já passaram por nossas formações e transformaram sua relação com o dinheiro.",
-  },
-  {
-    icon: Zap,
-    title: "Metodologia Exclusiva",
-    description: "Uma abordagem única que integra inteligência financeira, emocional, espiritual e empresarial.",
-  },
-  {
-    icon: Brain,
-    title: "Transformação Mental",
-    description: "Reprogramação de crenças limitantes e desenvolvimento de uma mentalidade de prosperidade.",
-  },
-];
-
-interface TransformationVideosProps {
-  accent?: Accent;
-  orientation?: Orientation;
-}
-
-export default function TransformationVideos({ accent = "yellow", orientation = "landscape" }: TransformationVideosProps) {
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
-
-  const styles = accentStyles[accent];
   const isPortrait = orientation === "portrait";
   const aspectClass = isPortrait ? "aspect-[9/16]" : "aspect-video";
   const itemBasisClass = isPortrait ? "md:basis-1/3 xl:basis-1/4" : "md:basis-1/2 lg:basis-1/3";
@@ -190,6 +94,9 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
   const handlePlayVideo = (videoId: string) => {
     setPlayingVideo(videoId);
   };
+
+  const videosList: any[] = data?.videos && data.videos.length ? data.videos : transformationVideos;
+  const statsList = data?.stats && data.stats.length ? data.stats : defaultStats;
 
   return (
     <section id="depoimentos" className="relative py-24">
@@ -205,7 +112,7 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
             SUAS VIDAS FINANCEIRAS
           </h2>
           <p className="mt-6 text-base md:text-lg leading-relaxed text-zinc-300">
-            Histórias reais de pessoas que aplicaram os princípios das Crenças da Riqueza e mudaram completamente sua relação com o dinheiro.
+            {data?.description ?? 'Histórias reais de pessoas que aplicaram os princípios das Crenças da Riqueza e mudaram completamente sua relação com o dinheiro.'}
           </p>
         </div>
 
@@ -218,7 +125,7 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
             className="w-full"
           >
             <CarouselContent>
-              {transformationVideos.map((video) => (
+              {videosList.map((video: any) => (
                 <CarouselItem key={video.id} className={cn("pl-4", itemBasisClass)}>
                   <div className="flex h-full">
                     <div
@@ -243,6 +150,7 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
                               alt={video.title}
                               fill
                               className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              unoptimized
                             />
                             <div
                               className="absolute inset-0 flex items-center justify-center bg-black/40 transition-colors duration-300 hover:bg-black/30"
@@ -287,9 +195,9 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
         </div>
 
         <div className="mt-16 grid gap-8 md:grid-cols-3">
-          {stats.map(({ icon: Icon, title, description }) => (
+          {statsList.map(({ icon: Icon, title, description }: any, idx: number) => (
             <div
-              key={title}
+              key={title + idx}
               className={cn(
                 "rounded-2xl border border-zinc-700/30 bg-zinc-900/40 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1",
                 styles.statsCardHover,
@@ -320,7 +228,7 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
             )}
           >
             <a href="#inscricao" className="inline-flex items-center justify-center gap-2">
-              Transformar Minha Vida Financeira!
+              {data?.ctaText ?? 'Transformar Minha Vida Financeira!'}
               <ArrowRight className="h-4 w-4" />
             </a>
           </Button>
@@ -329,3 +237,4 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
     </section>
   );
 }
+

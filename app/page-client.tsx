@@ -16,29 +16,42 @@ import type { HomepageData } from "@/sanity/lib/homepage-api"
 
 interface Props {
   data: HomepageData
+  siteSettings?: any
 }
 
-export default function HomePageClient({ data }: Props) {
+export default function HomePageClient({ data, siteSettings }: Props) {
   const hero = data.heroSection || {}
   const formacoes = data.formacoesSection || {}
   const controls = data.sectionControls || {}
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
-      <SiteHeader />
+      <SiteHeader navigationItems={siteSettings?.mainNavigation ?? undefined} logoSrc={siteSettings?.logo?.asset?.url} />
 
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/bgsite.jpg"
-            alt="Roberto Navarro"
-            fill
-            className="object-cover mt-24"
-            style={{ objectPosition: "center" }}
-            priority
-          />
+          {hero.backgroundImage?.asset?.url ? (
+            <Image
+              src={hero.backgroundImage.asset.url}
+              alt={"Roberto Navarro"}
+              fill
+              unoptimized
+              className="object-cover mt-24"
+              style={{ objectPosition: 'center' }}
+              priority
+            />
+          ) : (
+            <Image
+              src="/images/bgsite.jpg"
+              alt="Roberto Navarro"
+              fill
+              className="object-cover mt-24"
+              style={{ objectPosition: 'center' }}
+              priority
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/70 via-60% to-transparent"></div>
         </div>
 
@@ -68,7 +81,7 @@ export default function HomePageClient({ data }: Props) {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
-                  <Link href="#formacoes">{hero.primaryButtonText || 'CONHEÇA NOSSAS FORMAÇÕES'}</Link>
+                  <Link href={hero.primaryButtonLink || '#formacoes'}>{hero.primaryButtonText || 'CONHEÇA NOSSAS FORMAÇÕES'}</Link>
                 </Button>
               </div>
 
@@ -134,12 +147,12 @@ export default function HomePageClient({ data }: Props) {
         </div>
       </section>
 
-      {controls.showMentorSection !== false && <QuemSomosSection />}
-      {controls.showVideosSection !== false && <TransformationVideos />}
-      {controls.showTestimonialsSection !== false && <TestimonialsSection />}
-      {controls.showLocationSection !== false && <LocationMap />}
+    {controls.showMentorSection !== false && <QuemSomosSection data={data.mentorSection} />}
+    {controls.showVideosSection !== false && <TransformationVideos data={data.videosSection} />}
+    {controls.showTestimonialsSection !== false && <TestimonialsSection data={data.testimonialsSection} />}
+    {controls.showLocationSection !== false && <LocationMap data={data.locationSection} />}
 
-      <Footer />
+    <Footer siteSettings={siteSettings} />
       <WhatsAppButton />
     </div>
   )

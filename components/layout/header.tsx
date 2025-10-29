@@ -179,6 +179,7 @@ interface SiteHeaderProps {
     showInicio?: boolean // mostra ou não o link "Início"
     cartItems?: any[] // itens do carrinho
     onCartClick?: () => void // função para abrir o carrinho
+    logoSrc?: string
 }
 
 export function SiteHeader({
@@ -187,6 +188,7 @@ export function SiteHeader({
     showInicio = false,
     cartItems = [],
     onCartClick,
+    logoSrc,
 }: SiteHeaderProps) {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -230,7 +232,7 @@ export function SiteHeader({
                 <div className="flex items-center justify-between h-16 lg:h-20">
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0">
-                        <Logo className="h-8 lg:h-10 w-auto" />
+                        <Logo src={logoSrc} className="h-8 lg:h-10 w-auto" />
                     </Link>
 
                     {/* Desktop Navigation */}

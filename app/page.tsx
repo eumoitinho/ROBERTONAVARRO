@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getHomepage, type HomepageData } from '@/sanity/lib/homepage-api'
+import { getSiteSettings } from '@/sanity/lib/api'
 import HomePageClient from './page-client'
 
 export const revalidate = 60
@@ -21,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const data = await getHomepage()
+  const [data, siteSettings] = await Promise.all([getHomepage(), getSiteSettings()])
   const fallback: HomepageData = {
     _id: 'homepage-fallback',
     title: 'Homepage Principal',
@@ -110,5 +111,5 @@ export default async function HomePage() {
     },
   }
 
-  return <HomePageClient data={data || fallback} />
+  return <HomePageClient data={data || fallback} siteSettings={siteSettings ?? undefined} />
 }
