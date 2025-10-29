@@ -34,7 +34,7 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import ScrollAnimation from "@/components/scroll-animation"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-const ctaLink = "#inscricao" // Alterar para o link real quando disponível
+const ctaLink = "https://payment-link-v3.pagar.me/pl_g3JlLz9pMqjnqgzTZuDO2KXWZ6V7aAYD" // Alterar para o link real quando disponível
 
 export default function MetodoTFPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -183,7 +183,7 @@ export default function MetodoTFPage() {
               asChild
             >
               <a href={ctaLink}>
-                QUERO TRANSFORMAR MINHA VIDA!
+                QUERO ENTRAR NO MÉTODO TF!
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
