@@ -104,6 +104,9 @@ export default function EducadorFinanceiroClient({ data }: Props) {
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
+  const ctaText = n.hero?.ctaText || "QUERO SER UM EDUCADOR FINANCEIRO!"
+  const licenseCtaText = (n.licenseSection as any)?.ctaText || "GARANTIR MINHA LICENÇA PROFISSIONAL"
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setIsSubmitting(true)
@@ -375,12 +378,12 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 </p>
               </div>
 
-              <Button
-                className={cn(primaryButtonBase, "mt-8 px-8 py-4 text-base")}
-                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+                <Button
+                  className={cn(primaryButtonBase, "mt-8 px-8 py-4 text-base")}
+                  onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  {ctaText} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
             </div>
           </div>
         </div>
@@ -423,12 +426,12 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 ))}
               </div>
 
-              <Button
-                className={cn(primaryButtonBase, "mt-2 w-full sm:w-auto px-8 py-4 text-base shadow-[0_0_35px_rgba(239,68,68,0.35)]")}
-                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                {(n.exclusiveMaterials?.ctaText || 'ACESSAR PRÉVIA EXCLUSIVA')} <ArrowRight className="h-4 w-4" />
-              </Button>
+                <Button
+                  className={cn(primaryButtonBase, "mt-2 w-full sm:w-auto px-8 py-4 text-base shadow-[0_0_35px_rgba(239,68,68,0.35)]")}
+                  onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  {(n.exclusiveMaterials?.ctaText || 'ACESSAR PRÉVIA EXCLUSIVA')} <ArrowRight className="h-4 w-4" />
+                </Button>
             </div>
 
             <div className="relative w-full max-w-[360px] mx-auto">
@@ -893,19 +896,27 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 </p>
               </div>
 
-              <Button
-                className={cn(primaryButtonBase, "mt-8 px-8 py-4 text-base")}
-                onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                <Button
+                  className={cn(primaryButtonBase, "px-8 py-4 text-base")}
+                  onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  QUERO SER UM EDUCADOR FINANCEIRO! <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+
+                <Button
+                  className={cn(primaryButtonBase, "px-8 py-4 text-base")}
+                  onClick={() => document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  {licenseCtaText} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
-  <TransformationVideos accent="red" />
 
-  <NotableParticipants accent="red" />
+      <NotableParticipants accent="red" />
       {/* Guarantees Section */}
       <section className="py-20 relative overflow-hidden">
         <SectionBackdrop variant="muted" />

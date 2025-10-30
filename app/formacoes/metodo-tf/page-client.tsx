@@ -48,6 +48,8 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
   }, [])
 
   const ctaLink = data?.hero?.ctaLink || '#inscricao'
+  const ctaText = data?.hero?.ctaText || 'QUERO TRANSFORMAR MINHA VIDA!'
+  const finalCtaText = data?.hero?.finalCtaText || data?.hero?.ctaText || 'QUERO TRANSFORMAR MINHA VIDA FINANCEIRA!'
 
   const stats = data?.stats ?? [
     { number: "+1,5 milhões", label: "de alunos" },
@@ -126,10 +128,10 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
               className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold rounded-full px-8 py-6 text-lg shadow-2xl hover:shadow-yellow-500/25 transform hover:-translate-y-1 transition-all duration-300"
               asChild
             >
-              <a href={ctaLink}>
-                QUERO TRANSFORMAR MINHA VIDA!
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+                <a href={ctaLink}>
+                  {ctaText}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
             </Button>
           </ScrollAnimation>
         </div>
@@ -457,10 +459,10 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
               className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold rounded-full px-10 py-6 text-xl shadow-2xl hover:shadow-yellow-500/25 transform hover:-translate-y-1 transition-all duration-300"
               asChild
             >
-              <a href={ctaLink}>
-                QUERO TRANSFORMAR MINHA VIDA FINANCEIRA!
-                <ArrowRight className="ml-3 h-6 w-6" />
-              </a>
+                  <a href={ctaLink}>
+                    {finalCtaText}
+                    <ArrowRight className="ml-3 h-6 w-6" />
+                  </a>
             </Button>
           </ScrollAnimation>
         </div>
