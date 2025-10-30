@@ -208,7 +208,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                       'Reconhecimento nacional',
                       'Validação profissional',
                       'Credibilidade garantida',
-                    ]).map((p, i) => (
+                    ]).map((p: string, i: number) => (
                       <div key={i} className="flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-red-400" />
                         <span className="text-zinc-200">{p}</span>
@@ -261,7 +261,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                       "Respaldo do ICF para ensinar sobre geração de riqueza",
                       "Ampliar o número de clientes ativos",
                       "Consolidar uma carreira próspera e segura"
-                    ]).map((item, index) => (
+                    ]).map((item: any, index: number) => (
                       <li key={index} className="flex items-start gap-3">
                         <CheckCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-1" />
                         <span className="text-zinc-200">{item}</span>
@@ -280,7 +280,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                       "Licença chancelada pela RNA",
                       "Respaldo profissional que reduz a concorrência",
                       "Ganhos maiores que os demais profissionais"
-                    ]).map((item, index) => (
+                    ]).map((item: any, index: number) => (
                       <li key={index} className="flex items-start gap-3">
                         <Award className="h-5 w-5 text-red-400 flex-shrink-0 mt-1" />
                         <span className="text-zinc-200">{item}</span>
@@ -412,9 +412,9 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                   "Bastidores da metodologia com orientações do time",
                   "Vídeo introdutório guiado pela equipe oficial RNA",
                   "Checklist para acelerar seus primeiros atendimentos",
-                ]).map((item) => (
+                ]).map((item: any, i: number) => (
                   <div
-                    key={item}
+                    key={i}
                     className="flex items-start gap-3 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-950/80 via-zinc-950/70 to-red-900/40 p-4 backdrop-blur-sm shadow-[0_0_25px_rgba(239,68,68,0.15)]"
                   >
                     <CheckCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
@@ -464,7 +464,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {(n.features?.items || []).map((feature, index) => (
+            {(n.features?.items || []).map((feature: any, index: number) => (
               <div
                 key={index}
                 className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10"
@@ -562,7 +562,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 </h3>
               </div>
               <div className="p-6 grid md:grid-cols-2 gap-4">
-                {[
+                {((n as any).modulesSection?.module1 || [
                   "Introdução à Virada de Chave",
                   "Qualidade de Vida",
                   "A Importância da Qualidade de Vida",
@@ -572,7 +572,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                   "O que te motiva?",
                   "Custo de Vida",
                   "Sentimento com o Dinheiro"
-                ].map((aula, index) => (
+                ]).map((aula: any, index: number) => (
                   <div key={index} className="flex items-center gap-3 text-zinc-300">
                     <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
                     <span className="text-sm">{aula}</span>
@@ -590,7 +590,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 </h3>
               </div>
               <div className="p-6 grid md:grid-cols-2 gap-4">
-                {[
+                {((n as any).modulesSection?.module2 || [
                   "Introdução à Clareza Financeira",
                   "Causa das Dívidas",
                   "Despesas Fantasmas",
@@ -599,7 +599,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                   "Dívida Boa X Dívida Ruim",
                   "Qual o tipo de Dívida você tem?",
                   "A Mágica dos Juros Compostos"
-                ].map((aula, index) => (
+                ]).map((aula: any, index: number) => (
                   <div key={index} className="flex items-center gap-3 text-zinc-300">
                     <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
                     <span className="text-sm">{aula}</span>
@@ -619,7 +619,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
               <div className="p-6">
                 <p className="text-sm text-zinc-400 mb-4">(Te preparando pro Mercado)</p>
                 <div className="grid md:grid-cols-2 gap-4">
-                  {[
+                  {((n as any).modulesSection?.module3 || [
                     "Introdução à Geração de Dinheiro",
                     "Triatlon da Riqueza",
                     "Renda Principal e Perguntas",
@@ -632,7 +632,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                     "Oportunidade de Renda - Marketing Digital",
                     "Oportunidade de Renda - Coach",
                     "Make Money"
-                  ].map((aula, index) => (
+                  ]).map((aula: any, index: number) => (
                     <div key={index} className="flex items-center gap-3 text-zinc-300">
                       <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
                       <span className="text-sm">{aula}</span>
@@ -651,7 +651,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                 </h3>
               </div>
               <div className="p-6 grid md:grid-cols-2 gap-4">
-                {[
+                {((n as any).modulesSection?.module4 || [
                   "Introdução e Fundo de Investimentos",
                   "Fundo de Investimentos - Multimercado",
                   "Fundo de Ações",
@@ -661,7 +661,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                   "Renda Fixa - Tesouro Direto",
                   "Home Brocker - Ações",
                   "Conclusão do Curso"
-                ].map((aula, index) => (
+                ]).map((aula: any, index: number) => (
                   <div key={index} className="flex items-center gap-3 text-zinc-300">
                     <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
                     <span className="text-sm">{aula}</span>
@@ -681,7 +681,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
               <div className="p-6">
                 <p className="text-sm text-zinc-400 mb-4">Apostila de Acompanhamento incluída</p>
                 <div className="grid md:grid-cols-2 gap-4">
-                  {[
+                  {((n as any).modulesSection?.module5 || [
                     "Ciência da Riqueza",
                     "Pilares da Riqueza",
                     "Padrão de Gastos",
@@ -689,7 +689,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
                     "Oportunidade de Renda Extra",
                     "Como Garantir um Futuro com Muito Dinheiro",
                     "Como Construir sua Riqueza"
-                  ].map((aula, index) => (
+                  ]).map((aula: any, index: number) => (
                     <div key={index} className="flex items-center gap-3 text-zinc-300">
                       <CheckCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
                       <span className="text-sm">{aula}</span>
@@ -811,7 +811,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {(n.trainerSection?.courses || []).map((course, index) => (
+            {(n.trainerSection?.courses || []).map((course: any, index: number) => (
               <div
                 key={index}
                 className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10"
@@ -925,7 +925,7 @@ export default function EducadorFinanceiroClient({ data }: Props) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-  {(n.guarantees?.items || []).map((guarantee, index) => (
+  {(n.guarantees?.items || []).map((guarantee: any, index: number) => (
     <div
       key={index}
       className={`bg-zinc-900/50 backdrop-blur-sm border rounded-3xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-red-500/10 ${

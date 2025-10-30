@@ -34,7 +34,7 @@ import { TestimonialsSection } from "@/components/marketing/testimonials-section
 import ScrollAnimation from "@/components/shared/scroll-animation"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-const ctaLink = "#inscricao" // Alterar para o link real quando disponível
+// default CTA fallback; will be overridden by `data` when available
 
 interface MetodoTFClientProps {
   data?: any // Tipo do Sanity - você pode tipar melhor depois
@@ -47,114 +47,54 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
     setIsVisible(true)
   }, [])
 
-  const stats = [
+  const ctaLink = data?.hero?.ctaLink || '#inscricao'
+
+  const stats = data?.stats ?? [
     { number: "+1,5 milhões", label: "de alunos" },
     { number: "1280", label: "técnicas exclusivas" },
     { number: "5", label: "livros publicados" },
     { number: "+500", label: "vídeos inspiradores" },
   ]
 
-  const benefits = [
-    {
-      icon: <TrendingUp className="h-8 w-8" />,
-      title: "Transformação financeira genuína",
-      description: "Conquiste a liberdade financeira que sempre almejou, redefinindo sua relação com o dinheiro e construindo um futuro de abundância."
-    },
-    {
-      icon: <Target className="h-8 w-8" />,
-      title: "Estratégias comprovadas e eficazes",
-      description: "Aprenda técnicas que transcendem a teoria, com aplicação prática e resultados tangíveis, sem promessas vazias ou atalhos ilusórios."
-    },
-    {
-      icon: <Network className="h-8 w-8" />,
-      title: "Networking de alto valor",
-      description: "Conecte-se com uma comunidade exclusiva de profissionais visionários, construindo uma rede de contatos que impulsionará seu crescimento."
-    },
-    {
-      icon: <HeadphonesIcon className="h-8 w-8" />,
-      title: "Suporte contínuo e personalizado",
-      description: "Receba orientação e acompanhamento mesmo após a conclusão do treinamento, garantindo que sua jornada seja contínua e bem-sucedida."
-    }
-  ]
+  const benefits = (data?.benefits?.items ?? [
+    { title: 'Transformação financeira genuína', description: 'Conquiste a liberdade financeira que sempre almejou, redefinindo sua relação com o dinheiro e construindo um futuro de abundância.' },
+    { title: 'Estratégias comprovadas e eficazes', description: 'Aprenda técnicas que transcendem a teoria, com aplicação prática e resultados tangíveis, sem promessas vazias ou atalhos ilusórios.' },
+    { title: 'Networking de alto valor', description: 'Conecte-se com uma comunidade exclusiva de profissionais visionários, construindo uma rede de contatos que impulsionará seu crescimento.' },
+    { title: 'Suporte contínuo e personalizado', description: 'Receba orientação e acompanhamento mesmo após a conclusão do treinamento, garantindo que sua jornada seja contínua e bem-sucedida.' },
+  ]).map((b: any) => ({
+    icon: b.icon ? b.icon : <TrendingUp className="h-8 w-8" />,
+    title: b.title,
+    description: b.description,
+  }))
 
-  const targetAudience = [
-    {
-      title: "Empreendedores",
-      description: "que buscam escalar seus negócios, otimizar lucros e consolidar sua posição no mercado.",
-      icon: <Rocket className="h-12 w-12" />
-    },
-    {
-      title: "Profissionais liberais",
-      description: "que almejam independência financeira, expansão de sua carteira de clientes e reconhecimento.",
-      icon: <Briefcase className="h-12 w-12" />
-    },
-    {
-      title: "Pessoas com renda +R$ 5 mil",
-      description: "que desejam exponencializar seu potencial de ganhos e alcançar novos patamares.",
-      icon: <DollarSign className="h-12 w-12" />
-    },
-    {
-      title: "Futuros mentores",
-      description: "que buscam atuar como coach e educador para transformar vidas através da educação financeira.",
-      icon: <Target className="h-12 w-12" />
-    },
-    {
-      title: "Visionários",
-      description: "que compreendem a importância da inteligência financeira como diferencial competitivo.",
-      icon: <Lightbulb className="h-12 w-12" />
-    },
-    {
-      title: "Pessoas ambiciosas",
-      description: "que buscam prosperar em todas as áreas da vida.",
-      icon: <Star className="h-12 w-12" />
-    }
-  ]
+  const targetAudience = (data?.audienceSection?.bullets ?? [
+    { title: 'Empreendedores', desc: 'que buscam escalar seus negócios, otimizar lucros e consolidar sua posição no mercado.' },
+    { title: 'Profissionais liberais', desc: 'que almejam independência financeira, expansão de sua carteira de clientes e reconhecimento.' },
+    { title: 'Pessoas com renda +R$ 5 mil', desc: 'que desejam exponencializar seu potencial de ganhos e alcançar novos patamares.' },
+    { title: 'Futuros mentores', desc: 'que buscam atuar como coach e educador para transformar vidas através da educação financeira.' },
+    { title: 'Visionários', desc: 'que compreendem a importância da inteligência financeira como diferencial competitivo.' },
+    { title: 'Pessoas ambiciosas', desc: 'que buscam prosperar em todas as áreas da vida.' },
+  ]).map((a: any) => ({
+    title: a.title,
+    description: a.desc || a.description,
+    icon: a.icon ? a.icon : <Briefcase className="h-12 w-12" />,
+  }))
 
-  const courseContent = [
-    {
-      title: "Introdução ao desbloqueio da riqueza",
-      description: "Compreenda os fundamentos para uma vida financeira abundante."
-    },
-    {
-      title: "Superação de bloqueios financeiros",
-      description: "Ferramentas e técnicas para acabar com as barreiras que o impedem de prosperar."
-    },
-    {
-      title: "Estratégias para aumentar sua renda",
-      description: "Métodos acionáveis para expandir seus ganhos de forma consistente."
-    },
-    {
-      title: "Planejamento financeiro inteligente",
-      description: "Domine a arte de gerenciar suas finanças e fazer seu dinheiro trabalhar para você."
-    },
-    {
-      title: "Criação de um plano de ação personalizado",
-      description: "Um guia sob medida para aplicar o conhecimento adquirido e alcançar seus objetivos."
-    }
-  ]
+  const courseContent = (data?.learnSection?.items ?? [
+    { title: 'Introdução ao desbloqueio da riqueza', description: 'Compreenda os fundamentos para uma vida financeira abundante.' },
+    { title: 'Superação de bloqueios financeiros', description: 'Ferramentas e técnicas para acabar com as barreiras que o impedem de prosperar.' },
+    { title: 'Estratégias para aumentar sua renda', description: 'Métodos acionáveis para expandir seus ganhos de forma consistente.' },
+    { title: 'Planejamento financeiro inteligente', description: 'Domine a arte de gerenciar suas finanças e fazer seu dinheiro trabalhar para você.' },
+    { title: 'Criação de um plano de ação personalizado', description: 'Um guia sob medida para aplicar o conhecimento adquirido e alcançar seus objetivos.' },
+  ]).map((c: any) => ({ title: c.title, description: c.desc || c.description }))
 
-  const faqs = [
-    {
-      question: "E se eu não conseguir aplicar as estratégias?",
-      answer: "Nosso treinamento é meticulosamente desenhado para ser prático e acessível. Você será guiado passo a passo, com suporte contínuo para garantir que cada estratégia seja implementada com sucesso."
-    },
-    {
-      question: "Preciso ter algum conhecimento prévio?",
-      answer: "Não. O Método TF é acessível a todos, independentemente do seu nível de conhecimento financeiro. Nosso objetivo é democratizar o acesso à prosperidade."
-    },
-    {
-      question: "Quanto tempo dura o treinamento?",
-      answer: "O treinamento intensivo tem a duração de 1 dia, focado em imersão e resultados."
-    },
-    {
-      question: "Onde será realizado o treinamento?",
-      answer: "O treinamento será realizado em Alphaville-SP, em um ambiente projetado para otimizar seu aprendizado e networking."
-    },
-    {
-      question: "O que eu preciso levar para o treinamento?",
-      answer: "Basta trazer um caderno e uma caneta para anotações. Todo o material didático necessário será fornecido para você."
-    }
-  ]
+  const faqs = (data?.faq?.items ?? [
+    { question: 'E se eu não conseguir aplicar as estratégias?', answer: 'Nosso treinamento é meticulosamente desenhado para ser prático e acessível. Você será guiado passo a passo, com suporte contínuo para garantir que cada estratégia seja implementada com sucesso.' },
+    { question: 'Preciso ter algum conhecimento prévio?', answer: 'Não. O Método TF é acessível a todos, independentemente do seu nível de conhecimento financeiro. Nosso objetivo é democratizar o acesso à prosperidade.' },
+    { question: 'Quanto tempo dura o treinamento?', answer: 'O treinamento intensivo tem a duração de 1 dia, focado em imersão e resultados.' },
+    { question: 'Onde será realizado o treinamento?', answer: 'O treinamento será realizado em Alphaville-SP, em um ambiente projetado para otimizar seu aprendizado e networking.' },
+    { question: 'O que eu preciso levar para o treinamento?', answer: 'Basta trazer um caderno e uma caneta para anotações. Todo o material didático necessário será fornecido para você.' },
+  ]).map((f: any) => ({ question: f.question, answer: f.answer }))
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -199,7 +139,7 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
       <section className="py-20 bg-zinc-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+            {stats.map((stat: any, index: number) => (
               <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">
@@ -270,7 +210,7 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
           </ScrollAnimation>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {targetAudience.map((item, index) => (
+            {targetAudience.map((item: any, index: number) => (
               <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">
                   <CardContent className="p-6">
@@ -307,7 +247,7 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
           </ScrollAnimation>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {benefits.map((benefit, index) => (
+            {benefits.map((benefit: any, index: number) => (
               <ScrollAnimation key={index} animation="fadeInLeft" animationDelay={`${index * 100}ms`}>
                 <div className="flex gap-4">
                   <div className="flex-shrink-0">
@@ -342,7 +282,7 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
           </ScrollAnimation>
 
           <div className="max-w-3xl mx-auto space-y-4">
-            {courseContent.map((item, index) => (
+            {courseContent.map((item: any, index: number) => (
               <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 50}ms`}>
                 <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-yellow-500/50 transition-all duration-300">
                   <CardContent className="p-6 flex items-start gap-4">
@@ -543,7 +483,7 @@ export default function MetodoTFClient({ data }: MetodoTFClientProps) {
 
           <ScrollAnimation animation="fadeIn">
             <Accordion type="single" collapsible className="max-w-3xl mx-auto">
-              {faqs.map((faq, index) => (
+              {faqs.map((faq: any, index: number) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-zinc-800">
                   <AccordionTrigger className="text-left hover:text-yellow-400 transition-colors">
                     {faq.question}

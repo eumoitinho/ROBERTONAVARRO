@@ -45,137 +45,44 @@ export default function MentorCoachingFinanceiroClient({ data }: Props) {
     setIsVisible(true)
   }, [])
 
-  const symptoms = [
-    {
-      icon: <AlertCircle className="h-6 w-6" />,
-      title: "O paradoxo da escolha financeira",
-      description: "Com tantas opções de investimento e estratégias, você fica paralisado, adiando decisões importantes ou tomando decisões baseadas em emoção, não em inteligência."
-    },
-    {
-      icon: <Lock className="h-6 w-6" />,
-      title: "A prisão do padrão de vida",
-      description: "Você se tornou refém de um estilo de vida que consome praticamente toda sua renda, deixando pouco espaço para construção real de patrimônio."
-    },
-    {
-      icon: <Brain className="h-6 w-6" />,
-      title: "O medo do próximo nível",
-      description: "Subconscientemente, você sabota suas próprias oportunidades de crescimento financeiro porque não se sente 'merecedor' ou tem medo das responsabilidades."
-    },
-    {
-      icon: <RefreshCw className="h-6 w-6" />,
-      title: "A dependência da renda ativa",
-      description: "Você está completamente dependente do seu trabalho para manter seu padrão de vida, sem verdadeira liberdade ou segurança financeira."
-    }
-  ]
+  const symptoms = (data?.challengesSection?.items ?? [
+    { title: 'O paradoxo da escolha financeira', desc: 'Com tantas opções de investimento e estratégias, você fica paralisado, adiando decisões importantes ou tomando decisões baseadas em emoção, não em inteligência.' },
+    { title: 'A prisão do padrão de vida', desc: 'Você se tornou refém de um estilo de vida que consome praticamente toda sua renda, deixando pouco espaço para construção real de patrimônio.' },
+    { title: 'O medo do próximo nível', desc: "Subconscientemente, você sabota suas próprias oportunidades de crescimento financeiro porque não se sente 'merecedor' ou tem medo das responsabilidades." },
+    { title: 'A dependência da renda ativa', desc: 'Você está completamente dependente do seu trabalho para manter seu padrão de vida, sem verdadeira liberdade ou segurança financeira.' },
+  ]).map((s: any) => ({ icon: s.icon ?? <AlertCircle className="h-6 w-6" />, title: s.title || s.question || '', description: s.desc || s.description || '' }))
 
-  const learningModules = [
-    {
-      icon: <Brain className="h-8 w-8" />,
-      title: "Anamnese financeira profunda",
-      description: "Faça uma análise cirúrgica de sua relação com o dinheiro, identificando crenças limitantes profundamente enraizadas que sabotam seu crescimento financeiro."
-    },
-    {
-      icon: <Lightbulb className="h-8 w-8" />,
-      title: "Inteligência financeira automática",
-      description: "Desenvolva a capacidade de tomar decisões financeiras com a clareza de um investidor profissional e construa um senso financeiro aguçado que guiará suas decisões."
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8" />,
-      title: "Ampliação de seu potencial financeiro",
-      description: "Mude literalmente sua identidade financeira, permitindo que níveis superiores de riqueza se manifestem naturalmente em sua vida."
-    },
-    {
-      icon: <DollarSign className="h-8 w-8" />,
-      title: "Potes da Riqueza",
-      description: "Descubra como estruturar suas finanças para que o dinheiro trabalhe para você, criando múltiplas fontes de renda passiva e ativa."
-    },
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Blindagem contra o consumo desnecessário",
-      description: "Aprenda a identificar e neutralizar os gatilhos psicológicos que levam ao consumo impulsivo e ao desperdício de recursos."
-    },
-    {
-      icon: <BarChart3 className="h-8 w-8" />,
-      title: "Estratégias de multiplicação de renda",
-      description: "Descubra como aumentar sua capacidade de geração de renda, criando novas oportunidades de renda e expandindo suas possibilidades financeiras."
-    }
-  ]
+  const learningModules = (data?.learnSection?.items ?? [
+    { title: 'Anamnese financeira profunda', desc: 'Faça uma análise cirúrgica de sua relação com o dinheiro, identificando crenças limitantes profundamente enraizadas que sabotam seu crescimento financeiro.' },
+    { title: 'Inteligência financeira automática', desc: 'Desenvolva a capacidade de tomar decisões financeiras com a clareza de um investidor profissional e construa um senso financeiro aguçado que guiará suas decisões.' },
+    { title: 'Ampliação de seu potencial financeiro', desc: 'Mude literalmente sua identidade financeira, permitindo que níveis superiores de riqueza se manifestem naturalmente em sua vida.' },
+    { title: 'Potes da Riqueza', desc: 'Descubra como estruturar suas finanças para que o dinheiro trabalhe para você, criando múltiplas fontes de renda passiva e ativa.' },
+    { title: 'Blindagem contra o consumo desnecessário', desc: 'Aprenda a identificar e neutralizar os gatilhos psicológicos que levam ao consumo impulsivo e ao desperdício de recursos.' },
+    { title: 'Estratégias de multiplicação de renda', desc: 'Descubra como aumentar sua capacidade de geração de renda, criando novas oportunidades de renda e expandindo suas possibilidades financeiras.' },
+  ]).map((m: any) => ({ icon: m.icon ?? <Brain className="h-8 w-8" />, title: m.title, description: m.desc || m.description || m.desc }))
 
-  const targetAudience = [
-    {
-      icon: <Briefcase className="h-12 w-12" />,
-      title: "Empresários e empreendedores de sucesso",
-      description: "Que já construíram negócios rentáveis, mas sentem que poderiam otimizar muito melhor seus recursos e criar riqueza real a partir dos resultados do negócio."
-    },
-    {
-      icon: <Building className="h-12 w-12" />,
-      title: "Executivos e profissionais liberais",
-      description: "Médicos, advogados, consultores, engenheiros e outros profissionais que querem transformar sua renda em patrimônio sólido e liberdade financeira."
-    },
-    {
-      icon: <BarChart3 className="h-12 w-12" />,
-      title: "Investidores e gestores de patrimônio",
-      description: "Que já possuem conhecimento técnico sobre investimentos, mas querem desenvolver a mentalidade dos verdadeiros criadores de riqueza."
-    },
-    {
-      icon: <Award className="h-12 w-12" />,
-      title: "Servidores públicos",
-      description: "Que possuem estabilidade e renda consistente e querem maximizar seu potencial de construção de patrimônio."
-    },
-    {
-      icon: <Zap className="h-12 w-12" />,
-      title: "Profissionais de marketing e consultoria",
-      description: "Que já dominam as técnicas de geração de renda online mas querem estruturar sua vida financeira como verdadeiros empresários."
-    }
-  ]
+  const targetAudience = (data?.audienceSection?.bullets ?? [
+    { title: 'Empresários e empreendedores de sucesso', desc: 'Que já construíram negócios rentáveis, mas sentem que poderiam otimizar muito melhor seus recursos e criar riqueza real a partir dos resultados do negócio.' },
+    { title: 'Executivos e profissionais liberais', desc: 'Médicos, advogados, consultores, engenheiros e outros profissionais que querem transformar sua renda em patrimônio sólido e liberdade financeira.' },
+    { title: 'Investidores e gestores de patrimônio', desc: 'Que já possuem conhecimento técnico sobre investimentos, mas querem desenvolver a mentalidade dos verdadeiros criadores de riqueza.' },
+    { title: 'Servidores públicos', desc: 'Que possuem estabilidade e renda consistente e querem maximizar seu potencial de construção de patrimônio.' },
+    { title: 'Profissionais de marketing e consultoria', desc: 'Que já dominam as técnicas de geração de renda online mas querem estruturar sua vida financeira como verdadeiros empresários.' },
+  ]).map((a: any) => ({ icon: a.icon ?? <Briefcase className="h-12 w-12" />, title: a.title, description: a.desc || a.description }))
 
-  const expectedResults = [
-    {
-      title: "Clareza total",
-      description: "Você saberá exatamente onde quer chegar financeiramente e terá um plano claro para isso."
-    },
-    {
-      title: "Inteligência financeira automática",
-      description: "Suas decisões financeiras se tornarão naturalmente mais inteligentes e estratégicas."
-    },
-    {
-      title: "Múltiplas fontes de renda",
-      description: "Você desenvolverá a capacidade de identificar e criar novas oportunidades de renda."
-    },
-    {
-      title: "Proteção contra crises",
-      description: "Sua estrutura financeira será blindada contra oscilações econômicas e crises setoriais."
-    },
-    {
-      title: "Legado familiar",
-      description: "Você construirá não apenas riqueza para si, mas um patrimônio que beneficiará as próximas gerações."
-    },
-    {
-      title: "Liberdade real",
-      description: "Tenha mais opções e não dependa mais de uma única fonte de renda para manter seu padrão de vida."
-    }
-  ]
+  const expectedResults = (data?.benefits?.items ?? [
+    { title: 'Clareza total', description: 'Você saberá exatamente onde quer chegar financeiramente e terá um plano claro para isso.' },
+    { title: 'Inteligência financeira automática', description: 'Suas decisões financeiras se tornarão naturalmente mais inteligentes e estratégicas.' },
+    { title: 'Múltiplas fontes de renda', description: 'Você desenvolverá a capacidade de identificar e criar novas oportunidades de renda.' },
+    { title: 'Proteção contra crises', description: 'Sua estrutura financeira será blindada contra oscilações econômicas e crises setoriais.' },
+    { title: 'Legado familiar', description: 'Você construirá não apenas riqueza para si, mas um patrimônio que beneficiará as próximas gerações.' },
+    { title: 'Liberdade real', description: 'Tenha mais opções e não dependa mais de uma única fonte de renda para manter seu padrão de vida.' },
+  ]).map((r: any) => ({ title: r.title, description: r.description || r.desc }))
 
-  const paths = [
-    {
-      number: "1",
-      title: "Continue como está",
-      description: "Mantenha os mesmos padrões, as mesmas limitações e os mesmos resultados. Daqui a 5 anos, você provavelmente estará na mesma situação financeira, apenas um pouco mais velho e com mais arrependimentos.",
-      color: "text-red-500"
-    },
-    {
-      number: "2",
-      title: "Tente sozinho",
-      description: "Continue tentando descobrir por conta própria, cometendo os mesmos erros que a maioria comete, desperdiçando anos valiosos em tentativa e erro.",
-      color: "text-yellow-500"
-    },
-    {
-      number: "3",
-      title: "Acelere sua transformação",
-      description: "Invista em uma metodologia comprovada, com a mentoria de quem já percorreu este caminho e comprovou que é possível transformar completamente sua vida financeira em meses.",
-      color: "text-green-500"
-    }
-  ]
+  const paths: any[] = ((data as any)?.paths ?? [
+    { number: '1', title: 'Continue como está', description: 'Mantenha os mesmos padrões, as mesmas limitações e os mesmos resultados. Daqui a 5 anos, você provavelmente estará na mesma situação financeira, apenas um pouco mais velho e com mais arrependimentos.', color: 'text-red-500' },
+    { number: '2', title: 'Tente sozinho', description: 'Continue tentando descobrir por conta própria, cometendo os mesmos erros que a maioria comete, desperdiçando anos valiosos em tentativa e erro.', color: 'text-yellow-500' },
+    { number: '3', title: 'Acelere sua transformação', description: 'Invista em uma metodologia comprovada, com a mentoria de quem já percorreu este caminho e comprovou que é possível transformar completamente sua vida financeira em meses.', color: 'text-green-500' },
+  ])
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -584,7 +491,7 @@ export default function MentorCoachingFinanceiroClient({ data }: Props) {
           </ScrollAnimation>
 
           <div className="space-y-6 max-w-4xl mx-auto mb-12">
-            {paths.map((path, index) => (
+            {paths.map((path: any, index: number) => (
               <ScrollAnimation key={index} animation="fadeInLeft" animationDelay={`${index * 150}ms`}>
                 <Card className={`bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:border-${path.color.replace('text-', '')}/50 transition-all duration-300`}>
                   <CardContent className="p-6">
@@ -641,23 +548,11 @@ export default function MentorCoachingFinanceiroClient({ data }: Props) {
 
           <ScrollAnimation animation="fadeIn">
             <Accordion type="single" collapsible className="max-w-3xl mx-auto">
-              {(n.faq?.items || [
-                {
-                  question: "Para quem é esta formação?",
-                  answer: "O Mentor Coaching Financeiro é desenvolvido para profissionais que já possuem uma renda considerável mas sentem que poderiam otimizar muito melhor seus recursos financeiros. É ideal para empresários, executivos, profissionais liberais, investidores e qualquer pessoa que queira quebrar barreiras internas para alcançar um novo patamar de riqueza."
-                },
-                {
-                  question: "O que eu vou aprender no treinamento?",
-                  answer: "Você aprenderá a identificar e modificar padrões inconscientes que limitam seu crescimento financeiro, desenvolverá inteligência financeira automatizada, criará múltiplas fontes de renda, construirá proteção contra o consumo desnecessário e estabelecerá um sistema pessoal de criação de riqueza."
-                },
-                {
-                  question: "O que acontece depois do treinamento?",
-                  answer: "Após concluir o treinamento, você terá acesso a uma comunidade exclusiva de ex-alunos, atualizações periódicas da metodologia e suporte contínuo para garantir que você mantenha e expanda os resultados conquistados."
-                },
-                {
-                  question: "Como este treinamento pode transformar minha vida e meu negócio?",
-                  answer: "O Mentor Coaching Financeiro trabalha na raiz das limitações financeiras - sua programação mental e emocional sobre dinheiro. Ao transformar esta base, você naturalmente toma melhores decisões, identifica mais oportunidades, constrói riqueza mais rapidamente e desenvolve uma relação saudável e próspera com o dinheiro."
-                }
+              {(n.faq?.items ?? data?.faq?.items ?? [
+                { question: 'Para quem é esta formação?', answer: 'O Mentor Coaching Financeiro é desenvolvido para profissionais que já possuem uma renda considerável mas sentem que poderiam otimizar muito melhor seus recursos financeiros. É ideal para empresários, executivos, profissionais liberais, investidores e qualquer pessoa que queira quebrar barreiras internas para alcançar um novo patamar de riqueza.' },
+                { question: 'O que eu vou aprender no treinamento?', answer: 'Você aprenderá a identificar e modificar padrões inconscientes que limitam seu crescimento financeiro, desenvolverá inteligência financeira automatizada, criará múltiplas fontes de renda, construirá proteção contra o consumo desnecessário e estabelecerá um sistema pessoal de criação de riqueza.' },
+                { question: 'O que acontece depois do treinamento?', answer: 'Após concluir o treinamento, você terá acesso a uma comunidade exclusiva de ex-alunos, atualizações periódicas da metodologia e suporte contínuo para garantir que você mantenha e expanda os resultados conquistados.' },
+                { question: 'Como este treinamento pode transformar minha vida e meu negócio?', answer: 'O Mentor Coaching Financeiro trabalha na raiz das limitações financeiras - sua programação mental e emocional sobre dinheiro. Ao transformar esta base, você naturalmente toma melhores decisões, identifica mais oportunidades, constrói riqueza mais rapidamente e desenvolve uma relação saudável e próspera com o dinheiro.' },
               ]).map((faq: any, index: number) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-zinc-800">
                   <AccordionTrigger className="text-left hover:text-yellow-400 transition-colors">
