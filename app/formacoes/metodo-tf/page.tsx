@@ -33,6 +33,7 @@ import { SiteHeader } from "@/components/header"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import ScrollAnimation from "@/components/scroll-animation"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { NewsletterFormacoes } from "@/components/newsletter-formacoes"
 
 const ctaLink = "https://payment-link-v3.pagar.me/pl_Pn3V2r9NJpGRYqas09TLRMWY01KemEgv" // Alterar para o link real quando disponível
 
@@ -556,7 +557,10 @@ export default function MetodoTFPage() {
 
       {/* Testimonials Section */}
       <TestimonialsSection />
-
+      <NewsletterFormacoes title="Método TF" description="Obtenha mais informações sobre o Método TF" source="Método TF" ctaText="QUERO TRANSFORMAR MINHA VIDA" onSubmit={() => {
+          /* não precisa mais chamar router.push aqui,
+             o componente já faz isso */
+        }} />
       {/* Footer */}
       <Footer />
 
