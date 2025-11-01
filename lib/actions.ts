@@ -139,3 +139,51 @@ export async function submitLead(data: LeadData) {
     }
   }
 }
+
+// Função específica para enviar apenas para Google Sheets
+export async function submitLeadToSheetsOnly(data: LeadData) {
+  try {
+    const payload = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      source: data.source,
+      utm_source: data.utm_source,
+      utm_medium: data.utm_medium,
+      utm_campaign: data.utm_campaign,
+      utm_term: data.utm_term,
+      utm_content: data.utm_content,
+      page_url: data.page_url,
+      user_agent: data.user_agent,
+      created_at: new Date().toISOString(),
+    }
+
+    console.log("Enviando dados para Google Sheets (somente):", payload)
+    const sheetRes = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+    
+    if (!sheetRes.ok) {
+      const sheetErr = await sheetRes.text()
+      console.error("Erro ao enviar para Google Sheets:", sheetRes.status, sheetErr)
+      return {
+        success: false,
+        message: "Erro ao enviar dados para Google Sheets",
+      }
+    }
+
+    console.log("Dados gravados na planilha com sucesso")
+    return {
+      success: true,
+      message: "Dados enviados com sucesso!",
+    }
+  } catch (error) {
+    console.error("Erro ao enviar lead:", error)
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Erro desconhecido",
+    }
+  }
+}

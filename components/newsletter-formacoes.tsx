@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
-import { submitLead } from "@/lib/actions"
+import { submitLead, submitLeadToSheetsOnly } from "@/lib/actions"
 import { cn, getUTMParameters, getBrowserInfo } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import { Calendar, MapPin } from "lucide-react"
@@ -27,6 +27,7 @@ interface NewsletterFormacoesProps {
   eventDate?: string
   eventTime?: string
   eventLocation?: string
+  onlySheets?: boolean
 }
 
 type Accent = "yellow" | "red"
@@ -93,6 +94,7 @@ export function NewsletterFormacoes({
   eventDate,
   eventTime,
   eventLocation,
+  onlySheets = false,
 }: NewsletterFormacoesProps) {
   const router = useRouter()
   const styles = accentStyles[accent]
@@ -142,8 +144,10 @@ export function NewsletterFormacoes({
         })
       }
 
-      // Enviar para o Kommo
-      const result = await submitLead(formData)
+      // Enviar para o destino escolhido
+      const result = onlySheets 
+        ? await submitLeadToSheetsOnly(formData)
+        : await submitLead(formData)
 
       if (result.success) {
         setSubmitStatus({

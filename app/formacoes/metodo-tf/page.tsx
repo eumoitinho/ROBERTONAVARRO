@@ -557,7 +557,7 @@ export default function MetodoTFPage() {
 
       {/* Testimonials Section */}
       <TestimonialsSection />
-      <NewsletterFormacoes title="Método TF" description="Obtenha mais informações sobre o Método TF" source="Método TF" ctaText="QUERO TRANSFORMAR MINHA VIDA" onSubmit={() => {
+      <NewsletterFormacoes title="Método TF" description="Obtenha mais informações sobre o Método TF" source="Método TF" ctaText="QUERO TRANSFORMAR MINHA VIDA" onlySheets={true} onSubmit={() => {
           /* não precisa mais chamar router.push aqui,
              o componente já faz isso */
         }} />
