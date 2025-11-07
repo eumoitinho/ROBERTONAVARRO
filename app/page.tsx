@@ -19,7 +19,6 @@ import TransformationVideos from "@/components/transformation-videos"
 import EventPopup from "@/components/event-popup"
 
 export default function HomePage() {
-  const pageData = undefined
   const [isVisible, setIsVisible] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
   const [showEventPopup, setShowEventPopup] = useState(false)
@@ -71,21 +70,21 @@ export default function HomePage() {
     return () => clearTimeout(popupTimer)
   }, [])
 
-  // Use Strapi data or fallback to defaults
-  const heroTitle = pageData?.hero?.title || "TRANSFORME SUA MENTALIDADE"
-  const heroSubtitle = pageData?.hero?.subtitle || "E CONQUISTE UMA NOVA REALIDADE FINANCEIRA"
-  const heroDescription = pageData?.hero?.description || "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira."
-  const highlightText = pageData?.hero?.highlightText || "INSTITUTO COACHING FINANCEIRO"
-  const achievementsNumber = pageData?.hero?.achievementsNumber || "300.000+"
-  const achievementsLabel = pageData?.hero?.achievementsLabel || "vidas transformadas"
-  const heroBackgroundImage = pageData?.hero?.backgroundImage || "/images/bgsite.jpg"
-  const heroCtaText = pageData?.hero?.ctaText || "CONHEÇA NOSSAS FORMAÇÕES"
-  const heroCtaLink = pageData?.hero?.ctaLink || "#formacoes"
+  // Static data - no Strapi
+  const heroTitle = "TRANSFORME SUA MENTALIDADE"
+  const heroSubtitle = "E CONQUISTE UMA NOVA REALIDADE FINANCEIRA"
+  const heroDescription = "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira."
+  const highlightText = "INSTITUTO COACHING FINANCEIRO"
+  const achievementsNumber = "300.000+"
+  const achievementsLabel = "vidas transformadas"
+  const heroBackgroundImage = "/images/bgsite.jpg"
+  const heroCtaText = "CONHEÇA NOSSAS FORMAÇÕES"
+  const heroCtaLink = "#formacoes"
   
   // Formações data
-  const formationsTitle = pageData?.formations?.title || "FORMAÇÕES QUE VÃO TRANSFORMAR SUA MENTALIDADE"
-  const formationsDescription = pageData?.formations?.description || "Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua liberdade financeira."
-  const formationsItems = pageData?.formations?.items || [
+  const formationsTitle = "FORMAÇÕES QUE VÃO TRANSFORMAR SUA MENTALIDADE"
+  const formationsDescription = "Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua liberdade financeira."
+  const formationsItems = [
     {
       title: "LCF MENTORING",
       description: "Imersão intensa em finanças, coaching de vida e estratégias práticas para você assumir o controle da sua vida financeira.",
