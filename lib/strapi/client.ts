@@ -80,9 +80,9 @@ class StrapiClient {
   ): Promise<T> {
     const url = `${this.baseUrl}/api${endpoint}`;
     
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...options.headers,
+      ...(options.headers as Record<string, string> || {}),
     };
 
     if (this.apiToken) {
@@ -92,7 +92,7 @@ class StrapiClient {
     try {
       const response = await fetch(url, {
         ...options,
-        headers,
+        headers: headers as HeadersInit,
         next: { revalidate: 3600 }, // Revalidar a cada hora
       });
 
