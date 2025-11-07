@@ -40,13 +40,16 @@ export default function LeadCapturePopup({
     setIsSubmitting(true)
 
     try {
-      // Aqui você pode integrar com a API do LeadLovers ou outro sistema
+      // Enviar para Google Sheets via API
       const response = await fetch('/api/lead-capture', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          source: 'Lead Capture Popup',
+        }),
       })
 
       if (response.ok) {
@@ -56,6 +59,9 @@ export default function LeadCapturePopup({
           setIsSubmitted(false)
           setFormData({ name: "", email: "", phone: "" })
         }, 2000)
+      } else {
+        const errorData = await response.json()
+        console.error('Erro ao enviar lead:', errorData)
       }
     } catch (error) {
       console.error('Erro ao enviar lead:', error)
@@ -99,15 +105,15 @@ export default function LeadCapturePopup({
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div>
-                <Label htmlFor="name" className="text-zinc-300">
+                <Label htmlFor="popup-name" className="text-zinc-300">
                   Nome Completo
                 </Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400" />
                   <Input
-                    id="name"
+                    id="popup-name"
                     name="name"
                     type="text"
                     required
@@ -115,18 +121,20 @@ export default function LeadCapturePopup({
                     onChange={handleInputChange}
                     className="pl-10 bg-zinc-800 border-zinc-600 text-white placeholder:text-zinc-500"
                     placeholder="Seu nome completo"
+                    aria-required="true"
+                    aria-label="Nome completo"
                   />
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="email" className="text-zinc-300">
+                <Label htmlFor="popup-email" className="text-zinc-300">
                   E-mail
                 </Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400" />
                   <Input
-                    id="email"
+                    id="popup-email"
                     name="email"
                     type="email"
                     required
@@ -134,18 +142,21 @@ export default function LeadCapturePopup({
                     onChange={handleInputChange}
                     className="pl-10 bg-zinc-800 border-zinc-600 text-white placeholder:text-zinc-500"
                     placeholder="seu@email.com"
+                    aria-required="true"
+                    aria-label="E-mail"
+                    autoComplete="email"
                   />
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="phone" className="text-zinc-300">
+                <Label htmlFor="popup-phone" className="text-zinc-300">
                   WhatsApp
                 </Label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400" />
                   <Input
-                    id="phone"
+                    id="popup-phone"
                     name="phone"
                     type="tel"
                     required
@@ -153,6 +164,9 @@ export default function LeadCapturePopup({
                     onChange={handleInputChange}
                     className="pl-10 bg-zinc-800 border-zinc-600 text-white placeholder:text-zinc-500"
                     placeholder="(00) 00000-0000"
+                    aria-required="true"
+                    aria-label="WhatsApp"
+                    autoComplete="tel"
                   />
                 </div>
               </div>

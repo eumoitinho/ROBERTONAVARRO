@@ -89,7 +89,7 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
         })
       }
 
-      // Enviar para o Kommo
+      // Enviar para Google Sheets
       const result = await submitLead(formData)
 
       if (result.success) {
@@ -175,7 +175,7 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-white text-left">
@@ -190,6 +190,8 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="Seu nome completo"
                     required
+                    aria-required="true"
+                    aria-label="Nome completo"
                   />
                 </div>
                 <div>
@@ -205,6 +207,9 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="seu@email.com"
                     required
+                    aria-required="true"
+                    aria-label="Email"
+                    autoComplete="email"
                   />
                 </div>
               </div>
@@ -223,6 +228,9 @@ export function NewsletterSignup({ title, description, source, onSubmit }: Newsl
                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     placeholder="(00) 00000-0000"
                     required
+                    aria-required="true"
+                    aria-label="Telefone"
+                    autoComplete="tel"
                   />
                 </div>
               </div>

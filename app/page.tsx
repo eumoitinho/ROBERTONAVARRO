@@ -18,7 +18,32 @@ import { SectionBadge } from "@/components/section-badge"
 import TransformationVideos from "@/components/transformation-videos"
 import EventPopup from "@/components/event-popup"
 
-export default function HomePage() {
+interface HomePageProps {
+  pageData?: {
+    hero?: {
+      title?: string
+      subtitle?: string
+      description?: string
+      highlightText?: string
+      backgroundImage?: string
+      ctaText?: string
+      ctaLink?: string
+      achievementsNumber?: string
+      achievementsLabel?: string
+    }
+    formations?: {
+      title?: string
+      description?: string
+      items?: Array<{
+        title?: string
+        description?: string
+        link?: string
+      }>
+    }
+  }
+}
+
+export default function HomePage({ pageData }: HomePageProps = {}) {
   const [isVisible, setIsVisible] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
   const [showEventPopup, setShowEventPopup] = useState(false)
@@ -70,14 +95,62 @@ export default function HomePage() {
     return () => clearTimeout(popupTimer)
   }, [])
 
-  // Use Sanity data or fallback to defaults
-  // Static content
-  const heroTitle = "TRANSFORME SUA MENTALIDADE"
-  const heroSubtitle = "E CONQUISTE UMA NOVA REALIDADE FINANCEIRA"
-  const heroDescription = "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira."
-  const highlightText = "INSTITUTO COACHING FINANCEIRO"
-  const achievementsNumber = "300.000+"
-  const achievementsLabel = "vidas transformadas"
+  // Use Strapi data or fallback to defaults
+  const heroTitle = pageData?.hero?.title || "TRANSFORME SUA MENTALIDADE"
+  const heroSubtitle = pageData?.hero?.subtitle || "E CONQUISTE UMA NOVA REALIDADE FINANCEIRA"
+  const heroDescription = pageData?.hero?.description || "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira."
+  const highlightText = pageData?.hero?.highlightText || "INSTITUTO COACHING FINANCEIRO"
+  const achievementsNumber = pageData?.hero?.achievementsNumber || "300.000+"
+  const achievementsLabel = pageData?.hero?.achievementsLabel || "vidas transformadas"
+  const heroBackgroundImage = pageData?.hero?.backgroundImage || "/images/bgsite.jpg"
+  const heroCtaText = pageData?.hero?.ctaText || "CONHEÇA NOSSAS FORMAÇÕES"
+  const heroCtaLink = pageData?.hero?.ctaLink || "#formacoes"
+  
+  // Formações data
+  const formationsTitle = pageData?.formations?.title || "FORMAÇÕES QUE VÃO TRANSFORMAR SUA MENTALIDADE"
+  const formationsDescription = pageData?.formations?.description || "Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua liberdade financeira."
+  const formationsItems = pageData?.formations?.items || [
+    {
+      title: "LCF MENTORING",
+      description: "Imersão intensa em finanças, coaching de vida e estratégias práticas para você assumir o controle da sua vida financeira.",
+      link: "/formacoes/mentoria"
+    },
+    {
+      title: "EMPREENDEDOR INTELIGENTE",
+      description: "Formação exclusiva para empresários que querem escalar resultados, atrair investidores e gerir seus negócios com segurança.",
+      link: "/formacoes/empreendedor-inteligente"
+    },
+    {
+      title: "EDUCADOR FINANCEIRO",
+      description: "Transforme sua experiência em uma carreira lucrativa em apenas 90 dias e torne-se referência no ensino de finanças.",
+      link: "/formacoes/educador-financeiro"
+    },
+    {
+      title: "LCF MENTORING PRO",
+      description: "Transforme sua mentalidade e descubra seu propósito de vida com o programa mais completo de evolução pessoal e profissional do Brasil.",
+      link: "/formacoes/lcf-mentoring-pro"
+    },
+    {
+      title: "MENTORIA DE INVESTIMENTOS",
+      description: "Programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade financeira.",
+      link: "/formacoes/mentoria-de-investimentos"
+    },
+    {
+      title: "MENTORIA INDIVIDUAL",
+      description: "Destrave seu potencial e alcance sua liberdade financeira com um acompanhamento 100% personalizado.",
+      link: "/formacoes/mentoria-individual"
+    },
+    {
+      title: "MÉTODO TF",
+      description: "Desbloqueie a riqueza em sua vida com estratégias comprovadas para superar bloqueios financeiros e alcançar a prosperidade.",
+      link: "/formacoes/metodo-tf"
+    },
+    {
+      title: "MENTOR COACHING FINANCEIRO",
+      description: "Transforme-se em um verdadeiro gerador de riqueza com a metodologia que reprograma sua relação com o dinheiro.",
+      link: "/formacoes/mentor-coaching-financeiro"
+    }
+  ]
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
@@ -89,7 +162,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/bgsite.jpg"
+            src={heroBackgroundImage}
             alt="Roberto Navarro"
             fill
             className="object-cover mt-24"
@@ -131,7 +204,7 @@ export default function HomePage() {
                   asChild
                   className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
                 >
-                  <Link href="#formacoes">CONHEÇA NOSSAS FORMAÇÕES</Link>
+                  <Link href={heroCtaLink}>{heroCtaText}</Link>
                 </Button>
               </div>
 
@@ -187,173 +260,43 @@ export default function HomePage() {
               <span className="text-sm font-medium">NOSSAS FORMAÇÕES</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              FORMAÇÕES QUE VÃO  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"> TRANSFORMAR SUA MENTALIDADE</span>
+              {formationsTitle.split('TRANSFORMAR SUA MENTALIDADE').length > 1 ? (
+                <>
+                  {formationsTitle.split('TRANSFORMAR SUA MENTALIDADE')[0]}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600"> TRANSFORMAR SUA MENTALIDADE</span>
+                </>
+              ) : (
+                formationsTitle
+              )}
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
-              Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender
-              diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua
-              liberdade financeira.
+              {formationsDescription}
             </p>
           </div>
 
-          {/* LAYOUT ORIGINAL - Grid de formações IDÊNTICO ao backup */}
+          {/* LAYOUT ORIGINAL - Grid de formações com dados do Strapi */}
           <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xs-gap-4 sm:gap-8">
-            {/* LCF Mentoring */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">LCF MENTORING</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Imersão intensa em finanças, coaching de vida e estratégias práticas para você assumir o controle da sua
-                vida financeira.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                  <Link href="/formacoes/mentoria">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+            {formationsItems.map((formation, index) => (
+              <div key={index} className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
+                <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
+                <h3 className={`text-xl font-bold mb-3 ${index === 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600' : 'text-yellow-400'}`}>
+                  {formation.title}
+                </h3>
+                <p className="text-zinc-300 mb-6 flex-1">
+                  {formation.description}
+                </p>
+                <div className="mt-auto">
+                  <Button
+                    asChild
+                    className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
+                  >
+                    <Link href={formation.link || '#'}>
+                      SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
               </div>
-            </div>
-
-            {/* Empreendedor Inteligente */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">EMPREENDEDOR INTELIGENTE</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Formação exclusiva para empresários que querem escalar resultados, atrair investidores e gerir seus
-                negócios com segurança.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                  <Link href="/formacoes/empreendedor-inteligente">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Educador Financeiro */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">EDUCADOR FINANCEIRO</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Transforme sua experiência em uma carreira lucrativa em apenas 90 dias e torne-se referência no ensino
-                de finanças.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-            <Link href="/formacoes/educador-financeiro">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* LCF Mentoring Pro */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">LCF MENTORING PRO</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Transforme sua mentalidade e descubra seu propósito de vida com o programa mais completo de evolução
-                pessoal e profissional do Brasil.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                 <Link href="/formacoes/lcf-mentoring-pro">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Mentoria de Investimentos */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">MENTORIA DE INVESTIMENTOS</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade
-                financeira.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                <Link href="/formacoes/mentoria-de-investimentos">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Mentoria Individual */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">MENTORIA INDIVIDUAL</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Destrave seu potencial e alcance sua liberdade financeira com um acompanhamento 100% personalizado.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                 <Link href="/formacoes/mentoria-individual">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Método TF */}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">MÉTODO TF</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Desbloqueie a riqueza em sua vida com estratégias comprovadas para superar bloqueios financeiros e alcançar a prosperidade.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                 <Link href="/formacoes/metodo-tf">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Mentor Coach Financeiro*/}
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-yellow-500/10 group p-6 flex flex-col">
-              <div className="h-1 w-full bg-gradient-to-r from-yellow-400 to-amber-500 mb-4"></div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">MENTOR COACHING FINANCEIRO</h3>
-              <p className="text-zinc-300 mb-6 flex-1">
-                Transforme-se em um verdadeiro gerador de riqueza com a metodologia que reprograma sua relação com o dinheiro.
-              </p>
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-xl w-full"
-                >
-                 <Link href="/formacoes/mentor-coaching-financeiro">
-                    SAIBA MAIS <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

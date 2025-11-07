@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionBadge } from "./section-badge"
-import { submitLead, submitLeadToSheetsOnly } from "@/lib/actions"
+import { submitLead } from "@/lib/actions"
 import { cn, getUTMParameters, getBrowserInfo } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import { Calendar, MapPin } from "lucide-react"
@@ -27,7 +27,6 @@ interface NewsletterFormacoesProps {
   eventDate?: string
   eventTime?: string
   eventLocation?: string
-  onlySheets?: boolean
 }
 
 type Accent = "yellow" | "red"
@@ -94,7 +93,6 @@ export function NewsletterFormacoes({
   eventDate,
   eventTime,
   eventLocation,
-  onlySheets = false,
 }: NewsletterFormacoesProps) {
   const router = useRouter()
   const styles = accentStyles[accent]
@@ -144,10 +142,8 @@ export function NewsletterFormacoes({
         })
       }
 
-      // Enviar para o destino escolhido
-      const result = onlySheets 
-        ? await submitLeadToSheetsOnly(formData)
-        : await submitLead(formData)
+      // Enviar para Google Sheets
+      const result = await submitLead(formData)
 
       if (result.success) {
         setSubmitStatus({
@@ -287,61 +283,84 @@ export function NewsletterFormacoes({
                 Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-8 space-y-6 text-left">
+              <form onSubmit={handleSubmit} className="mt-8 space-y-6 text-left" noValidate>
                 {submitStatus.message && !submitStatus.success && (
-                  <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-300">
+                  <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-300" role="alert">
                     {submitStatus.message}
                   </div>
                 )}
                 {submitStatus.message && submitStatus.success && (
-                  <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-sm text-emerald-300">
+                  <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-sm text-emerald-300" role="alert">
                     {submitStatus.message}
                   </div>
                 )}
 
                 <div className="space-y-6">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                    className={cn(
-                      "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
-                      styles.focusRing,
-                      accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
-                    )}
-                    placeholder="Seu nome completo"
-                    required
-                  />
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                    className={cn(
-                      "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
-                      styles.focusRing,
-                      accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
-                    )}
-                    placeholder="seu@email.com"
-                    required
-                  />
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                    className={cn(
-                      "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
-                      styles.focusRing,
-                      accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
-                    )}
-                    placeholder="(00) 00000-0000"
-                    required
-                  />
+                  <div>
+                    <label htmlFor="name" className="sr-only">
+                      Nome completo
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                      className={cn(
+                        "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                        styles.focusRing,
+                        accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                      )}
+                      placeholder="Seu nome completo"
+                      required
+                      aria-required="true"
+                      aria-label="Nome completo"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="sr-only">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                      className={cn(
+                        "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                        styles.focusRing,
+                        accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                      )}
+                      placeholder="seu@email.com"
+                      required
+                      aria-required="true"
+                      aria-label="Email"
+                      autoComplete="email"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="sr-only">
+                      Telefone
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                      className={cn(
+                        "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                        styles.focusRing,
+                        accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                      )}
+                      placeholder="(00) 00000-0000"
+                      required
+                      aria-required="true"
+                      aria-label="Telefone"
+                      autoComplete="tel"
+                    />
+                  </div>
                 </div>
 
                 <Button

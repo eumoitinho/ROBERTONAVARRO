@@ -56,9 +56,21 @@ export default function RootLayout({
         {/* End Meta Pixel Code */}
         {/* GoupCompany Tracking */}
         <Script 
-          src="https://link.goupcompany.com.br/js/external-tracking.js"
-          data-tracking-id="tk_2828943c8f264b83941c44da804cc285"
+          id="goupcompany-tracking"
           strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(d, s, id, tid){
+                if (d.getElementById(id)) {return;}
+                var js = d.createElement(s); js.id = id;
+                js.src = "https://link.goupcompany.com.br/js/external-tracking.js";
+                js.setAttribute("data-tracking-id", tid);
+                js.async = true;
+                var fjs = d.getElementsByTagName(s)[0]; 
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'goupcompany-external-tracking', 'tk_2828943c8f264b83941c44da804cc285'));
+            `
+          }}
         />
        
 <Analytics />

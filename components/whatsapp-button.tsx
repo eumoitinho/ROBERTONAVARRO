@@ -70,7 +70,7 @@ export default function WhatsappButton({ message, className, children, source }:
         });
       }
 
-      // Submit to Kommo and Sheets
+      // Submit to Google Sheets
       const result = await submitLead(formData);
       if (result.success) {
         setSubmitStatus({ success: true, message: "Dados enviados! Redirecionando para o WhatsApp..." });
@@ -124,31 +124,60 @@ export default function WhatsappButton({ message, className, children, source }:
           )}
 
           {!submitStatus.success ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Nome completo"
-                value={formData.name}
-                onChange={e => setFormData(f => ({ ...f, name: e.target.value }))}
-                required
-                className="w-full px-3 py-2 bg-zinc-100 border rounded text-sm"
-              />
-              <input
-                type="email"
-                placeholder="E-mail"
-                value={formData.email}
-                onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
-                required
-                className="w-full px-3 py-2 bg-zinc-100 border rounded text-sm"
-              />
-              <input
-                type="tel"
-                placeholder="Telefone"
-                value={formData.phone}
-                onChange={e => setFormData(f => ({ ...f, phone: e.target.value }))}
-                required
-                className="w-full px-3 py-2 bg-zinc-100 border rounded text-sm"
-              />
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <div>
+                <label htmlFor="wpp-name" className="sr-only">
+                  Nome completo
+                </label>
+                <input
+                  type="text"
+                  id="wpp-name"
+                  name="name"
+                  placeholder="Nome completo"
+                  value={formData.name}
+                  onChange={e => setFormData(f => ({ ...f, name: e.target.value }))}
+                  required
+                  aria-required="true"
+                  aria-label="Nome completo"
+                  className="w-full px-3 py-2 bg-zinc-100 border rounded text-sm"
+                />
+              </div>
+              <div>
+                <label htmlFor="wpp-email" className="sr-only">
+                  E-mail
+                </label>
+                <input
+                  type="email"
+                  id="wpp-email"
+                  name="email"
+                  placeholder="E-mail"
+                  value={formData.email}
+                  onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
+                  required
+                  aria-required="true"
+                  aria-label="E-mail"
+                  autoComplete="email"
+                  className="w-full px-3 py-2 bg-zinc-100 border rounded text-sm"
+                />
+              </div>
+              <div>
+                <label htmlFor="wpp-phone" className="sr-only">
+                  Telefone
+                </label>
+                <input
+                  type="tel"
+                  id="wpp-phone"
+                  name="phone"
+                  placeholder="Telefone"
+                  value={formData.phone}
+                  onChange={e => setFormData(f => ({ ...f, phone: e.target.value }))}
+                  required
+                  aria-required="true"
+                  aria-label="Telefone"
+                  autoComplete="tel"
+                  className="w-full px-3 py-2 bg-zinc-100 border rounded text-sm"
+                />
+              </div>
               <button
                 type="submit"
                 disabled={isSubmitting}

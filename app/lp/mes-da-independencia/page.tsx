@@ -149,7 +149,7 @@ export default function SemanaDaIndependenciaPage() {
     const totalValue = getTotalPrice()
     const savings = getTotalSavings()
 
-    // Enviar lead para o Kommo
+    // Enviar lead para Google Sheets
     try {
       const utmParams = getUTMParameters()
       const browserInfo = getBrowserInfo()
@@ -164,10 +164,10 @@ export default function SemanaDaIndependenciaPage() {
       }
       
       await submitLead(leadData)
-      console.log('Lead enviado para o Kommo com sucesso')
+      console.log('Lead enviado para Google Sheets com sucesso')
     } catch (error) {
-      console.error('Erro ao enviar lead para o Kommo:', error)
-      // Continua mesmo se houver erro no Kommo
+      console.error('Erro ao enviar lead para Google Sheets:', error)
+      // Continua mesmo se houver erro
     }
 
     const message = `Olá! Quero comprar os produtos da campanha Independência Financeira:
@@ -370,17 +370,21 @@ Quero finalizar a compra!`
                       </div>
                     </div>
 
-                    <div className="space-y-4">
+                    <form onSubmit={(e) => { e.preventDefault(); handleWhatsAppPurchase(); }} noValidate className="space-y-4">
                       <div>
                         <Label htmlFor="checkout-name" className="text-zinc-300 mb-2 block">Nome Completo *</Label>
                         <Input
                           id="checkout-name"
+                          name="name"
                           type="text"
                           required
                           value={customerData.name}
                           onChange={(e) => handleCustomerDataChange('name', e.target.value)}
                           className="bg-zinc-800/50 border-zinc-600 text-white placeholder-zinc-400"
                           placeholder="Digite seu nome completo"
+                          aria-required="true"
+                          aria-label="Nome completo"
+                          autoComplete="name"
                         />
                       </div>
 
@@ -388,11 +392,14 @@ Quero finalizar a compra!`
                         <Label htmlFor="checkout-email" className="text-zinc-300 mb-2 block">E-mail</Label>
                         <Input
                           id="checkout-email"
+                          name="email"
                           type="email"
                           value={customerData.email}
                           onChange={(e) => handleCustomerDataChange('email', e.target.value)}
                           className="bg-zinc-800/50 border-zinc-600 text-white placeholder-zinc-400"
                           placeholder="Digite seu e-mail"
+                          aria-label="E-mail"
+                          autoComplete="email"
                         />
                       </div>
 
@@ -400,14 +407,17 @@ Quero finalizar a compra!`
                         <Label htmlFor="checkout-phone" className="text-zinc-300 mb-2 block">Telefone/WhatsApp</Label>
                         <Input
                           id="checkout-phone"
+                          name="phone"
                           type="tel"
                           value={customerData.phone}
                           onChange={(e) => handleCustomerDataChange('phone', e.target.value)}
                           className="bg-zinc-800/50 border-zinc-600 text-white placeholder-zinc-400"
                           placeholder="(11) 99999-9999"
+                          aria-label="Telefone/WhatsApp"
+                          autoComplete="tel"
                         />
                       </div>
-                    </div>
+                    </form>
                   </div>
                 )}
 

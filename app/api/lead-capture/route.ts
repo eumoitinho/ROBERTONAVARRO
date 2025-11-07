@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 
+// URL do Google Apps Script para adicionar na planilha
+const GOOGLE_APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx4s6y8Y8RUhqwW1ICXMtG952oe8DbDQGp8ZvK85jRylwlAD6pCBuldkyCuJGWO5-KrzQ/exec"
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone } = body
+    const { name, email, phone, source } = body
 
     // Validação básica
     if (!name || !email) {
@@ -13,38 +17,47 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Aqui você pode integrar com:
-    // 1. LeadLovers
-    // 2. Banco de dados
-    // 3. Webhook para outro sistema
-    // 4. Email marketing
+    console.log("Novo lead capturado:", { name, email, phone, source })
 
-    console.log("Novo lead capturado:", { name, email, phone })
-
-    // Exemplo de integração com LeadLovers (você precisa configurar)
+    // Enviar para Google Sheets
     try {
-      const leadLoversResponse = await fetch("https://api.leadlovers.com/v2/leads", {
+      const payload = {
+        name: name,
+        email: email,
+        phone: phone || "",
+        source: source || "Lead Capture Popup",
+        utm_source: body.utm_source || "",
+        utm_medium: body.utm_medium || "",
+        utm_campaign: body.utm_campaign || "",
+        utm_term: body.utm_term || "",
+        utm_content: body.utm_content || "",
+        page_url: body.page_url || "",
+        user_agent: body.user_agent || "",
+        created_at: new Date().toISOString(),
+      }
+
+      const sheetRes = await fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.LEADLOVERS_API_TOKEN}`,
-        },
-        body: JSON.stringify({
-          email,
-          name,
-          phone,
-          // Lista ou sequência específica para leads de popup
-          list_id: process.env.LEADLOVERS_POPUP_LIST_ID,
-          tags: ["popup-lead", "evento", "formação"]
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       })
 
-      if (!leadLoversResponse.ok) {
-        console.error("Erro ao enviar para LeadLovers:", await leadLoversResponse.text())
+      if (!sheetRes.ok) {
+        const sheetErr = await sheetRes.text()
+        console.error("Erro ao enviar para Google Sheets:", sheetRes.status, sheetErr)
+        return NextResponse.json(
+          { error: "Erro ao salvar dados na planilha" },
+          { status: 500 }
+        )
       }
-    } catch (leadLoversError) {
-      console.error("Erro na integração LeadLovers:", leadLoversError)
-      // Não falha a requisição se a integração falhar
+
+      console.log("Dados gravados na planilha com sucesso")
+    } catch (sheetError) {
+      console.error("Exception ao enviar para Google Sheets:", sheetError)
+      return NextResponse.json(
+        { error: "Erro ao processar dados" },
+        { status: 500 }
+      )
     }
 
     // Retorna sucesso

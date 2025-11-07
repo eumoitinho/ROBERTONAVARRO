@@ -1,0 +1,283 @@
+{
+  "pages": [
+    {
+      "slug": "home",
+      "route": "/",
+      "type": "home",
+      "hero": {
+        "title": "TRANSFORME SUA MENTALIDADE",
+        "subtitle": "E CONQUISTE UMA NOVA REALIDADE FINANCEIRA",
+        "description": "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira.",
+        "highlightText": "INSTITUTO COACHING FINANCEIRO",
+        "backgroundImage": "/images/bgsite.jpg",
+        "ctaText": "CONHEÇA NOSSAS FORMAÇÕES",
+        "ctaLink": "#formacoes",
+        "achievementsNumber": "300.000+",
+        "achievementsLabel": "vidas transformadas"
+      },
+      "formations": {
+        "title": "FORMAÇÕES QUE VÃO TRANSFORMAR SUA MENTALIDADE",
+        "description": "Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua liberdade financeira.",
+        "items": [
+          {
+            "title": "LCF MENTORING",
+            "description": "Imersão intensa em finanças, coaching de vida e estratégias práticas para você assumir o controle da sua vida financeira.",
+            "link": "/formacoes/mentoria"
+          },
+          {
+            "title": "EMPREENDEDOR INTELIGENTE",
+            "description": "Formação exclusiva para empresários que querem escalar resultados, atrair investidores e gerir seus negócios com segurança.",
+            "link": "/formacoes/empreendedor-inteligente"
+          },
+          {
+            "title": "EDUCADOR FINANCEIRO",
+            "description": "Transforme sua experiência em uma carreira lucrativa em apenas 90 dias e torne-se referência no ensino de finanças.",
+            "link": "/formacoes/educador-financeiro"
+          },
+          {
+            "title": "LCF MENTORING PRO",
+            "description": "Transforme sua mentalidade e descubra seu propósito de vida com o programa mais completo de evolução pessoal e profissional do Brasil.",
+            "link": "/formacoes/lcf-mentoring-pro"
+          },
+          {
+            "title": "MENTORIA DE INVESTIMENTOS",
+            "description": "Programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade financeira.",
+            "link": "/formacoes/mentoria-de-investimentos"
+          },
+          {
+            "title": "MENTORIA INDIVIDUAL",
+            "description": "Destrave seu potencial e alcance sua liberdade financeira com um acompanhamento 100% personalizado.",
+            "link": "/formacoes/mentoria-individual"
+          },
+          {
+            "title": "MÉTODO TF",
+            "description": "Desbloqueie a riqueza em sua vida com estratégias comprovadas para superar bloqueios financeiros e alcançar a prosperidade.",
+            "link": "/formacoes/metodo-tf"
+          },
+          {
+            "title": "MENTOR COACHING FINANCEIRO",
+            "description": "Transforme-se em um verdadeiro gerador de riqueza com a metodologia que reprograma sua relação com o dinheiro.",
+            "link": "/formacoes/mentor-coaching-financeiro"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "mentor-milionario",
+      "route": "/eventos/mentor-milionario",
+      "type": "event",
+      "hero": {
+        "title": "MENTOR MILIONÁRIO",
+        "subtitle": "O Evento Que Vai Transformar Conhecimento em Fortuna e Criar Múltiplas Fontes de Renda",
+        "secondTitle": "De Lavador de Vidros a Multimilionário em 7 Anos...",
+        "description": "Agora Roberto Navarro Revela os Segredos para Você Se Tornar um Mentor de Sucesso ou Conquistar Seu Primeiro Milhão",
+        "image": "/IMAGES/HERO_ESCALADOR.png",
+        "ctaText": "QUERO MINHA VAGA NO MENTOR MILIONÁRIO",
+        "ctaHref": "#inscricao",
+        "secondaryCtaText": "Saiba mais",
+        "secondaryCtaHref": "#o-que-aprender"
+      },
+      "sections": [
+        {
+          "type": "target-audience",
+          "title": "Seu Perfil de Sucesso",
+          "badge": "PARA QUEM É ESTE EVENTO?",
+          "items": [
+            {
+              "text": "Profissionais que querem monetizar seu conhecimento"
+            },
+            {
+              "text": "Pessoas em busca do primeiro milhão"
+            },
+            {
+              "text": "Quem deseja se tornar mentor de sucesso"
+            },
+            {
+              "text": "Empreendedores que querem múltiplas fontes de renda"
+            },
+            {
+              "text": "Especialistas prontos para escalar seus resultados"
+            }
+          ]
+        },
+        {
+          "type": "challenges",
+          "title": "O Que Está Travando Sua Prosperidade?",
+          "items": [
+            "Você tem conhecimento valioso, mas não sabe como transformá-lo em dinheiro?",
+            "Quer alcançar o primeiro milhão, mas não tem uma estratégia clara?",
+            "Sonha em se tornar um mentor reconhecido, mas não sabe por onde começar?",
+            "Precisa de múltiplas fontes de renda para conquistar liberdade financeira?"
+          ],
+          "highlight": "Se você respondeu SIM para qualquer uma dessas perguntas, este evento foi criado especialmente para VOCÊ!"
+        },
+        {
+          "type": "solution",
+          "title": "Mentor Milionário",
+          "description": "Em um único dia de imersão, Roberto Navarro - criador do Coach Financeiro no Brasil e responsável por transformar mais de 300.000 vidas - vai mostrar como qualquer pessoa pode multiplicar seus resultados e conquistar a prosperidade através de estratégias comprovadas.",
+          "eventInfo": {
+            "date": "24 de Setembro",
+            "location": "Alameda Araguaia, 751, Alphaville, Barueri, SP",
+            "duration": "7 horas intensivas",
+            "methodology": "Blocos estratégicos de alto impacto",
+            "result": "Plano claro para alcançar 1 milhão"
+          }
+        },
+        {
+          "type": "program",
+          "title": "7 Horas de Transformação Intensiva",
+          "description": "Um mergulho profundo nas estratégias que separam milionários de pessoas comuns",
+          "blocks": [
+            {
+              "title": "A Mentalidade do Milhão",
+              "subtitle": "A Trajetória de Roberto Navarro",
+              "items": [
+                "Como saiu de lavador de vidros para multimilionário em menos de 7 anos",
+                "Por que a prosperidade é uma ESCOLHA, não sorte",
+                "Os 3 pilares que sustentam qualquer fortuna"
+              ]
+            },
+            {
+              "title": "Reprogramação Mental",
+              "subtitle": "Desbloqueando Seu Potencial Financeiro",
+              "items": [
+                "Como identificar e quebrar as crenças que limitam seu crescimento",
+                "O 'reset' mental que liberta sua capacidade de gerar riqueza",
+                "Estratégias para desenvolver autoridade como especialista"
+              ]
+            },
+            {
+              "title": "As Regras Secretas do Dinheiro",
+              "subtitle": "O Código dos Milionários",
+              "items": [
+                "As 7 regras fundamentais que todo milionário segue",
+                "Como gerar riqueza de forma sustentável e escalável",
+                "A diferença entre quem fica rico e quem fica milionário"
+              ]
+            },
+            {
+              "title": "Múltiplas Fontes de Renda",
+              "subtitle": "Duas Estratégias Poderosas de Crescimento",
+              "strategies": [
+                {
+                  "title": "ESTRATÉGIA 1: Negócio Digital",
+                  "items": [
+                    "Transformar conhecimento em produto lucrativo",
+                    "Estruturação de programas de mentoria",
+                    "Posicionamento como autoridade"
+                  ]
+                },
+                {
+                  "title": "ESTRATÉGIA 2: Investimentos",
+                  "items": [
+                    "Estratégias financeiras aceleradas",
+                    "Como fazer o dinheiro trabalhar",
+                    "Proteção e multiplicação de patrimônio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Seu Plano Milionário",
+              "subtitle": "Estruturando Sua Jornada ao Primeiro Milhão",
+              "items": [
+                "Criação do seu plano pessoal e objetivo",
+                "Métricas e marcos para acompanhar evolução",
+                "Sistema de execução que gera resultados consistentes"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "benefits",
+          "title": "O Que Você Vai Conquistar",
+          "items": [
+            "Clareza total sobre como monetizar seu conhecimento",
+            "Estratégia estruturada para alcançar o primeiro milhão",
+            "Mentalidade reprogramada para a prosperidade",
+            "Plano concreto com ações práticas e mensuráveis",
+            "Conhecimento das regras que todo milionário segue",
+            "Duas fontes de renda estruturadas para crescimento acelerado"
+          ]
+        }
+      ],
+      "registration": {
+        "date": "24 de Setembro de 2025, 13h às 20h",
+        "location": "Alameda Araguaia, 751, Barueri, SP",
+        "eduzzUrl": "https://evento.blinket.com.br/mentor-milionario",
+        "buttonText": "GARANTIR MINHA INSCRIÇÃO"
+      }
+    },
+    {
+      "slug": "livros",
+      "route": "/livros",
+      "type": "book-list",
+      "hero": {
+        "title": "Desvende os segredos da liberdade financeira com os ensinamentos de Roberto Navarro",
+        "description": "O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil traz para você um kit exclusivo de livros que serão seu guia definitivo para a tão sonhada liberdade financeira.",
+        "backgroundImage": "/images/HERO_EDUCADOR.png",
+        "badge": "Kit Exclusivo Roberto Navarro",
+        "ctaText": "OFERTA EXCLUSIVA: ADQUIRA SEU KIT!",
+        "ctaLink": "https://sun.eduzz.com/956345"
+      },
+      "productKit": {
+        "heading": "Kit Exclusivo Roberto Navarro",
+        "price": "R$ 200,00",
+        "description": "Criador do conceito de Coaching Financeiro no país, Navarro impactou mais de 1 milhão de pessoas, desenvolvendo metodologias que unem estratégias práticas de finanças, inteligência emocional e princípios bíblicos. Agora, você terá a oportunidade de mergulhar nos pilares dessa transformação através de seus quatro livros.",
+        "images": [
+          { "src": "/images/SABEDORIA.png", "alt": "A Sabedoria do Dinheiro" },
+          { "src": "/images/MITOS.png", "alt": "Quebrando Mitos com o Dinheiro" },
+          { "src": "/images/ARTE.png", "alt": "A Arte de Enriquecer" },
+          { "src": "/images/COACHING.png", "alt": "Coaching Financeiro" }
+        ]
+      },
+      "books": [
+        {
+          "title": "A Sabedoria do Dinheiro",
+          "description": "Transforme sua mentalidade e atraia a prosperidade. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito, mantendo a espiritualidade e a abundância no centro de sua jornada.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-SD.png",
+          "badge": "Essencial"
+        },
+        {
+          "title": "Quebrando Mitos com o Dinheiro",
+          "description": "Liberte-se das crenças que limitam sua prosperidade. Identifique os mitos que sabotam sua vida financeira e substitua-os por atitudes conscientes e focadas em resultados.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-QM.png",
+          "badge": "Transformador"
+        },
+        {
+          "title": "A Arte de Enriquecer",
+          "description": "Riqueza é um caminho, não um privilégio. Descubra a metodologia prática para dobrar sua renda, administrar seus ganhos e aproveitar a vida como os verdadeiros ricos fazem.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-AE.png",
+          "badge": "Prático"
+        },
+        {
+          "title": "Coaching Financeiro",
+          "description": "Controle emocional, clareza financeira e ação: a tríade para o sucesso. Estratégias, histórias reais e exercícios práticos para transformar sua relação com o dinheiro.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-CF.png",
+          "badge": "Equilíbrio"
+        }
+      ],
+      "knowledgeBarrier": {
+        "heading": "A falta de conhecimento é a maior barreira para a prosperidade",
+        "description": "Pense no valor de ter à sua disposição o conhecimento de um dos maiores especialistas em finanças do Brasil. Roberto Navarro não é apenas um autor; ele é um mentor que já transformou a vida de centenas de milhares de pessoas. Sua metodologia, testada e comprovada, vai além dos números, tocando na essência da sua relação com o dinheiro.",
+        "firstImage": { "src": "/images/livro2.png", "alt": "Livro Quebrando Mitos com o Dinheiro" },
+        "secondImage": { "src": "/images/LIVRO_MOCKUP.png", "alt": "Mockup do Kit de Livros" }
+      },
+      "finalCta": {
+        "heading": "Tenha as ferramentas para construir a vida que você merece",
+        "description": "O conhecimento é o único investimento que ninguém pode tirar de você. Invista em si mesmo e colha os frutos de uma vida próspera e abundante.",
+        "offerText": "Oferta Exclusiva",
+        "price": "10x de R$ 20,00",
+        "paymentInfo": "ou R$ 200,00 à vista",
+        "buttonText": "QUERO MEU KIT E MINHA LIBERDADE FINANCEIRA!",
+        "image": { "src": "/images/livro3.png", "alt": "Kit de Livros Roberto Navarro" }
+      }
+    }
+  ],
+  "metadata": {
+    "extractedAt": "2025-01-15T00:00:00.000Z",
+    "version": "1.0.0",
+    "totalPages": 3
+  }
+}
+
