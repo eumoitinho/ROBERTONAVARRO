@@ -54,6 +54,12 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Meta Pixel Code */}
+        {/* GoupCompany Tracking */}
+        <Script 
+          src="https://link.goupcompany.com.br/js/external-tracking.js"
+          data-tracking-id="tk_2828943c8f264b83941c44da804cc285"
+          strategy="afterInteractive"
+        />
        
 <Analytics />
         <UTMTracker />
