@@ -18,32 +18,8 @@ import { SectionBadge } from "@/components/section-badge"
 import TransformationVideos from "@/components/transformation-videos"
 import EventPopup from "@/components/event-popup"
 
-interface HomePageProps {
-  pageData?: {
-    hero?: {
-      title?: string
-      subtitle?: string
-      description?: string
-      highlightText?: string
-      backgroundImage?: string
-      ctaText?: string
-      ctaLink?: string
-      achievementsNumber?: string
-      achievementsLabel?: string
-    }
-    formations?: {
-      title?: string
-      description?: string
-      items?: Array<{
-        title?: string
-        description?: string
-        link?: string
-      }>
-    }
-  }
-}
-
-export default function HomePage({ pageData }: HomePageProps = {}) {
+export default function HomePage() {
+  const pageData = undefined
   const [isVisible, setIsVisible] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
   const [showEventPopup, setShowEventPopup] = useState(false)
