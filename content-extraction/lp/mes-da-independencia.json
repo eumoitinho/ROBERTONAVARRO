@@ -1,0 +1,248 @@
+{
+  "page": "Mês da Independência",
+  "route": "/lp/mes-da-independencia",
+  "metadata": {
+    "title": "Campanha Mês da Independência - Instituto Coaching Financeiro",
+    "description": "Declare hoje sua independência financeira. Invista em uma formação com Roberto Navarro e ganhe outra totalmente grátis! Promoção válida até 30 de setembro."
+  },
+  "hero": {
+    "badge": "CAMPANHA ESPECIAL - MÊS DA INDEPENDÊNCIA",
+    "title": "DECLARE HOJE SUA INDEPENDÊNCIA FINANCEIRA",
+    "subtitle": "Invista em uma formação com Roberto Navarro e ganhe outra totalmente grátis!",
+    "description": "Conquiste a liberdade de construir o futuro que você sempre quis. Invista em você e dobre suas chances de evoluir e prosperar!",
+    "backgroundImage": "/Prancheta 1.png",
+    "stats": {
+      "rating": 5,
+      "label": "+1,5 milhões de vidas transformadas"
+    },
+    "cta": [
+      {
+        "text": "VER OFERTAS ESPECIAIS",
+        "url": "#produtos"
+      },
+      {
+        "text": "Falar com especialista",
+        "url": "#contato"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "opportunity-banner",
+      "title": "OPORTUNIDADE LIMITADA!",
+      "description": "Promoção válida até 30 de setembro"
+    },
+    {
+      "id": "oportunidade",
+      "badge": "DESAFIOS",
+      "title": "O QUE IMPEDE SEU GRITO DE INDEPENDÊNCIA?",
+      "items": [
+        {
+          "title": "Negócio estagnado?",
+          "description": "Ensinamos estratégias práticas para escalar seu faturamento e transformar sua empresa em uma verdadeira máquina de crescimento."
+        },
+        {
+          "title": "Medo de investir?",
+          "description": "Mostramos o caminho seguro para investir com confiança, desmistificando o mercado financeiro e revelando como multiplicar seu patrimônio."
+        },
+        {
+          "title": "Mentalidade limitante?",
+          "description": "Ajudamos você a reprogramar crenças limitantes sobre dinheiro e sucesso, destravando seu verdadeiro potencial de riqueza."
+        },
+        {
+          "title": "Futuro incerto?",
+          "description": "Estruturamos um plano concreto para você construir sua independência financeira e garantir um legado próspero para si e sua família."
+        }
+      ]
+    },
+    {
+      "id": "independencia-ou-sorte",
+      "badge": "OPORTUNIDADE",
+      "title": "INDEPENDÊNCIA OU SORTE?",
+      "description": "Não dependa do acaso para alcançar o sucesso! Conquistar a liberdade financeira não é uma simples questão de sorte. Exige estratégia, conhecimento e preparo.\n\nPara comemorar a Mês da Independência, o Instituto Coaching Financeiro (ICF) lançou uma campanha especial para você dar o próximo passo rumo ao sucesso:",
+      "offers": [
+        "Na compra de uma formação, você ganha a segunda totalmente grátis.",
+        "Na compra de duas formações, a terceira também fica por nossa conta."
+      ],
+      "cta": {
+        "text": "VER PRODUTOS EM OFERTA",
+        "url": "#produtos"
+      }
+    },
+    {
+      "id": "numeros",
+      "badge": "RESULTADOS",
+      "title": "NOSSOS NÚMEROS",
+      "stats": [
+        {
+          "number": "+1,5 milhões",
+          "label": "de alunos"
+        },
+        {
+          "number": "+1280",
+          "label": "técnicas exclusivas"
+        },
+        {
+          "number": "+5",
+          "label": "livros publicados"
+        }
+      ]
+    },
+    {
+      "id": "produtos",
+      "badge": "OFERTAS EXCLUSIVAS",
+      "title": "OPORTUNIDADES DISPONÍVEIS",
+      "description": "Confira todas as combinações disponíveis e escolha aquela que mais conecta com sua realidade atual.",
+      "items": [
+        {
+          "title": "EDUCADOR FINANCEIRO",
+          "bonus": "MAKE MONEY (GRATIS)",
+          "description": "Seja reconhecido como profissional licenciado e transforme vidas através da educação financeira. Com certificação do MEC, a formação de Educador Financeiro te possibilita construir uma carreira sólida e rentável, realizando consultorias, palestras e treinamentos pagos. Além disso, você recebe sem custo adicional o curso Make Money, um método direto e comprovado para acelerar seus ganhos e transformar sua vida financeira em poucos meses.",
+          "price": 2497,
+          "originalPrice": 4994,
+          "savings": 2497
+        },
+        {
+          "title": "LCF MENTORING",
+          "bonus": "EDUCADOR FINANCEIRO (GRATIS)",
+          "description": "O Life Coaching Financeiro Mentoring (LCF) é uma imersão única de 7 dias, onde você mergulha em técnicas de PNL, inteligência emocional, produtividade e coaching financeiro para transformar sua vida em todos os aspectos. Além do curso, você recebe gratuitamente a formação Educador Financeiro, que lhe permite atuar como mentor e expandir suas competências sobre finanças e desenvolvimento humano.",
+          "price": 6997,
+          "originalPrice": 13994,
+          "savings": 6997
+        },
+        {
+          "title": "EMPREENDEDOR INTELIGENTE",
+          "bonus": "MENTORIA DE INVESTIMENTOS (GRATIS)",
+          "description": "O Empreendedor Inteligente é um programa de 3 dias para empresários e empreendedores que estão cansados de viver apagando incêndios e buscam meios de escalar o faturamento, atrair investidores e otimizar processos. Como bônus, você leva a Mentoria de Investimentos, formação que revela as estratégias práticas de quem realmente investe com segurança e resultado.",
+          "price": 6997,
+          "originalPrice": 13994,
+          "savings": 6997
+        },
+        {
+          "title": "MENTORIA DE INVESTIMENTOS",
+          "bonus": "EDUCADOR FINANCEIRO (GRATIS)",
+          "description": "Na Mentoria de Investimentos, você vai descobrir os meios mais seguros de como multiplicar seu patrimônio. O programa te mostra como estruturar um plano de investimentos adaptado ao seu perfil e aos seus objetivos. De presente, você leva a formação Educador Financeiro e descobre como ampliar suas oportunidades profissionais e como desenvolver habilidades pedagógicas e de comunicação.",
+          "price": 4997,
+          "originalPrice": 9994,
+          "savings": 4997
+        },
+        {
+          "title": "LCF PRO",
+          "bonus": "MENTORIA DE SUA ESCOLHA (GRATIS)",
+          "description": "O LCF PRO é o programa mais completo de transformação financeira e pessoal do Brasil. É um mergulho profundo em mentalidade, negócios e finanças, que vai levar você de onde está hoje até a vida que realmente merece viver, com clareza de propósito, liberdade e patrimônio sólido. Como bônus, você pode escolher uma outra mentoria para tornar sua formação ainda mais completa e personalizada.",
+          "price": 16000,
+          "originalPrice": 32000,
+          "savings": 16000
+        },
+        {
+          "title": "2 MENTORIAS",
+          "bonus": "3ª MENTORIA DE SUA ESCOLHA (GRATIS)",
+          "description": "Quer acelerar sua evolução em todas as áreas? Ao adquirir duas mentorias, você ganha a terceira sem custo adicional. Isso significa que você pode economizar e construir uma trilha de conhecimento que une carreira, negócios e investimentos. É a oportunidade perfeita para quem deseja abrir várias frentes de crescimento, com a segurança de estar aprendendo diretamente com um dos maiores especialistas em finanças do Brasil.",
+          "price": 18000,
+          "originalPrice": 36000,
+          "savings": 18000
+        }
+      ]
+    },
+    {
+      "id": "beneficios",
+      "badge": "BENEFÍCIOS",
+      "title": "SUA VIDA FINANCEIRA COM MAIS ORDEM E PROGRESSO",
+      "items": [
+        {
+          "title": "Metodologia validada",
+          "description": "Aprenda com quem já impactou mais de 1 milhão de pessoas e criou o conceito de Coach Financeiro no Brasil."
+        },
+        {
+          "title": "Conhecimento em dobro",
+          "description": "Invista em uma formação de alto nível e duplique suas oportunidades de crescimento, ganhando outro curso totalmente grátis."
+        },
+        {
+          "title": "Licença profissional",
+          "description": "Torne-se um educador financeiro com certificação reconhecida pelo MEC e chancela do Instituto Coaching Financeiro (ICF)."
+        },
+        {
+          "title": "Resultados rápidos",
+          "description": "Descubra estratégias rápidas de aplicar seu dinheiro e gere transformações concretas em sua vida dentro de poucos dias."
+        }
+      ]
+    },
+    {
+      "id": "contato",
+      "title": "PROCLAME SUA INDEPENDÊNCIA FINANCEIRA AGORA!",
+      "description": "Preencha o formulário abaixo e um de nossos consultores entrará em contato para entender seu momento e te guiar para a melhor oferta da campanha Independência Financeira. As vagas com bônus em dobro são limitadas!",
+      "source": "LP - Independência Financeira",
+      "ctaText": "FALAR COM UM ESPECIALISTA!"
+    }
+  ],
+  "images": [
+    {
+      "src": "/Prancheta 1.png",
+      "alt": "Independência Financeira",
+      "context": "Hero background"
+    }
+  ],
+  "videos": [],
+  "forms": [
+    {
+      "type": "newsletter",
+      "title": "PROCLAME SUA INDEPENDÊNCIA FINANCEIRA AGORA!",
+      "description": "Preencha o formulário abaixo e um de nossos consultores entrará em contato para entender seu momento e te guiar para a melhor oferta da campanha Independência Financeira. As vagas com bônus em dobro são limitadas!",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Nome Completo",
+          "type": "text",
+          "required": true,
+          "placeholder": "Digite seu nome completo"
+        },
+        {
+          "name": "email",
+          "label": "E-mail",
+          "type": "email",
+          "required": false,
+          "placeholder": "Digite seu e-mail"
+        },
+        {
+          "name": "phone",
+          "label": "Telefone/WhatsApp",
+          "type": "tel",
+          "required": false,
+          "placeholder": "(11) 99999-9999"
+        }
+      ],
+      "submitButton": "FALAR COM UM ESPECIALISTA!",
+      "source": "LP - Independência Financeira"
+    },
+    {
+      "type": "cart-checkout",
+      "title": "Carrinho de Compras",
+      "description": "Adicione produtos ao carrinho e finalize sua compra via WhatsApp",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Nome Completo",
+          "type": "text",
+          "required": true,
+          "placeholder": "Digite seu nome completo"
+        },
+        {
+          "name": "email",
+          "label": "E-mail",
+          "type": "email",
+          "required": false,
+          "placeholder": "Digite seu e-mail"
+        },
+        {
+          "name": "phone",
+          "label": "Telefone/WhatsApp",
+          "type": "tel",
+          "required": false,
+          "placeholder": "(11) 99999-9999"
+        }
+      ],
+      "submitButton": "ENVIAR PEDIDO VIA WHATSAPP",
+      "whatsappNumber": "5512997659057"
+    }
+  ]
+}

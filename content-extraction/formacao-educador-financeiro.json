@@ -1,0 +1,655 @@
+{
+  "page": "educador-financeiro",
+  "route": "/formacoes/educador-financeiro",
+  "type": "formacao",
+  "metadata": {
+    "title": "EDUCADOR FINANCEIRO",
+    "subtitle": "A única formação do mercado com LICENÇA PROFISSIONAL chancelada pela Roberto Navarro Academia - RNA",
+    "description": "Formação certificada pelo MEC para se tornar um Educador Financeiro profissional",
+    "accentColor": "red",
+    "keywords": ["educador financeiro", "certificação MEC", "licença profissional", "coach financeiro"]
+  },
+  "hero": {
+    "badge": "EDUCADOR FINANCEIRO",
+    "title": "EDUCADOR FINANCEIRO",
+    "subtitle": "A única formação do mercado com LICENÇA PROFISSIONAL chancelada pela Roberto Navarro Academia - RNA",
+    "description": "Transforme vidas através da educação financeira com certificação reconhecida pelo MEC",
+    "images": {
+      "desktop": "/images/HERO_EDUCADOR.png",
+      "mobile": "/images/HERO_EDUCADOR_MOBILE.png"
+    },
+    "ctas": [
+      {
+        "text": "QUERO MINHA LICENÇA PROFISSIONAL!",
+        "href": "#inscricao",
+        "variant": "primary",
+        "type": "button"
+      },
+      {
+        "text": "Saiba mais",
+        "href": "#sobre",
+        "variant": "secondary",
+        "type": "link"
+      }
+    ]
+  },
+  "certifications": [
+    {
+      "type": "MEC",
+      "title": "EXCELÊNCIA RECONHECIDA PELO MINISTÉRIO DA EDUCAÇÃO",
+      "logo": "/images/MEC.png",
+      "benefits": [
+        {
+          "icon": "award",
+          "title": "Reconhecimento Nacional",
+          "description": "Certificado validado em todo território brasileiro"
+        },
+        {
+          "icon": "check-circle",
+          "title": "Validação Profissional",
+          "description": "Credibilidade institucional para sua carreira"
+        },
+        {
+          "icon": "shield",
+          "title": "Credibilidade Garantida",
+          "description": "Respaldo do Ministério da Educação"
+        }
+      ]
+    }
+  ],
+  "professionalLicense": {
+    "title": "SUA LICENÇA PROFISSIONAL PARA ATUAR COMO EDUCADOR FINANCEIRO",
+    "transformations": [
+      {
+        "before": "Pessoa sem controle financeiro",
+        "after": "Educador que transforma vidas"
+      },
+      {
+        "before": "Conhecimento sem aplicação prática",
+        "after": "Metodologia estruturada e validada"
+      },
+      {
+        "before": "Dificuldade para cobrar pelo serviço",
+        "after": "Profissional certificado com licença"
+      },
+      {
+        "before": "Insegurança ao ensinar",
+        "after": "Confiança baseada em certificação MEC"
+      },
+      {
+        "before": "Atuação informal no mercado",
+        "after": "Profissional regulamentado"
+      },
+      {
+        "before": "Sem diferencial competitivo",
+        "after": "Único com licença RNA chancelada"
+      }
+    ],
+    "licenseBenefits": [
+      "Credibilidade institucional respaldada pelo MEC",
+      "Diferenciação no mercado competitivo",
+      "Autoridade para cobrar valores premium",
+      "Segurança jurídica na atuação profissional",
+      "Acesso a rede exclusiva de licenciados",
+      "Material didático proprietário e exclusivo"
+    ],
+    "warningMessage": "Em breve irão sobreviver no mercado apenas quem tiver respeitada Licença Profissional!"
+  },
+  "sections": [
+    {
+      "id": "sobre",
+      "type": "about",
+      "badge": "SOBRE A FORMAÇÃO",
+      "title": "TRANSFORME SUA VIDA E A VIDA DE MILHARES",
+      "content": [
+        {
+          "type": "text",
+          "text": "O Educador Financeiro é a formação mais completa do mercado para quem deseja se tornar um profissional certificado e reconhecido nacionalmente."
+        },
+        {
+          "type": "text",
+          "text": "Com certificação MEC e metodologia exclusiva de Roberto Navarro, você terá todas as ferramentas necessárias para transformar vidas através da educação financeira."
+        }
+      ],
+      "image": "/images/ROBERTO_5.jpg",
+      "highlights": [
+        "Certificação reconhecida pelo MEC",
+        "Metodologia exclusiva Roberto Navarro",
+        "Suporte completo durante e após a formação"
+      ]
+    },
+    {
+      "id": "materiais-exclusivos",
+      "type": "exclusive-materials",
+      "badge": "MATERIAIS EXCLUSIVOS",
+      "title": "TUDO O QUE VOCÊ PRECISA PARA COMEÇAR",
+      "video": {
+        "src": "/educador/WhatsApp Video 2025-08-21 at 10.38.45.mp4",
+        "poster": "/images/HERO_EDUCADOR_MOBILE.png",
+        "description": "Vídeo introdutório sobre os materiais do curso"
+      },
+      "materials": [
+        {
+          "icon": "book-open",
+          "title": "Apostilas completas",
+          "description": "Material didático estruturado em PDF"
+        },
+        {
+          "icon": "video",
+          "title": "Vídeos dos bastidores",
+          "description": "Conteúdo exclusivo dos eventos presenciais"
+        },
+        {
+          "icon": "play-circle",
+          "title": "Vídeo de introdução",
+          "description": "Orientações para começar sua jornada"
+        },
+        {
+          "icon": "check-square",
+          "title": "Checklist de implementação",
+          "description": "Passo a passo para aplicar o conhecimento"
+        }
+      ]
+    },
+    {
+      "id": "recursos",
+      "type": "features",
+      "badge": "RECURSOS DA FORMAÇÃO",
+      "title": "O QUE VOCÊ VAI RECEBER",
+      "features": [
+        {
+          "icon": "brain",
+          "title": "Conhecimento Abrangente",
+          "description": "Desde os fundamentos até estratégias avançadas de educação financeira"
+        },
+        {
+          "icon": "tool",
+          "title": "Ferramentas Práticas",
+          "description": "Planilhas, templates e recursos prontos para usar com seus clientes"
+        },
+        {
+          "icon": "users",
+          "title": "Mentoria Personalizada",
+          "description": "Acompanhamento direto com Roberto Navarro e equipe especializada"
+        },
+        {
+          "icon": "network",
+          "title": "Networking e Oportunidades",
+          "description": "Acesso a comunidade exclusiva de educadores financeiros certificados"
+        },
+        {
+          "icon": "award",
+          "title": "Certificação Reconhecida",
+          "description": "Certificado validado pelo MEC e Licença Profissional RNA"
+        },
+        {
+          "icon": "check-circle",
+          "title": "Método Validado",
+          "description": "Metodologia testada e aprovada por mais de 130 mil alunos"
+        }
+      ]
+    },
+    {
+      "id": "beneficios",
+      "type": "benefits",
+      "badge": "BENEFÍCIOS",
+      "title": "TRANSFORME SUA CARREIRA E SUA VIDA",
+      "benefits": [
+        {
+          "icon": "trending-up",
+          "title": "Independência Financeira",
+          "description": "Construa uma carreira sólida e lucrativa ajudando pessoas",
+          "color": "red"
+        },
+        {
+          "icon": "award",
+          "title": "Reconhecimento Profissional",
+          "description": "Seja visto como autoridade no mercado de educação financeira",
+          "color": "red"
+        },
+        {
+          "icon": "heart",
+          "title": "Realização de Sonhos",
+          "description": "Trabalhe com propósito transformando vidas através da educação",
+          "color": "red"
+        },
+        {
+          "icon": "dollar-sign",
+          "title": "Alta Rentabilidade",
+          "description": "Potencial de ganhos ilimitado com modelo de negócio escalável",
+          "color": "red"
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "modulo-inicial",
+      "number": 0,
+      "title": "Mudança de Mentalidade",
+      "description": "Fundamentos para transformação mental e financeira",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "Aula 01 - Introdução ao Curso",
+          "duration": null
+        },
+        {
+          "number": 2,
+          "title": "Aula 02 - A Importância da Educação Financeira",
+          "duration": null
+        },
+        {
+          "number": 3,
+          "title": "Aula 03 - Crenças Limitantes sobre Dinheiro",
+          "duration": null
+        },
+        {
+          "number": 4,
+          "title": "Aula 04 - Mentalidade de Abundância vs Escassez",
+          "duration": null
+        },
+        {
+          "number": 5,
+          "title": "Aula 05 - Definindo Metas Financeiras",
+          "duration": null
+        },
+        {
+          "number": 6,
+          "title": "Aula 06 - Propósito e Dinheiro",
+          "duration": null
+        },
+        {
+          "number": 7,
+          "title": "Aula 07 - Inteligência Emocional Financeira",
+          "duration": null
+        },
+        {
+          "number": 8,
+          "title": "Aula 08 - Hábitos dos Milionários",
+          "duration": null
+        },
+        {
+          "number": 9,
+          "title": "Aula 09 - Exercícios Práticos de Reprogramação Mental",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "id": "modulo-2",
+      "number": 2,
+      "title": "Clareamento Financeiro",
+      "description": "Diagnóstico e organização da vida financeira",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "Aula 01 - Diagnóstico Financeiro Pessoal",
+          "duration": null
+        },
+        {
+          "number": 2,
+          "title": "Aula 02 - Mapeamento de Receitas e Despesas",
+          "duration": null
+        },
+        {
+          "number": 3,
+          "title": "Aula 03 - Identificando Vazamentos Financeiros",
+          "duration": null
+        },
+        {
+          "number": 4,
+          "title": "Aula 04 - Criando um Orçamento Eficiente",
+          "duration": null
+        },
+        {
+          "number": 5,
+          "title": "Aula 05 - Gestão de Dívidas",
+          "duration": null
+        },
+        {
+          "number": 6,
+          "title": "Aula 06 - Estratégias para Sair do Vermelho",
+          "duration": null
+        },
+        {
+          "number": 7,
+          "title": "Aula 07 - Reserva de Emergência",
+          "duration": null
+        },
+        {
+          "number": 8,
+          "title": "Aula 08 - Ferramentas de Controle Financeiro",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "id": "modulo-3",
+      "number": 3,
+      "title": "A Geração do Dinheiro",
+      "description": "Estratégias para aumentar renda e criar fontes múltiplas",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "Aula 01 - Renda Ativa vs Renda Passiva",
+          "duration": null
+        },
+        {
+          "number": 2,
+          "title": "Aula 02 - Como Aumentar sua Renda Principal",
+          "duration": null
+        },
+        {
+          "number": 3,
+          "title": "Aula 03 - Criando Múltiplas Fontes de Renda",
+          "duration": null
+        },
+        {
+          "number": 4,
+          "title": "Aula 04 - Empreendedorismo como Solução Financeira",
+          "duration": null
+        },
+        {
+          "number": 5,
+          "title": "Aula 05 - Negócios Digitais e Infoprodutos",
+          "duration": null
+        },
+        {
+          "number": 6,
+          "title": "Aula 06 - Monetizando Conhecimento e Habilidades",
+          "duration": null
+        },
+        {
+          "number": 7,
+          "title": "Aula 07 - Marketing Pessoal e Autoridade",
+          "duration": null
+        },
+        {
+          "number": 8,
+          "title": "Aula 08 - Vendas e Negociação",
+          "duration": null
+        },
+        {
+          "number": 9,
+          "title": "Aula 09 - Precificação de Serviços",
+          "duration": null
+        },
+        {
+          "number": 10,
+          "title": "Aula 10 - Gestão do Tempo e Produtividade",
+          "duration": null
+        },
+        {
+          "number": 11,
+          "title": "Aula 11 - Networking Estratégico",
+          "duration": null
+        },
+        {
+          "number": 12,
+          "title": "Aula 12 - Escalando Resultados",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "id": "modulo-4",
+      "number": 4,
+      "title": "Liberdade Financeira e Investimentos",
+      "description": "Estratégias de investimento e construção de patrimônio",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "Aula 01 - O Que é Liberdade Financeira",
+          "duration": null
+        },
+        {
+          "number": 2,
+          "title": "Aula 02 - Introdução aos Investimentos",
+          "duration": null
+        },
+        {
+          "number": 3,
+          "title": "Aula 03 - Renda Fixa vs Renda Variável",
+          "duration": null
+        },
+        {
+          "number": 4,
+          "title": "Aula 04 - Bolsa de Valores para Iniciantes",
+          "duration": null
+        },
+        {
+          "number": 5,
+          "title": "Aula 05 - Fundos de Investimento",
+          "duration": null
+        },
+        {
+          "number": 6,
+          "title": "Aula 06 - Previdência Privada",
+          "duration": null
+        },
+        {
+          "number": 7,
+          "title": "Aula 07 - Diversificação de Portfólio",
+          "duration": null
+        },
+        {
+          "number": 8,
+          "title": "Aula 08 - Análise de Risco e Retorno",
+          "duration": null
+        },
+        {
+          "number": 9,
+          "title": "Aula 09 - Construindo Patrimônio a Longo Prazo",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "id": "modulo-5",
+      "number": 5,
+      "title": "Finanças com Roberto Navarro",
+      "description": "Ensinamentos avançados e visão de mentor",
+      "lessons": [
+        {
+          "number": 1,
+          "title": "Aula 01 - A Jornada de Roberto Navarro",
+          "duration": null
+        },
+        {
+          "number": 2,
+          "title": "Aula 02 - Princípios Bíblicos e Prosperidade",
+          "duration": null
+        },
+        {
+          "number": 3,
+          "title": "Aula 03 - Inteligência Espiritual Financeira",
+          "duration": null
+        },
+        {
+          "number": 4,
+          "title": "Aula 04 - Generosidade e Abundância",
+          "duration": null
+        },
+        {
+          "number": 5,
+          "title": "Aula 05 - Legado e Propósito de Vida",
+          "duration": null
+        },
+        {
+          "number": 6,
+          "title": "Aula 06 - Liderança Financeira na Família",
+          "duration": null
+        },
+        {
+          "number": 7,
+          "title": "Aula 07 - Visão de Futuro e Planejamento Estratégico",
+          "duration": null
+        }
+      ]
+    }
+  ],
+  "bonuses": [
+    {
+      "title": "Materiais Complementares",
+      "description": "Planilhas, templates e recursos exclusivos",
+      "type": "material"
+    },
+    {
+      "title": "Scripts de Atendimento",
+      "description": "Roteiros prontos para usar com clientes",
+      "type": "script"
+    },
+    {
+      "title": "Cursos Extras",
+      "description": "Conteúdos adicionais de aprofundamento",
+      "type": "course"
+    },
+    {
+      "title": "Dias ao Vivo",
+      "description": "Participação em eventos presenciais exclusivos",
+      "type": "event"
+    },
+    {
+      "title": "Programa de Afiliação 70%",
+      "description": "Ganhe comissões indicando a formação",
+      "type": "affiliate"
+    }
+  ],
+  "licensedTrainings": [
+    {
+      "id": "livre-de-dividas",
+      "title": "Livre de Dívidas",
+      "description": "Treinamento para ajudar pessoas a saírem do endividamento",
+      "image": "/images/DIVIDAS.jpg",
+      "duration": "8 semanas",
+      "format": "Online + Presencial"
+    },
+    {
+      "id": "investimentos-inteligentes",
+      "title": "Investimentos Inteligentes",
+      "description": "Ensine pessoas a investirem com segurança e estratégia",
+      "image": "/images/INVESTIMENTO.jpg",
+      "duration": "12 semanas",
+      "format": "Online + Presencial"
+    },
+    {
+      "id": "transformacao-financeira",
+      "title": "Transformação Financeira",
+      "description": "Programa completo de mudança de vida financeira",
+      "image": "/images/REALIZAR.jpg",
+      "duration": "16 semanas",
+      "format": "Online + Presencial"
+    }
+  ],
+  "mentor": {
+    "name": "Roberto Navarro",
+    "role": "Fundador do ICF - Instituto Coach Financeiro",
+    "badge": "Criador do Conceito de Coach Financeiro no Brasil",
+    "image": "/images/ROBERTO_12.jpg",
+    "bio": [
+      "De lavador de vidros aos 13 anos a referência nacional em inteligência financeira.",
+      "Criador do conceito de Coach Financeiro no Brasil, Roberto já impactou mais de 130 mil pessoas com sua metodologia, que une estratégias financeiras práticas, inteligência emocional e princípios bíblicos.",
+      "Especialista em inteligência financeira, espiritual e emocional e possui vasta experiência no mundo dos negócios.",
+      "Sua missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida próspera, com autonomia e visão de futuro."
+    ],
+    "achievements": [
+      "Mais de 130.000 alunos transformados",
+      "Criador do conceito de Coach Financeiro no Brasil",
+      "5 livros publicados sobre educação financeira",
+      "Palestrante em eventos nacionais e internacionais"
+    ]
+  },
+  "guarantees": [
+    {
+      "type": "legal",
+      "title": "Garantia Legal de 7 Dias",
+      "description": "Experimente a formação por 7 dias. Se não gostar, devolvemos 100% do seu dinheiro.",
+      "icon": "shield",
+      "highlight": false
+    },
+    {
+      "type": "results",
+      "title": "Garantia de Resultados em 6 Meses",
+      "description": "Se você aplicar todo o conteúdo e não obtiver resultados em 6 meses, devolvemos o DOBRO do seu investimento.",
+      "icon": "trending-up",
+      "highlight": true,
+      "terms": "Aplicável mediante comprovação de aplicação do método"
+    },
+    {
+      "type": "certification",
+      "title": "Certificação Reconhecida",
+      "description": "Certificado validado pelo MEC e Licença Profissional RNA garantidos após conclusão.",
+      "icon": "award",
+      "highlight": false
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Preciso ter experiência prévia em finanças para fazer o curso?",
+      "answer": "Não! O curso é estruturado para atender desde iniciantes até profissionais que já atuam na área e querem se certificar."
+    },
+    {
+      "question": "Em quanto tempo verei resultados?",
+      "answer": "Os primeiros resultados aparecem já nas primeiras semanas de aplicação do conteúdo. A transformação completa acontece conforme você avança nos módulos e aplica as estratégias."
+    },
+    {
+      "question": "Como funciona a certificação pelo MEC?",
+      "answer": "A certificação é emitida pela Roberto Navarro Academia, instituição reconhecida pelo MEC. Você recebe o certificado após completar todos os módulos e passar na avaliação final."
+    },
+    {
+      "question": "Posso trabalhar como Educador Financeiro em qualquer lugar do Brasil?",
+      "answer": "Sim! Com a Licença Profissional RNA e certificação MEC, você pode atuar em todo território nacional, tanto presencialmente quanto online."
+    },
+    {
+      "question": "Terei suporte após concluir a formação?",
+      "answer": "Sim! Você terá acesso vitalício à comunidade de educadores, atualizações do conteúdo e suporte contínuo da equipe."
+    },
+    {
+      "question": "Posso usar o conhecimento apenas para melhorar minha vida pessoal ou preciso atuar profissionalmente?",
+      "answer": "Você pode usar o conhecimento da forma que preferir! Muitos alunos fazem o curso para transformar suas próprias finanças e depois decidem ajudar outras pessoas profissionalmente."
+    },
+    {
+      "question": "A formação tem carga horária flexível?",
+      "answer": "Sim! Todo o conteúdo fica disponível 24/7 e você estuda no seu próprio ritmo. Há apenas encontros ao vivo agendados que são opcionais mas recomendados."
+    },
+    {
+      "question": "Posso me tornar um Treinador Licenciado e aplicar os 3 cursos exclusivos?",
+      "answer": "Sim! Após concluir a formação e obter a Licença Profissional RNA, você está autorizado a ministrar os 3 treinamentos licenciados: Livre de Dívidas, Investimentos Inteligentes e Transformação Financeira."
+    }
+  ],
+  "pricing": {
+    "originalPrice": null,
+    "currentPrice": null,
+    "installments": null,
+    "paymentLink": "#inscricao",
+    "note": "Entre em contato para conhecer as condições especiais"
+  },
+  "cta": {
+    "title": "ÚLTIMAS VAGAS: VOCÊ NASCEU PARA PROSPERAR",
+    "description": "Transforme sua vida e a vida de milhares de pessoas através da educação financeira. Garanta sua vaga agora!",
+    "buttonText": "QUERO SER UM EDUCADOR FINANCEIRO!",
+    "buttonHref": "#inscricao",
+    "source": "Educador Financeiro"
+  },
+  "components": {
+    "transformationVideos": {
+      "enabled": true,
+      "accent": "red"
+    },
+    "notableParticipants": {
+      "enabled": true,
+      "accent": "red"
+    },
+    "testimonials": {
+      "enabled": true
+    },
+    "whatsapp": {
+      "enabled": true,
+      "source": "Educador Financeiro"
+    }
+  },
+  "footer": {
+    "accent": "red"
+  }
+}

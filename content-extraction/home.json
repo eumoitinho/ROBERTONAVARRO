@@ -1,0 +1,81 @@
+{
+  "page": "Home",
+  "route": "/",
+  "metadata": {
+    "title": "Instituto Coaching Financeiro - Transforme sua mentalidade e conquiste uma nova realidade financeira",
+    "description": "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira."
+  },
+  "hero": {
+    "badge": "INSTITUTO COACHING FINANCEIRO",
+    "title": "TRANSFORME SUA MENTALIDADE E CONQUISTE UMA NOVA REALIDADE FINANCEIRA",
+    "description": "Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira.",
+    "backgroundImage": "/images/bgsite.jpg",
+    "cta": {
+      "text": "CONHEÇA NOSSAS FORMAÇÕES",
+      "url": "#formacoes"
+    },
+    "stats": {
+      "number": "300.000+",
+      "label": "vidas transformadas"
+    }
+  },
+  "sections": [
+    {
+      "id": "formacoes",
+      "title": "FORMAÇÕES QUE VÃO TRANSFORMAR SUA MENTALIDADE",
+      "description": "Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua liberdade financeira.",
+      "badge": "NOSSAS FORMAÇÕES",
+      "items": [
+        {
+          "title": "LCF MENTORING",
+          "description": "Imersão intensa em finanças, coaching de vida e estratégias práticas para você assumir o controle da sua vida financeira.",
+          "link": "/formacoes/mentoria"
+        },
+        {
+          "title": "EMPREENDEDOR INTELIGENTE",
+          "description": "Formação exclusiva para empresários que querem escalar resultados, atrair investidores e gerir seus negócios com segurança.",
+          "link": "/formacoes/empreendedor-inteligente"
+        },
+        {
+          "title": "EDUCADOR FINANCEIRO",
+          "description": "Transforme sua experiência em uma carreira lucrativa em apenas 90 dias e torne-se referência no ensino de finanças.",
+          "link": "/formacoes/educador-financeiro"
+        },
+        {
+          "title": "LCF MENTORING PRO",
+          "description": "Transforme sua mentalidade e descubra seu propósito de vida com o programa mais completo de evolução pessoal e profissional do Brasil.",
+          "link": "/formacoes/lcf-mentoring-pro"
+        },
+        {
+          "title": "MENTORIA DE INVESTIMENTOS",
+          "description": "Programa exclusivo para quem quer investir com inteligência, proteger seu capital e alcançar a liberdade financeira.",
+          "link": "/formacoes/mentoria-de-investimentos"
+        },
+        {
+          "title": "MENTORIA INDIVIDUAL",
+          "description": "Destrave seu potencial e alcance sua liberdade financeira com um acompanhamento 100% personalizado.",
+          "link": "/formacoes/mentoria-individual"
+        },
+        {
+          "title": "MÉTODO TF",
+          "description": "Desbloqueie a riqueza em sua vida com estratégias comprovadas para superar bloqueios financeiros e alcançar a prosperidade.",
+          "link": "/formacoes/metodo-tf"
+        },
+        {
+          "title": "MENTOR COACHING FINANCEIRO",
+          "description": "Transforme-se em um verdadeiro gerador de riqueza com a metodologia que reprograma sua relação com o dinheiro.",
+          "link": "/formacoes/mentor-coaching-financeiro"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/bgsite.jpg",
+      "alt": "Roberto Navarro",
+      "context": "Hero background"
+    }
+  ],
+  "videos": [],
+  "forms": []
+}

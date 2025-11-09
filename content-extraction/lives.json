@@ -1,0 +1,167 @@
+{
+  "page": "Lives",
+  "route": "/lives",
+  "metadata": {
+    "title": "Lives Diárias - Roberto Navarro",
+    "description": "Acompanhe as lives diárias de Roberto Navarro no YouTube e transforme sua mentalidade e suas finanças com conteúdo prático e de alta qualidade."
+  },
+  "hero": {
+    "badge": "Conteúdo gratuito",
+    "title": "LIVES DIÁRIAS",
+    "subtitle": "Conhecimento transformador todos os dias",
+    "description": "Acompanhe as lives diárias de Roberto Navarro no YouTube e transforme sua mentalidade e suas finanças com conteúdo prático e de alta qualidade.",
+    "backgroundImage": "/images/roberto-palestra.jpeg",
+    "cta": [
+      {
+        "text": "SEGUIR NO YOUTUBE",
+        "url": "https://www.youtube.com/@RobertoNavarroOficial"
+      },
+      {
+        "text": "Ver programação",
+        "url": "#programacao"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "programacao",
+      "badge": "PROGRAMAÇÃO SEMANAL",
+      "title": "ACOMPANHE NOSSAS LIVES DIÁRIAS",
+      "description": "Todos os dias às 19h, Roberto Navarro traz conteúdo exclusivo e gratuito no YouTube para transformar sua mentalidade e suas finanças.",
+      "schedule": [
+        {
+          "day": "Segunda-feira",
+          "time": "19:00",
+          "topic": "Finanças Pessoais",
+          "description": "Dicas práticas para organizar suas finanças e eliminar dívidas."
+        },
+        {
+          "day": "Terça-feira",
+          "time": "19:00",
+          "topic": "Investimentos",
+          "description": "Estratégias de investimento para iniciantes e avançados."
+        },
+        {
+          "day": "Quarta-feira",
+          "time": "19:00",
+          "topic": "Empreendedorismo",
+          "description": "Como iniciar e escalar seu negócio com inteligência."
+        },
+        {
+          "day": "Quinta-feira",
+          "time": "19:00",
+          "topic": "Mentalidade",
+          "description": "Desenvolvendo uma mentalidade de prosperidade e abundância."
+        },
+        {
+          "day": "Sexta-feira",
+          "time": "19:00",
+          "topic": "Perguntas e Respostas",
+          "description": "Roberto responde às principais dúvidas da semana."
+        }
+      ],
+      "cta": {
+        "text": "SEGUIR NO YOUTUBE",
+        "url": "https://www.youtube.com/@RobertoNavarroOficial"
+      }
+    },
+    {
+      "id": "live-stream",
+      "badge": "ASSISTA AO VIVO",
+      "title": "ACOMPANHE-NOS AGORA",
+      "youtubeEmbedUrl": "https://www.youtube.com/embed/live_stream?channel=UCQZQZQZQZQZQZQZQZQZQZQ",
+      "cta": {
+        "text": "ABRIR NO YOUTUBE",
+        "url": "https://www.youtube.com/@RobertoNavarroOficial"
+      }
+    },
+    {
+      "id": "recent-lives",
+      "badge": "CONTEÚDO RECENTE",
+      "title": "LIVES ANTERIORES",
+      "description": "Não conseguiu assistir ao vivo? Confira as gravações das lives anteriores e não perca nenhum conteúdo.",
+      "lives": [
+        {
+          "id": "1",
+          "title": "Como criar múltiplas fontes de renda",
+          "thumbnail": "/images/live-thumbnail-1.webp",
+          "date": "15/05/2023",
+          "views": "12.5k"
+        },
+        {
+          "id": "2",
+          "title": "Investimentos para iniciantes",
+          "thumbnail": "/images/live-thumbnail-2.webp",
+          "date": "10/05/2023",
+          "views": "8.7k"
+        },
+        {
+          "id": "3",
+          "title": "Mentalidade milionária na prática",
+          "thumbnail": "/images/live-thumbnail-3.webp",
+          "date": "05/05/2023",
+          "views": "15.3k"
+        },
+        {
+          "id": "4",
+          "title": "Como sair das dívidas em 90 dias",
+          "thumbnail": "/images/live-thumbnail-4.webp",
+          "date": "01/05/2023",
+          "views": "20.1k"
+        }
+      ],
+      "cta": {
+        "text": "Ver todas as lives",
+        "url": "https://www.youtube.com/@RobertoNavarroOficial/streams"
+      }
+    },
+    {
+      "id": "subscribe",
+      "title": "NÃO PERCA NENHUMA LIVE!",
+      "description": "Ative as notificações no YouTube e seja avisado sempre que uma nova live começar.",
+      "cta": {
+        "text": "SEGUIR E ATIVAR NOTIFICAÇÕES",
+        "url": "https://www.youtube.com/@RobertoNavarroOficial"
+      }
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/roberto-palestra.jpeg",
+      "alt": "Roberto Navarro palestrando",
+      "context": "Hero background"
+    },
+    {
+      "src": "/images/live-thumbnail-1.webp",
+      "alt": "Como criar múltiplas fontes de renda",
+      "context": "Live thumbnail"
+    },
+    {
+      "src": "/images/live-thumbnail-2.webp",
+      "alt": "Investimentos para iniciantes",
+      "context": "Live thumbnail"
+    },
+    {
+      "src": "/images/live-thumbnail-3.webp",
+      "alt": "Mentalidade milionária na prática",
+      "context": "Live thumbnail"
+    },
+    {
+      "src": "/images/live-thumbnail-4.webp",
+      "alt": "Como sair das dívidas em 90 dias",
+      "context": "Live thumbnail"
+    }
+  ],
+  "videos": [
+    {
+      "type": "youtube-live-embed",
+      "url": "https://www.youtube.com/embed/live_stream?channel=UCQZQZQZQZQZQZQZQZQZQZQ",
+      "context": "Live stream embed"
+    }
+  ],
+  "forms": [],
+  "externalLinks": {
+    "youtube": "https://www.youtube.com/@RobertoNavarroOficial",
+    "youtubeStreams": "https://www.youtube.com/@RobertoNavarroOficial/streams"
+  }
+}

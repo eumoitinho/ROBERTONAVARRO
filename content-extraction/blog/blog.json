@@ -1,0 +1,90 @@
+{
+  "page": "Blog",
+  "route": "/blog",
+  "metadata": {
+    "title": "Blog - Insights para Transformar sua Mente e Negócios",
+    "description": "Explore artigos que vão ajudar você a superar crenças limitantes, desenvolver inteligência emocional e transformar sua relação com o dinheiro."
+  },
+  "hero": {
+    "badge": "BLOG",
+    "title": "INSIGHTS PARA TRANSFORMAR SUA MENTE E NEGÓCIOS",
+    "description": "Explore artigos que vão ajudar você a superar crenças limitantes, desenvolver inteligência emocional e transformar sua relação com o dinheiro."
+  },
+  "sections": [
+    {
+      "id": "search",
+      "placeholder": "Buscar artigos..."
+    },
+    {
+      "id": "categories",
+      "title": "Categorias",
+      "items": [
+        "Todas",
+        "Mentalidade",
+        "Coragem",
+        "Inteligência Emocional",
+        "Decisões Financeiras"
+      ]
+    },
+    {
+      "id": "newsletter",
+      "title": "RECEBA INSIGHTS EXCLUSIVOS",
+      "description": "Seja o primeiro a receber artigos transformadores sobre mentalidade, negócios e prosperidade diretamente no seu e-mail.",
+      "placeholder": "Seu melhor e-mail",
+      "submitButton": "INSCREVER-SE",
+      "disclaimer": "Você pode cancelar a inscrição a qualquer momento. Sem spam."
+    }
+  ],
+  "categoryImages": {
+    "Mentalidade": "/blog/notopo.jpg",
+    "Coragem": "/blog/marionete.jpg",
+    "Inteligência Emocional": "/blog/golias.webp",
+    "Decisões Financeiras": "/blog/segurandodin.jpg"
+  },
+  "images": [
+    {
+      "src": "/blog/notopo.jpg",
+      "alt": "Mentalidade",
+      "context": "Category image"
+    },
+    {
+      "src": "/blog/marionete.jpg",
+      "alt": "Coragem",
+      "context": "Category image"
+    },
+    {
+      "src": "/blog/golias.webp",
+      "alt": "Inteligência Emocional",
+      "context": "Category image"
+    },
+    {
+      "src": "/blog/segurandodin.jpg",
+      "alt": "Decisões Financeiras",
+      "context": "Category image"
+    }
+  ],
+  "videos": [],
+  "forms": [
+    {
+      "type": "newsletter",
+      "title": "RECEBA INSIGHTS EXCLUSIVOS",
+      "description": "Seja o primeiro a receber artigos transformadores sobre mentalidade, negócios e prosperidade diretamente no seu e-mail.",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email",
+          "placeholder": "Seu melhor e-mail",
+          "required": true
+        }
+      ],
+      "submitButton": "INSCREVER-SE",
+      "disclaimer": "Você pode cancelar a inscrição a qualquer momento. Sem spam."
+    }
+  ],
+  "notes": [
+    "Blog posts are fetched from Sanity CMS",
+    "Fallback blog posts are provided in fallback-data.ts",
+    "Posts include: title, slug, category, excerpt, author, publishedAt, coverImage, content",
+    "Reading time is calculated at 200 words per minute"
+  ]
+}

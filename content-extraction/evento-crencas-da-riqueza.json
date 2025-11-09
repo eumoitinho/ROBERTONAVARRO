@@ -1,0 +1,318 @@
+{
+  "page": "crencas-da-riqueza",
+  "route": "/eventos/crencas-da-riqueza",
+  "type": "evento",
+  "metadata": {
+    "title": "CRENÇAS DA RIQUEZA",
+    "subtitle": "Transformação mental",
+    "secondTitle": "A riqueza começa na mente e se materializa nas decisões",
+    "description": "Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e realização pessoal.",
+    "accentColor": "yellow",
+    "keywords": ["crenças", "riqueza", "mentalidade", "transformação mental", "liberdade financeira"]
+  },
+  "eventDetails": {
+    "date": "2025-09-13",
+    "time": "13:00-20:00",
+    "timeFormatted": "13h às 20h",
+    "duration": "10 horas",
+    "location": {
+      "venue": "Centro de Eventos Alphaville",
+      "address": "Alameda Araguaia, 751",
+      "city": "Barueri",
+      "state": "SP",
+      "formatted": "Alameda Araguaia, 751, Barueri, SP"
+    },
+    "format": "Presencial",
+    "language": "Português",
+    "capacity": null
+  },
+  "hero": {
+    "badge": "TRANSFORMAÇÃO MENTAL",
+    "title": "CRENÇAS DA RIQUEZA",
+    "subtitle": "Transformação mental",
+    "secondTitle": "A riqueza começa na mente e se materializa nas decisões",
+    "description": "Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e realização pessoal.",
+    "images": {
+      "desktop": "/images/HERO_CRENCAS.png",
+      "mobile": null
+    },
+    "ctas": [
+      {
+        "text": "GARANTA SUA VAGA!",
+        "href": "#form",
+        "variant": "primary",
+        "type": "button"
+      },
+      {
+        "text": "Saiba mais",
+        "href": "#o-que-aprender",
+        "variant": "secondary",
+        "type": "link"
+      }
+    ],
+    "countdown": {
+      "enabled": true,
+      "targetDate": "2025-09-13T13:00:00",
+      "text": "O evento começa em:"
+    }
+  },
+  "navigation": [
+    {
+      "title": "O Que Aprender",
+      "href": "#o-que-aprender"
+    },
+    {
+      "title": "Mentores",
+      "href": "#mentores"
+    },
+    {
+      "title": "Depoimentos",
+      "href": "#depoimentos"
+    },
+    {
+      "title": "Inscreva-se",
+      "href": "#form",
+      "isButton": true
+    }
+  ],
+  "challenges": [
+    {
+      "icon": "brain",
+      "question": "Você trava na hora de tomar decisões financeiras importantes?",
+      "answer": "Aprenda a identificar e neutralizar crenças limitantes que afetam suas escolhas."
+    },
+    {
+      "icon": "compass",
+      "question": "Sente que está sempre correndo, mas sem sair do lugar?",
+      "answer": "Direcione sua energia com foco, clareza e propósito para crescer com consistência."
+    },
+    {
+      "icon": "target",
+      "question": "Tem dificuldade em pensar grande e definir metas ousadas?",
+      "answer": "Comece a expandir sua mentalidade e enxergar oportunidades onde antes via riscos."
+    },
+    {
+      "icon": "move",
+      "question": "Sabe que precisa mudar, mas não consegue dar o próximo passo?",
+      "answer": "Descubra o que está te bloqueando e como destravar seu potencial com técnicas práticas."
+    },
+    {
+      "icon": "unlock",
+      "question": "Sente que algo te impede de alcançar a liberdade financeira?",
+      "answer": "Aprenda a destravar suas crenças de escassez e ressignifique sua relação com o dinheiro."
+    }
+  ],
+  "intelligenceTypes": [
+    {
+      "title": "Inteligência Emocional",
+      "description": "Domine suas emoções financeiras e desenvolva autocontrole para tomar decisões racionais mesmo sob pressão. Aprenda a transformar medo em coragem e ansiedade em ação estratégica.",
+      "icon": "/emotional-intelligence-icon.png",
+      "benefits": [
+        "Controle emocional em decisões financeiras",
+        "Técnicas para vencer o medo de investir",
+        "Autoconfiança para negociar e empreender",
+        "Resiliência diante de perdas e fracassos",
+        "Disciplina para manter o foco nos objetivos"
+      ]
+    },
+    {
+      "title": "Inteligência Financeira",
+      "description": "Desenvolva uma mentalidade de abundância e aprenda as regras fundamentais do dinheiro. Desde o controle de gastos até estratégias de multiplicação de patrimônio.",
+      "icon": "/financial-intelligence-icon.png",
+      "benefits": [
+        "Planejamento financeiro pessoal eficiente",
+        "Estratégias de investimento para iniciantes",
+        "Como criar múltiplas fontes de renda",
+        "Gestão inteligente de dívidas e crédito",
+        "Mentalidade de abundância vs escassez"
+      ]
+    },
+    {
+      "title": "Inteligência Espiritual",
+      "description": "Alinhe seus valores pessoais com seus objetivos financeiros. Descubra seu propósito de vida e como a prosperidade pode servir a algo maior que você mesmo.",
+      "icon": "/spiritual-intelligence-icon.png",
+      "benefits": [
+        "Conexão entre propósito e prosperidade",
+        "Valores que sustentam o sucesso duradouro",
+        "Equilíbrio entre ter e ser",
+        "Generosidade como ferramenta de crescimento",
+        "Paz interior independente das circunstâncias"
+      ]
+    },
+    {
+      "title": "Inteligência Empresarial",
+      "description": "Pense como um empreendedor de sucesso. Desenvolva visão estratégica, capacidade de identificar oportunidades e habilidades de liderança para escalar seus resultados.",
+      "icon": "/business-intelligence-icon.png",
+      "benefits": [
+        "Mindset empreendedor e visão de oportunidades",
+        "Estratégias para escalar negócios",
+        "Liderança e formação de equipes",
+        "Networking estratégico e parcerias",
+        "Inovação e adaptação a mudanças"
+      ]
+    }
+  ],
+  "eventHighlights": [
+    {
+      "icon": "zap",
+      "title": "Imersão Completa",
+      "description": "10 horas de conteúdo transformador em um único dia"
+    },
+    {
+      "icon": "file-text",
+      "title": "Material Exclusivo",
+      "description": "Apostila digital e recursos para implementação imediata"
+    },
+    {
+      "icon": "users",
+      "title": "Networking Qualificado",
+      "description": "Conexão com outros profissionais e empreendedores"
+    },
+    {
+      "icon": "award",
+      "title": "Certificado",
+      "description": "Documento oficial de participação no evento"
+    }
+  ],
+  "mentors": [
+    {
+      "name": "Roberto Navarro",
+      "role": "Fundador do ICF",
+      "badge": "Fundador do ICF",
+      "tagline": "De lavador de vidros aos 13 anos a referência nacional em inteligência financeira.",
+      "image": "/images/ROBERTO_4.jpg",
+      "bio": [
+        {
+          "icon": "check-circle",
+          "text": "Criador do conceito de Coach Financeiro no Brasil, Roberto já impactou mais de 130 mil pessoas com sua metodologia, que une estratégias financeiras práticas, inteligência emocional e princípios bíblicos."
+        },
+        {
+          "icon": "check-circle",
+          "text": "Especialista em inteligência financeira, espiritual e emocional e possui vasta experiência no mundo dos negócios."
+        },
+        {
+          "icon": "check-circle",
+          "text": "Sua missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida próspera, com autonomia e visão de futuro."
+        }
+      ]
+    },
+    {
+      "name": "Raíssa Navarro",
+      "role": "Especialista em PNL",
+      "badge": "Especialista em PNL",
+      "tagline": "Especialista em comportamento humano e referência nacional em Programação Neurolinguística (PNL).",
+      "image": "/images/RAISSA.png",
+      "bio": [
+        {
+          "icon": "check-circle",
+          "text": "Membro da The Society of NLP, Raíssa Navarro é uma das poucas profissionais brasileiras autorizadas a ensinar PNL diretamente pela linha do Dr. Richard Bandler, cocriador da técnica."
+        },
+        {
+          "icon": "check-circle",
+          "text": "Foi selecionada para compor a equipe de apoio do próprio Tony Robbins, o maior nome do coaching no mundo."
+        },
+        {
+          "icon": "check-circle",
+          "text": "Raissa conduz seus alunos por um caminho de autoconhecimento, consciência e libertação emocional, sempre com bom humor e energia elevada."
+        }
+      ]
+    }
+  ],
+  "tickets": [
+    {
+      "id": "ingresso-especial",
+      "name": "Ingresso Especial",
+      "price": 9.90,
+      "description": "Acesso completo ao evento presencial",
+      "benefits": [
+        "Experiência completa de 10 horas",
+        "Material digital exclusivo",
+        "Certificado de participação",
+        "Networking com participantes"
+      ],
+      "featured": false,
+      "eduzzContentId": null
+    },
+    {
+      "id": "ingresso-vip",
+      "name": "Ingresso VIP",
+      "price": 49.90,
+      "description": "Experiência premium com benefícios exclusivos",
+      "benefits": [
+        "Tudo do Ingresso Especial",
+        "Assentos nas primeiras fileiras",
+        "Perguntas e respostas com Roberto Navarro",
+        "Compre 1, leve 2 (traga um acompanhante)",
+        "Acesso antecipado ao evento"
+      ],
+      "featured": true,
+      "eduzzContentId": null
+    }
+  ],
+  "registration": {
+    "platform": "blinket",
+    "url": "https://evento.blinket.com.br/crencas-da-riqueza",
+    "buttonText": "GARANTIR MINHA INSCRIÇÃO",
+    "ctaSection": {
+      "badge": "INSCRIÇÃO",
+      "title": "ESCOLHA SEU INGRESSO",
+      "description": "Participe do evento transformador Crenças da Riqueza e comece a mudar sua relação com o dinheiro. Vagas limitadas!"
+    }
+  },
+  "faqs": [
+    {
+      "question": "Preciso ter conhecimento prévio sobre finanças?",
+      "answer": "Não, o evento foi desenhado para pessoas em diferentes níveis de conhecimento financeiro. O foco está na transformação da mentalidade e nas crenças sobre dinheiro, não em conceitos técnicos avançados."
+    },
+    {
+      "question": "O que devo levar para o evento?",
+      "answer": "Recomendamos que você leve um caderno para anotações, uma garrafa de água e esteja com roupas confortáveis. Todo o material didático será fornecido no evento, incluindo uma apostila digital."
+    },
+    {
+      "question": "Haverá certificado de participação?",
+      "answer": "Sim, todos os participantes receberão um certificado digital de participação após a conclusão do evento."
+    },
+    {
+      "question": "Posso transferir meu ingresso para outra pessoa?",
+      "answer": "Sim, você pode transferir seu ingresso para outra pessoa até 7 dias antes do evento. Para isso, entre em contato com nossa equipe de suporte informando os dados da nova pessoa."
+    },
+    {
+      "question": "Haverá gravação do evento?",
+      "answer": "Não, o evento Crenças da Riqueza é uma experiência presencial exclusiva e não será gravado. Por isso, é fundamental garantir sua presença para aproveitar todo o conteúdo."
+    }
+  ],
+  "components": {
+    "transformationVideos": {
+      "enabled": true,
+      "videoModal": {
+        "enabled": true,
+        "closeOnEsc": true,
+        "closeOnClickOutside": true
+      }
+    },
+    "notableParticipants": {
+      "enabled": true
+    },
+    "testimonials": {
+      "enabled": true,
+      "section": "depoimentos"
+    },
+    "whatsapp": {
+      "enabled": true,
+      "source": "Crenças da Riqueza"
+    }
+  },
+  "styling": {
+    "theme": {
+      "primary": "yellow-400",
+      "secondary": "amber-600",
+      "accent": "yellow-500",
+      "background": "gradient-to-b from-zinc-950 via-zinc-900 to-zinc-800"
+    },
+    "effects": {
+      "noise": true,
+      "animatedGradients": true,
+      "glowEffects": true
+    }
+  }
+}

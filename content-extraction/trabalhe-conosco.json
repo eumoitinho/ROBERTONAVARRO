@@ -1,0 +1,95 @@
+{
+  "page": "Trabalhe Conosco",
+  "route": "/trabalhe-conosco",
+  "metadata": {
+    "title": "Trabalhe Conosco - Roberto Navarro",
+    "description": "Faça parte do nosso time. Estamos sempre em busca de talentos que compartilham nossa missão de transformar vidas financeiras."
+  },
+  "hero": {
+    "title": "FAÇA PARTE DO NOSSO TIME",
+    "description": "Estamos sempre em busca de talentos que compartilham nossa missão de transformar vidas financeiras. Envie seu currículo e faça parte dessa jornada."
+  },
+  "sections": [
+    {
+      "id": "trabalhe-conosco",
+      "title": "FAÇA PARTE DO NOSSO TIME",
+      "description": "Estamos sempre em busca de talentos que compartilham nossa missão de transformar vidas financeiras. Envie seu currículo e faça parte dessa jornada."
+    }
+  ],
+  "images": [],
+  "videos": [],
+  "forms": [
+    {
+      "type": "job-application",
+      "title": "Envie seu currículo",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Nome",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "phone",
+          "label": "Telefone",
+          "type": "tel",
+          "required": true
+        },
+        {
+          "name": "position",
+          "label": "Área de Interesse",
+          "type": "select",
+          "required": true,
+          "options": [
+            {
+              "value": "",
+              "label": "Selecione uma área"
+            },
+            {
+              "value": "marketing",
+              "label": "Marketing"
+            },
+            {
+              "value": "vendas",
+              "label": "Vendas"
+            },
+            {
+              "value": "atendimento",
+              "label": "Atendimento ao Cliente"
+            },
+            {
+              "value": "coaching",
+              "label": "Coaching"
+            },
+            {
+              "value": "administrativo",
+              "label": "Administrativo"
+            }
+          ]
+        },
+        {
+          "name": "resume",
+          "label": "Currículo (PDF)",
+          "type": "file",
+          "accept": ".pdf",
+          "required": true
+        },
+        {
+          "name": "message",
+          "label": "Mensagem",
+          "type": "textarea",
+          "rows": 4,
+          "placeholder": "Conte-nos um pouco sobre você e suas experiências...",
+          "required": false
+        }
+      ],
+      "submitButton": "Enviar Currículo"
+    }
+  ]
+}

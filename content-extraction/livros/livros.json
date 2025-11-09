@@ -1,0 +1,212 @@
+{
+  "page": "Livros",
+  "route": "/livros",
+  "metadata": {
+    "title": "Kit Exclusivo Roberto Navarro - Livros de Educação Financeira",
+    "description": "Desvende os segredos da liberdade financeira com os ensinamentos de Roberto Navarro. Kit exclusivo de livros que serão seu guia definitivo para a tão sonhada liberdade financeira."
+  },
+  "hero": {
+    "badge": "Kit Exclusivo Roberto Navarro",
+    "title": "Desvende os segredos da liberdade financeira com os ensinamentos de Roberto Navarro",
+    "description": "O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil traz para você um kit exclusivo de livros que serão seu guia definitivo para a tão sonhada liberdade financeira.",
+    "backgroundImage": "/images/HERO_EDUCADOR.png",
+    "cta": {
+      "text": "OFERTA EXCLUSIVA: ADQUIRA SEU KIT!",
+      "url": "https://sun.eduzz.com/956345"
+    }
+  },
+  "sections": [
+    {
+      "id": "product-kit",
+      "title": "Kit Exclusivo Roberto Navarro",
+      "description": "Criador do conceito de Coaching Financeiro no país, Navarro impactou mais de 1 milhão de pessoas, desenvolvendo metodologias que unem estratégias práticas de finanças, inteligência emocional e princípios bíblicos. Agora, você terá a oportunidade de mergulhar nos pilares dessa transformação através de seus quatro livros.",
+      "price": "R$ 200,00",
+      "priceInstallment": "10x de R$ 20,00",
+      "paymentInfo": "ou R$ 200,00 à vista",
+      "rating": {
+        "stars": 5,
+        "reviewCount": 3
+      },
+      "breadcrumbs": [
+        {
+          "url": "/",
+          "title": "Início"
+        },
+        {
+          "url": "/livros",
+          "title": "Livros"
+        }
+      ],
+      "tabs": [
+        {
+          "value": "details",
+          "trigger": "Descrição",
+          "description": "Mais do que um conjunto de livros, este kit é um investimento em você, na sua família e no seu futuro. Prepare-se para quebrar paradigmas, desmistificar o dinheiro e construir uma nova realidade financeira. A sua jornada para a abundância começa agora!"
+        },
+        {
+          "value": "content",
+          "trigger": "Conteúdo do Kit",
+          "description": "Este kit inclui 4 livros essenciais de Roberto Navarro: A Sabedoria do Dinheiro, Quebrando Mitos com o Dinheiro, A Arte de Enriquecer e Coaching Financeiro."
+        }
+      ]
+    },
+    {
+      "id": "catalogo",
+      "badge": "CONHEÇA OS LIVROS",
+      "title": "Um kit que vai transformar sua vida",
+      "description": "As obras de Roberto Navarro combinam inteligência financeira, emocional e espiritual para guiá-lo rumo à prosperidade.",
+      "items": [
+        {
+          "title": "A Sabedoria do Dinheiro",
+          "description": "Transforme sua mentalidade e atraia a prosperidade. Descubra os 5 passos essenciais para alinhar sua visão financeira ao seu propósito, mantendo a espiritualidade e a abundância no centro de sua jornada.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-SD.png",
+          "badge": "Essencial",
+          "link": "https://sun.eduzz.com/956345"
+        },
+        {
+          "title": "Quebrando Mitos com o Dinheiro",
+          "description": "Liberte-se das crenças que limitam sua prosperidade. Identifique os mitos que sabotam sua vida financeira e substitua-os por atitudes conscientes e focadas em resultados.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-QM.png",
+          "badge": "Transformador",
+          "link": "https://sun.eduzz.com/956345"
+        },
+        {
+          "title": "A Arte de Enriquecer",
+          "description": "Riqueza é um caminho, não um privilégio. Descubra a metodologia prática para dobrar sua renda, administrar seus ganhos e aproveitar a vida como os verdadeiros ricos fazem.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-AE.png",
+          "badge": "Prático",
+          "link": "https://sun.eduzz.com/956345"
+        },
+        {
+          "title": "Coaching Financeiro",
+          "description": "Controle emocional, clareza financeira e ação: a tríade para o sucesso. Estratégias, histórias reais e exercícios práticos para transformar sua relação com o dinheiro.",
+          "image": "/LIVROS-ROBERTO-NAVARRO-CF.png",
+          "badge": "Equilíbrio",
+          "link": "https://sun.eduzz.com/956345"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-barrier",
+      "title": "A falta de conhecimento é a maior barreira para a prosperidade",
+      "description": "Pense no valor de ter à sua disposição o conhecimento de um dos maiores especialistas em finanças do Brasil. Roberto Navarro não é apenas um autor; ele é um mentor que já transformou a vida de centenas de milhares de pessoas. Sua metodologia, testada e comprovada, vai além dos números, tocando na essência da sua relação com o dinheiro.",
+      "cta": {
+        "text": "GARANTA SEU KIT!",
+        "url": "https://sun.eduzz.com/956345"
+      }
+    },
+    {
+      "id": "testimonials",
+      "title": "O que nossos leitores dizem",
+      "description": "Veja o que os leitores estão dizendo sobre os livros de Roberto Navarro.",
+      "testimonials": [
+        {
+          "quote": "Desperta para importância de se planejar financeiramente o quanto antes. Embora o autor se conduza mais como mentor, há muitas perguntas de Coaching Financeiro muito bem elaboradas que te fazem refletir sobre alguns pontos cegos no aspecto financeiro, bastante esclarecedor, escrito de modo, que parece que o autor é um amigo batendo um papo.",
+          "name": "Juliano Gorgonio",
+          "role": "Compra Verificada",
+          "numberOfStars": 5,
+          "avatar": {
+            "src": "/images/reviewers/juliano-gorgonio.png",
+            "alt": "Juliano Gorgonio"
+          }
+        },
+        {
+          "quote": "Ótimo livro. Leitura super fácil e tudo faz muito sentido muito embora não seja um tema simples como parece considerando todos os problemas sociais do Brasil.",
+          "name": "Marta Celestino",
+          "role": "Compra Verificada",
+          "numberOfStars": 5,
+          "avatar": {
+            "src": "/images/reviewers/marta-celestino.png",
+            "alt": "Marta Celestino"
+          }
+        },
+        {
+          "quote": "\"O que enriquece o ser humano, não é o dinheiro que ele consegue, mas o processo que ele segue para obter aquilo.\" Não tem como ler este livro e não se sentir mais rico.",
+          "name": "Andrea Kress",
+          "role": "Compra Verificada",
+          "numberOfStars": 5,
+          "avatar": {
+            "src": "/images/reviewers/andrea-kress.png",
+            "alt": "Andrea Kress"
+          }
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "title": "Tenha as ferramentas para construir a vida que você merece",
+      "description": "O conhecimento é o único investimento que ninguém pode tirar de você. Invista em si mesmo e colha os frutos de uma vida próspera e abundante.",
+      "offerText": "Oferta Exclusiva",
+      "price": "10x de R$ 20,00",
+      "paymentInfo": "ou R$ 200,00 à vista",
+      "cta": {
+        "text": "QUERO MEU KIT E MINHA LIBERDADE FINANCEIRA!",
+        "url": "https://sun.eduzz.com/956345"
+      }
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/HERO_EDUCADOR.png",
+      "alt": "Roberto Navarro",
+      "context": "Hero background"
+    },
+    {
+      "src": "/images/SABEDORIA.png",
+      "alt": "A Sabedoria do Dinheiro",
+      "context": "Product kit display"
+    },
+    {
+      "src": "/images/MITOS.png",
+      "alt": "Quebrando Mitos com o Dinheiro",
+      "context": "Product kit display"
+    },
+    {
+      "src": "/images/ARTE.png",
+      "alt": "A Arte de Enriquecer",
+      "context": "Product kit display"
+    },
+    {
+      "src": "/images/COACHING.png",
+      "alt": "Coaching Financeiro",
+      "context": "Product kit display"
+    },
+    {
+      "src": "/LIVROS-ROBERTO-NAVARRO-SD.png",
+      "alt": "A Sabedoria do Dinheiro",
+      "context": "Book catalog"
+    },
+    {
+      "src": "/LIVROS-ROBERTO-NAVARRO-QM.png",
+      "alt": "Quebrando Mitos com o Dinheiro",
+      "context": "Book catalog"
+    },
+    {
+      "src": "/LIVROS-ROBERTO-NAVARRO-AE.png",
+      "alt": "A Arte de Enriquecer",
+      "context": "Book catalog"
+    },
+    {
+      "src": "/LIVROS-ROBERTO-NAVARRO-CF.png",
+      "alt": "Coaching Financeiro",
+      "context": "Book catalog"
+    },
+    {
+      "src": "/images/livro2.png",
+      "alt": "Livro Quebrando Mitos com o Dinheiro",
+      "context": "Knowledge barrier section"
+    },
+    {
+      "src": "/images/LIVRO_MOCKUP.png",
+      "alt": "Mockup do Kit de Livros",
+      "context": "Knowledge barrier section"
+    },
+    {
+      "src": "/images/livro3.png",
+      "alt": "Kit de Livros Roberto Navarro",
+      "context": "Final CTA section"
+    }
+  ],
+  "videos": [],
+  "forms": []
+}

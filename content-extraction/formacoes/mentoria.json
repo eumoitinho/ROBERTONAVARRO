@@ -1,0 +1,350 @@
+{
+  "page": "LCF Mentoring",
+  "route": "/formacoes/mentoria",
+  "metadata": {
+    "title": "LCF Mentoring - Mentoria Exclusiva de Coaching Financeiro",
+    "description": "Uma imersão profunda e transformadora em finanças pessoais, coaching de vida e estratégias práticas para você conquistar a sua liberdade financeira."
+  },
+  "hero": {
+    "badge": "Mentoria Exclusiva",
+    "title": "LCF MENTORING",
+    "subtitle": "Você no controle da sua vida",
+    "description": "Uma imersão profunda e transformadora em finanças pessoais, coaching de vida e estratégias práticas para você conquistar a sua liberdade financeira.",
+    "backgroundImage": "/images/HERO_MENTORIA.png",
+    "cta": [
+      {
+        "text": "MAIS INFORMAÇÕES SOBRE A FORMAÇÃO",
+        "url": "#sobre"
+      },
+      {
+        "text": "Contate-nos",
+        "url": "#sobre"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "o-que-aprender",
+      "badge": "DESAFIOS",
+      "title": "O QUE ESTÁ TRAVANDO SUA LIBERDADE FINANCEIRA?",
+      "items": [
+        {
+          "title": "Inteligência emocional",
+          "description": "Domine suas emoções e padrões mentais, desenvolvendo resiliência, clareza e foco para tomar decisões consistentes em qualquer área da vida."
+        },
+        {
+          "title": "Inteligência financeira",
+          "description": "Destrave suas crenças limitantes e aprenda a organizar, direcionar e multiplicar seus recursos com consciência e consistência."
+        },
+        {
+          "title": "Inteligência espiritual",
+          "description": "Conecte sua jornada material com seu propósito de vida. Viver com significado não é um luxo - é a base para prosperar com equilíbrio."
+        },
+        {
+          "title": "Inteligência estratégica",
+          "description": "Alinhe carreira, investimentos, rotina e hábitos com um plano de ação realista e poderoso."
+        }
+      ],
+      "cta": {
+        "text": "CONQUISTE SUA VAGA!",
+        "url": "#inscricao"
+      }
+    },
+    {
+      "id": "sobre",
+      "title": "O QUE É O LCF MENTORING?",
+      "description": "Um programa único no Brasil que une Life Coaching e Mentor Coaching Financeiro.\n\nCom base em centenas de histórias de sucesso, o programa entrega não apenas conhecimento técnico, mas uma verdadeira mudança de mentalidade, hábitos e comportamentos.\n\nImagine acordar todos os dias com clareza, segurança e autonomia financeira. Você terá um plano, um propósito e as ferramentas para atingir seus objetivos. Além de aprender a gerenciar seu dinheiro, você também desenvolverá habilidades que transformarão todas as áreas da sua vida.",
+      "items": [
+        "Transformação Completa: O programa mais completo de transformação financeira, emocional e espiritual.",
+        "Resultados Reais: Desenvolva inteligência financeira aplicada e trabalhe sua mentalidade de alta performance.",
+        "Ecossistema de Suporte: Conteúdos de alto nível, encontros presenciais e suporte contínuo."
+      ],
+      "cta": {
+        "text": "CONQUISTE SUA VAGA!",
+        "url": "#inscricao"
+      }
+    },
+    {
+      "id": "beneficios",
+      "badge": "BENEFÍCIOS",
+      "title": "O QUE VOCÊ VAI CONQUISTAR COM O LCF MENTORING?",
+      "items": [
+        {
+          "title": "Liberdade e estabilidade financeira",
+          "description": "Aprenda a organizar suas finanças com segurança e inteligência."
+        },
+        {
+          "title": "Desenvolvimento pessoal e profissional",
+          "description": "Adquira habilidades poderosas que impulsionarão todas as áreas da sua vida."
+        },
+        {
+          "title": "Acompanhamento contínuo",
+          "description": "Mesmo após a imersão, você continua recebendo suporte para aplicar o que aprendeu e gerar resultados consistentes."
+        },
+        {
+          "title": "Mudança de mentalidade",
+          "description": "Transforme a forma como você enxerga o dinheiro, suas escolhas e seu potencial."
+        }
+      ]
+    },
+    {
+      "id": "modulos",
+      "title": "MÓDULOS DA MENTORIA",
+      "items": [
+        {
+          "title": "Módulo 1: Life Coaching Profissional (4 dias)",
+          "topics": [
+            {
+              "title": "Desenvolvimento de habilidades pessoais e profissionais",
+              "subtopics": [
+                "Inteligência emocional e social",
+                "Desenvolvimento da autoestima e autoconfiança",
+                "Gestão do tempo e produtividade",
+                "Técnicas de resolução de conflitos",
+                "Desenvolvimento de competências de liderança",
+                "Ferramentas de avaliação de competências"
+              ]
+            },
+            {
+              "title": "Técnicas de coaching para transformação de vida",
+              "subtopics": [
+                "Metodologias de mudança de comportamento",
+                "Criação de planos de ação personalizados",
+                "Técnicas de motivação e manutenção de hábitos",
+                "Estratégias para superação de limitações"
+              ]
+            },
+            {
+              "title": "O que é Coaching",
+              "subtopics": [
+                "História e evolução do Coaching",
+                "Tipos de Coaching e seus benefícios",
+                "Diferenciação entre Coaching, Mentoria e Terapia"
+              ]
+            },
+            {
+              "title": "Fundamentos de PNL (Programação Neurolinguística)",
+              "subtopics": [
+                "Fundamentos e história da PNL",
+                "Aplicações práticas da PNL no Coaching",
+                "Pressupostos fundamentais e suas aplicações",
+                "Técnicas avançadas de construção de Rapport",
+                "Sistemas representacionais",
+                "Comunicação eficaz"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Módulo 2: Mentor Coaching Financeiro (3 dias)",
+          "topics": [
+            {
+              "title": "Estratégias financeiras para alcançar a liberdade financeira",
+              "subtopics": [
+                "Criação de estratégias personalizadas para liberdade financeira",
+                "Estudos de caso e exemplos práticos",
+                "Planejamento financeiro e investimentos",
+                "Análise de risco e gestão de investimentos"
+              ]
+            },
+            {
+              "title": "Pilares da Riqueza e Clareza Financeira",
+              "subtopics": [
+                "Estrutura e construção dos pilares da riqueza",
+                "Ferramentas para avaliação de clareza financeira",
+                "Como se livrar das dívidas",
+                "Como gerar dinheiro",
+                "Métodos e fontes diversificadas de renda"
+              ]
+            },
+            {
+              "title": "Identidade Financeira e Plano de Ação",
+              "subtopics": [
+                "Construção e reprogramação da identidade financeira",
+                "Técnicas de separação de dinheiro e gestão de potes",
+                "Criação e implementação de planos de ação detalhados",
+                "Técnicas para definição e clareza de objetivos financeiros"
+              ]
+            },
+            {
+              "title": "Múltiplas inteligências financeiras",
+              "subtopics": [
+                "Identificação e desenvolvimento das inteligências financeiras individuais",
+                "Aplicação prática para diversificação de estratégias",
+                "Estratégias empreendedoras e de investimento",
+                "Análise e comparação de diferentes tipos de investimentos"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mentores",
+      "title": "CONHEÇA SEUS MENTORES",
+      "description": "Por trás do LCF Mentoring, duas trajetórias que unem conhecimento, superação e propósito.",
+      "mentors": [
+        {
+          "name": "Roberto Navarro",
+          "image": "/images/roberto.webp",
+          "bio": "De lavador de vidros aos 13 anos a referência nacional em inteligência financeira.\n\nRoberto Navarro construiu uma trajetória de superação e transformação. Ele nasceu em um ambiente de escassez, onde o dinheiro era sempre um obstáculo — até que decidiu mudar sua realidade e a da sua família.\n\nCriador do conceito de Coach Financeiro no Brasil, Roberto já impactou mais de 130 mil pessoas com sua metodologia, que une estratégias financeiras práticas, inteligência emocional e princípios bíblicos. Para ele, a liberdade financeira é consequência de um alinhamento entre mente, propósito e ação.\n\nReconhecido como o criador do coaching financeiro no Brasil, Roberto é especialista em inteligência financeira, espiritual e emocional e possui vasta experiência no mundo dos negócios. Hoje, sua missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida próspera, com autonomia e visão de futuro."
+        },
+        {
+          "name": "Raíssa Navarro",
+          "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/group_18-1-1LHrdbJhcrEJFv1R5sItLA6gUXYbiw.webp",
+          "bio": "Especialista em comportamento humano e referência nacional em Programação Neurolinguística (PNL).\n\nMembro da The Society of NLP, Raíssa Navarro é uma das poucas profissionais brasileiras autorizadas a ensinar PNL diretamente pela linha do Dr. Richard Bandler, cocriador da técnica.\n\nFoi selecionada para compor a equipe de apoio do próprio Tony Robbins, o maior nome do coaching no mundo e acumula mais de 10 anos em estudos sobre PNL e comportamento humano.\n\nRaissa conduz seus alunos por um caminho de autoconhecimento, consciência e libertação emocional, sempre com bom humor e energia elevada. Seus ensinamentos são uma chave para quem quer vencer o medo, a procrastinação e o sentimento de incapacidade."
+        }
+      ],
+      "stats": [
+        {
+          "number": "130k+",
+          "label": "Alunos"
+        },
+        {
+          "number": "7 anos",
+          "label": "Experiência"
+        },
+        {
+          "number": "10M",
+          "label": "Meta de impacto"
+        },
+        {
+          "number": "4.9/5",
+          "label": "Avaliação"
+        }
+      ]
+    },
+    {
+      "id": "garantia",
+      "title": "Nosso Compromisso É com o Seu Crescimento",
+      "subtitle": "Garantia Incondicional de Satisfação",
+      "items": [
+        {
+          "title": "Garantia Legal de 7 Dias",
+          "description": "Seu investimento em si mesmo é protegido por uma garantia de satisfação total. Se, por algum motivo, dentro dos primeiros 7 dias de acesso à formação, você decidir que o Coach Financeiro não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.\n\nSem complicações, sem perguntas – é a nossa maneira de garantir sua total confiança e conforto ao dar esse passo importante."
+        },
+        {
+          "title": "Garantia de Resultado em 6 meses",
+          "description": "Se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira dentro de 6 meses, devolveremos o dobro do seu investimento no curso.\n\nIsso demonstra não apenas a confiança na eficácia de nosso método, mas também nosso compromisso com o seu progresso e resultados."
+        }
+      ]
+    },
+    {
+      "id": "inscricao",
+      "title": "INSCREVA-SE PARA TER A MUDANÇA DE VIDA",
+      "description": "Obtenha mais informações sobre a LCF Mentoring",
+      "source": "LCF Mentoring",
+      "ctaText": "CONQUISTE SUA VAGA!"
+    },
+    {
+      "id": "midia",
+      "title": "SOMOS NOTÍCIA EM DIVERSOS MEIOS DE COMUNICAÇÃO",
+      "logos": [
+        {
+          "src": "/images/logo-exame.webp",
+          "alt": "Exame"
+        },
+        {
+          "src": "/images/logo-1.png",
+          "alt": "ProNews"
+        },
+        {
+          "src": "/images/logo-o-fluminense.webp",
+          "alt": "O Fluminense"
+        },
+        {
+          "src": "/images/commercio.png",
+          "alt": "Jornal do Commercio"
+        }
+      ]
+    },
+    {
+      "id": "faq",
+      "title": "Entendemos que você pode ter algumas dúvidas antes de se inscrever no LCF Mentoring.",
+      "description": "Aqui estão algumas respostas para as perguntas mais comuns:",
+      "questions": [
+        {
+          "question": "O que é o LCF Mentoring?",
+          "answer": "O LCF Mentoring é uma imersão de 7 dias em Alphaville que combina Life Coaching Profissional e Mentor Coaching Financeiro para ajudar você a alcançar a liberdade financeira."
+        },
+        {
+          "question": "Quem pode participar do LCF Mentoring?",
+          "answer": "O programa é ideal para empreendedores, servidores públicos, profissionais liberais, trabalhadores CLT, profissionais de marketing digital e educadores que desejam alcançar a liberdade financeira e transformar suas vidas."
+        },
+        {
+          "question": "Quais são os módulos do programa?",
+          "answer": "O programa é dividido em dois módulos principais: Life Coaching Profissional (4 dias) e Mentor Coaching Financeiro (3 dias), abordando desde desenvolvimento pessoal até estratégias financeiras avançadas."
+        },
+        {
+          "question": "Qual é o investimento?",
+          "answer": "O investimento para o LCF Mentoring é de R$ 5.997 à vista ou em 12x de R$ 597. Considere isso não como um gasto, mas como um investimento no seu futuro financeiro."
+        },
+        {
+          "question": "E se eu não gostar do programa?",
+          "answer": "Oferecemos uma garantia de satisfação de 7 dias. Se você não estiver satisfeito, devolvemos 100% do seu investimento, sem perguntas."
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/HERO_MENTORIA.png",
+      "alt": "LCF Mentoring",
+      "context": "Hero background"
+    },
+    {
+      "src": "/images/HERO_EDUCADOR.png",
+      "alt": "Roberto Navarro",
+      "context": "About section desktop"
+    },
+    {
+      "src": "/images/HERO_MENTORIAINVESTIMENTOS_MOBILE.png",
+      "alt": "Mentoria de Investimentos Mobile",
+      "context": "About section mobile"
+    },
+    {
+      "src": "/images/roberto.webp",
+      "alt": "Roberto Navarro",
+      "context": "Mentor profile"
+    },
+    {
+      "src": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/group_18-1-1LHrdbJhcrEJFv1R5sItLA6gUXYbiw.webp",
+      "alt": "Raissa Navarro",
+      "context": "Mentor profile"
+    },
+    {
+      "src": "/images/logo-exame.webp",
+      "alt": "Exame",
+      "context": "Media logo"
+    },
+    {
+      "src": "/images/logo-1.png",
+      "alt": "ProNews",
+      "context": "Media logo"
+    },
+    {
+      "src": "/images/logo-o-fluminense.webp",
+      "alt": "O Fluminense",
+      "context": "Media logo"
+    },
+    {
+      "src": "/images/commercio.png",
+      "alt": "Jornal do Commercio",
+      "context": "Media logo"
+    }
+  ],
+  "videos": [],
+  "forms": [
+    {
+      "type": "newsletter",
+      "title": "INSCREVA-SE PARA TER A MUDANÇA DE VIDA",
+      "description": "Obtenha mais informações sobre a LCF Mentoring",
+      "source": "LCF Mentoring",
+      "submitButton": "CONQUISTE SUA VAGA!"
+    }
+  ],
+  "pricing": {
+    "price": "R$ 5.997",
+    "installments": "12x de R$ 597"
+  }
+}

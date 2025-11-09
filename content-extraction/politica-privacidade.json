@@ -1,0 +1,89 @@
+{
+  "page": "Política de Privacidade",
+  "route": "/politica-privacidade",
+  "metadata": {
+    "title": "Política de Privacidade - Roberto Navarro",
+    "description": "Política de Privacidade do site Roberto Navarro. Conheça nosso compromisso com a privacidade e proteção dos seus dados pessoais."
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "title": "1. Introdução",
+      "content": "A presente Política de Privacidade tem por finalidade demonstrar o compromisso de Roberto Navarro (\"nós\", \"nosso\") com a privacidade e proteção dos dados pessoais coletados, além de estabelecer as regras sobre a coleta, registro, armazenamento, uso, compartilhamento e eliminação dos dados pessoais coletados."
+    },
+    {
+      "id": "dados-coletados",
+      "title": "2. Dados Coletados",
+      "content": "Ao preencher nossos formulários, participar de nossos eventos ou adquirir nossos produtos e serviços, podemos coletar os seguintes dados pessoais:",
+      "items": [
+        "Nome completo",
+        "Endereço de e-mail",
+        "Número de telefone",
+        "Informações sobre navegação em nosso site (cookies)",
+        "Informações de origem (UTM parameters)",
+        "Dados de interação com nossos conteúdos"
+      ]
+    },
+    {
+      "id": "finalidade",
+      "title": "3. Finalidade do Tratamento dos Dados",
+      "content": "Seus dados pessoais são coletados e utilizados para as seguintes finalidades:",
+      "items": [
+        "Fornecer nossos produtos e serviços",
+        "Enviar comunicações sobre eventos, cursos e oportunidades",
+        "Melhorar nossos serviços e experiência do usuário",
+        "Cumprir obrigações legais e regulatórias",
+        "Realizar pesquisas e análises estatísticas",
+        "Personalizar o conteúdo e ofertas de acordo com seus interesses"
+      ]
+    },
+    {
+      "id": "compartilhamento",
+      "title": "4. Compartilhamento de Dados",
+      "content": "Seus dados pessoais podem ser compartilhados com:",
+      "items": [
+        "Prestadores de serviços que nos auxiliam (plataformas de CRM, email marketing)",
+        "Parceiros de negócios quando necessário para prestação dos serviços",
+        "Autoridades públicas, quando exigido por lei"
+      ],
+      "note": "Todos os terceiros com quem compartilhamos seus dados estão sujeitos a obrigações de confidencialidade e só podem processar seus dados para as finalidades específicas que determinamos."
+    },
+    {
+      "id": "armazenamento",
+      "title": "5. Armazenamento e Segurança",
+      "content": "Implementamos medidas técnicas e organizacionais adequadas para proteger seus dados pessoais contra perda acidental, uso, divulgação ou acesso não autorizado. Seus dados são armazenados em servidores seguros, com acesso restrito apenas a pessoas autorizadas."
+    },
+    {
+      "id": "direitos",
+      "title": "6. Seus Direitos",
+      "content": "De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem os seguintes direitos:",
+      "items": [
+        "Confirmar a existência de tratamento de seus dados",
+        "Acessar seus dados",
+        "Corrigir dados incompletos, inexatos ou desatualizados",
+        "Solicitar anonimização, bloqueio ou eliminação de dados desnecessários",
+        "Solicitar a portabilidade dos dados",
+        "Revogar seu consentimento a qualquer momento"
+      ]
+    },
+    {
+      "id": "cookies",
+      "title": "7. Cookies e Tecnologias Semelhantes",
+      "content": "Utilizamos cookies e tecnologias semelhantes para melhorar sua experiência, entender como nosso site é utilizado e personalizar nosso conteúdo. Você pode gerenciar suas preferências de cookies através das configurações do seu navegador."
+    },
+    {
+      "id": "alteracoes",
+      "title": "8. Alterações na Política de Privacidade",
+      "content": "Esta política pode ser atualizada periodicamente. Recomendamos que você consulte esta página regularmente para se manter informado sobre quaisquer alterações."
+    },
+    {
+      "id": "contato",
+      "title": "9. Contato",
+      "content": "Se você tiver dúvidas ou preocupações sobre esta Política de Privacidade ou sobre como tratamos seus dados pessoais, entre em contato conosco pelo e-mail: contato@robertonavarro.com.br"
+    }
+  ],
+  "lastUpdate": "17 de junho de 2025",
+  "images": [],
+  "videos": [],
+  "forms": []
+}
