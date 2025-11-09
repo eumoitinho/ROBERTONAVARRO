@@ -7,15 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "payload": "payload",
-    "payload:seed": "tsx payload/seed/index.ts"
+    "payload:dev": "tsx server.ts",
+    "payload:seed": "curl -X POST http://localhost:3000/api/seed || echo 'Certifique-se que o servidor está rodando com: bun run dev'"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
     "@hookform/resolvers": "latest",
     "@neondatabase/serverless": "latest",
     "@next/third-parties": "^14.2.7",
-    "@payloadcms/bundler-webpack": "^1.0.7",
     "@payloadcms/db-mongodb": "^1.7.5",
     "@payloadcms/richtext-slate": "^1.5.2",
     "@radix-ui/react-accordion": "latest",
@@ -56,7 +55,9 @@
     "clsx": "^2.1.1",
     "cmdk": "latest",
     "date-fns": "4.1.0",
+    "dotenv": "^17.2.3",
     "embla-carousel-react": "latest",
+    "express": "^5.1.0",
     "framer-motion": "latest",
     "input-otp": "latest",
     "jose": "latest",
@@ -88,6 +89,7 @@
   },
   "devDependencies": {
     "@next/swc-linux-x64-gnu": "^14.2.7",
+    "@types/express": "^5.0.5",
     "@types/node": "^22",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18.3.5",

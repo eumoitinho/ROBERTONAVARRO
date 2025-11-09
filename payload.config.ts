@@ -1,7 +1,6 @@
 import { buildConfig } from 'payload/config'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { slateEditor } from '@payloadcms/richtext-slate'
-import { webpackBundler } from '@payloadcms/bundler-webpack'
 import path from 'path'
 
 // Collections
@@ -19,12 +18,10 @@ export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000',
   admin: {
     user: 'users',
-    bundler: webpackBundler(),
     meta: {
       titleSuffix: '- Roberto Navarro CMS',
-      favicon: '/favicon.ico',
-      ogImage: '/og-image.jpg',
     },
+    disable: false,
   },
   editor: slateEditor({}),
   collections: [
@@ -41,16 +38,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
-  graphQL: {
-    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
-  },
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
   }),
-  cors: [
-    process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000',
-  ].filter(Boolean),
-  csrf: [
-    process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000',
-  ].filter(Boolean),
 })
