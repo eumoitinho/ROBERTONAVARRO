@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getPayload } from 'payload'
-import configPromise from '@/payload.config'
+import { getPayloadClient } from '@/lib/payload/client'
 
 export async function POST(req: NextRequest) {
   try {
-    const payload = await getPayload({ config: await configPromise })
+    const payload = await getPayloadClient()
 
     console.log('🌱 Iniciando seed do Payload CMS...')
 

@@ -7,8 +7,6 @@ import { Button } from '@/components/ui/button';
 import { SiteHeader } from '@/components/header';
 import Footer from '@/components/footer';
 import WhatsAppButton from '@/components/whatsapp-button';
-import { urlForImage } from '@/sanity/lib/image';
-import type { Page, SiteSettings } from '@/sanity/types';
 import { Star, ChevronDown } from 'lucide-react';
 import {
   Accordion,
@@ -16,6 +14,39 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+
+// Sanity removido - função stub para compatibilidade
+const urlForImage = (image: any): string => {
+  if (!image) return '';
+  if (typeof image === 'string') return image;
+  if (image.asset?.url) return image.asset.url;
+  if (image.url) return image.url;
+  return '';
+};
+
+// Types locais (sem Sanity)
+interface Page {
+  heroSection?: any;
+  contentSections?: any[];
+  mainContent?: any;
+  testimonials?: any[];
+  faq?: any[];
+  gallery?: any[];
+  settings?: {
+    showHeader?: boolean;
+    showFooter?: boolean;
+    showWhatsAppButton?: boolean;
+    customCSS?: string;
+  };
+}
+
+interface SiteSettings {
+  mainNavigation?: Array<{
+    title?: string;
+    href?: string;
+    isButton?: boolean;
+  }>;
+}
 
 interface UniversalPageProps {
   page: Page;
@@ -136,7 +167,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
                 hero.textColor || 'text-white'
               }`}
             >
-              {hero.title.split(' ').map((word, i) => {
+              {hero.title.split(' ').map((word: string, i: number) => {
                 // Destaque palavras em MAIÚSCULAS
                 if (word === word.toUpperCase() && word.length > 2) {
                   return (
@@ -205,7 +236,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
 
     return (
       <div className="space-y-16">
-        {page.contentSections.map((section) => {
+        {page.contentSections.map((section: any) => {
           switch (section._type) {
             case 'textSection':
               return (
@@ -310,7 +341,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
                         </h2>
                       )}
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {section.features?.map((feature) => (
+                        {section.features?.map((feature: any) => (
                           <div
                             key={feature._key}
                             className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 hover:border-yellow-500 transition-colors"
@@ -401,7 +432,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Depoimentos</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {page.testimonials.map((testimonial) => {
+            {page.testimonials.map((testimonial: any) => {
               const imageUrl = testimonial.image ? urlForImage(testimonial.image) : null;
 
               return (
@@ -427,7 +458,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
 
                   {testimonial.rating && (
                     <div className="flex gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(5)].map((_: any, i: number) => (
                         <Star
                           key={i}
                           size={16}
@@ -465,7 +496,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
           </h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
-              {page.faq.map((item) => (
+              {page.faq.map((item: any) => (
                 <AccordionItem
                   key={item._key}
                   value={item._key}
@@ -495,7 +526,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Galeria</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {page.gallery.map((image, index) => {
+            {page.gallery.map((image: any, index: number) => {
               const imageUrl = urlForImage(image);
               if (!imageUrl) return null;
 
@@ -535,7 +566,7 @@ export default function UniversalPage({ page, siteSettings }: UniversalPageProps
       {showHeader && siteSettings && (
         <SiteHeader
           navigationItems={
-            siteSettings.mainNavigation?.map((item) => ({
+            siteSettings.mainNavigation?.map((item: any) => ({
               title: item.title || '',
               href: item.href || '#',
               isButton: item.isButton,
