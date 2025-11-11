@@ -75,22 +75,25 @@ export async function POST(
           formName: form.name,
           formSlug: form.slug,
           submittedAt: submission.submittedAt,
-          source: 'Payload Forms',
+          ip: submission.ip,
+          userAgent: submission.userAgent,
+          source: `Payload Form: ${form.name}`,
+          sheetName: form.settings.googleSheets.sheetName || '',
         }
 
+        console.log('📊 Enviando para Google Sheets:', sheetUrl)
+
         // Enviar para Google Sheets de forma assíncrona
+        // Google Apps Script requer mode: 'no-cors' para funcionar
         const sheetPromise = fetch(sheetUrl, {
           method: 'POST',
+          mode: 'no-cors', // Necessário para Google Apps Script
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(sheetPayload),
-        }).then(async (sheetRes) => {
-          if (!sheetRes.ok) {
-            console.error(`⚠️ Google Sheets retornou status ${sheetRes.status}`)
-          } else {
-            console.log('✅ Dados enviados para Google Sheets com sucesso')
-          }
+        }).then(() => {
+          console.log('✅ Dados enviados para Google Sheets com sucesso')
         }).catch((sheetError) => {
           console.error('❌ Erro ao enviar para Google Sheets:', sheetError)
         })
