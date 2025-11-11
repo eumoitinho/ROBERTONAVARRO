@@ -185,9 +185,12 @@ const Forms: CollectionConfig = {
               label: 'Email Destinatário',
               admin: {
                 condition: (data, siblingData) => {
-                  // Verificar enabled no mesmo grupo (siblingData) ou no documento completo (data)
-                  const enabled = siblingData?.enabled ?? data?.settings?.emailNotifications?.enabled
-                  return enabled === true
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa
+                  return data?.settings?.emailNotifications?.enabled === true
                 },
               },
             },
@@ -197,10 +200,63 @@ const Forms: CollectionConfig = {
               label: 'Assunto do Email',
               admin: {
                 condition: (data, siblingData) => {
-                  // Verificar enabled no mesmo grupo (siblingData) ou no documento completo (data)
-                  const enabled = siblingData?.enabled ?? data?.settings?.emailNotifications?.enabled
-                  return enabled === true
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa
+                  return data?.settings?.emailNotifications?.enabled === true
                 },
+              },
+            },
+          ],
+        },
+        {
+          name: 'googleSheets',
+          type: 'group',
+          label: 'Google Sheets',
+          fields: [
+            {
+              name: 'enabled',
+              type: 'checkbox',
+              label: 'Enviar para Google Sheets',
+              defaultValue: false,
+              admin: {
+                description: 'Enviar dados do formulário para uma planilha do Google Sheets',
+              },
+            },
+            {
+              name: 'scriptUrl',
+              type: 'text',
+              label: 'URL do Google Apps Script',
+              required: false,
+              admin: {
+                condition: (data, siblingData) => {
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa
+                  return data?.settings?.googleSheets?.enabled === true
+                },
+                description: 'URL do Google Apps Script que adiciona dados à planilha. Ex: https://script.google.com/macros/s/SEU_SCRIPT_ID/exec',
+              },
+            },
+            {
+              name: 'sheetName',
+              type: 'text',
+              label: 'Nome da Planilha (Opcional)',
+              required: false,
+              admin: {
+                condition: (data, siblingData) => {
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa
+                  return data?.settings?.googleSheets?.enabled === true
+                },
+                description: 'Nome da aba da planilha (opcional, deixa em branco para usar a primeira aba)',
               },
             },
           ],
@@ -226,11 +282,14 @@ const Forms: CollectionConfig = {
               required: false,
               admin: {
                 condition: (data, siblingData) => {
-                  // Verificar enabled no mesmo grupo (siblingData) ou no documento completo (data)
-                  const enabled = siblingData?.enabled ?? data?.settings?.webhook?.enabled
-                  return enabled === true
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa (para casos de carregamento)
+                  return data?.settings?.webhook?.enabled === true
                 },
-                description: 'URL completa do webhook (ex: https://api.exemplo.com/webhook)',
+                description: 'URL completa do webhook (ex: https://api.exemplo.com/webhook ou URL do Google Apps Script)',
               },
             },
             {
@@ -245,9 +304,12 @@ const Forms: CollectionConfig = {
               ],
               admin: {
                 condition: (data, siblingData) => {
-                  // Verificar enabled no mesmo grupo (siblingData) ou no documento completo (data)
-                  const enabled = siblingData?.enabled ?? data?.settings?.webhook?.enabled
-                  return enabled === true
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa
+                  return data?.settings?.webhook?.enabled === true
                 },
               },
             },
@@ -257,9 +319,12 @@ const Forms: CollectionConfig = {
               label: 'Headers Customizados',
               admin: {
                 condition: (data, siblingData) => {
-                  // Verificar enabled no mesmo grupo (siblingData) ou no documento completo (data)
-                  const enabled = siblingData?.enabled ?? data?.settings?.webhook?.enabled
-                  return enabled === true
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa
+                  return data?.settings?.webhook?.enabled === true
                 },
                 description: 'Headers adicionais para enviar com o webhook (ex: Authorization)',
               },
@@ -285,9 +350,12 @@ const Forms: CollectionConfig = {
               defaultValue: 10,
               admin: {
                 condition: (data, siblingData) => {
-                  // Verificar enabled no mesmo grupo (siblingData) ou no documento completo (data)
-                  const enabled = siblingData?.enabled ?? data?.settings?.webhook?.enabled
-                  return enabled === true
+                  // Verificar no siblingData (mesmo grupo) primeiro
+                  if (siblingData && typeof siblingData.enabled === 'boolean') {
+                    return siblingData.enabled === true
+                  }
+                  // Fallback para data completa
+                  return data?.settings?.webhook?.enabled === true
                 },
                 description: 'Tempo máximo de espera pela resposta do webhook',
               },

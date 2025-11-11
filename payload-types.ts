@@ -370,13 +370,27 @@ export interface Form {
       to?: string | null;
       subject?: string | null;
     };
+    googleSheets?: {
+      /**
+       * Enviar dados do formulário para uma planilha do Google Sheets
+       */
+      enabled?: boolean | null;
+      /**
+       * URL do Google Apps Script que adiciona dados à planilha. Ex: https://script.google.com/macros/s/SEU_SCRIPT_ID/exec
+       */
+      scriptUrl?: string | null;
+      /**
+       * Nome da aba da planilha (opcional, deixa em branco para usar a primeira aba)
+       */
+      sheetName?: string | null;
+    };
     webhook?: {
       /**
        * Enviar dados do formulário para uma URL externa
        */
       enabled?: boolean | null;
       /**
-       * URL completa do webhook (ex: https://api.exemplo.com/webhook)
+       * URL completa do webhook (ex: https://api.exemplo.com/webhook ou URL do Google Apps Script)
        */
       url?: string | null;
       method?: ('POST' | 'PUT' | 'PATCH') | null;
@@ -1382,6 +1396,13 @@ export interface FormsSelect<T extends boolean = true> {
               enabled?: T;
               to?: T;
               subject?: T;
+            };
+        googleSheets?:
+          | T
+          | {
+              enabled?: T;
+              scriptUrl?: T;
+              sheetName?: T;
             };
         webhook?:
           | T

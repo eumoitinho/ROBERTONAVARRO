@@ -66,8 +66,44 @@ export async function POST(
       submission,
     })
 
-    // TODO: Criar uma collection separada para submissões se necessário
-    // Por enquanto, apenas logamos a submissão
+    // Enviar para Google Sheets se configurado
+    if (form.settings?.googleSheets?.enabled && form.settings.googleSheets.scriptUrl) {
+      try {
+        const sheetUrl = form.settings.googleSheets.scriptUrl
+        const sheetPayload = {
+          ...body,
+          formName: form.name,
+          formSlug: form.slug,
+          submittedAt: submission.submittedAt,
+          source: 'Payload Forms',
+        }
+
+        // Enviar para Google Sheets de forma assíncrona
+        const sheetPromise = fetch(sheetUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sheetPayload),
+        }).then(async (sheetRes) => {
+          if (!sheetRes.ok) {
+            console.error(`⚠️ Google Sheets retornou status ${sheetRes.status}`)
+          } else {
+            console.log('✅ Dados enviados para Google Sheets com sucesso')
+          }
+        }).catch((sheetError) => {
+          console.error('❌ Erro ao enviar para Google Sheets:', sheetError)
+        })
+
+        // Não aguardar, deixar executar em background
+        sheetPromise.catch(() => {
+          // Erro já foi logado
+        })
+      } catch (sheetError) {
+        console.error('❌ Erro ao processar Google Sheets:', sheetError)
+        // Não falhar a requisição se o Google Sheets falhar
+      }
+    }
 
     // Enviar notificação por email se configurado
     if (form.settings?.emailNotifications?.enabled) {
