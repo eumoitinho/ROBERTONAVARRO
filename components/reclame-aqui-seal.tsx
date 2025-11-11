@@ -1,4 +1,14 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
 export default function ReclameAquiSeal() {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   const sealHTML = `
     <div id="ra-verified-seal"></div>
     <script type="text/javascript" id="ra-embed-verified-seal" src="https://s3.amazonaws.com/raichu-beta/ra-verified/bundle.js" data-id="c1R2WXBhVGpfMGJUeDJZMjpjaWVuY2lhLWRhLXJpcXVlemEtY3Vyc29z" data-target="ra-verified-seal" data-model="1"></script>
@@ -15,8 +25,11 @@ export default function ReclameAquiSeal() {
           filter: 'brightness(0.9) contrast(1.1)', 
           transform: 'scale(0.9)' 
         }}
-        dangerouslySetInnerHTML={{ __html: sealHTML }}
-      />
+      >
+        {isMounted && (
+          <div dangerouslySetInnerHTML={{ __html: sealHTML }} />
+        )}
+      </div>
     </div>
   )
 }

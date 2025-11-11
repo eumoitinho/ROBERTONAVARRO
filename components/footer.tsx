@@ -57,7 +57,7 @@ const footerLinks = {
   ],
 }
 
-type Accent = "yellow" | "red"
+type Accent = "yellow" | "red" | "blue"
 
 const accentStyles: Record<Accent, {
   contactIcon: string
@@ -82,6 +82,14 @@ const accentStyles: Record<Accent, {
     socialHover: "hover:bg-red-500",
     socialShadow: "shadow-[0_0_20px_rgba(239,68,68,0.15)] hover:shadow-[0_0_25px_rgba(239,68,68,0.35)]",
     bottomLinkHover: "hover:text-red-400",
+  },
+  blue: {
+    contactIcon: "text-blue-400",
+    sectionHeading: "text-blue-400",
+    linkHover: "hover:text-blue-400",
+    socialHover: "hover:bg-blue-500",
+    socialShadow: "shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:shadow-[0_0_25px_rgba(59,130,246,0.35)]",
+    bottomLinkHover: "hover:text-blue-400",
   },
 }
 

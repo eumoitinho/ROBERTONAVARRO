@@ -18,7 +18,7 @@ declare global {
 }
 
 interface NewsletterFormacoesProps {
-  onSubmit: (data: LeadFormData) => void
+  onSubmit?: (data: LeadFormData) => void
   title: string
   description: string
   source: string
@@ -161,8 +161,10 @@ export function NewsletterFormacoes({
           ...utmParams,
           ...browserInfo,
         })
-        // callback da página
-        onSubmit(formData)
+        // callback da página (se fornecido)
+        if (onSubmit) {
+          onSubmit(formData)
+        }
         // redireciona
         router.push("/obrigado?source=" + encodeURIComponent(source))
       } else {

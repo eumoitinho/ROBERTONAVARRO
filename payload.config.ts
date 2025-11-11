@@ -1,20 +1,28 @@
-import { buildConfig } from 'payload/config'
+import { buildConfig } from 'payload'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import path from 'path'
+import { fileURLToPath } from 'url'
+import sharp from 'sharp'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Collections
-import Formacoes from './payload/collections/Formacoes'
-import Eventos from './payload/collections/Eventos'
-import Livros from './payload/collections/Livros'
-import Mentores from './payload/collections/Mentores'
-import Testimonials from './payload/collections/Testimonials'
-import FAQs from './payload/collections/FAQs'
-import Pages from './payload/collections/Pages'
-import Media from './payload/collections/Media'
-import Users from './payload/collections/Users'
+import Formacoes from './collections/Formacoes'
+import Eventos from './collections/Eventos'
+import Livros from './collections/Livros'
+import Blog from './collections/Blog'
+import Mentores from './collections/Mentores'
+import Testimonials from './collections/Testimonials'
+import FAQs from './collections/FAQs'
+import Pages from './collections/Pages'
+import Media from './collections/Media'
+import Users from './collections/Users'
+import Forms from './collections/Forms'
 
 export default buildConfig({
+  secret: process.env.PAYLOAD_SECRET || 'skWAAvzokKB69IMln1BX1fFOlKIVEVrjpLV1T8oO8PFGAiafhJLIsAmj6lez1rciKRVZ5OZvJXANnJA6O',
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000',
   admin: {
     user: 'users',
@@ -22,6 +30,68 @@ export default buildConfig({
       titleSuffix: '- Roberto Navarro CMS',
     },
     disable: false,
+    livePreview: {
+      url: ({ data, collectionConfig }) => {
+        const baseUrl = process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000'
+        
+        // Configurar preview para diferentes collections
+        if (collectionConfig.slug === 'pages') {
+          // Páginas especiais com rotas customizadas
+          const specialPages: Record<string, string> = {
+            'trabalhe-conosco': '/trabalhe-conosco',
+            'politica-privacidade': '/politica-privacidade',
+            'lives': '/lives',
+            'obrigado': '/obrigado',
+            'mes-da-independencia': '/lp/mes-da-independencia',
+          }
+          
+          const slug = data?.slug || ''
+          const specialRoute = specialPages[slug]
+          
+          if (specialRoute) {
+            return `${baseUrl}${specialRoute}?preview=true`
+          }
+          
+          // Páginas genéricas
+          return `${baseUrl}/${slug}?preview=true`
+        }
+        if (collectionConfig.slug === 'formacoes') {
+          return `${baseUrl}/formacoes/${data?.slug || ''}?preview=true`
+        }
+        if (collectionConfig.slug === 'eventos') {
+          return `${baseUrl}/eventos/${data?.slug || ''}?preview=true`
+        }
+        if (collectionConfig.slug === 'livros') {
+          return `${baseUrl}/livros/${data?.slug || ''}?preview=true`
+        }
+        if (collectionConfig.slug === 'blog') {
+          return `${baseUrl}/blog/${data?.slug || ''}?preview=true`
+        }
+        
+        return baseUrl
+      },
+      collections: ['pages', 'formacoes', 'eventos', 'livros', 'blog'],
+      breakpoints: [
+        {
+          label: 'Mobile',
+          name: 'mobile',
+          width: 375,
+          height: 667,
+        },
+        {
+          label: 'Tablet',
+          name: 'tablet',
+          width: 768,
+          height: 1024,
+        },
+        {
+          label: 'Desktop',
+          name: 'desktop',
+          width: 1440,
+          height: 900,
+        },
+      ],
+    },
   },
   editor: slateEditor({}),
   collections: [
@@ -29,16 +99,23 @@ export default buildConfig({
     Formacoes,
     Eventos,
     Livros,
+    Blog,
     Mentores,
     Testimonials,
     FAQs,
     Pages,
     Media,
+    Forms,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   db: mongooseAdapter({
-    url: process.env.MONGODB_URI || '',
+    url: process.env.MONGODB_URI || 'mongodb://root:oq2USL4FuKx1GRchE7n26Do1llPbDBUK97H5j2jXibkaftFSlLAMZ33VRb2ZWHt9@162.240.99.119:5565/?directConnection=true',
+    connectOptions: {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    },
   }),
+  sharp,
 })

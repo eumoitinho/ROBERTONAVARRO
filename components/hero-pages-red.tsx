@@ -115,9 +115,9 @@ export default function HeroPagesRed({
               {secondtitle}
             </p>
             {description && (
-              <p className="text-base md:text-xl text-zinc-300/90 mb-8 max-w-2xl leading-relaxed">
+              <div className="text-base md:text-xl text-zinc-300/90 mb-8 max-w-2xl leading-relaxed prose prose-invert max-w-none">
                 {description}
-              </p>
+              </div>
             )}
           </div>
           {/* Buttons */}

@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+import { withPayload } from '@payloadcms/next/withPayload'
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -16,7 +18,7 @@ const nextConfig = {
     }
     ],
   },
-  serverExternalPackages: ['sanity', '@sanity/vision'],
+  serverExternalPackages: ['sanity', '@sanity/vision', 'mongodb', '@payloadcms/db-mongodb'],
   // Exclude static assets from being treated as pages
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   async headers() {
@@ -50,4 +52,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default withPayload(nextConfig);
