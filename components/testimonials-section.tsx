@@ -1,7 +1,11 @@
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function TestimonialsSection() {
+interface TestimonialsSectionProps {
+  testimonials?: any[];
+}
+
+export function TestimonialsSection({ testimonials }: TestimonialsSectionProps = {}) {
   return (
     <section id="testemunhos" className="py-12 md:py-20 relative overflow-hidden">
       {/* Enhanced background */}

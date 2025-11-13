@@ -11,7 +11,7 @@ import ScrollToButton from '@/components/scroll-to-button'
 import TransformationVideos from '@/components/transformation-videos'
 import NotableParticipants from '@/components/notable-persons'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { CheckCircle, Award, Shield, Target, ArrowRight } from 'lucide-react'
+import { CheckCircle, Award, Shield, Target, ArrowRight, Users, Network, BookOpen, Video, FileText, PlayCircle } from 'lucide-react'
 import Image from 'next/image'
 import EmpreendedorInteligenteTemplate from '@/components/formacao-templates/empreendedor-inteligente-template'
 import LCFMentoringProTemplate from '@/components/formacao-templates/lcf-mentoring-pro-template'
@@ -19,6 +19,8 @@ import MentoriaIndividualTemplate from '@/components/formacao-templates/mentoria
 import MentoriaInvestimentosTemplate from '@/components/formacao-templates/mentoria-investimentos-template'
 import MetodoTFTemplate from '@/components/formacao-templates/metodo-tf-template'
 import RotaMindTemplate from '@/components/formacao-templates/rota-mind-template'
+import MentorCoachingFinanceiroTemplate from '@/components/formacao-templates/mentor-coaching-financeiro-template'
+import MentoriaTemplate from '@/components/formacao-templates/mentoria-template'
 
 interface PageProps {
   params: Promise<{
@@ -108,6 +110,24 @@ export default async function FormacaoPage({ params, searchParams }: PageProps) 
     )
   }
 
+  if (template === 'mentor-coaching-financeiro') {
+    return (
+      <>
+        <LivePreview />
+        <MentorCoachingFinanceiroTemplate formacao={formacao} />
+      </>
+    )
+  }
+
+  if (template === 'mentoria') {
+    return (
+      <>
+        <LivePreview />
+        <MentoriaTemplate formacao={formacao} />
+      </>
+    )
+  }
+
   // Renderizar rich text description
   const renderRichText = (content: any) => {
     if (!content) return null
@@ -125,6 +145,24 @@ export default async function FormacaoPage({ params, searchParams }: PageProps) 
       })
     }
     return String(content)
+  }
+
+  // Helper para renderizar ícones dinamicamente
+  const renderIcon = (iconName: string, className: string = 'h-6 w-6 text-red-400') => {
+    const iconMap: Record<string, any> = {
+      Target,
+      Award,
+      Users,
+      Network,
+      Shield,
+      CheckCircle,
+      FileText,
+      PlayCircle,
+      BookOpen,
+      Video,
+    }
+    const IconComponent = iconMap[iconName] || Target
+    return <IconComponent className={className} />
   }
 
   const navigationItems = [
@@ -358,6 +396,106 @@ export default async function FormacaoPage({ params, searchParams }: PageProps) 
           </div>
         </section>
 
+        {/* Exclusive Materials Section */}
+        {formacao.exclusiveMaterials?.enabled !== false && formacao.exclusiveMaterials && (
+          <section className="py-20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+                  <span className="text-sm font-medium">MATERIAIS EXCLUSIVOS</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  {formacao.exclusiveMaterials.title ? (
+                    <>
+                      {formacao.exclusiveMaterials.title.split('IMERSÃO')[0]}
+                      <span className="text-red-400">{formacao.exclusiveMaterials.title.includes('IMERSÃO') ? 'IMERSÃO' : ''}</span>
+                      {formacao.exclusiveMaterials.title.split('IMERSÃO')[1]}
+                    </>
+                  ) : (
+                    <>
+                      EXPERIMENTE A <span className="text-red-400">IMERSÃO DO EDUCADOR FINANCEIRO</span>
+                    </>
+                  )}
+                </h2>
+                {formacao.exclusiveMaterials.description && (
+                  <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
+                    {formacao.exclusiveMaterials.description}
+                  </p>
+                )}
+              </div>
+
+              {formacao.exclusiveMaterials.items && formacao.exclusiveMaterials.items.length > 0 && (
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                  {formacao.exclusiveMaterials.items.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2"
+                    >
+                      <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4">
+                        {renderIcon(item.icon || 'Target')}
+                      </div>
+                      <p className="text-zinc-300 text-sm">{item.title}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="text-center mt-12">
+                <ScrollToButton targetId="inscricao" className="px-8 py-4 text-base">
+                  {formacao.exclusiveMaterials.ctaText || 'ACESSAR PRÉVIA EXCLUSIVA'} <ArrowRight className="ml-2 h-4 w-4" />
+                </ScrollToButton>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Resources Section */}
+        {formacao.resources?.enabled !== false && formacao.resources && (
+          <section className="py-20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+                  <span className="text-sm font-medium">RECURSOS</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  {formacao.resources.title ? (
+                    <>
+                      {formacao.resources.title.split('TRANSFORMAR')[0]}
+                      <span className="text-red-400">TRANSFORMAR</span>
+                      {formacao.resources.title.split('TRANSFORMAR')[1]}
+                    </>
+                  ) : (
+                    <>
+                      TUDO O QUE VOCÊ PRECISA PARA <span className="text-red-400">TRANSFORMAR SUA CARREIRA</span>
+                    </>
+                  )}
+                </h2>
+              </div>
+
+              {formacao.resources.items && formacao.resources.items.length > 0 && (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                  {formacao.resources.items.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2"
+                    >
+                      <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center mb-4">
+                        {renderIcon(item.icon || 'Award')}
+                      </div>
+                      <h3 className="text-xl font-bold mb-2 text-red-400">{item.title}</h3>
+                      {item.description && (
+                        <p className="text-zinc-300 text-sm">{item.description}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
         {/* Benefits Section */}
         {formacao.benefits && formacao.benefits.length > 0 && (
           <section id="beneficios" className="py-20 relative overflow-hidden">
@@ -549,6 +687,145 @@ export default async function FormacaoPage({ params, searchParams }: PageProps) 
                     </AccordionItem>
                   ))}
                 </Accordion>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Exclusive Opportunity Section - Treinador Licenciado */}
+        {formacao.exclusiveOpportunity?.enabled !== false && formacao.exclusiveOpportunity && (
+          <section className="py-20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(239,68,68,0.15)_0%,_rgba(0,0,0,0)_60%)] opacity-80"></div>
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="max-w-5xl mx-auto">
+                <div className="bg-gradient-to-r from-red-900/20 to-red-800/20 border border-red-500/30 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+                  <div className="text-center mb-10">
+                    <div className="inline-block mb-6">
+                      <div className="bg-gradient-to-r from-red-500 to-red-600 p-[2px] rounded-full">
+                        <div className="bg-zinc-900 rounded-full px-6 py-3">
+                          <span className="text-red-400 font-bold text-sm tracking-wider">
+                            {formacao.exclusiveOpportunity.badge || 'OPORTUNIDADE EXCLUSIVA'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                      {formacao.exclusiveOpportunity.title ? (
+                        <>
+                          {formacao.exclusiveOpportunity.title.split('TREINADOR LICENCIADO')[0]}
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">TREINADOR LICENCIADO</span>
+                          {formacao.exclusiveOpportunity.title.split('TREINADOR LICENCIADO')[1]}
+                        </>
+                      ) : (
+                        <>
+                          SEJA UM <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">TREINADOR LICENCIADO</span> DO INSTITUTO COACHING FINANCEIRO
+                        </>
+                      )}
+                    </h2>
+                    {formacao.exclusiveOpportunity.description && (
+                      <p className="text-xl text-zinc-200 mb-4">
+                        {formacao.exclusiveOpportunity.description}
+                      </p>
+                    )}
+                    {formacao.exclusiveOpportunity.subDescription && (
+                      <p className="text-lg text-zinc-300 mb-8">
+                        {formacao.exclusiveOpportunity.subDescription}
+                      </p>
+                    )}
+                  </div>
+
+                  {formacao.exclusiveOpportunity.trainings && formacao.exclusiveOpportunity.trainings.length > 0 && (
+                    <div className="space-y-6 mb-10">
+                      <h3 className="text-2xl font-bold text-red-400 mb-6 text-center">Confira os treinamentos disponíveis:</h3>
+                      
+                      <div className="grid md:grid-cols-3 gap-6">
+                        {formacao.exclusiveOpportunity.trainings.map((training: any, index: number) => (
+                          <div
+                            key={index}
+                            className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-2"
+                          >
+                            <h4 className="text-xl font-bold mb-3 text-red-400">{training.title}</h4>
+                            {training.description && (
+                              <p className="text-zinc-300 text-sm">{training.description}</p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Mentor Section */}
+        {formacao.mentorSection?.enabled !== false && formacao.mentorSection && (
+          <section className="py-20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
+                  <span className="text-sm font-medium">{formacao.mentorSection.badge || 'SEU MENTOR'}</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  {formacao.mentorSection.title ? (
+                    <>
+                      {formacao.mentorSection.title.split('MENTOR DOS MENTORES')[0]}
+                      <span className="text-red-400">MENTOR DOS MENTORES</span>
+                      {formacao.mentorSection.title.split('MENTOR DOS MENTORES')[1]}
+                    </>
+                  ) : (
+                    <>
+                      APRENDA COM O <span className="text-red-400">MENTOR DOS MENTORES</span>
+                    </>
+                  )}
+                </h2>
+                {formacao.mentorSection.subtitle && (
+                  <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
+                    {formacao.mentorSection.subtitle}
+                  </p>
+                )}
+              </div>
+
+              <div className="max-w-5xl mx-auto">
+                <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 md:p-12">
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-3xl blur-3xl -z-10"></div>
+                      <div className="bg-zinc-800 rounded-3xl p-6 relative overflow-hidden">
+                        <Image
+                          src={
+                            typeof formacao.mentorSection.image === 'object' && formacao.mentorSection.image?.url
+                              ? formacao.mentorSection.image.url
+                              : '/images/ROBERTO_17.jpg'
+                          }
+                          alt={formacao.mentorSection.mentorName || 'Roberto Navarro'}
+                          width={400}
+                          height={500}
+                          className="w-full h-auto object-cover rounded-2xl"
+                          style={{ objectPosition: 'top' }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <h3 className="text-3xl font-bold text-red-400">
+                        {formacao.mentorSection.mentorName || 'Roberto Navarro'}
+                      </h3>
+                      {formacao.mentorSection.bio && (
+                        <div className="space-y-4 text-zinc-300 leading-relaxed">
+                          {renderRichText(formacao.mentorSection.bio)}
+                        </div>
+                      )}
+                      <div className="pt-4">
+                        <ScrollToButton targetId="inscricao" className="px-8 py-4 text-base">
+                          {formacao.mentorSection.ctaText || 'QUERO SER UM EDUCADOR FINANCEIRO!'} <ArrowRight className="ml-2 h-4 w-4" />
+                        </ScrollToButton>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>

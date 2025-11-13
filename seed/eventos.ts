@@ -72,6 +72,9 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
         badge: 'TRANSFORMAÇÃO MENTAL',
         title: 'CRENÇAS DA RIQUEZA',
         subtitle: 'A riqueza começa na mente e se materializa nas decisões. Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e realização pessoal.',
+        description: 'A riqueza começa na mente e se materializa nas decisões. Desbloqueie seu potencial, supere crenças limitantes e alcance um novo patamar de liberdade financeira e realização pessoal.',
+        ctaText: 'GARANTA SUA VAGA!',
+        ctaLink: '#form',
       },
       countdown: {
         enabled: true,
@@ -158,14 +161,21 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
         ],
       },
     ],
-      learnings: [
+      learnings: {
+        sectionTitle: 'O QUE VOCÊ VAI APRENDER',
+        sectionDescription: 'Durante esta imersão exclusiva, você vai aprender as estratégias e mentalidades que os milionários usam para construir riqueza.',
+        items: [
         { text: 'Como identificar e transformar crenças limitantes sobre dinheiro' },
-      { text: 'Domine suas emoções financeiras e desenvolva autocontrole para tomar decisões racionais mesmo sob pressão' },
-      { text: 'Desenvolva uma mentalidade de abundância e aprenda as regras fundamentais do dinheiro' },
-      { text: 'Alinhe seus valores pessoais com seus objetivos financeiros' },
-      { text: 'Pense como um empreendedor de sucesso com visão estratégica' },
-      ],
-      highlights: [
+          { text: 'Domine suas emoções financeiras e desenvolva autocontrole para tomar decisões racionais mesmo sob pressão' },
+          { text: 'Desenvolva uma mentalidade de abundância e aprenda as regras fundamentais do dinheiro' },
+          { text: 'Alinhe seus valores pessoais com seus objetivos financeiros' },
+          { text: 'Pense como um empreendedor de sucesso com visão estratégica' },
+        ],
+      },
+      highlights: {
+        sectionTitle: 'POR QUE PARTICIPAR DESTE EVENTO',
+        sectionDescription: 'Durante 7 horas de imersão transformadora, você vai despertar seu potencial milionário e aprender as estratégias que realmente funcionam.',
+        items: [
           {
             title: 'Imersão Completa',
             description: '10 horas de conteúdo transformador em um único dia',
@@ -187,6 +197,7 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
             icon: 'Award',
           },
         ],
+      },
         tickets: [
           {
             name: 'Ingresso Especial',
@@ -229,25 +240,28 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
 
   // 2. ENERGIA DO DINHEIRO
   await createOrUpdateEvento('energia-do-dinheiro', {
-    title: 'Energia do Dinheiro',
-    slug: 'energia-do-dinheiro',
-    status: 'published',
+      title: 'Energia do Dinheiro',
+      slug: 'energia-do-dinheiro',
+      status: 'published',
     template: 'energia-do-dinheiro',
-    accentColor: '#00C853',
-    date: '2025-10-07T13:00:00.000Z',
-    endDate: '2025-10-07T20:00:00.000Z',
-    duration: '7 horas',
-    location: {
-      type: 'presencial',
-      venue: 'Centro de Convenções',
-      city: 'São Paulo',
-      state: 'SP',
-    },
-    hero: {
-      badge: 'WORKSHOP INTENSIVO',
-      title: 'ENERGIA DO DINHEIRO',
-      subtitle: 'Desbloqueie a energia do dinheiro e transforme sua realidade. Alinhe sua energia com a prosperidade.',
-    },
+      accentColor: '#00C853',
+      date: '2025-10-07T13:00:00.000Z',
+      endDate: '2025-10-07T20:00:00.000Z',
+      duration: '7 horas',
+      location: {
+        type: 'presencial',
+        venue: 'Centro de Convenções',
+        city: 'São Paulo',
+        state: 'SP',
+      },
+      hero: {
+        badge: 'WORKSHOP INTENSIVO',
+        title: 'ENERGIA DO DINHEIRO',
+        subtitle: 'Desbloqueie a energia do dinheiro e transforme sua realidade. Alinhe sua energia com a prosperidade.',
+        description: 'Desbloqueie a energia do dinheiro e transforme sua realidade. Alinhe sua energia com a prosperidade.',
+        ctaText: 'GARANTIR MINHA VAGA',
+        ctaLink: '#form',
+      },
     challenges: [
       {
         question: 'Você trabalha muito mas nunca sobra dinheiro?',
@@ -266,37 +280,45 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
         answer: 'Descubra como a energia da prosperidade pode fluir naturalmente em sua vida.',
       },
     ],
-    learnings: [
-      { text: 'Qual o efeito do dinheiro em sua vida' },
-      { text: 'Como o estado emocional impacta sua conta bancária' },
-      { text: 'Quem influencia sua visão sobre dinheiro' },
-      { text: 'O papel da ambiência na construção da riqueza' },
-      { text: 'Como identificar sabotadores financeiros' },
-      { text: 'Conexão entre energia sexual e prosperidade' },
-      { text: 'O protocolo da riqueza nos negócios' },
-      { text: 'A verdade sobre o "dinheirinho" limitante' },
-      { text: 'Como criar motivação para atrair dinheiro' },
-    ],
-    highlights: [
-      {
-        title: 'Workshop Intensivo',
-        description: '7 horas de transformação energética',
-        icon: 'Zap',
+      learnings: {
+        sectionTitle: 'O QUE VOCÊ VAI APRENDER',
+        sectionDescription: 'Durante este workshop intensivo, você vai descobrir como alinhar sua energia com a prosperidade.',
+        items: [
+          { text: 'Qual o efeito do dinheiro em sua vida' },
+          { text: 'Como o estado emocional impacta sua conta bancária' },
+          { text: 'Quem influencia sua visão sobre dinheiro' },
+          { text: 'O papel da ambiência na construção da riqueza' },
+          { text: 'Como identificar sabotadores financeiros' },
+          { text: 'Conexão entre energia sexual e prosperidade' },
+          { text: 'O protocolo da riqueza nos negócios' },
+          { text: 'A verdade sobre o "dinheirinho" limitante' },
+          { text: 'Como criar motivação para atrair dinheiro' },
+        ],
       },
-      {
-        title: 'Práticas Exclusivas',
-        description: 'Rituais e técnicas para alinhamento energético',
-        icon: 'Sparkles',
+      highlights: {
+        sectionTitle: 'POR QUE PARTICIPAR DESTE WORKSHOP',
+        sectionDescription: 'Um workshop intensivo de 7 horas para transformar sua relação com o dinheiro através da energia.',
+        items: [
+          {
+            title: 'Workshop Intensivo',
+            description: '7 horas de transformação energética',
+            icon: 'Zap',
+          },
+          {
+            title: 'Práticas Exclusivas',
+            description: 'Rituais e técnicas para alinhamento energético',
+            icon: 'Sparkles',
+          },
+          {
+            title: 'Material de Apoio',
+            description: 'Recursos para manter a energia da prosperidade',
+            icon: 'FileText',
+          },
+        ],
       },
-      {
-        title: 'Material de Apoio',
-        description: 'Recursos para manter a energia da prosperidade',
-        icon: 'FileText',
-      },
-    ],
     mentors: mentorIds.length > 0 ? mentorIds : undefined,
-    seo: {
-      title: 'Energia do Dinheiro - Workshop Intensivo | Roberto Navarro',
+      seo: {
+        title: 'Energia do Dinheiro - Workshop Intensivo | Roberto Navarro',
       description: 'Desbloqueie sua energia financeira e atraia prosperidade em um workshop de 7 horas. Mais do que uma mentoria, um despertar de consciência.',
       keywords: 'energia do dinheiro, prosperidade, abundância financeira, alinhamento energético',
     },
@@ -323,50 +345,61 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
       badge: 'IMERSÃO EXCLUSIVA',
       title: 'SEGREDOS DA MENTE MILIONÁRIA',
       subtitle: 'Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro.',
+      description: 'Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro.',
+      ctaText: 'QUERO DESPERTAR MINHA MENTE MILIONÁRIA',
+      ctaLink: '#newsletter',
     },
-    learnings: [
-      { text: 'Múltiplas fontes de renda e como criá-las' },
-      { text: 'Ação e prosperidade: transforme conhecimento em riqueza' },
-      { text: 'Transformação mental para mentalidade milionária' },
-      { text: 'Segurança financeira com reserva de emergência' },
-      { text: 'Propósito de vida claro e definido' },
-      { text: 'Liberdade financeira sem dependência de salário' },
-      { text: 'Mentalidade milionária desenvolvida' },
-      { text: 'Educação financeira completa' },
-      { text: 'Networking e inspiração com pessoas transformadas' },
-    ],
-    highlights: [
-      {
-        title: 'Segurança Financeira',
-        description: 'Aprenda a criar reserva de emergência e proteger seu patrimônio',
-        icon: 'Shield',
-      },
-      {
-        title: 'Propósito de Vida',
-        description: 'Defina seu propósito e alinhe com prosperidade e realização pessoal',
-        icon: 'Target',
-      },
-      {
-        title: 'Liberdade Financeira',
-        description: 'Conquiste independência sem depender de salário ou trabalho',
-        icon: 'Zap',
-      },
-      {
-        title: 'Mentalidade Milionária',
-        description: 'Desenvolva o mindset dos milionários e pense como eles',
-        icon: 'Brain',
-      },
-      {
-        title: 'Educação Financeira',
-        description: 'Conhecimento completo sobre dinheiro, investimentos e riqueza',
-        icon: 'GraduationCap',
-      },
-      {
-        title: 'Networking',
-        description: 'Conecte-se com pessoas transformadas e construa relacionamentos valiosos',
-        icon: 'Users',
-      },
-    ],
+    learnings: {
+      sectionTitle: 'O QUE VOCÊ VAI APRENDER',
+      sectionDescription: 'Durante esta imersão exclusiva, você vai aprender as estratégias e mentalidades que os milionários usam para construir riqueza.',
+      items: [
+        { text: 'Múltiplas fontes de renda e como criá-las' },
+        { text: 'Ação e prosperidade: transforme conhecimento em riqueza' },
+        { text: 'Transformação mental para mentalidade milionária' },
+        { text: 'Segurança financeira com reserva de emergência' },
+        { text: 'Propósito de vida claro e definido' },
+        { text: 'Liberdade financeira sem dependência de salário' },
+        { text: 'Mentalidade milionária desenvolvida' },
+        { text: 'Educação financeira completa' },
+        { text: 'Networking e inspiração com pessoas transformadas' },
+      ],
+    },
+    highlights: {
+      sectionTitle: 'BENEFÍCIOS',
+      sectionDescription: 'Durante 7 horas de imersão transformadora, você vai despertar seu potencial milionário e aprender as estratégias que realmente funcionam.',
+      items: [
+        {
+          title: 'Segurança Financeira',
+          description: 'Aprenda a criar reserva de emergência e proteger seu patrimônio',
+          icon: 'Shield',
+        },
+        {
+          title: 'Propósito de Vida',
+          description: 'Defina seu propósito e alinhe com prosperidade e realização pessoal',
+          icon: 'Target',
+        },
+        {
+          title: 'Liberdade Financeira',
+          description: 'Conquiste independência sem depender de salário ou trabalho',
+          icon: 'Zap',
+        },
+        {
+          title: 'Mentalidade Milionária',
+          description: 'Desenvolva o mindset dos milionários e pense como eles',
+          icon: 'Brain',
+        },
+        {
+          title: 'Educação Financeira',
+          description: 'Conhecimento completo sobre dinheiro, investimentos e riqueza',
+          icon: 'GraduationCap',
+        },
+        {
+          title: 'Networking',
+          description: 'Conecte-se com pessoas transformadas e construa relacionamentos valiosos',
+          icon: 'Users',
+        },
+      ],
+    },
     tickets: [
       {
         name: 'Ingresso Especial',
@@ -428,6 +461,9 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
       badge: 'EVENTO PRESENCIAL EXCLUSIVO',
       title: 'ESCALADOR DE NEGÓCIOS',
       subtitle: 'Empreendedores de sucesso não crescem por acaso. Saia da estagnação e aplique, de forma imediata, estratégias reais para escalar vendas, lucros e liberdade.',
+      description: 'Empreendedores de sucesso não crescem por acaso. Saia da estagnação e aplique, de forma imediata, estratégias reais para escalar vendas, lucros e liberdade.',
+      ctaText: 'GARANTA SUA VAGA!',
+      ctaLink: '#newsletter',
     },
     challenges: [
       {
@@ -451,31 +487,39 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
         icon: 'settings',
       },
     ],
-    learnings: [
-      { text: 'Estratégias reais de escala sem trabalhar mais' },
-      { text: 'Autoridade e posicionamento de marca' },
-      { text: 'Multiplicação de lucros exponencial' },
-      { text: 'Técnicas avançadas de venda e fidelização' },
-      { text: 'Networking estratégico e parcerias' },
-      { text: 'Plano de ação imediato para implementar' },
-    ],
-    highlights: [
-      {
-        title: 'Evento 100% Gratuito',
-        description: 'Acesso completo sem custo',
-        icon: 'Gift',
-      },
-      {
-        title: 'Experiência VIP',
-        description: 'Opção premium disponível',
-        icon: 'Crown',
-      },
-      {
-        title: 'Metodologia Prática',
-        description: 'Estratégias aplicáveis imediatamente',
-        icon: 'CheckCircle',
-      },
-    ],
+    learnings: {
+      sectionTitle: 'O QUE VOCÊ VAI APRENDER',
+      sectionDescription: 'Durante este evento, você vai aprender estratégias práticas e imediatas para escalar seu negócio.',
+      items: [
+        { text: 'Estratégias reais de escala sem trabalhar mais' },
+        { text: 'Autoridade e posicionamento de marca' },
+        { text: 'Multiplicação de lucros exponencial' },
+        { text: 'Técnicas avançadas de venda e fidelização' },
+        { text: 'Networking estratégico e parcerias' },
+        { text: 'Plano de ação imediato para implementar' },
+      ],
+    },
+    highlights: {
+      sectionTitle: 'POR QUE PARTICIPAR',
+      sectionDescription: 'Um evento presencial exclusivo com estratégias reais para escalar seu negócio.',
+      items: [
+        {
+          title: 'Evento 100% Gratuito',
+          description: 'Acesso completo sem custo',
+          icon: 'Gift',
+        },
+        {
+          title: 'Experiência VIP',
+          description: 'Opção premium disponível',
+          icon: 'Crown',
+        },
+        {
+          title: 'Metodologia Prática',
+          description: 'Estratégias aplicáveis imediatamente',
+          icon: 'CheckCircle',
+        },
+      ],
+    },
     mentors: mentorIds.length > 0 ? [mentors.robertoNavarro.id] : undefined,
     seo: {
       title: 'Escalador de Negócios - Evento Presencial | Roberto Navarro',
@@ -505,6 +549,9 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
       badge: 'O EVENTO QUE VAI TRANSFORMAR CONHECIMENTO EM FORTUNA',
       title: 'MENTOR MILIONÁRIO',
       subtitle: 'De Lavador de Vidros a Multimilionário em 7 Anos. Transforme conhecimento em fortuna e conquiste seu primeiro milhão.',
+      description: 'De Lavador de Vidros a Multimilionário em 7 Anos. Transforme conhecimento em fortuna e conquiste seu primeiro milhão.',
+      ctaText: 'QUERO MINHA VAGA NO MENTOR MILIONÁRIO',
+      ctaLink: '#inscricao',
     },
     challenges: [
       {
@@ -565,38 +612,42 @@ export async function seedEventos(payload: any, eventoFAQs: any[] = [], mentors:
         description: 'Conclusão do evento e próximos passos. Recursos e ferramentas para continuar sua jornada.',
       },
     ],
-    highlights: [
-      {
-        title: 'Clareza sobre Monetização',
-        description: 'Aprenda como transformar conhecimento em dinheiro de forma prática e escalável',
-        icon: 'dollar-sign',
-      },
-      {
-        title: 'Estratégia para Primeiro Milhão',
-        description: 'Plano concreto e aplicável para alcançar seu primeiro milhão',
-        icon: 'target',
-      },
-      {
-        title: 'Mentalidade Reprogramada',
-        description: 'Desenvolva o mindset milionário e supere crenças limitantes',
-        icon: 'brain',
-      },
-      {
-        title: 'Plano Concreto com Ações',
-        description: 'Ações práticas e imediatas para implementar após o evento',
-        icon: 'check-circle',
-      },
-      {
-        title: 'Conhecimento das Regras',
-        description: 'As regras secretas do dinheiro que os milionários conhecem',
-        icon: 'book',
-      },
-      {
-        title: 'Múltiplas Fontes de Renda',
-        description: 'Estruture duas fontes de renda estruturadas e escaláveis',
-        icon: 'trending-up',
-      },
-    ],
+    highlights: {
+      sectionTitle: 'O QUE VOCÊ VAI CONQUISTAR',
+      sectionDescription: 'Durante 7 horas de imersão, você vai receber um plano concreto para transformar conhecimento em fortuna.',
+      items: [
+        {
+          title: 'Clareza sobre Monetização',
+          description: 'Aprenda como transformar conhecimento em dinheiro de forma prática e escalável',
+          icon: 'dollar-sign',
+        },
+        {
+          title: 'Estratégia para Primeiro Milhão',
+          description: 'Plano concreto e aplicável para alcançar seu primeiro milhão',
+          icon: 'target',
+        },
+        {
+          title: 'Mentalidade Reprogramada',
+          description: 'Desenvolva o mindset milionário e supere crenças limitantes',
+          icon: 'brain',
+        },
+        {
+          title: 'Plano Concreto com Ações',
+          description: 'Ações práticas e imediatas para implementar após o evento',
+          icon: 'check-circle',
+        },
+        {
+          title: 'Conhecimento das Regras',
+          description: 'As regras secretas do dinheiro que os milionários conhecem',
+          icon: 'book',
+        },
+        {
+          title: 'Múltiplas Fontes de Renda',
+          description: 'Estruture duas fontes de renda estruturadas e escaláveis',
+          icon: 'trending-up',
+        },
+      ],
+    },
     tickets: [
       {
         name: 'Ingresso Padrão',

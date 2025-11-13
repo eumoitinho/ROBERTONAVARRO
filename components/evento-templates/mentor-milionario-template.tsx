@@ -60,10 +60,10 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
         title={evento.hero?.title || evento.title}
         subtitle={evento.hero?.subtitle || 'De Lavador de Vidros a Multimilionário em 7 Anos'}
         secondtitle={evento.hero?.badge || 'O EVENTO QUE VAI TRANSFORMAR CONHECIMENTO EM FORTUNA'}
-        description={evento.hero?.subtitle || 'Transforme conhecimento em fortuna e conquiste seu primeiro milhão'}
+        description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || 'Transforme conhecimento em fortuna e conquiste seu primeiro milhão')}
         image={getHeroImage()}
-        ctaText="QUERO MINHA VAGA NO MENTOR MILIONÁRIO"
-        ctaHref="#inscricao"
+        ctaText={evento.hero?.ctaText || "QUERO MINHA VAGA NO MENTOR MILIONÁRIO"}
+        ctaHref={evento.hero?.ctaLink || "#inscricao"}
       />
 
       {/* Para Quem É Section */}
@@ -199,7 +199,7 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
       )}
 
       {/* O Que Você Vai Conquistar Section */}
-      {evento.highlights && evento.highlights.length > 0 && (
+      {((evento.highlights?.items && evento.highlights.items.length > 0) || (Array.isArray(evento.highlights) && evento.highlights.length > 0)) && (
         <section id="conquistar" className="py-20 relative overflow-hidden bg-zinc-950">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -210,7 +210,7 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {evento.highlights.map((highlight: any, index: number) => {
+              {(evento.highlights?.items || (Array.isArray(evento.highlights) ? evento.highlights : [])).map((highlight: any, index: number) => {
                 const IconComponent = highlight.icon ? iconMap[highlight.icon] : null
                 return (
                   <div

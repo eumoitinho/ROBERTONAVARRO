@@ -20,6 +20,7 @@ import Pages from './collections/Pages'
 import Media from './collections/Media'
 import Users from './collections/Users'
 import Forms from './collections/Forms'
+import Webhooks from './collections/Webhooks'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'skWAAvzokKB69IMln1BX1fFOlKIVEVrjpLV1T8oO8PFGAiafhJLIsAmj6lez1rciKRVZ5OZvJXANnJA6O',
@@ -106,11 +107,15 @@ export default buildConfig({
     Pages,
     Media,
     Forms,
+    Webhooks,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   db: mongooseAdapter({
+    // MongoDB Cloud URI - deve ser definida no arquivo .env.local como MONGODB_URI
+    // IMPORTANTE: Sempre usar a URI do MongoDB Cloud (nuvem), não MongoDB local
+    // A URI deve estar no arquivo .env.local na variável MONGODB_URI
     url: process.env.MONGODB_URI || 'mongodb://root:oq2USL4FuKx1GRchE7n26Do1llPbDBUK97H5j2jXibkaftFSlLAMZ33VRb2ZWHt9@162.240.99.119:5565/?directConnection=true',
     connectOptions: {
       serverSelectionTimeoutMS: 5000,

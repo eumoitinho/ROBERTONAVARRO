@@ -7,7 +7,7 @@ import HeroPages from '@/components/hero-pages'
 import NotableParticipants from '@/components/notable-persons'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { SectionBadge } from '@/components/section-badge'
-import NewsletterFormacoes from '@/components/newsletter-formacoes'
+import { NewsletterFormacoes } from '@/components/newsletter-formacoes'
 import { Briefcase, TrendingUp, Lightbulb, Settings } from 'lucide-react'
 import Image from 'next/image'
 
@@ -47,10 +47,10 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
         title={evento.hero?.title || evento.title}
         subtitle={evento.hero?.subtitle || 'Empreendedores de sucesso não crescem por acaso'}
         secondtitle={evento.hero?.badge || 'EVENTO PRESENCIAL EXCLUSIVO'}
-        description={evento.hero?.subtitle || 'Saia da estagnação e aplique estratégias reais para escalar vendas, lucros e liberdade'}
+        description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || 'Saia da estagnação e aplique estratégias reais para escalar vendas, lucros e liberdade')}
         image={getHeroImage()}
-        ctaText="GARANTA SUA VAGA!"
-        ctaHref="#newsletter"
+        ctaText={evento.hero?.ctaText || "GARANTA SUA VAGA!"}
+        ctaHref={evento.hero?.ctaLink || "#newsletter"}
       />
 
       {/* Challenges Section */}
@@ -86,7 +86,7 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
       )}
 
       {/* What You Will Learn Section */}
-      {evento.learnings && evento.learnings.length > 0 && (
+      {((evento.learnings?.items && evento.learnings.items.length > 0) || (Array.isArray(evento.learnings) && evento.learnings.length > 0)) && (
         <section id="aprender" className="py-20 relative overflow-hidden bg-zinc-950">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/50 via-zinc-950 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
@@ -102,7 +102,7 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {evento.learnings.map((learning: any, index: number) => (
+              {(evento.learnings?.items || (Array.isArray(evento.learnings) ? evento.learnings : [])).map((learning: any, index: number) => (
                 <div
                   key={index}
                   className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-red-400/50 transition-all duration-300"
@@ -111,7 +111,7 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
                     <div className="bg-red-500/20 rounded-lg p-3 flex-shrink-0">
                       <span className="text-2xl font-bold text-red-400">{index + 1}</span>
                     </div>
-                    <p className="text-zinc-300">{learning.text}</p>
+                    <p className="text-zinc-300">{learning.text || learning}</p>
                   </div>
                 </div>
               ))}
@@ -121,7 +121,7 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
       )}
 
       {/* Event Highlights Section */}
-      {evento.highlights && evento.highlights.length > 0 && (
+      {((evento.highlights?.items && evento.highlights.items.length > 0) || (Array.isArray(evento.highlights) && evento.highlights.length > 0)) && (
         <section className="py-20 relative overflow-hidden bg-zinc-900">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
@@ -132,7 +132,7 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {evento.highlights.map((highlight: any, index: number) => (
+              {(evento.highlights?.items || (Array.isArray(evento.highlights) ? evento.highlights : [])).map((highlight: any, index: number) => (
                 <div
                   key={index}
                   className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-red-500/50 transition-all duration-300"

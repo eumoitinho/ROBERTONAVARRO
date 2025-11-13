@@ -132,19 +132,19 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
 
         <SiteHeader showInicio={true} />
 
-        <article className="container mx-auto px-4 py-12 max-w-4xl">
+    <article className="container mx-auto px-4 py-12 max-w-4xl">
           <Link href="/blog" className="text-yellow-400 hover:text-yellow-500 mb-6 inline-flex items-center gap-2 transition-colors">
             <ArrowLeft size={16} />
             Voltar para o blog
-          </Link>
+      </Link>
 
           {getPostImage() && (
             <div className="relative h-96 w-full mb-8 rounded-xl overflow-hidden">
               <Image src={getPostImage()} alt={post.title} fill className="object-cover" />
-            </div>
-          )}
+        </div>
+      )}
 
-          <header className="mb-8">
+      <header className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <Tag size={16} className="text-yellow-400" />
               <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm font-medium">
@@ -155,13 +155,13 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
 
             <div className="flex flex-wrap items-center gap-6 text-sm text-zinc-400 mb-6">
-              {post.author && (
+          {post.author && (
                 <div className="flex items-center gap-2">
                   <User size={16} />
                   <span>{post.author}</span>
                 </div>
-              )}
-              {post.publishedAt && (
+          )}
+          {post.publishedAt && (
                 <div className="flex items-center gap-2">
                   <Calendar size={16} />
                   <span>{formatDate(post.publishedAt)}</span>
@@ -172,25 +172,25 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
                   <Clock size={16} />
                   <span>{post.readingTime} min de leitura</span>
                 </div>
-              )}
-            </div>
+          )}
+        </div>
 
             {post.excerpt && (
               <div className="text-xl text-zinc-300 mb-8 italic leading-relaxed">{post.excerpt}</div>
-            )}
-          </header>
+        )}
+      </header>
 
           <div className="prose prose-invert max-w-none text-zinc-300 leading-relaxed">
             {renderRichText(post.content)}
-          </div>
+        </div>
 
           <div className="mt-12 pt-8 border-t border-zinc-800">
             <Link href="/blog" className="text-yellow-400 hover:text-yellow-500 inline-flex items-center gap-2 transition-colors">
               <ArrowLeft size={16} />
               Voltar ao blog
-            </Link>
-          </div>
-        </article>
+        </Link>
+      </div>
+    </article>
 
         <Footer />
         <WhatsAppButton source={post.title} />

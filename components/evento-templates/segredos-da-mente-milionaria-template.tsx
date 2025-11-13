@@ -7,7 +7,7 @@ import HeroPages from '@/components/hero-pages'
 import NotableParticipants from '@/components/notable-persons'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { SectionBadge } from '@/components/section-badge'
-import NewsletterFormacoes from '@/components/newsletter-formacoes'
+import { NewsletterFormacoes } from '@/components/newsletter-formacoes'
 import Image from 'next/image'
 
 interface SegredosDaMenteMilionariaTemplateProps {
@@ -39,30 +39,41 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
         title={evento.hero?.title || evento.title}
         subtitle={evento.hero?.subtitle || 'Aprenda a despertar seu potencial milionário em 7 horas'}
         secondtitle={evento.hero?.badge || 'IMERSÃO EXCLUSIVA'}
-        description={evento.hero?.subtitle || 'Imersão exclusiva e transformadora'}
+        description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || 'Imersão exclusiva e transformadora')}
         image={getHeroImage()}
-        ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
-        ctaHref="#newsletter"
+        ctaText={evento.hero?.ctaText || "QUERO DESPERTAR MINHA MENTE MILIONÁRIA"}
+        ctaHref={evento.hero?.ctaLink || "#newsletter"}
       />
 
       {/* Benefícios Section */}
-      {evento.highlights && evento.highlights.length > 0 && (
+      {evento.highlights?.items && evento.highlights.items.length > 0 && (
         <section id="beneficios" className="py-20 relative overflow-hidden bg-zinc-900">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <SectionBadge text="BENEFÍCIOS" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                O QUE VOCÊ VAI <span className="text-yellow-400">CONQUISTAR</span>
+                {evento.highlights.sectionTitle ? (
+                  <>
+                    {evento.highlights.sectionTitle.split('CONQUISTAR')[0]}
+                    <span className="text-yellow-400">CONQUISTAR</span>
+                    {evento.highlights.sectionTitle.split('CONQUISTAR')[1]}
+                  </>
+                ) : (
+                  <>
+                    O QUE VOCÊ VAI <span className="text-yellow-400">CONQUISTAR</span>
+                  </>
+                )}
               </h2>
-              <p className="text-zinc-300 max-w-3xl mx-auto">
-                Durante 7 horas de imersão transformadora, você vai despertar seu potencial milionário e aprender as
-                estratégias que realmente funcionam.
-              </p>
+              {evento.highlights.sectionDescription && (
+                <p className="text-zinc-300 max-w-3xl mx-auto">
+                  {evento.highlights.sectionDescription}
+                </p>
+              )}
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {evento.highlights.map((highlight: any, index: number) => (
+              {evento.highlights.items.map((highlight: any, index: number) => (
                 <div
                   key={index}
                   className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400/50 transition-all duration-300"
@@ -77,23 +88,34 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
       )}
 
       {/* O Que Você Vai Aprender Section */}
-      {evento.learnings && evento.learnings.length > 0 && (
+      {evento.learnings?.items && evento.learnings.items.length > 0 && (
         <section id="aprender" className="py-20 relative overflow-hidden bg-zinc-950">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/50 via-zinc-950 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <SectionBadge text="O QUE VOCÊ VAI APRENDER" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                CONTEÚDO <span className="text-yellow-400">TRANSFORMADOR</span>
+                {evento.learnings.sectionTitle ? (
+                  <>
+                    {evento.learnings.sectionTitle.split('TRANSFORMADOR')[0]}
+                    <span className="text-yellow-400">TRANSFORMADOR</span>
+                    {evento.learnings.sectionTitle.split('TRANSFORMADOR')[1]}
+                  </>
+                ) : (
+                  <>
+                    CONTEÚDO <span className="text-yellow-400">TRANSFORMADOR</span>
+                  </>
+                )}
               </h2>
-              <p className="text-zinc-300 max-w-3xl mx-auto">
-                Durante esta imersão exclusiva, você vai aprender as estratégias e mentalidades que os milionários usam
-                para construir riqueza.
-              </p>
+              {evento.learnings.sectionDescription && (
+                <p className="text-zinc-300 max-w-3xl mx-auto">
+                  {evento.learnings.sectionDescription}
+                </p>
+              )}
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {evento.learnings.map((learning: any, index: number) => (
+              {evento.learnings.items.map((learning: any, index: number) => (
                 <div
                   key={index}
                   className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400/50 transition-all duration-300"

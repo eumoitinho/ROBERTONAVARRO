@@ -8,7 +8,7 @@ import TransformationVideos from '@/components/transformation-videos'
 import NotableParticipants from '@/components/notable-persons'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { SectionBadge } from '@/components/section-badge'
-import NewsletterFormacoes from '@/components/newsletter-formacoes'
+import { NewsletterFormacoes } from '@/components/newsletter-formacoes'
 import Image from 'next/image'
 
 interface EnergiaDoDinheiroTemplateProps {
@@ -39,10 +39,10 @@ export default function EnergiaDoDinheiroTemplate({ evento }: EnergiaDoDinheiroT
         title={evento.hero?.title || evento.title}
         subtitle={evento.hero?.subtitle || 'Desbloqueie a energia do dinheiro e transforme sua realidade'}
         secondtitle={evento.hero?.badge || 'WORKSHOP INTENSIVO'}
-        description={evento.hero?.subtitle || 'Alinhe sua energia com a prosperidade'}
+        description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || 'Alinhe sua energia com a prosperidade')}
         image={getHeroImage()}
-        ctaText="GARANTA SUA VAGA!"
-        ctaHref="#newsletter"
+        ctaText={evento.hero?.ctaText || "GARANTA SUA VAGA!"}
+        ctaHref={evento.hero?.ctaLink || "#newsletter"}
       />
 
       {/* Benefícios Section */}

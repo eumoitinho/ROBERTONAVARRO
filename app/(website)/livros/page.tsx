@@ -119,28 +119,28 @@ export default async function LivrosPage() {
               {livros.map((livro: any) => (
                 <Link key={livro.id} href={`/livros/${livro.slug}`}>
                   <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                    <div className="relative aspect-[3/4] w-full overflow-hidden">
-                      {typeof livro.coverImage === 'object' && livro.coverImage?.url ? (
-                        <Image
-                          src={livro.coverImage.url}
-                          alt={livro.title}
-                          fill
-                          className="object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
-                          <span className="text-zinc-600 text-4xl">📚</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6">
+                      <div className="relative aspect-[3/4] w-full overflow-hidden">
+                        {typeof livro.coverImage === 'object' && livro.coverImage?.url ? (
+                          <Image
+                            src={livro.coverImage.url}
+                            alt={livro.title}
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+                            <span className="text-zinc-600 text-4xl">📚</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-6">
                       <h3 className="text-xl font-bold mb-2 text-yellow-400">{livro.title}</h3>
-                      {livro.subtitle && (
-                        <p className="text-zinc-400 text-sm mb-4 line-clamp-2">{livro.subtitle}</p>
-                      )}
+                        {livro.subtitle && (
+                          <p className="text-zinc-400 text-sm mb-4 line-clamp-2">{livro.subtitle}</p>
+                        )}
                     </div>
-                  </div>
-                </Link>
+                      </div>
+                    </Link>
               ))}
             </div>
           </div>

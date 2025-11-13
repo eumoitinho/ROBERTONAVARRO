@@ -78,6 +78,7 @@ export interface Config {
     pages: Page;
     media: Media;
     forms: Form;
+    webhooks: Webhook;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -96,6 +97,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
+    webhooks: WebhooksSelect<false> | WebhooksSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -187,6 +189,8 @@ export interface Formacoe {
         | 'mentoria-investimentos'
         | 'metodo-tf'
         | 'rota-mind'
+        | 'mentor-coaching-financeiro'
+        | 'mentoria'
         | 'custom'
       )
     | null;
@@ -230,6 +234,53 @@ export interface Formacoe {
         id?: string | null;
       }[]
     | null;
+  targetAudience?:
+    | {
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  results?:
+    | {
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  specialGuarantee?: {
+    enabled?: boolean | null;
+    title?: string | null;
+    description?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+  };
+  decisionPaths?:
+    | {
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Texto adicional após os 3 caminhos (ex: "Quanto vale ter a tranquilidade...")
+   */
+  decisionPathsNote?: string | null;
+  methodology?: {
+    title?: string | null;
+    description?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+    /**
+     * Texto em destaque (ex: "Este é um processo de transformação profunda...")
+     */
+    highlight?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+  };
   modules?:
     | {
         title?: string | null;
@@ -282,6 +333,65 @@ export interface Formacoe {
       | null;
     certificationImage?: (string | null) | Media;
   };
+  exclusiveMaterials?: {
+    enabled?: boolean | null;
+    title?: string | null;
+    description?: string | null;
+    items?:
+      | {
+          title?: string | null;
+          /**
+           * Nome do ícone Lucide (ex: Target, FileText)
+           */
+          icon?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    ctaText?: string | null;
+  };
+  resources?: {
+    enabled?: boolean | null;
+    title?: string | null;
+    items?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          /**
+           * Nome do ícone Lucide (ex: Award, Target, Users)
+           */
+          icon?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  exclusiveOpportunity?: {
+    enabled?: boolean | null;
+    badge?: string | null;
+    title?: string | null;
+    description?: string | null;
+    subDescription?: string | null;
+    trainings?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  mentorSection?: {
+    enabled?: boolean | null;
+    badge?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    mentorName?: string | null;
+    bio?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+    image?: (string | null) | Media;
+    ctaText?: string | null;
+  };
   professionalLicense?: {
     enabled?: boolean | null;
     badge?: string | null;
@@ -304,6 +414,51 @@ export interface Formacoe {
     shieldMessage?: string | null;
     shieldDescription?: string | null;
     ctaText?: string | null;
+  };
+  multipleMentors?: {
+    enabled?: boolean | null;
+    title?: string | null;
+    subtitle?: string | null;
+    mentors?:
+      | {
+          name?: string | null;
+          title?: string | null;
+          bio?:
+            | {
+                [k: string]: unknown;
+              }[]
+            | null;
+          image?: (string | null) | Media;
+          ctaText?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  mentoriaModules?: {
+    enabled?: boolean | null;
+    title?: string | null;
+    modules?:
+      | {
+          title?: string | null;
+          /**
+           * Ex: "4 dias", "3 dias"
+           */
+          duration?: string | null;
+          sections?:
+            | {
+                title?: string | null;
+                items?:
+                  | {
+                      text?: string | null;
+                      id?: string | null;
+                    }[]
+                  | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
   };
   seo?: {
     title?: string | null;
@@ -556,26 +711,41 @@ export interface Evento {
     badge?: string | null;
     title?: string | null;
     subtitle?: string | null;
+    description?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+    ctaText?: string | null;
+    ctaLink?: string | null;
     backgroundImage?: (string | null) | Media;
   };
   countdown?: {
     enabled?: boolean | null;
     targetDate?: string | null;
   };
-  highlights?:
-    | {
-        title?: string | null;
-        description?: string | null;
-        icon?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  learnings?:
-    | {
-        text?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  highlights?: {
+    sectionTitle?: string | null;
+    sectionDescription?: string | null;
+    items?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          icon?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  learnings?: {
+    sectionTitle?: string | null;
+    sectionDescription?: string | null;
+    items?:
+      | {
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   challenges?:
     | {
         question?: string | null;
@@ -777,6 +947,86 @@ export interface Page {
   createdAt: string;
 }
 /**
+ * Configure webhooks para receber notificações quando documentos são criados, atualizados ou deletados.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "webhooks".
+ */
+export interface Webhook {
+  id: string;
+  /**
+   * Nome descritivo para identificar este webhook
+   */
+  name: string;
+  /**
+   * Ativar ou desativar este webhook
+   */
+  enabled?: boolean | null;
+  /**
+   * URL completa que receberá as notificações (ex: https://api.exemplo.com/webhook)
+   */
+  url: string;
+  /**
+   * Collection que será monitorada
+   */
+  collection:
+    | 'formacoes'
+    | 'eventos'
+    | 'livros'
+    | 'blog'
+    | 'pages'
+    | 'mentores'
+    | 'testimonials'
+    | 'faqs'
+    | 'forms'
+    | 'media';
+  /**
+   * Selecione quais eventos devem disparar este webhook
+   */
+  events: ('create' | 'update' | 'delete' | 'afterChange' | 'afterCreate' | 'afterUpdate' | 'afterDelete')[];
+  method?: ('POST' | 'PUT' | 'PATCH') | null;
+  /**
+   * Headers adicionais para enviar com o webhook (ex: Authorization, X-API-Key)
+   */
+  headers?:
+    | {
+        key: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Secret para assinar o payload do webhook (será enviado no header X-Webhook-Signature)
+   */
+  secret?: string | null;
+  /**
+   * Tempo máximo de espera pela resposta do webhook
+   */
+  timeout?: number | null;
+  /**
+   * Se habilitado, tentará reenviar o webhook em caso de falha
+   */
+  retryOnFailure?: boolean | null;
+  /**
+   * Número máximo de tentativas em caso de falha
+   */
+  maxRetries?: number | null;
+  /**
+   * Data e hora da última execução do webhook
+   */
+  lastTriggered?: string | null;
+  /**
+   * Status da última execução
+   */
+  lastStatus?: ('success' | 'error' | 'timeout' | 'never') | null;
+  /**
+   * Resposta da última execução do webhook
+   */
+  lastResponse?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -843,6 +1093,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'forms';
         value: string | Form;
+      } | null)
+    | ({
+        relationTo: 'webhooks';
+        value: string | Webhook;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -952,6 +1206,39 @@ export interface FormacoesSelect<T extends boolean = true> {
         text?: T;
         id?: T;
       };
+  targetAudience?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  results?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  specialGuarantee?:
+    | T
+    | {
+        enabled?: T;
+        title?: T;
+        description?: T;
+      };
+  decisionPaths?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  decisionPathsNote?: T;
+  methodology?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        highlight?: T;
+      };
   modules?:
     | T
     | {
@@ -1004,6 +1291,63 @@ export interface FormacoesSelect<T extends boolean = true> {
         certificationText?: T;
         certificationImage?: T;
       };
+  exclusiveMaterials?:
+    | T
+    | {
+        enabled?: T;
+        title?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              icon?: T;
+              id?: T;
+            };
+        ctaText?: T;
+      };
+  resources?:
+    | T
+    | {
+        enabled?: T;
+        title?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              icon?: T;
+              id?: T;
+            };
+      };
+  exclusiveOpportunity?:
+    | T
+    | {
+        enabled?: T;
+        badge?: T;
+        title?: T;
+        description?: T;
+        subDescription?: T;
+        trainings?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  mentorSection?:
+    | T
+    | {
+        enabled?: T;
+        badge?: T;
+        title?: T;
+        subtitle?: T;
+        mentorName?: T;
+        bio?: T;
+        image?: T;
+        ctaText?: T;
+      };
   professionalLicense?:
     | T
     | {
@@ -1028,6 +1372,48 @@ export interface FormacoesSelect<T extends boolean = true> {
         shieldMessage?: T;
         shieldDescription?: T;
         ctaText?: T;
+      };
+  multipleMentors?:
+    | T
+    | {
+        enabled?: T;
+        title?: T;
+        subtitle?: T;
+        mentors?:
+          | T
+          | {
+              name?: T;
+              title?: T;
+              bio?: T;
+              image?: T;
+              ctaText?: T;
+              id?: T;
+            };
+      };
+  mentoriaModules?:
+    | T
+    | {
+        enabled?: T;
+        title?: T;
+        modules?:
+          | T
+          | {
+              title?: T;
+              duration?: T;
+              sections?:
+                | T
+                | {
+                    title?: T;
+                    items?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+            };
       };
   seo?:
     | T
@@ -1068,6 +1454,9 @@ export interface EventosSelect<T extends boolean = true> {
         badge?: T;
         title?: T;
         subtitle?: T;
+        description?: T;
+        ctaText?: T;
+        ctaLink?: T;
         backgroundImage?: T;
       };
   countdown?:
@@ -1079,16 +1468,28 @@ export interface EventosSelect<T extends boolean = true> {
   highlights?:
     | T
     | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        id?: T;
+        sectionTitle?: T;
+        sectionDescription?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              icon?: T;
+              id?: T;
+            };
       };
   learnings?:
     | T
     | {
-        text?: T;
-        id?: T;
+        sectionTitle?: T;
+        sectionDescription?: T;
+        items?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
       };
   challenges?:
     | T
@@ -1420,6 +1821,34 @@ export interface FormsSelect<T extends boolean = true> {
               timeout?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "webhooks_select".
+ */
+export interface WebhooksSelect<T extends boolean = true> {
+  name?: T;
+  enabled?: T;
+  url?: T;
+  collection?: T;
+  events?: T;
+  method?: T;
+  headers?:
+    | T
+    | {
+        key?: T;
+        value?: T;
+        id?: T;
+      };
+  secret?: T;
+  timeout?: T;
+  retryOnFailure?: T;
+  maxRetries?: T;
+  lastTriggered?: T;
+  lastStatus?: T;
+  lastResponse?: T;
   updatedAt?: T;
   createdAt?: T;
 }

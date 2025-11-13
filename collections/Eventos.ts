@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { webhookAfterChangeHook, webhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Eventos: CollectionConfig = {
   slug: 'eventos',
@@ -145,6 +146,21 @@ const Eventos: CollectionConfig = {
           label: 'Subtítulo',
         },
         {
+          name: 'description',
+          type: 'richText',
+          label: 'Descrição',
+        },
+        {
+          name: 'ctaText',
+          type: 'text',
+          label: 'Texto do CTA',
+        },
+        {
+          name: 'ctaLink',
+          type: 'text',
+          label: 'Link do CTA',
+        },
+        {
           name: 'backgroundImage',
           type: 'upload',
           label: 'Imagem de Fundo',
@@ -178,36 +194,70 @@ const Eventos: CollectionConfig = {
     // Highlights
     {
       name: 'highlights',
-      type: 'array',
+      type: 'group',
       label: 'Destaques',
       fields: [
         {
-          name: 'title',
+          name: 'sectionTitle',
           type: 'text',
-          label: 'Título',
+          label: 'Título da Seção',
         },
         {
-          name: 'description',
+          name: 'sectionDescription',
           type: 'textarea',
-          label: 'Descrição',
+          label: 'Descrição da Seção',
         },
         {
-          name: 'icon',
-          type: 'text',
-          label: 'Ícone',
+          name: 'items',
+          type: 'array',
+          label: 'Itens de Destaque',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Título',
+            },
+            {
+              name: 'description',
+              type: 'textarea',
+              label: 'Descrição',
+            },
+            {
+              name: 'icon',
+              type: 'text',
+              label: 'Ícone',
+            },
+          ],
         },
       ],
     },
     // O que você vai aprender
     {
       name: 'learnings',
-      type: 'array',
+      type: 'group',
       label: 'O que você vai aprender',
       fields: [
         {
-          name: 'text',
+          name: 'sectionTitle',
+          type: 'text',
+          label: 'Título da Seção',
+        },
+        {
+          name: 'sectionDescription',
           type: 'textarea',
-          label: 'Texto',
+          label: 'Descrição da Seção',
+        },
+        {
+          name: 'items',
+          type: 'array',
+          label: 'Itens',
+          fields: [
+            {
+              name: 'text',
+              type: 'textarea',
+              label: 'Texto',
+            },
+          ],
         },
       ],
     },
@@ -435,6 +485,10 @@ const Eventos: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [webhookAfterChangeHook],
+    afterDelete: [webhookAfterDeleteHook],
+  },
 }
 
 export default Eventos

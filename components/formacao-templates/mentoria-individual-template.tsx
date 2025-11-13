@@ -7,7 +7,7 @@ import { NewsletterFormacoes } from '@/components/newsletter-formacoes'
 import HeroPages from '@/components/hero-pages'
 import ReusableSection from '@/components/how-works'
 import NotableParticipants from '@/components/notable-persons'
-import TestimonialsSection from '@/components/testimonials-section'
+import { TestimonialsSection } from '@/components/testimonials-section'
 import { CheckCircle, Target, Zap, Users, Award, Sparkles } from 'lucide-react'
 
 interface MentoriaIndividualTemplateProps {

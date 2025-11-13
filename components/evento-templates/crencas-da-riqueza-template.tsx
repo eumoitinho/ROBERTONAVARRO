@@ -81,10 +81,10 @@ export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTem
               title={evento.hero?.title || evento.title}
               subtitle={evento.hero?.subtitle || evento.hero?.secondTitle || ''}
               secondtitle={evento.hero?.badge || 'TRANSFORMAÇÃO MENTAL'}
-              description={evento.hero?.description || evento.hero?.subtitle || ''}
+              description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || '')}
               image={getHeroImage()}
-              ctaText="GARANTA SUA VAGA!"
-              ctaHref="#form"
+              ctaText={evento.hero?.ctaText || "GARANTA SUA VAGA!"}
+              ctaHref={evento.hero?.ctaLink || "#form"}
             />
 
             {/* Countdown */}
@@ -177,7 +177,7 @@ export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTem
       )}
 
       {/* Event Highlights */}
-      {evento.highlights && evento.highlights.length > 0 && (
+      {((evento.highlights?.items && evento.highlights.items.length > 0) || (Array.isArray(evento.highlights) && evento.highlights.length > 0)) && (
         <section className="py-20 relative overflow-hidden bg-zinc-900">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
@@ -189,7 +189,7 @@ export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTem
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {evento.highlights.map((highlight: any, index: number) => (
+              {(evento.highlights?.items || (Array.isArray(evento.highlights) ? evento.highlights : [])).map((highlight: any, index: number) => (
                 <div
                   key={index}
                   className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300"
