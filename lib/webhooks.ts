@@ -1,13 +1,15 @@
 import crypto from 'crypto'
 import type { Payload } from 'payload'
 
+type WebhookEvent = 'create' | 'update' | 'delete' | 'afterChange' | 'afterCreate' | 'afterUpdate' | 'afterDelete'
+
 /**
  * Executa um webhook configurado
  */
 export async function executeWebhook(
   payload: Payload,
   webhookId: string,
-  event: string,
+  event: WebhookEvent,
   collection: string,
   data: any,
   operation: 'create' | 'update' | 'delete'
@@ -144,7 +146,7 @@ export async function executeWebhook(
 export async function getActiveWebhooks(
   payload: Payload,
   collection: string,
-  event: string
+  event: WebhookEvent
 ): Promise<any[]> {
   try {
     const result = await payload.find({
@@ -171,7 +173,7 @@ export async function getActiveWebhooks(
 export async function triggerWebhooks(
   payload: Payload,
   collection: string,
-  event: string,
+  event: WebhookEvent,
   operation: 'create' | 'update' | 'delete',
   data: any
 ): Promise<void> {

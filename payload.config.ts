@@ -35,6 +35,8 @@ export default buildConfig({
       url: ({ data, collectionConfig }) => {
         const baseUrl = process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3000'
         
+        if (!collectionConfig) return baseUrl
+        
         // Configurar preview para diferentes collections
         if (collectionConfig.slug === 'pages') {
           // Páginas especiais com rotas customizadas

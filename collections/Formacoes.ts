@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { webhookAfterChangeHook, webhookAfterDeleteHook } from '../lib/webhook-hooks'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Formacoes: CollectionConfig = {
   slug: 'formacoes',
@@ -907,8 +907,8 @@ const Formacoes: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [webhookAfterChangeHook],
-    afterDelete: [webhookAfterDeleteHook],
+    afterChange: [createWebhookAfterChangeHook('formacoes')],
+    afterDelete: [createWebhookAfterDeleteHook('formacoes')],
   },
 }
 

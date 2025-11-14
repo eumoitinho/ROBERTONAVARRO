@@ -71,7 +71,7 @@ export async function seedBlog(payload: any) {
       const result = await createOrUpdatePost(post)
       results.push(result)
     } catch (error: any) {
-      console.error(`❌ Erro ao processar post "${post._title || post.title}":`, error.message)
+      console.error(`❌ Erro ao processar post "${post._title || (post as any).title}":`, error.message)
     }
   }
 

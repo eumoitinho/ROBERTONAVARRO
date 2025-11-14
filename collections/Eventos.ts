@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { webhookAfterChangeHook, webhookAfterDeleteHook } from '../lib/webhook-hooks'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Eventos: CollectionConfig = {
   slug: 'eventos',
@@ -486,8 +486,8 @@ const Eventos: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [webhookAfterChangeHook],
-    afterDelete: [webhookAfterDeleteHook],
+    afterChange: [createWebhookAfterChangeHook('eventos')],
+    afterDelete: [createWebhookAfterDeleteHook('eventos')],
   },
 }
 

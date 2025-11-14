@@ -23,8 +23,8 @@ const start = async () => {
     config: await configPromise,
   })
 
-  // Middleware do Payload
-  app.use(payload.router)
+  // Payload 3.x não precisa de router separado quando usado com Next.js
+  // O Payload é integrado via @payloadcms/next/withPayload no next.config.js
 
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`)
