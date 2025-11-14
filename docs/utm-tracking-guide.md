@@ -22,10 +22,22 @@ Os UTMs são salvos no `localStorage` do navegador por **30 dias**, garantindo q
 
 ### 3. Envio Automático
 Todos os formulários do site (`NewsletterFormacoes`, etc.) capturam e enviam automaticamente os UTMs para:
-- **Kommo CRM**
-- **Google Sheets**
-- **LeadLovers**
-- **Google Tag Manager (GTM)**
+- **Kommo CRM** (webhook específico por formulário/evento)
+- **Google Sheets** (sempre ativo)
+- **LeadLovers** (sempre ativo)
+- **Google Tag Manager (GTM)** (via dataLayer)
+
+#### Webhooks por Formulário
+
+Cada formulário tem seu próprio webhook do Kommo configurado hardcoded no arquivo `lib/actions.ts`. O sistema identifica automaticamente qual webhook usar baseado no `source` do formulário:
+
+- **Energia do Dinheiro**: Webhook específico
+- **Mentor Milionário**: Webhook específico
+- **Crenças da Riqueza**: Webhook específico
+- **Segredos da Mente Milionária**: Webhook específico
+- **Outros**: Webhook padrão (Educador Financeiro)
+
+Para adicionar um novo webhook, edite o objeto `WEBHOOK_URLS` em `lib/actions.ts` e adicione a chave correspondente ao `source` do formulário.
 
 ## 🔧 Como Funciona
 

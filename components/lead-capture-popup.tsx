@@ -26,6 +26,7 @@ export default function LeadCapturePopup({
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -33,10 +34,50 @@ export default function LeadCapturePopup({
       ...prev,
       [name]: value
     }))
+    // Limpa mensagem de erro quando o usuário começa a digitar
+    if (errorMessage) {
+      setErrorMessage(null)
+    }
+  }
+
+  // Função de validação
+  const validateForm = (): string | null => {
+    const name = formData.name.trim()
+    const email = formData.email.trim()
+    const phone = formData.phone.trim().replace(/\D/g, "") // Remove caracteres não numéricos
+
+    if (!name || name.length < 3) {
+      return "Por favor, insira um nome completo válido (mínimo 3 caracteres)."
+    }
+
+    if (!email) {
+      return "Por favor, insira um email válido."
+    }
+
+    // Validação básica de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return "Por favor, insira um email válido."
+    }
+
+    if (!phone || phone.length < 10) {
+      return "Por favor, insira um telefone válido (mínimo 10 dígitos)."
+    }
+
+    return null
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validação antes de enviar
+    const validationError = validateForm()
+    if (validationError) {
+      setErrorMessage(validationError)
+      return
+    }
+
+    setErrorMessage(null)
     setIsSubmitting(true)
 
     try {
@@ -106,6 +147,11 @@ export default function LeadCapturePopup({
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {errorMessage && (
+                <div className="rounded-lg border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-300" role="alert">
+                  {errorMessage}
+                </div>
+              )}
               <div>
                 <Label htmlFor="popup-name" className="text-zinc-300">
                   Nome Completo

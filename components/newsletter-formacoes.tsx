@@ -121,8 +121,46 @@ export function NewsletterFormacoes({
     }))
   }, [])
 
+  // Função de validação
+  const validateForm = (): string | null => {
+    const name = formData.name.trim()
+    const email = formData.email.trim()
+    const phone = formData.phone.trim().replace(/\D/g, "") // Remove caracteres não numéricos
+
+    if (!name || name.length < 3) {
+      return "Por favor, insira um nome completo válido (mínimo 3 caracteres)."
+    }
+
+    if (!email) {
+      return "Por favor, insira um email válido."
+    }
+
+    // Validação básica de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return "Por favor, insira um email válido."
+    }
+
+    if (!phone || phone.length < 10) {
+      return "Por favor, insira um telefone válido (mínimo 10 dígitos)."
+    }
+
+    return null
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validação antes de enviar
+    const validationError = validateForm()
+    if (validationError) {
+      setSubmitStatus({
+        success: false,
+        message: validationError,
+      })
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus({})
 
