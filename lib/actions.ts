@@ -18,9 +18,58 @@ export interface LeadData {
 const GOOGLE_APPS_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbx4s6y8Y8RUhqwW1ICXMtG952oe8DbDQGp8ZvK85jRylwlAD6pCBuldkyCuJGWO5-KrzQ/exec"
 
-// Função principal para enviar leads para Google Sheets
+// Configurações do LeadLovers
+const LEADLOVERS_WEBHOOK_URL = "https://llapi.leadlovers.com/webapi/lead?token=87FEADEAD3CB4AF8BAD1FFFFC047B140"
+const LEADLOVERS_AUTH_KEY = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6IldlYkFwaSIsInN1YiI6IldlYkFwaSIsInJvbGUiOlsicmVhZCIsIndyaXRlIl0sImlzcyI6Imh0dHA6Ly93ZWJhcGlsbC5henVyZXdlYnNpdGVzLm5ldCIsImF1ZCI6IjFhOTE4YzA3NmE1YjQwN2Q5MmJkMjQ0YTUyYjZmYjc0IiwiZXhwIjoxNjA1NDQxMzM4LCJuYmYiOjE0NzU4NDEzMzh9.YIIpOycEAVr_xrJPLlEgZ4628pLt8hvWTCtjqPTaWMs"
+const LEADLOVERS_MACHINE_CODE = 673989
+const LEADLOVERS_SEQUENCE_CODE = 1554588
+const LEADLOVERS_LEVEL_CODE = 1
+const LEADLOVERS_TAG = 649481
+
+// Mapeamento de webhooks por evento/página
+const WEBHOOK_URLS: Record<string, string> = {
+  // Energia do Dinheiro
+  "energia-do-dinheiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/10bb731833c0cc2e49ec0c08a84f795bce797dade58f1dec712c864bb5fb17f9",
+  "Energia do Dinheiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/10bb731833c0cc2e49ec0c08a84f795bce797dade58f1dec712c864bb5fb17f9",
+  
+  // Mentor Milionário
+  "mentor-milionario": "https://data.widgets.wearekwid.com/api/webhook/34323419/b73e5487da23018fccd52f8b185dec90fe7295c8daf1277654f634a07a75a937",
+  "Mentor Milionário": "https://data.widgets.wearekwid.com/api/webhook/34323419/b73e5487da23018fccd52f8b185dec90fe7295c8daf1277654f634a07a75a937",
+  
+  // Crenças da Riqueza
+  "crencas": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  "Crenças": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  "crencas-da-riqueza": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  "Crenças da Riqueza": "https://data.widgets.wearekwid.com/api/webhook/34323419/83a88161bbd8cad66ff0fc4b0ef9302e1bd6673bf4dc2fb85785ca81f77e1ef8",
+  
+  // Segredos da Mente Milionária
+  "segredos-da-mente-milionaria": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
+  "Segredos da Mente Milionária": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
+  
+  // Educador Financeiro (webhook padrão)
+  "default": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde"
+}
+
+/**
+ * Determina o webhook correto baseado na origem do lead
+ */
+function getWebhookUrl(source: string): string {
+  // Normaliza o source para comparação
+  const normalizedSource = source.toLowerCase().trim()
+  
+  // Verifica se há um webhook específico para esse source
+  const webhookUrl = WEBHOOK_URLS[source] || WEBHOOK_URLS[normalizedSource] || WEBHOOK_URLS["default"]
+  
+  console.log(`[Webhook] Source: "${source}" -> URL: ${webhookUrl.substring(0, 60)}...`)
+  
+  return webhookUrl
+}
+
+// Função principal para enviar leads
 export async function submitLead(data: LeadData) {
   try {
+    const kommoWebhookUrl = getWebhookUrl(data.source)
+
     const payload = {
       name: data.name,
       email: data.email,
@@ -36,26 +85,91 @@ export async function submitLead(data: LeadData) {
       created_at: new Date().toISOString(),
     }
 
-    console.log("Enviando dados para Google Sheets:", payload)
-    const sheetRes = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+    // 1. Enviar para Kommo (webhook específico por formulário)
+    console.log("Enviando dados para Kommo:", payload)
+    const kommoRes = await fetch(kommoWebhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     })
-    
-    if (!sheetRes.ok) {
-      const sheetErr = await sheetRes.text()
-      console.error("Erro ao enviar para Google Sheets:", sheetRes.status, sheetErr)
-      return {
-        success: false,
-        message: "Erro ao enviar dados para Google Sheets",
+    if (!kommoRes.ok) {
+      const errText = await kommoRes.text()
+      console.error("Erro na resposta do Kommo:", kommoRes.status, errText)
+      throw new Error(`Kommo HTTP ${kommoRes.status}`)
+    }
+    const kommoResult = await kommoRes.json()
+    console.log("Resposta do Kommo:", kommoResult)
+
+    // 2. Enviar para Google Sheets
+    try {
+      console.log("Enviando dados para Google Sheets:", payload)
+      const sheetRes = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      if (!sheetRes.ok) {
+        const sheetErr = await sheetRes.text()
+        console.error("Erro ao enviar para Google Sheets:", sheetRes.status, sheetErr)
+      } else {
+        console.log("Dados gravados na planilha com sucesso")
       }
+    } catch (sheetError) {
+      console.error("Exception ao enviar para Google Sheets:", sheetError)
     }
 
-    console.log("Dados gravados na planilha com sucesso")
+    // 3. Enviar para LeadLovers
+    try {
+      console.log("Enviando dados para LeadLovers:", {
+        name: data.name,
+        email: data.email,
+        phone: data.phone
+      })
+      
+      const leadLoversPayload = {
+        Name: data.name,
+        Email: data.email,
+        Phone: data.phone,
+        MachineCode: LEADLOVERS_MACHINE_CODE,
+        EmailSequenceCode: LEADLOVERS_SEQUENCE_CODE,
+        SequenceLevelCode: LEADLOVERS_LEVEL_CODE,
+        Tag: LEADLOVERS_TAG,
+        Score: 0,
+        CustomFields: {
+          utm_source: data.utm_source || "",
+          utm_medium: data.utm_medium || "",
+          utm_campaign: data.utm_campaign || "",
+          utm_term: data.utm_term || "",
+          utm_content: data.utm_content || "",
+          page_url: data.page_url || "",
+          source: data.source || ""
+        }
+      }
+
+      const leadLoversRes = await fetch(LEADLOVERS_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": LEADLOVERS_AUTH_KEY,
+        },
+        body: JSON.stringify(leadLoversPayload),
+      })
+
+      if (!leadLoversRes.ok) {
+        const leadLoversErr = await leadLoversRes.text()
+        console.error("Erro ao enviar para LeadLovers:", leadLoversRes.status, leadLoversErr)
+      } else {
+        const leadLoversResult = await leadLoversRes.json()
+        console.log("Lead enviado para LeadLovers com sucesso:", leadLoversResult)
+      }
+    } catch (leadLoversError) {
+      console.error("Exception ao enviar para LeadLovers:", leadLoversError)
+    }
+
     return {
       success: true,
-      message: "Dados enviados com sucesso!",
+      message: "Lead enviado com sucesso!",
+      data: kommoResult,
     }
   } catch (error) {
     console.error("Erro ao enviar lead:", error)
