@@ -99,7 +99,7 @@ export default function SegredosDaMenteMilionaria() {
       <HeroPages
         title="SEGREDOS DA MENTE MILIONÁRIA"
         subtitle="Imersão exclusiva e transformadora"
-        secondtitle="Em 22 de outubro alcance a liberdade financeira com uma mudança de mentalidade"
+        secondtitle="Em 19 de novembro alcance a liberdade financeira com uma mudança de mentalidade"
         description="Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro | Alameda Araguaia, 751 - Alphaville"
         image="/images/HERO_SEGREDOS.png"
         ctaText="QUERO DESPERTAR MINHA MENTE MILIONÁRIA"
@@ -280,8 +280,8 @@ export default function SegredosDaMenteMilionaria() {
         description="Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o
               dinheiro. Vagas limitadas!"
         ctaText="GARANTIR MINHA VAGA AGORA!"
-        eventDate="22 de outubro de 2025"
-  eventTime="13h às 20h"
+        eventDate="19 de novembro de 2025"
+  eventTime="10h às 19h"
   eventLocation="R. Alameda Araguaia, 751 - Alphaville - SP"
   onSubmit={() => {
     /* não precisa mais chamar router.push aqui,
