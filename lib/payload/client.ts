@@ -162,6 +162,7 @@ export async function getPageBySlug(slug: string, preview?: boolean) {
     collection: 'pages',
     where,
     limit: 1,
+    depth: 2,
   })
   return result.docs[0] || null
 }

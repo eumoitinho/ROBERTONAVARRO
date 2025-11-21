@@ -38,7 +38,8 @@ type RatingProps = {
 
 type CtaButtonProps = {
   title: string
-  onClick: () => void
+  href: string
+  target?: string
 }
 
 type Props = {
@@ -87,10 +88,12 @@ export const ProductKitDisplayClient = (props: Props) => {
             <div className="mb-6 text-lg text-zinc-300">{description}</div>
             <p className="mb-8 text-4xl font-extrabold text-white">{price}</p>
             <Button
-              onClick={ctaButton.onClick}
+              asChild
               className="cta-hover w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold rounded-full px-12 py-8 text-xl"
             >
-              {ctaButton.title}
+              <a href={ctaButton.href} target={ctaButton.target ?? '_self'} rel={ctaButton.target === '_blank' ? 'noopener noreferrer' : undefined}>
+                {ctaButton.title}
+              </a>
             </Button>
             <div className="mt-10 w-full">
               <InformationTabs tabs={tabs} />

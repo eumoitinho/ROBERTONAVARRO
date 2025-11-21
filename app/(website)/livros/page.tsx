@@ -80,9 +80,8 @@ export default async function LivrosPage() {
           }
           ctaButton={{
             title: 'OFERTA EXCLUSIVA: ADQUIRA SEU KIT!',
-            onClick: () => {
-              window.open('https://sun.eduzz.com/956345', '_blank')
-            },
+            href: 'https://sun.eduzz.com/956345',
+            target: '_blank',
           }}
           tabs={[
             {

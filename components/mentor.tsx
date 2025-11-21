@@ -4,7 +4,54 @@ import Image from "next/image"
 import { Users, Star, BookOpen, Video } from "lucide-react"
 import { SectionBadge } from "./section-badge"
 
-export default function QuemSomosSection() {
+type Stat = {
+  value: string
+  label: string
+}
+
+interface QuemSomosSectionProps {
+  badgeText?: string
+  titlePrefix?: string
+  titleHighlight?: string
+  titleSuffix?: string
+  description?: string
+  backgroundImage?: { url?: string } | string
+  paragraphs?: string[]
+  stats?: Stat[]
+}
+
+const fallbackParagraphs = [
+  'Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.',
+  'A virada em sua vida veio quando Roberto percebeu que havia um “vilão invisível” bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.',
+  'Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10 milhões de brasileiros e contribuir para a construção de um país rico e próspero.',
+]
+
+const fallbackStats: Stat[] = [
+  { value: "+1,5 Milhões", label: "Alunos" },
+  { value: "1280", label: "Técnicas Exclusivas" },
+  { value: "5", label: "Livros Publicados" },
+  { value: "100+", label: "Vídeos Inspiradores" },
+]
+
+export default function QuemSomosSection({
+  badgeText,
+  titlePrefix = "MAIS DE",
+  titleHighlight = "30 ANOS",
+  titleSuffix = "IMPACTANDO VIDAS COM INTELIGÊNCIA E PROPÓSITO",
+  description = "Te guiamos na jornada de transformação financeira, emocional e espiritual.",
+  backgroundImage,
+  paragraphs,
+  stats,
+}: QuemSomosSectionProps) {
+  const sectionParagraphs = paragraphs?.length ? paragraphs : fallbackParagraphs
+  const sectionStats = stats?.length ? stats : fallbackStats
+  const icons = [Users, Star, BookOpen, Video]
+
+  const backgroundImageUrl =
+    typeof backgroundImage === "string"
+      ? backgroundImage
+      : backgroundImage?.url || "/images/ROBERTO_17.jpg"
+
   return (
     <section id="quem-somos" className="py-12 xs:py-12 sm:py-16 md:py-20 relative">
       {/* Background */}
@@ -12,7 +59,7 @@ export default function QuemSomosSection() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/ROBERTO_17.jpg"
+          src={backgroundImageUrl}
           alt="Roberto Navarro"
           fill
           className="object-cover w-full h-full opacity-70" // Reduced opacity for better text contrast
@@ -31,13 +78,20 @@ export default function QuemSomosSection() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Heading */}
         <div className="text-center mb-12">
-          <SectionBadge text="QUEM SOMOS" />
+          <SectionBadge text={badgeText || "QUEM SOMOS"} />
           <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-            MAIS DE  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">30 ANOS </span>
-            IMPACTANDO VIDAS COM INTELIGÊNCIA E PROPÓSITO 
+            {titlePrefix && (
+              <>
+                {titlePrefix}{" "}
+              </>
+            )}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+              {titleHighlight}
+            </span>{" "}
+            {titleSuffix}
           </h2>
           <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
-           Te guiamos na jornada de transformação financeira, emocional e espiritual. 
+            {description}
           </p>
         </div>
 
@@ -50,49 +104,36 @@ export default function QuemSomosSection() {
             {/* Bio Text */}
             <div className="space-y-4 text-zinc-300 text-base md:text-lg leading-relaxed">
               <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/90 to-transparent rounded-full blur-3xl -z-10"></div>
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-                <p>
-                  Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.
-                </p>
-              </div>
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-                <p>
-                  A virada em sua vida veio quando Roberto percebeu que havia um &ldquo;vilão invisível&rdquo; bloqueando sua prosperidade e a de sua família. Com determinação e uma abordagem única, ele transformou essa adversidade em oportunidade e se tornou um multimilionário em menos de 7 anos.
-                </p>
-              </div>
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-                <p>
-                  Hoje, Roberto Navarro é reconhecido como o criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e emocional. Sua missão é transformar a vida financeira de 10 milhões de brasileiros e contribuir para a construção de um país rico e próspero.
-                </p>
-              </div>
+              {sectionParagraphs.map((paragraph, index) => (
+                <div key={`paragraph-${index}`} className="flex items-start gap-4">
+                  <span className="flex-shrink-0 mt-1 w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+                  <p>{paragraph}</p>
+                </div>
+              ))}
             </div>
 
             {/* Statistics Badges */}
             <div className="w-full flex flex-col justify-end mt-8">
               <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
-                {[
-                  { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "+1,5 Milhões", label: "Alunos" },
-                  { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas Exclusivas" },
-                  { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros Publicados" },
-                  { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos Inspiradores" },
-                ].map((stat, index) => (
+                {sectionStats.map((stat, index) => {
+                  const Icon = icons[index % icons.length]
+                  return (
                   <div
                     key={index}
                     className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-500 hover:border-yellow-500/50 hover:-translate-y-1 opacity-0 translate-y-12 animate-[fadeInUp_0.5s_ease-out_forwards]"
                     style={{ animationDelay: `${500 + index * 100}ms` }}
                   >
                     <div className="flex items-center gap-2 md:gap-4">
-                      <div className="bg-zinc-800 rounded-full p-2 md:p-3">{stat.icon}</div>
+                      <div className="bg-zinc-800 rounded-full p-2 md:p-3">
+                        <Icon className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />
+                      </div>
                       <div>
                         <p className="text-sm md:text-xl font-bold text-white">{stat.value}</p>
                         <p className="text-xs md:text-sm text-zinc-400">{stat.label}</p>
                       </div>
                     </div>
                   </div>
-                ))}
+                )})}
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { getFormacoes } from '@/lib/payload/client'
+import { getFormacoes, getPageBySlug } from '@/lib/payload/client'
 import HomePageClient from './page-client'
 
 // Desabilitar cache para garantir que mudanças do Payload apareçam imediatamente
@@ -6,22 +6,27 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function HomePage() {
-  // Buscar formações do Payload
   let formacoes: any[] = []
+  let homePage: any = null
+
   try {
     formacoes = await getFormacoes()
   } catch (error: any) {
-    // Log mais detalhado do erro
     if (error?.name === 'MongoTopologyClosedError') {
       console.warn('⚠️ MongoDB não está conectado. Usando dados de fallback.')
     } else {
       console.error('❌ Erro ao buscar formações do Payload:', error?.message || error)
     }
-    // Continuar com array vazio, o componente usará fallback
     formacoes = []
   }
 
-  // Transformar formações do Payload no formato esperado pelo componente
+  try {
+    homePage = await getPageBySlug('home')
+  } catch (error: any) {
+    console.error('❌ Erro ao buscar página home no Payload:', error?.message || error)
+    homePage = null
+  }
+
   const formationsItems = formacoes.length > 0
     ? formacoes.map((formacao: any) => ({
         title: formacao.title,
@@ -72,6 +77,6 @@ export default async function HomePage() {
         }
       ]
 
-  return <HomePageClient formationsItems={formationsItems} />
+  return <HomePageClient formationsItems={formationsItems} pageData={homePage} />
 }
 

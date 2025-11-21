@@ -20,7 +20,13 @@ type TransformationVideo = {
   chipLabel?: string;
 };
 
-const transformationVideos: TransformationVideo[] = [
+type TransformationStat = {
+  icon: "star" | "zap" | "brain";
+  title: string;
+  description: string;
+};
+
+const fallbackVideos: TransformationVideo[] = [
   {
     id: "sVcR5iq1BG0",
     title: "Estudo de Caso Fabio Santos - ICF",
@@ -95,6 +101,24 @@ const transformationVideos: TransformationVideo[] = [
   },
 ];
 
+const fallbackStats: TransformationStat[] = [
+  {
+    icon: "star",
+    title: "Resultados Comprovados",
+    description: "Mais de 130 mil pessoas já passaram por nossas formações e transformaram sua relação com o dinheiro.",
+  },
+  {
+    icon: "zap",
+    title: "Metodologia Exclusiva",
+    description: "Uma abordagem única que integra inteligência financeira, emocional, espiritual e empresarial.",
+  },
+  {
+    icon: "brain",
+    title: "Transformação Mental",
+    description: "Reprogramação de crenças limitantes e desenvolvimento de uma mentalidade de prosperidade.",
+  },
+];
+
 type AccentStyles = {
   topLine: string;
   highlightGradient: string;
@@ -156,36 +180,52 @@ const accentStyles: Record<Accent, AccentStyles> = {
   },
 };
 
-const stats = [
-  {
-    icon: Star,
-    title: "Resultados Comprovados",
-    description: "Mais de 130 mil pessoas já passaram por nossas formações e transformaram sua relação com o dinheiro.",
-  },
-  {
-    icon: Zap,
-    title: "Metodologia Exclusiva",
-    description: "Uma abordagem única que integra inteligência financeira, emocional, espiritual e empresarial.",
-  },
-  {
-    icon: Brain,
-    title: "Transformação Mental",
-    description: "Reprogramação de crenças limitantes e desenvolvimento de uma mentalidade de prosperidade.",
-  },
-];
+const iconMap: Record<TransformationStat["icon"], typeof Star> = {
+  star: Star,
+  zap: Zap,
+  brain: Brain,
+};
 
 interface TransformationVideosProps {
   accent?: Accent;
   orientation?: Orientation;
+  title?: string;
+  highlightedText?: string;
+  description?: string;
+  videos?: TransformationVideo[];
+  stats?: TransformationStat[];
+  cta?: {
+    label?: string;
+    href?: string;
+    newTab?: boolean;
+  };
 }
 
-export default function TransformationVideos({ accent = "yellow", orientation = "landscape" }: TransformationVideosProps) {
+export default function TransformationVideos({
+  accent = "yellow",
+  orientation = "landscape",
+  title = "VEJA COMO NOSSOS",
+  highlightedText = "ALUNOS TRANSFORMARAM",
+  description = "Histórias reais de pessoas que aplicaram os princípios das Crenças da Riqueza e mudaram completamente sua relação com o dinheiro.",
+  videos,
+  stats,
+  cta = {
+    label: "Transformar Minha Vida Financeira!",
+    href: "#inscricao",
+  },
+}: TransformationVideosProps) {
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   const styles = accentStyles[accent];
   const isPortrait = orientation === "portrait";
   const aspectClass = isPortrait ? "aspect-[9/16]" : "aspect-video";
   const itemBasisClass = isPortrait ? "md:basis-1/3 xl:basis-1/4" : "md:basis-1/2 lg:basis-1/3";
+
+  const videoItems = videos?.length ? videos : fallbackVideos;
+  const statsItems = stats?.length ? stats : fallbackStats;
+  const ctaLabel = cta?.label || "Transformar Minha Vida Financeira!";
+  const ctaHref = cta?.href || "#inscricao";
+  const ctaNewTab = cta?.newTab ?? false;
 
   const handlePlayVideo = (videoId: string) => {
     setPlayingVideo(videoId);
@@ -200,13 +240,11 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
         <div className="mb-16 text-center">
           <SectionBadge text="TRANSFORMAÇÃO REAL" />
           <h2 className="text-2xl md:text-3xl font-bold leading-tight text-white">
-            VEJA COMO NOSSOS {" "}
-            <span className={cn("text-transparent bg-clip-text", styles.highlightGradient)}>ALUNOS TRANSFORMARAM</span>{" "}
+            {title}{" "}
+            <span className={cn("text-transparent bg-clip-text", styles.highlightGradient)}>{highlightedText}</span>{" "}
             SUAS VIDAS FINANCEIRAS
           </h2>
-          <p className="mt-6 text-base md:text-lg leading-relaxed text-zinc-300">
-            Histórias reais de pessoas que aplicaram os princípios das Crenças da Riqueza e mudaram completamente sua relação com o dinheiro.
-          </p>
+          <p className="mt-6 text-base md:text-lg leading-relaxed text-zinc-300">{description}</p>
         </div>
 
         <div className="relative">
@@ -218,7 +256,7 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
             className="w-full"
           >
             <CarouselContent>
-              {transformationVideos.map((video) => (
+              {videoItems.map((video) => (
                 <CarouselItem key={video.id} className={cn("pl-4", itemBasisClass)}>
                   <div className="flex h-full">
                     <div
@@ -287,26 +325,29 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
         </div>
 
         <div className="mt-16 grid gap-8 md:grid-cols-3">
-          {stats.map(({ icon: Icon, title, description }) => (
-            <div
-              key={title}
-              className={cn(
-                "rounded-2xl border border-zinc-700/30 bg-zinc-900/40 p-6 backdrop-blur-lg transition-all duration-300 hover:-translate-y-1",
-                styles.statsCardHover,
-                styles.statsShadow,
-              )}
-            >
-              <div className="flex items-start gap-4">
-                <div className={cn("flex-shrink-0 rounded-full p-2", styles.circleBg)}>
-                  <Icon className={cn("h-5 w-5", styles.iconColor)} />
-                </div>
-                <div>
-                  <h3 className={cn("mb-2 font-medium", styles.personText)}>{title}</h3>
-                  <p className="leading-relaxed text-zinc-300">{description}</p>
+          {statsItems.map(({ icon, title: statTitle, description: statDescription }, index) => {
+            const Icon = iconMap[icon];
+            return (
+              <div
+                key={`${statTitle}-${index}`}
+                className={cn(
+                  "rounded-2xl border border-zinc-700/30 bg-zinc-900/40 p-6 backdrop-blur-lg transition-all duration-300 hover:-translate-y-1",
+                  styles.statsCardHover,
+                  styles.statsShadow,
+                )}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={cn("flex-shrink-0 rounded-full p-2", styles.circleBg)}>
+                    <Icon className={cn("h-5 w-5", styles.iconColor)} />
+                  </div>
+                  <div>
+                    <h3 className={cn("mb-2 font-medium", styles.personText)}>{statTitle}</h3>
+                    <p className="leading-relaxed text-zinc-300">{statDescription}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-12 px-4 text-center sm:px-0">
@@ -319,8 +360,12 @@ export default function TransformationVideos({ accent = "yellow", orientation = 
               styles.buttonShadow,
             )}
           >
-            <a href="#inscricao" className="inline-flex items-center justify-center gap-2">
-              Transformar Minha Vida Financeira!
+            <a
+              href={ctaHref}
+              {...(ctaNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="inline-flex items-center justify-center gap-2"
+            >
+              {ctaLabel}
               <ArrowRight className="h-4 w-4" />
             </a>
           </Button>
