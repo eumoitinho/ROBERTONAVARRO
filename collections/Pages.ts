@@ -90,6 +90,51 @@ const homeHeroBlock: Block = {
   ],
 }
 
+const formacoesHeroBlock: Block = {
+  slug: 'formacoesHero',
+  labels: {
+    singular: 'Hero Formações',
+    plural: 'Hero Formações',
+  },
+  fields: [
+    {
+      name: 'badgeText',
+      type: 'text',
+      label: 'Texto do badge',
+      defaultValue: 'FORMAÇÕES',
+    },
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Título',
+      defaultValue: 'FORMAÇÕES QUE VÃO',
+    },
+    {
+      name: 'highlightedText',
+      type: 'text',
+      label: 'Texto destacado',
+      defaultValue: 'TRANSFORMAR SUA MENTALIDADE',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Descrição',
+      defaultValue:
+        'Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua liberdade financeira.',
+    },
+    {
+      name: 'accent',
+      type: 'select',
+      label: 'Tema de cores',
+      options: [
+        { label: 'Vermelho', value: 'red' },
+        { label: 'Amarelo', value: 'yellow' },
+      ],
+      defaultValue: 'red',
+    },
+  ],
+}
+
 const formationsGridBlock: Block = {
   slug: 'formationsGrid',
   labels: {
@@ -117,6 +162,16 @@ const formationsGridBlock: Block = {
       name: 'description',
       type: 'textarea',
       label: 'Descrição',
+    },
+    {
+      name: 'accent',
+      type: 'select',
+      label: 'Tema de cores',
+      options: [
+        { label: 'Amarelo', value: 'yellow' },
+        { label: 'Vermelho', value: 'red' },
+      ],
+      defaultValue: 'yellow',
     },
     {
       name: 'useFormacoesCollection',
@@ -962,6 +1017,7 @@ const finalCtaBlock: Block = {
 
 const pageBlocks: Block[] = [
   homeHeroBlock,
+  formacoesHeroBlock,
   formationsGridBlock,
   mentorSectionBlock,
   eventsGridBlock,
