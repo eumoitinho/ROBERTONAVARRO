@@ -152,7 +152,7 @@ const defaultHero = {
     newTab: false,
   } satisfies CTAData,
   stats: [{ value: "300.000+", label: "vidas transformadas" }] as StatData[],
-  enableEventPopup: true,
+  enableEventPopup: false,
 }
 
 const defaultFormationsSection = {
@@ -266,6 +266,7 @@ const defaultContactSection: ContactSectionData = {
   email: "contato@robertonavarrooficial.com.br",
   phone: "(12) 99765-9057",
   address: "Alameda Araguaia 751, Alphaville – SP",
+  formSlug: "contato",
 }
 
 const defaultTransformationContent = {

@@ -49,6 +49,35 @@ const ensureTestimonial = async (
   }
 }
 
+const ensureForm = async (
+  payload: any,
+  slug: string,
+  data: any,
+) => {
+  const existing = await payload.find({
+    collection: 'forms',
+    where: { slug: { equals: slug } },
+    limit: 1,
+  })
+
+  if (existing.docs.length > 0) {
+    const updated = await payload.update({
+      collection: 'forms',
+      id: existing.docs[0].id,
+      data,
+    })
+    console.log(`✅ Formulário "${slug}" atualizado`)
+    return updated
+  }
+
+  const created = await payload.create({
+    collection: 'forms',
+    data,
+  })
+  console.log(`✅ Formulário "${slug}" criado`)
+  return created
+}
+
 export async function POST(req: NextRequest) {
   try {
     const payload = await getPayload({ config: await configPromise })
@@ -165,6 +194,126 @@ export async function POST(req: NextRequest) {
       await ensureTestimonial(payload, t)
     }
 
+    console.log('\n📝 Populando Formulários...')
+    const contactForm = await ensureForm(payload, 'contato', {
+      name: 'Formulário de Contato',
+      slug: 'contato',
+      description: 'Formulário exibido na seção de contato do site.',
+      fields: [
+        {
+          name: 'nome',
+          label: 'Nome',
+          type: 'text',
+          required: true,
+          placeholder: 'Seu nome completo',
+        },
+        {
+          name: 'email',
+          label: 'Email',
+          type: 'email',
+          required: true,
+          placeholder: 'seuemail@exemplo.com',
+        },
+        {
+          name: 'telefone',
+          label: 'Telefone',
+          type: 'tel',
+          required: false,
+          placeholder: '(XX) 99999-9999',
+        },
+        {
+          name: 'mensagem',
+          label: 'Mensagem',
+          type: 'textarea',
+          required: true,
+          placeholder: 'Como podemos ajudar?',
+          validation: {
+            minLength: 10,
+          },
+        },
+      ],
+      settings: {
+        submitText: 'ENVIAR MENSAGEM',
+        successMessage: 'Obrigado! Recebemos sua mensagem e retornaremos em breve.',
+        emailNotifications: {
+          enabled: true,
+          to: 'contato@robertonavarrooficial.com.br',
+          subject: 'Novo contato através do site',
+        },
+        webhook: {
+          enabled: true,
+          url: 'https://api.robertonavarro.com/webhooks/forms/contato',
+          method: 'POST',
+          headers: [
+            { key: 'X-Webhook-Source', value: 'website' },
+          ],
+          timeout: 10,
+        },
+      },
+    })
+
+    const mentoriaForm = await ensureForm(payload, 'mentoria', {
+      name: 'Formulário de Interesse em Mentoria',
+      slug: 'mentoria',
+      description: 'Formulário para interessados nas formações e mentorias.',
+      fields: [
+        {
+          name: 'nome',
+          label: 'Nome completo',
+          type: 'text',
+          required: true,
+          placeholder: 'Digite seu nome completo',
+        },
+        {
+          name: 'email',
+          label: 'Email',
+          type: 'email',
+          required: true,
+          placeholder: 'seuemail@exemplo.com',
+        },
+        {
+          name: 'telefone',
+          label: 'Telefone/WhatsApp',
+          type: 'tel',
+          required: true,
+          placeholder: '(XX) 99999-9999',
+        },
+        {
+          name: 'empresa',
+          label: 'Empresa / Profissão',
+          type: 'text',
+          required: false,
+          placeholder: 'Conte-nos mais sobre você',
+        },
+        {
+          name: 'mensagem',
+          label: 'Mensagem',
+          type: 'textarea',
+          required: false,
+          placeholder: 'Qual é o seu objetivo com a mentoria?',
+        },
+      ],
+      settings: {
+        submitText: 'QUERO TRANSFORMAR MINHA VIDA',
+        successMessage: 'Recebemos seus dados! Nossa equipe entrará em contato em breve.',
+        emailNotifications: {
+          enabled: true,
+          to: 'inscricoes@robertonavarrooficial.com.br',
+          subject: 'Novo interesse em mentoria/formação',
+        },
+        webhook: {
+          enabled: true,
+          url: 'https://api.robertonavarro.com/webhooks/forms/mentoria',
+          method: 'POST',
+          headers: [
+            { key: 'X-Webhook-Source', value: 'website' },
+            { key: 'X-Form-Slug', value: 'mentoria' },
+          ],
+          timeout: 10,
+        },
+      },
+    })
+
     // Seed FAQs
     console.log('\n❓ Populando FAQs...')
     await payload.create({
@@ -243,6 +392,7 @@ export async function POST(req: NextRequest) {
           description: 'Torne-se um Educador Financeiro certificado.',
           keywords: 'educador financeiro, certificação mec',
         },
+        form: mentoriaForm.id,
       },
     })
 
@@ -468,6 +618,7 @@ export async function POST(req: NextRequest) {
           email: 'contato@robertonavarrooficial.com.br',
           phone: '(12) 99765-9057',
           address: 'Alameda Araguaia 751, Alphaville – SP',
+          form: contactForm.id,
         },
       ],
     })

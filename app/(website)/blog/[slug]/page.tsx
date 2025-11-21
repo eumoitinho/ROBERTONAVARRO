@@ -18,6 +18,9 @@ interface PageProps {
   }>
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 // Helper para renderizar rich text
 const renderRichText = (content: any) => {
   if (!content) return null
@@ -132,7 +135,7 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
 
         <SiteHeader showInicio={true} />
 
-    <article className="container mx-auto px-4 py-12 max-w-4xl">
+    <article className="container mx-auto px-4 max-w-4xl pt-32 pb-12">
           <Link href="/blog" className="text-yellow-400 hover:text-yellow-500 mb-6 inline-flex items-center gap-2 transition-colors">
             <ArrowLeft size={16} />
             Voltar para o blog

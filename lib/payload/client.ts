@@ -1,9 +1,42 @@
 import configPromise from '@/payload.config'
 import { getPayload as getPayloadInstance } from 'payload'
+import { fallbackBlogPosts } from '@/lib/blog/fallback-data'
 
 let cachedPayload: any = null
 let isInitializing = false
 let initPromise: Promise<any> | null = null
+
+const fallbackBlogMap = new Map(
+  fallbackBlogPosts.map((post) => [post.slug, post])
+)
+
+const applyBlogFallbacks = (post: any) => {
+  if (!post) return post
+
+  const fallback = fallbackBlogMap.get(post.slug)
+  if (!fallback) return post
+
+  const hasCoverObject =
+    typeof post.coverImage === 'object' && post.coverImage !== null
+
+  if ((!post.coverImage || (hasCoverObject && !post.coverImage.url)) && fallback.coverImage) {
+    post.coverImage = fallback.coverImage
+  }
+
+  if (!post.author && fallback.author) {
+    post.author = fallback.author
+  }
+
+  if (!post.category && fallback.category) {
+    post.category = fallback.category
+  }
+
+  if (!post.readingTime && fallback.readingTime) {
+    post.readingTime = fallback.readingTime
+  }
+
+  return post
+}
 
 export const getPayloadClient = async () => {
   // Se já temos uma instância cacheada, retornar
@@ -232,8 +265,10 @@ export async function getBlogPosts() {
       },
     },
     sort: '-publishedAt',
+    pagination: false,
+    depth: 2,
   })
-  return result.docs
+  return result.docs.map(applyBlogFallbacks)
 }
 
 export async function getBlogPostBySlug(slug: string, preview?: boolean) {
@@ -255,6 +290,8 @@ export async function getBlogPostBySlug(slug: string, preview?: boolean) {
     collection: 'blog',
     where,
     limit: 1,
+    depth: 2,
   })
-  return result.docs[0] || null
+  const post = result.docs[0] || null
+  return post ? applyBlogFallbacks(post) : null
 }
