@@ -910,7 +910,7 @@ export interface Page {
    */
   slug: string;
   status: 'draft' | 'published';
-  layout?: ('default' | 'hero-image' | 'hero-red' | 'form' | 'custom') | null;
+  layout?: ('default' | 'hero-image' | 'hero-red' | 'form' | 'home' | 'livros-page' | 'custom') | null;
   hero?: {
     title?: string | null;
     subtitle?: string | null;
@@ -931,6 +931,312 @@ export interface Page {
           | null;
         id?: string | null;
       }[]
+    | null;
+  pageBuilder?:
+    | (
+        | {
+            badgeText?: string | null;
+            titleHighlight: string;
+            titleRest: string;
+            description?: string | null;
+            backgroundImage?: (string | null) | Media;
+            primaryCTA?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            stats?:
+              | {
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            enableEventPopup?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'homeHero';
+          }
+        | {
+            badgeText?: string | null;
+            title?: string | null;
+            highlightedText?: string | null;
+            description?: string | null;
+            accent?: ('red' | 'yellow') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'formacoesHero';
+          }
+        | {
+            badgeText?: string | null;
+            title: string;
+            highlightedText?: string | null;
+            description?: string | null;
+            accent?: ('yellow' | 'red') | null;
+            useFormacoesCollection?: boolean | null;
+            items?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  link?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'formationsGrid';
+          }
+        | {
+            badgeText?: string | null;
+            titlePrefix?: string | null;
+            titleHighlight?: string | null;
+            titleSuffix?: string | null;
+            description?: string | null;
+            backgroundImage?: (string | null) | Media;
+            paragraphs?:
+              | {
+                  text?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            stats?:
+              | {
+                  value: string;
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mentorSection';
+          }
+        | {
+            badgeText?: string | null;
+            title: string;
+            highlightedText?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  link?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'eventsGrid';
+          }
+        | {
+            badgeText?: string | null;
+            titlePrefix?: string | null;
+            titleHighlight?: string | null;
+            titleSuffix?: string | null;
+            description?:
+              | {
+                  text?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            image?: (string | null) | Media;
+            primaryCTA?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'booksHighlight';
+          }
+        | {
+            accent?: ('yellow' | 'red') | null;
+            orientation?: ('landscape' | 'portrait') | null;
+            title?: string | null;
+            highlightedText?: string | null;
+            description?: string | null;
+            videos?:
+              | {
+                  videoId: string;
+                  title: string;
+                  person?: string | null;
+                  description?: string | null;
+                  chipLabel?: string | null;
+                  thumbnail?: (string | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            stats?:
+              | {
+                  icon?: ('star' | 'zap' | 'brain') | null;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            cta?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'transformationVideos';
+          }
+        | {
+            badgeText?: string | null;
+            title?: string | null;
+            highlightedText?: string | null;
+            description?: string | null;
+            cta?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'trainingsCta';
+          }
+        | {
+            badgeText?: string | null;
+            title?: string | null;
+            highlightedText?: string | null;
+            description?: string | null;
+            testimonials?: (string | Testimonial)[] | null;
+            cta?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            badgeText?: string | null;
+            title?: string | null;
+            highlightedText?: string | null;
+            description?: string | null;
+            email?: string | null;
+            phone?: string | null;
+            address?: string | null;
+            mapEmbedUrl?: string | null;
+            form?: (string | null) | Form;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSection';
+          }
+        | {
+            heading: string;
+            description: string;
+            button?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            firstImage: string | Media;
+            secondImage?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'knowledgeBarrier';
+          }
+        | {
+            title: string;
+            subtitle?: string | null;
+            secondTitle?: string | null;
+            description?: string | null;
+            image?: (string | null) | Media;
+            ctaText?: string | null;
+            ctaHref?: string | null;
+            ctaNewTab?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'booksHero';
+          }
+        | {
+            breadcrumbs?:
+              | {
+                  title: string;
+                  url: string;
+                  id?: string | null;
+                }[]
+              | null;
+            heading: string;
+            images?:
+              | {
+                  image: string | Media;
+                  alt?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            price?: string | null;
+            rating?: {
+              stars?: number | null;
+              reviewCount?: number | null;
+            };
+            description?: string | null;
+            cta?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            tabs?:
+              | {
+                  value: string;
+                  trigger: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'productKit';
+          }
+        | {
+            badgeText?: string | null;
+            title?: string | null;
+            description?: string | null;
+            useLivrosCollection?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'booksCatalog';
+          }
+        | {
+            badgeText?: string | null;
+            heading?: string | null;
+            description?: string | null;
+            testimonials?:
+              | {
+                  quote: string;
+                  name: string;
+                  role?: string | null;
+                  numberOfStars?: number | null;
+                  avatar?: (string | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'booksTestimonials';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            offerText?: string | null;
+            price?: string | null;
+            paymentInfo?: string | null;
+            button?: {
+              label?: string | null;
+              href?: string | null;
+              newTab?: boolean | null;
+            };
+            cardImage?: (string | null) | Media;
+            cardImageAlt?: string | null;
+            image?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'booksFinalCta';
+          }
+      )[]
     | null;
   form?: {
     formId?: string | null;
@@ -1715,6 +2021,346 @@ export interface PagesSelect<T extends boolean = true> {
         type?: T;
         content?: T;
         id?: T;
+      };
+  pageBuilder?:
+    | T
+    | {
+        homeHero?:
+          | T
+          | {
+              badgeText?: T;
+              titleHighlight?: T;
+              titleRest?: T;
+              description?: T;
+              backgroundImage?: T;
+              primaryCTA?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              enableEventPopup?: T;
+              id?: T;
+              blockName?: T;
+            };
+        formacoesHero?:
+          | T
+          | {
+              badgeText?: T;
+              title?: T;
+              highlightedText?: T;
+              description?: T;
+              accent?: T;
+              id?: T;
+              blockName?: T;
+            };
+        formationsGrid?:
+          | T
+          | {
+              badgeText?: T;
+              title?: T;
+              highlightedText?: T;
+              description?: T;
+              accent?: T;
+              useFormacoesCollection?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mentorSection?:
+          | T
+          | {
+              badgeText?: T;
+              titlePrefix?: T;
+              titleHighlight?: T;
+              titleSuffix?: T;
+              description?: T;
+              backgroundImage?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        eventsGrid?:
+          | T
+          | {
+              badgeText?: T;
+              title?: T;
+              highlightedText?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    link?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        booksHighlight?:
+          | T
+          | {
+              badgeText?: T;
+              titlePrefix?: T;
+              titleHighlight?: T;
+              titleSuffix?: T;
+              description?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              image?: T;
+              primaryCTA?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        transformationVideos?:
+          | T
+          | {
+              accent?: T;
+              orientation?: T;
+              title?: T;
+              highlightedText?: T;
+              description?: T;
+              videos?:
+                | T
+                | {
+                    videoId?: T;
+                    title?: T;
+                    person?: T;
+                    description?: T;
+                    chipLabel?: T;
+                    thumbnail?: T;
+                    id?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        trainingsCta?:
+          | T
+          | {
+              badgeText?: T;
+              title?: T;
+              highlightedText?: T;
+              description?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              badgeText?: T;
+              title?: T;
+              highlightedText?: T;
+              description?: T;
+              testimonials?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactSection?:
+          | T
+          | {
+              badgeText?: T;
+              title?: T;
+              highlightedText?: T;
+              description?: T;
+              email?: T;
+              phone?: T;
+              address?: T;
+              mapEmbedUrl?: T;
+              form?: T;
+              id?: T;
+              blockName?: T;
+            };
+        knowledgeBarrier?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              button?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              firstImage?: T;
+              secondImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        booksHero?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              secondTitle?: T;
+              description?: T;
+              image?: T;
+              ctaText?: T;
+              ctaHref?: T;
+              ctaNewTab?: T;
+              id?: T;
+              blockName?: T;
+            };
+        productKit?:
+          | T
+          | {
+              breadcrumbs?:
+                | T
+                | {
+                    title?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              heading?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              price?: T;
+              rating?:
+                | T
+                | {
+                    stars?: T;
+                    reviewCount?: T;
+                  };
+              description?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              tabs?:
+                | T
+                | {
+                    value?: T;
+                    trigger?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        booksCatalog?:
+          | T
+          | {
+              badgeText?: T;
+              title?: T;
+              description?: T;
+              useLivrosCollection?: T;
+              id?: T;
+              blockName?: T;
+            };
+        booksTestimonials?:
+          | T
+          | {
+              badgeText?: T;
+              heading?: T;
+              description?: T;
+              testimonials?:
+                | T
+                | {
+                    quote?: T;
+                    name?: T;
+                    role?: T;
+                    numberOfStars?: T;
+                    avatar?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        booksFinalCta?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              offerText?: T;
+              price?: T;
+              paymentInfo?: T;
+              button?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    newTab?: T;
+                  };
+              cardImage?: T;
+              cardImageAlt?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   form?:
     | T
