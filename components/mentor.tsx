@@ -31,12 +31,13 @@ export default function QuemSomosSection() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Heading */}
         <div className="text-center mb-12">
-          <SectionBadge text="MENTOR" />
+          <SectionBadge text="QUEM SOMOS" />
           <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-            CONHEÇA SEU <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">MENTOR</span> 
+            MAIS DE  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">30 ANOS </span>
+            IMPACTANDO VIDAS COM INTELIGÊNCIA E PROPÓSITO 
           </h2>
           <p className="text-lg text-zinc-300 max-w-3xl mx-auto">
-            Especialista que vai guiar sua jornada de transformação
+           Te guiamos na jornada de transformação financeira, emocional e espiritual. 
           </p>
         </div>
 
@@ -73,7 +74,7 @@ export default function QuemSomosSection() {
             <div className="w-full flex flex-col justify-end mt-8">
               <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
                 {[
-                  { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "+1,5 Milhões", label: "de Alunos" },
+                  { icon: <Users className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "+1,5 Milhões", label: "Alunos" },
                   { icon: <Star className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "1280", label: "Técnicas Exclusivas" },
                   { icon: <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "5", label: "Livros Publicados" },
                   { icon: <Video className="h-4 w-4 md:h-6 md:w-6 text-yellow-400" />, value: "100+", label: "Vídeos Inspiradores" },
