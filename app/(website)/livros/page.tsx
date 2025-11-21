@@ -107,6 +107,12 @@ const defaultTestimonials = [
   },
 ]
 
+const defaultTestimonialsSection = {
+  badgeText: 'DEPOIMENTOS',
+  heading: 'O que nossos leitores dizem',
+  description: 'Veja o que os leitores estão dizendo sobre os livros de Roberto Navarro.',
+}
+
 const defaultFinalCta = {
   heading: 'Tenha as ferramentas para construir a vida que você merece',
   description:
@@ -283,9 +289,9 @@ export default async function LivrosPage() {
 
   const testimonialsBlock = findBlock('booksTestimonials')
   const testimonialsSection = {
-    badgeText: testimonialsBlock?.badgeText ?? 'DEPOIMENTOS',
-    heading: testimonialsBlock?.heading ?? defaultTestimonials.heading,
-    description: testimonialsBlock?.description ?? defaultTestimonials.description,
+    badgeText: testimonialsBlock?.badgeText ?? defaultTestimonialsSection.badgeText,
+    heading: testimonialsBlock?.heading ?? defaultTestimonialsSection.heading,
+    description: testimonialsBlock?.description ?? defaultTestimonialsSection.description,
     testimonials: mapBookTestimonials(testimonialsBlock?.testimonials),
   }
 
