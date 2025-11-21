@@ -577,6 +577,389 @@ const contactBlock: Block = {
   ],
 }
 
+const knowledgeBarrierBlock: Block = {
+  slug: 'knowledgeBarrier',
+  labels: {
+    singular: 'Barreira de Conhecimento',
+    plural: 'Barreiras de Conhecimento',
+  },
+  fields: [
+    {
+      name: 'heading',
+      type: 'text',
+      label: 'Título',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Descrição',
+      required: true,
+    },
+    {
+      name: 'button',
+      type: 'group',
+      label: 'CTA',
+      fields: ctaFields,
+    },
+    {
+      name: 'firstImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Imagem principal',
+      required: true,
+    },
+    {
+      name: 'secondImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Imagem secundária',
+    },
+  ],
+}
+
+const booksHeroBlock: Block = {
+  slug: 'booksHero',
+  labels: {
+    singular: 'Hero Livros',
+    plural: 'Hero Livros',
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Título principal',
+      required: true,
+    },
+    {
+      name: 'subtitle',
+      type: 'text',
+      label: 'Badge / subtítulo',
+    },
+    {
+      name: 'secondTitle',
+      type: 'text',
+      label: 'Segundo título',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Descrição',
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Imagem de fundo',
+    },
+    {
+      name: 'ctaText',
+      type: 'text',
+      label: 'Texto da CTA',
+      defaultValue: 'OFERTA EXCLUSIVA: ADQUIRA SEU KIT!',
+    },
+    {
+      name: 'ctaHref',
+      type: 'text',
+      label: 'Link da CTA',
+      defaultValue: 'https://sun.eduzz.com/956345',
+    },
+    {
+      name: 'ctaNewTab',
+      type: 'checkbox',
+      label: 'Abrir CTA em nova aba',
+      defaultValue: true,
+    },
+  ],
+}
+
+const productKitBlock: Block = {
+  slug: 'productKit',
+  labels: {
+    singular: 'Kit de Produtos',
+    plural: 'Kits de Produtos',
+  },
+  fields: [
+    {
+      name: 'breadcrumbs',
+      type: 'array',
+      label: 'Breadcrumbs',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          label: 'Título',
+          required: true,
+        },
+        {
+          name: 'url',
+          type: 'text',
+          label: 'URL',
+          required: true,
+        },
+      ],
+      defaultValue: [
+        { title: 'Início', url: '/' },
+        { title: 'Livros', url: '/livros' },
+      ],
+    },
+    {
+      name: 'heading',
+      type: 'text',
+      label: 'Título',
+      required: true,
+    },
+    {
+      name: 'images',
+      type: 'array',
+      label: 'Imagens do kit',
+      minRows: 1,
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Imagem',
+          required: true,
+        },
+        {
+          name: 'alt',
+          type: 'text',
+          label: 'Texto alternativo',
+        },
+      ],
+    },
+    {
+      name: 'price',
+      type: 'text',
+      label: 'Preço',
+      defaultValue: 'R$ 200,00',
+    },
+    {
+      name: 'rating',
+      type: 'group',
+      label: 'Avaliação',
+      fields: [
+        {
+          name: 'stars',
+          type: 'number',
+          label: 'Estrelas',
+          min: 0,
+          max: 5,
+          defaultValue: 5,
+        },
+        {
+          name: 'reviewCount',
+          type: 'number',
+          label: 'Quantidade de avaliações',
+          defaultValue: 3,
+        },
+      ],
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Descrição',
+    },
+    {
+      name: 'cta',
+      type: 'group',
+      label: 'CTA',
+      fields: ctaFields,
+    },
+    {
+      name: 'tabs',
+      type: 'array',
+      label: 'Abas',
+      minRows: 1,
+      fields: [
+        {
+          name: 'value',
+          type: 'text',
+          label: 'Identificador (sem espaços)',
+          required: true,
+        },
+        {
+          name: 'trigger',
+          type: 'text',
+          label: 'Título da aba',
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Descrição da aba',
+        },
+      ],
+    },
+  ],
+}
+
+const booksCatalogBlock: Block = {
+  slug: 'booksCatalog',
+  labels: {
+    singular: 'Catálogo de Livros',
+    plural: 'Catálogos de Livros',
+  },
+  fields: [
+    {
+      name: 'badgeText',
+      type: 'text',
+      label: 'Texto do badge',
+      defaultValue: 'CONHEÇA OS LIVROS',
+    },
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Título',
+      defaultValue: 'Um kit que vai transformar sua vida',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Descrição',
+      defaultValue:
+        'As obras de Roberto Navarro combinam inteligência financeira, emocional e espiritual para guiá-lo rumo à prosperidade.',
+    },
+    {
+      name: 'useLivrosCollection',
+      type: 'checkbox',
+      label: 'Usar dados da coleção Livros',
+      defaultValue: true,
+    },
+  ],
+}
+
+const booksTestimonialsBlock: Block = {
+  slug: 'booksTestimonials',
+  labels: {
+    singular: 'Depoimentos de Livros',
+    plural: 'Depoimentos de Livros',
+  },
+  fields: [
+    {
+      name: 'badgeText',
+      type: 'text',
+      label: 'Texto do badge',
+      defaultValue: 'DEPOIMENTOS',
+    },
+    {
+      name: 'heading',
+      type: 'text',
+      label: 'Título',
+      defaultValue: 'O que nossos leitores dizem',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Descrição',
+      defaultValue: 'Veja o que os leitores estão dizendo sobre os livros de Roberto Navarro.',
+    },
+    {
+      name: 'testimonials',
+      type: 'array',
+      label: 'Depoimentos',
+      fields: [
+        {
+          name: 'quote',
+          type: 'textarea',
+          label: 'Depoimento',
+          required: true,
+        },
+        {
+          name: 'name',
+          type: 'text',
+          label: 'Nome',
+          required: true,
+        },
+        {
+          name: 'role',
+          type: 'text',
+          label: 'Função / Cargo',
+        },
+        {
+          name: 'numberOfStars',
+          type: 'number',
+          label: 'Número de estrelas',
+          defaultValue: 5,
+          min: 1,
+          max: 5,
+        },
+        {
+          name: 'avatar',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Foto',
+        },
+      ],
+    },
+  ],
+}
+
+const finalCtaBlock: Block = {
+  slug: 'booksFinalCta',
+  labels: {
+    singular: 'CTA Final Livros',
+    plural: 'CTAs Finais Livros',
+  },
+  fields: [
+    {
+      name: 'heading',
+      type: 'text',
+      label: 'Título',
+      defaultValue: 'Tenha as ferramentas para construir a vida que você merece',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Descrição',
+      defaultValue:
+        'O conhecimento é o único investimento que ninguém pode tirar de você. Invista em si mesmo e colha os frutos de uma vida próspera e abundante.',
+    },
+    {
+      name: 'offerText',
+      type: 'text',
+      label: 'Texto da oferta',
+      defaultValue: 'Oferta Exclusiva',
+    },
+    {
+      name: 'price',
+      type: 'text',
+      label: 'Preço',
+      defaultValue: '10x de R$ 20,00',
+    },
+    {
+      name: 'paymentInfo',
+      type: 'text',
+      label: 'Informações de pagamento',
+      defaultValue: 'ou R$ 200,00 à vista',
+    },
+    {
+      name: 'button',
+      type: 'group',
+      label: 'CTA',
+      fields: ctaFields,
+    },
+    {
+      name: 'cardImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Imagem do card',
+    },
+    {
+      name: 'cardImageAlt',
+      type: 'text',
+      label: 'Alt da imagem do card',
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Imagem lateral',
+    },
+  ],
+}
+
 const pageBlocks: Block[] = [
   homeHeroBlock,
   formationsGridBlock,
@@ -587,6 +970,12 @@ const pageBlocks: Block[] = [
   trainingsCtaBlock,
   testimonialsBlock,
   contactBlock,
+  knowledgeBarrierBlock,
+  booksHeroBlock,
+  productKitBlock,
+  booksCatalogBlock,
+  booksTestimonialsBlock,
+  finalCtaBlock,
 ]
 
 const Pages: CollectionConfig = {

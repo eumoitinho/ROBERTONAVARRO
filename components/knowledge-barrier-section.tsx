@@ -10,6 +10,7 @@ type ImageProps = {
 type ButtonProps = {
   title: string
   href: string
+  newTab?: boolean
 }
 
 type Props = {
@@ -30,7 +31,7 @@ export const KnowledgeBarrierSection = (props: Props) => {
           <Image
             className="absolute inset-0 aspect-[3/2] size-full object-cover opacity-70"
             src={firstImage.src || "/placeholder.svg"}
-            alt={firstImage.alt}
+            alt={firstImage.alt || "Imagem de fundo"}
             fill
           />
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent" />
@@ -57,7 +58,11 @@ export const KnowledgeBarrierSection = (props: Props) => {
                     asChild
                     className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-10 py-5 text-lg"
                   >
-                    <a href={button.href} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={button.href}
+                      target={button.newTab ? "_blank" : "_self"}
+                      rel={button.newTab ? "noopener noreferrer" : undefined}
+                    >
                       {button.title}
                     </a>
                   </Button>

@@ -8,25 +8,26 @@ type ImageProps = {
 
 type Testimonial = {
   quote: string
-  avatar: ImageProps
+  avatar?: ImageProps
   name: string
-  role: string
+  role?: string
   numberOfStars: number
 }
 
 type Props = {
+  badgeText?: string
   heading: string
   description: string
   testimonials: Testimonial[]
 }
 
-export const TestimonialsLivros = ({ heading, description, testimonials }: Props) => {
+export const TestimonialsLivros = ({ badgeText = "DEPOIMENTOS", heading, description, testimonials }: Props) => {
   return (
     <section id="depoimentos" className="py-20 relative bg-zinc-950">
       <div className="container mx-auto px-4">
         <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
           <div className="inline-flex items-center gap-2 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50 rounded-full py-2 px-4 mb-4">
-            <span className="text-sm font-medium">DEPOIMENTOS</span>
+            <span className="text-sm font-medium">{badgeText}</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold mb-4">{heading}</h2>
           <p className="text-zinc-300 max-w-3xl mx-auto">{description}</p>
@@ -47,8 +48,8 @@ export const TestimonialsLivros = ({ heading, description, testimonials }: Props
               <blockquote className="text-zinc-300 md:text-md flex-grow">{testimonial.quote}</blockquote>
               <div className="mt-5 flex w-full items-center pt-5 border-t border-zinc-800 md:mt-6">
                 <Image
-                  src={testimonial.avatar.src || "/placeholder.svg"}
-                  alt={testimonial.avatar.alt || testimonial.name}
+                  src={testimonial.avatar?.src || "/placeholder.svg"}
+                  alt={testimonial.avatar?.alt || testimonial.name}
                   width={48}
                   height={48}
                   className="size-12 min-h-12 min-w-12 rounded-full object-cover md:mr-4"
