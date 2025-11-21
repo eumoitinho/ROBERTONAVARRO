@@ -1133,7 +1133,7 @@ export interface Page {
               href?: string | null;
               newTab?: boolean | null;
             };
-            firstImage: string | Media;
+            firstImage?: (string | null) | Media;
             secondImage?: (string | null) | Media;
             id?: string | null;
             blockName?: string | null;
@@ -1163,7 +1163,7 @@ export interface Page {
             heading: string;
             images?:
               | {
-                  image: string | Media;
+                  image?: (string | null) | Media;
                   alt?: string | null;
                   id?: string | null;
                 }[]

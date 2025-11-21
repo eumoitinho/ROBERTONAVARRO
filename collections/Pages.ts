@@ -662,7 +662,7 @@ const knowledgeBarrierBlock: Block = {
       type: 'upload',
       relationTo: 'media',
       label: 'Imagem principal',
-      required: true,
+      required: false,
     },
     {
       name: 'secondImage',
@@ -768,14 +768,14 @@ const productKitBlock: Block = {
       name: 'images',
       type: 'array',
       label: 'Imagens do kit',
-      minRows: 1,
+      minRows: 0,
       fields: [
         {
           name: 'image',
           type: 'upload',
           relationTo: 'media',
           label: 'Imagem',
-          required: true,
+          required: false,
         },
         {
           name: 'alt',

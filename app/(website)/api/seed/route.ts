@@ -78,6 +78,96 @@ const ensureForm = async (
   return created
 }
 
+const livrosDefaults = {
+  hero: {
+    title: 'Desvende os segredos da liberdade financeira com os ensinamentos de Roberto Navarro',
+    subtitle: 'Kit Exclusivo Roberto Navarro',
+    secondTitle: '',
+    description:
+      'O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil traz para você um kit exclusivo de livros que serão seu guia definitivo para a tão sonhada liberdade financeira.',
+    image: null,
+    ctaText: 'OFERTA EXCLUSIVA: ADQUIRA SEU KIT!',
+    ctaHref: 'https://sun.eduzz.com/956345',
+    ctaNewTab: true,
+  },
+  productKit: {
+    breadcrumbs: [
+      { title: 'Início', url: '/' },
+      { title: 'Livros', url: '/livros' },
+    ],
+    heading: 'Kit Exclusivo Roberto Navarro',
+    images: [
+      { src: '/images/SABEDORIA.png', alt: 'A Sabedoria do Dinheiro' },
+      { src: '/images/MITOS.png', alt: 'Quebrando Mitos com o Dinheiro' },
+      { src: '/images/ARTE.png', alt: 'A Arte de Enriquecer' },
+      { src: '/images/COACHING.png', alt: 'Coaching Financeiro' },
+    ],
+    price: 'R$ 200,00',
+    rating: { stars: 5, reviewCount: 3 },
+    description:
+      'Criador do conceito de Coaching Financeiro no país, Navarro impactou mais de 1 milhão de pessoas, desenvolvendo metodologias que unem estratégias práticas de finanças, inteligência emocional e princípios bíblicos. Agora, você terá a oportunidade de mergulhar nos pilares dessa transformação através de seus quatro livros.',
+    cta: {
+      label: 'OFERTA EXCLUSIVA: ADQUIRA SEU KIT!',
+      href: 'https://sun.eduzz.com/956345',
+      newTab: true,
+    },
+    tabs: [
+      {
+        value: 'details',
+        trigger: 'Descrição',
+        description:
+          'Mais do que um conjunto de livros, este kit é um investimento em você, na sua família e no seu futuro. Prepare-se para quebrar paradigmas, desmistificar o dinheiro e construir uma nova realidade financeira. A sua jornada para a abundância começa agora!',
+      },
+      {
+        value: 'content',
+        trigger: 'Conteúdo do Kit',
+        description:
+          'Este kit inclui 4 livros essenciais de Roberto Navarro: A Sabedoria do Dinheiro, Quebrando Mitos com o Dinheiro, A Arte de Enriquecer e Coaching Financeiro.',
+      },
+    ],
+  },
+  catalog: {
+    badgeText: 'CONHEÇA OS LIVROS',
+    title: 'Um kit que vai transformar sua vida',
+    description:
+      'As obras de Roberto Navarro combinam inteligência financeira, emocional e espiritual para guiá-lo rumo à prosperidade.',
+  },
+  knowledge: {
+    heading: 'A falta de conhecimento é a maior barreira para a prosperidade',
+    description:
+      'Pense no valor de ter à sua disposição o conhecimento de um dos maiores especialistas em finanças do Brasil. Roberto Navarro não é apenas um autor; ele é um mentor que já transformou a vida de centenas de milhares de pessoas. Sua metodologia, testada e comprovada, vai além dos números, tocando na essência da sua relação com o dinheiro.',
+    button: {
+      label: 'GARANTA SEU KIT!',
+      href: 'https://sun.eduzz.com/956345',
+      newTab: true,
+    },
+  },
+  finalCta: {
+    heading: 'Tenha as ferramentas para construir a vida que você merece',
+    description:
+      'O conhecimento é o único investimento que ninguém pode tirar de você. Invista em si mesmo e colha os frutos de uma vida próspera e abundante.',
+    offerText: 'Oferta Exclusiva',
+    price: '10x de R$ 20,00',
+    paymentInfo: 'ou R$ 200,00 à vista',
+    button: {
+      label: 'QUERO MEU KIT E MINHA LIBERDADE FINANCEIRA!',
+      href: 'https://sun.eduzz.com/956345',
+      newTab: true,
+    },
+  },
+}
+
+const formacoesDefaults = {
+  hero: {
+    badgeText: 'FORMAÇÕES',
+    title: 'FORMAÇÕES QUE VÃO',
+    highlightedText: 'TRANSFORMAR SUA MENTALIDADE',
+    description:
+      'Com metodologias exclusivas e resultados comprovados, nossos programas foram desenvolvidos para atender diferentes perfis e objetivos. Escolha o que faz sentido para você e dê o primeiro passo rumo à sua liberdade financeira.',
+    accent: 'red' as const,
+  },
+}
+
 export async function POST(req: NextRequest) {
   try {
     const payload = await getPayload({ config: await configPromise })
@@ -644,38 +734,38 @@ export async function POST(req: NextRequest) {
       pageBuilder: [
         {
           blockType: 'booksHero',
-          title: defaultHero.title,
-          subtitle: defaultHero.subtitle,
-          secondtitle: defaultHero.secondTitle,
-          description: defaultHero.description,
+          title: livrosDefaults.hero.title,
+          subtitle: livrosDefaults.hero.subtitle,
+          secondTitle: livrosDefaults.hero.secondTitle,
+          description: livrosDefaults.hero.description,
           image: undefined,
-          ctaText: defaultHero.ctaText,
-          ctaHref: defaultHero.ctaHref,
-          ctaNewTab: defaultHero.ctaNewTab,
+          ctaText: livrosDefaults.hero.ctaText,
+          ctaHref: livrosDefaults.hero.ctaHref,
+          ctaNewTab: livrosDefaults.hero.ctaNewTab,
         },
         {
           blockType: 'productKit',
-          breadcrumbs: defaultProductKit.breadcrumbs,
-          heading: defaultProductKit.heading,
-          images: defaultProductKit.images.map((image) => ({ alt: image.alt })),
-          price: defaultProductKit.price,
-          rating: defaultProductKit.rating,
-          description: defaultProductKit.description,
-          cta: defaultProductKit.cta,
-          tabs: defaultProductKit.tabs,
+          breadcrumbs: livrosDefaults.productKit.breadcrumbs,
+          heading: livrosDefaults.productKit.heading,
+          images: livrosDefaults.productKit.images.map((image) => ({ alt: image.alt })),
+          price: livrosDefaults.productKit.price,
+          rating: livrosDefaults.productKit.rating,
+          description: livrosDefaults.productKit.description,
+          cta: livrosDefaults.productKit.cta,
+          tabs: livrosDefaults.productKit.tabs,
         },
         {
           blockType: 'booksCatalog',
-          badgeText: defaultCatalog.badgeText,
-          title: defaultCatalog.title,
-          description: defaultCatalog.description,
+          badgeText: livrosDefaults.catalog.badgeText,
+          title: livrosDefaults.catalog.title,
+          description: livrosDefaults.catalog.description,
           useLivrosCollection: true,
         },
         {
           blockType: 'knowledgeBarrier',
-          heading: defaultKnowledge.heading,
-          description: defaultKnowledge.description,
-          button: defaultKnowledge.button,
+          heading: livrosDefaults.knowledge.heading,
+          description: livrosDefaults.knowledge.description,
+          button: livrosDefaults.knowledge.button,
         },
         {
           blockType: 'booksTestimonials',
@@ -686,12 +776,12 @@ export async function POST(req: NextRequest) {
         },
         {
           blockType: 'booksFinalCta',
-          heading: defaultFinalCta.heading,
-          description: defaultFinalCta.description,
-          offerText: defaultFinalCta.offerText,
-          price: defaultFinalCta.price,
-          paymentInfo: defaultFinalCta.paymentInfo,
-          button: defaultFinalCta.button,
+          heading: livrosDefaults.finalCta.heading,
+          description: livrosDefaults.finalCta.description,
+          offerText: livrosDefaults.finalCta.offerText,
+          price: livrosDefaults.finalCta.price,
+          paymentInfo: livrosDefaults.finalCta.paymentInfo,
+          button: livrosDefaults.finalCta.button,
         },
       ],
     })
@@ -705,19 +795,19 @@ export async function POST(req: NextRequest) {
       pageBuilder: [
         {
           blockType: 'formacoesHero',
-          badgeText: defaultHero.badgeText,
-          title: defaultHero.title,
-          highlightedText: defaultHero.highlightedText,
-          description: defaultHero.description,
-          accent: 'red',
+          badgeText: formacoesDefaults.hero.badgeText,
+          title: formacoesDefaults.hero.title,
+          highlightedText: formacoesDefaults.hero.highlightedText,
+          description: formacoesDefaults.hero.description,
+          accent: formacoesDefaults.hero.accent,
         },
         {
           blockType: 'formationsGrid',
-          badgeText: 'FORMAÇÕES',
-          title: defaultHero.title,
-          highlightedText: defaultHero.highlightedText,
-          description: defaultHero.description,
-          accent: 'red',
+          badgeText: formacoesDefaults.hero.badgeText,
+          title: formacoesDefaults.hero.title,
+          highlightedText: formacoesDefaults.hero.highlightedText,
+          description: formacoesDefaults.hero.description,
+          accent: formacoesDefaults.hero.accent,
           useFormacoesCollection: true,
         },
       ],
