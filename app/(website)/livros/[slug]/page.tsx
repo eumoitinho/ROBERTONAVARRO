@@ -64,6 +64,12 @@ export default async function LivroPage({ params, searchParams }: PageProps) {
   ]
 
   const purchaseLink = livro.purchaseLink || livro.amazonLink || '#'
+  const hasPurchaseLink = purchaseLink && purchaseLink !== '#'
+  const purchaseButtonContent = (
+    <>
+      COMPRAR AGORA <ArrowRight className="ml-2 h-5 w-5" />
+    </>
+  )
 
   return (
     <>
@@ -228,27 +234,39 @@ export default async function LivroPage({ params, searchParams }: PageProps) {
                     </p>
                   </div>
                 )}
-                <Button
-                  className={cn(
-                    'group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 transition-all duration-300 hover:scale-105',
-                    'px-10 py-5 text-lg shadow-lg hover:shadow-xl',
-                  )}
-                  onClick={() => {
-                    if (purchaseLink && purchaseLink !== '#') {
-                      window.open(purchaseLink, '_blank')
-                    }
-                  }}
-                >
-                  COMPRAR AGORA <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                {hasPurchaseLink ? (
+                  <Button
+                    asChild
+                    className={cn(
+                      'group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 transition-all duration-300 hover:scale-105',
+                      'px-10 py-5 text-lg shadow-lg hover:shadow-xl',
+                    )}
+                  >
+                    <a href={purchaseLink} target="_blank" rel="noopener noreferrer">
+                      {purchaseButtonContent}
+                    </a>
+                  </Button>
+                ) : (
+                  <Button
+                    className={cn(
+                      'group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-semibold text-white bg-gradient-to-r from-red-500 to-red-600',
+                      'px-10 py-5 text-lg shadow-lg',
+                    )}
+                    disabled
+                  >
+                    {purchaseButtonContent}
+                  </Button>
+                )}
                 {livro.amazonLink && (
                   <div className="mt-6">
                     <Button
                       variant="outline"
                       className="text-zinc-300 border-zinc-700 hover:bg-zinc-800"
-                      onClick={() => window.open(livro.amazonLink, '_blank')}
+                      asChild
                     >
-                      Também disponível na Amazon
+                      <a href={livro.amazonLink} target="_blank" rel="noopener noreferrer">
+                        Também disponível na Amazon
+                      </a>
                     </Button>
                   </div>
                 )}
