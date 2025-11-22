@@ -168,6 +168,82 @@ const formacoesDefaults = {
   },
 }
 
+const privacyPageDefaults = {
+  hero: {
+    title: 'Política de Privacidade',
+    subtitle: 'Última atualização: Janeiro de 2025',
+  },
+  content: `
+    <section>
+      <h2>1. Introdução</h2>
+      <p>A presente Política de Privacidade tem por finalidade demonstrar o compromisso de Roberto Navarro (&ldquo;nós&rdquo;, &ldquo;nosso&rdquo;) com a privacidade e proteção dos dados pessoais coletados, além de estabelecer as regras sobre a coleta, registro, armazenamento, uso, compartilhamento e eliminação dos dados pessoais coletados.</p>
+    </section>
+    <section>
+      <h2>2. Dados Coletados</h2>
+      <p>Ao preencher nossos formulários, participar de nossos eventos ou adquirir nossos produtos e serviços, podemos coletar os seguintes dados pessoais:</p>
+      <ul>
+        <li>Nome completo</li>
+        <li>Endereço de e-mail</li>
+        <li>Número de telefone</li>
+        <li>Informações sobre navegação em nosso site (cookies)</li>
+        <li>Informações de origem (UTM parameters)</li>
+        <li>Dados de interação com nossos conteúdos</li>
+      </ul>
+    </section>
+    <section>
+      <h2>3. Finalidade do Tratamento dos Dados</h2>
+      <p>Seus dados pessoais são coletados e utilizados para as seguintes finalidades:</p>
+      <ul>
+        <li>Fornecer nossos produtos e serviços</li>
+        <li>Enviar comunicações sobre eventos, cursos e oportunidades</li>
+        <li>Melhorar nossos serviços e experiência do usuário</li>
+        <li>Cumprir obrigações legais e regulatórias</li>
+        <li>Realizar pesquisas e análises estatísticas</li>
+        <li>Personalizar o conteúdo e ofertas de acordo com seus interesses</li>
+      </ul>
+    </section>
+    <section>
+      <h2>4. Compartilhamento de Dados</h2>
+      <p>Seus dados pessoais podem ser compartilhados com:</p>
+      <ul>
+        <li>Prestadores de serviços que nos auxiliam (plataformas de CRM, email marketing)</li>
+        <li>Parceiros de negócios quando necessário para prestação dos serviços</li>
+        <li>Autoridades públicas, quando exigido por lei</li>
+      </ul>
+      <p>Todos os terceiros com quem compartilhamos seus dados estão sujeitos a obrigações de confidencialidade e só podem processar seus dados para as finalidades específicas que determinamos.</p>
+    </section>
+    <section>
+      <h2>5. Armazenamento e Segurança</h2>
+      <p>Implementamos medidas técnicas e organizacionais adequadas para proteger seus dados pessoais contra perda acidental, uso, divulgação ou acesso não autorizado. Seus dados são armazenados em servidores seguros, com acesso restrito apenas a pessoas autorizadas.</p>
+    </section>
+    <section>
+      <h2>6. Seus Direitos</h2>
+      <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem os seguintes direitos:</p>
+      <ul>
+        <li>Confirmar a existência de tratamento de seus dados</li>
+        <li>Acessar seus dados</li>
+        <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
+        <li>Solicitar anonimização, bloqueio ou eliminação de dados desnecessários</li>
+        <li>Solicitar a portabilidade dos dados</li>
+        <li>Revogar seu consentimento a qualquer momento</li>
+      </ul>
+    </section>
+    <section>
+      <h2>7. Cookies e Tecnologias Semelhantes</h2>
+      <p>Utilizamos cookies e tecnologias semelhantes para melhorar sua experiência, entender como nosso site é utilizado e personalizar nosso conteúdo. Você pode gerenciar suas preferências de cookies através das configurações do seu navegador.</p>
+    </section>
+    <section>
+      <h2>8. Alterações na Política de Privacidade</h2>
+      <p>Esta política pode ser atualizada periodicamente. Recomendamos que você consulte esta página regularmente para se manter informado sobre quaisquer alterações.</p>
+    </section>
+    <section>
+      <h2>9. Contato</h2>
+      <p>Se você tiver dúvidas ou preocupações sobre esta Política de Privacidade ou sobre como tratamos seus dados pessoais, entre em contato conosco pelo e-mail: contato@robertonavarro.com.br</p>
+    </section>
+    <p><small>Última atualização: 17 de junho de 2025</small></p>
+  `,
+}
+
 export async function POST(req: NextRequest) {
   try {
     const payload = await getPayload({ config: await configPromise })
@@ -544,22 +620,17 @@ export async function POST(req: NextRequest) {
 
     // Seed Páginas padrões
     console.log('\n📄 Populando Páginas institucionais...')
-    await payload.create({
-      collection: 'pages',
-      data: {
+    await ensurePage(payload, 'politica-privacidade', {
         title: 'Política de Privacidade',
         slug: 'politica-privacidade',
         status: 'published',
         layout: 'default',
-        hero: {
-          title: 'Política de Privacidade',
-          subtitle: 'Última atualização: Janeiro de 2025',
-        },
+      hero: privacyPageDefaults.hero,
+      content: privacyPageDefaults.content,
         seo: {
           title: 'Política de Privacidade | Roberto Navarro',
           description: 'Conheça nossa política de privacidade.',
         },
-      },
     })
 
     console.log('\n🏠 Populando página Home...')

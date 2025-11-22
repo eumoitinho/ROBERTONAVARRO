@@ -2,11 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { SiteHeader } from '@/components/header'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
 import { ArrowRight } from 'lucide-react'
+import DynamicForm from '@/components/dynamic-form'
 import type React from 'react'
 
 interface UniversalPagePayloadProps {
@@ -180,10 +180,19 @@ export default function UniversalPagePayload({ page }: UniversalPagePayloadProps
               <h2 className="text-2xl font-bold mb-4 text-yellow-400">
                 {page.title}
               </h2>
-              <p className="text-zinc-400 mb-6">
-                Formulário: {page.form.formId || 'Não configurado'}
-              </p>
-              {/* Aqui você pode integrar com o componente de formulário */}
+              {page.hero?.subtitle && (
+                <p className="text-zinc-400 mb-6">
+                  {page.hero.subtitle}
+                </p>
+              )}
+              <DynamicForm
+                formSlug={
+                  typeof page.form === 'string'
+                    ? page.form
+                    : page.form?.formId || page.form?.slug || 'contato'
+                }
+                accent={page.layout === 'form' && page.hero?.accent ? page.hero.accent : 'yellow'}
+              />
             </div>
           )}
         </div>
