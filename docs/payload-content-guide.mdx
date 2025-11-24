@@ -1,0 +1,213 @@
+---
+title: Guia Operacional do Payload
+sidebar_position: 1
+description: Passo a passo completo para atualizar qualquer conteúdo do site usando o Payload CMS.
+---
+
+<div style={{ display: 'grid', gridTemplateColumns: '260px minmax(0,1fr)', gap: '2rem', alignItems: 'flex-start', color: '#f8fafc' }}>
+  <aside style={{ position: 'sticky', top: '1rem', border: '1px solid #e4b002', borderRadius: '18px', padding: '1.25rem', background: 'linear-gradient(180deg, rgba(255,215,0,0.08), rgba(255,215,0,0.02))', boxShadow: '0 25px 45px -25px rgba(0,0,0,0.55)', minHeight: 'fit-content' }}>
+    <p style={{ fontSize: '.8rem', letterSpacing: '.2em', textTransform: 'uppercase', marginTop: 0, color: '#facc15' }}>Navegação</p>
+    <ol style={{ paddingLeft: '1rem', margin: 0, color: '#e4e4e7', lineHeight: 1.55 }}>
+      <li><a href="#iniciar" style={{ color: '#facc15' }}>Checklist inicial</a></li>
+      <li><a href="#fluxo" style={{ color: '#facc15' }}>Fluxo rápido</a></li>
+      <li><a href="#passo-a-passo" style={{ color: '#facc15' }}>Passo a passo por conteúdo</a></li>
+      <li><a href="#design" style={{ color: '#facc15' }}>Como manter o visual</a></li>
+      <li><a href="#midias" style={{ color: '#facc15' }}>Espaço para vídeos/GIFs</a></li>
+      <li><a href="#suporte" style={{ color: '#facc15' }}>Resolução e suporte</a></li>
+    </ol>
+  </aside>
+  <div style={{ background: 'linear-gradient(145deg, rgba(14,14,14,0.95), rgba(39,39,42,0.92))', border: '1px solid rgba(255,215,0,0.08)', borderRadius: '24px', padding: '2.5rem', boxShadow: '0 30px 60px -35px rgba(0,0,0,0.85)' }}>
+    <h1 style={{ marginTop: 0, fontSize: '2.5rem', color: '#facc15' }}>Central de Conteúdo Payload</h1>
+    <p style={{ color: '#e4e4e7', fontSize: '1.05rem', lineHeight: 1.7 }}>
+      Este guia foi desenhado para o time de conteúdo operar o CMS com segurança. Siga cada etapa para atualizar páginas, formações,
+      eventos, blog e demais seções sem depender de código. Todo o layout do guia respeita o design system do site
+      (gradientes escuros, dourado de destaque e tipografia compacta).
+    </p>
+  </div>
+</div>
+
+<div style={{ marginTop: '2rem', padding: '1.25rem 1.5rem', borderRadius: '18px', border: '1px solid rgba(250,204,21,0.35)', background: 'linear-gradient(125deg, rgba(250,204,21,0.08), rgba(0,0,0,0.5))', color: '#fefce8' }}>
+  <strong>O que você encontra aqui:</strong>
+  <ul style={{ margin: '0.75rem 0 0', paddingLeft: '1.25rem' }}>
+    <li>Checklist e fluxo padronizado para não errar na publicação.</li>
+    <li>Passo a passo reorganizado em grupos (conteúdos principais, editoriais e ferramentas).</li>
+    <li>Diretrizes visuais, placeholders de mídia e bloco final de troubleshooting.</li>
+  </ul>
+</div>
+
+<a id="iniciar"></a>
+## 1. Checklist inicial
+
+- **Acesso**: `https://seusite.com/admin` (ambiente de produção) ou `http://localhost:3000/admin` (dev). Login inicial: `admin@robertonavarro.com / admin123` &rarr; troque a senha.
+- **Variáveis obrigatórias** (`.env.local`):
+  - `MONGODB_URI` – cluster Mongo Atlas ou Docker local.
+  - `PAYLOAD_SECRET` – chave segura para autenticação.
+  - `NEXT_PUBLIC_PAYLOAD_URL` – URL pública usada nos previews.
+- **Seed opcional** (para ambientes novos): `pnpm payload:seed`.
+- **Servidor em dev**: `pnpm dev` (Next + Payload no mesmo host).
+
+<div style={{ border: '1px solid rgba(244,63,94,0.4)', borderRadius: '16px', padding: '1rem 1.25rem', margin: '1.25rem 0', background: 'rgba(244,63,94,0.08)' }}>
+  <strong>Tip:</strong> sempre trabalhe com usuário de role <code>editor</code> ou <code>admin</code> para habilitar previews e relacionamentos.
+</div>
+
+<a id="fluxo"></a>
+## 2. Fluxo rápido de publicação
+
+<div style={{ display: 'grid', gap: '1rem', marginBottom: '1rem' }}>
+  {[
+    { step: 'Editar', desc: 'Abra a collection, ajuste os campos e salve como rascunho.' },
+    { step: 'Pré-visualizar', desc: 'Clique em Preview para carregar `/pagina?preview=true` com alerta visual.' },
+    { step: 'Publicar', desc: 'Mude `status` para `published` e salve. O site repassa o conteúdo em segundos.' },
+    { step: 'Automatizar', desc: 'Hooks `afterChange` acionam webhooks ativos (rebuild, CRM, etc.).' },
+    { step: 'Registrar', desc: 'Use `pnpm capture:production` quando precisar guardar evidências em `captures/`.' },
+  ].map((card) => (
+    <div key={card.step} style={{ border: '1px solid rgba(250,204,21,0.25)', borderRadius: '14px', padding: '1rem 1.2rem', background: 'rgba(250,204,21,0.04)' }}>
+      <strong style={{ color: '#facc15' }}>{card.step}</strong>
+      <p style={{ margin: '0.4rem 0 0', color: '#e4e4e7' }}>{card.desc}</p>
+    </div>
+  ))}
+</div>
+
+<a id="passo-a-passo"></a>
+## 3. Passo a passo por tipo de conteúdo
+
+<div style={{ marginBottom: '1.2rem', padding: '1rem 1.25rem', borderRadius: '14px', border: '1px solid rgba(82,82,91,0.5)', background: 'rgba(24,24,27,0.85)', color: '#f4f4f5' }}>
+  <strong>Como navegar:</strong>
+  <ol style={{ margin: '0.6rem 0 0', paddingLeft: '1.4rem' }}>
+    <li><em>Conteúdos principais</em> — páginas que sustentam o funil.</li>
+    <li><em>Conteúdos editoriais</em> — materiais de apoio e prova social.</li>
+    <li><em>Ferramentas e integrações</em> — peças que conectam ou automatizam.</li>
+  </ol>
+</div>
+
+### Conteúdos principais
+
+#### Formações (`Formacoes`)
+1. Configure `title`, `slug`, `status` e o `template` correto (Empreendedor, LCF, Mentoria etc.).
+2. Hero completo (badge, título, descrição rich, imagem, CTA).
+3. Blocos principais: `challenges`, `benefits`, `learnings`, `modules`, `pricing`, `guarantee`, `video`, `mentorSection`, `professionalLicense` (habilite `enabled` quando necessário).
+4. Relacione `form`, `faqs`, `testimonials` e `mentors`. Esses campos já vêm com `depth:2`.
+5. Teste em `/formacoes/[slug]?preview=true` antes de publicar.
+
+---
+
+#### Eventos (`Eventos`)
+1. `title`, `slug`, `status` (draft/published/closed) e `template`.
+2. Datas (`date`, `endDate`, `duration`) + grupo `location`.
+3. Seções: `highlights`, `learnings`, `challenges`, `intelligenceTypes`, `schedule`, `tickets`.
+4. `countdown` (habilite + `targetDate`) e `video` (YouTube/upload).
+5. Relacione `mentors`, `faqs`, `testimonials` e valide a CTA (Eduzz ou formulário interno).
+
+---
+
+#### Páginas (`Pages`)
+1. `title`, `slug`, `status`.
+2. Escolha o `layout`:
+   - Layouts padrão (`default`, `hero-image`, `hero-red`) usam `hero`, `content` e `sections`.
+   - `home` ou `livros-page` habilitam o builder `pageBuilder` (blocos: `homeHero`, `formationsGrid`, `booksCatalog`, etc.).
+   - `form` precisa do grupo `form` com ID do formulário.
+3. Slugs especiais (trabalhe-conosco, lives, mes-da-independencia) estão mapeados em `payload.config.ts` — mantenha-os estáveis.
+
+---
+
+#### Livros (`Livros`)
+1. `title`, `slug`, `author`, `subtitle` e `coverImage`.
+2. `description` em rich-text, `price`, `amazonLink`, `purchaseLink`, `pages`, `publishDate`, `isbn`.
+3. `highlights` e `whatYouWillLearn` abastecem a página `/livros`.
+4. Associe `testimonials` quando houver depoimentos específicos.
+
+### Conteúdos editoriais
+
+#### Blog (`Blog`)
+1. `title`, `slug`, `status`, `excerpt`, `category`.
+2. `content` em rich-text, `coverImage`, `author`, `publishedAt`, `readingTime`.
+3. Grupo `seo` para títulos e descrições customizadas.
+4. Preview: `/blog/[slug]?preview=true`.
+
+---
+
+#### Mentores (`Mentores`)
+1. `name`, `slug`, `role`.
+2. `photo`, `bio` (rich), `shortBio`.
+3. Arrays `achievements`, `stats` e grupo `social`.
+4. Use `featured` e `order` para controlar destaque e ordenação.
+
+---
+
+#### Depoimentos (`Testimonials`)
+1. `name`, `role`, `company`, `photo`.
+2. `testimonial`, `rating` (1–5), `videoUrl` opcional.
+3. `category` (formacao, evento, livro, geral) e `order`.
+
+### Ferramentas e integrações
+
+#### FAQs (`FAQs`)
+1. `question`, `answer` em rich-text.
+2. `category` e `order`.
+3. Relacione nas Formações/Eventos através do campo `faqs`.
+
+---
+
+#### Formulários (`Forms`)
+1. `name` gera o `slug` automaticamente (pode editar).
+2. Cada entrada em `fields` define `name`, `label`, `type`, `required`, `placeholder`; adicione `options` quando for select/radio.
+3. Grupo `settings` centraliza mensagens, redirect, notificações por email, Google Sheets e webhooks.
+4. Referencie o formulário via campo `form` ou pela API `app/(website)/api/forms/[slug]`.
+
+---
+
+#### Mídia (`Media`)
+1. Faça upload de imagens, vídeos ou PDFs (conforme `mimeTypes` do schema).
+2. Sempre preencha `alt` e `caption`.
+3. Referencie nos campos `upload` das demais collections.
+
+---
+
+#### Webhooks (`Webhooks`)
+1. Defina `name`, `enabled`, `url`, `collection`, eventos e método HTTP.
+2. Campos opcionais: headers extra, `secret` para assinatura HMAC, `timeout`, `retryOnFailure`.
+3. Monitore `lastTriggered`, `lastStatus`, `lastResponse` para diagnosticar.
+
+---
+
+#### Usuários (`Users`)
+1. Crie logins com `email`, `password` e `role`.
+2. Roles: `admin` (total), `editor` (CRUD geral), `author` (apenas próprios itens).
+3. Tokens expiram em 2 horas (`tokenExpiration: 7200`); incentive troca de senha periódica.
+
+<a id="design"></a>
+## 4. Mantendo o visual do site
+
+- **Gradientes e cores**: use sempre as combinações presentes no builder (tons de vermelho #ef4444 e dourado #facc15). Nunca aplique cores fora da paleta na UI do site; o CMS já injeta os valores corretos ao preencher os campos.
+- **Tipografia e espaçamentos**: os componentes respeitam o design system automaticamente. Evite inserir HTML inline no rich-text; prefira parágrafos curtos e listas.
+- **Ícones**: quando um campo pedir `icon`, digite o nome do ícone do Lucide (ex.: `Target`, `Award`, `Shield`). O front renderiza com `renderIcon`.
+- **Imagens**: carregue arquivos em alta (mínimo 1600px de largura para heros). O componente `HeroPagesRed` aplica overlays de acordo com o template.
+
+<a id="midias"></a>
+## 5. Espaços reservados para vídeos e GIFs
+
+<div style={{ border: '1px dashed #facc15', borderRadius: '18px', padding: '1.5rem', marginBottom: '1rem', background: 'rgba(250,204,21,0.06)' }}>
+  <strong>Vídeo #1 - Tour pelo Painel:</strong> insira aqui um iframe (YouTube privado ou player interno) mostrando a navegação básica no Payload.
+</div>
+
+<div style={{ border: '1px dashed #facc15', borderRadius: '18px', padding: '1.5rem', marginBottom: '1rem', background: 'rgba(250,204,21,0.03)' }}>
+  <strong>Vídeo #2 - Criando uma Formação:</strong> espaço reservado para walkthrough guiado do template mais complexo.
+</div>
+
+<div style={{ border: '1px dashed #facc15', borderRadius: '18px', padding: '1.5rem', background: 'rgba(250,204,21,0.03)' }}>
+  <strong>GIF animado:</strong> substitua por um GIF/WEBP curto mostrando o processo de publicação (ideal &lt; 10s).
+</div>
+
+<a id="suporte"></a>
+## 6. Resolução rápida e suporte
+
+- **Preview não atualiza**: verifique se a página está marcada como `published` e recarregue com `?preview=true`. Limpe cache do navegador se necessário.
+- **Imagem não aparece**: confirme se o arquivo está publicado em `Media` e se o campo `upload` aponta para o asset (alguns campos pedem obrigatoriamente).
+- **Webhook falhou**: abra o registro em `Webhooks` e leia `lastResponse`. Ajuste URL, headers ou secret e salve novamente o conteúdo para reprocessar.
+- **Forms sem resposta**: valide o slug no componente `DynamicForm` e, se usar Google Sheets/webhook, teste o endpoint manualmente.
+- **Credenciais**: mantenha uma planilha segura com as contas criadas e roles atribuídas; nunca compartilhe o `PAYLOAD_SECRET`.
+
+---
+
+Mantêm este arquivo atualizado sempre que surgir nova collection, template ou processo editorial. Assim, o time encontra tudo em `/docs/payload-content-guide.mdx` seguindo o mesmo estilo visual do site.
+

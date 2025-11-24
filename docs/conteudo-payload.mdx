@@ -1,0 +1,259 @@
+---
+title: Guia operacional completo
+sidebar_position: 1
+description: Como atualizar conteudos pelo Payload CMS, manter o design system e planejar midias de suporte.
+---
+
+<div style={{ display: 'grid', gridTemplateColumns: '260px minmax(0, 1fr)', gap: '2rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+  <aside style={{ position: 'sticky', top: '1rem', border: '1px solid #d4af37', borderRadius: '12px', padding: '1rem', background: 'rgba(255,215,0,0.05)', boxShadow: '0 4px 14px rgba(0,0,0,0.05)' }}>
+    <h3 style={{ marginTop: 0, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Sidebar</h3>
+    <ol style={{ paddingLeft: '1.25rem', margin: 0, lineHeight: 1.5 }}>
+      <li><a href="#visao-geral">Visao geral do projeto</a></li>
+      <li><a href="#fluxo-conteudo">Fluxo de conteudo e deploy</a></li>
+      <li><a href="#setup">Setup local e scripts</a></li>
+      <li><a href="#payload-step">Step-by-step nas collections</a></li>
+      <li><a href="#design-system">Design system</a></li>
+      <li><a href="#midia">Espacos para videos e gifs</a></li>
+      <li><a href="#checklists">Checklists e observabilidade</a></li>
+    </ol>
+  </aside>
+  <div>
+    <h1 style={{ marginTop: 0 }}>Documentacao completa do projeto</h1>
+    <p>
+      Este guia consolida a operacao do site principal e do painel Payload CMS executado dentro do mesmo
+      monorepo Next.js 15 (React 19/App Router). Use-o como trilho unico para atualizar conteudo,
+      padronizar UI e planejar materiais de treinamento em video ou gif.
+    </p>
+    <p>
+      O documento cobre: arquitetura, fluxo de sincronismo, scripts, passo a passo por collection, diretrizes do design system
+      e placeholders dedicados para as midias de enablement que serao gravadas mais adiante.
+    </p>
+  </div>
+</div>
+
+<a id="visao-geral"></a>
+## 1. Visao geral do projeto
+
+- **Stack principal**: Next.js 15 com App Router (`app/(website)`), Payload CMS 3.63 rodando via `app/(payload)` e endpoint `app/(payload)/api/[...slug]/route.ts`. Persistencia em MongoDB (Atlas ou Docker local) e imagens servidas da pasta `media/`.
+- **Diretorios chave**:
+  - `app/(website)/...` contem as rotas publicas, incluindo dinamicas para `formacoes`, `eventos`, `livros`, `blog` e paginas institucionais.
+  - `app/(payload)/admin` carrega o painel do Payload com tema custom (ver `app/(payload)/custom.scss`).
+  - `collections/*.ts` definem os schemas do Payload. Cada arquivo eh refletido direta e automaticamente no painel.
+  - `components/` e `components/ui/` concentram o design system (baseado em Tailwind + shadcn + Radix).
+  - `lib/payload/client.ts` expone helpers com cache para buscar dados (usado por todas as rotas do website).
+- **Renderizacao**: rotas dinamicas usam `dynamic = 'force-dynamic'` e `revalidate = 0` quando precisamos de atualizacoes imediatas. Para templating especifico, ex.: `formacao.template` escolhe um componente em `components/formacao-templates/*`.
+- **Preview**: `payload.config.ts` habilita live preview com breakpoints (mobile/tablet/desktop). Basta abrir o documento e clicar em *Preview* dentro do admin para carregar o front-end com `?preview=true`.
+
+<a id="fluxo-conteudo"></a>
+## 2. Fluxo de conteudo e deploy
+
+1. **Edicao no Payload**: o time entra em `/admin`, seleciona a collection (ex.: `Formacoes`) e cria/edita um documento. Campos compostos possuem descricoes no painel (derivadas do schema).
+2. **Salvamento**: ao salvar, hooks `afterChange` definidos em `lib/webhook-hooks.ts` disparam `triggerWebhooks` para reprocessar caches (rebuild incremental, disparar automacoes externas, etc.).
+3. **Preview**: o mesmo documento pode ser testado com `preview=true` (flag disponivel na UI). Em paralelo, `LivePreview` injeta uma faixa amarela no front indicando modo preview.
+4. **Publicacao**: trocar `status` do documento para `published` e salvar. Como os componentes usam `dynamic = 'force-dynamic'`, a mudanca eh refletida em segundos. Em CDN (Vercel), revalidacoes ocorrem via webhooks ou `res.revalidate`.
+5. **Deploy**: para ambientes nao gerenciados, rodar `pnpm build && pnpm start` (Next) + `pnpm payload:dev` (caso necessario separar) apontando para o mesmo Mongo/variaveis de ambiente.
+
+<div style={{ border: '1px dashed #d4af37', padding: '1rem', borderRadius: '12px', background: 'rgba(255,215,0,0.08)', margin: '1.5rem 0' }}>
+  <strong>Video placeholder:</strong> reservar este bloco para um walkthrough (ex.: "Tour completo do CMS e fluxo de deploy"). Quando pronto, basta trocar por um <code>&lt;video&gt;</code> ou iframe.
+</div>
+
+<a id="setup"></a>
+## 3. Setup local e scripts de suporte
+
+1. **Variaveis**  
+   ```bash
+   cp .env.example .env.local
+   ```
+   Ajuste `MONGODB_URI`, `PAYLOAD_SECRET` e `NEXT_PUBLIC_PAYLOAD_URL`.
+
+2. **Dependencias**  
+   ```bash
+   pnpm install
+   ```
+
+3. **MongoDB**  
+   - Local: `mongod` ou `docker compose up -d mongodb` (ver `docker-compose.yml` e scripts em `scripts/setup-docker.sh`).
+   - Atlas: atualize `MONGODB_URI` com a connection string e libere o IP.
+
+4. **Seed completo**  
+   ```bash
+   pnpm payload:seed     # popula usuarios, paginas, formacoes, eventos, livros etc
+   ```
+
+5. **Ambiente de desenvolvimento**  
+   ```bash
+   pnpm dev              # serve Next.js e Payload (via /admin) na mesma porta
+   ```
+
+6. **Scripts auxiliares**  
+   - `pnpm payload:dev`: sobe somente o servidor Payload usando `server.ts`.
+   - `pnpm capture:production`: roda `scripts/capture-production-site.ts` para extrair HTML/JSON de conteudos publicados (base em `captures/`).
+   - `pnpm docker:*`: controles rapidos do banco.
+
+<a id="payload-step"></a>
+## 4. Step-by-step nas collections do Payload
+
+### 4.1 Pages (`collections/Pages.ts`)
+1. Acesse `/admin -> Pages`.
+2. Para paginas comuns, preencha `title`, `slug`, `status` e os grupos `hero`, `content` e `sections`.
+3. Para `layout = home` ou `livros-page`, use o builder em blocos (`pageBuilder`). Cada bloco corresponde a componentes como `homeHero`, `formationsGrid`, `booksCatalog`, etc.
+4. Slugs especiais (`trabalhe-conosco`, `lives`, `mes-da-independencia`, `obrigado`) possuem rotas dedicadas; confirme na tabela `specialPages` dentro de `payload.config.ts` antes de alterar o slug.
+5. Para formularios, associe `form.formId` ou use o relacionamento `sections` com `type = form` e selecione um entry em `Forms`.
+6. Salve como rascunho, teste com preview, depois publique.
+
+### 4.2 Formacoes (`collections/Formacoes.ts`)
+1. Crie ou edite o registro e mantenha `title`, `slug` e `status`.
+2. Escolha o `template` correto (ex.: `lcf-mentoring-pro`). Esse campo liga o documento ao componente correspondente em `components/formacao-templates/`.
+3. Preencha grupos principais: `hero`, `benefits`, `modules`, `pricing`, `guarantee`.
+4. Configure relacionamentos: `form` (para formulários), `faqs`, `testimonials` e `mentors`. Os componentes renderizam automaticamente o `depth:2`.
+5. Se a formacao exige secoes especiais (ex.: `mentorSection`, `professionalLicense`, `exclusiveMaterials`), basta habilitar os toggles `enabled` e completar os arrays.
+6. `video.type` aceita `youtube` (ID) ou `upload` (arquivo na collection `media`).
+7. Publicar apenas apos revisar os CTAs (`hero.ctaLink` e `pricing.link`) e garantir que `accentColor` segue o design (ver secao 5).
+
+### 4.3 Eventos (`collections/Eventos.ts`)
+1. Preencha `title`, `slug`, `status` e `template` (caso o evento tenha layout proprietario em `components/evento-templates/`).
+2. Defina `date`, `endDate`, `duration` e grupo `location`.
+3. Hero: badge, titulos, CTA e `backgroundImage`.  
+4. Configure `countdown` (habilite e defina `targetDate` quando desejar o timer).
+5. Preencha `highlights`, `learnings`, `intelligenceTypes`, `schedule` e `tickets`. Esses blocos alimentam componentes como `ticket-pricing-cards`.
+6. Conecte relacionamentos (`mentors`, `faqs`, `testimonials`).  
+7. Para videos, mesmo comportamento de Formacoes (YouTube ou upload).  
+8. Publique e valide a rota `/eventos/[slug]?preview=true`.
+
+### 4.4 Livros (`collections/Livros.ts`)
+1. `title`, `slug`, `author` (padrao: Roberto Navarro) e `subtitle`.  
+2. `coverImage` via `Media`.  
+3. Precos: `price` numerico; links `amazonLink` ou `purchaseLink`.  
+4. Campos ricos: `description`, `highlights`, `whatYouWillLearn`.  
+5. Relacione depoimentos relevantes em `testimonials`.  
+6. Publique e confirme se a pagina `/livros/[slug]` reflete o conteudo e se o kit em `/livros` traz o livro (quando `useLivrosCollection` estiver ativo).
+
+### 4.5 Blog (`collections/Blog.ts`)
+1. Cadastre `title`, `slug`, `status`, `excerpt` e `category`.  
+2. Use o editor rich-text para `content`.  
+3. `coverImage` deve estar em `Media`.  
+4. `publishedAt` controla ordenacao; `readingTime` e `author` sao opcionais.  
+5. Otimize SEO no grupo `seo`.  
+6. Preview: `/blog/[slug]?preview=true`. A camada `fallbackBlogPosts` garante imagem/autor caso nao preenchidos, mas priorize dados reais.
+
+### 4.6 Mentores (`collections/Mentores.ts`)
+1. `name`, `slug`, `role`.  
+2. `photo` (upload).  
+3. `bio` (rich-text) + `shortBio`.  
+4. Arrays `achievements` e `stats` criam highlights.  
+5. Configure `social` links e marque `featured` quando o mentor precisar aparecer primeiro. `order` controla a ordenacao global.
+
+### 4.7 Depoimentos (`collections/Testimonials.ts`)
+1. Nome, cargo, foto.  
+2. `testimonial` (textarea) e `rating` (1-5).  
+3. `videoUrl` pode receber um link externo (YouTube/Vimeo).  
+4. `category` filtra exibicao (formacao, evento, livro, geral).  
+5. `order` define a sequencia mostrada em componentes como `testimonials-section.tsx`.
+
+### 4.8 FAQs (`collections/FAQs.ts`)
+1. `question`, `answer` (rich-text).  
+2. Classifique em `category` para uso segmentado (ex.: `formacao`).  
+3. `order` organiza a lista.  
+4. Vincule FAQs a Formacoes/Eventos via relacionamento.
+
+### 4.9 Media (`collections/Media.ts`)
+1. Clique em **Media** no painel e envie imagens, videos ou PDFs (mimetipos configurados no schema).  
+2. Preencha `alt` e `caption` para acessibilidade.  
+3. O arquivo fica fisicamente em `/media`. Lembre de versionar apenas quando necessario (por padrao, o diretorio pode ser ignorado em git).
+
+### 4.10 Forms (`collections/Forms.ts`)
+1. Nome e `slug` (gerado automaticamente se vazio).  
+2. Defina cada campo no array `fields` (tipo, obrigatoriedade, placeholder).  
+3. Configure `settings`: textos de submit/sucesso, redirecionamento, notificacao por email, Google Sheets e webhook (com headers customizados).  
+4. No front-end, use o slug no componente `DynamicForm` (`components/dynamic-form.tsx`) ou nas rotas `app/(website)/api/forms/[slug]/route.ts`.  
+5. Quando usar com Formacoes/Eventos, selecione o registro no campo `form`.
+
+### 4.11 Webhooks (`collections/Webhooks.ts`)
+1. Adicione um nome claro, URL (sempre com http/https) e marque `enabled`.  
+2. Escolha `collection` e eventos que vao disparar (`afterChange`, `afterDelete`, etc.).  
+3. Opcional: configure headers, secret para assinatura HMAC e politica de retry (`retryOnFailure`, `maxRetries`).  
+4. A execucao e monitorada nos campos `lastTriggered`, `lastStatus` e `lastResponse` (somente leitura).  
+5. Evite apontar webhooks para o mesmo endpoint que atualiza a collection para nao criar loops.
+
+### 4.12 Users e permissoes (`collections/Users.ts`)
+1. Em `/admin -> Users`, crie novos logins.  
+2. Roles disponiveis: `admin` (acesso total), `editor` (CRUD global), `author` (restrito ao proprio conteudo).  
+3. Tokens expiram em 2 horas (`tokenExpiration: 7200`).  
+4. Sempre altere a senha padrao do seed (`admin@robertonavarro.com / admin123`) apos o primeiro login.
+
+<div style={{ border: '1px dashed #d4af37', padding: '1rem', borderRadius: '12px', background: 'rgba(255,215,0,0.05)', margin: '1.5rem 0' }}>
+  <strong>GIF placeholder:</strong> reservar para um loop curto demonstrando a criacao de um documento (ex.: "Atualizando uma Formacao em 60 segundos"). Substitua por um <code>&lt;img&gt;</code> animado quando estiver pronto.
+</div>
+
+<a id="design-system"></a>
+## 5. Design system do projeto
+
+1. **Tokens e tipografia**  
+   - Variaveis globais em `app/(website)/globals.css` definem `--primary`, `--secondary`, `--background`, etc.  
+   - Tailwind usa fonte `var(--font-montserrat)` (ver `tailwind.config.ts`).  
+   - Utilities custom (`.section-spacing`, `.content-spacing`, `.text-highlight`, `.fade-in-*`) padronizam ritmo e animacoes.
+
+2. **Componentes base (shadcn + Radix)**  
+   - Localizados em `components/ui/*` (accordion, dialog, button, select, etc).  
+   - Ao criar um novo componente, derive de `components/ui/button.tsx` ou `components/ui/card.tsx` para manter variacoes (usa `class-variance-authority` + `tailwind-merge`).
+
+3. **Componentes proprietarios**  
+   - `SectionBadge`, `ScrollToButton`, `EnhancedButton`, `LivePreview`, `ticket-pricing-cards`, `transformation-videos` e cada template de Formacao/Evento implementam o branding (gradientes vermelho/amarelo, overlays e glow).  
+   - `components/formacao-templates/*` e `components/evento-templates/*` consumem diretamente os campos espeficados no Payload (Hero, Modules, Pricing, etc.).
+
+4. **Cores e gradientes**  
+   - Use `text-red-400`, `from-red-500/20`, `bg-gradient-to-r` e `highlight` (#FFD700) para CTA principal.  
+   - Fundo escuro segue `bg-zinc-950` com overlays `bg-gradient-overlay` e utilitarios `.hover-glow`, `.card-hover`.
+
+5. **Iconografia**  
+   - `lucide-react` eh a fonte padrao (`components/formacoes/[slug]/page.tsx` mostra o mapeamento em `renderIcon`).  
+   - Armazene o nome do icone no Payload (ex.: `Target`, `Award`) e mantenha a classe padrao `h-6 w-6 text-red-400`.
+
+6. **Boas praticas**  
+   - Centralize estilos globais em `globals.css`; evite CSS isolado por componente salvo casos excepcionais.  
+   - Aproveite `Framer Motion` apenas quando necessario; animacoes basicas podem usar as classes `fade-in` ou `scale-in` ja definidas.  
+   - Sempre alinhe novos assets ao grid `container` (max 1400px) e use `.section-spacing` para separar secoes.
+
+<a id="midia"></a>
+## 6. Espacos reservados para videos e gifs
+
+<div style={{ border: '1px dashed #999', padding: '1rem', borderRadius: '10px', marginBottom: '1rem' }}>
+  <strong>Video 1:</strong> "Visao geral do repositório e navegacao no sidebar". Substitua este bloco por um iframe do player corporativo.
+</div>
+
+<div style={{ border: '1px dashed #999', padding: '1rem', borderRadius: '10px', marginBottom: '1rem' }}>
+  <strong>Video 2:</strong> "Atualizando colecoes com processos de aprovacao". Pode ser embed YouTube privado ou arquivo MP4.
+</div>
+
+<div style={{ border: '1px dashed #999', padding: '1rem', borderRadius: '10px', marginBottom: '1rem' }}>
+  <strong>GIF:</strong> "Tour rapido pelo design system (hover states, gradientes, badges)". Use formato WebP animado quando produzido.
+</div>
+
+<a id="checklists"></a>
+## 7. Checklists, qualidade e observabilidade
+
+- **Antes de publicar**  
+  1. Validar campos obrigatorios (slug unico, status `published`, CTAs preenchidos).  
+  2. Testar preview (`?preview=true`) e se necessario comparar com `captures/*` ou `dist/*`.
+  3. Executar smoke local (`pnpm dev`) revisitando as rotas impactadas.
+
+- **Webhooks e automacoes**  
+  - Revise `webhooks` ativos sempre que mudar endpoints externos.  
+  - Use o campo `lastResponse` para diagnosticar erros e, se preciso, reenvie manualmente salvando o documento novamente.
+
+- **Backup e captura**  
+  - `pnpm capture:production` gera HTML/JSON atualizados em `captures/` para auditoria.  
+  - Mantenha `components.json` e `content-extraction/*` atualizados quando novos componentes entrar em producao.
+
+- **Seguranca**  
+  - Troque senhas de usuarios seed e use `.env.local` fora do versionamento.  
+  - Nunca exponha `PAYLOAD_SECRET` no front; apenas `NEXT_PUBLIC_PAYLOAD_URL` eh seguro.
+
+- **Monitoramento continuo**  
+  - Ative `LivePreview` no painel para detectar regressao de layout imediatamente.  
+  - Utilize `FloatingWhatsApp`, `LeadCapturePopup` e outros componentes apenas quando os dados referenciados estiverem publicados para evitar estados inconsistentes.
+
+---
+
+Este arquivo deve acompanhar cada entrega. Atualize-o sempre que um novo template, componente ou fluxo editorial for adicionado ao projeto.
+
