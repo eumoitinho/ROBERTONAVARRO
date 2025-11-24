@@ -6,15 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "studio": "sanity dev --host 0.0.0.0"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
     "@hookform/resolvers": "latest",
     "@neondatabase/serverless": "latest",
   "@next/third-parties": "^14.2.7",
-    "@portabletext/react": "^4.0.3",
     "@radix-ui/react-accordion": "latest",
     "@radix-ui/react-alert-dialog": "latest",
     "@radix-ui/react-aspect-ratio": "latest",
