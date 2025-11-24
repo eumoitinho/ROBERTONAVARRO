@@ -50,8 +50,10 @@ const sheetVariants = cva(
 )
 
 interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
+  extends Omit<React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, 'style'>,
+    VariantProps<typeof sheetVariants> {
+  style?: React.CSSProperties & Record<string, string>;
+}
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
   ({ side = "right", className, children, ...props }, ref) => (
