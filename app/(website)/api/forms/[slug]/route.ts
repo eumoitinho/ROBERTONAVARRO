@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayloadClient } from '@/lib/payload/client'
+import { submitLead, LeadData } from '@/lib/actions'
 
 export async function POST(
   request: NextRequest,
@@ -66,7 +67,41 @@ export async function POST(
       submission,
     })
 
-    // Enviar para Google Sheets se configurado
+    // Verificar se tem webhook customizado configurado no Payload
+    const hasCustomWebhook = form.settings?.webhook?.enabled && form.settings.webhook.url
+
+    // Se NÃO tem webhook customizado, usar submitLead como fallback (Kommo + Google Sheets + LeadLovers)
+    if (!hasCustomWebhook) {
+      const leadData: LeadData = {
+        name: body.name || body.nome || '',
+        email: body.email || '',
+        phone: body.phone || body.telefone || body.whatsapp || '',
+        source: form.name || form.slug || 'Payload Form',
+        utm_source: body.utm_source,
+        utm_medium: body.utm_medium,
+        utm_campaign: body.utm_campaign,
+        utm_term: body.utm_term,
+        utm_content: body.utm_content,
+        page_url: body.page_url,
+        user_agent: submission.userAgent,
+      }
+
+      // Enviar para webhooks padrão (Kommo, Google Sheets, LeadLovers)
+      if (leadData.name || leadData.email || leadData.phone) {
+        try {
+          console.log('📤 Enviando lead via submitLead (sem webhook customizado):', { source: leadData.source, email: leadData.email })
+          const leadResult = await submitLead(leadData)
+          console.log('✅ Lead enviado via submitLead:', leadResult.success ? 'sucesso' : 'falha')
+        } catch (leadError) {
+          console.error('❌ Erro ao enviar lead via submitLead:', leadError)
+          // Não falhar a requisição se o lead falhar
+        }
+      }
+    } else {
+      console.log('🔗 Form tem webhook customizado configurado, pulando submitLead')
+    }
+
+    // Enviar para Google Sheets se configurado (adicional, além do webhook)
     if (form.settings?.googleSheets?.enabled && form.settings.googleSheets.scriptUrl) {
       try {
         const sheetUrl = form.settings.googleSheets.scriptUrl

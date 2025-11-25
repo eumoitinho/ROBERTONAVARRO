@@ -184,14 +184,7 @@ const Forms: CollectionConfig = {
               type: 'text',
               label: 'Email Destinatário',
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa
-                  return data?.settings?.emailNotifications?.enabled === true
-                },
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
               },
             },
             {
@@ -199,14 +192,7 @@ const Forms: CollectionConfig = {
               type: 'text',
               label: 'Assunto do Email',
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa
-                  return data?.settings?.emailNotifications?.enabled === true
-                },
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
               },
             },
           ],
@@ -229,16 +215,8 @@ const Forms: CollectionConfig = {
               name: 'scriptUrl',
               type: 'text',
               label: 'URL do Google Apps Script',
-              required: false,
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa
-                  return data?.settings?.googleSheets?.enabled === true
-                },
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
                 description: 'URL do Google Apps Script que adiciona dados à planilha. Ex: https://script.google.com/macros/s/SEU_SCRIPT_ID/exec',
               },
             },
@@ -246,16 +224,8 @@ const Forms: CollectionConfig = {
               name: 'sheetName',
               type: 'text',
               label: 'Nome da Planilha (Opcional)',
-              required: false,
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa
-                  return data?.settings?.googleSheets?.enabled === true
-                },
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
                 description: 'Nome da aba da planilha (opcional, deixa em branco para usar a primeira aba)',
               },
             },
@@ -272,24 +242,16 @@ const Forms: CollectionConfig = {
               label: 'Habilitar Webhook',
               defaultValue: false,
               admin: {
-                description: 'Enviar dados do formulário para uma URL externa',
+                description: 'Enviar dados do formulário para uma URL externa (Kommo, Google Sheets, etc)',
               },
             },
             {
               name: 'url',
               type: 'text',
               label: 'URL do Webhook',
-              required: false,
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa (para casos de carregamento)
-                  return data?.settings?.webhook?.enabled === true
-                },
-                description: 'URL completa do webhook (ex: https://api.exemplo.com/webhook ou URL do Google Apps Script)',
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
+                description: 'URL completa do webhook (ex: https://data.widgets.wearekwid.com/api/webhook/...)',
               },
             },
             {
@@ -303,14 +265,7 @@ const Forms: CollectionConfig = {
                 { label: 'PATCH', value: 'PATCH' },
               ],
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa
-                  return data?.settings?.webhook?.enabled === true
-                },
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
               },
             },
             {
@@ -318,14 +273,7 @@ const Forms: CollectionConfig = {
               type: 'array',
               label: 'Headers Customizados',
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa
-                  return data?.settings?.webhook?.enabled === true
-                },
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
                 description: 'Headers adicionais para enviar com o webhook (ex: Authorization)',
               },
               fields: [
@@ -333,13 +281,11 @@ const Forms: CollectionConfig = {
                   name: 'key',
                   type: 'text',
                   label: 'Chave',
-                  required: true,
                 },
                 {
                   name: 'value',
                   type: 'text',
                   label: 'Valor',
-                  required: true,
                 },
               ],
             },
@@ -349,14 +295,7 @@ const Forms: CollectionConfig = {
               label: 'Timeout (segundos)',
               defaultValue: 10,
               admin: {
-                condition: (data, siblingData) => {
-                  // Verificar no siblingData (mesmo grupo) primeiro
-                  if (siblingData && typeof siblingData.enabled === 'boolean') {
-                    return siblingData.enabled === true
-                  }
-                  // Fallback para data completa
-                  return data?.settings?.webhook?.enabled === true
-                },
+                condition: (_data, siblingData) => Boolean(siblingData?.enabled),
                 description: 'Tempo máximo de espera pela resposta do webhook',
               },
             },

@@ -46,9 +46,12 @@ const WEBHOOK_URLS: Record<string, string> = {
   "segredos-da-mente-milionaria": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
   "Segredos da Mente Milionária": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
   
-  // Educador Financeiro
+  // Educador Financeiro (várias variações para garantir match)
   "educador-financeiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
   "Educador Financeiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
+  "Formação Educador Financeiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
+  "formacao-educador-financeiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
+  "Newsletter Educador Financeiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
 
   // Botão WhatsApp genérico (webhook padrão)
   "Botão WhatsApp": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
@@ -57,17 +60,47 @@ const WEBHOOK_URLS: Record<string, string> = {
 
 /**
  * Determina o webhook correto baseado na origem do lead
+ * Faz match exato primeiro, depois busca por substring
  */
 function getWebhookUrl(source: string): string {
   // Normaliza o source para comparação
   const normalizedSource = source.toLowerCase().trim()
-  
-  // Verifica se há um webhook específico para esse source
-  const webhookUrl = WEBHOOK_URLS[source] || WEBHOOK_URLS[normalizedSource] || WEBHOOK_URLS["default"]
-  
-  console.log(`[Webhook] Source: "${source}" -> URL: ${webhookUrl.substring(0, 60)}...`)
-  
-  return webhookUrl
+
+  // 1. Tentar match exato primeiro
+  if (WEBHOOK_URLS[source]) {
+    console.log(`[Webhook] Match exato: "${source}"`)
+    return WEBHOOK_URLS[source]
+  }
+
+  if (WEBHOOK_URLS[normalizedSource]) {
+    console.log(`[Webhook] Match normalizado: "${normalizedSource}"`)
+    return WEBHOOK_URLS[normalizedSource]
+  }
+
+  // 2. Tentar buscar por substring (ex: "Newsletter Educador Financeiro" contém "educador-financeiro")
+  for (const [key, url] of Object.entries(WEBHOOK_URLS)) {
+    if (key === 'default') continue
+    const normalizedKey = key.toLowerCase().replace(/\s+/g, '-')
+
+    // Verifica se o source contém a key ou vice-versa
+    if (normalizedSource.includes(normalizedKey) || normalizedKey.includes(normalizedSource.replace(/\s+/g, '-'))) {
+      console.log(`[Webhook] Match substring: "${source}" matched with "${key}"`)
+      return url
+    }
+
+    // Verifica palavras-chave específicas
+    if (normalizedSource.includes('educador') && normalizedSource.includes('financeiro') && key.toLowerCase().includes('educador')) {
+      console.log(`[Webhook] Match keyword educador-financeiro: "${source}"`)
+      return url
+    }
+    if (normalizedSource.includes('empreendedor') && normalizedSource.includes('inteligente') && key.toLowerCase().includes('empreendedor')) {
+      console.log(`[Webhook] Match keyword empreendedor-inteligente: "${source}"`)
+      return url
+    }
+  }
+
+  console.log(`[Webhook] Usando default para: "${source}"`)
+  return WEBHOOK_URLS["default"]
 }
 
 // Função principal para enviar leads
