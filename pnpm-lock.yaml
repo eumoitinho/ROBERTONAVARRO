@@ -249,9 +249,6 @@ importers:
         specifier: latest
         version: 4.1.11
     devDependencies:
-      '@next/swc-linux-x64-gnu':
-        specifier: ^15.0.0
-        version: 15.5.6
       '@types/express':
         specifier: ^5.0.5
         version: 5.0.5
@@ -6881,7 +6878,8 @@ snapshots:
   '@next/swc-linux-arm64-musl@15.5.6':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.5.6': {}
+  '@next/swc-linux-x64-gnu@15.5.6':
+    optional: true
 
   '@next/swc-linux-x64-musl@15.5.6':
     optional: true
