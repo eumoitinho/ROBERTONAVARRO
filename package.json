@@ -104,7 +104,6 @@
     "zod": "latest"
   },
   "devDependencies": {
-    "@next/swc-linux-x64-gnu": "^15.0.0",
     "@types/express": "^5.0.5",
     "@types/node": "^22",
     "@types/qrcode": "^1.5.5",

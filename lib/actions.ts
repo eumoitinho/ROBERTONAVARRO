@@ -46,7 +46,12 @@ const WEBHOOK_URLS: Record<string, string> = {
   "segredos-da-mente-milionaria": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
   "Segredos da Mente Milionária": "https://data.widgets.wearekwid.com/api/webhook/34323419/e715464a9cabe0d1c2047e54a708cb11ddba56af552318e8def5181ecbc3d0ea",
   
-  // Educador Financeiro (webhook padrão)
+  // Educador Financeiro
+  "educador-financeiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
+  "Educador Financeiro": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
+
+  // Botão WhatsApp genérico (webhook padrão)
+  "Botão WhatsApp": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde",
   "default": "https://data.widgets.wearekwid.com/api/webhook/34323419/d06a4f8eeb692a9d94eb7e6b7be9273d2d28e300b793b4fc77440af834dd7dde"
 }
 
