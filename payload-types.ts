@@ -541,11 +541,11 @@ export interface Form {
     };
     webhook?: {
       /**
-       * Enviar dados do formulário para uma URL externa
+       * Enviar dados do formulário para uma URL externa (Kommo, Google Sheets, etc)
        */
       enabled?: boolean | null;
       /**
-       * URL completa do webhook (ex: https://api.exemplo.com/webhook ou URL do Google Apps Script)
+       * URL completa do webhook (ex: https://data.widgets.wearekwid.com/api/webhook/...)
        */
       url?: string | null;
       method?: ('POST' | 'PUT' | 'PATCH') | null;
@@ -554,8 +554,8 @@ export interface Form {
        */
       headers?:
         | {
-            key: string;
-            value: string;
+            key?: string | null;
+            value?: string | null;
             id?: string | null;
           }[]
         | null;
@@ -819,7 +819,22 @@ export interface Livro {
   id: string;
   title: string;
   slug: string;
+  status: 'draft' | 'published' | 'archived';
+  /**
+   * Ex: LIVRO EQUILIBRADOR, LIVRO IMPRESSO, LIVRO TRANSFORMADOR
+   */
+  bookTag?: string | null;
+  accentColor?: ('gold' | 'red' | 'green' | 'orange' | 'blue') | null;
   author?: string | null;
+  /**
+   * Texto sobre o autor que aparecerá na seção do autor
+   */
+  authorBio?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  authorImage?: (string | null) | Media;
   subtitle?: string | null;
   description?:
     | {
@@ -828,24 +843,88 @@ export interface Livro {
     | null;
   coverImage?: (string | null) | Media;
   price?: number | null;
+  /**
+   * Se preenchido, mostrará o preço original riscado com desconto
+   */
+  originalPrice?: number | null;
   amazonLink?: string | null;
   purchaseLink?: string | null;
+  ctaText?: string | null;
+  technicalSpecs?: {
+    publisher?: string | null;
+    year?: number | null;
+    /**
+     * Ex: 16x23 cm
+     */
+    dimensions?: string | null;
+    language?: string | null;
+  };
   pages?: number | null;
   publishDate?: string | null;
   isbn?: string | null;
+  whatYouWillLearn?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        icon?:
+          | ('brain' | 'target' | 'rocket' | 'stairs' | 'atom' | 'gear' | 'heart' | 'star' | 'shield' | 'book')
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  whyEssential?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        icon?:
+          | (
+              | 'user'
+              | 'scale'
+              | 'target'
+              | 'users'
+              | 'dollar'
+              | 'chart'
+              | 'heart'
+              | 'trending'
+              | 'search'
+              | 'brain'
+              | 'check'
+              | 'shield'
+            )
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Campo legado - use "Por que este livro é essencial" para novos livros
+   */
   highlights?:
     | {
         text?: string | null;
         id?: string | null;
       }[]
     | null;
-  whatYouWillLearn?:
-    | {
-        text?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  /**
+   * Seção "Mais que um livro, uma ferramenta de transformação"
+   */
+  transformationSection?: {
+    enabled?: boolean | null;
+    title?: string | null;
+    benefits?:
+      | {
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   testimonials?: (string | Testimonial)[] | null;
+  rating?: {
+    /**
+     * Nota de 0 a 5 (ex: 4.95)
+     */
+    score?: number | null;
+    count?: number | null;
+  };
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -1873,29 +1952,72 @@ export interface EventosSelect<T extends boolean = true> {
 export interface LivrosSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  status?: T;
+  bookTag?: T;
+  accentColor?: T;
   author?: T;
+  authorBio?: T;
+  authorImage?: T;
   subtitle?: T;
   description?: T;
   coverImage?: T;
   price?: T;
+  originalPrice?: T;
   amazonLink?: T;
   purchaseLink?: T;
+  ctaText?: T;
+  technicalSpecs?:
+    | T
+    | {
+        publisher?: T;
+        year?: T;
+        dimensions?: T;
+        language?: T;
+      };
   pages?: T;
   publishDate?: T;
   isbn?: T;
+  whatYouWillLearn?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  whyEssential?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
   highlights?:
     | T
     | {
         text?: T;
         id?: T;
       };
-  whatYouWillLearn?:
+  transformationSection?:
     | T
     | {
-        text?: T;
-        id?: T;
+        enabled?: T;
+        title?: T;
+        benefits?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
       };
   testimonials?: T;
+  rating?:
+    | T
+    | {
+        score?: T;
+        count?: T;
+      };
   seo?:
     | T
     | {

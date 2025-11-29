@@ -1025,7 +1025,224 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
   })
 
-  // 7. ROTA MIND
+  // 7. MENTOR COACHING FINANCEIRO
+  await createOrUpdateFormacao('mentor-coaching-financeiro', {
+    title: 'Mentor Coaching Financeiro',
+    slug: 'mentor-coaching-financeiro',
+    status: 'published',
+    template: 'mentor-coaching-financeiro',
+    accentColor: '#FFD700',
+    hero: {
+      badge: 'FORMAÇÃO COMPLETA',
+      title: 'Transformamos profissionais em verdadeiros geradores de riqueza',
+      subtitle: '',
+      description: [
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Aprenda a instalar a inteligência financeira na sua vida e aumentar sua renda, com estratégias comprovadas.',
+            },
+          ],
+        },
+      ],
+      backgroundImage: '/images/HERO_EDUCADOR.png',
+      ctaText: 'ESTOU PRONTO PARA MUDAR MINHA VIDA!',
+      ctaLink: '#inscricao',
+    },
+    challenges: [
+      { text: 'O paradoxo da escolha financeira: com tantas opções de investimento e estratégias, você fica paralisado, adiando decisões importantes ou tomando decisões baseadas em emoção, não em inteligência.' },
+      { text: 'A prisão do padrão de vida: você se tornou refém de um estilo de vida que consome praticamente toda sua renda, deixando pouco espaço para construção real de patrimônio.' },
+      { text: 'O medo do próximo nível: subconscientemente, você sabota suas próprias oportunidades de crescimento financeiro porque não se sente "merecedor" ou tem medo das responsabilidades.' },
+      { text: 'A dependência da renda ativa: você está completamente dependente do seu trabalho para manter seu padrão de vida, sem verdadeira liberdade ou segurança financeira.' },
+    ],
+    methodology: {
+      enabled: true,
+      badge: 'MENTOR COACHING FINANCEIRO',
+      title: 'A metodologia que vai reprogramar sua relação com o dinheiro',
+      description: 'O Mentor Coaching Financeiro é resultado de mais de uma década de pesquisa e aplicação prática com milhares de alunos. É a síntese de tudo que Roberto Navarro descobriu sobre como pessoas realmente bem-sucedidas pensam, sentem e agem em relação ao dinheiro.',
+      highlight: 'Esta não é mais uma formação sobre "como investir" ou "como controlar gastos".',
+      explanation: 'Este é um processo de transformação profunda que ataca a raiz do problema: sua programação inconsciente sobre dinheiro, sucesso e merecimento.',
+    },
+    learnings: [
+      {
+        title: 'Anamnese financeira profunda',
+        description: 'Faça uma análise cirúrgica de sua relação com o dinheiro, identificando crenças limitantes profundamente enraizadas que sabotam seu crescimento financeiro.',
+      },
+      {
+        title: 'Inteligência financeira automática',
+        description: 'Desenvolva a capacidade de tomar decisões financeiras com a clareza de um investidor profissional e construa um senso financeiro aguçado que guiará suas decisões.',
+      },
+      {
+        title: 'Ampliação de seu potencial financeiro',
+        description: 'Mude literalmente sua identidade financeira, permitindo que níveis superiores de riqueza se manifestem naturalmente em sua vida.',
+      },
+      {
+        title: 'Potes da Riqueza',
+        description: 'Descubra como estruturar suas finanças para que o dinheiro trabalhe para você, criando múltiplas fontes de renda passiva e ativa.',
+      },
+      {
+        title: 'Blindagem contra o consumo desnecessário',
+        description: 'Aprenda a identificar e neutralizar os gatilhos psicológicos que levam ao consumo impulsivo e ao desperdício de recursos.',
+      },
+      {
+        title: 'Estratégias de multiplicação de renda',
+        description: 'Descubra como aumentar sua capacidade de geração de renda, criando novas oportunidades de renda e expandindo suas possibilidades financeiras.',
+      },
+    ],
+    targetAudience: [
+      {
+        title: 'Empresários e empreendedores de sucesso',
+        description: 'Que já construíram negócios rentáveis, mas sentem que poderiam otimizar muito melhor seus recursos e criar riqueza real a partir dos resultados do negócio.',
+      },
+      {
+        title: 'Executivos e profissionais liberais',
+        description: 'Médicos, advogados, consultores, engenheiros e outros profissionais que querem transformar sua renda em patrimônio sólido e liberdade financeira.',
+      },
+      {
+        title: 'Investidores e gestores de patrimônio',
+        description: 'Que já possuem conhecimento técnico sobre investimentos, mas querem desenvolver a mentalidade dos verdadeiros criadores de riqueza.',
+      },
+      {
+        title: 'Servidores públicos',
+        description: 'Que possuem estabilidade e renda consistente e querem maximizar seu potencial de construção de patrimônio.',
+      },
+      {
+        title: 'Profissionais de marketing e consultoria',
+        description: 'Que já dominam as técnicas de geração de renda online mas querem estruturar sua vida financeira como verdadeiros empresários.',
+      },
+    ],
+    mentorSection: {
+      enabled: true,
+      badge: 'MENTOR',
+      title: 'APRENDA COM O MENTOR DOS MENTORES',
+      subtitle: 'O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil!',
+      mentorName: 'Roberto Navarro',
+      bio: [
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Roberto Navarro é um exemplo de superação e transformação. Começou sua trajetória profissional lavando vidros de carros aos 13 anos e, com determinação, se tornou multimilionário em menos de sete anos.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Atualmente, é reconhecido como o maior Educador Financeiro do Brasil e criador do Coach Financeiro no país. Sua metodologia exclusiva combina estratégias de educação financeira, inteligência emocional e princípios bíblicos.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Ao longo de sua trajetória, já impactou mais de 1,5 milhão de alunos no Brasil e no mundo.',
+            },
+          ],
+        },
+      ],
+      ctaText: 'ESTOU PRONTO PARA MUDAR MINHA VIDA!',
+    },
+    results: [
+      {
+        title: 'Clareza total',
+        description: 'Você saberá exatamente onde quer chegar financeiramente e terá um plano claro para isso.',
+      },
+      {
+        title: 'Inteligência financeira automática',
+        description: 'Suas decisões financeiras se tornarão naturalmente mais inteligentes e estratégicas.',
+      },
+      {
+        title: 'Múltiplas fontes de renda',
+        description: 'Você desenvolverá a capacidade de identificar e criar novas oportunidades de renda.',
+      },
+      {
+        title: 'Proteção contra crises',
+        description: 'Sua estrutura financeira será blindada contra oscilações econômicas e crises setoriais.',
+      },
+      {
+        title: 'Legado familiar',
+        description: 'Você construirá não apenas riqueza para si, mas um patrimônio que beneficiará as próximas gerações.',
+      },
+      {
+        title: 'Liberdade real',
+        description: 'Tenha mais opções e não dependa mais de uma única fonte de renda para manter seu padrão de vida.',
+      },
+    ],
+    specialGuarantee: {
+      title: '6 meses para experimentar uma mudança real',
+      description: [
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Ao se inscrever no Mentor Coaching Financeiro, você conta com uma garantia incondicional de 6 meses. Aplique o método, veja resultados reais na sua vida financeira ou receba o dobro do seu dinheiro de volta!',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Isso mesmo: se em até 6 meses você sentir que não teve nenhum avanço, nós devolvemos duas vezes o valor pago, sem letras miúdas.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Essa não é só uma garantia. É a nossa forma de mostrar que acreditamos profundamente no que fazemos – e no seu potencial de mudança.',
+            },
+          ],
+        },
+      ],
+    },
+    decisionPaths: [
+      {
+        title: 'Continue como está',
+        description: 'Mantenha os mesmos padrões, as mesmas limitações e os mesmos resultados. Daqui a 5 anos, você provavelmente estará na mesma situação financeira, apenas um pouco mais velho e com mais arrependimentos.',
+      },
+      {
+        title: 'Tente sozinho',
+        description: 'Continue tentando descobrir por conta própria, cometendo os mesmos erros que a maioria comete, desperdiçando anos valiosos em tentativa e erro.',
+      },
+      {
+        title: 'Acelere sua transformação',
+        description: 'Invista em uma metodologia comprovada, com a mentoria de quem já percorreu este caminho e comprovou que é possível transformar completamente sua vida financeira em meses.',
+      },
+    ],
+    decisionPathsNote: 'Quanto vale ter a tranquilidade de saber que suas decisões financeiras estão alinhadas com seu potencial máximo?',
+    pricing: {
+      price: 4997,
+      installments: 12,
+      installmentValue: 497,
+      link: '#inscricao',
+    },
+    guarantee: {
+      days: 180,
+      description: [
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Satisfação garantida ou seu dinheiro de volta. 6 meses para experimentar uma mudança real. Se não obtiver resultados, devolvemos o dobro do seu investimento.',
+            },
+          ],
+        },
+      ],
+    },
+    seo: {
+      title: 'Mentor Coaching Financeiro - Transforme-se em Gerador de Riqueza | Roberto Navarro',
+      description: 'Aprenda a instalar a inteligência financeira na sua vida e aumentar sua renda, com estratégias comprovadas. Transformamos profissionais em verdadeiros geradores da riqueza.',
+      keywords: 'mentor coaching financeiro, coaching financeiro, roberto navarro, inteligência financeira, gerador de riqueza',
+    },
+  })
+
+  // 8. ROTA MIND
   await createOrUpdateFormacao('rota-mind', {
     title: 'Rota Mind',
     slug: 'rota-mind',
