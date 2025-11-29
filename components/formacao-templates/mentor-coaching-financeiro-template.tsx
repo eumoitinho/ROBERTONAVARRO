@@ -4,13 +4,31 @@ import { SiteHeader } from '@/components/header'
 import Footer from '@/components/footer'
 import WhatsAppButton from '@/components/whatsapp-button'
 import { NewsletterFormacoes } from '@/components/newsletter-formacoes'
-import HeroPages from '@/components/hero-pages'
 import DynamicForm from '@/components/dynamic-form'
 import ScrollToButton from '@/components/scroll-to-button'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { CheckCircle, Target, ArrowRight, Shield, TrendingUp, Zap, Users, DollarSign, Brain, AlertTriangle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import {
+  CheckCircle,
+  Target,
+  ArrowRight,
+  Shield,
+  TrendingUp,
+  Zap,
+  Users,
+  DollarSign,
+  Brain,
+  AlertTriangle,
+  Star,
+  Sparkles,
+  Infinity,
+  BarChart3,
+  BadgeCheck,
+  Diamond,
+} from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface MentorCoachingFinanceiroTemplateProps {
   formacao: any
@@ -55,29 +73,97 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
       DollarSign,
       Brain,
       AlertTriangle,
+      Star,
+      Sparkles,
+      Infinity,
+      BarChart3,
+      Diamond,
     }
     const IconComponent = iconMap[iconName] || Target
     return <IconComponent className={className} />
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 text-white">
+    <div className="min-h-screen bg-zinc-950 text-white">
       <SiteHeader navigationItems={navigationItems} showInicio={true} />
 
-      {/* Hero Section */}
-      <HeroPages
-        title={formacao.hero?.title || formacao.title}
-        secondtitle={formacao.hero?.subtitle || ''}
-        subtitle="Roberto Navarro"
-        description={typeof formacao.hero?.description === 'string' ? formacao.hero.description : undefined}
-        image={
-          typeof formacao.hero?.backgroundImage === 'object' && formacao.hero?.backgroundImage?.url
-            ? formacao.hero.backgroundImage.url
-            : '/images/HERO_EDUCADOR.png'
-        }
-        ctaText={formacao.hero?.ctaText || 'ESTOU PRONTO PARA MUDAR MINHA VIDA!'}
-        ctaHref={formacao.hero?.ctaLink || '#inscricao'}
-      />
+      {/* Hero Section - Customizado para Mentor Coaching Financeiro */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-zinc-900 to-zinc-950 z-0"></div>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent"></div>
+
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={
+              typeof formacao.hero?.backgroundImage === 'object' && formacao.hero?.backgroundImage?.url
+                ? formacao.hero.backgroundImage.url
+                : '/images/HERO_EDUCADOR.png'
+            }
+            alt="Mentor Coaching Financeiro"
+            fill
+            className="object-cover mt-24"
+            style={{ objectPosition: 'center' }}
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black from-30% via-black/80 via-60% to-black/40"></div>
+        </div>
+
+        {/* Glow Effects */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500/10 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-yellow-600/10 rounded-full filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              {/* Tag */}
+              <div className="inline-flex items-center gap-2 bg-yellow-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full py-2 px-4 mb-6">
+                <span className="flex h-2 w-2 rounded-full bg-yellow-400 animate-pulse"></span>
+                <span className="text-sm font-medium text-yellow-300">FORMAÇÃO COMPLETA</span>
+              </div>
+
+              {/* Title */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
+                  Transformamos profissionais
+                </span>{' '}
+                em verdadeiros geradores de riqueza
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-xl text-zinc-300 mb-8 max-w-xl">
+                {typeof formacao.hero?.description === 'string'
+                  ? formacao.hero.description
+                  : 'A metodologia que vai reprogramar sua relação com o dinheiro e transformar você em um gerador de riqueza.'}
+              </p>
+
+              {/* CTA Button */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Button
+                  asChild
+                  className="cta-hover bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-semibold rounded-full px-8 py-6 text-base"
+                >
+                  <Link href={formacao.hero?.ctaLink || '#inscricao'}>
+                    {formacao.hero?.ctaText || 'VER DETALHES PARA QUEM QUER FAZER PARTE'} <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Rating */}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <span className="text-zinc-300">
+                  +10.000 profissionais formados
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* About Section - TRANSFORME SUA VIDA */}
       <section id="sobre" className="py-20 relative overflow-hidden">
@@ -214,27 +300,28 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {formacao.learnings.map((learning: any, index: number) => (
-                <div
-                  key={index}
-                  className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="h-6 w-6 text-yellow-400" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {formacao.learnings.map((learning: any, index: number) => {
+                // Ícones variados para cada aprendizado
+                const learningIcons = [Diamond, DollarSign, Brain, TrendingUp, Shield, Target]
+                const IconComponent = learningIcons[index % learningIcons.length]
+                return (
+                  <div
+                    key={index}
+                    className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2"
+                  >
+                    <div className="bg-yellow-500/20 rounded-full p-3 w-14 h-14 flex items-center justify-center mb-4">
+                      <IconComponent className="h-7 w-7 text-yellow-400" />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-yellow-400">
-                        {typeof learning === 'object' ? learning.title : learning.text?.split('\n')[0] || 'Aprendizado'}
-                      </h3>
-                      <p className="text-zinc-300">
-                        {typeof learning === 'object' ? learning.description : learning.text?.split('\n').slice(1).join(' ') || learning.text}
-                      </p>
-                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-yellow-400">
+                      {typeof learning === 'object' ? learning.title : learning.text?.split('\n')[0] || 'Aprendizado'}
+                    </h3>
+                    <p className="text-zinc-300">
+                      {typeof learning === 'object' ? learning.description : learning.text?.split('\n').slice(1).join(' ') || learning.text}
+                    </p>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
@@ -370,26 +457,31 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {formacao.results.map((result: any, index: number) => (
-                <div
-                  key={index}
-                  className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="bg-zinc-800 rounded-full p-3 w-12 h-12 flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="h-6 w-6 text-yellow-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-yellow-400">
-                        {typeof result === 'object' ? result.title : result.text?.split('\n')[0] || 'Resultado'}
-                      </h3>
-                      <p className="text-zinc-300">
-                        {typeof result === 'object' ? result.description : result.text?.split('\n').slice(1).join(' ') || result.text}
-                      </p>
+              {formacao.results.map((result: any, index: number) => {
+                // Ícones específicos para cada resultado
+                const resultIcons = [Star, Infinity, BarChart3, Sparkles, Users, BadgeCheck]
+                const IconComponent = resultIcons[index % resultIcons.length]
+                return (
+                  <div
+                    key={index}
+                    className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="bg-yellow-500/20 rounded-full p-3 w-14 h-14 flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="h-7 w-7 text-yellow-400" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold mb-2 text-yellow-400">
+                          {typeof result === 'object' ? result.title : result.text?.split('\n')[0] || 'Resultado'}
+                        </h3>
+                        <p className="text-zinc-300">
+                          {typeof result === 'object' ? result.description : result.text?.split('\n').slice(1).join(' ') || result.text}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
