@@ -27,10 +27,28 @@ export default async function HomePage() {
     homePage = null
   }
 
+  // Helper para extrair texto de richText
+  const extractText = (richText: any): string => {
+    if (!richText) return ''
+    if (typeof richText === 'string') return richText
+    if (Array.isArray(richText)) {
+      return richText
+        .map((block: any) => {
+          if (block.children) {
+            return block.children.map((child: any) => child.text || '').join('')
+          }
+          return ''
+        })
+        .join(' ')
+        .trim()
+    }
+    return ''
+  }
+
   const formationsItems = formacoes.length > 0
     ? formacoes.map((formacao: any) => ({
         title: formacao.title,
-        description: formacao.hero?.subtitle || formacao.hero?.description || 'Descrição da formação',
+        description: formacao.hero?.subtitle || extractText(formacao.hero?.description) || 'Descrição da formação',
         link: `/formacoes/${formacao.slug}`,
       }))
     : [
