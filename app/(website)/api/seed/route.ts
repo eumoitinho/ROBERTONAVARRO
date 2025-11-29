@@ -598,6 +598,7 @@ export async function POST(req: NextRequest) {
       data: {
         title: 'A Arte de Enriquecer',
         slug: 'arte-de-enriquecer',
+        status: 'published',
         author: 'Roberto Navarro',
         subtitle: 'Os princípios atemporais da riqueza',
         description: [
