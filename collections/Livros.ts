@@ -25,6 +25,18 @@ const Livros: CollectionConfig = {
       unique: true,
     },
     {
+      name: 'status',
+      type: 'select',
+      label: 'Status',
+      options: [
+        { label: 'Rascunho', value: 'draft' },
+        { label: 'Publicado', value: 'published' },
+        { label: 'Arquivado', value: 'archived' },
+      ],
+      defaultValue: 'draft',
+      required: true,
+    },
+    {
       name: 'author',
       type: 'text',
       label: 'Autor',

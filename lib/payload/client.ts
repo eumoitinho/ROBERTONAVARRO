@@ -149,6 +149,11 @@ export async function getLivros() {
   const payload = await getPayloadClient()
   const result = await payload.find({
     collection: 'livros',
+    where: {
+      status: {
+        equals: 'published',
+      },
+    },
   })
   return result.docs
 }
