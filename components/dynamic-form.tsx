@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Loader2, CheckCircle2 } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn, getBrowserInfo, getUTMParameters } from '@/lib/utils'
 
 interface FormField {
   name: string
@@ -152,12 +152,20 @@ export default function DynamicForm({ formSlug, accent = 'red', className }: Dyn
     setErrors({})
 
     try {
+      const utmParams = getUTMParameters()
+      const browserInfo = getBrowserInfo()
+      const source = form?.name || form?.slug || formSlug
       const response = await fetch(`/api/forms/${formSlug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          source,
+          ...utmParams,
+          ...browserInfo,
+        }),
       })
 
       const result = await response.json()
@@ -398,4 +406,3 @@ export default function DynamicForm({ formSlug, accent = 'red', className }: Dyn
     </form>
   )
 }
-

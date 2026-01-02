@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-
-// URL do Google Apps Script para adicionar na planilha
-const GOOGLE_APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbx4s6y8Y8RUhqwW1ICXMtG952oe8DbDQGp8ZvK85jRylwlAD6pCBuldkyCuJGWO5-KrzQ/exec"
+import { submitLead } from "@/lib/actions"
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,43 +16,23 @@ export async function POST(request: NextRequest) {
 
     console.log("Novo lead capturado:", { name, email, phone, source })
 
-    // Enviar para Google Sheets
-    try {
-      const payload = {
-        name: name,
-        email: email,
-        phone: phone || "",
-        source: source || "Lead Capture Popup",
-        utm_source: body.utm_source || "",
-        utm_medium: body.utm_medium || "",
-        utm_campaign: body.utm_campaign || "",
-        utm_term: body.utm_term || "",
-        utm_content: body.utm_content || "",
-        page_url: body.page_url || "",
-        user_agent: body.user_agent || "",
-        created_at: new Date().toISOString(),
-      }
+    const leadResult = await submitLead({
+      name,
+      email,
+      phone: phone || "",
+      source: source || "Lead Capture Popup",
+      utm_source: body.utm_source || undefined,
+      utm_medium: body.utm_medium || undefined,
+      utm_campaign: body.utm_campaign || undefined,
+      utm_term: body.utm_term || undefined,
+      utm_content: body.utm_content || undefined,
+      page_url: body.page_url || undefined,
+      user_agent: body.user_agent || request.headers.get("user-agent") || undefined,
+    })
 
-      const sheetRes = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      })
-
-      if (!sheetRes.ok) {
-        const sheetErr = await sheetRes.text()
-        console.error("Erro ao enviar para Google Sheets:", sheetRes.status, sheetErr)
-        return NextResponse.json(
-          { error: "Erro ao salvar dados na planilha" },
-          { status: 500 }
-        )
-      }
-
-      console.log("Dados gravados na planilha com sucesso")
-    } catch (sheetError) {
-      console.error("Exception ao enviar para Google Sheets:", sheetError)
+    if (!leadResult.success) {
       return NextResponse.json(
-        { error: "Erro ao processar dados" },
+        { error: leadResult.message || "Erro ao enviar lead" },
         { status: 500 }
       )
     }
@@ -63,7 +40,7 @@ export async function POST(request: NextRequest) {
     // Retorna sucesso
     return NextResponse.json({
       success: true,
-      message: "Lead capturado com sucesso"
+      message: leadResult.message || "Lead capturado com sucesso"
     })
 
   } catch (error) {

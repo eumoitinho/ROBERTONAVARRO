@@ -1,10 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { X, Mail, User, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { getBrowserInfo, getUTMParameters } from "@/lib/utils"
 
 interface LeadCapturePopupProps {
   isVisible: boolean
@@ -26,6 +27,7 @@ export default function LeadCapturePopup({
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -33,13 +35,19 @@ export default function LeadCapturePopup({
       ...prev,
       [name]: value
     }))
+    if (errorMessage) {
+      setErrorMessage(null)
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setErrorMessage(null)
 
     try {
+      const utmParams = getUTMParameters()
+      const browserInfo = getBrowserInfo()
       // Enviar para Google Sheets via API
       const response = await fetch('/api/lead-capture', {
         method: 'POST',
@@ -49,6 +57,8 @@ export default function LeadCapturePopup({
         body: JSON.stringify({
           ...formData,
           source: 'Lead Capture Popup',
+          ...utmParams,
+          ...browserInfo,
         }),
       })
 
@@ -62,9 +72,11 @@ export default function LeadCapturePopup({
       } else {
         const errorData = await response.json()
         console.error('Erro ao enviar lead:', errorData)
+        setErrorMessage(errorData?.error || "Erro ao enviar seus dados. Por favor, tente novamente.")
       }
     } catch (error) {
       console.error('Erro ao enviar lead:', error)
+      setErrorMessage("Erro ao enviar seus dados. Por favor, tente novamente.")
     } finally {
       setIsSubmitting(false)
     }
@@ -106,6 +118,11 @@ export default function LeadCapturePopup({
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {errorMessage && (
+                <div className="rounded-lg border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-300" role="alert">
+                  {errorMessage}
+                </div>
+              )}
               <div>
                 <Label htmlFor="popup-name" className="text-zinc-300">
                   Nome Completo

@@ -63,13 +63,13 @@ const WEBHOOK_URLS: Record<string, string> = {
  * Faz match exato primeiro, depois busca por substring
  */
 function getWebhookUrl(source: string): string {
-  // Normaliza o source para comparação
-  const normalizedSource = source.toLowerCase().trim()
+  const safeSource = (source || "").trim()
+  const normalizedSource = safeSource.toLowerCase()
 
   // 1. Tentar match exato primeiro
-  if (WEBHOOK_URLS[source]) {
-    console.log(`[Webhook] Match exato: "${source}"`)
-    return WEBHOOK_URLS[source]
+  if (WEBHOOK_URLS[safeSource]) {
+    console.log(`[Webhook] Match exato: "${safeSource}"`)
+    return WEBHOOK_URLS[safeSource]
   }
 
   if (WEBHOOK_URLS[normalizedSource]) {
@@ -84,22 +84,22 @@ function getWebhookUrl(source: string): string {
 
     // Verifica se o source contém a key ou vice-versa
     if (normalizedSource.includes(normalizedKey) || normalizedKey.includes(normalizedSource.replace(/\s+/g, '-'))) {
-      console.log(`[Webhook] Match substring: "${source}" matched with "${key}"`)
+      console.log(`[Webhook] Match substring: "${safeSource}" matched with "${key}"`)
       return url
     }
 
     // Verifica palavras-chave específicas
     if (normalizedSource.includes('educador') && normalizedSource.includes('financeiro') && key.toLowerCase().includes('educador')) {
-      console.log(`[Webhook] Match keyword educador-financeiro: "${source}"`)
+      console.log(`[Webhook] Match keyword educador-financeiro: "${safeSource}"`)
       return url
     }
     if (normalizedSource.includes('empreendedor') && normalizedSource.includes('inteligente') && key.toLowerCase().includes('empreendedor')) {
-      console.log(`[Webhook] Match keyword empreendedor-inteligente: "${source}"`)
+      console.log(`[Webhook] Match keyword empreendedor-inteligente: "${safeSource}"`)
       return url
     }
   }
 
-  console.log(`[Webhook] Usando default para: "${source}"`)
+  console.log(`[Webhook] Usando default para: "${safeSource}"`)
   return WEBHOOK_URLS["default"]
 }
 
@@ -135,8 +135,16 @@ export async function submitLead(data: LeadData) {
       console.error("Erro na resposta do Kommo:", kommoRes.status, errText)
       throw new Error(`Kommo HTTP ${kommoRes.status}`)
     }
-    const kommoResult = await kommoRes.json()
-    console.log("Resposta do Kommo:", kommoResult)
+    const kommoText = await kommoRes.text()
+    let kommoResult: unknown = null
+    if (kommoText) {
+      try {
+        kommoResult = JSON.parse(kommoText)
+      } catch {
+        kommoResult = { raw: kommoText }
+      }
+    }
+    console.log("Resposta do Kommo:", kommoResult || kommoText || "OK")
 
     // 2. Enviar para Google Sheets
     try {
@@ -197,8 +205,16 @@ export async function submitLead(data: LeadData) {
         const leadLoversErr = await leadLoversRes.text()
         console.error("Erro ao enviar para LeadLovers:", leadLoversRes.status, leadLoversErr)
       } else {
-        const leadLoversResult = await leadLoversRes.json()
-        console.log("Lead enviado para LeadLovers com sucesso:", leadLoversResult)
+        const leadLoversText = await leadLoversRes.text()
+        let leadLoversResult: unknown = null
+        if (leadLoversText) {
+          try {
+            leadLoversResult = JSON.parse(leadLoversText)
+          } catch {
+            leadLoversResult = { raw: leadLoversText }
+          }
+        }
+        console.log("Lead enviado para LeadLovers com sucesso:", leadLoversResult || leadLoversText || "OK")
       }
     } catch (leadLoversError) {
       console.error("Exception ao enviar para LeadLovers:", leadLoversError)
