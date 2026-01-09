@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -48,9 +48,10 @@ const formSchema = z.object({
 interface EventSettingsFormProps {
   eventId: number
   event?: any
+  onEventUpdated?: (event: any) => void
 }
 
-export function EventSettingsForm({ eventId, event }: EventSettingsFormProps) {
+export function EventSettingsForm({ eventId, event, onEventUpdated }: EventSettingsFormProps) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -69,6 +70,21 @@ export function EventSettingsForm({ eventId, event }: EventSettingsFormProps) {
     },
   })
 
+  useEffect(() => {
+    if (!event) return
+    form.reset({
+      name: event?.name || "",
+      description: event?.description || "",
+      location: event?.location || "",
+      event_date: event?.event_date ? new Date(event.event_date).toISOString().slice(0, 16) : "",
+      image_url: event?.image_url || "",
+      primary_color: event?.primary_color || "#F59E0B",
+      secondary_color: event?.secondary_color || "#92400E",
+      logo_url: event?.logo_url || "",
+      ticket_template: event?.ticket_template || "default",
+    })
+  }, [event, form])
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
 
@@ -84,6 +100,9 @@ export function EventSettingsForm({ eventId, event }: EventSettingsFormProps) {
       if (!response.ok) {
         throw new Error("Falha ao atualizar as configurações do evento")
       }
+
+      const updatedEvent = await response.json()
+      onEventUpdated?.(updatedEvent)
 
       toast({
         title: "Configurações salvas",

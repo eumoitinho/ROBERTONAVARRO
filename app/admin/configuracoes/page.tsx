@@ -50,6 +50,10 @@ export default function ConfiguracoesPage() {
     setSelectedEventId(value)
   }
 
+  const handleEventUpdated = (updatedEvent: any) => {
+    setEvents((prev) => prev.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)))
+  }
+
   return (
     <div className="p-6">
       <div className="flex flex-col space-y-6">
@@ -91,6 +95,7 @@ export default function ConfiguracoesPage() {
                   <EventSettingsForm
                     eventId={Number.parseInt(selectedEventId)}
                     event={events.find((e) => e.id.toString() === selectedEventId)}
+                    onEventUpdated={handleEventUpdated}
                   />
                 ) : (
                   <div className="text-center py-8 text-gray-500">

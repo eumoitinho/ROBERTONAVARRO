@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -39,28 +39,76 @@ const formSchema = z.object({
 export function SystemSettingsForm() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      siteName: "Sistema de Eventos",
-      siteDescription: "Plataforma para gerenciamento de eventos e inscrições",
-      emailSender: "eventos@exemplo.com",
-      emailSmtp: "smtp.exemplo.com",
+      siteName: "",
+      siteDescription: "",
+      emailSender: "",
+      emailSmtp: "",
       emailPort: "587",
-      emailUsername: "usuario@exemplo.com",
+      emailUsername: "",
       emailPassword: "",
       enableEmailNotifications: true as boolean,
       enableSmsNotifications: false as boolean,
     },
   })
 
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch("/api/system-settings")
+        if (!response.ok) {
+          throw new Error("Falha ao carregar configurações do sistema")
+        }
+        const data = await response.json()
+        form.reset({
+          siteName: data.siteName || "",
+          siteDescription: data.siteDescription || "",
+          emailSender: data.emailSender || "",
+          emailSmtp: data.emailSmtp || "",
+          emailPort: String(data.emailPort ?? "587"),
+          emailUsername: data.emailUsername || "",
+          emailPassword: "",
+          enableEmailNotifications: Boolean(data.enableEmailNotifications),
+          enableSmsNotifications: Boolean(data.enableSmsNotifications),
+        })
+      } catch (error) {
+        console.error("Erro ao carregar configurações:", error)
+        toast({
+          title: "Erro",
+          description: "Não foi possível carregar as configurações do sistema.",
+          variant: "destructive",
+        })
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchSettings()
+  }, [form, toast])
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
 
     try {
-      // Simulação de envio - em um ambiente real, isso seria uma chamada de API
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch("/api/system-settings", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          emailPort: Number(values.emailPort),
+        }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Falha ao atualizar configurações")
+      }
 
       toast({
         title: "Configurações salvas",
@@ -230,7 +278,7 @@ export function SystemSettingsForm() {
           </div>
         </div>
 
-        <Button type="submit" disabled={isSubmitting} className="w-full bg-amber-600 hover:bg-amber-700">
+        <Button type="submit" disabled={isSubmitting || isLoading} className="w-full bg-amber-600 hover:bg-amber-700">
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
