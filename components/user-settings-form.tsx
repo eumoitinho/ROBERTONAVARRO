@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -45,6 +45,7 @@ const formSchema = z
 export function UserSettingsForm() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -57,12 +58,52 @@ export function UserSettingsForm() {
     },
   })
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch("/api/users/me")
+        if (!response.ok) {
+          throw new Error("Falha ao carregar usuário")
+        }
+        const data = await response.json()
+        form.reset({
+          name: data.name || "",
+          email: data.email || "",
+          currentPassword: "",
+          newPassword: "",
+          confirmPassword: "",
+        })
+      } catch (error) {
+        console.error("Erro ao carregar usuário:", error)
+        toast({
+          title: "Erro",
+          description: "Não foi possível carregar as configurações de usuário.",
+          variant: "destructive",
+        })
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchUser()
+  }, [form, toast])
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
 
     try {
-      // Simulação de envio - em um ambiente real, isso seria uma chamada de API
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch("/api/users/me", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Falha ao atualizar usuário")
+      }
 
       toast({
         title: "Configurações salvas",
@@ -167,7 +208,7 @@ export function UserSettingsForm() {
           </div>
         </div>
 
-        <Button type="submit" disabled={isSubmitting} className="w-full bg-amber-600 hover:bg-amber-700">
+        <Button type="submit" disabled={isSubmitting || isLoading} className="w-full bg-amber-600 hover:bg-amber-700">
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
