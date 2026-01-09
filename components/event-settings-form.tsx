@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -42,15 +42,17 @@ const formSchema = z.object({
     })
     .optional()
     .or(z.literal("")),
+  background_pattern: z.string().optional().or(z.literal("")),
   ticket_template: z.string(),
 })
 
 interface EventSettingsFormProps {
   eventId: number
   event?: any
+  onEventUpdated?: (event: any) => void
 }
 
-export function EventSettingsForm({ eventId, event }: EventSettingsFormProps) {
+export function EventSettingsForm({ eventId, event, onEventUpdated }: EventSettingsFormProps) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -65,9 +67,26 @@ export function EventSettingsForm({ eventId, event }: EventSettingsFormProps) {
       primary_color: event?.primary_color || "#F59E0B", // Âmbar por padrão
       secondary_color: event?.secondary_color || "#92400E", // Âmbar escuro por padrão
       logo_url: event?.logo_url || "",
+      background_pattern: event?.background_pattern || "",
       ticket_template: event?.ticket_template || "default",
     },
   })
+
+  useEffect(() => {
+    if (!event) return
+    form.reset({
+      name: event?.name || "",
+      description: event?.description || "",
+      location: event?.location || "",
+      event_date: event?.event_date ? new Date(event.event_date).toISOString().slice(0, 16) : "",
+      image_url: event?.image_url || "",
+      primary_color: event?.primary_color || "#F59E0B",
+      secondary_color: event?.secondary_color || "#92400E",
+      logo_url: event?.logo_url || "",
+      background_pattern: event?.background_pattern || "",
+      ticket_template: event?.ticket_template || "default",
+    })
+  }, [event, form])
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
@@ -84,6 +103,9 @@ export function EventSettingsForm({ eventId, event }: EventSettingsFormProps) {
       if (!response.ok) {
         throw new Error("Falha ao atualizar as configurações do evento")
       }
+
+      const updatedEvent = await response.json()
+      onEventUpdated?.(updatedEvent)
 
       toast({
         title: "Configurações salvas",
@@ -195,6 +217,26 @@ export function EventSettingsForm({ eventId, event }: EventSettingsFormProps) {
                     <Input placeholder="https://exemplo.com/logo.png" {...field} />
                   </FormControl>
                   <FormDescription>URL do logo do evento (opcional)</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="background_pattern"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Padrão de Fundo do Ticket</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="URL da imagem ou data URI para o padrão de fundo"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Use uma URL de imagem ou data URI. Deixe em branco para usar o padrão do template.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

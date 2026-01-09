@@ -40,17 +40,14 @@ export const ticketTemplates: Record<string, TicketTemplate> = {
 }
 
 export function getTicketTemplate(event: Partial<Event>): TicketTemplate {
-  // Retorna sempre o template padrão com cores âmbar e preto
-  return defaultTemplate
+  const key = event.ticket_template && event.ticket_template in ticketTemplates ? event.ticket_template : "default"
+  return ticketTemplates[key]
 }
 
 export function getCustomStyles(event: Partial<Event>): { [key: string]: string } {
-  // Cores fixas âmbar e preto para todos os tickets
-  const primaryColor = "#F59E0B" // âmbar-500
-  const secondaryColor = "#92400E" // âmbar-800
-
+  const template = getTicketTemplate(event)
   return {
-    headerClass: `bg-gradient-to-r from-amber-500 to-amber-700 text-white`,
-    buttonClass: `bg-amber-600 hover:bg-amber-700 text-white`,
+    headerClass: template.headerClass,
+    buttonClass: template.buttonClass,
   }
 }

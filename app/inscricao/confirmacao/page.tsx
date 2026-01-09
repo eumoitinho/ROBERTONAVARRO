@@ -1,8 +1,9 @@
 import { TicketCard } from "@/components/ticket-card"
-import { getRegistrationByTicketCode } from "@/lib/db"
+import { getRegistrationWithEventDetails } from "@/lib/db"
 import { Button } from "@/components/ui/button"
 import { Home } from "lucide-react"
 import Link from "next/link"
+import { getTicketTemplate } from "@/lib/ticket-templates"
 
 export const dynamic = "force-dynamic"
 
@@ -19,12 +20,15 @@ export default async function ConfirmacaoPage({
 
   if (ticket) {
     try {
-      registration = await getRegistrationByTicketCode(ticket)
+      registration = await getRegistrationWithEventDetails(ticket)
       console.log(`[ConfirmacaoPage] Registro encontrado:`, registration ? "Sim" : "Não")
     } catch (error) {
       console.error(`[ConfirmacaoPage] Erro ao buscar registro:`, error)
     }
   }
+
+  const template = registration ? getTicketTemplate(registration) : null
+  const backgroundPattern = registration?.background_pattern || template?.patternStyle
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
@@ -38,7 +42,16 @@ export default async function ConfirmacaoPage({
           <TicketCard
             ticketCode={registration.ticket_code}
             eventName={registration.event_name}
-            name={registration.name} email={""}          />
+            name={registration.name}
+            email={registration.email}
+            phone={registration.phone}
+            eventDate={registration.event_date}
+            eventLocation={registration.location}
+            primaryColor={registration.primary_color}
+            secondaryColor={registration.secondary_color}
+            logoUrl={registration.logo_url}
+            backgroundPattern={backgroundPattern}
+          />
         ) : (
           <div className="bg-white p-6 rounded-lg shadow-md text-center">
             <p className="text-red-500 font-medium">Não foi possível encontrar as informações do seu ticket.</p>

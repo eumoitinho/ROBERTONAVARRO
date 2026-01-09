@@ -43,6 +43,11 @@ export function TicketCard({
 
   // URL para verificação do ticket
   const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/verificar/${ticketCode}`;
+  const backgroundImage = backgroundPattern
+    ? backgroundPattern.includes("url(")
+      ? backgroundPattern
+      : `url(${backgroundPattern})`
+    : "none";
 
   return (
     <Card
@@ -54,7 +59,7 @@ export function TicketCard({
       <div
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: backgroundPattern ? `url(${backgroundPattern})` : "none",
+          backgroundImage,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
-import { getRegistrationWithEventDetails, getEventBySlug } from "@/lib/db"
+import { getRegistrationWithEventDetails } from "@/lib/db"
 import { TicketCard } from "@/components/ticket-card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Home, MapPin, Calendar } from "lucide-react"
 import Image from "next/image"
+import { getTicketTemplate } from "@/lib/ticket-templates"
 
 export const dynamic = "force-dynamic"
 
@@ -62,8 +63,8 @@ export default async function TicketPage({ params }: TicketPageProps) {
       )
     }
 
-    // Buscar informações detalhadas do evento para exibir na hero
-    const event = registration.event_slug ? await getEventBySlug(registration.event_slug) : null
+    const template = getTicketTemplate(registration)
+    const backgroundPattern = registration.background_pattern || template.patternStyle
 
     return (
       <div className="container max-w-6xl mx-auto py-12 px-4">
@@ -72,10 +73,10 @@ export default async function TicketPage({ params }: TicketPageProps) {
           <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-8 shadow-md">
             <h1 className="text-3xl font-bold text-amber-900 mb-6">{registration.event_name}</h1>
 
-            {event?.image_url && (
+            {registration.image_url && (
               <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
                 <Image
-                  src={event.image_url || "/placeholder.svg"}
+                  src={registration.image_url || "/placeholder.svg"}
                   alt={registration.event_name || "Imagem do evento"}
                   fill
                   className="object-cover"
@@ -84,29 +85,29 @@ export default async function TicketPage({ params }: TicketPageProps) {
             )}
 
             <div className="space-y-4">
-              {event?.description && (
+              {registration.description && (
                 <div>
                   <h2 className="text-xl font-semibold text-amber-800 mb-2">Sobre o evento</h2>
-                  <p className="text-gray-700">{event.description}</p>
+                  <p className="text-gray-700">{registration.description}</p>
                 </div>
               )}
 
-              {event?.location && (
+              {registration.location && (
                 <div>
                   <h2 className="text-xl font-semibold text-amber-800 mb-2">Local</h2>
                   <p className="text-gray-700 flex items-center">
                     <MapPin className="h-5 w-5 mr-2 text-amber-600" />
-                    {event.location}
+                    {registration.location}
                   </p>
                 </div>
               )}
 
-              {event?.event_date && (
+              {registration.event_date && (
                 <div>
                   <h2 className="text-xl font-semibold text-amber-800 mb-2">Data e Hora</h2>
                   <p className="text-gray-700 flex items-center">
                     <Calendar className="h-5 w-5 mr-2 text-amber-600" />
-                    {new Date(event.event_date).toLocaleDateString("pt-BR", {
+                    {new Date(registration.event_date).toLocaleDateString("pt-BR", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
@@ -134,6 +135,12 @@ export default async function TicketPage({ params }: TicketPageProps) {
               email={registration.email}
               phone={registration.phone}
               eventName={registration.event_name}
+              eventDate={registration.event_date}
+              eventLocation={registration.location}
+              primaryColor={registration.primary_color}
+              secondaryColor={registration.secondary_color}
+              logoUrl={registration.logo_url}
+              backgroundPattern={backgroundPattern}
             />
 
             <div className="mt-8 text-center">
