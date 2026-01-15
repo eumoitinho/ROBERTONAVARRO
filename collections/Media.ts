@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Media: CollectionConfig = {
   slug: 'media',
@@ -25,6 +26,10 @@ const Media: CollectionConfig = {
       label: 'Legenda',
     },
   ],
+  hooks: {
+    afterChange: [createWebhookAfterChangeHook('media')],
+    afterDelete: [createWebhookAfterDeleteHook('media')],
+  },
 }
 
 export default Media

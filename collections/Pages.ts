@@ -1,4 +1,5 @@
 import type { Block, CollectionConfig } from 'payload'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const ctaFields: Block['fields'] = [
   {
@@ -1217,6 +1218,10 @@ const Pages: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [createWebhookAfterChangeHook('pages')],
+    afterDelete: [createWebhookAfterDeleteHook('pages')],
+  },
 }
 
 export default Pages

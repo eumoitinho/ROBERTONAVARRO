@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Testimonials: CollectionConfig = {
   slug: 'testimonials',
@@ -80,6 +81,10 @@ const Testimonials: CollectionConfig = {
       label: 'Ordem',
     },
   ],
+  hooks: {
+    afterChange: [createWebhookAfterChangeHook('testimonials')],
+    afterDelete: [createWebhookAfterDeleteHook('testimonials')],
+  },
 }
 
 export default Testimonials
