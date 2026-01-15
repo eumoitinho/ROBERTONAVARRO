@@ -7,6 +7,7 @@ import { seedPages } from './pages'
 import { seedMentores } from './mentores'
 import { seedTestimonials } from './testimonials'
 import { seedFAQs } from './faqs'
+import { seedNavigation } from './navigation'
 
 export async function seedAll() {
   console.log('🌱 Iniciando seed do Payload CMS...')
@@ -58,6 +59,8 @@ export async function seedAll() {
 
     console.log('\n📄 Populando Páginas...')
     await seedPages(payload)
+
+    await seedNavigation(payload)
 
     console.log('\n✅ Seed completo!')
     console.log('\n🎉 Todos os dados foram importados com sucesso!')

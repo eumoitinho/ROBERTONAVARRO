@@ -106,8 +106,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    navigation: Navigation;
+  };
+  globalsSelect: {
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -198,6 +202,20 @@ export interface Formacoe {
    * Selecione o formulário que será exibido na seção de inscrição. Crie formulários em "Forms" primeiro.
    */
   form?: (string | null) | Form;
+  /**
+   * Opcional: personalize o menu de âncoras desta página.
+   */
+  navigationItems?:
+    | {
+        title: string;
+        /**
+         * Use #secao para âncoras internas.
+         */
+        href: string;
+        isButton?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   hero?: {
     badge?: string | null;
     title?: string | null;
@@ -694,6 +712,10 @@ export interface Evento {
         | 'mentor-milionario'
       )
     | null;
+  /**
+   * Selecione o formulário que será exibido na seção de inscrição. Crie formulários em "Forms" primeiro.
+   */
+  form?: (string | null) | Form;
   date: string;
   endDate?: string | null;
   /**
@@ -1560,6 +1582,14 @@ export interface FormacoesSelect<T extends boolean = true> {
   accentColor?: T;
   template?: T;
   form?: T;
+  navigationItems?:
+    | T
+    | {
+        title?: T;
+        href?: T;
+        isButton?: T;
+        id?: T;
+      };
   hero?:
     | T
     | {
@@ -1821,6 +1851,7 @@ export interface EventosSelect<T extends boolean = true> {
   status?: T;
   accentColor?: T;
   template?: T;
+  form?: T;
   date?: T;
   endDate?: T;
   duration?: T;
@@ -2659,6 +2690,56 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: string;
+  headerItems?:
+    | {
+        title: string;
+        href: string;
+        isButton?: boolean | null;
+        items?:
+          | {
+              title: string;
+              href: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  headerItems?:
+    | T
+    | {
+        title?: T;
+        href?: T;
+        isButton?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              href?: T;
+              description?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
