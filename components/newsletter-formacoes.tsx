@@ -22,6 +22,7 @@ interface NewsletterFormacoesProps {
   title: string
   description: string
   source: string
+  formSlug?: string
   ctaText?: string
   accent?: "yellow" | "red"
   eventDate?: string
@@ -81,6 +82,8 @@ export interface LeadFormData {
   utm_campaign?: string
   utm_term?: string
   utm_content?: string
+  page_url?: string
+  user_agent?: string
 }
 
 export function NewsletterFormacoes({
@@ -88,6 +91,7 @@ export function NewsletterFormacoes({
   title,
   description,
   source,
+  formSlug,
   ctaText,
   accent = "yellow",
   eventDate,
@@ -142,37 +146,65 @@ export function NewsletterFormacoes({
         })
       }
 
-      // Enviar para Google Sheets
-      const result = await submitLead(formData)
+      const payload = formSlug
+        ? {
+            ...formData,
+            source,
+            name: formData.name,
+            nome: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            telefone: formData.phone,
+            whatsapp: formData.phone,
+          }
+        : { ...formData, source }
+      let result: { success?: boolean; message?: string; redirect?: string; error?: string } = {}
 
-      if (result.success) {
-        setSubmitStatus({
-          success: true,
-          message: "Dados enviados com sucesso! Entraremos em contato em breve.",
+      if (formSlug) {
+        const response = await fetch(`/api/forms/${formSlug}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         })
-        // limpa o form
-        const utmParams = getUTMParameters()
-        const browserInfo = getBrowserInfo()
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          source: source,
-          ...utmParams,
-          ...browserInfo,
-        })
-        // callback da página (se fornecido)
-        if (onSubmit) {
-          onSubmit(formData)
+        result = await response.json()
+        if (!response.ok) {
+          throw new Error(result.error || result.message || "Erro ao enviar seus dados. Por favor, tente novamente.")
         }
-        // redireciona
-        router.push("/obrigado?source=" + encodeURIComponent(source))
       } else {
-        setSubmitStatus({
-          success: false,
-          message: result.message || "Erro ao enviar seus dados. Por favor, tente novamente.",
-        })
+        result = await submitLead(payload)
+        if (!result.success) {
+          setSubmitStatus({
+            success: false,
+            message: result.message || "Erro ao enviar seus dados. Por favor, tente novamente.",
+          })
+          return
+        }
       }
+
+      setSubmitStatus({
+        success: true,
+        message: result.message || "Dados enviados com sucesso! Entraremos em contato em breve.",
+      })
+      // limpa o form
+      const utmParams = getUTMParameters()
+      const browserInfo = getBrowserInfo()
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        source: source,
+        ...utmParams,
+        ...browserInfo,
+      })
+      // callback da página (se fornecido)
+      if (onSubmit) {
+        onSubmit(formData)
+      }
+      // redireciona
+      const redirectUrl = result.redirect || "/obrigado?source=" + encodeURIComponent(source)
+      router.push(redirectUrl)
     } catch {
       setSubmitStatus({
         success: false,

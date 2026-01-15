@@ -16,6 +16,11 @@ interface MentoriaInvestimentosTemplateProps {
 }
 
 export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInvestimentosTemplateProps) {
+  const formSlug = formacao?.form
+    ? typeof formacao.form === 'object'
+      ? formacao.form.slug
+      : formacao.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Problemas e Soluções', href: '#problemas-solucoes' },
@@ -239,6 +244,7 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
             source="Mentoria de Investimentos"
             ctaText="QUERO ME TORNAR UM INVESTIDOR!"
             accent="yellow"
+            formSlug={formSlug}
           />
         </div>
       </section>
@@ -248,4 +254,3 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
     </div>
   )
 }
-

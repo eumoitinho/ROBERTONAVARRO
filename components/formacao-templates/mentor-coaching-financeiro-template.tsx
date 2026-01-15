@@ -35,6 +35,11 @@ interface MentorCoachingFinanceiroTemplateProps {
 }
 
 export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoachingFinanceiroTemplateProps) {
+  const formSlug = formacao?.form
+    ? typeof formacao.form === 'object'
+      ? formacao.form.slug
+      : formacao.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Sobre', href: '#sobre' },
@@ -628,7 +633,7 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
       <TestimonialsSection testimonials={formacao.testimonials} />
 
       {/* Form Section */}
-      {formacao.form && (typeof formacao.form === 'object' ? formacao.form.slug : typeof formacao.form === 'string') ? (
+      {formSlug ? (
         <section id="inscricao" className="py-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
@@ -645,8 +650,8 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
                 </p>
               </div>
               <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8 md:p-12">
-                <DynamicForm 
-                  formSlug={typeof formacao.form === 'object' ? formacao.form.slug : formacao.form} 
+                <DynamicForm
+                  formSlug={formSlug}
                   accent="yellow" 
                 />
               </div>
@@ -660,6 +665,7 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
           source="Mentor Coaching Financeiro"
           ctaText="ESTOU PRONTO PARA MUDAR MINHA VIDA!"
           accent="yellow"
+          formSlug={formSlug}
         />
       )}
 
@@ -668,4 +674,3 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
     </div>
   )
 }
-

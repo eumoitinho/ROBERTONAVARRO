@@ -21,6 +21,7 @@ import Media from './collections/Media'
 import Users from './collections/Users'
 import Forms from './collections/Forms'
 import Webhooks from './collections/Webhooks'
+import Navigation from './globals/Navigation'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'skWAAvzokKB69IMln1BX1fFOlKIVEVrjpLV1T8oO8PFGAiafhJLIsAmj6lez1rciKRVZ5OZvJXANnJA6O',
@@ -111,6 +112,7 @@ export default buildConfig({
     Forms,
     Webhooks,
   ],
+  globals: [Navigation],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
