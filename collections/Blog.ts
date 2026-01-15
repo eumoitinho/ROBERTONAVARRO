@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Blog: CollectionConfig = {
   slug: 'blog',
@@ -129,7 +130,10 @@ const Blog: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [createWebhookAfterChangeHook('blog')],
+    afterDelete: [createWebhookAfterDeleteHook('blog')],
+  },
 }
 
 export default Blog
-

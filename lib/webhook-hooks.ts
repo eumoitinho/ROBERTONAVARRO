@@ -9,6 +9,12 @@ export function createWebhookAfterChangeHook(collectionSlug: string): Collection
   return async ({ doc, operation, req }) => {
     if (!req.payload) return doc
 
+    if (operation === 'create' || operation === 'update') {
+      triggerWebhooks(req.payload, collectionSlug, operation, operation, doc).catch((error) => {
+        console.error(`Erro ao disparar webhook ${operation} para ${collectionSlug}:`, error)
+      })
+    }
+
     // Disparar webhook para afterChange
     triggerWebhooks(req.payload, collectionSlug, 'afterChange' as const, operation, doc).catch(
       (error) => {
@@ -43,6 +49,10 @@ export function createWebhookAfterDeleteHook(collectionSlug: string): Collection
   return async ({ doc, req }) => {
     if (!req.payload) return
 
+    triggerWebhooks(req.payload, collectionSlug, 'delete' as const, 'delete', doc).catch((error) => {
+      console.error(`Erro ao disparar webhook delete para ${collectionSlug}:`, error)
+    })
+
     // Disparar webhook para afterDelete
     triggerWebhooks(req.payload, collectionSlug, 'afterDelete' as const, 'delete', doc).catch(
       (error) => {
@@ -51,4 +61,3 @@ export function createWebhookAfterDeleteHook(collectionSlug: string): Collection
     )
   }
 }
-
