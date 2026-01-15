@@ -15,6 +15,11 @@ interface SegredosDaMenteMilionariaTemplateProps {
 }
 
 export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDaMenteMilionariaTemplateProps) {
+  const formSlug = evento?.form
+    ? typeof evento.form === 'object'
+      ? evento.form.slug
+      : evento.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Benefícios', href: '#beneficios' },
@@ -225,6 +230,7 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
                 : 'R. Alameda Araguaia, 751 - Alphaville - SP'
           }
           accent="yellow"
+          formSlug={formSlug}
         />
       </section>
 
@@ -233,4 +239,3 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
     </div>
   )
 }
-

@@ -16,6 +16,11 @@ interface EnergiaDoDinheiroTemplateProps {
 }
 
 export default function EnergiaDoDinheiroTemplate({ evento }: EnergiaDoDinheiroTemplateProps) {
+  const formSlug = evento?.form
+    ? typeof evento.form === 'object'
+      ? evento.form.slug
+      : evento.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Como Funciona', href: '#como-funciona' },
@@ -222,6 +227,7 @@ export default function EnergiaDoDinheiroTemplate({ evento }: EnergiaDoDinheiroT
           source="Energia do Dinheiro"
           eventDate={evento.date ? new Date(evento.date).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }) + ', 13h às 20h' : '07 de outubro, 13h às 20h'}
           accent="yellow"
+          formSlug={formSlug}
         />
       </section>
 
@@ -230,4 +236,3 @@ export default function EnergiaDoDinheiroTemplate({ evento }: EnergiaDoDinheiroT
     </div>
   )
 }
-

@@ -16,6 +16,11 @@ interface EmpreendedorInteligenteTemplateProps {
 }
 
 export default function EmpreendedorInteligenteTemplate({ formacao }: EmpreendedorInteligenteTemplateProps) {
+  const formSlug = formacao?.form
+    ? typeof formacao.form === 'object'
+      ? formacao.form.slug
+      : formacao.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Sobre', href: '#sobre' },
@@ -252,6 +257,7 @@ export default function EmpreendedorInteligenteTemplate({ formacao }: Empreended
             source="Empreendedor Inteligente"
             ctaText="QUERO SER UM EMPREENDEDOR INTELIGENTE!"
             accent="yellow"
+            formSlug={formSlug}
           />
         </div>
       </section>
@@ -261,4 +267,3 @@ export default function EmpreendedorInteligenteTemplate({ formacao }: Empreended
     </div>
   )
 }
-

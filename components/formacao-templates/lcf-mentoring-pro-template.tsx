@@ -19,6 +19,11 @@ interface LCFMentoringProTemplateProps {
 }
 
 export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTemplateProps) {
+  const formSlug = formacao?.form
+    ? typeof formacao.form === 'object'
+      ? formacao.form.slug
+      : formacao.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'O Que Você Vai Aprender', href: '#aprender' },
@@ -219,6 +224,7 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
             source="LCF Mentoring Pro"
             ctaText="QUERO ENTRAR PARA O LCF PRO!"
             accent="yellow"
+            formSlug={formSlug}
           />
         </div>
       </section>
@@ -228,4 +234,3 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
     </div>
   )
 }
-

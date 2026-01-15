@@ -12,6 +12,7 @@
     "payload:seed": "tsx scripts/seed-payload.ts",
     "seed": "tsx scripts/seed-all.ts",
     "seed:formacoes": "tsx scripts/seed-all.ts",
+    "seed:forms": "tsx scripts/seed-forms.ts",
     "payload:update-educador": "tsx scripts/update-formacao-educador.ts",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",

@@ -9,6 +9,7 @@ import { submitLead } from "@/lib/actions"
 import { cn, getUTMParameters, getBrowserInfo } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import { Calendar, MapPin } from "lucide-react"
+import DynamicForm from "@/components/dynamic-form"
 
 // Extend the Window interface to include dataLayer
 declare global {
@@ -22,6 +23,7 @@ interface NewsletterFormacoesProps {
   title: string
   description: string
   source: string
+  formSlug?: string
   ctaText?: string
   accent?: "yellow" | "red"
   eventDate?: string
@@ -88,6 +90,7 @@ export function NewsletterFormacoes({
   title,
   description,
   source,
+  formSlug,
   ctaText,
   accent = "yellow",
   eventDate,
@@ -285,114 +288,131 @@ export function NewsletterFormacoes({
                 Preencha o formulário abaixo e dê o primeiro passo rumo à sua transformação financeira
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-8 space-y-6 text-left" noValidate>
-                {submitStatus.message && !submitStatus.success && (
-                  <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-300" role="alert">
-                    {submitStatus.message}
-                  </div>
-                )}
-                {submitStatus.message && submitStatus.success && (
-                  <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-sm text-emerald-300" role="alert">
-                    {submitStatus.message}
-                  </div>
-                )}
-
-                <div className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="sr-only">
-                      Nome completo
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                      className={cn(
-                        "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
-                        styles.focusRing,
-                        accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
-                      )}
-                      placeholder="Seu nome completo"
-                      required
-                      aria-required="true"
-                      aria-label="Nome completo"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="sr-only">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                      className={cn(
-                        "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
-                        styles.focusRing,
-                        accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
-                      )}
-                      placeholder="seu@email.com"
-                      required
-                      aria-required="true"
-                      aria-label="Email"
-                      autoComplete="email"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="sr-only">
-                      Telefone
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                      className={cn(
-                        "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
-                        styles.focusRing,
-                        accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
-                      )}
-                      placeholder="(00) 00000-0000"
-                      required
-                      aria-required="true"
-                      aria-label="Telefone"
-                      autoComplete="tel"
-                    />
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={cn(
-                    "cta-hover group relative w-full overflow-hidden rounded-2xl py-4 text-lg font-semibold transition-all duration-300",
-                    styles.buttonGradient,
-                    styles.buttonText,
-                    styles.buttonShadow,
+              {formSlug ? (
+                <>
+                  <DynamicForm
+                    formSlug={formSlug}
+                    accent={accent}
+                    source={source}
+                    submitText={ctaText}
+                    className="mt-8 text-left"
+                  />
+                  {typeof ctaText === "string" && ctaText.trim() !== "" && (
+                    <p className={cn("mt-4 text-center text-xs", styles.accentText)}>
+                      Ao clicar em &ldquo;{ctaText}&rdquo;, você concorda com nossos termos de uso e política de privacidade.
+                    </p>
                   )}
-                >
-                  <span className="relative z-10">
-                    {isSubmitting
-                      ? "Enviando..."
-                      : typeof ctaText === "string" && ctaText.trim() !== ""
-                        ? ctaText
-                        : "GARANTIR MINHA VAGA AGORA"}
-                  </span>
-                  <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-40">
-                    <div className="absolute inset-y-0 left-1/2 h-full w-2/3 -translate-x-1/2 rounded-full bg-white/40 blur-3xl" />
-                  </span>
-                </Button>
+                </>
+              ) : (
+                <form onSubmit={handleSubmit} className="mt-8 space-y-6 text-left" noValidate>
+                  {submitStatus.message && !submitStatus.success && (
+                    <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-300" role="alert">
+                      {submitStatus.message}
+                    </div>
+                  )}
+                  {submitStatus.message && submitStatus.success && (
+                    <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-sm text-emerald-300" role="alert">
+                      {submitStatus.message}
+                    </div>
+                  )}
 
-                <p className={cn("text-center text-xs", styles.accentText)}>
-                  Ao clicar em &ldquo;
-                  {typeof ctaText === "string" && ctaText.trim() !== "" ? ctaText : "Garantir minha vaga agora"}
-                  &rdquo;, você concorda com nossos termos de uso e política de privacidade.
-                </p>
-              </form>
+                  <div className="space-y-6">
+                    <div>
+                      <label htmlFor="name" className="sr-only">
+                        Nome completo
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                        className={cn(
+                          "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                          styles.focusRing,
+                          accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                        )}
+                        placeholder="Seu nome completo"
+                        required
+                        aria-required="true"
+                        aria-label="Nome completo"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="sr-only">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                        className={cn(
+                          "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                          styles.focusRing,
+                          accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                        )}
+                        placeholder="seu@email.com"
+                        required
+                        aria-required="true"
+                        aria-label="Email"
+                        autoComplete="email"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="sr-only">
+                        Telefone
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                        className={cn(
+                          "w-full rounded-xl border bg-zinc-900/70 px-4 py-3 text-white/90 placeholder:text-zinc-500 transition-colors duration-300 focus:outline-none focus:ring-2",
+                          styles.focusRing,
+                          accent === "red" ? "border-red-500/20 hover:border-red-500/40" : "border-yellow-400/20 hover:border-yellow-400/30",
+                        )}
+                        placeholder="(00) 00000-0000"
+                        required
+                        aria-required="true"
+                        aria-label="Telefone"
+                        autoComplete="tel"
+                      />
+                    </div>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={cn(
+                      "cta-hover group relative w-full overflow-hidden rounded-2xl py-4 text-lg font-semibold transition-all duration-300",
+                      styles.buttonGradient,
+                      styles.buttonText,
+                      styles.buttonShadow,
+                    )}
+                  >
+                    <span className="relative z-10">
+                      {isSubmitting
+                        ? "Enviando..."
+                        : typeof ctaText === "string" && ctaText.trim() !== ""
+                          ? ctaText
+                          : "GARANTIR MINHA VAGA AGORA"}
+                    </span>
+                    <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-40">
+                      <div className="absolute inset-y-0 left-1/2 h-full w-2/3 -translate-x-1/2 rounded-full bg-white/40 blur-3xl" />
+                    </span>
+                  </Button>
+
+                  <p className={cn("text-center text-xs", styles.accentText)}>
+                    Ao clicar em &ldquo;
+                    {typeof ctaText === "string" && ctaText.trim() !== "" ? ctaText : "Garantir minha vaga agora"}
+                    &rdquo;, você concorda com nossos termos de uso e política de privacidade.
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </div>

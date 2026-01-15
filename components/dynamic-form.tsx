@@ -26,9 +26,17 @@ interface DynamicFormProps {
   formSlug: string
   accent?: 'red' | 'yellow' | 'blue'
   className?: string
+  source?: string
+  submitText?: string
 }
 
-export default function DynamicForm({ formSlug, accent = 'red', className }: DynamicFormProps) {
+export default function DynamicForm({
+  formSlug,
+  accent = 'red',
+  className,
+  source: sourceOverride,
+  submitText,
+}: DynamicFormProps) {
   const [form, setForm] = useState<any>(null)
   const [formData, setFormData] = useState<Record<string, any>>({})
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -154,7 +162,7 @@ export default function DynamicForm({ formSlug, accent = 'red', className }: Dyn
     try {
       const utmParams = getUTMParameters()
       const browserInfo = getBrowserInfo()
-      const source = form?.name || form?.slug || formSlug
+      const source = sourceOverride || form?.name || form?.slug || formSlug
       const response = await fetch(`/api/forms/${formSlug}`, {
         method: 'POST',
         headers: {
@@ -400,7 +408,7 @@ export default function DynamicForm({ formSlug, accent = 'red', className }: Dyn
             Enviando...
           </>
         ) : (
-          form.settings?.submitText || 'Enviar'
+          submitText && submitText.trim() !== '' ? submitText : form.settings?.submitText || 'Enviar'
         )}
       </Button>
     </form>

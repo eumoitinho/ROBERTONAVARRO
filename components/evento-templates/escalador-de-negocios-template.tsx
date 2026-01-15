@@ -23,6 +23,11 @@ const iconMap: Record<string, React.ElementType> = {
 }
 
 export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegociosTemplateProps) {
+  const formSlug = evento?.form
+    ? typeof evento.form === 'object'
+      ? evento.form.slug
+      : evento.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Desafios', href: '#desafios' },
@@ -206,6 +211,7 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
           description="Preencha o formulário abaixo e seja notificado sobre o próximo evento Escalador de Negócios."
           source="Escalador de Negócios"
           accent="red"
+          formSlug={formSlug}
         />
       </section>
 
@@ -214,4 +220,3 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
     </div>
   )
 }
-

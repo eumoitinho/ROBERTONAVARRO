@@ -15,6 +15,11 @@ interface MentoriaIndividualTemplateProps {
 }
 
 export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndividualTemplateProps) {
+  const formSlug = formacao?.form
+    ? typeof formacao.form === 'object'
+      ? formacao.form.slug
+      : formacao.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Benefícios', href: '#beneficios' },
@@ -118,6 +123,7 @@ export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndivid
             source="Mentoria Individual"
             ctaText="QUERO TRANSFORMAR MINHA VIDA!"
             accent="yellow"
+            formSlug={formSlug}
           />
         </div>
       </section>
@@ -127,4 +133,3 @@ export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndivid
     </div>
   )
 }
-

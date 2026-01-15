@@ -7,6 +7,7 @@ import { seedPages } from './pages'
 import { seedMentores } from './mentores'
 import { seedTestimonials } from './testimonials'
 import { seedFAQs } from './faqs'
+import { seedForms } from './forms'
 
 export async function seedAll() {
   console.log('🌱 Iniciando seed do Payload CMS...')
@@ -43,6 +44,9 @@ export async function seedAll() {
 
     console.log('\n❓ Populando FAQs...')
     const { educadorFAQs, eventoFAQs } = await seedFAQs(payload)
+
+    console.log('\n🧾 Populando Formulários...')
+    await seedForms(payload)
 
     console.log('\n🎓 Populando Formações...')
     await seedFormacoes(payload, educadorFAQs)

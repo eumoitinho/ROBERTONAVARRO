@@ -18,6 +18,11 @@ interface MetodoTFTemplateProps {
 }
 
 export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
+  const formSlug = formacao?.form
+    ? typeof formacao.form === 'object'
+      ? formacao.form.slug
+      : formacao.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Para Quem É', href: '#para-quem' },
@@ -313,6 +318,7 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
             source="Método TF"
             ctaText="QUERO ENTRAR NO MÉTODO TF!"
             accent="yellow"
+            formSlug={formSlug}
           />
         </div>
       </section>
@@ -322,4 +328,3 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
     </div>
   )
 }
-
