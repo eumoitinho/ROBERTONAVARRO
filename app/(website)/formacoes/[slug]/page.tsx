@@ -165,13 +165,17 @@ export default async function FormacaoPage({ params, searchParams }: PageProps) 
     return <IconComponent className={className} />
   }
 
-  const navigationItems = [
+  const defaultNavigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Sobre o Curso', href: '#sobre-curso' },
     { title: 'Benefícios', href: '#beneficios' },
     { title: 'Depoimentos', href: '#depoimentos' },
     { title: 'Inscrição', href: '#inscricao', isButton: true },
   ]
+  const navigationItems =
+    Array.isArray(formacao?.navigationItems) && formacao.navigationItems.length > 0
+      ? formacao.navigationItems
+      : defaultNavigationItems
 
   return (
     <>
@@ -856,4 +860,3 @@ export async function generateMetadata({ params }: PageProps) {
     keywords: formacao.seo?.keywords || '',
   }
 }
-

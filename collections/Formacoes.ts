@@ -83,6 +83,38 @@ const Formacoes: CollectionConfig = {
         description: 'Selecione o formulário que será exibido na seção de inscrição. Crie formulários em "Forms" primeiro.',
       },
     },
+    // Navegação (menu de âncoras)
+    {
+      name: 'navigationItems',
+      type: 'array',
+      label: 'Itens de Navegação',
+      admin: {
+        description: 'Opcional: personalize o menu de âncoras desta página.',
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          label: 'Título',
+          required: true,
+        },
+        {
+          name: 'href',
+          type: 'text',
+          label: 'Link',
+          required: true,
+          admin: {
+            description: 'Use #secao para âncoras internas.',
+          },
+        },
+        {
+          name: 'isButton',
+          type: 'checkbox',
+          label: 'Botão (CTA)',
+          defaultValue: false,
+        },
+      ],
+    },
     // Hero Section
     {
       name: 'hero',

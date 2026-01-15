@@ -21,13 +21,17 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
       ? formacao.form.slug
       : formacao.form
     : undefined
-  const navigationItems = [
+  const defaultNavigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Problemas e Soluções', href: '#problemas-solucoes' },
     { title: 'O Que Você Vai Aprender', href: '#aprender' },
     { title: 'Princípios', href: '#principios' },
     { title: 'Inscrição', href: '#inscricao', isButton: true },
   ]
+  const navigationItems =
+    Array.isArray(formacao?.navigationItems) && formacao.navigationItems.length > 0
+      ? formacao.navigationItems
+      : defaultNavigationItems
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 text-white">

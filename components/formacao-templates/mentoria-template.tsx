@@ -25,7 +25,7 @@ export default function MentoriaTemplate({ formacao }: MentoriaTemplateProps) {
       ? formacao.form.slug
       : formacao.form
     : undefined
-  const navigationItems = [
+  const defaultNavigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Desafios', href: '#desafios' },
     { title: 'Como Funciona', href: '#como-funciona' },
@@ -33,6 +33,10 @@ export default function MentoriaTemplate({ formacao }: MentoriaTemplateProps) {
     { title: 'Módulos', href: '#modulos' },
     { title: 'Inscrição', href: '#inscricao', isButton: true },
   ]
+  const navigationItems =
+    Array.isArray(formacao?.navigationItems) && formacao.navigationItems.length > 0
+      ? formacao.navigationItems
+      : defaultNavigationItems
 
   const renderRichText = (content: any) => {
     if (!content) return null

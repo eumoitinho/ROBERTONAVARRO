@@ -24,13 +24,17 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
       ? formacao.form.slug
       : formacao.form
     : undefined
-  const navigationItems = [
+  const defaultNavigationItems = [
     { title: 'Início', href: '/' },
     { title: 'O Que Você Vai Aprender', href: '#aprender' },
     { title: 'Sobre o Programa', href: '#sobre' },
     { title: 'Investimento', href: '#investimento' },
     { title: 'Inscrição', href: '#inscricao', isButton: true },
   ]
+  const navigationItems =
+    Array.isArray(formacao?.navigationItems) && formacao.navigationItems.length > 0
+      ? formacao.navigationItems
+      : defaultNavigationItems
 
   // Preparar dados para ContentSection (4 inteligências)
   const intelligenceItems = formacao.learnings?.slice(0, 4).map((learning: any, index: number) => {

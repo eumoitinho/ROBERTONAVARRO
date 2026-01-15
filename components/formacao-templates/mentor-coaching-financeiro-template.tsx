@@ -40,13 +40,17 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
       ? formacao.form.slug
       : formacao.form
     : undefined
-  const navigationItems = [
+  const defaultNavigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Sobre', href: '#sobre' },
     { title: 'Conteúdo', href: '#conteudo' },
     { title: 'Público-Alvo', href: '#publico-alvo' },
     { title: 'Inscrição', href: '#inscricao', isButton: true },
   ]
+  const navigationItems =
+    Array.isArray(formacao?.navigationItems) && formacao.navigationItems.length > 0
+      ? formacao.navigationItems
+      : defaultNavigationItems
 
   const renderRichText = (content: any) => {
     if (!content) return null

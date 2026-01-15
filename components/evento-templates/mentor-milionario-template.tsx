@@ -9,6 +9,7 @@ import { TestimonialsSection } from '@/components/testimonials-section'
 import { SectionBadge } from '@/components/section-badge'
 import { TicketPricingCards } from '@/components/ticket-pricing-cards'
 import { EventRegistrationButton } from '@/components/event-registration-button'
+import { NewsletterFormacoes } from '@/components/newsletter-formacoes'
 import { Lightbulb, DollarSign, Users, TrendingUp } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -25,6 +26,11 @@ const iconMap: Record<string, React.ElementType> = {
 }
 
 export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTemplateProps) {
+  const formSlug = evento?.form
+    ? typeof evento.form === 'object'
+      ? evento.form.slug
+      : evento.form
+    : undefined
   const navigationItems = [
     { title: 'Início', href: '/' },
     { title: 'Para Quem É', href: '#para-quem' },
@@ -376,9 +382,19 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
         </div>
       </section>
 
+      {formSlug && (
+        <NewsletterFormacoes
+          sectionId="formulario"
+          title={`GARANTA SUA VAGA NO ${evento.title || 'Mentor Milionário'}`}
+          description="Preencha o formulário abaixo para receber todos os detalhes do evento."
+          source={evento.title || 'Mentor Milionário'}
+          formSlug={formSlug}
+          accent="yellow"
+        />
+      )}
+
       <Footer accent="yellow" />
       <WhatsAppButton source={evento.title || 'Mentor Milionário'} />
     </div>
   )
 }
-

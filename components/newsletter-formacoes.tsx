@@ -23,6 +23,7 @@ interface NewsletterFormacoesProps {
   description: string
   source: string
   formSlug?: string
+  sectionId?: string
   ctaText?: string
   accent?: "yellow" | "red"
   eventDate?: string
@@ -92,6 +93,7 @@ export function NewsletterFormacoes({
   description,
   source,
   formSlug,
+  sectionId = "inscricao",
   ctaText,
   accent = "yellow",
   eventDate,
@@ -216,7 +218,7 @@ export function NewsletterFormacoes({
   }
 
   return (
-    <section id="inscricao" className="relative overflow-hidden py-24">
+    <section id={sectionId} className="relative overflow-hidden py-24">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black" />
         <div className={cn("absolute inset-0 opacity-70", styles.radialOverlay)} />

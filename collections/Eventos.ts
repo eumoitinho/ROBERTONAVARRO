@@ -56,6 +56,17 @@ const Eventos: CollectionConfig = {
       ],
       defaultValue: 'default',
     },
+    // Formulário de Inscrição
+    {
+      name: 'form',
+      type: 'relationship',
+      label: 'Formulário de Inscrição',
+      relationTo: 'forms',
+      required: false,
+      admin: {
+        description: 'Selecione o formulário que será exibido na seção de inscrição. Crie formulários em "Forms" primeiro.',
+      },
+    },
     // Data e Hora
     {
       name: 'date',

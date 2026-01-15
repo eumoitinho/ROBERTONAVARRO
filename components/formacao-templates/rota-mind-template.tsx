@@ -16,13 +16,17 @@ interface RotaMindTemplateProps {
 }
 
 export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
-  const navigationItems = [
+  const defaultNavigationItems = [
     { title: 'Início', href: '/' },
     { title: 'O Que É', href: '#o-que-e' },
     { title: 'Benefícios', href: '#beneficios' },
     { title: 'Conselho', href: '#conselho' },
     { title: 'Inscrição', href: '#inscricao', isButton: true },
   ]
+  const navigationItems =
+    Array.isArray(formacao?.navigationItems) && formacao.navigationItems.length > 0
+      ? formacao.navigationItems
+      : defaultNavigationItems
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 text-white">
@@ -298,4 +302,3 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
     </div>
   )
 }
-

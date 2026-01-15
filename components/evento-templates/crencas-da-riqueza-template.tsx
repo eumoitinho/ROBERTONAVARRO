@@ -13,6 +13,7 @@ import { SectionBadge } from '@/components/section-badge'
 import { TicketPricingCards } from '@/components/ticket-pricing-cards'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { EventRegistrationButton } from '@/components/event-registration-button'
+import { NewsletterFormacoes } from '@/components/newsletter-formacoes'
 import { useState } from 'react'
 import Image from 'next/image'
 import { Brain, Compass, Target, Move, Unlock } from 'lucide-react'
@@ -31,6 +32,11 @@ const iconMap: Record<string, any> = {
 
 export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTemplateProps) {
   const [selectedIntelligence, setSelectedIntelligence] = useState<number>(0)
+  const formSlug = evento?.form
+    ? typeof evento.form === 'object'
+      ? evento.form.slug
+      : evento.form
+    : undefined
 
   const navigationItems = [
     { title: 'Início', href: '/' },
@@ -335,6 +341,17 @@ export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTem
         </div>
       </section>
 
+      {formSlug && (
+        <NewsletterFormacoes
+          sectionId="formulario"
+          title={`GARANTA SUA VAGA NO ${evento.title || 'Crenças da Riqueza'}`}
+          description="Preencha o formulário abaixo e receba as informações completas do evento."
+          source={evento.title || 'Crenças da Riqueza'}
+          formSlug={formSlug}
+          accent="yellow"
+        />
+      )}
+
       {/* FAQs */}
       {evento.faqs && Array.isArray(evento.faqs) && evento.faqs.length > 0 && (
         <section id="depoimentos" className="py-20 relative overflow-hidden bg-zinc-950">
@@ -386,4 +403,3 @@ export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTem
     </div>
   )
 }
-
