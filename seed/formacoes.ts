@@ -1,3 +1,5 @@
+import { ensureMedia } from './helpers/ensure-media'
+
 export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
   // Obter IDs dos FAQs do Educador Financeiro (apenas IDs válidos)
   console.log(`📋 Processando ${educadorFAQs.length} FAQs do Educador Financeiro...`)
@@ -62,6 +64,25 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
   
   // Usar os IDs validados
   const finalFaqIds = validatedFaqIds
+
+  const heroEducadorImageId = await ensureMedia(payload, 'public/images/HERO_EDUCADOR.png', 'Educador Financeiro')
+  const heroEmpreendedorImageId = await ensureMedia(
+    payload,
+    'public/images/HERO_EMPREENDEDOR.png',
+    'Empreendedor Inteligente',
+  )
+  const heroMentoriaImageId = await ensureMedia(payload, 'public/images/HERO_MENTORIA.png', 'LCF Mentoring')
+  const heroMentoriaIndividualImageId = await ensureMedia(
+    payload,
+    'public/images/HERO_MENTORIAINDIVIDUAL.png',
+    'Mentoria Individual',
+  )
+  const heroMentoriaInvestimentosImageId = await ensureMedia(
+    payload,
+    'public/images/HERO_MENTORIAINVESTIMENTOS.png',
+    'Mentoria de Investimentos',
+  )
+  const heroRotaMindImageId = await ensureMedia(payload, 'public/images/HERO_ROTAMIND.png', 'Rota Mind')
 
   // Helper para normalizar IDs de relacionamentos
   const normalizeRelationshipId = (id: any): string | null => {
@@ -298,7 +319,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
               ],
             },
           ],
-          backgroundImage: '/images/HERO_EDUCADOR.png',
+          ...(heroEducadorImageId ? { backgroundImage: heroEducadorImageId } : {}),
           ctaText: 'QUERO MINHA LICENÇA PROFISSIONAL!',
           ctaLink: '#inscricao',
       },
@@ -532,7 +553,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
               ],
             },
           ],
-      backgroundImage: '/images/HERO_EMPREENDEDOR.png',
+      ...(heroEmpreendedorImageId ? { backgroundImage: heroEmpreendedorImageId } : {}),
       ctaText: 'GARANTA SUA VAGA!',
         ctaLink: 'https://pay.eduzz.com/empreendedor-inteligente',
       },
@@ -642,7 +663,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
           ],
         },
       ],
-      backgroundImage: '/images/HERO_MENTORIA.png',
+      ...(heroMentoriaImageId ? { backgroundImage: heroMentoriaImageId } : {}),
       ctaText: 'CONQUISTE SUA VAGA!',
       ctaLink: 'https://pay.eduzz.com/lcf-mentoring-pro',
     },
@@ -720,7 +741,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
           ],
         },
       ],
-      backgroundImage: '/images/HERO_MENTORIAINDIVIDUAL.png',
+      ...(heroMentoriaIndividualImageId ? { backgroundImage: heroMentoriaIndividualImageId } : {}),
       ctaText: 'QUERO TRANSFORMAR MINHA VIDA',
       ctaLink: 'https://pay.eduzz.com/mentoria-individual',
     },
@@ -794,7 +815,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
           ],
         },
       ],
-      backgroundImage: '/images/HERO_MENTORIAINVESTIMENTOS.png',
+      ...(heroMentoriaInvestimentosImageId ? { backgroundImage: heroMentoriaInvestimentosImageId } : {}),
       ctaText: 'QUERO ME TORNAR UM INVESTIDOR!',
       ctaLink: 'https://pay.eduzz.com/mentoria-investimentos',
     },
@@ -927,7 +948,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
           ],
         },
       ],
-      backgroundImage: '/images/HERO_EDUCADOR.png',
+      ...(heroEducadorImageId ? { backgroundImage: heroEducadorImageId } : {}),
       ctaText: 'QUERO ENTRAR NO MÉTODO TF!',
       ctaLink: 'https://pay.eduzz.com/metodo-tf',
     },
@@ -1046,7 +1067,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
           ],
         },
       ],
-      backgroundImage: '/images/HERO_EDUCADOR.png',
+      ...(heroEducadorImageId ? { backgroundImage: heroEducadorImageId } : {}),
       ctaText: 'ESTOU PRONTO PARA MUDAR MINHA VIDA!',
       ctaLink: '#inscricao',
     },
@@ -1262,7 +1283,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
           ],
         },
       ],
-      backgroundImage: '/images/HERO_ROTAMIND.png',
+      ...(heroRotaMindImageId ? { backgroundImage: heroRotaMindImageId } : {}),
       ctaText: 'QUERO ESTAR ENTRE OS MAIORES!',
       ctaLink: 'https://pay.eduzz.com/rota-mind',
     },

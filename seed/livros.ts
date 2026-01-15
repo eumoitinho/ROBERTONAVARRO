@@ -1,4 +1,5 @@
 import { normalizeNestedRelationships } from './helpers/normalize-relationships'
+import { ensureMedia } from './helpers/ensure-media'
 
 export async function seedLivros(payload: any) {
   console.log('📖 Populando Livros...')
@@ -39,6 +40,12 @@ export async function seedLivros(payload: any) {
     }
   }
 
+  const sabedoriaImageId = await ensureMedia(payload, 'public/images/SABEDORIA.png', 'A Sabedoria do Dinheiro')
+  const mitosImageId = await ensureMedia(payload, 'public/images/MITOS.png', 'Quebrando Mitos com o Dinheiro')
+  const arteImageId = await ensureMedia(payload, 'public/images/ARTE.png', 'A Arte de Enriquecer')
+  const coachingImageId = await ensureMedia(payload, 'public/images/COACHING.png', 'Coaching Financeiro')
+  const authorImageId = await ensureMedia(payload, 'public/images/ROBERTO_17.jpg', 'Roberto Navarro')
+
   // 1. COACHING FINANCEIRO
   await createOrUpdateLivro('coaching-financeiro', {
     title: 'Coaching Financeiro',
@@ -47,6 +54,7 @@ export async function seedLivros(payload: any) {
     bookTag: 'LIVRO EQUILIBRADOR',
     accentColor: 'blue',
     author: 'Roberto Navarro',
+    ...(authorImageId ? { authorImage: authorImageId } : {}),
     authorBio: [
       {
         type: 'p',
@@ -74,6 +82,7 @@ export async function seedLivros(payload: any) {
       },
     ],
     subtitle: 'Estratégias e soluções para o seu sucesso financeiro',
+    ...(coachingImageId ? { coverImage: coachingImageId } : {}),
     description: [
       {
         type: 'p',
@@ -178,6 +187,7 @@ export async function seedLivros(payload: any) {
     bookTag: 'LIVRO PRÁTICO',
     accentColor: 'green',
     author: 'Roberto Navarro',
+    ...(authorImageId ? { authorImage: authorImageId } : {}),
     authorBio: [
       {
         type: 'p',
@@ -205,6 +215,7 @@ export async function seedLivros(payload: any) {
       },
     ],
     subtitle: 'Riqueza é um caminho, não um privilégio',
+    ...(arteImageId ? { coverImage: arteImageId } : {}),
     description: [
       {
         type: 'p',
@@ -302,6 +313,7 @@ export async function seedLivros(payload: any) {
     bookTag: 'LIVRO TRANSFORMADOR',
     accentColor: 'orange',
     author: 'Roberto Navarro',
+    ...(authorImageId ? { authorImage: authorImageId } : {}),
     authorBio: [
       {
         type: 'p',
@@ -329,6 +341,7 @@ export async function seedLivros(payload: any) {
       },
     ],
     subtitle: 'Liberte-se das crenças que limitam sua prosperidade',
+    ...(mitosImageId ? { coverImage: mitosImageId } : {}),
     description: [
       {
         type: 'p',
@@ -426,6 +439,7 @@ export async function seedLivros(payload: any) {
     bookTag: 'LIVRO ESSENCIAL',
     accentColor: 'gold',
     author: 'Roberto Navarro',
+    ...(authorImageId ? { authorImage: authorImageId } : {}),
     authorBio: [
       {
         type: 'p',
@@ -453,6 +467,7 @@ export async function seedLivros(payload: any) {
       },
     ],
     subtitle: 'Transforme sua mentalidade e atraia a prosperidade para sua vida',
+    ...(sabedoriaImageId ? { coverImage: sabedoriaImageId } : {}),
     description: [
       {
         type: 'p',

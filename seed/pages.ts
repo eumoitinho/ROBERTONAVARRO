@@ -1,4 +1,5 @@
 import { normalizeNestedRelationships } from './helpers/normalize-relationships'
+import { ensureMedia } from './helpers/ensure-media'
 
 export async function seedPages(payload: any) {
   // Helper para criar ou atualizar página
@@ -95,6 +96,21 @@ export async function seedPages(payload: any) {
     },
   ]
 
+  const homeHeroImageId = await ensureMedia(payload, 'public/images/bgsite.jpg', 'Roberto Navarro')
+  const mentorImageId = await ensureMedia(payload, 'public/images/ROBERTO_17.jpg', 'Roberto Navarro')
+  const booksHighlightImageId = await ensureMedia(payload, 'public/images/LIVRO_MOCKUP.png', 'Mockup do Kit de Livros')
+  const booksHeroImageId = await ensureMedia(payload, 'public/images/HERO_EDUCADOR.png', 'Roberto Navarro')
+  const livroMockupImageId = await ensureMedia(payload, 'public/images/LIVRO_MOCKUP.png', 'Mockup do Kit de Livros')
+  const livro2ImageId = await ensureMedia(payload, 'public/images/livro2.png', 'Quebrando Mitos com o Dinheiro')
+  const finalCardImageId = await ensureMedia(payload, 'public/images/mockuplivro.png', 'Kit de Livros Roberto Navarro')
+  const finalImageId = await ensureMedia(payload, 'public/images/livro3.png', 'Kit de Livros Roberto Navarro')
+  const sabedoriaImageId = await ensureMedia(payload, 'public/images/SABEDORIA.png', 'A Sabedoria do Dinheiro')
+  const mitosImageId = await ensureMedia(payload, 'public/images/MITOS.png', 'Quebrando Mitos com o Dinheiro')
+  const arteImageId = await ensureMedia(payload, 'public/images/ARTE.png', 'A Arte de Enriquecer')
+  const coachingImageId = await ensureMedia(payload, 'public/images/COACHING.png', 'Coaching Financeiro')
+  const livesHeroImageId = await ensureMedia(payload, 'public/images/roberto-palestra.jpeg', 'Roberto Navarro palestrando')
+  const independenciaHeroImageId = await ensureMedia(payload, 'public/Prancheta 1.png', 'Independência Financeira')
+
   const home = await createOrUpdatePage('home', {
     title: 'Home',
     slug: 'home',
@@ -108,6 +124,7 @@ export async function seedPages(payload: any) {
         titleRest: 'E CONQUISTE UMA NOVA REALIDADE FINANCEIRA',
         description:
           'Com métodos exclusivos e comprovados, o Instituto Coaching Financeiro (ICF) ajuda você a transformar sua mentalidade e conquistar uma nova realidade financeira.',
+        ...(homeHeroImageId ? { backgroundImage: homeHeroImageId } : {}),
         primaryCTA: {
           label: 'CONHEÇA NOSSAS FORMAÇÕES',
           href: '#formacoes',
@@ -134,6 +151,7 @@ export async function seedPages(payload: any) {
         titleHighlight: '30 ANOS',
         titleSuffix: 'IMPACTANDO VIDAS COM INTELIGÊNCIA E PROPÓSITO',
         description: 'Te guiamos na jornada de transformação financeira, emocional e espiritual.',
+        ...(mentorImageId ? { backgroundImage: mentorImageId } : {}),
         paragraphs: [
           {
             text: 'Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente, trabalhando como lavador de vidros de carros aos 13 anos de idade. Desde cedo, ele compreendeu que enfrentaria desafios significativos para alcançar seus objetivos e prosperar na vida.',
@@ -196,6 +214,7 @@ export async function seedPages(payload: any) {
             text: 'Cada página traz ensinamentos que moldaram a jornada de um multimilionário, agora disponíveis para você.',
           },
         ],
+        ...(booksHighlightImageId ? { image: booksHighlightImageId } : {}),
         primaryCTA: { label: 'COMPRE SEU LIVRO AGORA!', href: '/livros', newTab: false },
       },
       {
@@ -336,6 +355,7 @@ export async function seedPages(payload: any) {
         secondTitle: '',
         description:
           'O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil traz para você um kit exclusivo de livros que serão seu guia definitivo para a tão sonhada liberdade financeira.',
+        ...(booksHeroImageId ? { image: booksHeroImageId } : {}),
         ctaText: 'OFERTA EXCLUSIVA: ADQUIRA SEU KIT!',
         ctaHref: 'https://sun.eduzz.com/956345',
         ctaNewTab: true,
@@ -348,10 +368,10 @@ export async function seedPages(payload: any) {
         ],
         heading: 'Kit Exclusivo Roberto Navarro',
         images: [
-          { alt: 'A Sabedoria do Dinheiro' },
-          { alt: 'Quebrando Mitos com o Dinheiro' },
-          { alt: 'A Arte de Enriquecer' },
-          { alt: 'Coaching Financeiro' },
+          ...(sabedoriaImageId ? [{ image: sabedoriaImageId, alt: 'A Sabedoria do Dinheiro' }] : []),
+          ...(mitosImageId ? [{ image: mitosImageId, alt: 'Quebrando Mitos com o Dinheiro' }] : []),
+          ...(arteImageId ? [{ image: arteImageId, alt: 'A Arte de Enriquecer' }] : []),
+          ...(coachingImageId ? [{ image: coachingImageId, alt: 'Coaching Financeiro' }] : []),
         ],
         price: 'R$ 200,00',
         rating: { stars: 5, reviewCount: 3 },
@@ -395,6 +415,8 @@ export async function seedPages(payload: any) {
           href: 'https://sun.eduzz.com/956345',
           newTab: true,
         },
+        ...(livro2ImageId ? { firstImage: livro2ImageId } : {}),
+        ...(livroMockupImageId ? { secondImage: livroMockupImageId } : {}),
       },
       {
         blockType: 'booksTestimonials',
@@ -438,6 +460,8 @@ export async function seedPages(payload: any) {
           href: 'https://sun.eduzz.com/956345',
           newTab: true,
         },
+        ...(finalCardImageId ? { cardImage: finalCardImageId } : {}),
+        ...(finalImageId ? { image: finalImageId } : {}),
       },
     ],
     seo: {
@@ -714,6 +738,7 @@ export async function seedPages(payload: any) {
     hero: {
       title: 'DECLARE HOJE SUA INDEPENDÊNCIA FINANCEIRA',
       subtitle: 'Invista em uma formação com Roberto Navarro e ganhe outra totalmente grátis!',
+      ...(independenciaHeroImageId ? { backgroundImage: independenciaHeroImageId } : {}),
     },
     content: [
       {
@@ -993,6 +1018,7 @@ export async function seedPages(payload: any) {
     hero: {
       title: 'LIVES DIÁRIAS',
       subtitle: 'Conhecimento transformador todos os dias',
+      ...(livesHeroImageId ? { backgroundImage: livesHeroImageId } : {}),
     },
     content: [
       {
