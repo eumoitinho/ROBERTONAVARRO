@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Forms: CollectionConfig = {
   slug: 'forms',
@@ -338,8 +339,9 @@ const Forms: CollectionConfig = {
         return data
       },
     ],
+    afterChange: [createWebhookAfterChangeHook('forms')],
+    afterDelete: [createWebhookAfterDeleteHook('forms')],
   },
 }
 
 export default Forms
-

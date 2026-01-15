@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createWebhookAfterChangeHook, createWebhookAfterDeleteHook } from '../lib/webhook-hooks'
 
 const Mentores: CollectionConfig = {
   slug: 'mentores',
@@ -117,6 +118,10 @@ const Mentores: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [createWebhookAfterChangeHook('mentores')],
+    afterDelete: [createWebhookAfterDeleteHook('mentores')],
+  },
 }
 
 export default Mentores
