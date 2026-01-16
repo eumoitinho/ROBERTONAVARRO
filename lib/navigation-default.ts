@@ -143,10 +143,10 @@ export const navigationItemsDefault: NavigationItem[] = [
   },
   {
     title: "Sobre",
-    href: "#quem-somos",
+    href: "/#quem-somos",
   },
   {
     title: "Contato",
-    href: "#contato",
+    href: "/#contato",
   },
 ]

@@ -43,6 +43,18 @@ export function SiteHeader({
     )
     const pathname = usePathname()
 
+    const normalizeAnchorItems = (items: NavigationItem[]) =>
+        items.map((item) => {
+            const title = item.title?.trim().toLowerCase()
+            if (title === "sobre") {
+                return { ...item, href: "/#quem-somos", items: undefined }
+            }
+            if (title === "contato") {
+                return { ...item, href: "/#contato", items: undefined }
+            }
+            return item
+        })
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10)
@@ -90,9 +102,10 @@ export function SiteHeader({
     const inicioHref = showInicio && pathname !== "/" ? pathname : "/"
 
     // monta o menu, incluindo o link "Início" apontando para inicioHref
+    const normalizedNavigation = normalizeAnchorItems(resolvedNavigation)
     const navItems = showInicio
-        ? [{ title: "Início", href: inicioHref }, ...resolvedNavigation.filter(i => i.title !== "Início")]
-        : resolvedNavigation.filter(i => i.title !== "Início")
+        ? [{ title: "Início", href: inicioHref }, ...normalizedNavigation.filter(i => i.title !== "Início")]
+        : normalizedNavigation.filter(i => i.title !== "Início")
 
     const ctaButton = resolvedNavigation.find((item: any) => item.isButton)
 
