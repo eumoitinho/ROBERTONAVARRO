@@ -166,9 +166,22 @@ const Formacoes: CollectionConfig = {
       label: 'Desafios/Problemas',
       fields: [
         {
+          name: 'title',
+          type: 'text',
+          label: 'Título',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Descrição',
+        },
+        {
           name: 'text',
           type: 'textarea',
-          label: 'Texto',
+          label: 'Texto (legado)',
+          admin: {
+            description: 'Opcional: use se não quiser separar título/descrição.',
+          },
         },
       ],
     },
@@ -205,9 +218,22 @@ const Formacoes: CollectionConfig = {
       label: 'O que você vai aprender',
       fields: [
         {
+          name: 'title',
+          type: 'text',
+          label: 'Título',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Descrição',
+        },
+        {
           name: 'text',
           type: 'textarea',
-          label: 'Texto',
+          label: 'Texto (lista simples)',
+          admin: {
+            description: 'Use para itens curtos em listas simples.',
+          },
         },
       ],
     },
@@ -218,9 +244,22 @@ const Formacoes: CollectionConfig = {
       label: 'Público-Alvo',
       fields: [
         {
+          name: 'title',
+          type: 'text',
+          label: 'Título',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Descrição',
+        },
+        {
           name: 'text',
           type: 'textarea',
-          label: 'Texto',
+          label: 'Texto (legado)',
+          admin: {
+            description: 'Opcional: use se não quiser separar título/descrição.',
+          },
         },
       ],
     },
@@ -231,9 +270,22 @@ const Formacoes: CollectionConfig = {
       label: 'Resultados / O que esperar após o treinamento',
       fields: [
         {
+          name: 'title',
+          type: 'text',
+          label: 'Título',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Descrição',
+        },
+        {
           name: 'text',
           type: 'textarea',
-          label: 'Texto',
+          label: 'Texto (legado)',
+          admin: {
+            description: 'Opcional: use se não quiser separar título/descrição.',
+          },
         },
       ],
     },
@@ -269,9 +321,22 @@ const Formacoes: CollectionConfig = {
       label: 'Caminhos de Decisão (3 Caminhos)',
       fields: [
         {
+          name: 'title',
+          type: 'text',
+          label: 'Título',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Descrição',
+        },
+        {
           name: 'text',
           type: 'textarea',
-          label: 'Texto',
+          label: 'Texto (legado)',
+          admin: {
+            description: 'Opcional: use se não quiser separar título/descrição.',
+          },
         },
       ],
     },
@@ -289,6 +354,11 @@ const Formacoes: CollectionConfig = {
       type: 'group',
       label: 'Metodologia',
       fields: [
+        {
+          name: 'badge',
+          type: 'text',
+          label: 'Badge',
+        },
         {
           name: 'title',
           type: 'text',

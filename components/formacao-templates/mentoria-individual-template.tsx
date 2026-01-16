@@ -124,7 +124,9 @@ export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndivid
         description="Durante 2 dias transformadores, você vai acessar um novo nível de consciência sobre dinheiro, abundância, valor próprio e energia. Este evento não entrega apenas conhecimento, mas vivências profundas que desbloqueiam crenças, dissolvem padrões limitantes e ativam a força interna da prosperidade."
         imageDesktop="/images/HERO_ESCALADOR.png"
         imageMobile="/images/HERO_ESCALADOR_MOBILE.png"
-        listItems={learnings.map((item: any) => (typeof item === "string" ? item : item.text))}
+        listItems={learnings.map((item: any) =>
+          typeof item === "string" ? item : item.text || item.description || item.title,
+        )}
         ctaText="GARANTA SUA VAGA!"
         ctaHref="#inscricao"
       />

@@ -142,10 +142,11 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
   const targetAudience: ContentItem[] = Array.isArray(formacao?.targetAudience) && formacao.targetAudience.length > 0
     ? formacao.targetAudience
         .map((item: any) => {
-          const parsed = splitTitleDescription(item.text || "")
+          const text = item?.text || ""
+          const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
           return {
-            title: parsed.title,
-            description: parsed.description,
+            title: item?.title || parsed.title,
+            description: item?.description || parsed.description,
           }
         })
         .filter((item: any) => item.title || item.description)

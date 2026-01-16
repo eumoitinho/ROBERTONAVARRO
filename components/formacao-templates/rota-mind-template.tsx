@@ -175,10 +175,11 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
 
   const challenges: QaItem[] = Array.isArray(formacao?.challenges) && formacao.challenges.length > 0
     ? formacao.challenges.map((item: any) => {
-        const parsed = splitTitleDescription(item.text || "")
+        const text = item?.text || ""
+        const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
         return {
-          question: parsed.title,
-          answer: parsed.description,
+          question: item?.title || parsed.title,
+          answer: item?.description || parsed.description,
         }
       })
     : [
@@ -263,10 +264,11 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
 
   const advisoryBenefits: TextItem[] = Array.isArray(formacao?.results) && formacao.results.length > 0
     ? formacao.results.map((item: any) => {
-        const parsed = splitTitleDescription(item.text || "")
+        const text = item?.text || ""
+        const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
         return {
-          title: parsed.title,
-          description: parsed.description,
+          title: item?.title || parsed.title,
+          description: item?.description || parsed.description,
         }
       })
     : [

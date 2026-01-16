@@ -371,26 +371,179 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
         },
         benefits: [
           {
-            title: 'Independência Financeira',
-            description: 'Construa uma carreira sólida e lucrativa ajudando pessoas',
-          icon: 'TrendingUp',
-        },
-        {
-            title: 'Reconhecimento Profissional',
-            description: 'Seja visto como autoridade no mercado de educação financeira',
+            title: 'Independência financeira',
+            description: 'Aprenda a aplicar os conceitos ensinados em sua própria vida e alcance estabilidade e liberdade financeira.',
+            icon: 'DollarSign',
+          },
+          {
+            title: 'Reconhecimento profissional',
+            description: 'Torne-se referência no ensino de finanças e conquiste autoridade e credibilidade na área.',
             icon: 'Award',
           },
           {
-            title: 'Realização de Sonhos',
-            description: 'Trabalhe com propósito transformando vidas através da educação',
-            icon: 'Heart',
+            title: 'Realização de sonhos',
+            description: 'Use seu novo conhecimento para alcançar objetivos pessoais e inspirar outros a fazerem o mesmo.',
+            icon: 'Target',
           },
           {
-            title: 'Alta Rentabilidade',
-            description: 'Potencial de ganhos ilimitado com modelo de negócio escalável',
-            icon: 'DollarSign',
+            title: 'Alta rentabilidade',
+            description: 'Transforme a educação financeira em uma fonte real de renda com potencial escalável.',
+            icon: 'BarChart',
+          },
+        ],
+        methodology: {
+          description: [
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Com certificação reconhecida pelo MEC, a formação de Educador Financeiro é o seu passaporte para uma nova realidade de propósito e prosperidade.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Em poucos dias, você verá resultados concretos em sua vida e aprenderá como dominar os fundamentos da educação financeira e aplicar os conhecimentos na prática.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Além de possibilitar seu crescimento individual, você desenvolverá habilidades pedagógicas e de comunicação para transmitir esse conhecimento de forma eficaz, seja em consultorias, palestras ou cursos. O mercado busca educadores financeiros qualificados, e você estará pronto para atender a essa demanda.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Além de impactar vidas, a formação abre portas para novas fontes de renda e permite que você construa um negócio sólido e rentável no campo da educação financeira.',
+                },
+              ],
+            },
+          ],
         },
-      ],
+        exclusiveMaterials: {
+          enabled: true,
+          title: 'EXPERIMENTE A',
+          description:
+            'Tenha uma prévia da jornada com materiais oficiais, bastidores e um vídeo de apresentação conduzido pelo time da RNA. Explore o ritmo da formação antes de garantir sua vaga definitiva.',
+          items: [
+            { title: 'Download de apostilas e exercícios selecionados' },
+            { title: 'Bastidores da metodologia com orientações do time' },
+            { title: 'Vídeo introdutório guiado pela equipe oficial RNA' },
+            { title: 'Checklist para acelerar seus primeiros atendimentos' },
+          ],
+          ctaText: 'ACESSAR PRÉVIA EXCLUSIVA',
+        },
+        resources: {
+          enabled: true,
+          title: 'TUDO O QUE VOCÊ PRECISA PARA TRANSFORMAR SUA CARREIRA',
+          items: [
+            {
+              title: 'Conhecimento abrangente',
+              description: 'Do básico ao avançado em finanças pessoais, planejamento e investimentos.',
+              icon: 'BookOpen',
+            },
+            {
+              title: 'Ferramentas práticas',
+              description: 'Planilhas, checklists e templates prontos para aplicar com seus alunos ou clientes.',
+              icon: 'Briefcase',
+            },
+            {
+              title: 'Mentoria personalizada',
+              description: 'Orientação direta de especialistas para acelerar sua evolução.',
+              icon: 'Users',
+            },
+            {
+              title: 'Networking e oportunidades',
+              description: 'Acesso a uma comunidade ativa e conexões com profissionais da área.',
+              icon: 'Zap',
+            },
+            {
+              title: 'Certificação reconhecida',
+              description: 'Competências validadas com um certificado que abre portas no mercado.',
+              icon: 'Award',
+            },
+            {
+              title: 'Método validado',
+              description: 'Metodologia estruturada para ensinar finanças de forma clara, envolvente e eficaz.',
+              icon: 'Lightbulb',
+            },
+          ],
+        },
+        exclusiveOpportunity: {
+          enabled: true,
+          badge: 'OPORTUNIDADE EXCLUSIVA',
+          title: 'SEJA UM',
+          description:
+            'Além de se formar como Educador Financeiro, você poderá atuar como treinador licenciado dos cursos oficiais do Instituto Coaching Financeiro (ICF).',
+          subDescription:
+            'Ao concluir a formação, você estará apto a revender treinamentos selecionados do ICF, utilizando o material didático oficial e emitindo certificados com a sua assinatura, reconhecidos diretamente pelo instituto. Ou seja: você já sai com um modelo de negócio pronto para gerar renda.',
+          trainings: [
+            {
+              title: 'LIVRE DE DÍVIDAS',
+              description:
+                'Estratégias práticas para negociação de dívidas e controle financeiro, com metodologia validada e conteúdo gravado. Uma base essencial para suas futuras aulas.',
+            },
+            {
+              title: 'INVESTIMENTOS INTELIGENTES',
+              description:
+                'Curso introdutório e prático sobre bolsa de valores e renda fixa. Ideal para quem quer começar a investir com segurança e repassar seus conhecimentos a outras pessoas.',
+            },
+            {
+              title: 'TRANSFORMAÇÃO FINANCEIRA',
+              description:
+                'Formação completa que aborda propósito com o dinheiro, liberdade financeira, planejamento de curto e longo prazo e criação de múltiplas fontes de renda.',
+            },
+          ],
+        },
+        mentorSection: {
+          enabled: true,
+          badge: 'SEU MENTOR',
+          title: 'APRENDA COM O',
+          subtitle: 'O maior e mais experiente formador de educadores, coaches e mentores financeiros do Brasil!',
+          mentorName: 'Roberto Navarro',
+          bio: [
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Roberto Navarro é um exemplo de superação e transformação. Começou sua trajetória profissional lavando vidros de carros aos 13 anos e, com determinação, construiu um caminho até se tornar multimilionário em menos de sete anos.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Atualmente, é reconhecido como o maior Educador Financeiro do Brasil e criador do Coach Financeiro no país. Sua metodologia exclusiva combina estratégias de educação financeira, inteligência emocional e princípios bíblicos, proporcionando resultados reais para quem busca sair das dívidas, construir riqueza e alcançar liberdade.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Ao longo de sua trajetória, já impactou mais de 13 mil alunos no Brasil e no mundo.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Além de mentor e empreendedor, é autor de best-sellers e especialista em inteligência espiritual e emocional. Hoje, sua missão é clara: ajudar 10 milhões de brasileiros a conquistarem uma vida próspera, com autonomia e visão de futuro.',
+                },
+              ],
+            },
+          ],
+          ctaText: 'QUERO SER UM EDUCADOR FINANCEIRO!',
+        },
       learnings: [
         { text: 'Fundamentos da educação financeira e psicologia do dinheiro' },
         { text: 'Metodologias ativas de ensino e aprendizagem' },
@@ -403,108 +556,90 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       ],
       modules: [
         {
-            title: 'MÓDULO INICIAL - MUDANÇA DE MENTALIDADE',
-            description: 'Fundamentos para transformação mental e financeira',
-            topics: [
-              { text: 'Aula 01 - Introdução ao Curso' },
-              { text: 'Aula 02 - A Importância da Educação Financeira' },
-              { text: 'Aula 03 - Crenças Limitantes sobre Dinheiro' },
-              { text: 'Aula 04 - Mentalidade de Abundância vs Escassez' },
-              { text: 'Aula 05 - Definindo Metas Financeiras' },
-              { text: 'Aula 06 - Propósito e Dinheiro' },
-              { text: 'Aula 07 - Inteligência Emocional Financeira' },
-              { text: 'Aula 08 - Hábitos dos Milionários' },
-              { text: 'Aula 09 - Exercícios Práticos de Reprogramação Mental' },
-            ],
-          },
-          {
-            title: 'MÓDULO 2 - CLAREAMENTO FINANCEIRO',
-            description: 'Diagnóstico e organização da vida financeira',
+          title: 'MÓDULO INICIAL - MUDANÇA DE MENTALIDADE',
+          description: '',
           topics: [
-              { text: 'Aula 01 - Diagnóstico Financeiro Pessoal' },
-              { text: 'Aula 02 - Mapeamento de Receitas e Despesas' },
-              { text: 'Aula 03 - Identificando Vazamentos Financeiros' },
-              { text: 'Aula 04 - Criando um Orçamento Eficiente' },
-              { text: 'Aula 05 - Gestão de Dívidas' },
-              { text: 'Aula 06 - Estratégias para Sair do Vermelho' },
-              { text: 'Aula 07 - Reserva de Emergência' },
-              { text: 'Aula 08 - Ferramentas de Controle Financeiro' },
+            { text: 'Introdução à Virada de Chave' },
+            { text: 'Qualidade de Vida' },
+            { text: 'A Importância da Qualidade de Vida' },
+            { text: 'O que é Muito Dinheiro pra Você?' },
+            { text: 'Maiores Erros e Acertos com o Dinheiro' },
+            { text: 'Como você quer se Sentir?' },
+            { text: 'O que te motiva?' },
+            { text: 'Custo de Vida' },
+            { text: 'Sentimento com o Dinheiro' },
           ],
         },
         {
-            title: 'MÓDULO 3 - A GERAÇÃO DO DINHEIRO',
-            description: 'Estratégias para aumentar renda e criar fontes múltiplas',
+          title: 'MÓDULO 2 - CLAREAMENTO FINANCEIRO',
+          description: '',
           topics: [
-              { text: 'Aula 01 - Renda Ativa vs Renda Passiva' },
-              { text: 'Aula 02 - Como Aumentar sua Renda Principal' },
-              { text: 'Aula 03 - Criando Múltiplas Fontes de Renda' },
-              { text: 'Aula 04 - Empreendedorismo como Solução Financeira' },
-              { text: 'Aula 05 - Negócios Digitais e Infoprodutos' },
-              { text: 'Aula 06 - Monetizando Conhecimento e Habilidades' },
-              { text: 'Aula 07 - Marketing Pessoal e Autoridade' },
-              { text: 'Aula 08 - Vendas e Negociação' },
-              { text: 'Aula 09 - Precificação de Serviços' },
-              { text: 'Aula 10 - Gestão do Tempo e Produtividade' },
-              { text: 'Aula 11 - Networking Estratégico' },
-              { text: 'Aula 12 - Escalando Resultados' },
+            { text: 'Introdução à Clareza Financeira' },
+            { text: 'Causa das Dívidas' },
+            { text: 'Despesas Fantasmas' },
+            { text: 'Tomada de Decisão' },
+            { text: 'Classificação de Contas' },
+            { text: 'Dívida Boa X Dívida Ruim' },
+            { text: 'Qual o tipo de Dívida você tem?' },
+            { text: 'A Mágica dos Juros Compostos' },
           ],
         },
         {
-            title: 'MÓDULO 4 - LIBERDADE FINANCEIRA E INVESTIMENTOS',
-            description: 'Estratégias de investimento e construção de patrimônio',
+          title: 'MÓDULO 3 - A GERAÇÃO DO DINHEIRO',
+          description: '(Te preparando pro Mercado)',
           topics: [
-              { text: 'Aula 01 - O Que é Liberdade Financeira' },
-              { text: 'Aula 02 - Introdução aos Investimentos' },
-              { text: 'Aula 03 - Renda Fixa vs Renda Variável' },
-              { text: 'Aula 04 - Bolsa de Valores para Iniciantes' },
-              { text: 'Aula 05 - Fundos de Investimento' },
-              { text: 'Aula 06 - Previdência Privada' },
-              { text: 'Aula 07 - Diversificação de Portfólio' },
-              { text: 'Aula 08 - Análise de Risco e Retorno' },
-              { text: 'Aula 09 - Construindo Patrimônio a Longo Prazo' },
+            { text: 'Introdução à Geração de Dinheiro' },
+            { text: 'Triatlon da Riqueza' },
+            { text: 'Renda Principal e Perguntas' },
+            { text: 'Renda Extra' },
+            { text: 'Renda Passiva' },
+            { text: 'Limitações Financeiras' },
+            { text: 'Teste a sua meta' },
+            { text: 'Oportunidade de Renda - MMN e Venda Direta' },
+            { text: 'Oportunidade de Renda - Negócio Próprio, Franquia, Licença' },
+            { text: 'Oportunidade de Renda - Marketing Digital' },
+            { text: 'Oportunidade de Renda - Coach' },
+            { text: 'Make Money' },
           ],
         },
         {
-            title: 'MÓDULO 5 - FINANÇAS COM ROBERTO NAVARRO',
-            description: 'Ensinamentos avançados e visão de mentor',
+          title: 'MÓDULO 4 - LIBERDADE FINANCEIRA E INVESTIMENTOS',
+          description: '',
           topics: [
-              { text: 'Aula 01 - A Jornada de Roberto Navarro' },
-              { text: 'Aula 02 - Princípios Bíblicos e Prosperidade' },
-              { text: 'Aula 03 - Inteligência Espiritual Financeira' },
-              { text: 'Aula 04 - Generosidade e Abundância' },
-              { text: 'Aula 05 - Legado e Propósito de Vida' },
-              { text: 'Aula 06 - Liderança Financeira na Família' },
-              { text: 'Aula 07 - Visão de Futuro e Planejamento Estratégico' },
+            { text: 'Introdução e Fundo de Investimentos' },
+            { text: 'Fundo de Investimentos - Multimercado' },
+            { text: 'Fundo de Ações' },
+            { text: 'Renda Fixa - CDB' },
+            { text: 'Renda Fixa - Debentures' },
+            { text: 'Renda Fixa - LCI e LCA' },
+            { text: 'Renda Fixa - Tesouro Direto' },
+            { text: 'Home Brocker - Ações' },
+            { text: 'Conclusão do Curso' },
+          ],
+        },
+        {
+          title: 'MÓDULO 5 - FINANÇAS COM ROBERTO NAVARRO',
+          description: 'Apostila de Acompanhamento incluída',
+          topics: [
+            { text: 'Ciência da Riqueza' },
+            { text: 'Pilares da Riqueza' },
+            { text: 'Padrão de Gastos' },
+            { text: 'Projeto Reduzir para Prosperidade' },
+            { text: 'Oportunidade de Renda Extra' },
+            { text: 'Como Garantir um Futuro com Muito Dinheiro' },
+            { text: 'Como Construir sua Riqueza' },
           ],
         },
       ],
       bonuses: [
-        {
-            title: 'Materiais Complementares',
-            description: 'Planilhas, templates e recursos exclusivos',
-          value: 'R$ 997',
-        },
-        {
-            title: 'Scripts de Atendimento',
-            description: 'Roteiros prontos para usar com clientes',
-          value: 'R$ 497',
-        },
-        {
-            title: 'Cursos Extras',
-            description: 'Conteúdos adicionais de aprofundamento',
-          value: 'R$ 1.997',
-          },
-          {
-            title: 'Dias ao Vivo',
-            description: 'Participação em eventos presenciais exclusivos',
-            value: 'R$ 2.997',
-          },
-          {
-            title: 'Programa de Afiliação 70%',
-            description: 'Ganhe comissões indicando a formação',
-            value: 'R$ 997',
-          },
-        ],
+        { title: '5 apostilas físicas com mais de 30 exercícios e dinâmicas' },
+        { title: 'Scripts de vendas validados e testados' },
+        { title: 'Acesso vitalício com atualizações mensais' },
+        { title: 'Curso de Comunicação para vendas' },
+        { title: 'Mentoria Como Atrair Riqueza' },
+        { title: 'Curso Viva Livre das Dívidas' },
+        { title: 'Aprenda a criar uma Landing Page Lucrativa' },
+      ],
         guarantee: {
           days: 7,
           description: [
@@ -558,27 +693,69 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
         ctaLink: 'https://pay.eduzz.com/empreendedor-inteligente',
       },
       challenges: [
-      { text: 'Você fatura, mas não lucra?' },
-      { text: 'Quer crescer, mas está preso à operação?' },
-      { text: 'Dificuldade para contratar pessoas?' },
-      { text: 'Sente que ninguém entende seus desafios?' },
+        {
+          title: 'Você fatura, mas não lucra?',
+          description: 'Aprenda a formar caixa, controlar gastos invisíveis e parar de pagar juros desnecessários.',
+        },
+        {
+          title: 'Quer crescer, mas está preso à operação?',
+          description: 'Crie um modelo de gestão inteligente para ter mais tempo e liberdade sem comprometer os resultados.',
+        },
+        {
+          title: 'Dificuldade para contratar pessoas?',
+          description: 'Descubra como atrair, treinar e reter talentos que realmente vestem a camisa da sua empresa.',
+        },
+        {
+          title: 'Sente que ninguém entende seus desafios?',
+          description: 'Participe de uma imersão com networking de alto nível e troque com empresários como você.',
+        },
       ],
       learnings: [
-      { text: 'Crédito inteligente' },
-      { text: 'Contabilidade estratégica' },
-      { text: 'Sócios e investidores' },
-      { text: 'Time comprometido' },
-      { text: 'Modelo de vendas lucrativo' },
-      { text: 'Marketing digital de verdade' },
-      { text: 'Formação de caixa e capital de giro' },
-      { text: 'Diversificação de rendas' },
-      { text: 'Plano de aposentadoria' },
-      { text: 'Networking de alto nível' },
-    ],
+        {
+          title: 'Crédito inteligente',
+          description: 'Pare de ser refém de bancos e aprenda a acessar capital de giro sem taxas abusivas.',
+        },
+        {
+          title: 'Contabilidade estratégica',
+          description: 'Use a contabilidade como aliada do lucro e da tomada de decisão.',
+        },
+        {
+          title: 'Sócios e investidores',
+          description: 'Estruture sua empresa para atrair investimentos sem abrir mão do controle.',
+        },
+        {
+          title: 'Time comprometido',
+          description: 'Monte um time que entrega resultado, mesmo quando você não está por perto.',
+        },
+        {
+          title: 'Modelo de vendas lucrativo',
+          description: 'Construa seu próprio sistema de vendas e pare de depender de fórmulas genéricas.',
+        },
+        {
+          title: 'Marketing digital de verdade',
+          description: 'Invista com inteligência e escale sua presença digital sem desperdiçar recursos.',
+        },
+        {
+          title: 'Formação de caixa e capital de giro',
+          description: 'Crie uma base financeira sólida para crescer com segurança e consistência.',
+        },
+        {
+          title: 'Diversificação de rendas',
+          description: 'Descubra como criar novas fontes de receita e blindar seu negócio contra imprevistos.',
+        },
+        {
+          title: 'Plano de aposentadoria',
+          description: 'Aprenda a construir sua liberdade financeira e garantir um futuro tranquilo, mesmo fora da operação.',
+        },
+        {
+          title: 'Networking de alto nível',
+          description: 'Conecte-se com empresários que podem abrir portas e transformar seu negócio.',
+        },
+      ],
     modules: [
       {
         title: 'Crescimento x Escala',
-        description: 'Entenda a diferença entre crescer e escalar seu negócio',
+        description: 'Entenda a diferença entre crescer e escalar — e como se preparar para isso com segurança e previsibilidade.',
         topics: [
           { text: 'Fundamentos de escalabilidade' },
           { text: 'Modelos de negócio escaláveis' },
@@ -586,7 +763,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       },
       {
         title: 'Capital de Giro',
-        description: 'Gestão estratégica do capital de giro',
+        description: 'Organize seu fluxo de caixa, equilibre entradas e saídas e mantenha seu negócio financeiramente saudável.',
         topics: [
           { text: 'Cálculo e otimização' },
           { text: 'Estratégias de financiamento' },
@@ -594,7 +771,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       },
       {
         title: 'Modelo de Trabalho ABC',
-        description: 'Metodologia para organização e eficiência',
+        description: 'Implante um modelo de operação eficiente, com prioridades bem definidas e foco no que gera valor.',
         topics: [
           { text: 'Aplicação prática' },
           { text: 'Casos de sucesso' },
@@ -602,7 +779,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       },
       {
         title: 'Marketing Digital',
-        description: 'Marketing digital estratégico e efetivo',
+        description: 'Use a comunicação digital para fortalecer sua presença online, atraindo e fidelizando clientes.',
         topics: [
           { text: 'Estratégias comprovadas' },
           { text: 'ROI e mensuração' },
@@ -610,12 +787,26 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       },
       {
         title: 'Valuation',
-        description: 'Como valorizar seu negócio',
+        description: 'Saiba quanto vale sua empresa e como aumentar esse valor, preparando-se para investidores.',
         topics: [
           { text: 'Métodos de avaliação' },
           { text: 'Preparação para investidores' },
         ],
       },
+      ],
+      targetAudience: [
+        {
+          title: 'Construir um planejamento eficiente',
+          description: 'Atinga seu primeiro milhão com um plano claro e prático.',
+        },
+        {
+          title: 'Criar objetivos práticos',
+          description: 'Desenvolva uma empresa rica e próspera com metas bem definidas.',
+        },
+        {
+          title: 'Elaborar estratégias inteligentes',
+          description: 'Torne seu negócio o número 1 do seu segmento com abordagens eficazes.',
+        },
       ],
       pricing: {
         price: 1997,
@@ -1009,28 +1200,50 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
     benefits: [
       {
+        title: 'Transformação financeira genuína',
+        description:
+          'Conquiste a liberdade financeira que sempre almejou, redefinindo sua relação com o dinheiro e construindo um futuro de abundância.',
+      },
+      {
+        title: 'Estratégias comprovadas e eficazes',
+        description:
+          'Aprenda técnicas que transcendem a teoria, com aplicação prática e resultados tangíveis, sem promessas vazias ou atalhos ilusórios.',
+      },
+      {
+        title: 'Networking de alto valor',
+        description:
+          'Conecte-se com uma comunidade exclusiva de profissionais visionários, construindo uma rede de contatos que impulsionará seu crescimento.',
+      },
+      {
+        title: 'Suporte contínuo e personalizado',
+        description:
+          'Receba orientação e acompanhamento mesmo após a conclusão do treinamento, garantindo que sua jornada seja contínua e bem-sucedida.',
+      },
+    ],
+    targetAudience: [
+      {
         title: 'Empreendedores',
-        description: 'Para quem quer escalar seu negócio',
+        description: 'que buscam escalar seus negócios, otimizar lucros e consolidar sua posição no mercado.',
       },
       {
-        title: 'Profissionais Liberais',
-        description: 'Aumente sua renda e prosperidade',
+        title: 'Profissionais liberais',
+        description: 'que almejam independência financeira, expansão de sua carteira de clientes e reconhecimento.',
       },
       {
-        title: 'Pessoas com Renda +R$ 5 mil',
-        description: 'Otimize seus recursos',
+        title: 'Pessoas com renda +R$ 5 mil',
+        description: 'que desejam exponencializar seu potencial de ganhos e alcançar novos patamares.',
       },
       {
-        title: 'Futuros Mentores',
-        description: 'Prepare-se para ensinar',
+        title: 'Futuros mentores',
+        description: 'que buscam atuar como coach e educador para transformar vidas através da educação financeira.',
       },
       {
         title: 'Visionários',
-        description: 'Realize seus grandes sonhos',
+        description: 'que compreendem a importância da inteligência financeira como diferencial competitivo.',
       },
       {
-        title: 'Pessoas Ambiciosas',
-        description: 'Alcance novos patamares',
+        title: 'Pessoas ambiciosas',
+        description: 'que buscam prosperar em todas as áreas da vida.',
       },
     ],
     modules: [
@@ -1075,6 +1288,26 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
         ],
       },
     ],
+    resources: {
+      enabled: true,
+      items: [
+        {
+          title: 'Método exclusivo e comprovado',
+          description: 'Uma abordagem única, com estratégias práticas e testadas para desvendar o caminho da riqueza.',
+          icon: 'Award',
+        },
+        {
+          title: 'Aulas presenciais',
+          description: 'Interação direta e imersiva com instrutores experientes, em um ambiente propício ao aprendizado.',
+          icon: 'Users',
+        },
+        {
+          title: 'Material de apoio abrangente',
+          description: 'Apostilas detalhadas, exercícios práticos e acesso a conteúdo exclusivo para solidificar seu conhecimento.',
+          icon: 'BookOpen',
+        },
+      ],
+    },
     pricing: {
       price: 4997,
       installments: 12,

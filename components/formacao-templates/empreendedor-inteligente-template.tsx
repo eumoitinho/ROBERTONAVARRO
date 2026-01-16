@@ -233,12 +233,12 @@ export default function EmpreendedorInteligenteTemplate({ formacao }: Empreended
 
   const challenges: CardItem[] = (Array.isArray(formacao?.challenges) ? formacao.challenges : []).map(
     (item: any, index: number) => {
-    const text = typeof item === "string" ? item : item.text || ""
-    const parsed = splitTitleDescription(text)
-    return {
-      title: parsed.title || fallbackChallenges[index]?.title,
-      description: parsed.description || fallbackChallenges[index]?.description || "",
-    }
+      const text = typeof item === "string" ? item : item.text || ""
+      const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
+      return {
+        title: item?.title || parsed.title || fallbackChallenges[index]?.title || "",
+        description: item?.description || parsed.description || fallbackChallenges[index]?.description || "",
+      }
     },
   )
 
@@ -246,12 +246,12 @@ export default function EmpreendedorInteligenteTemplate({ formacao }: Empreended
 
   const learnings: CardItem[] = (Array.isArray(formacao?.learnings) ? formacao.learnings : []).map(
     (item: any, index: number) => {
-    const text = typeof item === "string" ? item : item.text || ""
-    const parsed = splitTitleDescription(text)
-    return {
-      title: parsed.title || fallbackLearnings[index]?.title,
-      description: parsed.description || fallbackLearnings[index]?.description || "",
-    }
+      const text = typeof item === "string" ? item : item.text || ""
+      const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
+      return {
+        title: item?.title || parsed.title || fallbackLearnings[index]?.title || "",
+        description: item?.description || parsed.description || fallbackLearnings[index]?.description || "",
+      }
     },
   )
   const learningItems: CardItem[] = learnings.length ? learnings : fallbackLearnings
@@ -265,12 +265,12 @@ export default function EmpreendedorInteligenteTemplate({ formacao }: Empreended
 
   const audience: CardItem[] = (Array.isArray(formacao?.targetAudience) ? formacao.targetAudience : []).map(
     (item: any, index: number) => {
-    const text = typeof item === "string" ? item : item.text || ""
-    const parsed = splitTitleDescription(text)
-    return {
-      title: parsed.title || fallbackAudience[index]?.title,
-      description: parsed.description || fallbackAudience[index]?.description || "",
-    }
+      const text = typeof item === "string" ? item : item.text || ""
+      const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
+      return {
+        title: item?.title || parsed.title || fallbackAudience[index]?.title || "",
+        description: item?.description || parsed.description || fallbackAudience[index]?.description || "",
+      }
     },
   )
   const audienceItems: CardItem[] = audience.length ? audience : fallbackAudience

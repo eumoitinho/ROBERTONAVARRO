@@ -155,7 +155,9 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
                 {challenges.map((item: any, index: number) => (
                   <div key={index} className="flex items-start gap-3">
                     <X className="h-5 w-5 text-red-400 mt-1 flex-shrink-0" />
-                    <span className="text-zinc-300 text-lg">{typeof item === "string" ? item : item.text}</span>
+                    <span className="text-zinc-300 text-lg">
+                      {typeof item === "string" ? item : item.text || item.description || item.title}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -215,7 +217,12 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {learnings.map((item: any, index: number) => {
-              const parsed = splitTitleDescription(typeof item === "string" ? item : item.text || "")
+              const parsed =
+                typeof item === "string"
+                  ? splitTitleDescription(item)
+                  : item?.title || item?.description
+                    ? { title: item.title || "", description: item.description || "" }
+                    : splitTitleDescription(item?.text || "")
               const icons = [TrendingUp, Shield, BarChart3, Zap, Target, Brain, PiggyBank, Heart, BookOpen]
               const IconComponent = icons[index % icons.length]
               return (

@@ -124,7 +124,7 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
     const IconComponent = icons[index % icons.length]
     return {
       title: titles[index] || `Inteligência ${index + 1}`,
-      desc: typeof item === "string" ? item : item.text || item.description || "",
+      desc: typeof item === "string" ? item : item.description || item.text || item.title || "",
       icon: <IconComponent className="h-6 w-6" />,
     }
   })

@@ -156,10 +156,10 @@ export default function MentoriaTemplate({ formacao }: MentoriaTemplateProps) {
     ? formacao.challenges
         .map((challenge: TextBlock) => {
           const text = challenge?.text || ""
-          const parsed = splitTitleDescription(text)
+          const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
           return {
-            title: parsed.title,
-            description: parsed.description,
+            title: challenge?.title || parsed.title,
+            description: challenge?.description || parsed.description,
           }
         })
         .filter((item: { title?: string; description?: string }) => item.title || item.description)
@@ -182,7 +182,7 @@ export default function MentoriaTemplate({ formacao }: MentoriaTemplateProps) {
   const listItems = Array.isArray(formacao?.learnings) && formacao.learnings.length > 0
     ? formacao.learnings
         .map((item: TextBlock | string) =>
-          typeof item === "string" ? item : item.text || item.title || "",
+          typeof item === "string" ? item : item.text || item.description || item.title || "",
         )
         .filter(Boolean)
     : defaultListItems

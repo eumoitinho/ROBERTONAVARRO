@@ -104,10 +104,11 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
   const symptoms = (Array.isArray(formacao?.challenges) && formacao.challenges.length > 0
     ? formacao.challenges
         .map((challenge: any) => {
-          const parsed = splitTitleDescription(challenge.text || "")
+          const text = challenge?.text || ""
+          const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
           return {
-            title: parsed.title,
-            description: parsed.description,
+            title: challenge?.title || parsed.title,
+            description: challenge?.description || parsed.description,
           }
         })
         .filter((item: any) => item.title || item.description)
@@ -144,10 +145,11 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
   const learningModules = (Array.isArray(formacao?.learnings) && formacao.learnings.length > 0
     ? formacao.learnings
         .map((learning: any) => {
-          const parsed = splitTitleDescription(learning.text || "")
+          const text = learning?.text || ""
+          const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
           return {
-            title: parsed.title,
-            description: parsed.description,
+            title: learning?.title || parsed.title,
+            description: learning?.description || parsed.description,
           }
         })
         .filter((item: any) => item.title || item.description)
@@ -194,10 +196,11 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
   const targetAudience = (Array.isArray(formacao?.targetAudience) && formacao.targetAudience.length > 0
     ? formacao.targetAudience
         .map((item: any) => {
-          const parsed = splitTitleDescription(item.text || "")
+          const text = item?.text || ""
+          const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
           return {
-            title: parsed.title,
-            description: parsed.description,
+            title: item?.title || parsed.title,
+            description: item?.description || parsed.description,
           }
         })
         .filter((item: any) => item.title || item.description)
@@ -239,10 +242,11 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
   const expectedResults = (Array.isArray(formacao?.results) && formacao.results.length > 0
     ? formacao.results
         .map((item: any) => {
-          const parsed = splitTitleDescription(item.text || "")
+          const text = item?.text || ""
+          const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
           return {
-            title: parsed.title,
-            description: parsed.description,
+            title: item?.title || parsed.title,
+            description: item?.description || parsed.description,
           }
         })
         .filter((item: any) => item.title || item.description)
@@ -277,10 +281,11 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
   const paths: DecisionPath[] = (Array.isArray(formacao?.decisionPaths) && formacao.decisionPaths.length > 0
     ? formacao.decisionPaths
         .map((item: any) => {
-          const parsed = splitTitleDescription(item.text || "")
+          const text = item?.text || ""
+          const parsed = text ? splitTitleDescription(text) : { title: "", description: "" }
           return {
-            title: parsed.title,
-            description: parsed.description,
+            title: item?.title || parsed.title,
+            description: item?.description || parsed.description,
           }
         })
         .filter((item: any) => item.title || item.description)
@@ -512,7 +517,7 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
               <CardContent className="p-8 md:p-12">
                 <ScrollAnimation animation="fadeInUp">
                   <Badge variant="outline" className="mb-6 px-4 py-2 border-yellow-500/50 bg-yellow-500/5">
-                    MENTOR COACHING FINANCEIRO
+                    {formacao.methodology?.badge || "MENTOR COACHING FINANCEIRO"}
                   </Badge>
                 </ScrollAnimation>
                 <ScrollAnimation animation="fadeInUp" animationDelay="100ms">
