@@ -32,6 +32,18 @@ interface MentorCoachingFinanceiroTemplateProps {
   formacao: any
 }
 
+type DecisionPath = {
+  number: string
+  title?: string
+  description?: string
+  color: string
+}
+
+type FaqItem = {
+  question: string
+  answer: string
+}
+
 const getPlainText = (content: any): string | undefined => {
   if (!content) return undefined
   if (typeof content === "string") return content
@@ -262,7 +274,7 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
       ]
   )
 
-  const paths = (Array.isArray(formacao?.decisionPaths) && formacao.decisionPaths.length > 0
+  const paths: DecisionPath[] = (Array.isArray(formacao?.decisionPaths) && formacao.decisionPaths.length > 0
     ? formacao.decisionPaths
         .map((item: any) => {
           const parsed = splitTitleDescription(item.text || "")
@@ -299,7 +311,7 @@ export default function MentorCoachingFinanceiroTemplate({ formacao }: MentorCoa
     }
   })
 
-  const faqs = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
+  const faqs: FaqItem[] = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
     ? formacao.faqs.map((faq: any) => ({
         question: faq.question || faq.title || "",
         answer: getPlainText(faq.answer) || "",

@@ -38,6 +38,17 @@ interface EducadorFinanceiroTemplateProps {
   formacao: any
 }
 
+type EducadorModule = {
+  title: string
+  description?: string
+  topics: Array<string | undefined>
+}
+
+type FaqItem = {
+  question: string
+  answer: string
+}
+
 const SectionBackdrop = ({ variant = "default" }: { variant?: "default" | "muted" | "intense" }) => (
   <>
     <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black" />
@@ -270,7 +281,7 @@ export default function EducadorFinanceiroTemplate({ formacao }: EducadorFinance
         { title: "Aprenda a criar uma Landing Page Lucrativa" },
       ]
 
-  const faqItems = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
+  const faqItems: FaqItem[] = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
     ? formacao.faqs.map((faq: any) => ({
         question: faq.question || faq.title || "",
         answer: getPlainText(faq.answer) || "",
@@ -702,7 +713,7 @@ export default function EducadorFinanceiroTemplate({ formacao }: EducadorFinance
           </div>
 
           <div className="max-w-6xl mx-auto space-y-8">
-            {modules.map((module, index) => {
+            {modules.map((module: EducadorModule, index: number) => {
               const iconMapByIndex = [GraduationCap, FileText, TrendingUp, BarChart, Star]
               const IconComponent = iconMapByIndex[index % iconMapByIndex.length]
               return (

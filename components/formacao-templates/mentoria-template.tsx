@@ -162,7 +162,7 @@ export default function MentoriaTemplate({ formacao }: MentoriaTemplateProps) {
             description: parsed.description,
           }
         })
-        .filter((item) => item.title || item.description)
+        .filter((item: { title?: string; description?: string }) => item.title || item.description)
     : defaultChallenges
   ).map((item: any, index: number) => {
     const fallback = defaultChallenges[index % defaultChallenges.length]
@@ -437,7 +437,7 @@ export default function MentoriaTemplate({ formacao }: MentoriaTemplateProps) {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            {challengeItems.map((module, index) => (
+            {challengeItems.map((module: { title: string; description?: string; icon: any }, index: number) => (
               <div
                 key={index}
                 className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2"
@@ -683,7 +683,7 @@ export default function MentoriaTemplate({ formacao }: MentoriaTemplateProps) {
           </p>
 
           <div className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq, index) => (
+            {faqs.map((faq: { question: string; answer: string }, index: number) => (
               <GlowEffect key={index} className="bg-black p-5 rounded-xl border border-zinc-700 hover-lift card-hover">
                 <h3 className="text-base font-semibold mb-2">{faq.question}</h3>
                 <p className="text-zinc-400 font-light text-xs">{faq.answer}</p>

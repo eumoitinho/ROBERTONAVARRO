@@ -31,6 +31,22 @@ interface MetodoTFTemplateProps {
   formacao: any
 }
 
+type ContentItem = {
+  title: string
+  description?: string
+}
+
+type DifferentialItem = {
+  title: string
+  description?: string
+  icon?: string
+}
+
+type FaqItem = {
+  question: string
+  answer: string
+}
+
 const getPlainText = (content: any): string | undefined => {
   if (!content) return undefined
   if (typeof content === "string") return content
@@ -95,7 +111,7 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
     { number: "+500", label: "vídeos inspiradores" },
   ]
 
-  const benefits = Array.isArray(formacao?.benefits) && formacao.benefits.length > 0
+  const benefits: ContentItem[] = Array.isArray(formacao?.benefits) && formacao.benefits.length > 0
     ? formacao.benefits.map((benefit: any) => ({
         title: benefit.title || benefit.text || benefit.description,
         description: benefit.description || benefit.text,
@@ -123,7 +139,7 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
         },
       ]
 
-  const targetAudience = Array.isArray(formacao?.targetAudience) && formacao.targetAudience.length > 0
+  const targetAudience: ContentItem[] = Array.isArray(formacao?.targetAudience) && formacao.targetAudience.length > 0
     ? formacao.targetAudience
         .map((item: any) => {
           const parsed = splitTitleDescription(item.text || "")
@@ -160,7 +176,7 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
         },
       ]
 
-  const courseContent = Array.isArray(formacao?.modules) && formacao.modules.length > 0
+  const courseContent: ContentItem[] = Array.isArray(formacao?.modules) && formacao.modules.length > 0
     ? formacao.modules.map((module: any) => ({
         title: module.title,
         description: module.description,
@@ -188,7 +204,7 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
         },
       ]
 
-  const differentialItems = Array.isArray(formacao?.resources?.items) && formacao.resources.items.length > 0
+  const differentialItems: DifferentialItem[] = Array.isArray(formacao?.resources?.items) && formacao.resources.items.length > 0
     ? formacao.resources.items.map((item: any) => ({
         title: item.title,
         description: item.description,
@@ -219,7 +235,7 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
     Shield,
   }
 
-  const faqs = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
+  const faqs: FaqItem[] = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
     ? formacao.faqs.map((faq: any) => ({
         question: faq.question || faq.title || "",
         answer: getPlainText(faq.answer) || "",
@@ -548,7 +564,7 @@ export default function MetodoTFTemplate({ formacao }: MetodoTFTemplateProps) {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {differentialItems.map((item, index) => {
-              const IconComponent = iconMap[item.icon] || Award
+              const IconComponent = iconMap[item.icon || ""] || Award
               return (
                 <ScrollAnimation key={index} animation="fadeInUp" animationDelay={`${index * 100}ms`}>
                   <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800 text-center hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2">

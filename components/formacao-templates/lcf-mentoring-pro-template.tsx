@@ -18,6 +18,11 @@ interface LCFMentoringProTemplateProps {
   formacao: any
 }
 
+type FaqItem = {
+  question: string
+  answer: string
+}
+
 const getPlainText = (content: any): string | undefined => {
   if (!content) return undefined
   if (typeof content === "string") return content
@@ -43,7 +48,7 @@ const fallbackBenefits = [
   "Garantia de 6 meses: Se sua vida não mudar, devolvemos seu dinheiro",
 ]
 
-const fallbackFaqs = [
+const fallbackFaqs: FaqItem[] = [
   {
     question: "O LCF Mentoring PRO é só para quem quer ser coach?",
     answer:
@@ -128,7 +133,7 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
     ? formacao.benefits.map((benefit: any) => benefit.description || benefit.title || benefit)
     : fallbackBenefits
 
-  const faqItems = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
+  const faqItems: FaqItem[] = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
     ? formacao.faqs.map((faq: any) => ({
         question: faq.question || faq.title || "",
         answer: getPlainText(faq.answer) || "",

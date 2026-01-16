@@ -24,11 +24,34 @@ import { SectionBadge } from "@/components/section-badge"
 import Footer from "@/components/footer"
 import WhatsAppButton from "@/components/whatsapp-button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { submitLead } from "@/lib/actions"
+import { submitLead, type LeadData } from "@/lib/actions"
 import { getBrowserInfo, getUTMParameters } from "@/lib/utils"
 
 interface RotaMindTemplateProps {
   formacao: any
+}
+
+type RotaMindFormData = LeadData & {
+  company?: string
+  position?: string
+  revenue?: string
+  message?: string
+}
+
+type TextItem = {
+  title: string
+  description?: string
+}
+
+type QaItem = {
+  question: string
+  answer: string
+}
+
+type BenefitType = {
+  title: string
+  description?: string
+  benefits: string[]
 }
 
 const splitTitleDescription = (text: string) => {
@@ -73,7 +96,7 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
       : formacao.form
     : undefined
 
-  const [formData, setFormData] = useState<Record<string, any>>({
+  const [formData, setFormData] = useState<RotaMindFormData>({
     name: "",
     email: "",
     phone: "",
@@ -150,7 +173,7 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
           { title: "Inscreva-se", href: "#form", isButton: true },
         ]
 
-  const challenges = Array.isArray(formacao?.challenges) && formacao.challenges.length > 0
+  const challenges: QaItem[] = Array.isArray(formacao?.challenges) && formacao.challenges.length > 0
     ? formacao.challenges.map((item: any) => {
         const parsed = splitTitleDescription(item.text || "")
         return {
@@ -181,7 +204,7 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
         },
       ]
 
-  const benefitsTypes = Array.isArray(formacao?.modules) && formacao.modules.length > 0
+  const benefitsTypes: BenefitType[] = Array.isArray(formacao?.modules) && formacao.modules.length > 0
     ? formacao.modules.map((module: any) => ({
         title: module.title,
         description: module.description,
@@ -238,7 +261,7 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
         },
       ]
 
-  const advisoryBenefits = Array.isArray(formacao?.results) && formacao.results.length > 0
+  const advisoryBenefits: TextItem[] = Array.isArray(formacao?.results) && formacao.results.length > 0
     ? formacao.results.map((item: any) => {
         const parsed = splitTitleDescription(item.text || "")
         return {
@@ -265,7 +288,7 @@ export default function RotaMindTemplate({ formacao }: RotaMindTemplateProps) {
         },
       ]
 
-  const faqs = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
+  const faqs: QaItem[] = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
     ? formacao.faqs.map((faq: any) => ({
         question: faq.question || faq.title || "",
         answer: getPlainText(faq.answer) || "",

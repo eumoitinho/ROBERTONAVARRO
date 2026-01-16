@@ -30,7 +30,12 @@ interface EmpreendedorInteligenteTemplateProps {
 
 type CardItem = {
   title: string
-  description: string
+  description?: string
+}
+
+type FaqItem = {
+  question: string
+  answer: string
 }
 
 const fallbackChallenges: CardItem[] = [
@@ -52,7 +57,7 @@ const fallbackChallenges: CardItem[] = [
   },
 ]
 
-const fallbackLearnings = [
+const fallbackLearnings: CardItem[] = [
   {
     title: "Crédito inteligente",
     description: "Pare de ser refém de bancos e aprenda a acessar capital de giro sem taxas abusivas.",
@@ -95,7 +100,7 @@ const fallbackLearnings = [
   },
 ]
 
-const fallbackLean = [
+const fallbackLean: CardItem[] = [
   {
     title: "Crescimento x Escala",
     description: "Entenda a diferença entre crescer e escalar — e como se preparar para isso com segurança e previsibilidade.",
@@ -118,7 +123,7 @@ const fallbackLean = [
   },
 ]
 
-const fallbackAudience = [
+const fallbackAudience: CardItem[] = [
   {
     title: "Construir um planejamento eficiente",
     description: "Atinga seu primeiro milhão com um plano claro e prático.",
@@ -133,7 +138,7 @@ const fallbackAudience = [
   },
 ]
 
-const fallbackFaqs = [
+const fallbackFaqs: FaqItem[] = [
   {
     question: "Quem pode participar do programa Empreendedor Inteligente?",
     answer:
@@ -226,45 +231,51 @@ export default function EmpreendedorInteligenteTemplate({ formacao }: Empreended
 
   const heroDescription = getPlainText(formacao.hero?.description)
 
-  const challenges = (Array.isArray(formacao?.challenges) ? formacao.challenges : []).map((item: any, index: number) => {
+  const challenges: CardItem[] = (Array.isArray(formacao?.challenges) ? formacao.challenges : []).map(
+    (item: any, index: number) => {
     const text = typeof item === "string" ? item : item.text || ""
     const parsed = splitTitleDescription(text)
     return {
       title: parsed.title || fallbackChallenges[index]?.title,
       description: parsed.description || fallbackChallenges[index]?.description || "",
     }
-  })
+    },
+  )
 
-  const challengeItems = challenges.length ? challenges : fallbackChallenges
+  const challengeItems: CardItem[] = challenges.length ? challenges : fallbackChallenges
 
-  const learnings = (Array.isArray(formacao?.learnings) ? formacao.learnings : []).map((item: any, index: number) => {
+  const learnings: CardItem[] = (Array.isArray(formacao?.learnings) ? formacao.learnings : []).map(
+    (item: any, index: number) => {
     const text = typeof item === "string" ? item : item.text || ""
     const parsed = splitTitleDescription(text)
     return {
       title: parsed.title || fallbackLearnings[index]?.title,
       description: parsed.description || fallbackLearnings[index]?.description || "",
     }
-  })
-  const learningItems = learnings.length ? learnings : fallbackLearnings
+    },
+  )
+  const learningItems: CardItem[] = learnings.length ? learnings : fallbackLearnings
 
-  const modules = Array.isArray(formacao?.modules) && formacao.modules.length > 0
+  const modules: CardItem[] = Array.isArray(formacao?.modules) && formacao.modules.length > 0
     ? formacao.modules.map((module: any, index: number) => ({
         title: module.title || fallbackLean[index]?.title,
         description: module.description || fallbackLean[index]?.description,
       }))
     : fallbackLean
 
-  const audience = (Array.isArray(formacao?.targetAudience) ? formacao.targetAudience : []).map((item: any, index: number) => {
+  const audience: CardItem[] = (Array.isArray(formacao?.targetAudience) ? formacao.targetAudience : []).map(
+    (item: any, index: number) => {
     const text = typeof item === "string" ? item : item.text || ""
     const parsed = splitTitleDescription(text)
     return {
       title: parsed.title || fallbackAudience[index]?.title,
       description: parsed.description || fallbackAudience[index]?.description || "",
     }
-  })
-  const audienceItems = audience.length ? audience : fallbackAudience
+    },
+  )
+  const audienceItems: CardItem[] = audience.length ? audience : fallbackAudience
 
-  const faqs = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
+  const faqs: FaqItem[] = Array.isArray(formacao?.faqs) && formacao.faqs.length > 0
     ? formacao.faqs.map((faq: any) => ({
         question: faq.question || faq.title || "",
         answer: getPlainText(faq.answer) || "",
