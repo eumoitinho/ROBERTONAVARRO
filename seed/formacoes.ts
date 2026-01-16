@@ -631,13 +631,22 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     accentColor: '#FFD700',
     hero: {
       title: 'LCF MENTORING PRO',
+      badge: 'Mentoria exclusiva para transformação',
       subtitle: 'Você já tem o dinheiro. Agora, só falta o controle!',
       description: [
         {
           type: 'p',
           children: [
             {
-              text: 'Programa completo com treinamentos transformadores. A riqueza começa com clareza. E se constrói com método.',
+              text: 'O LCF Mentoring PRO reúne os treinamentos mais transformadores do educador financeiro Roberto Navarro em um único programa criado para te colocar no seleto grupo de pessoas que vivem com consciência, riqueza e propósito.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'O programa mais completo de transformação financeira, emocional e espiritual do Brasil, com conteúdos de alto nível, encontros presenciais e suporte contínuo.',
             },
           ],
         },
@@ -647,31 +656,51 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       ctaLink: 'https://pay.eduzz.com/lcf-mentoring-pro',
     },
     learnings: [
-      { text: 'Inteligência emocional para prosperidade' },
-      { text: 'Inteligência financeira avançada' },
-      { text: 'Inteligência espiritual e propósito' },
-      { text: 'Inteligência estratégica empresarial' },
+      {
+        text: 'Domine suas emoções e padrões mentais, desenvolvendo resiliência, clareza e foco para tomar decisões consistentes em qualquer área da vida.',
+      },
+      {
+        text: 'Destrave suas crenças limitantes e aprenda a organizar, direcionar e multiplicar seus recursos com consciência e consistência.',
+      },
+      {
+        text: 'Conecte sua jornada material com seu propósito de vida. Viver com significado não é um luxo — é a base para prosperar com equilíbrio.',
+      },
+      {
+        text: 'Alinhe carreira, investimentos, rotina e hábitos com um plano de ação realista e poderoso.',
+      },
     ],
     benefits: [
       {
-        title: 'Acesso Vitalício',
-        description: 'Acesso permanente a todo o conteúdo',
+        title: 'Resiliência emocional',
+        description: 'Desenvolva resiliência e clareza para decisões consistentes.',
       },
       {
-        title: '4 Imersões Presenciais',
-        description: 'Encontros presenciais exclusivos',
+        title: 'Foco e controle',
+        description: 'Domine padrões mentais e mantenha o foco nas metas.',
       },
       {
-        title: '+100h de Conteúdo',
-        description: 'Material completo e atualizado',
+        title: 'Consciência financeira',
+        description: 'Organize e direcione seus recursos com consciência.',
       },
       {
-        title: 'Suporte Direto',
-        description: 'Acompanhamento personalizado',
+        title: 'Multiplicação de recursos',
+        description: 'Aprenda a multiplicar seus recursos com consistência.',
       },
       {
-        title: 'Garantia 6 Meses',
-        description: 'Garantia de resultados ou devolução',
+        title: 'Propósito alinhado',
+        description: 'Conecte sua jornada material ao seu propósito de vida.',
+      },
+      {
+        title: 'Equilíbrio e significado',
+        description: 'Prosperidade com equilíbrio e significado.',
+      },
+      {
+        title: 'Plano estratégico',
+        description: 'Alinhe carreira, investimentos, rotina e hábitos.',
+      },
+      {
+        title: 'Execução poderosa',
+        description: 'Plano realista com ações consistentes e aplicáveis.',
       },
     ],
     pricing: {
@@ -681,13 +710,13 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       link: 'https://pay.eduzz.com/lcf-mentoring-pro',
     },
     guarantee: {
-      days: 7,
+      days: 180,
       description: [
         {
           type: 'p',
           children: [
             {
-              text: 'Garantia de 6 meses. Se não obtiver resultados, devolvemos seu investimento.',
+              text: 'Garantia de 6 meses: se sua vida não mudar, devolvemos seu dinheiro.',
             },
           ],
         },
@@ -695,8 +724,8 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
     seo: {
       title: 'LCF Mentoring Pro - Programa Completo | Roberto Navarro',
-      description: 'Programa completo com treinamentos transformadores. Você já tem o dinheiro. Agora, só falta o controle!',
-      keywords: 'lcf mentoring pro, mentoria financeira, coaching financeiro',
+      description: 'Mentoria exclusiva para transformação. Você já tem o dinheiro. Agora, só falta o controle!',
+      keywords: 'lcf mentoring pro, mentoria exclusiva, transformação financeira, roberto navarro',
     },
   })
 
@@ -709,13 +738,22 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     accentColor: '#FFD700',
     hero: {
       title: 'MENTORIA INDIVIDUAL EXCLUSIVA',
+      badge: 'Acompanhamento 100 % personalizado',
       subtitle: 'Transforme sua vida com a mentoria mais exclusiva do Brasil',
       description: [
         {
           type: 'p',
           children: [
             {
-              text: 'Acompanhamento 100% personalizado para destravar seu potencial. Mais do que uma mentoria, um despertar de consciência.',
+              text: 'A Mentoria Individual com Roberto Navarro é o caminho para quem busca resultados extraordinários em finanças, emoções e propósito.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Um acompanhamento 100 % personalizado para destravar seu potencial e alcançar liberdade financeira com equilíbrio.',
             },
           ],
         },
@@ -727,39 +765,39 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     benefits: [
       {
         title: 'Plano Financeiro 100% Personalizado',
-        description: 'Estratégias adaptadas à sua realidade',
+        description: 'Estratégias desenhadas exclusivamente para suas metas e realidade.',
       },
       {
         title: 'Resultados Acelerados e Consistentes',
-        description: 'Transformação rápida e duradoura',
+        description: 'Alcance seus objetivos financeiros com um plano claro e suporte próximo.',
       },
       {
         title: 'Acompanhamento 1:1 com Roberto Navarro',
-        description: 'Acesso direto ao mentor',
+        description: 'Mentoria direta com um dos maiores especialistas em finanças do Brasil.',
       },
       {
         title: 'Transformação Emocional e Espiritual',
-        description: 'Mudança completa de mindset',
+        description: 'Desenvolva equilíbrio e propósito para uma vida plena.',
       },
       {
         title: 'Acesso a Ferramentas Exclusivas',
-        description: 'Recursos disponíveis apenas para mentoria',
+        description: 'Recursos únicos para maximizar seu crescimento financeiro e pessoal.',
       },
       {
         title: 'Networking de Alto Nível',
-        description: 'Conexões estratégicas e valiosas',
+        description: 'Conecte-se a uma rede seleta de empreendedores e investidores.',
       },
     ],
     learnings: [
-      { text: 'Reprogramação mental para riqueza' },
-      { text: 'Estratégias financeiras personalizadas' },
-      { text: 'Planejamento de longo prazo' },
-      { text: 'Gestão de patrimônio' },
-      { text: 'Múltiplas fontes de renda' },
-      { text: 'Mindset de prosperidade' },
-      { text: 'Inteligência emocional financeira' },
-      { text: 'Legado e propósito' },
-      { text: 'Transformação completa de vida' },
+      { text: 'Qual o efeito do dinheiro em sua vida.' },
+      { text: 'Como o seu estado emocional impacta diretamente sua conta bancária.' },
+      { text: 'Quem está influenciando sua visão sobre dinheiro — e como retomar o controle.' },
+      { text: 'O papel da ambiência e da atmosfera na construção da riqueza.' },
+      { text: 'Como identificar e eliminar sabotadores financeiros.' },
+      { text: 'A conexão poderosa (e oculta) entre energia sexual e prosperidade.' },
+      { text: 'O protocolo da riqueza nos negócios e na vida pessoal.' },
+      { text: 'A verdade sobre o “dinheirinho” e por que ele pode te manter preso na escassez.' },
+      { text: 'Como criar a motivação certa para que o dinheiro venha até você.' },
     ],
     pricing: {
       price: 50000,
@@ -769,7 +807,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
     seo: {
       title: 'Mentoria Individual - Acompanhamento Personalizado | Roberto Navarro',
-      description: 'Transforme sua vida com a mentoria mais exclusiva do Brasil. Acompanhamento 100% personalizado.',
+      description: 'Transforme sua vida com a mentoria mais exclusiva do Brasil. Acompanhamento 100 % personalizado.',
       keywords: 'mentoria individual, coaching financeiro personalizado, roberto navarro mentoria',
     },
   })
@@ -783,13 +821,22 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     accentColor: '#FFD700',
     hero: {
       title: 'MENTORIA DE INVESTIMENTOS',
+      badge: 'Formação prática',
       subtitle: 'Faça seu dinheiro trabalhar por você',
       description: [
         {
           type: 'p',
           children: [
             {
-              text: 'Formação prática para quem quer aprender a investir com segurança. A mentoria que vai transformar sua relação com o dinheiro.',
+              text: 'Transforme sua vida financeira com a mentoria de investimentos.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Formação prática para quem quer aprender a investir com segurança, confiança e estratégias reais do mercado.',
             },
           ],
         },
@@ -799,81 +846,81 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       ctaLink: 'https://pay.eduzz.com/mentoria-investimentos',
     },
     challenges: [
-      { text: 'Medo de perder dinheiro investindo' },
-      { text: 'Não sabe por onde começar' },
-      { text: 'Falta de conhecimento técnico' },
-      { text: 'Dificuldade em escolher investimentos' },
-      { text: 'Não tem estratégia definida' },
+      { text: 'Medo de investir?' },
+      { text: 'Não sabe por onde começar?' },
+      { text: 'Cansado de taxas bancárias abusivas?' },
+      { text: 'Sente que o dinheiro nunca é suficiente?' },
+      { text: 'Já tentou sozinho e se frustrou?' },
     ],
     benefits: [
       {
-        title: 'Investir com Segurança',
-        description: 'Estratégias comprovadas e seguras',
+        title: 'Investir com segurança',
+        description: 'Aprenda o passo a passo de como investir com segurança, mesmo sendo iniciante.',
       },
       {
-        title: 'Conhecimento Técnico Completo',
-        description: 'Aprenda tudo sobre investimentos',
+        title: 'Estratégias que os bancos escondem',
+        description: 'Descubra estratégias que os bancos não querem que você saiba.',
       },
       {
-        title: 'Planejamento Estratégico',
-        description: 'Estratégia personalizada para você',
+        title: 'Confiança nas decisões',
+        description: 'Desenvolva confiança para tomar decisões financeiras com autonomia.',
       },
       {
-        title: 'Gestão de Risco',
-        description: 'Aprenda a proteger seu capital',
+        title: 'Renda extra com pouco',
+        description: 'Crie uma renda extra com investimentos, mesmo começando com pouco.',
       },
       {
-        title: 'Resultados Consistentes',
-        description: 'Ganhos previsíveis e seguros',
+        title: 'Acompanhamento certo',
+        description: 'Tenha o acompanhamento e direcionamento certo para fazer seu dinheiro crescer.',
       },
     ],
     learnings: [
-      { text: 'Investimentos na Bolsa' },
-      { text: 'Renda fixa' },
-      { text: 'Análise técnica' },
-      { text: 'Mercado futuro' },
-      { text: 'Planejamento financeiro' },
-      { text: 'Gestão de risco' },
-      { text: 'Potes milionários' },
-      { text: 'Gestão emocional' },
-      { text: 'Inteligência de investimento' },
+      { text: 'Investimentos na Bolsa – descubra como lucrar até quando a bolsa está em queda.' },
+      { text: 'Renda fixa – saiba como proteger seu capital e garantir retorno.' },
+      { text: 'Análise técnica – aprenda como ler gráficos e tomar decisões baseadas em dados.' },
+      { text: 'Mercado futuro – descubra novas oportunidades para escalar seus ganhos.' },
+      { text: 'Planejamento financeiro – monte seu plano de independência financeira.' },
+      { text: 'Gestão de risco – saiba como administrar riscos, perdas e ganhos.' },
+      { text: 'Potes milionários – crie métodos para alcançar a aposentadoria, a independência e a liberdade.' },
+      { text: 'Gestão emocional – saiba como lidar e gerir com o estresse do mercado.' },
+      { text: 'Inteligência de investimento – aprenda a escapar do overtrading e especialize-se em mercados específicos.' },
     ],
     modules: [
       {
-        title: 'Investir é Disciplina',
-        description: 'Fundamentos da disciplina no investimento',
+        title: 'Investir é disciplina',
+        description: 'Disciplina para seguir o plano e evitar decisões impulsivas.',
         topics: [
           { text: 'Construção de hábitos' },
-          { text: 'Consistência nos investimentos' },
+          { text: 'Consistência nos aportes' },
         ],
       },
       {
-        title: 'Investir é Administrar Riscos',
-        description: 'Gestão inteligente de riscos',
+        title: 'Investir é administrar riscos',
+        description: 'Gestão consciente de riscos, perdas e ganhos.',
         topics: [
           { text: 'Análise de risco' },
           { text: 'Diversificação' },
         ],
       },
       {
-        title: 'Investir é Conhecimento Constante',
-        description: 'Aprendizado contínuo',
+        title: 'Investir é adquirir conhecimento constante',
+        description: 'Aprendizado contínuo sobre mercados e estratégias.',
         topics: [
           { text: 'Mercados financeiros' },
-          { text: 'Análise fundamentalista' },
+          { text: 'Estratégias e fundamentos' },
         ],
       },
       {
-        title: 'Investir é Tolerar Perdas',
-        description: 'Psicologia do investidor',
+        title: 'Investir é tolerar eventuais perdas com estratégia',
+        description: 'Resiliência e controle emocional nas oscilações.',
         topics: [
           { text: 'Gestão emocional' },
           { text: 'Resiliência' },
         ],
       },
       {
-        title: 'Investir é Proteger o Futuro',
-        description: 'Planejamento de longo prazo',
+        title: 'Investir é proteger o seu futuro com consciência',
+        description: 'Planejamento de longo prazo para independência financeira.',
         topics: [
           { text: 'Aposentadoria' },
           { text: 'Patrimônio' },
@@ -893,7 +940,15 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
           type: 'p',
           children: [
             {
-              text: 'Garantia legal de 7 dias. Garantia de resultados em 6 meses.',
+              text: 'Garantia legal de 7 dias — se, dentro dos primeiros 7 dias de acesso à formação, você decidir que o treinamento não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Garantia de resultados em 6 meses — se, após aplicar as estratégias e conhecimentos compartilhados durante o curso, você não perceber uma melhoria significativa em sua vida financeira, devolveremos o dobro do seu investimento.',
             },
           ],
         },
@@ -901,7 +956,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
     seo: {
       title: 'Mentoria de Investimentos - Aprenda a Investir | Roberto Navarro',
-      description: 'Formação prática para quem quer aprender a investir com segurança. Faça seu dinheiro trabalhar por você.',
+      description: 'Formação prática para quem quer aprender a investir com segurança e confiança. Faça seu dinheiro trabalhar por você.',
       keywords: 'mentoria investimentos, como investir, curso investimentos, roberto navarro investimentos',
     },
   })

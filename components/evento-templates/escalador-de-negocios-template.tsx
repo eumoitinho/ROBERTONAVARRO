@@ -50,12 +50,16 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
       {/* Hero Section */}
       <HeroPages
         title={evento.hero?.title || evento.title}
-        subtitle={evento.hero?.subtitle || 'Empreendedores de sucesso não crescem por acaso'}
-        secondtitle={evento.hero?.badge || 'EVENTO PRESENCIAL EXCLUSIVO'}
-        description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || 'Saia da estagnação e aplique estratégias reais para escalar vendas, lucros e liberdade')}
+        subtitle={evento.hero?.subtitle || 'EVENTO PRESENCIAL EXCLUSIVO'}
+        secondtitle={evento.hero?.badge || 'Empreendedores de sucesso não crescem por acaso'}
+        description={
+          typeof evento.hero?.description === 'string'
+            ? evento.hero.description
+            : 'Saia da estagnação e aplique, de forma imediata, estratégias reais para escalar vendas, lucros e liberdade.'
+        }
         image={getHeroImage()}
-        ctaText={evento.hero?.ctaText || "GARANTA SUA VAGA!"}
-        ctaHref={evento.hero?.ctaLink || "#newsletter"}
+        ctaText={evento.hero?.ctaText || 'GARANTA SUA VAGA!'}
+        ctaHref={evento.hero?.ctaLink || '#newsletter'}
       />
 
       {/* Challenges Section */}
@@ -64,10 +68,10 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
-              <SectionBadge text="DESAFIOS" />
+              <SectionBadge text="DESAFIOS DO CRESCIMENTO" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                VOCÊ SE IDENTIFICA COM ALGUM DESTES{' '}
-                <span className="text-red-400">DESAFIOS?</span>
+                SE ESTÁ DIFÍCIL CRESCER, É PORQUE VOCÊ ESTÁ TENTANDO{' '}
+                <span className="text-red-400">DO JEITO ERRADO</span>
               </h2>
             </div>
 
@@ -98,11 +102,15 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
             <div className="text-center mb-16">
               <SectionBadge text="O QUE VOCÊ VAI APRENDER" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                ESTRATÉGIAS REAIS PARA{' '}
-                <span className="text-red-400">ESCALAR SEU NEGÓCIO</span>
+                {evento.learnings?.sectionTitle || (
+                  <>
+                    ESTRATÉGIAS REAIS PARA <span className="text-red-400">ESCALAR SEU NEGÓCIO</span>
+                  </>
+                )}
               </h2>
               <p className="text-zinc-300 max-w-3xl mx-auto">
-                Aplique, de forma imediata, estratégias reais para escalar vendas, lucros e liberdade.
+                {evento.learnings?.sectionDescription ||
+                  'Aplique, de forma imediata, estratégias reais para escalar vendas, lucros e liberdade.'}
               </p>
             </div>
 
@@ -132,7 +140,11 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
             <div className="text-center mb-16">
               <SectionBadge text="DESTAQUES" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                POR QUE PARTICIPAR DESTE <span className="text-red-400">EVENTO</span>
+                {evento.highlights?.sectionTitle || (
+                  <>
+                    POR QUE PARTICIPAR DESTE <span className="text-red-400">EVENTO</span>
+                  </>
+                )}
               </h2>
             </div>
 
@@ -170,6 +182,12 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 CONHEÇA SEU <span className="text-red-400">MENTOR</span>
               </h2>
+              <p className="text-zinc-300 max-w-3xl mx-auto">
+                Roberto Navarro é um exemplo vivo de superação e sucesso. Sua trajetória começou humildemente e, com
+                determinação e uma abordagem única, ele se tornou multimilionário em menos de 7 anos. Hoje, é reconhecido
+                como criador do Coach Financeiro no Brasil e especialista em inteligência financeira, espiritual e
+                emocional.
+              </p>
             </div>
             <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
               {evento.mentors.map((mentor: any, index: number) => {
@@ -208,7 +226,7 @@ export default function EscaladorDeNegociosTemplate({ evento }: EscaladorDeNegoc
       <section id="newsletter" className="py-20 relative overflow-hidden bg-zinc-950">
         <NewsletterFormacoes
           title="FIQUE LIGADO NO PRÓXIMO ESCALADOR DE NEGÓCIOS"
-          description="Preencha o formulário abaixo e seja notificado sobre o próximo evento Escalador de Negócios."
+          description="Receba novidades e dicas exclusivas para escalar seu negócio. Preencha seus dados para garantir sua vaga na próxima edição."
           source="Escalador de Negócios"
           accent="red"
           formSlug={formSlug}
