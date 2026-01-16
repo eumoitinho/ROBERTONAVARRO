@@ -152,16 +152,15 @@ export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTem
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/50 via-zinc-950 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
-              <SectionBadge text="O QUE VOCÊ VAI APRENDER" />
+              <SectionBadge text="CONTEÚDO EXCLUSIVO" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                4 TIPOS DE{' '}
+                DESENVOLVA AS{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600">
-                  INTELIGÊNCIA PARA A RIQUEZA
+                  4 INTELIGÊNCIAS DA PROSPERIDADE
                 </span>
               </h2>
               <p className="text-zinc-300 max-w-3xl mx-auto">
-                Desbloqueie seu potencial através de uma abordagem completa que integra inteligência emocional, financeira,
-                espiritual e empresarial.
+                Uma metodologia completa que integra mente, emoções, propósito e estratégia para sua transformação financeira.
               </p>
             </div>
 
@@ -190,8 +189,15 @@ export default function CrencasDaRiquezaTemplate({ evento }: CrencasDaRiquezaTem
             <div className="text-center mb-16">
               <SectionBadge text="DESTAQUES" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                POR QUE PARTICIPAR DESTE <span className="text-yellow-400">EVENTO</span>
+                {evento.highlights?.sectionTitle || (
+                  <>
+                    POR QUE PARTICIPAR DESTE <span className="text-yellow-400">EVENTO</span>
+                  </>
+                )}
               </h2>
+              {evento.highlights?.sectionDescription && (
+                <p className="text-zinc-300 max-w-3xl mx-auto">{evento.highlights.sectionDescription}</p>
+              )}
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">

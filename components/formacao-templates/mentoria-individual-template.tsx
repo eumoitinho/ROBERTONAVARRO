@@ -31,6 +31,25 @@ export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndivid
       ? formacao.navigationItems
       : defaultNavigationItems
 
+  const getPlainText = (content: any): string | undefined => {
+    if (!content) return undefined
+    if (typeof content === 'string') return content
+    if (Array.isArray(content)) {
+      return content
+        .map((block: any) => {
+          if (block?.type === 'p') {
+            return block.children?.map((child: any) => child.text || '').join('')
+          }
+          return ''
+        })
+        .filter(Boolean)
+        .join('\n')
+    }
+    return String(content)
+  }
+
+  const heroDescription = getPlainText(formacao.hero?.description)
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 text-white">
       <SiteHeader navigationItems={navigationItems} showInicio={true} />
@@ -39,8 +58,8 @@ export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndivid
       <HeroPages
         title={formacao.hero?.title || formacao.title}
         secondtitle={formacao.hero?.subtitle || ''}
-        subtitle="Roberto Navarro"
-        description={typeof formacao.hero?.description === 'string' ? formacao.hero.description : undefined}
+        subtitle={formacao.hero?.badge || 'Acompanhamento 100 % personalizado'}
+        description={heroDescription}
         image={
           typeof formacao.hero?.backgroundImage === 'object' && formacao.hero?.backgroundImage?.url
             ? formacao.hero.backgroundImage.url
@@ -100,7 +119,7 @@ export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndivid
           id="como-funciona"
           title="MAIS DO QUE UMA MENTORIA, UM"
           subtitle="DESPERTAR DE CONSCIÊNCIA"
-          description="Acompanhamento 100% personalizado para destravar seu potencial"
+          description="Durante 2 dias transformadores, você vai acessar um novo nível de consciência sobre dinheiro, abundância, valor próprio e energia."
           imageDesktop="/images/HERO_ESCALADOR.png"
           imageMobile="/images/HERO_ESCALADOR_MOBILE.png"
           listItems={formacao.learnings.slice(0, 9).map((l: any) => typeof l === 'string' ? l : l.text)}
@@ -122,8 +141,8 @@ export default function MentoriaIndividualTemplate({ formacao }: MentoriaIndivid
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-900 to-zinc-950 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <NewsletterFormacoes
-            title="Mentoria Individual"
-            description="Transforme sua vida com a mentoria mais exclusiva do Brasil."
+            title="MENTORIA INDIVIDUAL"
+            description="Preencha seus dados e dê o primeiro passo rumo à sua transformação financeira."
             source="Mentoria Individual"
             ctaText="QUERO TRANSFORMAR MINHA VIDA!"
             accent="yellow"

@@ -33,6 +33,25 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
       ? formacao.navigationItems
       : defaultNavigationItems
 
+  const getPlainText = (content: any): string | undefined => {
+    if (!content) return undefined
+    if (typeof content === 'string') return content
+    if (Array.isArray(content)) {
+      return content
+        .map((block: any) => {
+          if (block?.type === 'p') {
+            return block.children?.map((child: any) => child.text || '').join('')
+          }
+          return ''
+        })
+        .filter(Boolean)
+        .join('\n')
+    }
+    return String(content)
+  }
+
+  const heroDescription = getPlainText(formacao.hero?.description)
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 text-white">
       <SiteHeader navigationItems={navigationItems} showInicio={true} />
@@ -41,8 +60,8 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
       <HeroPages
         title={formacao.hero?.title || formacao.title}
         secondtitle={formacao.hero?.subtitle || ''}
-        subtitle="Roberto Navarro"
-        description={typeof formacao.hero?.description === 'string' ? formacao.hero.description : undefined}
+        subtitle={formacao.hero?.badge || 'Formação prática'}
+        description={heroDescription}
         image={
           typeof formacao.hero?.backgroundImage === 'object' && formacao.hero?.backgroundImage?.url
             ? formacao.hero.backgroundImage.url
@@ -96,7 +115,14 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               A MENTORIA QUE VAI <span className="text-yellow-400">TRANSFORMAR SUA RELAÇÃO COM O DINHEIRO</span>
             </h2>
-            <p className="text-xl text-zinc-300 mb-4">2 dias intensivos + Universidade do Investidor</p>
+            <p className="text-xl text-zinc-300 mb-4">
+              Durante dois dias intensivos de mentoria, você será guiado por Roberto Navarro com estratégias reais e
+              aplicáveis usadas por investidores bem-sucedidos.
+            </p>
+            <p className="text-base text-zinc-400">
+              Você ainda terá acesso à Universidade do Investidor e sairá com um plano prático para investir com
+              confiança e segurança.
+            </p>
           </div>
         </div>
       </section>
@@ -244,7 +270,7 @@ export default function MentoriaInvestimentosTemplate({ formacao }: MentoriaInve
         <div className="container mx-auto px-4 relative z-10">
           <NewsletterFormacoes
             title="PRONTO PARA TRANSFORMAR SUA VIDA FINANCEIRA?"
-            description="Aprenda a investir com segurança e transforme sua relação com o dinheiro."
+            description="Junte-se a milhares de pessoas que já transformaram sua relação com o dinheiro através da Mentoria de Investimentos."
             source="Mentoria de Investimentos"
             ctaText="QUERO ME TORNAR UM INVESTIDOR!"
             accent="yellow"

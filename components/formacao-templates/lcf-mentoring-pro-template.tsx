@@ -36,6 +36,25 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
       ? formacao.navigationItems
       : defaultNavigationItems
 
+  const getPlainText = (content: any): string | undefined => {
+    if (!content) return undefined
+    if (typeof content === 'string') return content
+    if (Array.isArray(content)) {
+      return content
+        .map((block: any) => {
+          if (block?.type === 'p') {
+            return block.children?.map((child: any) => child.text || '').join('')
+          }
+          return ''
+        })
+        .filter(Boolean)
+        .join('\n')
+    }
+    return String(content)
+  }
+
+  const heroDescription = getPlainText(formacao.hero?.description)
+
   // Preparar dados para ContentSection (4 inteligências)
   const intelligenceItems = formacao.learnings?.slice(0, 4).map((learning: any, index: number) => {
     const titles = ['Inteligência Emocional', 'Inteligência Financeira', 'Inteligência Espiritual', 'Inteligência Estratégica']
@@ -54,8 +73,8 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
       <HeroPages
         title={formacao.hero?.title || formacao.title}
         secondtitle={formacao.hero?.subtitle || ''}
-        subtitle="Roberto Navarro"
-        description={typeof formacao.hero?.description === 'string' ? formacao.hero.description : undefined}
+        subtitle={formacao.hero?.badge || 'Mentoria exclusiva para transformação'}
+        description={heroDescription}
         image={
           typeof formacao.hero?.backgroundImage === 'object' && formacao.hero?.backgroundImage?.url
             ? formacao.hero.backgroundImage.url
@@ -83,10 +102,14 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
           id="sobre"
           title="A RIQUEZA COMEÇA COM"
           subtitle="CLAREZA. E SE CONSTRÓI COM MÉTODO"
-          description={typeof formacao.hero.description === 'string' ? formacao.hero.description : 'Programa completo com treinamentos transformadores'}
+          description="O LCF Mentoring PRO é o programa mais completo de transformação financeira, emocional e espiritual do Brasil."
           imageDesktop="/images/HERO_EDUCADOR.png"
           imageMobile="/images/HERO_MENTORIAINVESTIMENTOS_MOBILE.png"
-          listItems={formacao.learnings?.slice(0, 3).map((l: any) => typeof l === 'string' ? l : l.text) || []}
+          listItems={[
+            'Transformação completa: o programa mais completo de transformação financeira, emocional e espiritual.',
+            'Resultados reais: desenvolva inteligência financeira aplicada e trabalhe sua mentalidade de alta performance.',
+            'Ecossistema de suporte: conteúdos de alto nível, encontros presenciais e suporte contínuo.',
+          ]}
           ctaText="QUERO ENTRAR PARA O LCF PRO"
           ctaHref="#investimento"
         />
@@ -122,11 +145,11 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
                 <h3 className="text-2xl font-bold mb-6 text-yellow-400">Benefícios Inclusos</h3>
                 <ul className="space-y-4">
                   {[
-                    { icon: Infinity, text: 'Acesso vitalício' },
-                    { icon: Users, text: '4 imersões presenciais' },
-                    { icon: BookOpen, text: '+100h de conteúdo' },
-                    { icon: HeadphonesIcon, text: 'Suporte direto' },
-                    { icon: Shield, text: 'Garantia de 6 meses' },
+                    { icon: Infinity, text: 'Acesso vitalício aos principais treinamentos' },
+                    { icon: Users, text: '4 imersões presenciais intensivas' },
+                    { icon: BookOpen, text: 'Mais de 100 h de conteúdo prático' },
+                    { icon: HeadphonesIcon, text: 'Suporte direto e acompanhamento' },
+                    { icon: Shield, text: 'Garantia de 6 meses: se sua vida não mudar, devolvemos seu dinheiro' },
                   ].map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <item.icon className="h-5 w-5 text-yellow-400" />
@@ -140,7 +163,12 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
               <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold mb-6 text-yellow-400">Benefícios Adicionais</h3>
                 <ul className="space-y-4">
-                  {['Networking exclusivo', 'Comunidade ativa', 'Mentorias em grupo', 'Material complementar'].map((item, index) => (
+                  {[
+                    'Networking com alunos de alto nível',
+                    'Comunidade exclusiva',
+                    'Mentorias ao vivo e acompanhamento',
+                    'Material complementar e ferramentas práticas',
+                  ].map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-yellow-400" />
                       <span className="text-zinc-200">{item}</span>
@@ -224,7 +252,7 @@ export default function LCFMentoringProTemplate({ formacao }: LCFMentoringProTem
         <div className="container mx-auto px-4 relative z-10">
           <NewsletterFormacoes
             title="INSCREVA-SE PARA TER A MUDANÇA DE VIDA"
-            description="Transforme sua vida financeira com o programa mais completo do mercado."
+            description="Obtenha mais informações sobre a LCF Mentoring Pro e dê o primeiro passo rumo à sua transformação financeira."
             source="LCF Mentoring Pro"
             ctaText="QUERO ENTRAR PARA O LCF PRO!"
             accent="yellow"

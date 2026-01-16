@@ -42,12 +42,16 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
       {/* Hero Section */}
       <HeroPages
         title={evento.hero?.title || evento.title}
-        subtitle={evento.hero?.subtitle || 'Aprenda a despertar seu potencial milionário em 7 horas'}
-        secondtitle={evento.hero?.badge || 'IMERSÃO EXCLUSIVA'}
-        description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || 'Imersão exclusiva e transformadora')}
+        subtitle={evento.hero?.subtitle || 'Imersão exclusiva e transformadora'}
+        secondtitle={evento.hero?.badge || 'Em 22 de outubro alcance a liberdade financeira com uma mudança de mentalidade'}
+        description={
+          typeof evento.hero?.description === 'string'
+            ? evento.hero.description
+            : 'Aprenda a despertar seu potencial milionário em 7 horas de imersão. Com Roberto e Raíssa Navarro.'
+        }
         image={getHeroImage()}
-        ctaText={evento.hero?.ctaText || "QUERO DESPERTAR MINHA MENTE MILIONÁRIA"}
-        ctaHref={evento.hero?.ctaLink || "#newsletter"}
+        ctaText={evento.hero?.ctaText || 'QUERO DESPERTAR MINHA MENTE MILIONÁRIA'}
+        ctaHref={evento.hero?.ctaLink || '#newsletter'}
       />
 
       {/* Benefícios Section */}
@@ -58,13 +62,7 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
             <div className="text-center mb-16">
               <SectionBadge text="BENEFÍCIOS" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {evento.highlights.sectionTitle ? (
-                  <>
-                    {evento.highlights.sectionTitle.split('CONQUISTAR')[0]}
-                    <span className="text-yellow-400">CONQUISTAR</span>
-                    {evento.highlights.sectionTitle.split('CONQUISTAR')[1]}
-                  </>
-                ) : (
+                {evento.highlights.sectionTitle || (
                   <>
                     O QUE VOCÊ VAI <span className="text-yellow-400">CONQUISTAR</span>
                   </>
@@ -98,17 +96,11 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/50 via-zinc-950 to-zinc-950 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
-              <SectionBadge text="O QUE VOCÊ VAI APRENDER" />
+              <SectionBadge text="O QUE VOCÊ VAI DESCOBRIR" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {evento.learnings.sectionTitle ? (
+                {evento.learnings.sectionTitle || (
                   <>
-                    {evento.learnings.sectionTitle.split('TRANSFORMADOR')[0]}
-                    <span className="text-yellow-400">TRANSFORMADOR</span>
-                    {evento.learnings.sectionTitle.split('TRANSFORMADOR')[1]}
-                  </>
-                ) : (
-                  <>
-                    CONTEÚDO <span className="text-yellow-400">TRANSFORMADOR</span>
+                    O QUE VOCÊ VAI <span className="text-yellow-400">DESCOBRIR</span>
                   </>
                 )}
               </h2>
@@ -211,7 +203,7 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
       <section id="newsletter" className="py-20 relative overflow-hidden bg-zinc-950">
         <NewsletterFormacoes
           title="GARANTA SUA VAGA NO SEGREDOS DA MENTE MILIONÁRIA"
-          description="Preencha o formulário abaixo e garanta sua participação na imersão mais transformadora sobre mentalidade milionária."
+          description="Participe do evento transformador Segredos da Mente Milionária e comece a mudar sua relação com o dinheiro. Vagas limitadas!"
           source="Segredos da Mente Milionária"
           eventDate={
             evento.date
@@ -219,8 +211,8 @@ export default function SegredosDaMenteMilionariaTemplate({ evento }: SegredosDa
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric',
-                }) + ', 13h às 20h'
-              : '22 de outubro de 2025, 13h às 20h'
+                }) + ', 13 h às 20 h'
+              : '22 de outubro de 2025, 13 h às 20 h'
           }
           eventLocation={
             evento.location?.venue && evento.location?.address

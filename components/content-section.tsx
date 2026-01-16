@@ -31,17 +31,16 @@ export function ContentSection({ items }: ContentSectionProps) {
 
   return (
     <section id="o-que-aprender" className="py-24 relative">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <SectionBadge text="CONTEÚDO EXCLUSIVO" />
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            DESENVOLVA AS <span className="text-yellow-400">4 INTELIGÊNCIAS</span> DA PROSPERIDADE
-          </h2>
-          <p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
-            Uma metodologia completa que integra mente, emoções, propósito e estratégia para sua transformação
-            financeira
-          </p>
-        </div>
+		<div className="container mx-auto px-4 relative z-10">
+			<div className="text-center mb-16">
+				<SectionBadge text="O QUE VOCÊ VAI APRENDER" />
+				<h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+					DOMINE SUA VIDA COM <span className="text-yellow-400">INTELIGÊNCIA DE ELITE</span>
+				</h2>
+				<p className="text-zinc-300 max-w-4xl mx-auto text-lg leading-relaxed">
+					Inteligência emocional, financeira, espiritual e estratégica para decisões consistentes e prosperidade.
+				</p>
+			</div>
 
         {/* Navigation Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -92,13 +91,13 @@ export function ContentSection({ items }: ContentSectionProps) {
                     </div>
                   </div>
                   <p className="text-zinc-300 text-lg leading-relaxed mb-8">{items[activeTab].description}</p>
-                  <Button
-                    asChild
-                    className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-full px-8 py-3"
-                  >
-                    <a href="#form">QUERO APRENDER ISSO!</a>
-                  </Button>
-                </div>
+					<Button
+						asChild
+						className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-full px-8 py-3"
+					>
+						<a href="#inscricao">CONQUISTE SUA VAGA!</a>
+					</Button>
+				</div>
 
                 {/* Right Side - Benefits */}
                 <div className="bg-zinc-800/30 p-8 md:p-12 border-l border-zinc-700/30">
@@ -128,15 +127,15 @@ export function ContentSection({ items }: ContentSectionProps) {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
-          {[
-            { number: "10h", label: "de conteúdo intensivo" },
-            { number: "4", label: "inteligências desenvolvidas" },
-            { number: "100%", label: "metodologia prática" },
-            { number: "1", label: "dia que muda sua vida" },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">{stat.number}</div>
+		<div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+			{[
+				{ number: "R$ 20.000", label: "investimento do programa" },
+				{ number: "4", label: "imersões presenciais intensivas" },
+				{ number: "+100h", label: "de conteúdo prático" },
+				{ number: "6 meses", label: "garantia total" },
+			].map((stat, index) => (
+				<div key={index} className="text-center">
+					<div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">{stat.number}</div>
               <div className="text-zinc-400 text-sm">{stat.label}</div>
             </div>
           ))}

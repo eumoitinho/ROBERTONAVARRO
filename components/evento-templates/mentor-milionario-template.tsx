@@ -64,12 +64,16 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
       {/* Hero Section */}
       <HeroPages
         title={evento.hero?.title || evento.title}
-        subtitle={evento.hero?.subtitle || 'De Lavador de Vidros a Multimilionário em 7 Anos'}
-        secondtitle={evento.hero?.badge || 'O EVENTO QUE VAI TRANSFORMAR CONHECIMENTO EM FORTUNA'}
-        description={typeof evento.hero?.description === 'string' ? evento.hero.description : (evento.hero?.subtitle || 'Transforme conhecimento em fortuna e conquiste seu primeiro milhão')}
+        subtitle={evento.hero?.subtitle || 'O EVENTO QUE VAI TRANSFORMAR CONHECIMENTO EM FORTUNA'}
+        secondtitle={evento.hero?.badge || 'O evento que vai transformar conhecimento em fortuna e criar múltiplas fontes de renda'}
+        description={
+          typeof evento.hero?.description === 'string'
+            ? evento.hero.description
+            : 'De lavador de vidros a multimilionário em 7 anos... agora Roberto Navarro revela os segredos para você se tornar um mentor de sucesso ou conquistar seu primeiro milhão.'
+        }
         image={getHeroImage()}
-        ctaText={evento.hero?.ctaText || "QUERO MINHA VAGA NO MENTOR MILIONÁRIO"}
-        ctaHref={evento.hero?.ctaLink || "#inscricao"}
+        ctaText={evento.hero?.ctaText || 'QUERO MINHA VAGA NO MENTOR MILIONÁRIO'}
+        ctaHref={evento.hero?.ctaLink || '#inscricao'}
       />
 
       {/* Para Quem É Section */}
@@ -83,28 +87,28 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
-              <h3 className="text-lg font-bold mb-2 text-yellow-400">Profissionais</h3>
-              <p className="text-zinc-300 text-sm">Que querem monetizar conhecimento</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
+                <h3 className="text-lg font-bold mb-2 text-yellow-400">Profissionais</h3>
+                <p className="text-zinc-300 text-sm">Que querem monetizar seu conhecimento</p>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
+                <h3 className="text-lg font-bold mb-2 text-yellow-400">Em Busca do Milhão</h3>
+                <p className="text-zinc-300 text-sm">Pessoas em busca do primeiro milhão</p>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
+                <h3 className="text-lg font-bold mb-2 text-yellow-400">Futuros Mentores</h3>
+                <p className="text-zinc-300 text-sm">Quem deseja se tornar mentor de sucesso</p>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
+                <h3 className="text-lg font-bold mb-2 text-yellow-400">Empreendedores</h3>
+                <p className="text-zinc-300 text-sm">Que querem múltiplas fontes de renda</p>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
+                <h3 className="text-lg font-bold mb-2 text-yellow-400">Especialistas</h3>
+                <p className="text-zinc-300 text-sm">Prontos para escalar seus resultados</p>
+              </div>
             </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
-              <h3 className="text-lg font-bold mb-2 text-yellow-400">Em Busca do Milhão</h3>
-              <p className="text-zinc-300 text-sm">Pessoas em busca do primeiro milhão</p>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
-              <h3 className="text-lg font-bold mb-2 text-yellow-400">Futuros Mentores</h3>
-              <p className="text-zinc-300 text-sm">Quem deseja se tornar mentor</p>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
-              <h3 className="text-lg font-bold mb-2 text-yellow-400">Empreendedores</h3>
-              <p className="text-zinc-300 text-sm">Que querem múltiplas rendas</p>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 text-center hover:border-yellow-400/50 transition-all duration-300">
-              <h3 className="text-lg font-bold mb-2 text-yellow-400">Especialistas</h3>
-              <p className="text-zinc-300 text-sm">Prontos para escalar</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -115,7 +119,8 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
             <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {/* Challenges */}
               <div>
-                <h2 className="text-3xl font-bold mb-8 text-yellow-400">DESAFIOS</h2>
+                <h2 className="text-3xl font-bold mb-4 text-yellow-400">DESAFIOS</h2>
+                <p className="text-zinc-300 mb-8">O que está travando sua prosperidade?</p>
                 <div className="space-y-4">
                   {evento.challenges.map((challenge: any, index: number) => (
                     <div
@@ -135,33 +140,33 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
                 <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-8">
                   <h3 className="text-2xl font-bold mb-4 text-yellow-400">MENTOR MILIONÁRIO</h3>
                   <p className="text-zinc-300 mb-6">
-                    O evento que vai transformar conhecimento em fortuna. Aprenda com Roberto Navarro como monetizar
-                    sua expertise e conquistar seu primeiro milhão.
+                    Em um único dia de imersão, Roberto Navarro vai mostrar como qualquer pessoa pode multiplicar
+                    resultados e conquistar a prosperidade através de estratégias comprovadas.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <span className="text-yellow-400">✓</span>
                       <span className="text-zinc-300">
-                        Data: {evento.date ? new Date(evento.date).toLocaleDateString('pt-BR') : '24 de Setembro'}
+                        Data: {evento.date ? new Date(evento.date).toLocaleDateString('pt-BR') : '24 de setembro'}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-yellow-400">✓</span>
                       <span className="text-zinc-300">
-                        Local: {evento.location?.venue || 'Centro de Eventos Alphaville'}
+                        Local: {evento.location?.venue ? `${evento.location.venue} - ${evento.location.city}` : 'Alameda Araguaia, 751, Barueri - SP'}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-yellow-400">✓</span>
-                      <span className="text-zinc-300">Duração: {evento.duration || '7 horas'}</span>
+                      <span className="text-zinc-300">Duração: {evento.duration || '7 horas intensivas'}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-yellow-400">✓</span>
-                      <span className="text-zinc-300">Metodologia: Prática e aplicável</span>
+                      <span className="text-zinc-300">Metodologia: Blocos estratégicos de alto impacto</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-yellow-400">✓</span>
-                      <span className="text-zinc-300">Resultado: Plano milionário completo</span>
+                      <span className="text-zinc-300">Resultado: Plano claro para alcançar 1 milhão</span>
                     </div>
                   </div>
                 </div>
@@ -244,25 +249,25 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
-              <p className="text-xl font-bold text-yellow-400 mb-2">Você está CANSADO...</p>
-              <p className="text-zinc-300">...de trabalhar muito e não ver resultados financeiros significativos.</p>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
-              <p className="text-xl font-bold text-yellow-400 mb-2">Você quer PARAR...</p>
-              <p className="text-zinc-300">...de apenas sobreviver e começar a prosperar de verdade.</p>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
-              <p className="text-xl font-bold text-yellow-400 mb-2">Você está DETERMINADO...</p>
-              <p className="text-zinc-300">...a transformar seu conhecimento em riqueza e liberdade financeira.</p>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
-              <p className="text-xl font-bold text-yellow-400 mb-2">Você ACREDITA...</p>
-              <p className="text-zinc-300">...que merece mais e está pronto para agir para conquistar.</p>
+            <div className="max-w-4xl mx-auto space-y-6">
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
+                <p className="text-xl font-bold text-yellow-400 mb-2">Você está cansado...</p>
+                <p className="text-zinc-300">...de ter conhecimento valioso, mas conta bancária vazia.</p>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
+                <p className="text-xl font-bold text-yellow-400 mb-2">Você quer parar...</p>
+                <p className="text-zinc-300">...de trocar tempo por dinheiro e criar renda escalável.</p>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
+                <p className="text-xl font-bold text-yellow-400 mb-2">Você está determinado...</p>
+                <p className="text-zinc-300">...a sair da zona de conforto financeiro.</p>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6">
+                <p className="text-xl font-bold text-yellow-400 mb-2">Você acredita...</p>
+                <p className="text-zinc-300">...que merece prosperidade e está disposto a agir.</p>
+              </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* Momento de Decidir Section */}
@@ -275,23 +280,19 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
             </h2>
             <div className="space-y-6 mb-12">
               <p className="text-xl text-zinc-300 font-semibold">
-                Você não pode mudar o passado, mas pode criar um futuro diferente.
+                A diferença entre quem conquista o primeiro milhão e quem apenas sonha com ele está em uma decisão.
               </p>
               <p className="text-xl text-zinc-300 font-semibold">
-                O conhecimento sem ação não gera resultados. A ação sem conhecimento gera frustração.
+                Roberto Navarro não apenas ensina teorias; ele viveu a transformação e provou que é possível.
               </p>
               <p className="text-xl text-zinc-300 font-semibold">
-                Conhecimento + Ação = Resultados Transformadores.
-              </p>
-              <p className="text-xl text-zinc-300 font-semibold">
-                Esta é sua oportunidade de transformar conhecimento em fortuna.
+                Sua prosperidade está a um clique de distância.
               </p>
             </div>
             <div className="bg-zinc-900/50 backdrop-blur-sm border border-yellow-400/50 rounded-xl p-8">
               <p className="text-2xl font-bold text-yellow-400 mb-4">Roberto Navarro</p>
               <p className="text-lg text-zinc-300 italic">
-                "De lavador de vidros aos 13 anos a multimilionário em 7 anos. Se eu consegui, você também consegue.
-                Mas você precisa decidir AGORA."
+                "A prosperidade não é um acidente. É uma escolha estratégica."
               </p>
             </div>
           </div>
@@ -360,8 +361,7 @@ export default function MentorMilionarioTemplate({ evento }: MentorMilionarioTem
               ESCOLHA SEU <span className="text-yellow-400">INGRESSO</span>
             </h2>
             <p className="text-zinc-300 max-w-3xl mx-auto">
-              Participe do evento transformador Mentor Milionário e comece a transformar conhecimento em fortuna. Vagas
-              limitadas!
+              Participe do evento Mentor Milionário e comece a mudar sua relação com o dinheiro. Vagas limitadas!
             </p>
           </div>
 
