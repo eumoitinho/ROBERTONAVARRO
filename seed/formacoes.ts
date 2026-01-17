@@ -193,7 +193,12 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
                 // Não incluir se inválido
               }
             }
-          } else if (key === 'faqs' || key === 'testimonials' || key === 'mentors' || key === 'form') {
+          } else if (
+            key === 'faqs' ||
+            key === 'testimonials' ||
+            key === 'form' ||
+            (key === 'mentors' && currentPath !== 'multipleMentors.mentors')
+          ) {
             // Relationship fields
             if (Array.isArray(value)) {
               const normalizedArray = normalizeRelationshipArray(value)
@@ -941,7 +946,269 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
   })
 
-  // 4. MENTORIA INDIVIDUAL
+  // 4. LCF MENTORING
+  await createOrUpdateFormacao('mentoria', {
+    title: 'LCF Mentoring',
+    slug: 'mentoria',
+    status: 'published',
+    template: 'mentoria',
+    accentColor: '#FFD700',
+    hero: {
+      title: 'LCF MENTORING',
+      badge: 'Você no controle da sua vida',
+      subtitle: 'Mentoria Exclusiva',
+      description: [
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'O Life Coaching Financeiro Mentoring (LCF) é uma imersão única de 7 dias, onde você mergulha em técnicas de PNL, inteligência emocional, produtividade e coaching financeiro para transformar sua vida em todos os aspectos.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Além do curso, você recebe gratuitamente a formação Educador Financeiro, que lhe permite atuar como mentor e expandir suas competências sobre finanças e desenvolvimento humano.',
+            },
+          ],
+        },
+      ],
+      ...(heroMentoriaImageId ? { backgroundImage: heroMentoriaImageId } : {}),
+      ctaText: 'MAIS INFORMAÇÕES SOBRE A FORMAÇÃO',
+      ctaLink: '#inscricao',
+    },
+    challenges: [
+      {
+        title: 'Inteligência emocional',
+        description:
+          'Domine suas emoções e padrões mentais, desenvolvendo resiliência, clareza e foco para tomar decisões consistentes em qualquer área da vida.',
+      },
+      {
+        title: 'Inteligência financeira',
+        description:
+          'Destrave suas crenças limitantes e aprenda a organizar, direcionar e multiplicar seus recursos com consciência e consistência.',
+      },
+      {
+        title: 'Inteligência espiritual',
+        description:
+          'Conecte sua jornada material com seu propósito de vida. Viver com significado não é um luxo - é a base para prosperar com equilíbrio.',
+      },
+      {
+        title: 'Inteligência estratégica',
+        description: 'Alinhe carreira, investimentos, rotina e hábitos com um plano de ação realista e poderoso.',
+      },
+    ],
+    learnings: [
+      { text: 'Transformação Completa: O programa mais completo de transformação financeira, emocional e espiritual.' },
+      { text: 'Resultados Reais: Desenvolva inteligência financeira aplicada e trabalhe sua mentalidade de alta performance.' },
+      { text: 'Ecossistema de Suporte: Conteúdos de alto nível, encontros presenciais e suporte contínuo.' },
+    ],
+    benefits: [
+      {
+        title: 'Liberdade e estabilidade financeira',
+        description: 'Aprenda a organizar suas finanças com segurança e inteligência.',
+      },
+      {
+        title: 'Desenvolvimento pessoal e profissional',
+        description: 'Adquira habilidades poderosas que impulsionarão todas as áreas da sua vida.',
+      },
+      {
+        title: 'Acompanhamento contínuo',
+        description:
+          'Mesmo após a imersão, você continua recebendo suporte para aplicar o que aprendeu e gerar resultados consistentes.',
+      },
+      {
+        title: 'Mudança de mentalidade',
+        description: 'Transforme a forma como você enxerga o dinheiro, suas escolhas e seu potencial.',
+      },
+    ],
+    mentoriaModules: {
+      enabled: true,
+      title: 'MÓDULOS DA MENTORIA',
+      modules: [
+        {
+          title: 'Módulo 1: Life Coaching Profissional',
+          duration: '4 dias',
+          sections: [
+            {
+              title: 'Metodologias de coaching para evolução pessoal',
+              items: [
+                { text: 'Aplicação prática do coaching na vida pessoal e profissional' },
+                { text: 'Técnicas avançadas de PNL e inteligência emocional' },
+                { text: 'Mentalidade de alta performance e produtividade' },
+                { text: 'Ferramentas para desbloqueio de crenças limitantes' },
+              ],
+            },
+            {
+              title: 'Desenvolvimento pessoal e comportamento humano',
+              items: [
+                { text: 'Autoconhecimento e inteligência emocional' },
+                { text: 'Gestão de emoções e tomada de decisão' },
+                { text: 'Propósito de vida e alinhamento de valores' },
+                { text: 'Plano de desenvolvimento pessoal contínuo' },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'Módulo 2: Mentor Coaching Financeiro',
+          duration: '3 dias',
+          sections: [
+            {
+              title: 'Estratégias financeiras para alcançar a liberdade financeira',
+              items: [
+                { text: 'Criação de estratégias personalizadas para liberdade financeira' },
+                { text: 'Estudos de caso e exemplos práticos' },
+                { text: 'Planejamento financeiro e investimentos' },
+                { text: 'Análise de risco e gestão de investimentos' },
+              ],
+            },
+            {
+              title: 'Pilares da Riqueza e Clareza Financeira',
+              items: [
+                { text: 'Estrutura e construção dos pilares da riqueza' },
+                { text: 'Ferramentas para avaliação de clareza financeira' },
+                { text: 'Como se livrar das dívidas' },
+                { text: 'Como gerar dinheiro' },
+                { text: 'Métodos e fontes diversificadas de renda' },
+              ],
+            },
+            {
+              title: 'Identidade Financeira e Plano de Ação',
+              items: [
+                { text: 'Construção e reprogramação da identidade financeira' },
+                { text: 'Técnicas de separação de dinheiro e gestão de potes' },
+                { text: 'Criação e implementação de planos de ação detalhados' },
+                { text: 'Técnicas para definição e clareza de objetivos financeiros' },
+              ],
+            },
+            {
+              title: 'Múltiplas inteligências financeiras',
+              items: [
+                { text: 'Identificação e desenvolvimento das inteligências financeiras individuais' },
+                { text: 'Aplicação prática para diversificação de estratégias' },
+                { text: 'Estratégias empreendedoras e de investimento' },
+                { text: 'Análise e comparação de diferentes tipos de investimentos' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    multipleMentors: {
+      enabled: true,
+      title: 'CONHEÇA SEUS MENTORES',
+      subtitle: 'Por trás do LCF Mentoring, duas trajetórias que unem conhecimento, superação e propósito.',
+      mentors: [
+        {
+          name: 'ROBERTO NAVARRO',
+          title: 'Mentor',
+          bio: [
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'De lavador de vidros aos 13 anos a referência nacional em inteligência financeira.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Roberto Navarro construiu uma trajetória de superação e transformação. Ele nasceu em um ambiente de escassez, onde o dinheiro era sempre um obstáculo — até que decidiu mudar sua realidade e a da sua família.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Criador do conceito de Coach Financeiro no Brasil, Roberto já impactou mais de 130 mil pessoas com sua metodologia, que une estratégias financeiras práticas, inteligência emocional e princípios bíblicos.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Reconhecido como o criador do coaching financeiro no Brasil, Roberto é especialista em inteligência financeira, espiritual e emocional e possui vasta experiência no mundo dos negócios.',
+                },
+              ],
+            },
+          ],
+          ctaText: 'GARANTA SUA VAGA!',
+        },
+        {
+          name: 'RAÍSSA NAVARRO',
+          title: 'Mentora',
+          bio: [
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Especialista em comportamento humano e referência nacional em Programação Neurolinguística (PNL).',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Membro da The Society of NLP, Raíssa Navarro é uma das poucas profissionais brasileiras autorizadas a ensinar PNL diretamente pela linha do Dr. Richard Bandler, cocriador da técnica.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Foi selecionada para compor a equipe de apoio do próprio Tony Robbins, o maior nome do coaching no mundo e acumula mais de 10 anos em estudos sobre PNL e comportamento humano.',
+                },
+              ],
+            },
+            {
+              type: 'p',
+              children: [
+                {
+                  text: 'Raissa conduz seus alunos por um caminho de autoconhecimento, consciência e libertação emocional, sempre com bom humor e energia elevada.',
+                },
+              ],
+            },
+          ],
+          ctaText: 'GARANTA SUA VAGA!',
+        },
+      ],
+    },
+    pricing: {
+      price: 5997,
+      installments: 12,
+      installmentValue: 597,
+      link: '#inscricao',
+    },
+    guarantee: {
+      days: 7,
+      description: [
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Seu investimento em si mesmo é protegido por uma garantia de satisfação total. Se, por algum motivo, dentro dos primeiros 7 dias de acesso à formação, você decidir que o Coach Financeiro não está alinhado com suas expectativas ou objetivos, garantimos o reembolso integral do valor pago.',
+            },
+          ],
+        },
+      ],
+    },
+    seo: {
+      title: 'LCF Mentoring - Imersão de 7 dias | Roberto Navarro',
+      description: 'Imersão de 7 dias com Life Coaching Profissional e Mentor Coaching Financeiro para transformar sua vida.',
+      keywords: 'lcf mentoring, imersão 7 dias, mentor coaching financeiro, roberto navarro',
+    },
+  })
+
+  // 5. MENTORIA INDIVIDUAL
   await createOrUpdateFormacao('mentoria-individual', {
     title: 'Mentoria Individual',
     slug: 'mentoria-individual',
@@ -1024,7 +1291,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
   })
 
-  // 5. MENTORIA DE INVESTIMENTOS
+  // 6. MENTORIA DE INVESTIMENTOS
   await createOrUpdateFormacao('mentoria-de-investimentos', {
     title: 'Mentoria de Investimentos',
     slug: 'mentoria-de-investimentos',
@@ -1173,7 +1440,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
   })
 
-  // 6. MÉTODO TF
+  // 7. MÉTODO TF
   await createOrUpdateFormacao('metodo-tf', {
     title: 'Método TF',
     slug: 'metodo-tf',
@@ -1334,7 +1601,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
   })
 
-  // 7. MENTOR COACHING FINANCEIRO
+  // 8. MENTOR COACHING FINANCEIRO
   await createOrUpdateFormacao('mentor-coaching-financeiro', {
     title: 'Mentor Coaching Financeiro',
     slug: 'mentor-coaching-financeiro',
@@ -1360,18 +1627,62 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       ctaLink: '#inscricao',
     },
     challenges: [
-      { text: 'O paradoxo da escolha financeira: com tantas opções de investimento e estratégias, você fica paralisado, adiando decisões importantes ou tomando decisões baseadas em emoção, não em inteligência.' },
-      { text: 'A prisão do padrão de vida: você se tornou refém de um estilo de vida que consome praticamente toda sua renda, deixando pouco espaço para construção real de patrimônio.' },
-      { text: 'O medo do próximo nível: subconscientemente, você sabota suas próprias oportunidades de crescimento financeiro porque não se sente "merecedor" ou tem medo das responsabilidades.' },
-      { text: 'A dependência da renda ativa: você está completamente dependente do seu trabalho para manter seu padrão de vida, sem verdadeira liberdade ou segurança financeira.' },
+      {
+        title: 'O paradoxo da escolha financeira',
+        description:
+          'Com tantas opções de investimento e estratégias, você fica paralisado, adiando decisões importantes ou tomando decisões baseadas em emoção, não em inteligência.',
+      },
+      {
+        title: 'A prisão do padrão de vida',
+        description:
+          'Você se tornou refém de um estilo de vida que consome praticamente toda sua renda, deixando pouco espaço para construção real de patrimônio.',
+      },
+      {
+        title: 'O medo do próximo nível',
+        description:
+          "Subconscientemente, você sabota suas próprias oportunidades de crescimento financeiro porque não se sente 'merecedor' ou tem medo das responsabilidades.",
+      },
+      {
+        title: 'A dependência da renda ativa',
+        description:
+          'Você está completamente dependente do seu trabalho para manter seu padrão de vida, sem verdadeira liberdade ou segurança financeira.',
+      },
     ],
     methodology: {
-      enabled: true,
       badge: 'MENTOR COACHING FINANCEIRO',
-      title: 'A metodologia que vai reprogramar sua relação com o dinheiro',
-      description: 'O Mentor Coaching Financeiro é resultado de mais de uma década de pesquisa e aplicação prática com milhares de alunos. É a síntese de tudo que Roberto Navarro descobriu sobre como pessoas realmente bem-sucedidas pensam, sentem e agem em relação ao dinheiro.',
-      highlight: 'Esta não é mais uma formação sobre "como investir" ou "como controlar gastos".',
-      explanation: 'Este é um processo de transformação profunda que ataca a raiz do problema: sua programação inconsciente sobre dinheiro, sucesso e merecimento.',
+      title: 'A metodologia que vai',
+      highlight: [
+        {
+          type: 'p',
+          children: [{ text: 'reprogramar' }],
+        },
+      ],
+      description: [
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'O Mentor Coaching Financeiro é resultado de mais de uma década de pesquisa e aplicação prática com milhares de alunos. É a síntese de tudo que Roberto Navarro descobriu sobre como pessoas realmente bem-sucedidas pensam, sentem e agem em relação ao dinheiro.',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Esta não é mais uma formação sobre "como investir" ou "como controlar gastos".',
+            },
+          ],
+        },
+        {
+          type: 'p',
+          children: [
+            {
+              text: 'Este é um processo de transformação profunda que ataca a raiz do problema: sua programação inconsciente sobre dinheiro, sucesso e merecimento.',
+            },
+          ],
+        },
+      ],
     },
     learnings: [
       {
@@ -1551,7 +1862,7 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
     },
   })
 
-  // 8. ROTA MIND
+  // 9. ROTA MIND
   await createOrUpdateFormacao('rota-mind', {
     title: 'Rota Mind',
     slug: 'rota-mind',
@@ -1576,62 +1887,95 @@ export async function seedFormacoes(payload: any, educadorFAQs: any[] = []) {
       ctaLink: 'https://pay.eduzz.com/rota-mind',
     },
     challenges: [
-      { text: 'Falta de técnica vs falta de acesso' },
-      { text: 'Conhecimento mas conexões erradas' },
-      { text: 'Dificuldade em pensar grande' },
-      { text: 'Precisa de apoio para decisões estratégicas' },
-      { text: 'Busca parcerias estratégicas' },
-    ],
-    benefits: [
       {
-        title: 'Networking de Alto Nível',
-        description: 'Conexões estratégicas e valiosas',
+        title: 'Você pode ter todo o conhecimento técnico do mundo...',
+        description: '...mas sem as conexões certas, você continuará no mesmo lugar.',
       },
       {
-        title: 'Parcerias Estratégicas',
-        description: 'Oportunidades de negócios reais',
+        title: 'Sente que está sempre correndo, mas sem sair do lugar?',
+        description: 'As oportunidades circulam nos espaços certos, e é isso que o Rota Mind entrega.',
       },
       {
-        title: 'Treinamentos Exclusivos',
-        description: 'Conteúdo exclusivo para membros',
+        title: 'Tem dificuldade em pensar grande e definir metas ousadas?',
+        description:
+          'No Rota Mind, quem está na mesa não está jogando pequeno. Está construindo crescimento, escala e legado.',
       },
       {
-        title: 'Apoio de Conselheiros',
-        description: 'Orientação de especialistas',
+        title: 'Precisa de apoio para tomar decisões estratégicas?',
+        description: 'Imagine ter três conselheiros ao seu lado apoiando suas decisões e guiando seu crescimento.',
       },
       {
-        title: 'Visão Externa',
-        description: 'Perspectivas diferentes e valiosas',
-      },
-      {
-        title: 'Orientações Estratégicas',
-        description: 'Direcionamento para decisões',
-      },
-      {
-        title: 'Experiências Compartilhadas',
-        description: 'Aprendizado com casos reais',
-      },
-      {
-        title: 'Inteligência Coletiva',
-        description: 'Poder do grupo seleto',
+        title: 'Busca parcerias estratégicas para seu negócio?',
+        description:
+          'Conecte-se com empresários, investidores e tomadores de decisão em um ambiente seleto e exclusivo.',
       },
     ],
     modules: [
       {
-        title: 'DIA 1 - Conteúdo de Alta Performance',
-        description: 'Imersão em estratégias avançadas',
+        title: 'Networking de Alto Nível',
+        description:
+          'Conexões diretas com empresários, investidores e tomadores de decisão que podem transformar seu negócio e abrir portas que você nem imaginava existirem.',
         topics: [
-          { text: 'Estratégias de alto nível' },
-          { text: 'Metodologias exclusivas' },
+          { text: 'Acesso a um círculo seleto de empresários' },
+          { text: 'Conexões com investidores e tomadores de decisão' },
+          { text: 'Ambiente propício para parcerias estratégicas' },
+          { text: 'Oportunidades de negócios exclusivas' },
+          { text: 'Relacionamentos que geram resultados reais' },
         ],
       },
       {
-        title: 'DIA 2 - Clube de Negócios',
-        description: 'Networking e parcerias',
+        title: 'Parcerias Estratégicas',
+        description:
+          'Encontre sócios, investidores, fornecedores e clientes em potencial em um ambiente estruturado para gerar oportunidades reais de negócio e crescimento.',
         topics: [
-          { text: 'Conectando empresários' },
-          { text: 'Oportunidades de negócio' },
+          { text: 'Encontre sócios para expandir seu negócio' },
+          { text: 'Conecte-se com investidores interessados' },
+          { text: 'Descubra fornecedores estratégicos' },
+          { text: 'Acesse novos clientes em potencial' },
+          { text: 'Crie alianças comerciais poderosas' },
         ],
+      },
+      {
+        title: 'Treinamentos Exclusivos',
+        description:
+          'Conteúdos de alta performance sobre vendas, marketing, gestão, tecnologia e muito mais, entregues por Roberto Navarro e convidados estratégicos.',
+        topics: [
+          { text: 'Estratégias avançadas de vendas e marketing' },
+          { text: 'Técnicas de gestão e liderança' },
+          { text: 'Inovação e tecnologia para negócios' },
+          { text: 'Inteligência financeira aplicada' },
+          { text: 'Conteúdo exclusivo não disponível em outros lugares' },
+        ],
+      },
+      {
+        title: 'Apoio de Conselheiros',
+        description:
+          'Tenha ao seu lado profissionais experientes que já percorreram o caminho, erraram, acertaram e construíram negócios de verdade para te ajudar nas decisões.',
+        topics: [
+          { text: 'Orientação personalizada para seu negócio' },
+          { text: 'Feedback honesto e direto de especialistas' },
+          { text: 'Ajuda na tomada de decisões cruciais' },
+          { text: 'Visão externa e estratégica do seu negócio' },
+          { text: 'Experiência real de quem já esteve no seu lugar' },
+        ],
+      },
+    ],
+    results: [
+      {
+        title: 'Visão externa e estratégica',
+        description: 'Enxergamos seu negócio de fora e trazemos insights que você não percebe sozinho.',
+      },
+      {
+        title: 'Orientações',
+        description: 'Ajudamos você a tomar decisões cruciais em vendas, expansão, gestão, marketing, pessoas e finanças.',
+      },
+      {
+        title: 'Experiências reais',
+        description: 'Você aprende com quem já percorreu o caminho, errou, acertou e construiu negócios de verdade.',
+      },
+      {
+        title: 'Inteligência aplicada',
+        description: 'Munimos você com feedbacks, provocações e conselhos personalizados, aplicados à sua realidade.',
       },
     ],
     pricing: {

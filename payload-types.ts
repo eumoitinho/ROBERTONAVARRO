@@ -231,6 +231,11 @@ export interface Formacoe {
   };
   challenges?:
     | {
+        title?: string | null;
+        description?: string | null;
+        /**
+         * Opcional: use se não quiser separar título/descrição.
+         */
         text?: string | null;
         id?: string | null;
       }[]
@@ -248,18 +253,33 @@ export interface Formacoe {
     | null;
   learnings?:
     | {
+        title?: string | null;
+        description?: string | null;
+        /**
+         * Use para itens curtos em listas simples.
+         */
         text?: string | null;
         id?: string | null;
       }[]
     | null;
   targetAudience?:
     | {
+        title?: string | null;
+        description?: string | null;
+        /**
+         * Opcional: use se não quiser separar título/descrição.
+         */
         text?: string | null;
         id?: string | null;
       }[]
     | null;
   results?:
     | {
+        title?: string | null;
+        description?: string | null;
+        /**
+         * Opcional: use se não quiser separar título/descrição.
+         */
         text?: string | null;
         id?: string | null;
       }[]
@@ -275,6 +295,11 @@ export interface Formacoe {
   };
   decisionPaths?:
     | {
+        title?: string | null;
+        description?: string | null;
+        /**
+         * Opcional: use se não quiser separar título/descrição.
+         */
         text?: string | null;
         id?: string | null;
       }[]
@@ -284,6 +309,7 @@ export interface Formacoe {
    */
   decisionPathsNote?: string | null;
   methodology?: {
+    badge?: string | null;
     title?: string | null;
     description?:
       | {
@@ -1604,6 +1630,8 @@ export interface FormacoesSelect<T extends boolean = true> {
   challenges?:
     | T
     | {
+        title?: T;
+        description?: T;
         text?: T;
         id?: T;
       };
@@ -1618,18 +1646,24 @@ export interface FormacoesSelect<T extends boolean = true> {
   learnings?:
     | T
     | {
+        title?: T;
+        description?: T;
         text?: T;
         id?: T;
       };
   targetAudience?:
     | T
     | {
+        title?: T;
+        description?: T;
         text?: T;
         id?: T;
       };
   results?:
     | T
     | {
+        title?: T;
+        description?: T;
         text?: T;
         id?: T;
       };
@@ -1643,6 +1677,8 @@ export interface FormacoesSelect<T extends boolean = true> {
   decisionPaths?:
     | T
     | {
+        title?: T;
+        description?: T;
         text?: T;
         id?: T;
       };
@@ -1650,6 +1686,7 @@ export interface FormacoesSelect<T extends boolean = true> {
   methodology?:
     | T
     | {
+        badge?: T;
         title?: T;
         description?: T;
         highlight?: T;
