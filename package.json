@@ -30,6 +30,7 @@
     "@payloadcms/next": "^3.63.0",
     "@payloadcms/richtext-lexical": "^3.63.0",
     "@payloadcms/richtext-slate": "^3.63.0",
+    "@payloadcms/storage-vercel-blob": "^3.72.0",
     "@radix-ui/react-accordion": "latest",
     "@radix-ui/react-alert-dialog": "latest",
     "@radix-ui/react-aspect-ratio": "latest",

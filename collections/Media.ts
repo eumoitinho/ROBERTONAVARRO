@@ -11,8 +11,11 @@ const Media: CollectionConfig = {
     read: () => true,
   },
   upload: {
+    // Em produção, os arquivos são armazenados no Vercel Blob
+    // staticDir é usado apenas para fallback em desenvolvimento local
     staticDir: 'media',
     mimeTypes: ['image/*', 'video/*', 'application/pdf'],
+    disableLocalStorage: process.env.NODE_ENV === 'production',
   },
   fields: [
     {
